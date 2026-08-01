@@ -1,20 +1,25 @@
-# IDU-Br v2 — disponibilidade útil e confiança da avaliação
+# IDU-Br v2.1 — qualidade, porte do piloto e confiança da avaliação
 
 **Status:** proposta para auditoria e calibração
 **Data:** 2026-08-01
 **Substitui para novas avaliações:** [METRICA_IDU.md](METRICA_IDU.md), que permanece como registro da v1
 **Implementação da fórmula e validações:** [idu_v2.py](../idu_v2.py)
 
-## 1. Duas perguntas, dois resultados
+## 1. Três perguntas, três resultados
 
-A v2 nunca mistura:
+A v2.1 nunca mistura:
 
-- **IDU-Br (0–100):** quão adequado é o ecossistema local de dados para o piloto;
+- **IDU-Br (0–100):** qual é a qualidade do ecossistema local de dados;
+- **P-Piloto (0–100):** quão adequado é o porte populacional para uma primeira implementação controlada;
 - **C-IDU (0–100):** quão confiável é a nossa avaliação daquela cidade.
 
-Exemplo de apresentação correta: `IDU 76 [70–82] · C-IDU 84 · 91% de chance de permanecer no top 10`.
+Para ordenar candidatas ao primeiro piloto, publica também:
 
-Não se multiplica IDU por C-IDU. Fazer isso confundiria qualidade do município com falta de pesquisa: uma cidade mediana muito estudada poderia superar artificialmente uma excelente cidade ainda pouco auditada.
+- **IPS-Br (0–100):** índice de prioridade do piloto, combinando qualidade e adequação de porte.
+
+Exemplo de apresentação correta: `IDU-E 76 [70–82] · P-Piloto 100 · IPS-Br 82 · C-IDU 84`.
+
+Não se multiplica nenhuma nota por C-IDU. Fazer isso confundiria qualidade do município com falta de pesquisa: uma cidade mediana muito estudada poderia superar artificialmente uma excelente cidade ainda pouco auditada.
 
 ## 2. Problemas encontrados na v1
 
@@ -92,7 +97,58 @@ Os cinco domínios citados no briefing podem continuar com peso relativo 1,2 e o
 
 Não existem bônus ou penalidades fora da escala. Granularidade e fragilidade entram uma vez, em `T` e `R`.
 
-## 6. Confiança da avaliação (C-IDU)
+## 6. Porte adequado ao primeiro piloto (P-Piloto e IPS-Br)
+
+População não altera a qualidade dos dados. Ela altera o custo e o risco de executar o primeiro piloto: volume de registros, quantidade de equipamentos públicos, subdivisões territoriais, número de sistemas e variedade de atores tendem a crescer com o porte.
+
+O inverso também importa. Municípios muito pequenos são fáceis de processar, mas podem não testar a diversidade administrativa e temática necessária para criar um padrão nacional. Por isso, P-Piloto usa uma curva de adequação, e não uma regra em que “menor é sempre melhor”.
+
+### Faixa ótima provisória
+
+O ponto de partida recomendado é **200 mil a 600 mil habitantes**. A faixa ampliada de **100 mil a 1 milhão** ainda é adequada, com redução gradual nas bordas. Acima de 1 milhão a complexidade passa a pesar de forma relevante; abaixo de 100 mil cai a representatividade do teste.
+
+Essa curva é uma **hipótese operacional**, não um resultado científico já validado. Ela foi escolhida porque:
+
+- inclui cidades com administração e serviços suficientemente diversos;
+- contém os melhores outliers de porte médio já encontrados, como Jundiaí, Niterói e Caxias do Sul;
+- evita começar com a fragmentação e o volume de metrópoles multimilionárias;
+- usa transições suaves, sem eliminar uma cidade por estar pouco acima ou abaixo de um corte.
+
+Usar a estimativa municipal oficial mais recente do IBGE, guardando valor, data de referência e fonte. Para esta versão, a referência é a [Estimativa da População 2025 do IBGE](https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-depopulacao.html), com data-base em 1º de julho de 2025.
+
+| População | P-Piloto | Leitura operacional |
+|---:|---:|---|
+| até 50 mil | 20–40 | simples, porém pouco representativa |
+| 50–100 mil | 40–70 | ainda pequena para testar todos os domínios |
+| 100–200 mil | 70–100 | transição para a faixa ótima |
+| **200–600 mil** | **100** | melhor equilíbrio inicial |
+| 600 mil–1 milhão | 100–80 | boa, com complexidade crescente |
+| 1–2 milhões | 80–55 | metrópole; exige redução de escopo |
+| 2–5 milhões | 55–30 | alta complexidade operacional |
+| 5–12 milhões | 30–15 | megacidade; usar como benchmark, não como primeiro piloto |
+| 12 milhões ou mais | 15 | piso da curva |
+
+Entre as âncoras, a nota é interpolada linearmente. A população não gera intervalo de IDU e não aumenta a confiança da avaliação.
+
+### Pontuação de seleção
+
+```text
+IPS-Br = 0,75 × IDU-E + 0,25 × P-Piloto
+```
+
+Qualidade mantém 75% do peso. Porte recebe 25%: suficiente para distinguir um piloto controlável de uma megacidade, sem permitir que uma cidade pequena com dados fracos vença apenas por ser fácil.
+
+Regras:
+
+- o ranking operacional usa IPS-Br; o ranking de qualidade continua usando IDU-E;
+- C-IDU permanece separado e acompanha os dois rankings;
+- publicar sensibilidade com peso de porte de 15%, 25% e 35%;
+- uma boa nota de porte não compensa domínios ausentes ou evidência fraca;
+- cidades acima de 1 milhão podem continuar como benchmarks e entrar em ondas posteriores ou em pilotos setoriais.
+
+Depois da primeira execução, recalibrar as âncoras contra horas de engenharia, volume baixado, número de fontes, falhas de ingestão e tempo até o primeiro produto público.
+
+## 7. Confiança da avaliação (C-IDU)
 
 Pontuar 0–4 em seis dimensões:
 
@@ -118,7 +174,7 @@ Tetos obrigatórios:
 
 Faixas: `alta ≥80`, `média 60–79`, `baixa <60`.
 
-## 7. Intervalo e estabilidade do ranking
+## 8. Intervalo e estabilidade do ranking
 
 Cada nota 0–4 deve guardar `[mínimo, central, máximo]` conforme a evidência:
 
@@ -137,22 +193,25 @@ Calcular:
 
 Uma posição só é “estável” quando permanece no top 10 em pelo menos 80% das simulações.
 
-## 8. Como validar a própria métrica
+## 9. Como validar a própria métrica
 
 - Dupla codificação cega de pelo menos 20% das cidades; medir kappa ponderado por eixo.
 - Auditoria de falsos positivos: portais com muitos rótulos e poucos dados reais.
 - Auditoria de falsos negativos: fontes setoriais fora do catálogo central.
-- Validade preditiva no piloto: comparar IDU com horas até a primeira ingestão, taxa de downloads bem-sucedidos, percentual de campos documentados e disponibilidade após 30/90 dias.
+- Validade preditiva no piloto: comparar IDU e P-Piloto com horas até a primeira ingestão, volume processado, quantidade de fontes, taxa de downloads bem-sucedidos, percentual de campos documentados e disponibilidade após 30/90 dias.
 - Revisar pesos somente depois desses resultados; publicar todas as versões.
 
 Meta mínima antes de chamar a métrica de calibrada: kappa ≥0,70 nos cinco eixos e correlação coerente entre IDU e custo real de ingestão.
 
-## 9. Saída obrigatória por cidade
+## 10. Saída obrigatória por cidade
 
 ```text
 Cidade/UF
+População/data/fonte: valor · data de referência · IBGE
 IDU-M: valor [mín–máx]
 IDU-E: valor [mín–máx]
+P-Piloto: valor
+IPS-Br: valor
 C-IDU: valor/faixa
 Probabilidade top 10: n%
 Dependência externa: IDU-E − IDU-M

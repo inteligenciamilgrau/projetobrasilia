@@ -6,11 +6,17 @@ pois a separação entre evidência e cálculo é uma regra da v2.
 Uso:
     python idu_v2.py matriz.json
     python idu_v2.py matriz.json --equal-weights --json
+    python idu_v2.py matriz.json --pilot-size-weight 0.25
     python idu_v2.py --self-test
 
 Formato resumido da entrada:
 {
   "Cidade/UF": {
+    "population": {
+      "value": 463039,
+      "reference_date": "2025-07-01",
+      "source": "IBGE — Estimativas da População 2025"
+    },
     "municipal": {"saude": {"D": [3,4,4], "U": 4, ...}, ...},
     "ecosystem": {"saude": {"D": [3,4,4], "U": 4, ...}, ...},
     "confidence": {"completude": 4, "evidencia": 3, ...},
@@ -70,6 +76,22 @@ TETOS_CONFIANCA = {
     "so_busca_ou_noticia": 39.0,
 }
 
+# Adequação do porte ao primeiro piloto. A curva é um prior operacional
+# provisório, não uma afirmação de que cidades maiores tenham dados piores.
+# Ela deve ser recalibrada quando houver horas e custos reais de ingestão.
+ANCORAS_PORTE = (
+    (1, 20.0),
+    (50_000, 40.0),
+    (100_000, 70.0),
+    (200_000, 100.0),
+    (600_000, 100.0),
+    (1_000_000, 80.0),
+    (2_000_000, 55.0),
+    (5_000_000, 30.0),
+    (12_000_000, 15.0),
+)
+PESO_PORTE_SELECAO = 0.25
+
 
 class ErroMatriz(ValueError):
     """Entrada inválida, com mensagem adequada para o auditor."""
@@ -113,6 +135,62 @@ def _validar_camada(camada: dict[str, Any], contexto: str) -> None:
 
 def _media_ponderada(valores: dict[str, float], pesos: dict[str, float]) -> float:
     return sum(valores[d] * pesos[d] for d in DOMINIOS) / sum(pesos.values())
+
+
+def pontuar_porte(populacao: float) -> float:
+    """Retorna P-Piloto (0–100) por interpolação linear entre as âncoras."""
+    if isinstance(populacao, bool) or not isinstance(populacao, (int, float)):
+        raise ErroMatriz("população deve ser numérica")
+    if not math.isfinite(populacao) or populacao <= 0:
+        raise ErroMatriz("população deve ser maior que zero")
+    if not float(populacao).is_integer():
+        raise ErroMatriz("população deve ser um número inteiro de habitantes")
+
+    if populacao >= ANCORAS_PORTE[-1][0]:
+        return ANCORAS_PORTE[-1][1]
+
+    for (pop_lo, nota_lo), (pop_hi, nota_hi) in zip(
+        ANCORAS_PORTE, ANCORAS_PORTE[1:]
+    ):
+        if populacao <= pop_hi:
+            fracao = (populacao - pop_lo) / (pop_hi - pop_lo)
+            return nota_lo + fracao * (nota_hi - nota_lo)
+    raise AssertionError("âncoras de porte inválidas")
+
+
+def avaliar_populacao(config: Any, contexto: str) -> dict[str, Any]:
+    """Valida valor, data de referência e procedência da população."""
+    if not isinstance(config, dict):
+        raise ErroMatriz(f"{contexto}: esperado objeto com value/reference_date/source")
+    faltantes = {"value", "reference_date", "source"} - set(config)
+    if faltantes:
+        raise ErroMatriz(f"{contexto}: faltam {sorted(faltantes)}")
+
+    valor = config["value"]
+    nota = pontuar_porte(valor)
+    data = config["reference_date"]
+    fonte = config["source"]
+    if not isinstance(data, str) or not data.strip():
+        raise ErroMatriz(f"{contexto}.reference_date: esperado texto não vazio")
+    if not isinstance(fonte, str) or not fonte.strip():
+        raise ErroMatriz(f"{contexto}.source: esperado texto não vazio")
+    return {
+        "value": int(valor),
+        "reference_date": data.strip(),
+        "source": fonte.strip(),
+        "P_PILOTO": nota,
+    }
+
+
+def pontuar_selecao(
+    idu_ecossistema: float,
+    p_piloto: float,
+    peso_porte: float = PESO_PORTE_SELECAO,
+) -> float:
+    """Combina qualidade e porte sem misturar confiança da avaliação."""
+    if not 0 <= peso_porte <= 1:
+        raise ErroMatriz("peso de porte deve estar entre 0 e 1")
+    return (1 - peso_porte) * idu_ecossistema + peso_porte * p_piloto
 
 
 def avaliar_camada(
@@ -166,7 +244,9 @@ def avaliar_cidade(
     nome: str,
     config: dict[str, Any],
     pesos: dict[str, float],
+    peso_porte: float = PESO_PORTE_SELECAO,
 ) -> dict[str, Any]:
+    populacao = avaliar_populacao(config.get("population"), f"{nome}.population")
     for camada_nome in ("municipal", "ecosystem"):
         if camada_nome not in config:
             raise ErroMatriz(f"{nome}: falta camada '{camada_nome}'")
@@ -201,8 +281,14 @@ def avaliar_cidade(
 
     central_m = municipal[1]["IDU"]
     central_e = ecossistema[1]["IDU"]
+    ips_br = pontuar_selecao(central_e, populacao["P_PILOTO"], peso_porte)
     return {
         "cidade": nome,
+        "populacao": populacao["value"],
+        "populacao_referencia": populacao["reference_date"],
+        "populacao_fonte": populacao["source"],
+        "P_PILOTO": populacao["P_PILOTO"],
+        "IPS_Br": ips_br,
         "IDU_M": central_m,
         "IDU_M_lo": municipal[0]["IDU"],
         "IDU_M_hi": municipal[2]["IDU"],
@@ -245,13 +331,27 @@ def self_test() -> None:
     lo = avaliar_camada(incerta, 0, pesos)["IDU"]
     hi = avaliar_camada(incerta, 2, pesos)["IDU"]
     assert math.isclose(lo, 0.0) and math.isclose(hi, 100.0)
-    print(f"self-test OK: perfeita=100, vazia=0, uniformemente_fraca={nota_fraca:.1f}")
+    assert math.isclose(pontuar_porte(200_000), 100.0)
+    assert math.isclose(pontuar_porte(600_000), 100.0)
+    assert math.isclose(pontuar_porte(1_000_000), 80.0)
+    assert pontuar_porte(12_000_000) == 15.0
+    assert math.isclose(pontuar_selecao(80.0, 100.0), 85.0)
+    print(
+        "self-test OK: perfeita=100, vazia=0, "
+        f"uniformemente_fraca={nota_fraca:.1f}, porte_200k_600k=100"
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("matriz", nargs="?", type=Path)
     parser.add_argument("--equal-weights", action="store_true")
+    parser.add_argument(
+        "--pilot-size-weight",
+        type=float,
+        default=PESO_PORTE_SELECAO,
+        help="peso de P-Piloto no IPS-Br (padrão: 0.25)",
+    )
     parser.add_argument("--json", action="store_true", dest="saida_json")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args(argv)
@@ -264,22 +364,33 @@ def main(argv: list[str] | None = None) -> int:
 
     pesos = {d: 1.0 for d in DOMINIOS} if args.equal_weights else PESOS_BRIEFING
     dados = carregar(args.matriz)
-    resultados = [avaliar_cidade(nome, cfg, pesos) for nome, cfg in dados.items()]
-    resultados.sort(key=lambda x: (-x["IDU_E"], -x["C_IDU"], x["cidade"]))
+    if not 0 <= args.pilot_size_weight <= 1:
+        parser.error("--pilot-size-weight deve estar entre 0 e 1")
+    resultados = [
+        avaliar_cidade(nome, cfg, pesos, args.pilot_size_weight)
+        for nome, cfg in dados.items()
+    ]
+    resultados.sort(
+        key=lambda x: (-x["IPS_Br"], -x["IDU_E"], -x["C_IDU"], x["cidade"])
+    )
 
     if args.saida_json:
         print(json.dumps(resultados, ensure_ascii=False, indent=2))
         return 0
 
-    print("#  Cidade                    IDU-M (faixa)       IDU-E (faixa)       C-IDU  Dep.ext")
-    print("-" * 92)
+    print(
+        "#  Cidade                    IDU-M (faixa)       IDU-E (faixa)"
+        "       P-Piloto  IPS-Br  C-IDU  Dep.ext"
+    )
+    print("-" * 118)
     for pos, r in enumerate(resultados, 1):
         faixa_m = f'{r["IDU_M_lo"]:.0f}-{r["IDU_M_hi"]:.0f}'
         faixa_e = f'{r["IDU_E_lo"]:.0f}-{r["IDU_E_hi"]:.0f}'
         print(
             f'{pos:<3}{r["cidade"]:<26}{r["IDU_M"]:>5.1f} ({faixa_m:>7})'
             f'{r["IDU_E"]:>11.1f} ({faixa_e:>7})'
-            f'{r["C_IDU"]:>9.1f}{r["dependencia_externa"]:>9.1f}'
+            f'{r["P_PILOTO"]:>15.1f}{r["IPS_Br"]:>8.1f}'
+            f'{r["C_IDU"]:>7.1f}{r["dependencia_externa"]:>9.1f}'
         )
     return 0
 

@@ -535,6 +535,8 @@
       display: block;
       margin-bottom: 0.2rem;
       font-size: 0.97rem;
+      font-weight: 800;
+      text-underline-offset: 3px;
     }
 
     .region-label {
@@ -1021,6 +1023,8 @@
         </a>
         <div class="top-actions">
           <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Relatório parcial</span>
+          <a class="github-link" href="inventario.html">Inventário</a>
+          <a class="github-link" href="fontes.html">Fontes</a>
           <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir repositório do Projeto iA Brasil no GitHub">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
             <span>GitHub</span>
@@ -1059,16 +1063,16 @@
       <div class="section-heading">
         <div>
           <p class="kicker">Visão executiva</p>
-          <h2 id="visao-titulo">Nove candidatas defensáveis. Uma vaga ainda condicional.</h2>
+          <h2 id="visao-titulo">Qualidade alta não significa piloto simples.</h2>
         </div>
-        <p>As posições 1–8 estão relativamente estáveis. Jundiaí entrou em 9º após o pente-fino de cidades médias; Belém permanece em 10º pela relevância nortista, mas com ressalvas técnicas fortes.</p>
+        <p>Nove das dez candidatas atuais superam 1 milhão de habitantes. Jundiaí, com 463 mil, é o melhor equilíbrio encontrado entre dados promissores e escala controlável; Belém permanece condicional.</p>
       </div>
 
       <div class="callout">
         <span class="callout-icon" aria-hidden="true">✓</span>
         <div>
-          <strong>Decisão parcial, não placar definitivo</strong>
-          <p>A shortlist ordena aptidão para um piloto de ingestão e análise. Ela não mede qualidade de vida, riqueza, eficiência geral da prefeitura ou mérito político.</p>
+          <strong>Nova leitura: referência de qualidade ≠ ordem de implantação</strong>
+          <p>As capitais continuam benchmarks valiosos. Para executar primeiro, o ranking passa a combinar qualidade dos dados com adequação de porte, sem confundir nenhuma delas com confiança da auditoria.</p>
         </div>
       </div>
 
@@ -1089,9 +1093,9 @@
           <small>avaliados por cidade</small>
         </article>
         <article class="stat-card">
-          <span class="value">2</span>
-          <strong>resultados distintos</strong>
-          <small>qualidade e confiança</small>
+          <span class="value">3</span>
+          <strong>sinais separados</strong>
+          <small>qualidade, porte e confiança</small>
         </article>
       </div>
 
@@ -1160,15 +1164,15 @@
     <section id="shortlist" aria-labelledby="shortlist-titulo">
       <div class="section-heading">
         <div>
-          <p class="kicker">Decisão recomendada</p>
-          <h2 id="shortlist-titulo">Top 10 provisório</h2>
+          <p class="kicker">Referências encontradas</p>
+          <h2 id="shortlist-titulo">Top 10 provisório por qualidade e evidência</h2>
         </div>
-        <p>As faixas A/B/C indicam prontidão operacional. “Confiança” nesta tabela é uma avaliação qualitativa da seleção atual, ainda não o C-IDU numérico final.</p>
+        <p>Esta tabela preserva o levantamento de ecossistemas. A ordem de implantação será recalculada pelo IPS-Br; “confiança” ainda é qualitativa, não o C-IDU numérico final.</p>
       </div>
 
       <div class="table-wrap">
         <table>
-          <caption>Shortlist compilada em 01/08/2026. A ordem pode mudar após a codificação completa da matriz IDU-Br v2.</caption>
+          <caption>Shortlist compilada em 01/08/2026. A ordem operacional mudará após a codificação da matriz IDU-Br v2.1 e do porte.</caption>
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -1182,39 +1186,39 @@
           <tbody>
             <tr>
               <td class="rank">01</td>
-              <td><strong class="city-name">Recife/PE</strong><span class="region-label">Nordeste</span></td>
-              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td><a class="city-name" href="cidades/recife.html">Recife/PE</a><span class="region-label">Nordeste</span></td>
+              <td><span class="badge badge-a">A · benchmark</span></td>
               <td>CKAN equilibrado, microdados e atualização em 2026 nos principais domínios.</td>
               <td>Histórico recente de HTTP 500 em parte da API e da interface.</td>
               <td><span class="badge conf-high">alta</span></td>
             </tr>
             <tr>
               <td class="rank">02</td>
-              <td><strong class="city-name">São Paulo/SP</strong><span class="region-label">Sudeste</span></td>
-              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td><a class="city-name" href="cidades/sao-paulo.html">São Paulo/SP</a><span class="region-label">Sudeste</span></td>
+              <td><span class="badge badge-a">A · benchmark</span></td>
               <td>474 conjuntos, 81 órgãos, 16 temas e um ecossistema técnico muito amplo.</td>
               <td>Integração fragmentada; saúde e segurança municipais são mais rasas.</td>
               <td><span class="badge conf-high">alta</span></td>
             </tr>
             <tr>
               <td class="rank">03</td>
-              <td><strong class="city-name">Fortaleza/CE</strong><span class="region-label">Nordeste</span></td>
-              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td><a class="city-name" href="cidades/fortaleza.html">Fortaleza/CE</a><span class="region-label">Nordeste</span></td>
+              <td><span class="badge badge-a">A · benchmark</span></td>
               <td>CKAN documentado, mais de 630 conjuntos e forte presença de CSV/GeoJSON.</td>
               <td>Parte das séries de saúde, educação, economia e segurança está defasada.</td>
               <td><span class="badge conf-high">alta</span></td>
             </tr>
             <tr>
               <td class="rank">04</td>
-              <td><strong class="city-name">Rio de Janeiro/RJ</strong><span class="region-label">Sudeste</span></td>
-              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td><a class="city-name" href="cidades/rio-de-janeiro.html">Rio de Janeiro/RJ</a><span class="region-label">Sudeste</span></td>
+              <td><span class="badge badge-a">A · benchmark</span></td>
               <td>Maior profundidade territorial, geosserviços e várias séries operacionais.</td>
               <td>Ecossistema fragmentado; alguns serviços já apresentaram 503 ou token.</td>
               <td><span class="badge conf-high">média-alta</span></td>
             </tr>
             <tr>
               <td class="rank">05</td>
-              <td><strong class="city-name">Porto Alegre/RS</strong><span class="region-label">Sul</span></td>
+              <td><a class="city-name" href="cidades/porto-alegre.html">Porto Alegre/RS</a><span class="region-label">Sul</span></td>
               <td><span class="badge badge-b">B · 2ª onda</span></td>
               <td>Novo CKAN vivo, oito grupos e bom complemento estadual de segurança.</td>
               <td>Educação e economia ainda são rasas; segurança depende do estado.</td>
@@ -1222,7 +1226,7 @@
             </tr>
             <tr>
               <td class="rank">06</td>
-              <td><strong class="city-name">Curitiba/PR</strong><span class="region-label">Sul</span></td>
+              <td><a class="city-name" href="cidades/curitiba.html">Curitiba/PR</a><span class="region-label">Sul</span></td>
               <td><span class="badge badge-b">B · 2ª onda</span></td>
               <td>Microdados atuais de saúde, Guarda Municipal, 156, alvarás e mobilidade.</td>
               <td>Educação é sobretudo cadastro/geo; ambiente é majoritariamente cartográfico.</td>
@@ -1230,7 +1234,7 @@
             </tr>
             <tr>
               <td class="rank">07</td>
-              <td><strong class="city-name">Belo Horizonte/MG</strong><span class="region-label">Sudeste</span></td>
+              <td><a class="city-name" href="cidades/belo-horizonte.html">Belo Horizonte/MG</a><span class="region-label">Sudeste</span></td>
               <td><span class="badge badge-b">B · 2ª onda</span></td>
               <td>Boa combinação de CKAN, WFS e GTFS para engenharia de ingestão.</td>
               <td>Taxonomia desigual; grupos oficiais mostram saúde rasa e segurança vazia.</td>
@@ -1238,7 +1242,7 @@
             </tr>
             <tr>
               <td class="rank">08</td>
-              <td><strong class="city-name">Brasília/DF</strong><span class="region-label">Centro-Oeste</span></td>
+              <td><a class="city-name" href="cidades/brasilia.html">Brasília/DF</a><span class="region-label">Centro-Oeste</span></td>
               <td><span class="badge badge-b">B · 2ª onda</span></td>
               <td>Segurança e pesquisa domiciliar por RA, além de bons geosserviços.</td>
               <td>Portal central não enumera bem o acervo; ingestão é fonte a fonte.</td>
@@ -1246,15 +1250,15 @@
             </tr>
             <tr>
               <td class="rank">09</td>
-              <td><strong class="city-name">Jundiaí/SP</strong><span class="region-label">Sudeste</span></td>
-              <td><span class="badge badge-b">B/C · auditar</span></td>
+              <td><a class="city-name" href="cidades/jundiai.html">Jundiaí/SP</a><span class="region-label">Sudeste</span></td>
+              <td><span class="badge badge-a">A · auditar/iniciar</span></td>
               <td>CIJUN própria, norma de dados abertos, GEOJundiaí e mais de 385 indicadores.</td>
               <td>Exportação/API do Observatório e um recurso por domínio ainda não auditados.</td>
               <td><span class="badge conf-high">média-alta</span></td>
             </tr>
             <tr>
               <td class="rank">10</td>
-              <td><strong class="city-name">Belém/PA</strong><span class="region-label">Norte</span></td>
+              <td><a class="city-name" href="cidades/belem.html">Belém/PA</a><span class="region-label">Norte</span></td>
               <td><span class="badge badge-c">C · condicional</span></td>
               <td>Melhor evidência multidomínio encontrada no Norte e segurança por bairro.</td>
               <td>Sem API; arquivos em Drive/RAR, séries antigas e downloads quebrados.</td>
@@ -1264,31 +1268,32 @@
         </table>
       </div>
       <p class="table-note"><strong>Reservas imediatas:</strong> Toledo/PR, Niterói/RJ, Maceió/AL, Salvador/BA, Caxias do Sul/RS e Goiânia/GO.</p>
+      <div class="warning"><strong>Impacto do novo critério:</strong> Jundiaí sobe de 9ª referência de qualidade para candidata principal à execução do primeiro piloto. São Paulo e Rio continuam padrões de comparação, mas deixam de ser escolhas naturais para uma implantação integral inicial.</div>
     </section>
 
     <section id="metricas" aria-labelledby="metricas-titulo">
       <div class="section-heading">
         <div>
-          <p class="kicker">IDU-Br v2</p>
-          <h2 id="metricas-titulo">Qualidade e confiança não são a mesma coisa.</h2>
+          <p class="kicker">IDU-Br v2.1</p>
+          <h2 id="metricas-titulo">Qualidade, porte e confiança não são a mesma coisa.</h2>
         </div>
-        <p>A principal revisão metodológica foi parar de transformar falta de pesquisa em nota ruim — ou excesso de pesquisa em nota boa. Cada pergunta gera seu próprio resultado.</p>
+        <p>A revisão agora também evita tratar uma megacidade com ótimos dados como piloto simples. Cada pergunta gera seu próprio resultado; apenas a prioridade operacional combina qualidade e porte.</p>
       </div>
 
       <div class="metric-pair">
         <article class="metric-card primary">
-          <span class="metric-label">Resultado 1 · 0–100</span>
+          <span class="metric-label">Qualidade · 0–100</span>
           <h3>IDU-Br</h3>
-          <p>Quão adequado é o ecossistema local de dados para o piloto: profundidade, acesso, frescor, território, equilíbrio e resiliência.</p>
+          <p>Qual é a qualidade do ecossistema local de dados: profundidade, acesso, frescor, território, equilíbrio e resiliência.</p>
         </article>
         <article class="metric-card confidence">
-          <span class="metric-label">Resultado 2 · 0–100</span>
+          <span class="metric-label">Confiança · 0–100</span>
           <h3>C-IDU</h3>
           <p>Quão confiável é a nossa avaliação: completude da auditoria, força da evidência, reprodução, concordância e recência.</p>
         </article>
       </div>
 
-      <div class="metric-rule"><strong>Regra central:</strong> IDU-Br e C-IDU nunca são multiplicados. Uma cidade excelente ainda pouco auditada deve aparecer como “qualidade possivelmente alta, confiança baixa” — e não ser artificialmente rebaixada.</div>
+      <div class="metric-rule"><strong>Regra central:</strong> C-IDU nunca entra na fórmula de seleção. Uma cidade excelente ainda pouco auditada deve aparecer como “qualidade possivelmente alta, confiança baixa” — e não ser artificialmente rebaixada.</div>
 
       <h3>Oito domínios canônicos</h3>
       <div class="domain-chips" aria-label="Domínios avaliados">
@@ -1345,6 +1350,44 @@ R = governança e resiliência</pre>
         <div class="layer"><strong>C · civil</strong><span>Complemento universitário ou cívico; nunca substituto silencioso.</span></div>
       </div>
       <p class="table-note">A publicação terá <strong>IDU-M</strong> (autonomia municipal) e <strong>IDU-E</strong> (ecossistema utilizável no território). A diferença entre os dois mostra dependência externa.</p>
+
+      <h3>Novo fator: porte adequado ao primeiro piloto</h3>
+      <div class="metric-pair">
+        <article class="metric-card primary">
+          <span class="metric-label">Viabilidade de escala · 0–100</span>
+          <h3>P-Piloto</h3>
+          <p>Mede apenas a adequação populacional para uma implementação controlada. A faixa ótima provisória é de 200 mil a 600 mil habitantes.</p>
+        </article>
+        <article class="metric-card confidence">
+          <span class="metric-label">Prioridade operacional · 0–100</span>
+          <h3>IPS-Br</h3>
+          <p>Combina 75% de qualidade do ecossistema com 25% de adequação de porte. A confiança da avaliação permanece separada.</p>
+        </article>
+      </div>
+
+      <div class="scale" aria-label="Curva resumida de adequação de porte">
+        <div class="scale-item"><strong>&lt; 100 mil</strong><span>fácil, mas pouco representativa</span></div>
+        <div class="scale-item"><strong>100–200 mil</strong><span>transição para o ideal</span></div>
+        <div class="scale-item"><strong>200–600 mil</strong><span>faixa ótima · nota 100</span></div>
+        <div class="scale-item"><strong>600 mil–1 mi</strong><span>boa, com complexidade crescente</span></div>
+        <div class="scale-item"><strong>&gt; 1 milhão</strong><span>redução progressiva da nota</span></div>
+      </div>
+
+      <div class="formula-grid">
+        <div class="formula-box">
+          <h3>Fórmula da seleção</h3>
+          <pre>IPS-Br = 0,75 × IDU-E + 0,25 × P-Piloto
+
+Faixa ótima: 200 mil–600 mil
+Sensibilidade: testar porte com 15%, 25% e 35%</pre>
+        </div>
+        <div class="balance-box">
+          <h3>Melhor equilíbrio encontrado</h3>
+          <p><strong>Jundiaí/SP · 463.039 habitantes · P-Piloto 100.</strong> Niterói e Caxias do Sul também estão na faixa ótima; Toledo e Jaraguá ficam próximos, mas ainda precisam provar equilíbrio temático.</p>
+        </div>
+      </div>
+
+      <div class="metric-rule"><strong>Por que não premiar simplesmente a menor cidade?</strong> Abaixo de 100 mil habitantes, a nota também cai: um piloto pequeno demais pode não testar variedade temática, volume e complexidade administrativa suficientes para gerar um padrão nacional.</div>
 
       <h3>Como o C-IDU mede a confiança</h3>
       <div class="weight-list" aria-label="Pesos do índice de confiança">
@@ -1434,10 +1477,11 @@ R = governança e resiliência</pre>
         <article class="list-card">
           <h3>Próximas validações</h3>
           <ol>
+            <li>Registrar população oficial, data de referência e fonte para todas as candidatas.</li>
             <li>Codificar as 12 primeiras candidatas nos oito domínios e cinco eixos.</li>
             <li>Usar dois avaliadores independentes por célula.</li>
             <li>Abrir um recurso real por domínio e ler seu esquema.</li>
-            <li>Calcular intervalos e estabilidade com pesos perturbados.</li>
+            <li>Calcular intervalos e sensibilidade do porte em 15%, 25% e 35%.</li>
             <li>Medir custo real de ingestão durante o piloto.</li>
           </ol>
         </article>
@@ -1445,14 +1489,17 @@ R = governança e resiliência</pre>
 
       <div class="next-step">
         <h3>Próximo passo de maior retorno</h3>
-        <p>Antes de coletar tudo, executar uma auditoria curta e padronizada das 12 primeiras cidades. A saída deve ser: IDU-M e IDU-E com intervalo, C-IDU, probabilidade de permanecer no top 10, dependência externa e domínios fracos.</p>
+        <p>Antes de coletar tudo, auditar Jundiaí, Niterói, Caxias do Sul e Toledo junto das referências líderes. A saída deve ser: IDU-M e IDU-E com intervalo, P-Piloto, IPS-Br, C-IDU, dependência externa, custo estimado e domínios fracos.</p>
       </div>
 
       <div class="source-links" aria-label="Documentos do projeto">
+        <a href="inventario.html">Inventário por cidade</a>
+        <a href="fontes.html">Portais nacionais</a>
         <a href="DOSSIE_PILOTO.md">Dossiê consolidado</a>
-        <a href="docs/METRICA_IDU_V2.md">Métrica IDU-Br v2</a>
+        <a href="docs/METRICA_IDU_V2.md">Métrica IDU-Br v2.1</a>
         <a href="docs/PROTOCOLO_DOC_VIVO.md">Protocolo de evidências</a>
         <a href="docs/parciais/outliers-cidades-medias.md">Pente-fino de cidades médias</a>
+        <a href="https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-depopulacao.html" target="_blank" rel="noopener noreferrer">População IBGE 2025</a>
         <a href="idu_v2.py">Motor de cálculo</a>
       </div>
     </section>

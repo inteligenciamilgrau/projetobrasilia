@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Projeto iA Brasil: seleção e auditoria de municípios brasileiros para um piloto nacional de dados públicos locais.">
+  <meta name="description" content="Top 10 provisório de cidades brasileiras para o piloto do Projeto iA Brasil, com método, porte e confiança da avaliação.">
   <meta name="theme-color" content="#07563c">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Projeto iA Brasil — Dados locais, informação pública</title>
+  <title>Projeto iA Brasil — Top 10 do piloto</title>
   <style>
     :root {
       --green: #08724e;
@@ -17,16 +17,14 @@
       --ink: #10241d;
       --muted: #52635d;
       --paper: #f4f2e9;
-      --surface: #ffffff;
+      --surface: #fff;
       --line: #d8ded9;
       --max: 1160px;
-      --shadow: 0 22px 60px rgba(12, 52, 40, .11);
+      --shadow: 0 20px 55px rgba(12,52,40,.11);
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       color: var(--ink);
@@ -35,413 +33,148 @@
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
-
     a { color: inherit; }
-
-    a:focus-visible {
-      outline: 3px solid var(--yellow);
-      outline-offset: 3px;
-    }
-
-    .skip-link {
-      position: fixed;
-      left: 1rem;
-      top: -5rem;
-      z-index: 100;
-      padding: .7rem 1rem;
-      border-radius: 10px;
-      color: white;
-      background: var(--ink);
-      text-decoration: none;
-    }
-
+    a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+    h1, h2, h3, p { margin-top: 0; }
+    .container { width: min(calc(100% - 2rem), var(--max)); margin-inline: auto; }
+    .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .7rem 1rem; border-radius: 10px; color: white; background: var(--ink); text-decoration: none; }
     .skip-link:focus { top: 1rem; }
 
-    .container {
-      width: min(calc(100% - 2rem), var(--max));
-      margin-inline: auto;
-    }
-
     .site-header {
-      position: relative;
-      overflow: hidden;
       color: white;
-      background:
-        radial-gradient(circle at 88% 15%, rgba(229,184,47,.18) 0 9%, transparent 9.2%),
-        linear-gradient(125deg, #08724e, var(--green-dark) 72%);
+      background: radial-gradient(circle at 88% 20%, rgba(229,184,47,.18) 0 9%, transparent 9.2%), linear-gradient(125deg, #08724e, var(--green-dark) 72%);
       border-bottom: 6px solid var(--yellow);
     }
-
-    .site-header::after {
-      content: "";
-      position: absolute;
-      width: 36rem;
-      height: 36rem;
-      right: -20rem;
-      bottom: -21rem;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 50%;
-      box-shadow: 0 0 0 6rem rgba(255,255,255,.025), 0 0 0 12rem rgba(255,255,255,.018);
-      pointer-events: none;
-    }
-
-    .topbar {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding-block: 1.15rem;
-      border-bottom: 1px solid rgba(255,255,255,.16);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      color: white;
-      font-weight: 820;
-      letter-spacing: -.02em;
-      text-decoration: none;
-    }
-
-    .brand-mark {
-      display: grid;
-      width: 2.15rem;
-      height: 2.15rem;
-      place-items: center;
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 10px;
-      color: var(--yellow);
-      background: rgba(255,255,255,.08);
-      font-size: .8rem;
-      letter-spacing: .03em;
-    }
-
-    .github-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .55rem .8rem;
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 10px;
-      color: white;
-      background: rgba(255,255,255,.08);
-      font-size: .82rem;
-      font-weight: 760;
-      text-decoration: none;
-    }
-
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; border-bottom: 1px solid rgba(255,255,255,.16); }
+    .brand { display: flex; align-items: center; gap: .7rem; color: white; font-weight: 820; letter-spacing: -.02em; text-decoration: none; }
+    .brand-mark { display: grid; width: 2.15rem; height: 2.15rem; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 10px; color: var(--yellow); background: rgba(255,255,255,.08); font-size: .8rem; }
+    .top-links { display: flex; align-items: center; gap: .55rem; }
+    .top-link { padding: .5rem .7rem; border-radius: 9px; color: white; font-size: .82rem; font-weight: 760; text-decoration: none; }
+    .top-link:hover { background: rgba(255,255,255,.11); }
+    .github-link { display: inline-flex; align-items: center; gap: .45rem; padding: .52rem .75rem; border: 1px solid rgba(255,255,255,.28); border-radius: 10px; color: white; background: rgba(255,255,255,.08); font-size: .82rem; font-weight: 760; text-decoration: none; }
     .github-link:hover { background: rgba(255,255,255,.16); }
 
-    .hero {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(290px, .65fr);
-      gap: clamp(2rem, 6vw, 5.5rem);
-      align-items: end;
-      padding-block: clamp(4rem, 10vw, 8rem);
-    }
-
-    .eyebrow {
-      margin: 0 0 .85rem;
-      color: var(--yellow);
-      font-size: .78rem;
-      font-weight: 850;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-
-    h1 {
-      max-width: 12ch;
-      margin-bottom: 1.35rem;
-      font-size: clamp(3rem, 8vw, 6.7rem);
-      line-height: .92;
-      letter-spacing: -.07em;
-    }
-
-    .lede {
-      max-width: 62ch;
-      margin-bottom: 1.7rem;
-      color: rgba(255,255,255,.82);
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: .55rem;
-      min-height: 3rem;
-      padding: .72rem 1rem;
-      border: 1px solid transparent;
-      border-radius: 11px;
-      font-size: .88rem;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .button-primary {
-      color: var(--ink);
-      background: var(--yellow);
-      box-shadow: 0 10px 30px rgba(0,0,0,.14);
-    }
-
+    .hero { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(260px,.6fr); gap: clamp(1.5rem,5vw,4rem); align-items: center; padding-block: clamp(2.7rem,6vw,5rem); }
+    .eyebrow, .kicker { margin: 0 0 .65rem; color: var(--yellow); font-size: .76rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { max-width: 13ch; margin-bottom: 1rem; font-size: clamp(2.7rem,7vw,5.4rem); line-height: .94; letter-spacing: -.065em; }
+    .lede { max-width: 66ch; margin-bottom: 1.2rem; color: rgba(255,255,255,.84); font-size: clamp(1rem,2vw,1.18rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.85rem; padding: .68rem .95rem; border: 1px solid transparent; border-radius: 10px; font-size: .86rem; font-weight: 800; text-decoration: none; }
+    .button-primary { color: var(--ink); background: var(--yellow); }
     .button-primary:hover { background: #f0c84a; }
+    .button-secondary { color: white; border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.08); }
+    .decision { padding: 1.25rem; border: 1px solid rgba(255,255,255,.2); border-radius: 16px; background: rgba(255,255,255,.09); }
+    .decision span { display: block; margin-bottom: .45rem; color: var(--yellow); font-size: .72rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+    .decision strong { display: block; margin-bottom: .3rem; font-size: 1.25rem; line-height: 1.2; }
+    .decision p { margin: 0; color: rgba(255,255,255,.75); font-size: .87rem; }
 
-    .button-secondary {
-      color: white;
-      border-color: rgba(255,255,255,.28);
-      background: rgba(255,255,255,.08);
-    }
+    main { padding-block: clamp(2.5rem,6vw,5rem); }
+    section + section { margin-top: clamp(3.4rem,8vw,7rem); }
+    .section-head { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 1.25rem; }
+    .section-head .kicker { color: var(--green); }
+    h2 { margin-bottom: .55rem; font-size: clamp(2rem,4vw,3.35rem); line-height: 1; letter-spacing: -.055em; }
+    .section-head p:last-child { max-width: 55ch; margin-bottom: .15rem; color: var(--muted); }
 
-    .button-secondary:hover { background: rgba(255,255,255,.15); }
+    .ranking-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 1rem 1.05rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+    th { color: var(--muted); background: #eef1ed; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #fafbf8; }
+    .rank { width: 3.2rem; color: var(--green); font-size: 1.05rem; font-weight: 900; }
+    .city { font-weight: 820; }
+    .city a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .city a:hover { color: var(--green); }
+    .muted { color: var(--muted); font-size: .82rem; }
+    .badge { display: inline-flex; padding: .27rem .52rem; border-radius: 999px; color: var(--green-dark); background: var(--green-soft); font-size: .72rem; font-weight: 820; white-space: nowrap; }
+    .badge.benchmark { color: #66500c; background: var(--yellow-soft); }
+    .best-row { background: #eff8f3; box-shadow: inset 5px 0 0 var(--green); }
+    .table-note { margin: .8rem 0 0; color: var(--muted); font-size: .82rem; }
 
-    .stage-card {
-      padding: 1.4rem;
-      border: 1px solid rgba(255,255,255,.19);
-      border-radius: 18px;
-      background: rgba(255,255,255,.09);
-      backdrop-filter: blur(8px);
-    }
+    .calc-panel { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(280px,.9fr); gap: clamp(2rem,6vw,5rem); align-items: center; padding: clamp(2rem,5vw,4rem); border-radius: 22px; color: white; background: var(--ink); box-shadow: var(--shadow); }
+    .calc-panel .kicker { color: var(--yellow); }
+    .calc-panel p { color: #bccbc4; }
+    .formula { margin: 1.35rem 0 .8rem; padding: 1.1rem 1.2rem; border: 1px solid rgba(255,255,255,.16); border-radius: 13px; color: white; background: rgba(255,255,255,.06); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: clamp(1rem,2vw,1.25rem); font-weight: 800; }
+    .signals { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(255,255,255,.14); }
+    .signals li { display: grid; grid-template-columns: 6rem 1fr; gap: .8rem; padding-block: .85rem; border-bottom: 1px solid rgba(255,255,255,.14); font-size: .84rem; }
+    .signals strong { color: white; }
+    .signals span { color: #b9c9c2; }
 
-    .stage-label {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      margin-bottom: 1rem;
-      font-size: .76rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
+    .calculator { padding: clamp(1.4rem,4vw,2.4rem); border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: var(--shadow); }
+    .calculator-head { display: flex; justify-content: space-between; gap: 2rem; align-items: start; margin-bottom: 1.25rem; }
+    .calculator-head .kicker { color: var(--green); }
+    .calculator-head p:last-child { max-width: 58ch; color: var(--muted); }
+    .control-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; margin-bottom: 1rem; }
+    .control-box { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: #f7f8f5; }
+    .control-box fieldset { margin: 0; padding: 0; border: 0; }
+    .control-box legend, .control-label { display: block; margin-bottom: .65rem; font-size: .78rem; font-weight: 850; }
+    .criterion-buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .criterion-button { padding: .5rem .66rem; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: white; font: inherit; font-size: .78rem; font-weight: 760; cursor: pointer; }
+    .criterion-button:hover { border-color: var(--green); }
+    .criterion-button[aria-pressed="true"] { color: white; border-color: var(--green); background: var(--green); }
+    .range-row { display: grid; grid-template-columns: 1fr auto; gap: .7rem; align-items: center; }
+    input[type="range"] { width: 100%; accent-color: var(--green); }
+    .weight-output { min-width: 4.3rem; text-align: right; font-weight: 850; }
+    .size-toggle { display: flex; gap: .55rem; align-items: center; margin-bottom: .75rem; font-size: .86rem; font-weight: 760; }
+    .size-toggle input { width: 1.05rem; height: 1.05rem; accent-color: var(--green); }
+    .size-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+    .size-inputs label { color: var(--muted); font-size: .72rem; }
+    .size-inputs input { width: 100%; margin-top: .25rem; padding: .55rem .6rem; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: white; font: inherit; }
+    .calculator-status { display: flex; justify-content: space-between; gap: 1rem; margin: .9rem 0; padding: .75rem .85rem; border-radius: 10px; color: var(--green-dark); background: var(--green-soft); font-size: .82rem; }
+    .calculator-status-side { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .7rem; align-items: center; }
+    .reset-button { padding: .18rem .42rem; border: 0; border-bottom: 1px solid currentColor; color: var(--green-dark); background: transparent; font: inherit; font-size: .75rem; font-weight: 800; cursor: pointer; }
+    .calculator-table td, .calculator-table th { padding-block: .78rem; }
+    .score-cell { font-variant-numeric: tabular-nums; font-weight: 850; }
+    .calculator-note { margin: .85rem 0 0; color: var(--muted); font-size: .78rem; }
+    .empty-result { padding: 2rem; text-align: center; color: var(--muted); }
 
-    .stage-dot {
-      width: .55rem;
-      height: .55rem;
-      border-radius: 50%;
-      background: var(--yellow);
-      box-shadow: 0 0 0 5px rgba(229,184,47,.12);
-    }
+    .editorial-rule { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center; padding: 1.25rem 1.4rem; border: 1px solid #d6bd64; border-radius: 15px; background: var(--yellow-soft); }
+    .editorial-rule strong { font-size: 1rem; }
+    .editorial-rule p { margin: 0; color: #5f552f; }
 
-    .stage-card strong {
-      display: block;
-      margin-bottom: .45rem;
-      color: white;
-      font-size: 1.25rem;
-      line-height: 1.25;
-    }
+    .objectives { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(2rem,6vw,5rem); align-items: start; }
+    .objectives .kicker { color: var(--green); }
+    .objective-list { display: grid; gap: 1rem; }
+    .objective { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 1.3rem; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.7); }
+    .objective-number { display: grid; width: 2.15rem; height: 2.15rem; place-items: center; border-radius: 50%; color: white; background: var(--green); font-size: .78rem; font-weight: 850; }
+    .objective h3 { margin-bottom: .35rem; font-size: 1.08rem; }
+    .objective p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .coming { display: inline-block; margin-left: .4rem; padding: .18rem .42rem; border-radius: 999px; color: #675112; background: var(--yellow-soft); font-size: .68rem; font-weight: 850; text-transform: uppercase; }
 
-    .stage-card p { margin: 0; color: rgba(255,255,255,.72); font-size: .9rem; }
+    .link-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .link-card { padding: 1.35rem; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); text-decoration: none; }
+    .link-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .link-card span { color: var(--green); font-size: .73rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .link-card h3 { margin: .55rem 0 .35rem; }
+    .link-card p { margin: 0; color: var(--muted); font-size: .87rem; }
 
-    main { padding-block: clamp(3.5rem, 8vw, 7rem); }
-
-    .snapshot {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin-top: -1.2rem;
-      margin-bottom: clamp(4rem, 9vw, 8rem);
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .stat { padding: 1.45rem; border-right: 1px solid var(--line); }
-    .stat:last-child { border-right: 0; }
-    .stat strong { display: block; color: var(--green); font-size: clamp(2rem, 5vw, 3rem); line-height: 1; letter-spacing: -.055em; }
-    .stat span { display: block; margin-top: .45rem; color: var(--muted); font-size: .78rem; font-weight: 720; }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
-      gap: clamp(2rem, 7vw, 6rem);
-      align-items: start;
-      margin-bottom: clamp(4rem, 9vw, 8rem);
-    }
-
-    .kicker {
-      margin: 0 0 .55rem;
-      color: var(--green);
-      font-size: .75rem;
-      font-weight: 850;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin-bottom: 1rem;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1;
-      letter-spacing: -.055em;
-    }
-
-    .section-copy { color: var(--muted); font-size: 1.03rem; }
-
-    .principles {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .principle {
-      min-height: 13rem;
-      padding: 1.35rem;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,.62);
-    }
-
-    .principle-number {
-      display: grid;
-      width: 2rem;
-      height: 2rem;
-      margin-bottom: 2.4rem;
-      place-items: center;
-      border-radius: 50%;
-      color: white;
-      background: var(--green);
-      font-size: .75rem;
-      font-weight: 850;
-    }
-
-    .principle h3 { margin-bottom: .45rem; font-size: 1.08rem; }
-    .principle p { margin: 0; color: var(--muted); font-size: .87rem; }
-
-    .report-panel {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
-      gap: clamp(2rem, 6vw, 5rem);
-      align-items: center;
-      overflow: hidden;
-      padding: clamp(2rem, 5vw, 4.5rem);
-      border-radius: 24px;
-      color: white;
-      background: var(--ink);
-      box-shadow: var(--shadow);
-    }
-
-    .report-panel::after {
-      content: "IDU";
-      position: absolute;
-      right: -1rem;
-      bottom: -4.2rem;
-      color: rgba(255,255,255,.035);
-      font-size: 15rem;
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -.1em;
-      pointer-events: none;
-    }
-
-    .report-panel > * { position: relative; z-index: 1; }
-    .report-panel .kicker { color: var(--yellow); }
-    .report-panel h2 { max-width: 12ch; }
-    .report-panel p { max-width: 62ch; color: #b9c9c2; }
-
-    .report-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      border-top: 1px solid rgba(255,255,255,.14);
-    }
-
-    .report-list li {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      padding-block: .82rem;
-      border-bottom: 1px solid rgba(255,255,255,.14);
-      color: #d9e4df;
-      font-size: .84rem;
-    }
-
-    .report-list strong { color: white; }
-
-    .cities {
-      margin-top: clamp(4rem, 9vw, 8rem);
-      text-align: center;
-    }
-
-    .cities h2 { max-width: 14ch; margin-inline: auto; }
-    .cities > p { max-width: 62ch; margin: 0 auto 1.7rem; color: var(--muted); }
-
-    .city-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: .6rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .city-list li {
-      padding: .55rem .75rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--surface);
-      font-size: .82rem;
-      font-weight: 760;
-    }
-
-    footer {
-      padding-block: 2.5rem;
-      color: #cad8d1;
-      background: var(--ink);
-    }
-
-    .footer-grid {
-      display: flex;
-      justify-content: space-between;
-      gap: 2rem;
-      align-items: end;
-    }
-
+    footer { padding-block: 2.3rem; color: #cad8d1; background: var(--ink); }
+    .footer-grid { display: flex; justify-content: space-between; gap: 2rem; align-items: end; }
     footer strong { display: block; color: white; }
-    footer p { max-width: 62ch; margin: .35rem 0 0; font-size: .82rem; }
-    footer a { color: white; font-weight: 750; }
-    footer a:hover { color: var(--yellow); }
+    footer p { max-width: 62ch; margin: .3rem 0 0; font-size: .82rem; }
     .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1rem; font-size: .8rem; }
+    footer a { color: white; font-weight: 760; }
+    footer a:hover { color: var(--yellow); }
 
-    @media (max-width: 800px) {
-      .hero, .intro-grid, .report-panel { grid-template-columns: 1fr; }
-      .hero { align-items: start; }
-      .stage-card { max-width: 32rem; }
-      .snapshot { grid-template-columns: 1fr 1fr; }
-      .stat:nth-child(2) { border-right: 0; }
-      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    @media (max-width: 820px) {
+      .hero, .calc-panel, .objectives { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .link-grid { grid-template-columns: 1fr; }
+      .calculator-head { display: block; }
+      .control-grid { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 560px) {
+    @media (max-width: 620px) {
       .container { width: min(calc(100% - 1.25rem), var(--max)); }
+      .top-link { display: none; }
       .github-link span { display: none; }
-      h1 { font-size: clamp(3.2rem, 17vw, 5rem); }
-      .hero { padding-block: 3.6rem; }
-      .snapshot, .principles { grid-template-columns: 1fr; }
-      .stat, .stat:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
-      .stat:last-child { border-bottom: 0; }
-      .principle { min-height: auto; }
-      .principle-number { margin-bottom: 1.6rem; }
+      .hero { padding-block: 2.5rem; }
+      h1 { font-size: clamp(2.65rem,15vw,4.3rem); }
+      .editorial-rule { grid-template-columns: 1fr; gap: .35rem; }
+      .objective { grid-template-columns: 1fr; }
       .footer-grid { display: block; }
       .footer-links { justify-content: flex-start; margin-top: 1rem; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 </head>
 <body>
@@ -450,110 +183,320 @@
   <header class="site-header">
     <div class="container">
       <div class="topbar">
-        <a class="brand" href="index.html" aria-label="Página inicial do Projeto iA Brasil">
-          <span class="brand-mark" aria-hidden="true">iA</span>
-          <span>Projeto iA Brasil</span>
-        </a>
-        <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir repositório do Projeto iA Brasil no GitHub">
-          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
-          <span>GitHub</span>
-        </a>
+        <a class="brand" href="index.html" aria-label="Página inicial do Projeto iA Brasil"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto iA Brasil</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="#top10">Top 10</a>
+          <a class="top-link" href="#calculo">Cálculo</a>
+          <a class="top-link" href="inventario.html">Inventário</a>
+          <a class="top-link" href="fontes.html">Fontes</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
       </div>
 
       <div class="hero">
         <div>
-          <p class="eyebrow">Dados municipais · piloto nacional</p>
-          <h1>O Brasil explicado por seus dados.</h1>
-          <p class="lede">Estamos criando um modelo aberto para transformar dados públicos locais em informação simples, comparável e útil — começando pelas cidades com ecossistemas digitais mais maduros.</p>
+          <p class="eyebrow">Resultado parcial · 01/08/2026</p>
+          <h1>Top 10 do piloto de dados.</h1>
+          <p class="lede"><strong>Jundiaí é hoje a melhor candidata para iniciar.</strong> As grandes capitais continuam como referência de qualidade, mas população acima de 1 milhão aumenta muito a complexidade do primeiro piloto.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="relatorio_parcial.html">Abrir relatório parcial <span aria-hidden="true">→</span></a>
-            <a class="button button-secondary" href="DOSSIE_PILOTO.md">Ler dossiê técnico</a>
+            <a class="button button-primary" href="#top10">Ver Top 10 ↓</a>
+            <a class="button button-secondary" href="#calculadora">Testar critérios</a>
+            <a class="button button-secondary" href="inventario.html">Ver dados reais</a>
+            <a class="button button-secondary" href="relatorio_parcial.html">Relatório completo</a>
+            <a class="button button-secondary" href="fontes.html">Portais e fontes</a>
           </div>
         </div>
-        <aside class="stage-card" aria-label="Estágio atual do projeto">
-          <span class="stage-label"><span class="stage-dot" aria-hidden="true"></span> Etapa atual</span>
-          <strong>Seleção e auditoria das cidades candidatas</strong>
-          <p>A shortlist ainda é provisória. O projeto não iniciou coleta nacional em massa nem atribuiu notas finais aos municípios.</p>
+        <aside class="decision" aria-label="Resposta curta">
+          <span>Resposta curta</span>
+          <strong>Jundiaí/SP · 463.039 habitantes</strong>
+          <p>Porte ideal provisório, cultura institucional de dados e boa diversidade de fontes. Ainda precisa da auditoria final por domínio.</p>
         </aside>
       </div>
     </div>
   </header>
 
   <main id="conteudo" class="container">
-    <div class="snapshot" aria-label="Resumo numérico do levantamento">
-      <div class="stat"><strong>10</strong><span>cidades na shortlist</span></div>
-      <div class="stat"><strong>5</strong><span>regiões representadas</span></div>
-      <div class="stat"><strong>8</strong><span>domínios de dados</span></div>
-      <div class="stat"><strong>2</strong><span>métricas complementares</span></div>
-    </div>
-
-    <section class="intro-grid" aria-labelledby="criterios-titulo">
-      <div>
-        <p class="kicker">O que procuramos</p>
-        <h2 id="criterios-titulo">Um padrão-ouro que possa crescer.</h2>
-        <p class="section-copy">O piloto precisa combinar profundidade temática, acesso técnico real e cobertura equilibrada. A cidade ideal não é apenas transparente: ela publica dados utilizáveis, atualizados e sustentados por governança.</p>
+    <section id="top10" aria-labelledby="top10-titulo">
+      <div class="section-head">
+        <div><p class="kicker">Top 10 provisório</p><h2 id="top10-titulo">Qualidade primeiro. Implantação depois.</h2></div>
+        <p>A ordem abaixo resume a evidência de qualidade já levantada. A coluna de papel evita confundir “melhor fonte de aprendizado” com “cidade mais simples para começar”.</p>
       </div>
-      <div class="principles">
-        <article class="principle">
-          <span class="principle-number">01</span>
-          <h3>Cobertura ampla</h3>
-          <p>Saúde, educação, segurança, mobilidade, economia, finanças, urbanismo e meio ambiente.</p>
-        </article>
-        <article class="principle">
-          <span class="principle-number">02</span>
-          <h3>Acesso utilizável</h3>
-          <p>APIs, planilhas, catálogos e relatórios que possam ser testados e processados.</p>
-        </article>
-        <article class="principle">
-          <span class="principle-number">03</span>
-          <h3>Equilíbrio territorial</h3>
-          <p>Evitar excelência isolada em uma área e vazios severos nas demais.</p>
-        </article>
-        <article class="principle">
-          <span class="principle-number">04</span>
-          <h3>Evidência confiável</h3>
-          <p>Separar qualidade do ecossistema de dados da confiança da própria avaliação.</p>
-        </article>
+      <div class="ranking-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Cidade</th><th>População 2025</th><th>P-Piloto</th><th>Papel recomendado</th></tr></thead>
+          <tbody>
+            <tr><td class="rank">1</td><td class="city"><a href="cidades/recife.html">Recife/PE</a></td><td>1.588.376</td><td>65,3</td><td><span class="badge benchmark">Benchmark</span></td></tr>
+            <tr><td class="rank">2</td><td class="city"><a href="cidades/sao-paulo.html">São Paulo/SP</a></td><td>11.904.961</td><td>15,2</td><td><span class="badge benchmark">Benchmark de escala</span></td></tr>
+            <tr><td class="rank">3</td><td class="city"><a href="cidades/fortaleza.html">Fortaleza/CE</a></td><td>2.578.483</td><td>50,2</td><td><span class="badge benchmark">Benchmark</span></td></tr>
+            <tr><td class="rank">4</td><td class="city"><a href="cidades/rio-de-janeiro.html">Rio de Janeiro/RJ</a></td><td>6.730.729</td><td>26,3</td><td><span class="badge benchmark">Benchmark de escala</span></td></tr>
+            <tr><td class="rank">5</td><td class="city"><a href="cidades/porto-alegre.html">Porto Alegre/RS</a></td><td>1.388.794</td><td>70,3</td><td><span class="badge benchmark">Benchmark</span></td></tr>
+            <tr><td class="rank">6</td><td class="city"><a href="cidades/curitiba.html">Curitiba/PR</a></td><td>1.830.795</td><td>59,2</td><td><span class="badge benchmark">Benchmark</span></td></tr>
+            <tr><td class="rank">7</td><td class="city"><a href="cidades/belo-horizonte.html">Belo Horizonte/MG</a></td><td>2.415.872</td><td>51,5</td><td><span class="badge benchmark">Benchmark</span></td></tr>
+            <tr><td class="rank">8</td><td class="city"><a href="cidades/brasilia.html">Brasília/DF</a></td><td>2.996.899</td><td>46,7</td><td><span class="badge benchmark">Benchmark</span></td></tr>
+            <tr class="best-row"><td class="rank">9</td><td class="city"><a href="cidades/jundiai.html">Jundiaí/SP</a> <span class="muted">· melhor equilíbrio</span></td><td>463.039</td><td><strong>100</strong></td><td><span class="badge">1ª implantação</span></td></tr>
+            <tr><td class="rank">10</td><td class="city"><a href="cidades/belem.html">Belém/PA</a></td><td>1.397.315</td><td>70,1</td><td><span class="badge benchmark">Benchmark</span></td></tr>
+          </tbody>
+        </table>
       </div>
+      <p class="table-note">População: estimativas do IBGE com referência em 1º de julho de 2025. A shortlist ainda não é uma nota final célula por célula; por isso não publicamos casas decimais falsas de IDU-Br.</p>
     </section>
 
-    <section class="report-panel" aria-labelledby="relatorio-titulo">
+    <section id="calculo" class="calc-panel" aria-labelledby="calculo-titulo">
       <div>
-        <p class="kicker">Relatório parcial · 01/08/2026</p>
-        <h2 id="relatorio-titulo">Veja a decisão e o método.</h2>
-        <p>O relatório reúne o top 10 provisório, explica o trabalho já realizado, detalha o IDU-Br v2 e o C-IDU e registra limitações, correções e próximos passos.</p>
-        <a class="button button-primary" href="relatorio_parcial.html">Explorar relatório completo <span aria-hidden="true">→</span></a>
+        <p class="kicker">Cálculo de prioridade</p>
+        <h2 id="calculo-titulo">Dados bons com tamanho viável.</h2>
+        <div class="formula">IPS-Br = 75% IDU-E + 25% P-Piloto</div>
+        <p><strong>IDU-E</strong> mede a qualidade do ecossistema local. <strong>P-Piloto</strong> mede se o porte é adequado ao primeiro teste. A faixa populacional ótima provisória é de 200 mil a 600 mil habitantes.</p>
+        <a class="button button-primary" href="relatorio_parcial.html#metrica">Ver métrica completa →</a>
       </div>
-      <ul class="report-list" aria-label="Conteúdo do relatório">
-        <li><strong>Shortlist nacional</strong><span>10 cidades</span></li>
-        <li><strong>Qualidade dos dados</strong><span>IDU-Br v2</span></li>
-        <li><strong>Confiança da avaliação</strong><span>C-IDU</span></li>
-        <li><strong>Cidades fora do radar</strong><span>outliers</span></li>
-        <li><strong>Decisão final</strong><span>próximos testes</span></li>
+      <ul class="signals" aria-label="Sinais usados na decisão">
+        <li><strong>IDU-Br</strong><span>Qualidade, cobertura, acesso, frescor, território e resiliência.</span></li>
+        <li><strong>P-Piloto</strong><span>Viabilidade de escala; nota 100 entre 200 mil e 600 mil habitantes.</span></li>
+        <li><strong>C-IDU</strong><span>Confiança da avaliação. Fica separado e nunca mascara incerteza.</span></li>
+        <li><strong>Teste</strong><span>Recalcular o peso do porte em 15%, 25% e 35%.</span></li>
       </ul>
     </section>
 
-    <section class="cities" aria-labelledby="cidades-titulo">
-      <p class="kicker">Seleção provisória</p>
-      <h2 id="cidades-titulo">Nove defensáveis. Uma condicional.</h2>
-      <p>As posições ainda podem mudar depois da codificação completa das evidências. Belém permanece na décima vaga pela relevância regional, com ressalvas técnicas documentadas.</p>
-      <ol class="city-list">
-        <li>Recife</li><li>São Paulo</li><li>Fortaleza</li><li>Rio de Janeiro</li><li>Porto Alegre</li><li>Curitiba</li><li>Belo Horizonte</li><li>Brasília</li><li>Jundiaí</li><li>Belém</li>
-      </ol>
+    <section id="calculadora" class="calculator" aria-labelledby="calculadora-titulo">
+      <div class="calculator-head">
+        <div><p class="kicker">Calculadora dinâmica</p><h2 id="calculadora-titulo">Mude o critério. Veja a ordem mudar.</h2></div>
+        <p>Compare as dez cidades já selecionadas. Ative uma faixa populacional para restringir o resultado ou desligue a restrição para voltar a enxergar todas.</p>
+      </div>
+
+      <div class="control-grid">
+        <div class="control-box">
+          <fieldset>
+            <legend>Ordenar por</legend>
+            <div class="criterion-buttons" id="criterion-buttons">
+              <button class="criterion-button" type="button" data-sort="quality" aria-pressed="true">Qualidade atual</button>
+              <button class="criterion-button" type="button" data-sort="combined" aria-pressed="false">Prioridade combinada</button>
+              <button class="criterion-button" type="button" data-sort="fit" aria-pressed="false">Porte ideal</button>
+              <button class="criterion-button" type="button" data-sort="smallest" aria-pressed="false">Menor população</button>
+              <button class="criterion-button" type="button" data-sort="largest" aria-pressed="false">Maior população</button>
+            </div>
+          </fieldset>
+          <label class="control-label" for="size-weight" style="margin-top:1rem">Peso do porte na simulação combinada</label>
+          <div class="range-row">
+            <input id="size-weight" type="range" min="0" max="50" step="5" value="25">
+            <output class="weight-output" id="size-weight-output" for="size-weight">25%</output>
+          </div>
+        </div>
+
+        <div class="control-box">
+          <label class="size-toggle"><input id="size-filter" type="checkbox"> Restringir por população</label>
+          <div class="size-inputs">
+            <label for="min-population">Mínimo
+              <input id="min-population" type="number" min="0" step="50000" value="200000" disabled>
+            </label>
+            <label for="max-population">Máximo
+              <input id="max-population" type="number" min="0" step="50000" value="600000" disabled>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="calculator-status" aria-live="polite">
+        <strong id="calculator-mode">Ordem por qualidade atual · sem restrição de tamanho</strong>
+        <span class="calculator-status-side"><span id="calculator-count">10 cidades</span><span>· escolhas salvas neste navegador</span><button class="reset-button" id="reset-calculator" type="button">Restaurar padrão</button></span>
+      </div>
+      <div class="ranking-wrap">
+        <table class="calculator-table">
+          <thead><tr><th>Posição</th><th>Cidade</th><th>População</th><th>P-Piloto</th><th id="dynamic-score-label">Referência</th></tr></thead>
+          <tbody id="calculator-results"></tbody>
+        </table>
+      </div>
+      <p class="calculator-note"><strong>Importante:</strong> “qualidade atual” é a ordem ordinal do levantamento, não um IDU-E final. Na prioridade combinada, a calculadora usa essa posição como proxy provisório de 100 a 10. O resultado é uma simulação exploratória e será substituído pela matriz auditada; não deve ser citado como nota oficial.</p>
+    </section>
+
+    <section class="editorial-rule" aria-label="Regra editorial do projeto">
+      <strong>Regra do site: ninguém tem tempo.</strong>
+      <p>Conclusão primeiro. Linguagem clara, direta e objetiva. Foco nos pontos-chave que realmente mudam a decisão; detalhes e método vêm depois.</p>
+    </section>
+
+    <section class="objectives" aria-labelledby="objetivos-titulo">
+      <div><p class="kicker">Objetivos do projeto</p><h2 id="objetivos-titulo">Dados para entender e participar.</h2><p class="muted">O primeiro objetivo orienta o piloto atual. O segundo está declarado desde já, mas ainda não começou.</p></div>
+      <div class="objective-list">
+        <article class="objective">
+          <span class="objective-number">1</span>
+          <div><h3>Acesso simples aos dados</h3><p>Criar um sistema simples que ajude as pessoas a acessar os dados e entender a própria cidade e as regiões onde moram.</p></div>
+        </article>
+        <article class="objective">
+          <span class="objective-number">2</span>
+          <div><h3>Participação social além da política institucional <span class="coming">Por vir</span></h3><p>Criar fóruns e chats para coletar, organizar e discutir temas regionais e sociais, ampliando as formas de participação para além dos representantes políticos. Esta frente ainda não foi iniciada.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="atalhos-titulo">
+      <div class="section-head"><div><p class="kicker">Aprofunde só se precisar</p><h2 id="atalhos-titulo">Método, fontes e evidências.</h2></div><p>O resultado vem primeiro; aqui ficam as verificações que permitem contestá-lo e reproduzi-lo.</p></div>
+      <div class="link-grid">
+        <a class="link-card" href="relatorio_parcial.html"><span>Relatório</span><h3>Resultado parcial completo</h3><p>Top 10, outliers, correções, limitações e próximos testes.</p></a>
+        <a class="link-card" href="inventario.html"><span>Evidências</span><h3>Inventário das dez cidades</h3><p>60 links por área, produtor, formato, território e situação do teste.</p></a>
+        <a class="link-card" href="fontes.html"><span>Catálogo</span><h3>Portais de dados do Brasil</h3><p>O que cada fonte entrega, como acessar e quais cuidados tomar.</p></a>
+        <a class="link-card" href="docs/METRICA_IDU_V2.md"><span>Método</span><h3>IDU-Br v2.1</h3><p>Fórmulas, pesos, confiança, porte e regras de auditoria.</p></a>
+      </div>
     </section>
   </main>
 
   <footer>
     <div class="container footer-grid">
-      <div>
-        <strong>Projeto iA Brasil</strong>
-        <p>Dados públicos locais transformados em informação simples, pública e útil.</p>
-      </div>
+      <div><strong>Projeto iA Brasil</strong><p>Informação simples para entender a cidade, comparar regiões e ampliar a participação social.</p></div>
       <div class="footer-links">
-        <a href="relatorio_parcial.html">Relatório parcial</a>
-        <a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="relatorio_parcial.html">Relatório</a>
+        <a href="inventario.html">Inventário</a>
+        <a href="fontes.html">Fontes</a>
+        <a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
     </div>
   </footer>
+  <script>
+    const cities = [
+      { city: "Recife/PE", slug: "recife", population: 1588376, fit: 65.3, qualityRank: 1 },
+      { city: "São Paulo/SP", slug: "sao-paulo", population: 11904961, fit: 15.2, qualityRank: 2 },
+      { city: "Fortaleza/CE", slug: "fortaleza", population: 2578483, fit: 50.2, qualityRank: 3 },
+      { city: "Rio de Janeiro/RJ", slug: "rio-de-janeiro", population: 6730729, fit: 26.3, qualityRank: 4 },
+      { city: "Porto Alegre/RS", slug: "porto-alegre", population: 1388794, fit: 70.3, qualityRank: 5 },
+      { city: "Curitiba/PR", slug: "curitiba", population: 1830795, fit: 59.2, qualityRank: 6 },
+      { city: "Belo Horizonte/MG", slug: "belo-horizonte", population: 2415872, fit: 51.5, qualityRank: 7 },
+      { city: "Brasília/DF", slug: "brasilia", population: 2996899, fit: 46.7, qualityRank: 8 },
+      { city: "Jundiaí/SP", slug: "jundiai", population: 463039, fit: 100, qualityRank: 9 },
+      { city: "Belém/PA", slug: "belem", population: 1397315, fit: 70.1, qualityRank: 10 }
+    ].map(city => ({ ...city, qualityProxy: 110 - city.qualityRank * 10 }));
+
+    const formatter = new Intl.NumberFormat("pt-BR");
+    const resultBody = document.querySelector("#calculator-results");
+    const sortButtons = [...document.querySelectorAll("[data-sort]")];
+    const sizeWeight = document.querySelector("#size-weight");
+    const weightOutput = document.querySelector("#size-weight-output");
+    const sizeFilter = document.querySelector("#size-filter");
+    const minPopulation = document.querySelector("#min-population");
+    const maxPopulation = document.querySelector("#max-population");
+    const mode = document.querySelector("#calculator-mode");
+    const count = document.querySelector("#calculator-count");
+    const scoreLabel = document.querySelector("#dynamic-score-label");
+    const resetCalculator = document.querySelector("#reset-calculator");
+    const storageKey = "ia-brasil-calculadora-v1";
+    let activeSort = "quality";
+
+    const sortNames = {
+      quality: "qualidade atual",
+      combined: "prioridade combinada",
+      fit: "porte ideal",
+      smallest: "menor população",
+      largest: "maior população"
+    };
+
+    function combinedScore(city) {
+      const weight = Number(sizeWeight.value) / 100;
+      return city.qualityProxy * (1 - weight) + city.fit * weight;
+    }
+
+    function savePreferences() {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify({
+          activeSort,
+          sizeWeight: Number(sizeWeight.value),
+          sizeFilter: sizeFilter.checked,
+          minPopulation: Number(minPopulation.value),
+          maxPopulation: Number(maxPopulation.value)
+        }));
+      } catch (error) {
+        /* O site continua funcional quando o navegador bloqueia armazenamento local. */
+      }
+    }
+
+    function loadPreferences() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey));
+        if (!saved || typeof saved !== "object") return;
+        if (sortNames[saved.activeSort]) activeSort = saved.activeSort;
+        if (Number.isFinite(saved.sizeWeight) && saved.sizeWeight >= 0 && saved.sizeWeight <= 50) sizeWeight.value = saved.sizeWeight;
+        sizeFilter.checked = saved.sizeFilter === true;
+        if (Number.isFinite(saved.minPopulation) && saved.minPopulation >= 0) minPopulation.value = saved.minPopulation;
+        if (Number.isFinite(saved.maxPopulation) && saved.maxPopulation >= 0) maxPopulation.value = saved.maxPopulation;
+      } catch (error) {
+        /* Preferência inválida ou indisponível: usa o padrão. */
+      }
+      weightOutput.value = `${sizeWeight.value}%`;
+      minPopulation.disabled = !sizeFilter.checked;
+      maxPopulation.disabled = !sizeFilter.checked;
+      sortButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.sort === activeSort)));
+    }
+
+    function renderCalculator() {
+      const useFilter = sizeFilter.checked;
+      const minimum = Math.max(0, Number(minPopulation.value) || 0);
+      const maximum = Math.max(0, Number(maxPopulation.value) || 0);
+      let result = cities.filter(city => !useFilter || (city.population >= minimum && city.population <= maximum));
+
+      const sorters = {
+        quality: (a, b) => a.qualityRank - b.qualityRank,
+        combined: (a, b) => combinedScore(b) - combinedScore(a) || a.qualityRank - b.qualityRank,
+        fit: (a, b) => b.fit - a.fit || a.qualityRank - b.qualityRank,
+        smallest: (a, b) => a.population - b.population,
+        largest: (a, b) => b.population - a.population
+      };
+      result.sort(sorters[activeSort]);
+
+      const restriction = useFilter
+        ? ` · ${formatter.format(minimum)} a ${formatter.format(maximum)} habitantes`
+        : " · sem restrição de tamanho";
+      mode.textContent = `Ordem por ${sortNames[activeSort]}${restriction}`;
+      count.textContent = `${result.length} ${result.length === 1 ? "cidade" : "cidades"}`;
+
+      const labels = { quality: "Posição atual", combined: "Índice simulado", fit: "P-Piloto", smallest: "População", largest: "População" };
+      scoreLabel.textContent = labels[activeSort];
+
+      if (!result.length) {
+        resultBody.innerHTML = '<tr><td class="empty-result" colspan="5">Nenhuma cidade do Top 10 cabe nessa faixa. Ajuste os limites ou desligue a restrição.</td></tr>';
+        return;
+      }
+
+      resultBody.innerHTML = result.map((city, index) => {
+        let score = `#${city.qualityRank}`;
+        if (activeSort === "combined") score = combinedScore(city).toFixed(1).replace(".", ",");
+        if (activeSort === "fit") score = city.fit.toFixed(1).replace(".0", "").replace(".", ",");
+        if (activeSort === "smallest" || activeSort === "largest") score = formatter.format(city.population);
+        return `<tr${city.city.startsWith("Jundiaí") ? ' class="best-row"' : ""}><td class="rank">${index + 1}</td><td class="city"><a href="cidades/${city.slug}.html">${city.city}</a></td><td>${formatter.format(city.population)}</td><td>${city.fit.toFixed(1).replace(".0", "").replace(".", ",")}</td><td class="score-cell">${score}</td></tr>`;
+      }).join("");
+    }
+
+    sortButtons.forEach(button => button.addEventListener("click", () => {
+      activeSort = button.dataset.sort;
+      sortButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      savePreferences();
+      renderCalculator();
+    }));
+    sizeWeight.addEventListener("input", () => {
+      weightOutput.value = `${sizeWeight.value}%`;
+      savePreferences();
+      if (activeSort === "combined") renderCalculator();
+    });
+    sizeFilter.addEventListener("change", () => {
+      minPopulation.disabled = !sizeFilter.checked;
+      maxPopulation.disabled = !sizeFilter.checked;
+      savePreferences();
+      renderCalculator();
+    });
+    [minPopulation, maxPopulation].forEach(input => input.addEventListener("input", () => { savePreferences(); renderCalculator(); }));
+    resetCalculator.addEventListener("click", () => {
+      activeSort = "quality";
+      sizeWeight.value = 25;
+      weightOutput.value = "25%";
+      sizeFilter.checked = false;
+      minPopulation.value = 200000;
+      maxPopulation.value = 600000;
+      minPopulation.disabled = true;
+      maxPopulation.disabled = true;
+      sortButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.sort === "quality")));
+      try { localStorage.removeItem(storageKey); } catch (error) { /* sem ação */ }
+      renderCalculator();
+    });
+    loadPreferences();
+    renderCalculator();
+  </script>
 </body>
 </html>

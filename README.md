@@ -10,9 +10,21 @@ A shortlist provisória está em [DOSSIE_PILOTO.md](DOSSIE_PILOTO.md). A seleç�
 
 O ranking mede adequação para um piloto de ingestão e análise. Ele não mede qualidade geral da administração municipal nem qualidade de vida.
 
+## Objetivos
+
+1. Criar um sistema simples que ajude as pessoas a acessar dados e entender a própria cidade e as regiões onde moram.
+2. Criar fóruns e chats para coleta e discussão de temas regionais e sociais, ampliando a participação para além dos representantes políticos. **Esta frente ainda não foi iniciada.**
+
+Regra editorial: comece pela conclusão; escreva de forma clara, direta e objetiva; destaque somente o que muda a decisão. O protocolo completo está em [docs/PROTOCOLO_DOC_VIVO.md](docs/PROTOCOLO_DOC_VIVO.md).
+
 ## Estrutura
 
 - `index.html` — página inicial do site, pronta para GitHub Pages;
+- `fontes.html` — catálogo filtrável dos principais portais nacionais e fontes comunitárias;
+- `inventario.html` — inventário filtrável das evidências concretas das dez cidades;
+- `inventario_top10.json` — fonte estruturada dos 60 links do inventário municipal;
+- `perfis_cidades.json` — sínteses, forças, riscos e próximos testes por candidata;
+- `cidades/` — uma página detalhada para cada cidade do Top 10;
 - `DOSSIE_PILOTO.md` — decisão consolidada e shortlist nacional;
 - `relatorio_parcial.html` — versão visual e autônoma do relatório parcial;
 - `docs/METRICA_IDU_V2.md` — definição do IDU-Br v2 e do índice de confiança C-IDU;
@@ -29,9 +41,10 @@ Requisito: Python 3.9 ou superior. O código utiliza somente a biblioteca padrã
 python idu_v2.py --self-test
 python idu_v2.py caminho/para/matriz-auditada.json
 python idu_v2.py caminho/para/matriz-auditada.json --equal-weights --json
+python idu_v2.py caminho/para/matriz-auditada.json --pilot-size-weight 0.25
 ```
 
-O formato resumido da matriz de entrada está documentado no início de `idu_v2.py`. A separação entre a matriz auditada e o motor de cálculo evita notas hardcoded e permite revisão independente.
+O formato resumido da matriz de entrada está documentado no início de `idu_v2.py`. Cada cidade deve informar população, data de referência e fonte oficial. A separação entre a matriz auditada e o motor de cálculo evita notas hardcoded e permite revisão independente.
 
 ## Como interpretar a evidência
 
@@ -42,7 +55,9 @@ Cada fonte nos relatórios parciais deve usar um marcador:
 - `[nao-testado]` — a URL é apenas uma pista e não conta como evidência confirmada;
 - `[NACIONAL — não pontua]` — fonte disponível igualmente para todos os municípios.
 
-O IDU-Br avalia a qualidade do ecossistema de dados. O C-IDU avalia a confiabilidade da nossa medição. Os dois valores não devem ser multiplicados.
+O IDU-Br avalia a qualidade do ecossistema de dados. O P-Piloto mede a adequação do porte populacional e o IPS-Br combina 75% de IDU-E com 25% de porte para ordenar a implantação. O C-IDU avalia a confiabilidade da medição e permanece sempre separado.
+
+O inventário municipal separa **volume declarado** de **recurso confirmado**. Um total exibido pelo catálogo serve como pista; só entra na amostra auditada quando a URL, o produtor, o acesso, a granularidade, o frescor e o resultado do teste estão registrados.
 
 ## Segurança e privacidade
 

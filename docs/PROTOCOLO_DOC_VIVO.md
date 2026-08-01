@@ -2,6 +2,15 @@
 
 Todo agente que pesquisa neste projeto **escreve enquanto pesquisa**. Não existe "entrego no fim".
 
+## Regra 0 — Ninguém tem tempo
+
+- Comece pela conclusão e pelos números que sustentam a decisão.
+- Escreva de forma clara, direta e objetiva.
+- Destaque os pontos-chave que realmente mudam a escolha ou a ação.
+- Deixe contexto, processo e detalhes metodológicos para depois do resultado.
+- Evite introduções cerimoniais, repetição e linguagem burocrática.
+- Se uma frente ainda não começou, diga isso explicitamente.
+
 ## Regra 1 — Cada agente escreve só no seu próprio arquivo
 
 - Seu arquivo é `docs/parciais/<seu-label>.md`. Exemplo: o agente `regiao:nordeste` escreve em `docs/parciais/regiao-nordeste.md`.

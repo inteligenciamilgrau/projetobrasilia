@@ -1,17 +1,28 @@
 # Projeto iA Brasil — seleção do piloto: 10 cidades/regiões com melhor ecossistema de dados públicos locais
 
-**Status:** shortlist nacional revisada com pente-fino de cidades médias; pontuação IDU-Br v2 aguarda codificação padronizada por domínio
+**Status:** shortlist nacional revisada; IDU-Br v2.1 passa a separar qualidade, porte do piloto e confiança, mas a matriz por domínio ainda aguarda codificação
 **Última compilação:** 2026-08-01
 **Escopo:** levantamento e seleção; não inclui coleta em massa dos dados
 **Base:** levantamentos em `docs/parciais/`, rechecagem pontual de fontes oficiais e revisão metodológica em [METRICA_IDU_V2.md](docs/METRICA_IDU_V2.md)
 
-> Resultado principal: há nove candidatas defensáveis e uma vaga de diversidade regional ainda condicional. As posições 1–8 permanecem estáveis; o pente-fino de cidades médias promoveu Jundiaí/SP à posição 9. Belém/PA permanece na posição 10 com ressalvas fortes. O ranking mede aptidão para um piloto de ingestão e análise, não qualidade da gestão municipal.
+> Resultado principal: há nove candidatas defensáveis e uma vaga de diversidade regional ainda condicional. Porém, a ordem anterior privilegiava qualidade dos dados e não descontava a complexidade de executar um primeiro piloto em metrópoles. Com o novo fator de porte, **Jundiaí/SP é o melhor equilíbrio encontrado entre qualidade e escala**. As grandes capitais continuam referências de qualidade, mas não devem ser automaticamente a primeira implementação integral.
+
+## Instrumentos de validação publicados
+
+- [Calculadora dinâmica](index.html#calculadora): reordena o Top 10 por qualidade ordinal, porte, população ou simulação combinada; permite impor ou retirar faixa populacional e salva as escolhas no navegador.
+- [Inventário por cidade](inventario.html): 60 links iniciais — seis por candidata — com área, produtor, camada institucional, acesso, território, frescor e estado do teste.
+- [Perfis das cidades](cidades/jundiai.html): uma página física por candidata, com forças, riscos, fontes e fila de aprofundamento.
+- [Fontes nacionais](fontes.html): 41 portais e projetos de referência, separados do esforço municipal que pontua o ranking.
+
+O inventário separa **volume declarado** de **evidência confirmada**. As contagens de catálogos são pistas; a validação final exige baixar um recurso ou consultar um endpoint, ler seu esquema e repetir o acesso.
 
 ---
 
 ## 1. Decisão recomendada
 
-### Top 10 provisório
+### Top 10 provisório por qualidade/evidência
+
+Esta ordem registra a força do ecossistema encontrado. Ela **não é mais a ordem automática de implantação**: a prioridade operacional será calculada pelo IPS-Br, após a codificação do IDU-E e do P-Piloto.
 
 | # | Cidade/região | Região | Faixa | Por que entra | Principal ressalva | Confiança da seleção |
 |---:|---|---|---|---|---|---|
@@ -26,11 +37,34 @@
 | 9 | **Jundiaí/SP** | Sudeste | B/C — auditar e iniciar | CIJUN municipal, política própria de dados abertos, mais de 385 indicadores intersetoriais, CSV/TXT/XLS declarados e GEOJundiaí | Exportação/API do Observatório e um recurso real por domínio ainda não foram auditados | **média-alta** |
 | 10 | **Belém/PA** | Norte | C — condicional | Único caso nortista multidomínio, segurança corrente por bairro e painel municipal em 15 temas | Sem API; arquivos em Drive/RAR, séries municipais antigas e downloads do Anuário quebrados | **média** |
 
+### O efeito do porte na decisão
+
+Populações da estimativa oficial do IBGE para 1º de julho de 2025. P-Piloto usa a curva provisória documentada na métrica v2.1.
+
+| Cidade | População 2025 | P-Piloto | Papel recomendado agora |
+|---|---:|---:|---|
+| **Jundiaí/SP** | 463.039 | **100,0** | candidata principal ao primeiro piloto integral |
+| **Porto Alegre/RS** | 1.388.794 | 70,3 | segunda onda ou escopo inicialmente reduzido |
+| **Belém/PA** | 1.397.315 | 70,1 | condicional; porte não resolve as fragilidades dos dados |
+| **Recife/PE** | 1.588.376 | 65,3 | benchmark CKAN e piloto setorial antes do integral |
+| **Curitiba/PR** | 1.830.795 | 59,2 | benchmark de microdados; volume exige planejamento |
+| **Belo Horizonte/MG** | 2.415.872 | 51,5 | benchmark CKAN/WFS, não primeira implantação completa |
+| **Fortaleza/CE** | 2.578.483 | 50,2 | benchmark CKAN; iniciar por poucos domínios |
+| **Brasília/DF** | 2.996.899 | 46,7 | caso institucional especial e complexo |
+| **Rio de Janeiro/RJ** | 6.730.729 | 26,3 | benchmark territorial; megacidade para onda posterior |
+| **São Paulo/SP** | 11.904.961 | 15,2 | padrão de referência, não piloto integral inicial |
+
+Fonte: [IBGE — Estimativas da População 2025](https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-depopulacao.html). A nota de porte não mede qualidade urbana ou administrativa.
+
+Outliers fora do top 10 reforçam a nova prioridade de auditoria: Niterói/RJ (516.787), Caxias do Sul/RS (479.599) e Jaraguá do Sul/SC (199.519) recebem P-Piloto próximo de 100; Toledo/PR (160.701) recebe 88,2. Eles ainda precisam provar cobertura temática e acesso real — facilidade de escala não compensa dados fracos.
+
 ### Como usar a lista
 
-- **Onda 1:** Recife, São Paulo, Fortaleza e Rio. Juntas, testam CKAN estável, CKAN instável, integração multissistema e granularidade territorial profunda.
-- **Onda 2:** Porto Alegre, Curitiba, Belo Horizonte e Brasília. Validam portais novos, microdados muito grandes, WFS/GTFS e ingestão descentralizada por Região Administrativa.
-- **Onda 3:** Jundiaí recebe uma auditoria curta de confirmação e pode iniciar em seguida; Belém só entra depois de dois dias focados em download real, esquema, atualização e cobertura dos quatro domínios mais fracos.
+- **Piloto integral inicial:** auditar Jundiaí por dois dias e, confirmados recursos reais nos oito domínios, iniciar por ela.
+- **Candidatas-sombra de porte ótimo:** auditar imediatamente Niterói e Caxias do Sul; manter Toledo como teste técnico e Jaraguá do Sul como teste geográfico.
+- **Benchmarks controlados:** usar Recife para CKAN, Curitiba para microdados, Belo Horizonte para WFS/GTFS e Rio para granularidade — inicialmente em um ou dois domínios, não na cidade inteira.
+- **Escala posterior:** São Paulo, Fortaleza, Brasília e demais metrópoles entram quando o pipeline já tiver custo, volume e tempo medidos na cidade média.
+- **Condicional:** Belém só entra depois de teste focado em download real, esquema, atualização e cobertura dos quatro domínios mais fracos.
 
 Essa composição cobre as cinco grandes regiões sem impor cota regional: Sudeste 4, Nordeste 2, Sul 2, Centro-Oeste 1 e Norte 1. Belém entra por ser a melhor evidência encontrada no Norte, não por equivaler tecnicamente às líderes.
 
@@ -78,7 +112,7 @@ Os pesos 40/35/25 da v1 **não vieram do briefing**; foram uma interpretação d
 5. equilíbrio entre os oito domínios;
 6. governança e resiliência operacional.
 
-A qualidade da cidade e a confiança da nossa avaliação são números separados. Ver fórmula, faixas de incerteza e protocolo de validação em [METRICA_IDU_V2.md](docs/METRICA_IDU_V2.md).
+A qualidade da cidade, a adequação do porte e a confiança da nossa avaliação são números separados. A prioridade do primeiro piloto usa `IPS-Br = 0,75 × IDU-E + 0,25 × P-Piloto`; C-IDU continua fora dessa fórmula. Ver curva, sensibilidade e protocolo de validação em [METRICA_IDU_V2.md](docs/METRICA_IDU_V2.md).
 
 ---
 
@@ -108,4 +142,4 @@ O arquivo [idu.py](idu.py) passa a ser **legado reproduzível da v1**, não font
 
 ## 7. Próximo passo de maior retorno
 
-Antes de qualquer coleta ampla, preencher a matriz IDU-Br v2 das 12 primeiras candidatas com duas avaliações independentes por célula. O teste deve abrir e ler **um recurso real por domínio** — não apenas a página do portal. O resultado será `nota [intervalo]`, `confiança da avaliação` e `probabilidade de permanecer no top 10` sob variação dos pesos.
+Antes de qualquer coleta ampla, preencher a matriz IDU-Br v2.1 das 12 primeiras candidatas com população oficial e duas avaliações independentes por célula. O teste deve abrir e ler **um recurso real por domínio** — não apenas a página do portal. O resultado será `IDU-E [intervalo]`, `P-Piloto`, `IPS-Br`, `C-IDU` e `probabilidade de permanecer no top 10` sob variação dos pesos de domínio e de porte (15%, 25% e 35%).
