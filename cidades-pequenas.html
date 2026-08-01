@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pré-seleção eficiente de municípios brasileiros com cerca de 10 mil e 100 mil habitantes, usando IDHM e uma triagem de dados públicos.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>Projeto iA Brasil — cidades pequenas</title>
+  <style>
+    :root{--green:#08724e;--dark:#063e30;--soft:#ddefe7;--yellow:#e5b82f;--yellow-soft:#fff3c5;--ink:#10241d;--muted:#52635d;--paper:#f4f2e9;--surface:#fff;--line:#d8ded9;--red:#9b382e;--red-soft:#f7dfdc;--max:1160px;--shadow:0 18px 50px rgba(12,52,40,.1)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.52;-webkit-font-smoothing:antialiased}a{color:inherit}a:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}h1,h2,h3,p{margin-top:0}.container{width:min(calc(100% - 2rem),var(--max));margin-inline:auto}.skip{position:fixed;top:-5rem;left:1rem;z-index:20;padding:.7rem 1rem;color:white;background:var(--ink);border-radius:8px}.skip:focus{top:1rem}
+    header{color:white;background:radial-gradient(circle at 88% 17%,rgba(229,184,47,.18) 0 9%,transparent 9.2%),linear-gradient(125deg,var(--green),var(--dark) 75%);border-bottom:6px solid var(--yellow)}.topbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:1rem;border-bottom:1px solid rgba(255,255,255,.16)}.brand{display:flex;align-items:center;gap:.7rem;color:white;font-weight:850;text-decoration:none}.mark{display:grid;width:2.1rem;height:2.1rem;place-items:center;border:1px solid rgba(255,255,255,.3);border-radius:9px;color:var(--yellow);background:rgba(255,255,255,.08);font-size:.78rem}.top-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.5rem}.top-links a{padding:.48rem .62rem;border-radius:8px;color:white;font-size:.8rem;font-weight:760;text-decoration:none}.top-links a:hover{background:rgba(255,255,255,.12)}.github{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08)}
+    .hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:clamp(2rem,6vw,5rem);align-items:center;padding-block:clamp(2.8rem,7vw,5.2rem)}.eyebrow,.kicker{margin-bottom:.65rem;color:var(--yellow);font-size:.75rem;font-weight:850;letter-spacing:.13em;text-transform:uppercase}h1{max-width:13ch;margin-bottom:.9rem;font-size:clamp(3rem,8vw,5.8rem);line-height:.92;letter-spacing:-.07em}.hero p:last-child{max-width:68ch;margin:0;color:rgba(255,255,255,.82);font-size:1.02rem}.decision{padding:1.2rem;border:1px solid rgba(255,255,255,.2);border-radius:15px;background:rgba(255,255,255,.08)}.decision span{display:block;margin-bottom:.4rem;color:var(--yellow);font-size:.72rem;font-weight:850;text-transform:uppercase}.decision strong{display:block;margin-bottom:.45rem;font-size:1.2rem}.decision p{margin:0!important;color:rgba(255,255,255,.75)!important;font-size:.83rem!important}
+    main{padding-block:clamp(2.5rem,6vw,5rem)}section+section{margin-top:clamp(3rem,7vw,6rem)}.section-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:1.1rem}.section-head .kicker{color:var(--green)}h2{margin-bottom:.4rem;font-size:clamp(2rem,4vw,3.25rem);line-height:1;letter-spacing:-.055em}.section-head>p{max-width:58ch;margin:0;color:var(--muted)}
+    .result-callout{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;margin-bottom:1rem;padding:1.15rem 1.25rem;border:1px solid #d6bd64;border-radius:14px;background:var(--yellow-soft)}.result-callout strong{font-size:1rem}.result-callout p{margin:0;color:#5f552f;font-size:.86rem}.number{display:grid;width:2rem;height:2rem;place-items:center;border-radius:50%;color:white;background:var(--green);font-size:.74rem;font-weight:850}
+    .calculator{padding:clamp(1.25rem,4vw,2rem);border:1px solid var(--line);border-radius:19px;background:white;box-shadow:var(--shadow)}.controls{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;margin-bottom:1rem}.control-group{display:flex;flex-wrap:wrap;gap:.45rem}.control-group button{padding:.55rem .7rem;border:1px solid var(--line);border-radius:9px;color:var(--ink);background:white;font:inherit;font-size:.79rem;font-weight:780;cursor:pointer}.control-group button:hover{border-color:var(--green);background:var(--soft)}.control-group button[aria-pressed="true"]{color:white;border-color:var(--green);background:var(--green)}.control-label{width:100%;margin-bottom:.15rem;color:var(--muted);font-size:.7rem;font-weight:850;letter-spacing:.07em;text-transform:uppercase}.status{margin-bottom:.8rem;padding:.72rem .85rem;border-radius:10px;color:var(--dark);background:var(--soft);font-size:.82rem}.ranking-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}.ranking{width:100%;min-width:980px;border-collapse:collapse}.ranking th,.ranking td{padding:.82rem .85rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}.ranking th{color:var(--muted);background:#eef1ed;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase}.ranking tbody tr:last-child td{border-bottom:0}.ranking tbody tr:hover{background:#fafbf8}.rank{color:var(--green);font-size:1rem;font-weight:900}.city{font-weight:840}.number-cell{font-variant-numeric:tabular-nums}.evidence-link{font-size:.75rem;font-weight:800;text-underline-offset:3px}.badge{display:inline-flex;padding:.27rem .5rem;border-radius:999px;font-size:.68rem;font-weight:850;white-space:nowrap}.badge.now{color:white;background:var(--green)}.badge.reserve{color:#66500c;background:var(--yellow-soft)}.badge.gap{color:#792b23;background:var(--red-soft)}.note{margin:.8rem 0 0;color:var(--muted);font-size:.78rem}
+    .shortlists{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.shortlist{padding:1.35rem;border:1px solid var(--line);border-radius:16px;background:white}.shortlist h3{margin-bottom:.25rem;font-size:1.25rem}.shortlist>p{color:var(--muted);font-size:.84rem}.candidate{display:grid;grid-template-columns:auto 1fr;gap:.8rem;padding-top:.9rem;border-top:1px solid var(--line)}.candidate+.candidate{margin-top:.9rem}.candidate b{display:grid;width:1.85rem;height:1.85rem;place-items:center;border-radius:50%;color:white;background:var(--green);font-size:.7rem}.candidate strong{display:block}.candidate p{margin:.2rem 0 0;color:var(--muted);font-size:.78rem}
+    .funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}.step{position:relative;padding:1.1rem;border:1px solid var(--line);border-radius:14px;background:white}.step span{display:block;margin-bottom:.45rem;color:var(--green);font-size:.7rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}.step strong{display:block;margin-bottom:.3rem}.step p{margin:0;color:var(--muted);font-size:.78rem}.criteria{display:grid;grid-template-columns:repeat(5,1fr);gap:.65rem}.criterion{padding:1rem;border:1px solid var(--line);border-radius:13px;background:white}.criterion strong{display:block;margin-bottom:.3rem}.criterion p{margin:0;color:var(--muted);font-size:.76rem}.warning{padding:1rem 1.15rem;border-left:5px solid var(--yellow);border-radius:8px;background:var(--yellow-soft);color:#5f552f;font-size:.84rem}.warning strong{color:var(--ink)}
+    .sources{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}.source{padding:1rem;border:1px solid var(--line);border-radius:13px;background:white}.source strong{display:block;margin-bottom:.25rem}.source p{margin:0;color:var(--muted);font-size:.78rem}.source a{color:var(--green);font-weight:800;text-underline-offset:3px}
+    footer{padding-block:2.2rem;color:#cbd8d2;background:var(--ink)}.footer-grid{display:flex;justify-content:space-between;gap:2rem}footer strong{color:white}footer p{margin:.3rem 0 0;font-size:.8rem}.footer-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:1rem;font-size:.8rem}footer a{color:white;font-weight:760}footer a:hover{color:var(--yellow)}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.shortlists{grid-template-columns:1fr}.funnel{grid-template-columns:repeat(2,1fr)}.criteria{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.container{width:min(calc(100% - 1.25rem),var(--max))}.top-links a:not(.github){display:none}.section-head{display:block}.result-callout{grid-template-columns:1fr}.funnel,.criteria,.sources{grid-template-columns:1fr}.footer-grid{display:block}.footer-links{justify-content:flex-start;margin-top:1rem}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="index.html" aria-label="Página inicial do Projeto iA Brasil"><span class="mark" aria-hidden="true">iA</span><span>Projeto iA Brasil</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a href="#ranking">Ranking</a><a href="#metodo">Método</a><a href="index.html">Top 10 principal</a><a href="fontes.html">Fontes</a>
+          <a class="github" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer"><span>GitHub ↗</span></a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div><p class="eyebrow">Experimento separado · cidades pequenas</p><h1>Duas faixas. Vinte candidatas.</h1><p><strong>Casca/RS lidera a fila de auditoria perto de 10 mil habitantes.</strong> Perto de 100 mil, Nova Lima/MG, Rio do Sul/SC e Guaratinguetá/SP apresentam os sinais mais interessantes. O IDHM serviu apenas para reduzir a busca; não é nota de dados.</p></div>
+        <aside class="decision"><span>Por que separar?</span><strong>Uma cidade minúscula pode permitir análise por bairro — ou até por rua — com custo controlado.</strong><p>Ela não deve competir na mesma régua de representatividade de uma capital. Este ranking é uma investigação paralela.</p></aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <section id="ranking" aria-labelledby="ranking-titulo">
+      <div class="section-head"><div><p class="kicker">Top 10 IDHM por faixa</p><h2 id="ranking-titulo">Comece pelas candidatas, não pelos 5.564 municípios.</h2></div><p>Escolha a faixa e reordene a tabela. As preferências ficam salvas neste navegador.</p></div>
+      <div class="result-callout"><span class="number">!</span><div><strong>O ranking objetivo abaixo é o pré-filtro por IDHM 2010.</strong><p>“Prioridade de auditoria” é outra ordem: usa somente evidências oficiais localizadas numa varredura rápida e ainda não substitui o IDU-Br completo.</p></div></div>
+      <div class="calculator">
+        <div class="controls">
+          <div class="control-group" aria-label="Faixa populacional"><span class="control-label">Faixa</span><button type="button" data-band="micro" aria-pressed="true">≈ 10 mil</button><button type="button" data-band="small" aria-pressed="false">≈ 100 mil</button></div>
+          <div class="control-group" aria-label="Ordenação"><span class="control-label">Ordenar por</span><button type="button" data-sort="idhm" aria-pressed="true">IDHM</button><button type="button" data-sort="audit" aria-pressed="false">Prioridade de auditoria</button><button type="button" data-sort="target" aria-pressed="false">Mais perto do alvo</button><button type="button" data-sort="population" aria-pressed="false">População</button></div>
+        </div>
+        <div id="status" class="status" aria-live="polite"></div>
+        <div class="ranking-wrap">
+          <table class="ranking">
+            <thead><tr><th>Posição</th><th>Cidade</th><th>População 2025</th><th>IDHM 2010</th><th>Acesso encontrado</th><th>Território</th><th>Triagem</th><th>Evidência</th></tr></thead>
+            <tbody id="results"></tbody>
+          </table>
+        </div>
+        <p class="note"><strong>Faixas operacionais:</strong> 7.000–15.000 e 70.000–150.000 habitantes. Empates de IDHM são resolvidos pela proximidade do alvo e depois pelo nome. População: IBGE 2025. IDHM: Atlas Brasil/PNUD, Censo 2010.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="fila-titulo">
+      <div class="section-head"><div><p class="kicker">Resultado do primeiro pente-fino</p><h2 id="fila-titulo">Seis cidades para abrir arquivo por arquivo.</h2></div><p>O corte privilegia sinais que realmente diferenciam o município, não a simples existência de um portal de transparência.</p></div>
+      <div class="shortlists">
+        <article class="shortlist"><h3>Faixa de ≈ 10 mil</h3><p>O melhor achado é técnico, ainda não temático.</p>
+          <div class="candidate"><b>1</b><div><strong>Casca/RS · 9.698 hab.</strong><p>Exportações CSV atuais e SIGWeb contratado para cadastro, viabilidade, iluminação e endereçamento. Falta confirmar o mapa público e dados fora da administração.</p></div></div>
+          <div class="candidate"><b>2</b><div><strong>Águas da Prata/SP · 7.463 hab.</strong><p>API oficial sem autenticação, JSON/XML, paginação e documentação. Limite: os sete módulos encontrados são administrativos.</p></div></div>
+          <div class="candidate"><b>3</b><div><strong>Auriflama/SP · 13.856 hab.</strong><p>Mesma boa arquitetura de API e a mesma dúvida: tecnologia pronta, cobertura social ainda estreita.</p></div></div>
+        </article>
+        <article class="shortlist"><h3>Faixa de ≈ 100 mil</h3><p>Aqui já aparecem estruturas municipais próprias.</p>
+          <div class="candidate"><b>1</b><div><strong>Nova Lima/MG · 120.959 hab.</strong><p>GeoPNL público, camadas para análise territorial e download pela INDE. É a candidata mais forte para começar pelo nível intraurbano.</p></div></div>
+          <div class="candidate"><b>2</b><div><strong>Rio do Sul/SC · 77.451 hab.</strong><p>Portal com área de dados abertos, inventário e atualização corrente, além do SIGEP municipal de projetos.</p></div></div>
+          <div class="candidate"><b>3</b><div><strong>Guaratinguetá/SP · 121.916 hab.</strong><p>Observatório municipal, áreas de planejamento formadas por grupos de bairros e metodologia de indicadores. O risco é o envelhecimento de parte do conteúdo.</p></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="metodo" aria-labelledby="metodo-titulo">
+      <div class="section-head"><div><p class="kicker">Busca eficiente</p><h2 id="metodo-titulo">Um funil barato antes da auditoria cara.</h2></div><p>O IDHM escolhe onde olhar. Quem decide o piloto continua sendo a qualidade dos dados.</p></div>
+      <div class="funnel">
+        <article class="step"><span>1 · Universo</span><strong>5.564 municípios cruzados</strong><p>IDHM 2010 disponível e município compatível com a malha populacional atual.</p></article>
+        <article class="step"><span>2 · Porte</span><strong>Duas faixas populacionais</strong><p>Filtro em lote, sem abrir portal municipal por portal municipal.</p></article>
+        <article class="step"><span>3 · IDHM</span><strong>20 candidatas</strong><p>Top 10 de cada faixa. Redução superior a 99% do universo de busca.</p></article>
+        <article class="step"><span>4 · Dados</span><strong>6 para auditoria profunda</strong><p>Abrir recursos reais nos oito domínios do IDU-Br e medir confiança.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="criterios-titulo">
+      <div class="section-head"><div><p class="kicker">Triagem compatível com o IDU-Br</p><h2 id="criterios-titulo">Cinco perguntas rápidas antes da nota.</h2></div><p>Não demos um IDU-Br improvisado. A varredura só decide onde vale gastar tempo de auditoria.</p></div>
+      <div class="criteria">
+        <article class="criterion"><strong>1. Acesso</strong><p>Há CSV, JSON, XML, API, WFS ou download estruturado — ou apenas PDF e tela?</p></article>
+        <article class="criterion"><strong>2. Cobertura</strong><p>Os dados atravessam saúde, educação, economia, ambiente e serviços, ou ficam no fiscal?</p></article>
+        <article class="criterion"><strong>3. Território</strong><p>Há bairro, localidade, setor censitário, endereço, equipamento ou camada geográfica?</p></article>
+        <article class="criterion"><strong>4. Atualidade</strong><p>Existem registros atuais, série histórica e rotina visível de atualização?</p></article>
+        <article class="criterion"><strong>5. Governança</strong><p>O município mantém inventário, documentação e responsáveis, ou só usa uma tela genérica de fornecedor?</p></article>
+      </div>
+      <p class="warning" style="margin-top:1rem"><strong>Confiança desta etapa: média no pré-filtro e baixa a média na triagem de dados.</strong> População e IDHM vêm de bases oficiais completas. Já a ausência de um portal numa busca rápida não prova que ele não exista; portais JavaScript e sistemas sem indexação podem gerar falso negativo.</p>
+    </section>
+
+    <section aria-labelledby="fontes-titulo">
+      <div class="section-head"><div><p class="kicker">Fontes e rastreabilidade</p><h2 id="fontes-titulo">De onde saíram os números.</h2></div><p>Os links municipais ficam na própria tabela. As bases nacionais usadas para o corte estão aqui.</p></div>
+      <div class="sources">
+        <article class="source"><strong>População municipal 2025</strong><p>Estimativas oficiais do IBGE, revisão publicada em 13/01/2026. <a href="https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2025/POP2025_20260113.ods" target="_blank" rel="noopener noreferrer">Baixar ODS ↗</a></p></article>
+        <article class="source"><strong>IDHM municipal 2010</strong><p>Atlas do Desenvolvimento Humano/PNUD, baseado no Censo 2010. <a href="https://www.undp.org/pt/brazil/idhm-municipios-2010" target="_blank" rel="noopener noreferrer">Ver ranking completo ↗</a></p></article>
+        <article class="source"><strong>Série reproduzível do IDHM</strong><p>IPEAData, série ADH_IDHM, fonte Atlas Brasil/Censo IBGE. <a href="http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='ADH_IDHM')" target="_blank" rel="noopener noreferrer">Abrir API ↗</a></p></article>
+        <article class="source"><strong>Memória metodológica</strong><p>Faixas, lista completa, evidências e limitações estão em <a href="docs/CIDADES_PEQUENAS.md">docs/CIDADES_PEQUENAS.md</a>.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><strong>Projeto iA Brasil</strong><p>Informação simples para entender a cidade, comparar regiões e ampliar a participação social.</p></div><div class="footer-links"><a href="index.html">Top 10 principal</a><a href="relatorio_parcial.html">Relatório</a><a href="fontes.html">Fontes</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+  <script>
+    const candidates = [
+      {band:"micro",idhmRank:1,auditRank:6,city:"Treze Tílias/SC",population:9531,idhm:.795,access:"ERP interno; sem base aberta localizada",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.trezetilias.sc.gov.br/licitacao/licitacao-189258/"},
+      {band:"micro",idhmRank:2,auditRank:4,city:"Saltinho/SP",population:8407,idhm:.791,access:"Protocolo digital; sem dataset aberto",territory:"Não localizado",triage:"reserve",triageLabel:"Reserva",url:"https://saltinho.sp.gov.br/noticias/1533/prefeitura-orienta-moradores-sobre-como-realizar-protocolo-digital-pelo-sistema-flowdocs"},
+      {band:"micro",idhmRank:3,auditRank:1,city:"Casca/RS",population:9698,idhm:.785,access:"CSV/PDF em bases administrativas",territory:"SIGWeb contratado; confirmar acesso",triage:"now",triageLabel:"Auditar agora",url:"https://www.casca.rs.gov.br/portal/editais/1"},
+      {band:"micro",idhmRank:4,auditRank:2,city:"Águas da Prata/SP",population:7463,idhm:.781,access:"API JSON/XML documentada",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.aguasdaprata.sp.gov.br/dados-abertos"},
+      {band:"micro",idhmRank:5,auditRank:5,city:"Itaú de Minas/MG",population:14634,idhm:.776,access:"4 JSON da Câmara; não da Prefeitura",territory:"Não localizado",triage:"reserve",triageLabel:"Reserva",url:"https://www.itaudeminas.mg.leg.br/transparencia/dados-abertos"},
+      {band:"micro",idhmRank:6,auditRank:8,city:"Trombudo Central/SC",population:7599,idhm:.775,access:"Transparência; sem export confirmado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.trombudocentral.sc.gov.br/acesso-a-informacao-2/"},
+      {band:"micro",idhmRank:7,auditRank:7,city:"Siderópolis/SC",population:14156,idhm:.774,access:"Transparência administrativa",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.sideropolis.sc.gov.br/cartaservicos/detalhe-transparenciapublica/"},
+      {band:"micro",idhmRank:8,auditRank:9,city:"Ouro/SC",population:7062,idhm:.774,access:"Portal Atende; export não confirmado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://ouro.sc.gov.br/cartaservicos/detalhe-portal-da-transparencia4/"},
+      {band:"micro",idhmRank:9,auditRank:10,city:"Paraí/RS",population:7362,idhm:.773,access:"Portal e licitações; sem base aberta",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://parai.rs.gov.br/licitacao/?ano=2026&idModalidade=5"},
+      {band:"micro",idhmRank:10,auditRank:3,city:"Auriflama/SP",population:13856,idhm:.773,access:"API JSON/XML documentada",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.auriflama.sp.gov.br/dados-abertos"},
+      {band:"small",idhmRank:1,auditRank:5,city:"Valinhos/SP",population:132258,idhm:.819,access:"JSON administrativo",territory:"Mapas temáticos em arquivos",triage:"reserve",triageLabel:"Reserva forte",url:"https://www.valinhos.sp.gov.br/portal/dados-abertos"},
+      {band:"small",idhmRank:2,auditRank:4,city:"Vinhedo/SP",population:79089,idhm:.817,access:"JSON administrativo",territory:"Mappa Web com bairros e lotes",triage:"reserve",triageLabel:"Reserva forte",url:"https://www.vinhedo.sp.gov.br/portal/dados-abertos"},
+      {band:"small",idhmRank:3,auditRank:1,city:"Nova Lima/MG",population:120959,idhm:.813,access:"Geoportal e download pela INDE",territory:"GeoPNL público",triage:"now",triageLabel:"Auditar agora",url:"https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl"},
+      {band:"small",idhmRank:4,auditRank:6,city:"Assis/SP",population:104858,idhm:.805,access:"JSON administrativo e relatórios",territory:"Mapas temáticos, escolas e UBS",triage:"reserve",triageLabel:"Reserva",url:"https://www.assis.sp.gov.br/portal/dados-abertos"},
+      {band:"small",idhmRank:5,auditRank:2,city:"Rio do Sul/SC",population:77451,idhm:.802,access:"Dados abertos e inventário",territory:"Projetos municipais no SIGEP",triage:"now",triageLabel:"Auditar agora",url:"https://riodosul.atende.net/transparencia/"},
+      {band:"small",idhmRank:6,auditRank:7,city:"Pirassununga/SP",population:75594,idhm:.801,access:"SIG municipal previsto; export a testar",territory:"Cadastro territorial multifinalitário",triage:"reserve",triageLabel:"Reserva",url:"https://pirassununga.sp.gov.br/Publicacoes/Licitacoes/2022/Concorr%C3%AAncia%20P%C3%BAblica/CP%20001-22%20-%20Loca%C3%A7%C3%A3o%20de%20software%20de%20gest%C3%A3o%20do%20cadastro%20territorial%20multifinalit%C3%A1rio/001%20-%20Edital%20e%20Termo%20de%20Refer%C3%AAncia/001%20-%20Termo%20de%20Refer%C3%AAncia.pdf"},
+      {band:"small",idhmRank:7,auditRank:8,city:"Concórdia/SC",population:87206,idhm:.800,access:"Transparência Atende",territory:"Servidor geo localizado; não validado",triage:"reserve",triageLabel:"Reserva",url:"https://concordia.atende.net/transparencia/"},
+      {band:"small",idhmRank:8,auditRank:3,city:"Guaratinguetá/SP",population:121916,idhm:.798,access:"Observatório e relatórios",territory:"APEMs formadas por bairros",triage:"now",triageLabel:"Auditar agora",url:"https://observatorio.guaratingueta.sp.gov.br/observatorio-de-politicas-publicas/"},
+      {band:"small",idhmRank:9,auditRank:10,city:"São João da Boa Vista/SP",population:96080,idhm:.797,access:"Sem catálogo diferenciado localizado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.saojoao.sp.gov.br/"},
+      {band:"small",idhmRank:10,auditRank:9,city:"Fernandópolis/SP",population:73508,idhm:.797,access:"SIG contratado; acesso público a testar",territory:"Ortofoto e cadastro imobiliário",triage:"reserve",triageLabel:"Reserva",url:"https://www.fernandopolis.sp.gov.br/publicacoes/pregao-eletronico/edital-de-pregao-eletronico-n-0832023-contratacao-de-empresa-de-engenharia-especializada-em-geoprocessamento"}
+    ];
+    const formatter = new Intl.NumberFormat("pt-BR");
+    const results = document.querySelector("#results");
+    const status = document.querySelector("#status");
+    const bandButtons = [...document.querySelectorAll("[data-band]")];
+    const sortButtons = [...document.querySelectorAll("[data-sort]")];
+    const storageKey = "ia-brasil-cidades-pequenas-v1";
+    let activeBand = "micro";
+    let activeSort = "idhm";
+    const bandMeta = {micro:{label:"≈ 10 mil",range:"7.000–15.000",target:10000},small:{label:"≈ 100 mil",range:"70.000–150.000",target:100000}};
+    const sortLabels = {idhm:"IDHM 2010",audit:"prioridade de auditoria",target:"proximidade do alvo",population:"população"};
+    function load(){try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved&&bandMeta[saved.band])activeBand=saved.band;if(saved&&sortLabels[saved.sort])activeSort=saved.sort}catch(error){/* usa o padrão */}}
+    function save(){try{localStorage.setItem(storageKey,JSON.stringify({band:activeBand,sort:activeSort}))}catch(error){/* armazenamento opcional */}}
+    function render(){
+      const meta=bandMeta[activeBand];
+      const rows=candidates.filter(item=>item.band===activeBand);
+      const sorters={idhm:(a,b)=>a.idhmRank-b.idhmRank,audit:(a,b)=>a.auditRank-b.auditRank,target:(a,b)=>Math.abs(a.population-meta.target)-Math.abs(b.population-meta.target)||a.idhmRank-b.idhmRank,population:(a,b)=>a.population-b.population};
+      rows.sort(sorters[activeSort]);
+      bandButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.band===activeBand)));
+      sortButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.sort===activeSort)));
+      status.textContent=`Faixa ${meta.label} (${meta.range} habitantes) · ordem por ${sortLabels[activeSort]} · escolhas salvas neste navegador`;
+      results.innerHTML=rows.map((item,index)=>`<tr><td class="rank">${index+1}</td><td class="city">${item.city}</td><td class="number-cell">${formatter.format(item.population)}</td><td class="number-cell">${item.idhm.toFixed(3).replace(".",",")}</td><td>${item.access}</td><td>${item.territory}</td><td><span class="badge ${item.triage}">${item.triageLabel}</span></td><td><a class="evidence-link" href="${item.url}" target="_blank" rel="noopener noreferrer">Abrir ↗</a></td></tr>`).join("");
+    }
+    bandButtons.forEach(button=>button.addEventListener("click",()=>{activeBand=button.dataset.band;save();render()}));
+    sortButtons.forEach(button=>button.addEventListener("click",()=>{activeSort=button.dataset.sort;save();render()}));
+    load();render();
+  </script>
+</body>
+</html>

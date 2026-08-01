@@ -13,6 +13,7 @@
 - [Inventário por cidade](inventario.html): 60 links iniciais — seis por candidata — com área, produtor, camada institucional, acesso, território, frescor e estado do teste.
 - [Perfis das cidades](cidades/jundiai.html): uma página física por candidata, com forças, riscos, fontes e fila de aprofundamento.
 - [Fontes nacionais](fontes.html): 41 portais e projetos de referência, separados do esforço municipal que pontua o ranking.
+- [Cidades pequenas](cidades-pequenas.html): dois Top 10 independentes, nas faixas de 7–15 mil e 70–150 mil habitantes, pré-filtrados por IDHM e submetidos a uma triagem rápida de dados.
 
 O inventário separa **volume declarado** de **evidência confirmada**. As contagens de catálogos são pistas; a validação final exige baixar um recurso ou consultar um endpoint, ler seu esquema e repetir o acesso.
 

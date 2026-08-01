@@ -132,6 +132,10 @@
     .editorial-rule { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center; padding: 1.25rem 1.4rem; border: 1px solid #d6bd64; border-radius: 15px; background: var(--yellow-soft); }
     .editorial-rule strong { font-size: 1rem; }
     .editorial-rule p { margin: 0; color: #5f552f; }
+    .small-city-callout { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 1.5rem; align-items: center; padding: clamp(1.35rem,4vw,2rem); border: 1px solid var(--line); border-left: 6px solid var(--green); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+    .small-city-callout .kicker { color: var(--green); }
+    .small-city-callout h2 { margin-bottom: .45rem; font-size: clamp(1.65rem,3vw,2.5rem); }
+    .small-city-callout p:last-child { max-width: 70ch; margin: 0; color: var(--muted); }
 
     .objectives { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(2rem,6vw,5rem); align-items: start; }
     .objectives .kicker { color: var(--green); }
@@ -159,6 +163,7 @@
 
     @media (max-width: 820px) {
       .hero, .calc-panel, .objectives { grid-template-columns: 1fr; }
+      .small-city-callout { grid-template-columns: 1fr; }
       .section-head { display: block; }
       .link-grid { grid-template-columns: 1fr; }
       .calculator-head { display: block; }
@@ -188,6 +193,7 @@
         <nav class="top-links" aria-label="Navegação principal">
           <a class="top-link" href="#top10">Top 10</a>
           <a class="top-link" href="#calculo">Cálculo</a>
+          <a class="top-link" href="cidades-pequenas.html">Cidades pequenas</a>
           <a class="top-link" href="inventario.html">Inventário</a>
           <a class="top-link" href="fontes.html">Fontes</a>
           <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
@@ -207,6 +213,7 @@
             <a class="button button-secondary" href="inventario.html">Ver dados reais</a>
             <a class="button button-secondary" href="relatorio_parcial.html">Relatório completo</a>
             <a class="button button-secondary" href="fontes.html">Portais e fontes</a>
+            <a class="button button-secondary" href="cidades-pequenas.html">Cidades pequenas</a>
           </div>
         </div>
         <aside class="decision" aria-label="Resposta curta">
@@ -270,6 +277,11 @@
       <p class="calculator-note"><strong>Como ler:</strong> população do IBGE em 1º de julho de 2025. “Qualidade atual” é a ordem ordinal do levantamento, não um IDU-E final. Na prioridade combinada, a posição vira uma proxy provisória de 100 a 10; a simulação não deve ser citada como nota oficial.</p>
     </section>
 
+    <section class="small-city-callout" aria-labelledby="pequenas-titulo">
+      <div><p class="kicker">Experimento separado · novo</p><h2 id="pequenas-titulo">E se o melhor laboratório tiver só 10 mil habitantes?</h2><p>Pré-filtramos municípios por porte e IDHM, reduzimos a busca a dois Top 10 e já encontramos seis candidatas para auditoria: Casca, Águas da Prata, Auriflama, Nova Lima, Rio do Sul e Guaratinguetá.</p></div>
+      <a class="button button-primary" href="cidades-pequenas.html">Ver ranking das pequenas →</a>
+    </section>
+
     <section id="calculo" class="calc-panel" aria-labelledby="calculo-titulo">
       <div>
         <p class="kicker">Cálculo de prioridade</p>
@@ -311,6 +323,7 @@
         <a class="link-card" href="relatorio_parcial.html"><span>Relatório</span><h3>Resultado parcial completo</h3><p>Top 10, outliers, correções, limitações e próximos testes.</p></a>
         <a class="link-card" href="inventario.html"><span>Evidências</span><h3>Inventário das dez cidades</h3><p>60 links por área, produtor, formato, território e situação do teste.</p></a>
         <a class="link-card" href="fontes.html"><span>Catálogo</span><h3>Portais de dados do Brasil</h3><p>O que cada fonte entrega, como acessar e quais cuidados tomar.</p></a>
+        <a class="link-card" href="cidades-pequenas.html"><span>Experimento</span><h3>Cidades de 10 mil e 100 mil</h3><p>Dois Top 10 por IDHM e uma triagem separada de dados municipais.</p></a>
         <a class="link-card" href="docs/METRICA_IDU_V2.md"><span>Método</span><h3>IDU-Br v2.1</h3><p>Fórmulas, pesos, confiança, porte e regras de auditoria.</p></a>
       </div>
     </section>
@@ -323,6 +336,7 @@
         <a href="relatorio_parcial.html">Relatório</a>
         <a href="inventario.html">Inventário</a>
         <a href="fontes.html">Fontes</a>
+        <a href="cidades-pequenas.html">Cidades pequenas</a>
         <a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
     </div>

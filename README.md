@@ -10,6 +10,8 @@ A shortlist provisória está em [DOSSIE_PILOTO.md](DOSSIE_PILOTO.md). A seleç�
 
 O ranking mede adequação para um piloto de ingestão e análise. Ele não mede qualidade geral da administração municipal nem qualidade de vida.
 
+Um [experimento separado com cidades pequenas](cidades-pequenas.html) cruza população 2025 e IDHM 2010 para formar dois Top 10: municípios de 7 mil a 15 mil habitantes e de 70 mil a 150 mil. Casca/RS, Águas da Prata/SP, Auriflama/SP, Nova Lima/MG, Rio do Sul/SC e Guaratinguetá/SP compõem o primeiro lote de auditoria. O IDHM é somente um pré-filtro eficiente; não entra na nota de qualidade dos dados.
+
 ## Objetivos
 
 1. Criar um sistema simples que ajude as pessoas a acessar dados e entender a própria cidade e as regiões onde moram.
@@ -21,6 +23,7 @@ Regra editorial: comece pela conclusão; escreva de forma clara, direta e objeti
 
 - `index.html` — página inicial do site, pronta para GitHub Pages;
 - `fontes.html` — catálogo filtrável dos principais portais nacionais e fontes comunitárias;
+- `cidades-pequenas.html` — dois Top 10 por porte/IDHM, triagem interativa e fila de auditoria;
 - `inventario.html` — inventário filtrável das evidências concretas das dez cidades;
 - `inventario_top10.json` — fonte estruturada dos 60 links do inventário municipal;
 - `perfis_cidades.json` — sínteses, forças, riscos e próximos testes por candidata;
@@ -28,6 +31,7 @@ Regra editorial: comece pela conclusão; escreva de forma clara, direta e objeti
 - `DOSSIE_PILOTO.md` — decisão consolidada e shortlist nacional;
 - `relatorio_parcial.html` — versão visual e autônoma do relatório parcial;
 - `docs/METRICA_IDU_V2.md` — definição do IDU-Br v2 e do índice de confiança C-IDU;
+- `docs/CIDADES_PEQUENAS.md` — método, listas completas, evidências e limites do experimento de pequeno porte;
 - `idu_v2.py` — implementação do cálculo, sem notas de cidades embutidas;
 - `docs/parciais/` — evidências, limitações e levantamentos regionais/setoriais;
 - `docs/PROTOCOLO_DOC_VIVO.md` — regras de procedência e verificação das fontes;
