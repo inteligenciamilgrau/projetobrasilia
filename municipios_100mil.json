@@ -1,0 +1,2794 @@
+{
+ "schema_version": "1.0",
+ "updated_at": "2026-08-01",
+ "criterio": "Municípios com população estimada acima de 100.000 habitantes",
+ "fonte_populacao": {
+  "nome": "IBGE — Estimativas da População 2025 (data de referência 1º/07/2025; revisão de 13/01/2026)",
+  "url_ods": "https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2025/POP2025_20260113.ods",
+  "url_api": "https://apisidra.ibge.gov.br/values/t/6579/n6/all/v/9324/p/2025"
+ },
+ "metodo": "Extraído da tabela SIDRA 6579 (variável 9324) em 2026-08-01 e validado contra os valores publicados no DOSSIE_PILOTO.md e em docs/CIDADES_PEQUENAS.md. A coleta de fontes por município é incremental: status \"pendente\" marca municípios ainda sem varredura.",
+ "total_municipios": 338,
+ "ufs": [
+  {
+   "uf": "AC",
+   "nome": "Acre",
+   "regiao": "Norte",
+   "municipios": [
+    {
+     "municipio": "Rio Branco",
+     "codigo_ibge": "1200401",
+     "populacao_2025": 389001,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "AL",
+   "nome": "Alagoas",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "Maceió",
+     "codigo_ibge": "2704302",
+     "populacao_2025": 994952,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Arapiraca",
+     "codigo_ibge": "2700300",
+     "populacao_2025": 243906,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "AM",
+   "nome": "Amazonas",
+   "regiao": "Norte",
+   "municipios": [
+    {
+     "municipio": "Manaus",
+     "codigo_ibge": "1302603",
+     "populacao_2025": 2303732,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itacoatiara",
+     "codigo_ibge": "1301902",
+     "populacao_2025": 113917,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Manacapuru",
+     "codigo_ibge": "1302504",
+     "populacao_2025": 111751,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Parintins",
+     "codigo_ibge": "1303403",
+     "populacao_2025": 101855,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "AP",
+   "nome": "Amapá",
+   "regiao": "Norte",
+   "municipios": [
+    {
+     "municipio": "Macapá",
+     "codigo_ibge": "1600303",
+     "populacao_2025": 489676,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santana",
+     "codigo_ibge": "1600600",
+     "populacao_2025": 118803,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "BA",
+   "nome": "Bahia",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "Salvador",
+     "codigo_ibge": "2927408",
+     "populacao_2025": 2564204,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Feira de Santana",
+     "codigo_ibge": "2910800",
+     "populacao_2025": 660806,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Vitória da Conquista",
+     "codigo_ibge": "2933307",
+     "populacao_2025": 396613,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Camaçari",
+     "codigo_ibge": "2905701",
+     "populacao_2025": 321636,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Juazeiro",
+     "codigo_ibge": "2918407",
+     "populacao_2025": 256122,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Lauro de Freitas",
+     "codigo_ibge": "2919207",
+     "populacao_2025": 219564,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itabuna",
+     "codigo_ibge": "2914802",
+     "populacao_2025": 196344,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ilhéus",
+     "codigo_ibge": "2913606",
+     "populacao_2025": 189149,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Porto Seguro",
+     "codigo_ibge": "2925303",
+     "populacao_2025": 182630,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Barreiras",
+     "codigo_ibge": "2903201",
+     "populacao_2025": 171634,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Jequié",
+     "codigo_ibge": "2918001",
+     "populacao_2025": 169201,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Alagoinhas",
+     "codigo_ibge": "2900702",
+     "populacao_2025": 161196,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Teixeira de Freitas",
+     "codigo_ibge": "2931350",
+     "populacao_2025": 153738,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Eunápolis",
+     "codigo_ibge": "2910727",
+     "populacao_2025": 121067,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Simões Filho",
+     "codigo_ibge": "2930709",
+     "populacao_2025": 120419,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Paulo Afonso",
+     "codigo_ibge": "2924009",
+     "populacao_2025": 119418,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Luís Eduardo Magalhães",
+     "codigo_ibge": "2919553",
+     "populacao_2025": 118382,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santo Antônio de Jesus",
+     "codigo_ibge": "2928703",
+     "populacao_2025": 109791,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "CE",
+   "nome": "Ceará",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "Fortaleza",
+     "codigo_ibge": "2304400",
+     "populacao_2025": 2578483,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Caucaia",
+     "codigo_ibge": "2303709",
+     "populacao_2025": 378406,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Juazeiro do Norte",
+     "codigo_ibge": "2307304",
+     "populacao_2025": 305531,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Maracanaú",
+     "codigo_ibge": "2307650",
+     "populacao_2025": 251613,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sobral",
+     "codigo_ibge": "2312908",
+     "populacao_2025": 216519,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Crato",
+     "codigo_ibge": "2304202",
+     "populacao_2025": 139027,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itapipoca",
+     "codigo_ibge": "2306405",
+     "populacao_2025": 138978,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Maranguape",
+     "codigo_ibge": "2307700",
+     "populacao_2025": 108622,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Iguatu",
+     "codigo_ibge": "2305506",
+     "populacao_2025": 102588,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "DF",
+   "nome": "Distrito Federal",
+   "regiao": "Centro-Oeste",
+   "municipios": [
+    {
+     "municipio": "Brasília",
+     "codigo_ibge": "5300108",
+     "populacao_2025": 2996899,
+     "status_coleta": "top10",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "ES",
+   "nome": "Espírito Santo",
+   "regiao": "Sudeste",
+   "municipios": [
+    {
+     "municipio": "Serra",
+     "codigo_ibge": "3205002",
+     "populacao_2025": 579720,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Vila Velha",
+     "codigo_ibge": "3205200",
+     "populacao_2025": 506779,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cariacica",
+     "codigo_ibge": "3201308",
+     "populacao_2025": 376200,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Vitória",
+     "codigo_ibge": "3205309",
+     "populacao_2025": 343378,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cachoeiro de Itapemirim",
+     "codigo_ibge": "3201209",
+     "populacao_2025": 198342,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Linhares",
+     "codigo_ibge": "3203205",
+     "populacao_2025": 183797,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Guarapari",
+     "codigo_ibge": "3202405",
+     "populacao_2025": 136311,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Mateus",
+     "codigo_ibge": "3204906",
+     "populacao_2025": 134423,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Colatina",
+     "codigo_ibge": "3201506",
+     "populacao_2025": 129301,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Aracruz",
+     "codigo_ibge": "3200607",
+     "populacao_2025": 103363,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "GO",
+   "nome": "Goiás",
+   "regiao": "Centro-Oeste",
+   "municipios": [
+    {
+     "municipio": "Goiânia",
+     "codigo_ibge": "5208707",
+     "populacao_2025": 1503256,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Aparecida de Goiânia",
+     "codigo_ibge": "5201405",
+     "populacao_2025": 556021,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Anápolis",
+     "codigo_ibge": "5201108",
+     "populacao_2025": 420300,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Águas Lindas de Goiás",
+     "codigo_ibge": "5200258",
+     "populacao_2025": 245352,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Rio Verde",
+     "codigo_ibge": "5218805",
+     "populacao_2025": 241494,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Luziânia",
+     "codigo_ibge": "5212501",
+     "populacao_2025": 221262,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Valparaíso de Goiás",
+     "codigo_ibge": "5221858",
+     "populacao_2025": 218416,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Senador Canedo",
+     "codigo_ibge": "5220454",
+     "populacao_2025": 175042,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Trindade",
+     "codigo_ibge": "5221403",
+     "populacao_2025": 153560,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Catalão",
+     "codigo_ibge": "5205109",
+     "populacao_2025": 122760,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Formosa",
+     "codigo_ibge": "5208004",
+     "populacao_2025": 121559,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itumbiara",
+     "codigo_ibge": "5211503",
+     "populacao_2025": 113322,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Planaltina",
+     "codigo_ibge": "5217609",
+     "populacao_2025": 112304,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Jataí",
+     "codigo_ibge": "5211909",
+     "populacao_2025": 111634,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Novo Gama",
+     "codigo_ibge": "5215231",
+     "populacao_2025": 107663,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Caldas Novas",
+     "codigo_ibge": "5204508",
+     "populacao_2025": 106820,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cidade Ocidental",
+     "codigo_ibge": "5205497",
+     "populacao_2025": 101570,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "MA",
+   "nome": "Maranhão",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "São Luís",
+     "codigo_ibge": "2111300",
+     "populacao_2025": 1089215,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Imperatriz",
+     "codigo_ibge": "2105302",
+     "populacao_2025": 285806,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São José de Ribamar",
+     "codigo_ibge": "2111201",
+     "populacao_2025": 259164,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Timon",
+     "codigo_ibge": "2112209",
+     "populacao_2025": 182711,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Caxias",
+     "codigo_ibge": "2103000",
+     "populacao_2025": 163546,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Paço do Lumiar",
+     "codigo_ibge": "2107506",
+     "populacao_2025": 153158,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Codó",
+     "codigo_ibge": "2103307",
+     "populacao_2025": 118283,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Açailândia",
+     "codigo_ibge": "2100055",
+     "populacao_2025": 110611,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Bacabal",
+     "codigo_ibge": "2101202",
+     "populacao_2025": 107755,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Balsas",
+     "codigo_ibge": "2101400",
+     "populacao_2025": 105974,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "MG",
+   "nome": "Minas Gerais",
+   "regiao": "Sudeste",
+   "municipios": [
+    {
+     "municipio": "Belo Horizonte",
+     "codigo_ibge": "3106200",
+     "populacao_2025": 2415872,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Uberlândia",
+     "codigo_ibge": "3170206",
+     "populacao_2025": 761835,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Contagem",
+     "codigo_ibge": "3118601",
+     "populacao_2025": 651718,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Juiz de Fora",
+     "codigo_ibge": "3136702",
+     "populacao_2025": 567730,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Montes Claros",
+     "codigo_ibge": "3143302",
+     "populacao_2025": 437601,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Betim",
+     "codigo_ibge": "3106705",
+     "populacao_2025": 431433,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Uberaba",
+     "codigo_ibge": "3170107",
+     "populacao_2025": 356781,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ribeirão das Neves",
+     "codigo_ibge": "3154606",
+     "populacao_2025": 346971,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Governador Valadares",
+     "codigo_ibge": "3127701",
+     "populacao_2025": 266561,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Divinópolis",
+     "codigo_ibge": "3122306",
+     "populacao_2025": 243583,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sete Lagoas",
+     "codigo_ibge": "3167202",
+     "populacao_2025": 238909,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ipatinga",
+     "codigo_ibge": "3131307",
+     "populacao_2025": 235311,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santa Luzia",
+     "codigo_ibge": "3157807",
+     "populacao_2025": 230382,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ibirité",
+     "codigo_ibge": "3129806",
+     "populacao_2025": 179582,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Poços de Caldas",
+     "codigo_ibge": "3151800",
+     "populacao_2025": 172339,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Patos de Minas",
+     "codigo_ibge": "3148004",
+     "populacao_2025": 169173,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Pouso Alegre",
+     "codigo_ibge": "3152501",
+     "populacao_2025": 162133,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Varginha",
+     "codigo_ibge": "3170701",
+     "populacao_2025": 143676,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Teófilo Otoni",
+     "codigo_ibge": "3168606",
+     "populacao_2025": 142851,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Conselheiro Lafaiete",
+     "codigo_ibge": "3118304",
+     "populacao_2025": 138946,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Vespasiano",
+     "codigo_ibge": "3171204",
+     "populacao_2025": 138583,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sabará",
+     "codigo_ibge": "3156700",
+     "populacao_2025": 134576,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Barbacena",
+     "codigo_ibge": "3105608",
+     "populacao_2025": 129695,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araguari",
+     "codigo_ibge": "3103504",
+     "populacao_2025": 123432,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Nova Lima",
+     "codigo_ibge": "3144805",
+     "populacao_2025": 120959,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araxá",
+     "codigo_ibge": "3104007",
+     "populacao_2025": 118786,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itabira",
+     "codigo_ibge": "3131703",
+     "populacao_2025": 118053,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Passos",
+     "codigo_ibge": "3147907",
+     "populacao_2025": 116951,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Nova Serrana",
+     "codigo_ibge": "3145208",
+     "populacao_2025": 114791,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Lavras",
+     "codigo_ibge": "3138203",
+     "populacao_2025": 110682,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Coronel Fabriciano",
+     "codigo_ibge": "3119401",
+     "populacao_2025": 108708,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Muriaé",
+     "codigo_ibge": "3143906",
+     "populacao_2025": 108447,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ubá",
+     "codigo_ibge": "3169901",
+     "populacao_2025": 107423,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ituiutaba",
+     "codigo_ibge": "3134202",
+     "populacao_2025": 106775,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itaúna",
+     "codigo_ibge": "3133808",
+     "populacao_2025": 103272,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Pará de Minas",
+     "codigo_ibge": "3147105",
+     "populacao_2025": 102844,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "MS",
+   "nome": "Mato Grosso do Sul",
+   "regiao": "Centro-Oeste",
+   "municipios": [
+    {
+     "municipio": "Campo Grande",
+     "codigo_ibge": "5002704",
+     "populacao_2025": 962883,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Dourados",
+     "codigo_ibge": "5003702",
+     "populacao_2025": 264017,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Três Lagoas",
+     "codigo_ibge": "5008305",
+     "populacao_2025": 143523,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "MT",
+   "nome": "Mato Grosso",
+   "regiao": "Centro-Oeste",
+   "municipios": [
+    {
+     "municipio": "Cuiabá",
+     "codigo_ibge": "5103403",
+     "populacao_2025": 691875,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Várzea Grande",
+     "codigo_ibge": "5108402",
+     "populacao_2025": 318922,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Rondonópolis",
+     "codigo_ibge": "5107602",
+     "populacao_2025": 263708,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sinop",
+     "codigo_ibge": "5107909",
+     "populacao_2025": 223780,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sorriso",
+     "codigo_ibge": "5107925",
+     "populacao_2025": 124665,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Tangará da Serra",
+     "codigo_ibge": "5107958",
+     "populacao_2025": 114603,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "PA",
+   "nome": "Pará",
+   "regiao": "Norte",
+   "municipios": [
+    {
+     "municipio": "Belém",
+     "codigo_ibge": "1501402",
+     "populacao_2025": 1397315,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Ananindeua",
+     "codigo_ibge": "1500800",
+     "populacao_2025": 509227,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santarém",
+     "codigo_ibge": "1506807",
+     "populacao_2025": 360871,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Parauapebas",
+     "codigo_ibge": "1505536",
+     "populacao_2025": 305771,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Marabá",
+     "codigo_ibge": "1504208",
+     "populacao_2025": 290975,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Castanhal",
+     "codigo_ibge": "1502400",
+     "populacao_2025": 209126,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Abaetetuba",
+     "codigo_ibge": "1500107",
+     "populacao_2025": 172344,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cametá",
+     "codigo_ibge": "1502103",
+     "populacao_2025": 144859,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Barcarena",
+     "codigo_ibge": "1501303",
+     "populacao_2025": 139076,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Altamira",
+     "codigo_ibge": "1500602",
+     "populacao_2025": 138749,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itaituba",
+     "codigo_ibge": "1503606",
+     "populacao_2025": 135369,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Bragança",
+     "codigo_ibge": "1501709",
+     "populacao_2025": 132489,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Marituba",
+     "codigo_ibge": "1504422",
+     "populacao_2025": 119437,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Breves",
+     "codigo_ibge": "1501808",
+     "populacao_2025": 116058,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Paragominas",
+     "codigo_ibge": "1505502",
+     "populacao_2025": 113498,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "PB",
+   "nome": "Paraíba",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "João Pessoa",
+     "codigo_ibge": "2507507",
+     "populacao_2025": 897633,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Campina Grande",
+     "codigo_ibge": "2504009",
+     "populacao_2025": 443911,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santa Rita",
+     "codigo_ibge": "2513703",
+     "populacao_2025": 160852,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Patos",
+     "codigo_ibge": "2510808",
+     "populacao_2025": 108104,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "PE",
+   "nome": "Pernambuco",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "Recife",
+     "codigo_ibge": "2611606",
+     "populacao_2025": 1588376,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Jaboatão dos Guararapes",
+     "codigo_ibge": "2607901",
+     "populacao_2025": 684293,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Petrolina",
+     "codigo_ibge": "2611101",
+     "populacao_2025": 418444,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Caruaru",
+     "codigo_ibge": "2604106",
+     "populacao_2025": 405408,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Paulista",
+     "codigo_ibge": "2610707",
+     "populacao_2025": 365144,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Olinda",
+     "codigo_ibge": "2609600",
+     "populacao_2025": 364717,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cabo de Santo Agostinho",
+     "codigo_ibge": "2602902",
+     "populacao_2025": 218049,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Camaragibe",
+     "codigo_ibge": "2603454",
+     "populacao_2025": 156112,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Garanhuns",
+     "codigo_ibge": "2606002",
+     "populacao_2025": 151803,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Vitória de Santo Antão",
+     "codigo_ibge": "2616407",
+     "populacao_2025": 144243,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Igarassu",
+     "codigo_ibge": "2606804",
+     "populacao_2025": 123017,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Lourenço da Mata",
+     "codigo_ibge": "2613701",
+     "populacao_2025": 118258,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ipojuca",
+     "codigo_ibge": "2607208",
+     "populacao_2025": 106539,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santa Cruz do Capibaribe",
+     "codigo_ibge": "2612505",
+     "populacao_2025": 104854,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Abreu e Lima",
+     "codigo_ibge": "2600054",
+     "populacao_2025": 104248,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "PI",
+   "nome": "Piauí",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "Teresina",
+     "codigo_ibge": "2211001",
+     "populacao_2025": 905692,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Parnaíba",
+     "codigo_ibge": "2207702",
+     "populacao_2025": 170491,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "PR",
+   "nome": "Paraná",
+   "regiao": "Sul",
+   "municipios": [
+    {
+     "municipio": "Curitiba",
+     "codigo_ibge": "4106902",
+     "populacao_2025": 1830795,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Londrina",
+     "codigo_ibge": "4113700",
+     "populacao_2025": 581382,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Maringá",
+     "codigo_ibge": "4115200",
+     "populacao_2025": 429660,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ponta Grossa",
+     "codigo_ibge": "4119905",
+     "populacao_2025": 375632,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cascavel",
+     "codigo_ibge": "4104808",
+     "populacao_2025": 368195,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São José dos Pinhais",
+     "codigo_ibge": "4125506",
+     "populacao_2025": 349880,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Foz do Iguaçu",
+     "codigo_ibge": "4108304",
+     "populacao_2025": 297352,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Colombo",
+     "codigo_ibge": "4105805",
+     "populacao_2025": 241672,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Guarapuava",
+     "codigo_ibge": "4109401",
+     "populacao_2025": 189630,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Fazenda Rio Grande",
+     "codigo_ibge": "4107652",
+     "populacao_2025": 165943,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araucária",
+     "codigo_ibge": "4101804",
+     "populacao_2025": 162247,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Toledo",
+     "codigo_ibge": "4127700",
+     "populacao_2025": 160701,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Paranaguá",
+     "codigo_ibge": "4118204",
+     "populacao_2025": 150104,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Campo Largo",
+     "codigo_ibge": "4104204",
+     "populacao_2025": 144504,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Apucarana",
+     "codigo_ibge": "4101408",
+     "populacao_2025": 134910,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Pinhais",
+     "codigo_ibge": "4119152",
+     "populacao_2025": 131255,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sarandi",
+     "codigo_ibge": "4126256",
+     "populacao_2025": 128106,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Piraquara",
+     "codigo_ibge": "4119509",
+     "populacao_2025": 127433,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Almirante Tamandaré",
+     "codigo_ibge": "4100400",
+     "populacao_2025": 125861,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Arapongas",
+     "codigo_ibge": "4101507",
+     "populacao_2025": 124838,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Umuarama",
+     "codigo_ibge": "4128104",
+     "populacao_2025": 123059,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cambé",
+     "codigo_ibge": "4103701",
+     "populacao_2025": 110923,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Campo Mourão",
+     "codigo_ibge": "4104303",
+     "populacao_2025": 104122,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Francisco Beltrão",
+     "codigo_ibge": "4108403",
+     "populacao_2025": 102312,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "RJ",
+   "nome": "Rio de Janeiro",
+   "regiao": "Sudeste",
+   "municipios": [
+    {
+     "municipio": "Rio de Janeiro",
+     "codigo_ibge": "3304557",
+     "populacao_2025": 6730729,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "São Gonçalo",
+     "codigo_ibge": "3304904",
+     "populacao_2025": 960196,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Duque de Caxias",
+     "codigo_ibge": "3301702",
+     "populacao_2025": 866225,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Nova Iguaçu",
+     "codigo_ibge": "3303500",
+     "populacao_2025": 843220,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Campos dos Goytacazes",
+     "codigo_ibge": "3301009",
+     "populacao_2025": 519259,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Belford Roxo",
+     "codigo_ibge": "3300456",
+     "populacao_2025": 518384,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Niterói",
+     "codigo_ibge": "3303302",
+     "populacao_2025": 516787,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São João de Meriti",
+     "codigo_ibge": "3305109",
+     "populacao_2025": 466503,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Petrópolis",
+     "codigo_ibge": "3303906",
+     "populacao_2025": 294926,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Volta Redonda",
+     "codigo_ibge": "3306305",
+     "populacao_2025": 279971,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Macaé",
+     "codigo_ibge": "3302403",
+     "populacao_2025": 264439,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Magé",
+     "codigo_ibge": "3302502",
+     "populacao_2025": 244142,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itaboraí",
+     "codigo_ibge": "3301900",
+     "populacao_2025": 240127,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cabo Frio",
+     "codigo_ibge": "3300704",
+     "populacao_2025": 238438,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Maricá",
+     "codigo_ibge": "3302700",
+     "populacao_2025": 212470,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Nova Friburgo",
+     "codigo_ibge": "3303401",
+     "populacao_2025": 203417,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Barra Mansa",
+     "codigo_ibge": "3300407",
+     "populacao_2025": 181679,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Angra dos Reis",
+     "codigo_ibge": "3300100",
+     "populacao_2025": 179142,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Mesquita",
+     "codigo_ibge": "3302858",
+     "populacao_2025": 178830,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Teresópolis",
+     "codigo_ibge": "3305802",
+     "populacao_2025": 176735,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Rio das Ostras",
+     "codigo_ibge": "3304524",
+     "populacao_2025": 168455,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Nilópolis",
+     "codigo_ibge": "3303203",
+     "populacao_2025": 155500,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Queimados",
+     "codigo_ibge": "3304144",
+     "populacao_2025": 149135,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araruama",
+     "codigo_ibge": "3300209",
+     "populacao_2025": 137906,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Resende",
+     "codigo_ibge": "3304201",
+     "populacao_2025": 137697,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itaguaí",
+     "codigo_ibge": "3302007",
+     "populacao_2025": 124021,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Pedro da Aldeia",
+     "codigo_ibge": "3305208",
+     "populacao_2025": 110677,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itaperuna",
+     "codigo_ibge": "3302205",
+     "populacao_2025": 107297,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Japeri",
+     "codigo_ibge": "3302270",
+     "populacao_2025": 102171,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "RN",
+   "nome": "Rio Grande do Norte",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "Natal",
+     "codigo_ibge": "2408102",
+     "populacao_2025": 784249,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Mossoró",
+     "codigo_ibge": "2408003",
+     "populacao_2025": 278587,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Parnamirim",
+     "codigo_ibge": "2403251",
+     "populacao_2025": 271713,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Gonçalo do Amarante",
+     "codigo_ibge": "2412005",
+     "populacao_2025": 124495,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "RO",
+   "nome": "Rondônia",
+   "regiao": "Norte",
+   "municipios": [
+    {
+     "municipio": "Porto Velho",
+     "codigo_ibge": "1100205",
+     "populacao_2025": 517709,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ji-Paraná",
+     "codigo_ibge": "1100122",
+     "populacao_2025": 140101,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Vilhena",
+     "codigo_ibge": "1100304",
+     "populacao_2025": 109651,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ariquemes",
+     "codigo_ibge": "1100023",
+     "populacao_2025": 109170,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "RR",
+   "nome": "Roraima",
+   "regiao": "Norte",
+   "municipios": [
+    {
+     "municipio": "Boa Vista",
+     "codigo_ibge": "1400100",
+     "populacao_2025": 485477,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "RS",
+   "nome": "Rio Grande do Sul",
+   "regiao": "Sul",
+   "municipios": [
+    {
+     "municipio": "Porto Alegre",
+     "codigo_ibge": "4314902",
+     "populacao_2025": 1388794,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Caxias do Sul",
+     "codigo_ibge": "4305108",
+     "populacao_2025": 479599,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Canoas",
+     "codigo_ibge": "4304606",
+     "populacao_2025": 359840,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Pelotas",
+     "codigo_ibge": "4314407",
+     "populacao_2025": 336150,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santa Maria",
+     "codigo_ibge": "4316907",
+     "populacao_2025": 282395,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Gravataí",
+     "codigo_ibge": "4309209",
+     "populacao_2025": 275430,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Novo Hamburgo",
+     "codigo_ibge": "4313409",
+     "populacao_2025": 235802,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Viamão",
+     "codigo_ibge": "4323002",
+     "populacao_2025": 231996,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Leopoldo",
+     "codigo_ibge": "4318705",
+     "populacao_2025": 225737,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Passo Fundo",
+     "codigo_ibge": "4314100",
+     "populacao_2025": 214811,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Rio Grande",
+     "codigo_ibge": "4315602",
+     "populacao_2025": 198935,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Alvorada",
+     "codigo_ibge": "4300604",
+     "populacao_2025": 194062,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cachoeirinha",
+     "codigo_ibge": "4303103",
+     "populacao_2025": 141503,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santa Cruz do Sul",
+     "codigo_ibge": "4316808",
+     "populacao_2025": 138270,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sapucaia do Sul",
+     "codigo_ibge": "4320008",
+     "populacao_2025": 136572,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Bento Gonçalves",
+     "codigo_ibge": "4302105",
+     "populacao_2025": 127977,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Bagé",
+     "codigo_ibge": "4301602",
+     "populacao_2025": 121928,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Uruguaiana",
+     "codigo_ibge": "4322400",
+     "populacao_2025": 120819,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Erechim",
+     "codigo_ibge": "4307005",
+     "populacao_2025": 109609,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "SC",
+   "nome": "Santa Catarina",
+   "regiao": "Sul",
+   "municipios": [
+    {
+     "municipio": "Joinville",
+     "codigo_ibge": "4209102",
+     "populacao_2025": 664541,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "SIMGeo — diretório ArcGIS REST",
+       "url": "https://geo.joinville.sc.gov.br/server/rest/services/simgeo",
+       "acesso": "Geosserviço",
+       "status": "confirmado"
+      },
+      {
+       "nome": "Joinville Cidade em Dados",
+       "url": "https://www.joinville.sc.gov.br/publicacoes/joinville-cidade-em-dados-2024/",
+       "acesso": "PDF anual (5 cadernos)",
+       "status": "confirmado"
+      },
+      {
+       "nome": "Portal da Transparência",
+       "url": "https://transparencia.joinville.sc.gov.br/",
+       "acesso": "Aplicação JavaScript",
+       "status": "parcial"
+      }
+     ],
+     "nota": "Geo mais estruturado de SC: SIMGeo com 34 serviços ArcGIS REST (inclui saúde e educação); multidomínio anual em PDF."
+    },
+    {
+     "municipio": "Florianópolis",
+     "codigo_ibge": "4205407",
+     "populacao_2025": 587486,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "GeoPortal — IDE municipal",
+       "url": "https://geoportal.pmf.sc.gov.br/",
+       "acesso": "Mapa/geosserviços/downloads",
+       "status": "confirmado"
+      },
+      {
+       "nome": "Downloads de camadas SIG",
+       "url": "https://geoportal.pmf.sc.gov.br/downloads/camadas-em-sig-do-mapa",
+       "acesso": "Página dinâmica",
+       "status": "parcial"
+      },
+      {
+       "nome": "Portal legado de dados abertos",
+       "url": "https://dadosabertos.pmf.sc.gov.br/",
+       "acesso": "DNS não resolve",
+       "status": "lacuna"
+      },
+      {
+       "nome": "Portal da Transparência",
+       "url": "https://www.pmf.sc.gov.br/transparencia/",
+       "acesso": "Consultas fiscais",
+       "status": "pista"
+      }
+     ],
+     "nota": "Portal de dados legado morto em DNS; a IDE municipal (Decreto 26.184/2024) declara downloads e geosserviços."
+    },
+    {
+     "municipio": "Blumenau",
+     "codigo_ibge": "4202404",
+     "populacao_2025": 385558,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "GEO Blumenau — diretório ArcGIS REST",
+       "url": "https://geo.blumenau.sc.gov.br/server/rest/services",
+       "acesso": "Geosserviço",
+       "status": "confirmado"
+      },
+      {
+       "nome": "Portal da Transparência",
+       "url": "https://transparencia.blumenau.sc.gov.br/",
+       "acesso": "Portal fiscal",
+       "status": "pista"
+      }
+     ],
+     "nota": "ArcGIS REST com 23 pastas temáticas (defesa civil, drenagem, geologia); transparência com histórico de instabilidade."
+    },
+    {
+     "municipio": "São José",
+     "codigo_ibge": "4216602",
+     "populacao_2025": 295658,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Portal da Transparência",
+       "url": "https://saojose.sc.gov.br/portal-da-transparencia/",
+       "acesso": "Páginas do site",
+       "status": "pista"
+      },
+      {
+       "nome": "Transparência da Saúde",
+       "url": "https://saojose.sc.gov.br/transparencia-da-saude/",
+       "acesso": "Página setorial",
+       "status": "pista"
+      }
+     ],
+     "nota": "Transparência em páginas próprias, com portais setoriais de saúde e assistência; sem catálogo de dados localizado."
+    },
+    {
+     "municipio": "Itajaí",
+     "codigo_ibge": "4208203",
+     "populacao_2025": 294850,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "INIS — análise espacial e geoprocessamento",
+       "url": "https://inis.itajai.sc.gov.br/c/analise-espacial-geoprocessamento",
+       "acesso": "Página descritiva; mapas-imagem",
+       "status": "parcial"
+      },
+      {
+       "nome": "Portal de Dados Abertos (comunitário)",
+       "url": "https://ricardopera.github.io/dados_abertos_itajai/",
+       "acesso": "Espelho não oficial",
+       "status": "pista"
+      }
+     ],
+     "nota": "SIG ambiental interno no INIS sem portal público de download; espelho comunitário de dados no GitHub."
+    },
+    {
+     "municipio": "Chapecó",
+     "codigo_ibge": "4204202",
+     "populacao_2025": 282648,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Site da prefeitura",
+       "url": "https://www.chapeco.sc.gov.br/",
+       "acesso": "HTTP 403 a robôs",
+       "status": "parcial"
+      },
+      {
+       "nome": "Dados Abertos da Câmara",
+       "url": "https://cmc.sc.gov.br/pagina/dados-abertos",
+       "acesso": "Fornecedor legislativo",
+       "status": "pista"
+      }
+     ],
+     "nota": "Site oficial bloqueia cliente automatizado (403); dados abertos localizados só na Câmara (fornecedor)."
+    },
+    {
+     "municipio": "Palhoça",
+     "codigo_ibge": "4211900",
+     "populacao_2025": 253469,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Portal da Transparência (IPM atende.net)",
+       "url": "https://palhoca.atende.net/transparencia/",
+       "acesso": "Aplicação JavaScript",
+       "status": "parcial"
+      }
+     ],
+     "nota": "Transparência na plataforma IPM atende.net (JavaScript); nenhum catálogo próprio localizado."
+    },
+    {
+     "municipio": "Criciúma",
+     "codigo_ibge": "4204608",
+     "populacao_2025": 227438,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Portal Transparência — bases de dados abertos",
+       "url": "https://transparencia.criciuma.sc.gov.br/",
+       "acesso": "Consultas + bases declaradas",
+       "status": "confirmado"
+      }
+     ],
+     "nota": "Melhor sinal fiscal-aberto do lote: portal com seção declarada de bases de dados abertos dos sistemas municipais."
+    },
+    {
+     "municipio": "Jaraguá do Sul",
+     "codigo_ibge": "4208906",
+     "populacao_2025": 199519,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "GeoPortal (página oficial)",
+       "url": "https://www.jaraguadosul.sc.gov.br/urbanismo/infraestrutura-de-telecomunicacoes/mapas-e-dados-urbanisticos/geoportal",
+       "acesso": "Visualizador próprio",
+       "status": "confirmado"
+      },
+      {
+       "nome": "GeoPortal (sistema)",
+       "url": "https://sistemas.jaraguadosul.sc.gov.br/index.php?class=GeoWelcomeView",
+       "acesso": "Cadastro gratuito declarado",
+       "status": "pista"
+      }
+     ],
+     "nota": "GeoPortal próprio feito com software livre: lotes, zoneamento, inundações, redes; acesso com cadastro gratuito."
+    },
+    {
+     "municipio": "Lages",
+     "codigo_ibge": "4209300",
+     "populacao_2025": 172458,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Portal da Transparência (Betha)",
+       "url": "https://www.lages.sc.gov.br/transparencia",
+       "acesso": "Fornecedor; mapa de obras",
+       "status": "pista"
+      }
+     ],
+     "nota": "Transparência Betha com mapa interativo de obras; equipe interna capacitada em QGIS segundo notícia oficial."
+    },
+    {
+     "municipio": "Brusque",
+     "codigo_ibge": "4202909",
+     "populacao_2025": 155307,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Portal da Transparência (atende.net)",
+       "url": "https://brusque.atende.net/transparencia/",
+       "acesso": "Fornecedor JavaScript",
+       "status": "pista"
+      },
+      {
+       "nome": "GeoBrusque",
+       "url": "https://portal.brusque.sc.gov.br/",
+       "acesso": "Portal geo próprio",
+       "status": "pista"
+      }
+     ],
+     "nota": "GeoBrusque doou shapefiles (bairros, edificações, numeração) ao OpenStreetMap — reuso comprovado; fiscal no atende.net."
+    },
+    {
+     "municipio": "Balneário Camboriú",
+     "codigo_ibge": "4202008",
+     "populacao_2025": 151674,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Plataforma geoespacial",
+       "url": "https://geo.bc.sc.gov.br/",
+       "acesso": "Acesso público declarado",
+       "status": "pista"
+      }
+     ],
+     "nota": "Plataforma geoespacial com botão de acesso público declarado; não aberta nesta triagem."
+    },
+    {
+     "municipio": "Camboriú",
+     "codigo_ibge": "4203204",
+     "populacao_2025": 117324,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Produtos georreferenciados — Depto. de Geoinformação",
+       "url": "https://camboriu.sc.gov.br/planejamento-urbano/",
+       "acesso": "Download (Drive/PDF)",
+       "status": "confirmado"
+      }
+     ],
+     "nota": "Outlier positivo: 17 produtos georreferenciados datados (jan–fev/2025) para download, incluindo saúde e ensino."
+    },
+    {
+     "municipio": "Tubarão",
+     "codigo_ibge": "4218707",
+     "populacao_2025": 116725,
+     "status_coleta": "auditado",
+     "fontes": [
+      {
+       "nome": "Portal da Transparência (Betha)",
+       "url": "https://tubarao.sc.gov.br/portal-da-transparencia/",
+       "acesso": "Fornecedor; mapa de obras",
+       "status": "pista"
+      }
+     ],
+     "nota": "Portal Betha novo (94% de conformidade declarada, mapa de obras) e geoprocessamento aberto ao público."
+    }
+   ],
+   "fontes_estaduais": [
+    {
+     "nome": "Dados Abertos SC (CKAN)",
+     "url": "https://dados.sc.gov.br/",
+     "acesso": "API CKAN; 112 conjuntos",
+     "status": "confirmado"
+    },
+    {
+     "nome": "SSP-SC — Segurança em Números",
+     "url": "https://ssp.sc.gov.br/segurancaemnumeros/",
+     "acesso": "PDF mensal + XLSX",
+     "status": "confirmado"
+    },
+    {
+     "nome": "Transparência do Poder Executivo de SC",
+     "url": "https://www.transparencia.sc.gov.br/",
+     "acesso": "Portal estadual",
+     "status": "pista"
+    }
+   ]
+  },
+  {
+   "uf": "SE",
+   "nome": "Sergipe",
+   "regiao": "Nordeste",
+   "municipios": [
+    {
+     "municipio": "Aracaju",
+     "codigo_ibge": "2800308",
+     "populacao_2025": 630932,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Nossa Senhora do Socorro",
+     "codigo_ibge": "2804805",
+     "populacao_2025": 204081,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itabaiana",
+     "codigo_ibge": "2802908",
+     "populacao_2025": 109250,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Lagarto",
+     "codigo_ibge": "2803500",
+     "populacao_2025": 105957,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Cristóvão",
+     "codigo_ibge": "2806701",
+     "populacao_2025": 101213,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "SP",
+   "nome": "São Paulo",
+   "regiao": "Sudeste",
+   "municipios": [
+    {
+     "municipio": "São Paulo",
+     "codigo_ibge": "3550308",
+     "populacao_2025": 11904961,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Guarulhos",
+     "codigo_ibge": "3518800",
+     "populacao_2025": 1349100,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Campinas",
+     "codigo_ibge": "3509502",
+     "populacao_2025": 1187974,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Bernardo do Campo",
+     "codigo_ibge": "3548708",
+     "populacao_2025": 841154,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santo André",
+     "codigo_ibge": "3547809",
+     "populacao_2025": 782048,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sorocaba",
+     "codigo_ibge": "3552205",
+     "populacao_2025": 762172,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Osasco",
+     "codigo_ibge": "3534401",
+     "populacao_2025": 759524,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ribeirão Preto",
+     "codigo_ibge": "3543402",
+     "populacao_2025": 731639,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São José dos Campos",
+     "codigo_ibge": "3549904",
+     "populacao_2025": 727078,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São José do Rio Preto",
+     "codigo_ibge": "3549805",
+     "populacao_2025": 504166,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Mogi das Cruzes",
+     "codigo_ibge": "3530607",
+     "populacao_2025": 470302,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Jundiaí",
+     "codigo_ibge": "3525904",
+     "populacao_2025": 463039,
+     "status_coleta": "top10",
+     "fontes": []
+    },
+    {
+     "municipio": "Piracicaba",
+     "codigo_ibge": "3538709",
+     "populacao_2025": 440835,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santos",
+     "codigo_ibge": "3548500",
+     "populacao_2025": 429547,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Mauá",
+     "codigo_ibge": "3529401",
+     "populacao_2025": 429014,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Diadema",
+     "codigo_ibge": "3513801",
+     "populacao_2025": 403579,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Carapicuíba",
+     "codigo_ibge": "3510609",
+     "populacao_2025": 398236,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Bauru",
+     "codigo_ibge": "3506003",
+     "populacao_2025": 392947,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itaquaquecetuba",
+     "codigo_ibge": "3523107",
+     "populacao_2025": 382983,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Praia Grande",
+     "codigo_ibge": "3541000",
+     "populacao_2025": 368539,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Franca",
+     "codigo_ibge": "3516200",
+     "populacao_2025": 365494,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Vicente",
+     "codigo_ibge": "3551009",
+     "populacao_2025": 338326,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Barueri",
+     "codigo_ibge": "3505708",
+     "populacao_2025": 333737,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Taubaté",
+     "codigo_ibge": "3554102",
+     "populacao_2025": 322397,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Suzano",
+     "codigo_ibge": "3552502",
+     "populacao_2025": 320261,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Limeira",
+     "codigo_ibge": "3526902",
+     "populacao_2025": 301292,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Guarujá",
+     "codigo_ibge": "3518701",
+     "populacao_2025": 294871,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sumaré",
+     "codigo_ibge": "3552403",
+     "populacao_2025": 291116,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cotia",
+     "codigo_ibge": "3513009",
+     "populacao_2025": 289493,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Taboão da Serra",
+     "codigo_ibge": "3552809",
+     "populacao_2025": 285307,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Indaiatuba",
+     "codigo_ibge": "3520509",
+     "populacao_2025": 269657,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Carlos",
+     "codigo_ibge": "3548906",
+     "populacao_2025": 266427,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Embu das Artes",
+     "codigo_ibge": "3515004",
+     "populacao_2025": 259788,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araraquara",
+     "codigo_ibge": "3503208",
+     "populacao_2025": 253474,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Jacareí",
+     "codigo_ibge": "3524402",
+     "populacao_2025": 250952,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Hortolândia",
+     "codigo_ibge": "3519071",
+     "populacao_2025": 248842,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Americana",
+     "codigo_ibge": "3501608",
+     "populacao_2025": 247571,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Marília",
+     "codigo_ibge": "3529005",
+     "populacao_2025": 247348,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itapevi",
+     "codigo_ibge": "3522505",
+     "populacao_2025": 242995,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Presidente Prudente",
+     "codigo_ibge": "3541406",
+     "populacao_2025": 234706,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Rio Claro",
+     "codigo_ibge": "3543907",
+     "populacao_2025": 210323,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araçatuba",
+     "codigo_ibge": "3502804",
+     "populacao_2025": 208415,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santa Bárbara d'Oeste",
+     "codigo_ibge": "3545803",
+     "populacao_2025": 189456,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ferraz de Vasconcelos",
+     "codigo_ibge": "3515707",
+     "populacao_2025": 186479,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Bragança Paulista",
+     "codigo_ibge": "3507605",
+     "populacao_2025": 185688,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itu",
+     "codigo_ibge": "3523909",
+     "populacao_2025": 175047,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "São Caetano do Sul",
+     "codigo_ibge": "3548807",
+     "populacao_2025": 172693,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Pindamonhangaba",
+     "codigo_ibge": "3538006",
+     "populacao_2025": 172681,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Francisco Morato",
+     "codigo_ibge": "3516309",
+     "populacao_2025": 171476,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Atibaia",
+     "codigo_ibge": "3504107",
+     "populacao_2025": 167161,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itapetininga",
+     "codigo_ibge": "3522307",
+     "populacao_2025": 164256,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Santana de Parnaíba",
+     "codigo_ibge": "3547304",
+     "populacao_2025": 163787,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itapecerica da Serra",
+     "codigo_ibge": "3522208",
+     "populacao_2025": 163003,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Mogi Guaçu",
+     "codigo_ibge": "3530706",
+     "populacao_2025": 160318,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Botucatu",
+     "codigo_ibge": "3507506",
+     "populacao_2025": 151053,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Franco da Rocha",
+     "codigo_ibge": "3516408",
+     "populacao_2025": 150241,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Caraguatatuba",
+     "codigo_ibge": "3510500",
+     "populacao_2025": 142248,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Salto",
+     "codigo_ibge": "3545209",
+     "populacao_2025": 141111,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Jaú",
+     "codigo_ibge": "3525300",
+     "populacao_2025": 137409,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araras",
+     "codigo_ibge": "3503307",
+     "populacao_2025": 135744,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Votorantim",
+     "codigo_ibge": "3557006",
+     "populacao_2025": 133510,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Valinhos",
+     "codigo_ibge": "3556206",
+     "populacao_2025": 132258,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Sertãozinho",
+     "codigo_ibge": "3551702",
+     "populacao_2025": 132176,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Tatuí",
+     "codigo_ibge": "3554003",
+     "populacao_2025": 129130,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itatiba",
+     "codigo_ibge": "3523404",
+     "populacao_2025": 127112,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Barretos",
+     "codigo_ibge": "3505500",
+     "populacao_2025": 126957,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Birigui",
+     "codigo_ibge": "3506508",
+     "populacao_2025": 123340,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Guaratinguetá",
+     "codigo_ibge": "3518404",
+     "populacao_2025": 121916,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Jandira",
+     "codigo_ibge": "3525003",
+     "populacao_2025": 121550,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Várzea Paulista",
+     "codigo_ibge": "3556503",
+     "populacao_2025": 119655,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Catanduva",
+     "codigo_ibge": "3511102",
+     "populacao_2025": 119275,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ribeirão Pires",
+     "codigo_ibge": "3543303",
+     "populacao_2025": 118954,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Itanhaém",
+     "codigo_ibge": "3522109",
+     "populacao_2025": 118495,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Paulínia",
+     "codigo_ibge": "3536505",
+     "populacao_2025": 116674,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Cubatão",
+     "codigo_ibge": "3513504",
+     "populacao_2025": 114870,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Ourinhos",
+     "codigo_ibge": "3534708",
+     "populacao_2025": 106911,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Poá",
+     "codigo_ibge": "3539806",
+     "populacao_2025": 106355,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Assis",
+     "codigo_ibge": "3504008",
+     "populacao_2025": 104858,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Leme",
+     "codigo_ibge": "3526704",
+     "populacao_2025": 101537,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Votuporanga",
+     "codigo_ibge": "3557105",
+     "populacao_2025": 100568,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Caçapava",
+     "codigo_ibge": "3508504",
+     "populacao_2025": 100071,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  },
+  {
+   "uf": "TO",
+   "nome": "Tocantins",
+   "regiao": "Norte",
+   "municipios": [
+    {
+     "municipio": "Palmas",
+     "codigo_ibge": "1721000",
+     "populacao_2025": 328499,
+     "status_coleta": "pendente",
+     "fontes": []
+    },
+    {
+     "municipio": "Araguaína",
+     "codigo_ibge": "1702109",
+     "populacao_2025": 183024,
+     "status_coleta": "pendente",
+     "fontes": []
+    }
+   ],
+   "fontes_estaduais": []
+  }
+ ],
+ "evidencia": "Triagem de SC documentada em docs/parciais/regiao-sc-100mil.md, com marcadores de verificação por URL. Status: auditado = triagem desta data; top10 = cidade já coberta pelo inventário principal; pendente = aguardando coleta."
+}
