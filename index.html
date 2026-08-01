@@ -124,6 +124,7 @@
     .calculator-status-side { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .7rem; align-items: center; }
     .reset-button { padding: .18rem .42rem; border: 0; border-bottom: 1px solid currentColor; color: var(--green-dark); background: transparent; font: inherit; font-size: .75rem; font-weight: 800; cursor: pointer; }
     .calculator-table td, .calculator-table th { padding-block: .78rem; }
+    .calculator-table { min-width: 900px; }
     .score-cell { font-variant-numeric: tabular-nums; font-weight: 850; }
     .calculator-note { margin: .85rem 0 0; color: var(--muted); font-size: .78rem; }
     .empty-result { padding: 2rem; text-align: center; color: var(--muted); }
@@ -202,8 +203,7 @@
           <h1>Top 10 do piloto de dados.</h1>
           <p class="lede"><strong>Jundiaí é hoje a melhor candidata para iniciar.</strong> As grandes capitais continuam como referência de qualidade, mas população acima de 1 milhão aumenta muito a complexidade do primeiro piloto.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#top10">Ver Top 10 ↓</a>
-            <a class="button button-secondary" href="#calculadora">Testar critérios</a>
+            <a class="button button-primary" href="#top10">Ver e filtrar Top 10 ↓</a>
             <a class="button button-secondary" href="inventario.html">Ver dados reais</a>
             <a class="button button-secondary" href="relatorio_parcial.html">Relatório completo</a>
             <a class="button button-secondary" href="fontes.html">Portais e fontes</a>
@@ -219,51 +219,10 @@
   </header>
 
   <main id="conteudo" class="container">
-    <section id="top10" aria-labelledby="top10-titulo">
-      <div class="section-head">
-        <div><p class="kicker">Top 10 provisório</p><h2 id="top10-titulo">Qualidade primeiro. Implantação depois.</h2></div>
-        <p>A ordem abaixo resume a evidência de qualidade já levantada. A coluna de papel evita confundir “melhor fonte de aprendizado” com “cidade mais simples para começar”.</p>
-      </div>
-      <div class="ranking-wrap">
-        <table>
-          <thead><tr><th>#</th><th>Cidade</th><th>População 2025</th><th>P-Piloto</th><th>Papel recomendado</th></tr></thead>
-          <tbody>
-            <tr><td class="rank">1</td><td class="city"><a href="cidades/recife.html">Recife/PE</a></td><td>1.588.376</td><td>65,3</td><td><span class="badge benchmark">Benchmark</span></td></tr>
-            <tr><td class="rank">2</td><td class="city"><a href="cidades/sao-paulo.html">São Paulo/SP</a></td><td>11.904.961</td><td>15,2</td><td><span class="badge benchmark">Benchmark de escala</span></td></tr>
-            <tr><td class="rank">3</td><td class="city"><a href="cidades/fortaleza.html">Fortaleza/CE</a></td><td>2.578.483</td><td>50,2</td><td><span class="badge benchmark">Benchmark</span></td></tr>
-            <tr><td class="rank">4</td><td class="city"><a href="cidades/rio-de-janeiro.html">Rio de Janeiro/RJ</a></td><td>6.730.729</td><td>26,3</td><td><span class="badge benchmark">Benchmark de escala</span></td></tr>
-            <tr><td class="rank">5</td><td class="city"><a href="cidades/porto-alegre.html">Porto Alegre/RS</a></td><td>1.388.794</td><td>70,3</td><td><span class="badge benchmark">Benchmark</span></td></tr>
-            <tr><td class="rank">6</td><td class="city"><a href="cidades/curitiba.html">Curitiba/PR</a></td><td>1.830.795</td><td>59,2</td><td><span class="badge benchmark">Benchmark</span></td></tr>
-            <tr><td class="rank">7</td><td class="city"><a href="cidades/belo-horizonte.html">Belo Horizonte/MG</a></td><td>2.415.872</td><td>51,5</td><td><span class="badge benchmark">Benchmark</span></td></tr>
-            <tr><td class="rank">8</td><td class="city"><a href="cidades/brasilia.html">Brasília/DF</a></td><td>2.996.899</td><td>46,7</td><td><span class="badge benchmark">Benchmark</span></td></tr>
-            <tr class="best-row"><td class="rank">9</td><td class="city"><a href="cidades/jundiai.html">Jundiaí/SP</a> <span class="muted">· melhor equilíbrio</span></td><td>463.039</td><td><strong>100</strong></td><td><span class="badge">1ª implantação</span></td></tr>
-            <tr><td class="rank">10</td><td class="city"><a href="cidades/belem.html">Belém/PA</a></td><td>1.397.315</td><td>70,1</td><td><span class="badge benchmark">Benchmark</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="table-note">População: estimativas do IBGE com referência em 1º de julho de 2025. A shortlist ainda não é uma nota final célula por célula; por isso não publicamos casas decimais falsas de IDU-Br.</p>
-    </section>
-
-    <section id="calculo" class="calc-panel" aria-labelledby="calculo-titulo">
-      <div>
-        <p class="kicker">Cálculo de prioridade</p>
-        <h2 id="calculo-titulo">Dados bons com tamanho viável.</h2>
-        <div class="formula">IPS-Br = 75% IDU-E + 25% P-Piloto</div>
-        <p><strong>IDU-E</strong> mede a qualidade do ecossistema local. <strong>P-Piloto</strong> mede se o porte é adequado ao primeiro teste. A faixa populacional ótima provisória é de 200 mil a 600 mil habitantes.</p>
-        <a class="button button-primary" href="relatorio_parcial.html#metrica">Ver métrica completa →</a>
-      </div>
-      <ul class="signals" aria-label="Sinais usados na decisão">
-        <li><strong>IDU-Br</strong><span>Qualidade, cobertura, acesso, frescor, território e resiliência.</span></li>
-        <li><strong>P-Piloto</strong><span>Viabilidade de escala; nota 100 entre 200 mil e 600 mil habitantes.</span></li>
-        <li><strong>C-IDU</strong><span>Confiança da avaliação. Fica separado e nunca mascara incerteza.</span></li>
-        <li><strong>Teste</strong><span>Recalcular o peso do porte em 15%, 25% e 35%.</span></li>
-      </ul>
-    </section>
-
-    <section id="calculadora" class="calculator" aria-labelledby="calculadora-titulo">
-      <div class="calculator-head">
-        <div><p class="kicker">Calculadora dinâmica</p><h2 id="calculadora-titulo">Mude o critério. Veja a ordem mudar.</h2></div>
-        <p>Compare as dez cidades já selecionadas. Ative uma faixa populacional para restringir o resultado ou desligue a restrição para voltar a enxergar todas.</p>
+    <section id="top10" class="calculator" aria-labelledby="top10-titulo">
+      <div id="calculadora" class="calculator-head">
+        <div><p class="kicker">Top 10 provisório · interativo</p><h2 id="top10-titulo">Escolha o critério no próprio ranking.</h2></div>
+        <p>A ordem inicial mostra a qualidade e a evidência levantadas. Troque o critério ou imponha uma faixa populacional: o mesmo Top 10 responde na hora.</p>
       </div>
 
       <div class="control-grid">
@@ -304,11 +263,27 @@
       </div>
       <div class="ranking-wrap">
         <table class="calculator-table">
-          <thead><tr><th>Posição</th><th>Cidade</th><th>População</th><th>P-Piloto</th><th id="dynamic-score-label">Referência</th></tr></thead>
+          <thead><tr><th>Posição</th><th>Cidade</th><th>População 2025</th><th>P-Piloto</th><th>Papel recomendado</th><th id="dynamic-score-label">Critério aplicado</th></tr></thead>
           <tbody id="calculator-results"></tbody>
         </table>
       </div>
-      <p class="calculator-note"><strong>Importante:</strong> “qualidade atual” é a ordem ordinal do levantamento, não um IDU-E final. Na prioridade combinada, a calculadora usa essa posição como proxy provisório de 100 a 10. O resultado é uma simulação exploratória e será substituído pela matriz auditada; não deve ser citado como nota oficial.</p>
+      <p class="calculator-note"><strong>Como ler:</strong> população do IBGE em 1º de julho de 2025. “Qualidade atual” é a ordem ordinal do levantamento, não um IDU-E final. Na prioridade combinada, a posição vira uma proxy provisória de 100 a 10; a simulação não deve ser citada como nota oficial.</p>
+    </section>
+
+    <section id="calculo" class="calc-panel" aria-labelledby="calculo-titulo">
+      <div>
+        <p class="kicker">Cálculo de prioridade</p>
+        <h2 id="calculo-titulo">Dados bons com tamanho viável.</h2>
+        <div class="formula">IPS-Br = 75% IDU-E + 25% P-Piloto</div>
+        <p><strong>IDU-E</strong> mede a qualidade do ecossistema local. <strong>P-Piloto</strong> mede se o porte é adequado ao primeiro teste. A faixa populacional ótima provisória é de 200 mil a 600 mil habitantes.</p>
+        <a class="button button-primary" href="relatorio_parcial.html#metrica">Ver métrica completa →</a>
+      </div>
+      <ul class="signals" aria-label="Sinais usados na decisão">
+        <li><strong>IDU-Br</strong><span>Qualidade, cobertura, acesso, frescor, território e resiliência.</span></li>
+        <li><strong>P-Piloto</strong><span>Viabilidade de escala; nota 100 entre 200 mil e 600 mil habitantes.</span></li>
+        <li><strong>C-IDU</strong><span>Confiança da avaliação. Fica separado e nunca mascara incerteza.</span></li>
+        <li><strong>Teste</strong><span>Recalcular o peso do porte em 15%, 25% e 35%.</span></li>
+      </ul>
     </section>
 
     <section class="editorial-rule" aria-label="Regra editorial do projeto">
@@ -354,16 +329,16 @@
   </footer>
   <script>
     const cities = [
-      { city: "Recife/PE", slug: "recife", population: 1588376, fit: 65.3, qualityRank: 1 },
-      { city: "São Paulo/SP", slug: "sao-paulo", population: 11904961, fit: 15.2, qualityRank: 2 },
-      { city: "Fortaleza/CE", slug: "fortaleza", population: 2578483, fit: 50.2, qualityRank: 3 },
-      { city: "Rio de Janeiro/RJ", slug: "rio-de-janeiro", population: 6730729, fit: 26.3, qualityRank: 4 },
-      { city: "Porto Alegre/RS", slug: "porto-alegre", population: 1388794, fit: 70.3, qualityRank: 5 },
-      { city: "Curitiba/PR", slug: "curitiba", population: 1830795, fit: 59.2, qualityRank: 6 },
-      { city: "Belo Horizonte/MG", slug: "belo-horizonte", population: 2415872, fit: 51.5, qualityRank: 7 },
-      { city: "Brasília/DF", slug: "brasilia", population: 2996899, fit: 46.7, qualityRank: 8 },
-      { city: "Jundiaí/SP", slug: "jundiai", population: 463039, fit: 100, qualityRank: 9 },
-      { city: "Belém/PA", slug: "belem", population: 1397315, fit: 70.1, qualityRank: 10 }
+      { city: "Recife/PE", slug: "recife", population: 1588376, fit: 65.3, qualityRank: 1, role: "Benchmark" },
+      { city: "São Paulo/SP", slug: "sao-paulo", population: 11904961, fit: 15.2, qualityRank: 2, role: "Benchmark de escala" },
+      { city: "Fortaleza/CE", slug: "fortaleza", population: 2578483, fit: 50.2, qualityRank: 3, role: "Benchmark" },
+      { city: "Rio de Janeiro/RJ", slug: "rio-de-janeiro", population: 6730729, fit: 26.3, qualityRank: 4, role: "Benchmark de escala" },
+      { city: "Porto Alegre/RS", slug: "porto-alegre", population: 1388794, fit: 70.3, qualityRank: 5, role: "Benchmark" },
+      { city: "Curitiba/PR", slug: "curitiba", population: 1830795, fit: 59.2, qualityRank: 6, role: "Benchmark" },
+      { city: "Belo Horizonte/MG", slug: "belo-horizonte", population: 2415872, fit: 51.5, qualityRank: 7, role: "Benchmark" },
+      { city: "Brasília/DF", slug: "brasilia", population: 2996899, fit: 46.7, qualityRank: 8, role: "Benchmark" },
+      { city: "Jundiaí/SP", slug: "jundiai", population: 463039, fit: 100, qualityRank: 9, role: "1ª implantação", pilot: true },
+      { city: "Belém/PA", slug: "belem", population: 1397315, fit: 70.1, qualityRank: 10, role: "Benchmark" }
     ].map(city => ({ ...city, qualityProxy: 110 - city.qualityRank * 10 }));
 
     const formatter = new Intl.NumberFormat("pt-BR");
@@ -451,7 +426,7 @@
       scoreLabel.textContent = labels[activeSort];
 
       if (!result.length) {
-        resultBody.innerHTML = '<tr><td class="empty-result" colspan="5">Nenhuma cidade do Top 10 cabe nessa faixa. Ajuste os limites ou desligue a restrição.</td></tr>';
+        resultBody.innerHTML = '<tr><td class="empty-result" colspan="6">Nenhuma cidade do Top 10 cabe nessa faixa. Ajuste os limites ou desligue a restrição.</td></tr>';
         return;
       }
 
@@ -460,7 +435,8 @@
         if (activeSort === "combined") score = combinedScore(city).toFixed(1).replace(".", ",");
         if (activeSort === "fit") score = city.fit.toFixed(1).replace(".0", "").replace(".", ",");
         if (activeSort === "smallest" || activeSort === "largest") score = formatter.format(city.population);
-        return `<tr${city.city.startsWith("Jundiaí") ? ' class="best-row"' : ""}><td class="rank">${index + 1}</td><td class="city"><a href="cidades/${city.slug}.html">${city.city}</a></td><td>${formatter.format(city.population)}</td><td>${city.fit.toFixed(1).replace(".0", "").replace(".", ",")}</td><td class="score-cell">${score}</td></tr>`;
+        const roleClass = city.pilot ? "badge" : "badge benchmark";
+        return `<tr${city.pilot ? ' class="best-row"' : ""}><td class="rank">${index + 1}</td><td class="city"><a href="cidades/${city.slug}.html">${city.city}</a></td><td>${formatter.format(city.population)}</td><td>${city.fit.toFixed(1).replace(".0", "").replace(".", ",")}</td><td><span class="${roleClass}">${city.role}</span></td><td class="score-cell">${score}</td></tr>`;
       }).join("");
     }
 

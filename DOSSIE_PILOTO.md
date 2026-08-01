@@ -9,7 +9,7 @@
 
 ## Instrumentos de validação publicados
 
-- [Calculadora dinâmica](index.html#calculadora): reordena o Top 10 por qualidade ordinal, porte, população ou simulação combinada; permite impor ou retirar faixa populacional e salva as escolhas no navegador.
+- [Top 10 interativo](index.html#top10): a própria tabela reordena as cidades por qualidade ordinal, porte, população ou simulação combinada; permite impor ou retirar faixa populacional e salva as escolhas no navegador.
 - [Inventário por cidade](inventario.html): 60 links iniciais — seis por candidata — com área, produtor, camada institucional, acesso, território, frescor e estado do teste.
 - [Perfis das cidades](cidades/jundiai.html): uma página física por candidata, com forças, riscos, fontes e fila de aprofundamento.
 - [Fontes nacionais](fontes.html): 41 portais e projetos de referência, separados do esforço municipal que pontua o ranking.
