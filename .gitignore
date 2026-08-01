@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Segredos e credenciais locais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+private/
+
+# Registros locais de agentes e execução
+.claude/
+.codex/
+.agents/
+*.jsonl
+*.local.json
+
+# Editores e sistema operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporários e logs
+*.log
+*.tmp
+*.bak
+~$*

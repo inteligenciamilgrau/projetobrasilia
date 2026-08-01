@@ -1,0 +1,1471 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Relatório parcial do Projeto iA Brasil sobre cidades brasileiras com melhor ecossistema de dados públicos locais.">
+  <meta name="color-scheme" content="light">
+  <title>Projeto iA Brasil — Relatório parcial</title>
+  <style>
+    :root {
+      --ink: #13251f;
+      --muted: #5f6d68;
+      --paper: #f6f3ea;
+      --surface: #fffdf8;
+      --surface-2: #eef4ee;
+      --line: #d8ded7;
+      --green: #0b6b4b;
+      --green-dark: #07513a;
+      --green-soft: #dff0e8;
+      --yellow: #e4b72e;
+      --yellow-soft: #fbf1c9;
+      --blue: #235a78;
+      --blue-soft: #e2eef4;
+      --red: #a94335;
+      --red-soft: #f7e4df;
+      --shadow: 0 18px 45px rgba(22, 46, 37, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(228, 183, 46, 0.11), transparent 30rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--green-dark); }
+
+    a:hover { color: var(--blue); }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: -5rem;
+      z-index: 100;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      background: var(--ink);
+      color: white;
+      text-decoration: none;
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin-inline: auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background:
+        linear-gradient(125deg, rgba(8, 86, 60, 0.97), rgba(9, 53, 48, 0.99)),
+        var(--green-dark);
+      border-bottom: 6px solid var(--yellow);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 32rem;
+      height: 32rem;
+      right: -12rem;
+      top: -16rem;
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: 0 0 0 5rem rgba(255,255,255,.025), 0 0 0 10rem rgba(255,255,255,.018);
+    }
+
+    .hero::after {
+      width: 11rem;
+      height: 11rem;
+      right: 18%;
+      bottom: -7rem;
+      background: rgba(228, 183, 46, 0.16);
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 1.15rem;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: inherit;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 2.15rem;
+      height: 2.15rem;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 10px;
+      color: var(--yellow);
+      background: rgba(255,255,255,.08);
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.52rem 0.72rem;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 10px;
+      color: white;
+      background: rgba(255,255,255,.08);
+      font-size: 0.78rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .github-link:hover,
+    .github-link:focus-visible,
+    .print-button:hover { background: rgba(255,255,255,.15); }
+
+    .github-link svg { flex: 0 0 auto; }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.42rem 0.7rem;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      color: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.08);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(228, 183, 46, .13);
+    }
+
+    .print-button {
+      appearance: none;
+      padding: 0.52rem 0.78rem;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 10px;
+      color: white;
+      background: rgba(255,255,255,.08);
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(280px, .75fr);
+      gap: 3rem;
+      align-items: end;
+      padding-block: clamp(3.2rem, 8vw, 6.5rem);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.8rem;
+      color: var(--yellow);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 14ch;
+      margin-bottom: 1.2rem;
+      font-size: clamp(2.65rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+    }
+
+    .hero-lede {
+      max-width: 67ch;
+      margin-bottom: 0;
+      color: rgba(255,255,255,.82);
+      font-size: clamp(1.02rem, 2vw, 1.22rem);
+    }
+
+    .hero-note {
+      padding: 1.2rem;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: white;
+      font-size: 1.05rem;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: rgba(255,255,255,.73);
+      font-size: 0.88rem;
+    }
+
+    .section-nav {
+      position: relative;
+      z-index: 3;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-nav .container {
+      display: flex;
+      gap: 1.2rem;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .section-nav a {
+      flex: 0 0 auto;
+      padding-block: 0.9rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 760;
+      text-decoration: none;
+    }
+
+    .section-nav a:hover { color: var(--green); }
+
+    main { padding-block: 3.2rem 5rem; }
+
+    section {
+      scroll-margin-top: 4rem;
+      margin-bottom: clamp(4rem, 8vw, 7rem);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 0;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.04;
+      letter-spacing: -0.045em;
+    }
+
+    .section-heading p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .kicker {
+      margin-bottom: 0.45rem;
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .callout {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 1.5rem;
+      padding: 1.3rem 1.4rem;
+      border: 1px solid #c6dacd;
+      border-left: 5px solid var(--green);
+      border-radius: 14px;
+      background: var(--green-soft);
+    }
+
+    .callout-icon {
+      display: grid;
+      width: 2.2rem;
+      height: 2.2rem;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: var(--green);
+      font-weight: 900;
+    }
+
+    .callout strong { display: block; margin-bottom: 0.25rem; }
+    .callout p { margin: 0; color: #365247; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-block: 1.5rem;
+    }
+
+    .stat-card {
+      min-height: 132px;
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 24px rgba(22, 46, 37, 0.04);
+    }
+
+    .stat-card .value {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--green-dark);
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .stat-card strong { display: block; }
+    .stat-card small { color: var(--muted); }
+
+    .region-card {
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .region-card h3 { margin-bottom: 0.85rem; }
+
+    .region-bar {
+      display: flex;
+      min-height: 3rem;
+      overflow: hidden;
+      border-radius: 10px;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .region-bar span {
+      display: grid;
+      place-items: center;
+      padding: 0.4rem;
+      text-align: center;
+    }
+
+    .sudeste { background: #0b6b4b; }
+    .nordeste { background: #bd8e0a; }
+    .sul { background: #235a78; }
+    .centro { background: #766139; }
+    .norte { background: #7c4e75; }
+
+    .region-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 1rem;
+      margin-top: 0.9rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .region-legend span::before {
+      content: "";
+      display: inline-block;
+      width: 0.55rem;
+      height: 0.55rem;
+      margin-right: 0.35rem;
+      border-radius: 50%;
+      background: var(--dot);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      counter-reset: step;
+    }
+
+    .process-card {
+      position: relative;
+      min-height: 220px;
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      counter-increment: step;
+    }
+
+    .process-card::before {
+      content: "0" counter(step);
+      display: inline-grid;
+      min-width: 2.4rem;
+      height: 2.2rem;
+      margin-bottom: 1.3rem;
+      place-items: center;
+      border-radius: 9px;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .process-card h3 { margin-bottom: 0.55rem; font-size: 1.05rem; }
+    .process-card p { margin-bottom: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .evidence-legend {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .evidence-item {
+      padding: 1rem;
+      border-radius: 12px;
+      background: var(--surface-2);
+      font-size: 0.84rem;
+    }
+
+    .evidence-item code {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      font-weight: 850;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    caption {
+      padding: 1rem 1.2rem;
+      color: var(--muted);
+      text-align: left;
+      font-size: 0.78rem;
+    }
+
+    th,
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #405049;
+      background: #eef2ed;
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #fbfaf5; }
+
+    .rank {
+      color: var(--green-dark);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .city-name {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.97rem;
+    }
+
+    .region-label {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.7rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .badge-a { color: #064932; background: #d7eee3; }
+    .badge-b { color: #174b65; background: #deedf4; }
+    .badge-c { color: #735505; background: #f8ecc1; }
+    .conf-high { color: #07513a; background: #dff0e8; }
+    .conf-mid { color: #735505; background: #fbf1c9; }
+
+    .table-note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .metric-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .metric-card {
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .metric-card.primary { border-top: 5px solid var(--green); }
+    .metric-card.confidence { border-top: 5px solid var(--blue); }
+
+    .metric-card .metric-label {
+      color: var(--muted);
+      font-size: 0.73rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .metric-card h3 {
+      margin: 0.35rem 0 0.6rem;
+      font-size: 1.75rem;
+      letter-spacing: -0.04em;
+    }
+
+    .metric-card p:last-child { margin-bottom: 0; color: var(--muted); }
+
+    .metric-rule {
+      margin: 1.2rem 0;
+      padding: 1rem;
+      border-radius: 12px;
+      color: #30453d;
+      background: var(--surface-2);
+      font-size: 0.88rem;
+    }
+
+    .metric-rule strong { color: var(--green-dark); }
+
+    .domain-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .domain-chip {
+      padding: 0.48rem 0.7rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      font-size: 0.76rem;
+      font-weight: 750;
+    }
+
+    .axis-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .axis-card {
+      min-height: 180px;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .axis-letter {
+      display: grid;
+      width: 2.2rem;
+      height: 2.2rem;
+      margin-bottom: 1rem;
+      place-items: center;
+      border-radius: 9px;
+      color: white;
+      background: var(--green);
+      font-weight: 900;
+    }
+
+    .axis-card h3 { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .axis-card p { margin: 0; color: var(--muted); font-size: 0.78rem; }
+
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+
+    .scale-item {
+      min-height: 90px;
+      padding: 0.8rem;
+      border-right: 1px solid var(--line);
+    }
+
+    .scale-item:last-child { border-right: 0; }
+    .scale-item strong { display: block; color: var(--green-dark); font-size: 1.2rem; }
+    .scale-item span { color: var(--muted); font-size: 0.72rem; }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      gap: 1rem;
+      margin-block: 1rem 1.5rem;
+    }
+
+    .formula-box,
+    .balance-box {
+      padding: 1.35rem;
+      border-radius: var(--radius);
+    }
+
+    .formula-box {
+      color: #e9f7f0;
+      background: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .formula-box h3,
+    .balance-box h3 { margin-bottom: 0.7rem; }
+
+    .formula-box pre {
+      overflow-x: auto;
+      margin: 0;
+      color: #d7f1e3;
+      font: 700 0.9rem/1.75 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+    }
+
+    .balance-box {
+      border: 1px solid #e3d08c;
+      background: var(--yellow-soft);
+    }
+
+    .balance-box p { margin-bottom: 0; color: #645322; }
+
+    .layers {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-block: 1.5rem;
+    }
+
+    .layer {
+      padding: 1rem;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    .layer strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--green-dark);
+    }
+
+    .layer span { color: var(--muted); font-size: 0.78rem; }
+
+    .weight-list {
+      display: grid;
+      gap: 0.72rem;
+      padding: 1.3rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .weight-row {
+      display: grid;
+      grid-template-columns: 11rem minmax(0, 1fr) 3rem;
+      gap: 0.8rem;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .weight-track {
+      height: 0.62rem;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e6ebe6;
+    }
+
+    .weight-fill {
+      display: block;
+      width: var(--w);
+      height: 100%;
+      border-radius: inherit;
+      background: var(--blue);
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .cap-card {
+      padding: 1rem;
+      border: 1px solid #e3d08c;
+      border-radius: 13px;
+      background: var(--yellow-soft);
+    }
+
+    .cap-card strong { display: block; color: #765707; font-size: 1.25rem; }
+    .cap-card span { color: #665725; font-size: 0.76rem; }
+
+    .warning {
+      margin-top: 1.2rem;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid #e3d08c;
+      border-radius: 13px;
+      background: #fff9df;
+      color: #5d512c;
+      font-size: 0.88rem;
+    }
+
+    .outlier-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .outlier-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .outlier-card.featured {
+      color: white;
+      background: var(--green-dark);
+      border-color: var(--green-dark);
+    }
+
+    .outlier-card.featured::after {
+      content: "09";
+      position: absolute;
+      right: -0.2rem;
+      bottom: -2.5rem;
+      color: rgba(255,255,255,.08);
+      font-size: 10rem;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .outlier-card .mini-label {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      padding: 0.28rem 0.5rem;
+      border-radius: 7px;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .outlier-card.featured .mini-label {
+      color: #ffea91;
+      background: rgba(255,255,255,.12);
+    }
+
+    .outlier-card h3 { position: relative; z-index: 1; font-size: 1.5rem; }
+    .outlier-card p { position: relative; z-index: 1; color: var(--muted); font-size: 0.9rem; }
+    .outlier-card.featured p { color: rgba(255,255,255,.75); }
+
+    .correction-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .correction-card {
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .correction-card .old {
+      margin-bottom: 0.45rem;
+      color: var(--red);
+      font-size: 0.8rem;
+      text-decoration: line-through;
+    }
+
+    .correction-card .new {
+      margin: 0;
+      color: #355046;
+      font-size: 0.9rem;
+    }
+
+    .final-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .list-card {
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .list-card h3 { margin-bottom: 0.9rem; }
+    .list-card ul, .list-card ol { margin: 0; padding-left: 1.25rem; }
+    .list-card li + li { margin-top: 0.6rem; }
+    .list-card li { color: var(--muted); }
+
+    .next-step {
+      margin-top: 1rem;
+      padding: clamp(1.4rem, 4vw, 2.2rem);
+      border-radius: var(--radius);
+      color: white;
+      background: linear-gradient(120deg, var(--blue), #173f56);
+      box-shadow: var(--shadow);
+    }
+
+    .next-step h3 { margin-bottom: 0.6rem; font-size: 1.5rem; }
+    .next-step p { max-width: 75ch; margin-bottom: 0; color: rgba(255,255,255,.8); }
+
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.1rem;
+    }
+
+    .source-links a {
+      padding: 0.58rem 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      font-size: 0.78rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    footer {
+      padding-block: 2.4rem;
+      color: #cad8d1;
+      background: var(--ink);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    footer strong { display: block; color: white; }
+    footer p { max-width: 62ch; margin: 0.35rem 0 0; font-size: 0.82rem; }
+    footer .date { text-align: right; font-size: 0.78rem; }
+    footer a { color: white; font-weight: 750; }
+    footer a:hover { color: var(--yellow); }
+    .footer-link { display: inline-block; margin-top: 0.65rem; }
+
+    @media (max-width: 920px) {
+      .hero-content,
+      .section-heading,
+      .formula-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .axis-grid { grid-template-columns: repeat(3, 1fr); }
+      .outlier-grid { grid-template-columns: 1fr 1fr; }
+      .outlier-card.featured { grid-column: 1 / -1; }
+      .cap-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(calc(100% - 1.25rem), var(--max)); }
+      .top-actions .status-pill { display: none; }
+      .top-actions { gap: 0.45rem; }
+      .github-link span { display: none; }
+      .hero-content { gap: 1.5rem; padding-block: 3rem; }
+      h1 { font-size: clamp(2.7rem, 16vw, 4.3rem); }
+      main { padding-top: 2.4rem; }
+      .stats-grid,
+      .process-grid,
+      .evidence-legend,
+      .metric-pair,
+      .outlier-grid,
+      .correction-grid,
+      .final-grid { grid-template-columns: 1fr; }
+      .outlier-card.featured { grid-column: auto; }
+      .axis-grid { grid-template-columns: 1fr 1fr; }
+      .layers { grid-template-columns: 1fr 1fr; }
+      .scale { grid-template-columns: 1fr; }
+      .scale-item { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      .scale-item:last-child { border-bottom: 0; }
+      .weight-row { grid-template-columns: 1fr 3rem; }
+      .weight-track { grid-column: 1 / -1; grid-row: 2; }
+      .cap-grid { grid-template-columns: 1fr 1fr; }
+      .region-bar { min-height: 4rem; }
+      .region-bar span { padding-inline: 0.15rem; font-size: 0.62rem; }
+      .footer-grid { display: block; }
+      footer .date { margin-top: 1rem; text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      :root { --paper: white; --surface: white; }
+      body { background: white; font-size: 10pt; }
+      .hero { color: var(--ink); background: white; border-top: 8px solid var(--green); }
+      .hero::before, .hero::after, .section-nav, .print-button, .github-link { display: none; }
+      .topbar { border-color: var(--line); }
+      .brand, .hero-note strong { color: var(--ink); }
+      .brand-mark { color: var(--green); border-color: var(--line); }
+      .hero-lede, .hero-note p { color: var(--muted); }
+      .hero-note { border-color: var(--line); background: white; }
+      .status-pill { color: var(--ink); border-color: var(--line); }
+      .hero-content { padding-block: 2rem; }
+      h1 { color: var(--ink); font-size: 3rem; }
+      main { padding-block: 2rem; }
+      section { break-inside: avoid; margin-bottom: 2.5rem; }
+      .table-wrap { box-shadow: none; }
+      a { color: inherit; text-decoration: none; }
+      footer { color: var(--ink); background: white; border-top: 1px solid var(--line); }
+      footer strong { color: var(--ink); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="hero">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="index.html" aria-label="Voltar à página inicial do Projeto iA Brasil">
+          <span class="brand-mark" aria-hidden="true">iA</span>
+          <span>Projeto iA Brasil</span>
+        </a>
+        <div class="top-actions">
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Relatório parcial</span>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir repositório do Projeto iA Brasil no GitHub">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <button class="print-button" type="button" onclick="window.print()">Imprimir / PDF</button>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div>
+          <p class="eyebrow">Seleção do piloto nacional · 01 ago 2026</p>
+          <h1>Dados locais que viram informação pública.</h1>
+          <p class="hero-lede">Levantamento das cidades brasileiras mais preparadas para um piloto de ingestão e análise de dados públicos — com método explícito, evidência rastreável e incerteza assumida.</p>
+        </div>
+        <aside class="hero-note" aria-label="Escopo deste relatório">
+          <strong>O que este relatório é</strong>
+          <p>Uma síntese da seleção, das métricas propostas e do trabalho realizado. Ainda não é a coleta nacional nem uma nota definitiva de desempenho municipal.</p>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Seções do relatório">
+    <div class="container">
+      <a href="#visao">Visão geral</a>
+      <a href="#trabalho">O que foi feito</a>
+      <a href="#shortlist">Top 10</a>
+      <a href="#metricas">Métricas</a>
+      <a href="#outliers">Outliers</a>
+      <a href="#limites">Limites e próximos passos</a>
+    </div>
+  </nav>
+
+  <main id="conteudo" class="container">
+    <section id="visao" aria-labelledby="visao-titulo">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Visão executiva</p>
+          <h2 id="visao-titulo">Nove candidatas defensáveis. Uma vaga ainda condicional.</h2>
+        </div>
+        <p>As posições 1–8 estão relativamente estáveis. Jundiaí entrou em 9º após o pente-fino de cidades médias; Belém permanece em 10º pela relevância nortista, mas com ressalvas técnicas fortes.</p>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon" aria-hidden="true">✓</span>
+        <div>
+          <strong>Decisão parcial, não placar definitivo</strong>
+          <p>A shortlist ordena aptidão para um piloto de ingestão e análise. Ela não mede qualidade de vida, riqueza, eficiência geral da prefeitura ou mérito político.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid" aria-label="Resumo quantitativo">
+        <article class="stat-card">
+          <span class="value">10</span>
+          <strong>candidatas</strong>
+          <small>na shortlist provisória</small>
+        </article>
+        <article class="stat-card">
+          <span class="value">5</span>
+          <strong>grandes regiões</strong>
+          <small>representadas sem cota rígida</small>
+        </article>
+        <article class="stat-card">
+          <span class="value">8</span>
+          <strong>domínios</strong>
+          <small>avaliados por cidade</small>
+        </article>
+        <article class="stat-card">
+          <span class="value">2</span>
+          <strong>resultados distintos</strong>
+          <small>qualidade e confiança</small>
+        </article>
+      </div>
+
+      <div class="region-card">
+        <h3>Distribuição regional do top 10</h3>
+        <div class="region-bar" role="img" aria-label="Sudeste 4 cidades, Nordeste 2, Sul 2, Centro-Oeste 1 e Norte 1">
+          <span class="sudeste" style="width:40%">SE · 4</span>
+          <span class="nordeste" style="width:20%">NE · 2</span>
+          <span class="sul" style="width:20%">S · 2</span>
+          <span class="centro" style="width:10%">CO · 1</span>
+          <span class="norte" style="width:10%">N · 1</span>
+        </div>
+        <div class="region-legend" aria-hidden="true">
+          <span style="--dot:#0b6b4b">Sudeste</span>
+          <span style="--dot:#bd8e0a">Nordeste</span>
+          <span style="--dot:#235a78">Sul</span>
+          <span style="--dot:#766139">Centro-Oeste</span>
+          <span style="--dot:#7c4e75">Norte</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="trabalho" aria-labelledby="trabalho-titulo">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Método de trabalho</p>
+          <h2 id="trabalho-titulo">O que foi feito até aqui</h2>
+        </div>
+        <p>O trabalho combinou descoberta ampla com rechecagem crítica. Página institucional, notícia ou reputação não foram tratadas como prova suficiente de dado aberto.</p>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-card">
+          <h3>Divisão do país e dos temas</h3>
+          <p>Levantamentos regionais, setoriais e de índices de transparência formaram um universo inicial de capitais e cidades médias.</p>
+        </article>
+        <article class="process-card">
+          <h3>Busca por fontes oficiais</h3>
+          <p>Foram procurados catálogos, APIs, planilhas, geosserviços, relatórios, observatórios e documentação técnica municipal.</p>
+        </article>
+        <article class="process-card">
+          <h3>Teste de acesso real</h3>
+          <p>A avaliação separa página encontrada, recurso aberto, download executado e esquema efetivamente lido.</p>
+        </article>
+        <article class="process-card">
+          <h3>Revisão das conclusões</h3>
+          <p>Erros da versão anterior foram corrigidos: Porto Alegre migrou de portal, Curitiba tem microdados e Brasília possui recorte territorial forte.</p>
+        </article>
+        <article class="process-card">
+          <h3>Pente-fino de outliers</h3>
+          <p>Cidades ricas, industriais e tecnológicas foram testadas. Jundiaí se destacou institucionalmente; Toledo, tecnicamente.</p>
+        </article>
+        <article class="process-card">
+          <h3>Métrica e confiança</h3>
+          <p>Foi criada a proposta IDU-Br v2, com motor de cálculo separado da matriz de evidências e um índice próprio de confiança.</p>
+        </article>
+      </div>
+
+      <div class="evidence-legend" aria-label="Marcadores de evidência">
+        <div class="evidence-item"><code>[fetch-ok]</code><br>Página ou recurso aberto na sessão declarada.</div>
+        <div class="evidence-item"><code>[fetch-falhou]</code><br>Tentativa registrada com erro ou bloqueio explícito.</div>
+        <div class="evidence-item"><code>[nao-testado]</code><br>Pista de busca; não conta como evidência confirmada.</div>
+      </div>
+    </section>
+
+    <section id="shortlist" aria-labelledby="shortlist-titulo">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Decisão recomendada</p>
+          <h2 id="shortlist-titulo">Top 10 provisório</h2>
+        </div>
+        <p>As faixas A/B/C indicam prontidão operacional. “Confiança” nesta tabela é uma avaliação qualitativa da seleção atual, ainda não o C-IDU numérico final.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Shortlist compilada em 01/08/2026. A ordem pode mudar após a codificação completa da matriz IDU-Br v2.</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">Faixa</th>
+              <th scope="col">Por que entra</th>
+              <th scope="col">Principal risco</th>
+              <th scope="col">Confiança</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rank">01</td>
+              <td><strong class="city-name">Recife/PE</strong><span class="region-label">Nordeste</span></td>
+              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td>CKAN equilibrado, microdados e atualização em 2026 nos principais domínios.</td>
+              <td>Histórico recente de HTTP 500 em parte da API e da interface.</td>
+              <td><span class="badge conf-high">alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">02</td>
+              <td><strong class="city-name">São Paulo/SP</strong><span class="region-label">Sudeste</span></td>
+              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td>474 conjuntos, 81 órgãos, 16 temas e um ecossistema técnico muito amplo.</td>
+              <td>Integração fragmentada; saúde e segurança municipais são mais rasas.</td>
+              <td><span class="badge conf-high">alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">03</td>
+              <td><strong class="city-name">Fortaleza/CE</strong><span class="region-label">Nordeste</span></td>
+              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td>CKAN documentado, mais de 630 conjuntos e forte presença de CSV/GeoJSON.</td>
+              <td>Parte das séries de saúde, educação, economia e segurança está defasada.</td>
+              <td><span class="badge conf-high">alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">04</td>
+              <td><strong class="city-name">Rio de Janeiro/RJ</strong><span class="region-label">Sudeste</span></td>
+              <td><span class="badge badge-a">A · iniciar</span></td>
+              <td>Maior profundidade territorial, geosserviços e várias séries operacionais.</td>
+              <td>Ecossistema fragmentado; alguns serviços já apresentaram 503 ou token.</td>
+              <td><span class="badge conf-high">média-alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">05</td>
+              <td><strong class="city-name">Porto Alegre/RS</strong><span class="region-label">Sul</span></td>
+              <td><span class="badge badge-b">B · 2ª onda</span></td>
+              <td>Novo CKAN vivo, oito grupos e bom complemento estadual de segurança.</td>
+              <td>Educação e economia ainda são rasas; segurança depende do estado.</td>
+              <td><span class="badge conf-high">alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">06</td>
+              <td><strong class="city-name">Curitiba/PR</strong><span class="region-label">Sul</span></td>
+              <td><span class="badge badge-b">B · 2ª onda</span></td>
+              <td>Microdados atuais de saúde, Guarda Municipal, 156, alvarás e mobilidade.</td>
+              <td>Educação é sobretudo cadastro/geo; ambiente é majoritariamente cartográfico.</td>
+              <td><span class="badge conf-high">alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">07</td>
+              <td><strong class="city-name">Belo Horizonte/MG</strong><span class="region-label">Sudeste</span></td>
+              <td><span class="badge badge-b">B · 2ª onda</span></td>
+              <td>Boa combinação de CKAN, WFS e GTFS para engenharia de ingestão.</td>
+              <td>Taxonomia desigual; grupos oficiais mostram saúde rasa e segurança vazia.</td>
+              <td><span class="badge conf-high">alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">08</td>
+              <td><strong class="city-name">Brasília/DF</strong><span class="region-label">Centro-Oeste</span></td>
+              <td><span class="badge badge-b">B · 2ª onda</span></td>
+              <td>Segurança e pesquisa domiciliar por RA, além de bons geosserviços.</td>
+              <td>Portal central não enumera bem o acervo; ingestão é fonte a fonte.</td>
+              <td><span class="badge conf-mid">média</span></td>
+            </tr>
+            <tr>
+              <td class="rank">09</td>
+              <td><strong class="city-name">Jundiaí/SP</strong><span class="region-label">Sudeste</span></td>
+              <td><span class="badge badge-b">B/C · auditar</span></td>
+              <td>CIJUN própria, norma de dados abertos, GEOJundiaí e mais de 385 indicadores.</td>
+              <td>Exportação/API do Observatório e um recurso por domínio ainda não auditados.</td>
+              <td><span class="badge conf-high">média-alta</span></td>
+            </tr>
+            <tr>
+              <td class="rank">10</td>
+              <td><strong class="city-name">Belém/PA</strong><span class="region-label">Norte</span></td>
+              <td><span class="badge badge-c">C · condicional</span></td>
+              <td>Melhor evidência multidomínio encontrada no Norte e segurança por bairro.</td>
+              <td>Sem API; arquivos em Drive/RAR, séries antigas e downloads quebrados.</td>
+              <td><span class="badge conf-mid">média</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note"><strong>Reservas imediatas:</strong> Toledo/PR, Niterói/RJ, Maceió/AL, Salvador/BA, Caxias do Sul/RS e Goiânia/GO.</p>
+    </section>
+
+    <section id="metricas" aria-labelledby="metricas-titulo">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">IDU-Br v2</p>
+          <h2 id="metricas-titulo">Qualidade e confiança não são a mesma coisa.</h2>
+        </div>
+        <p>A principal revisão metodológica foi parar de transformar falta de pesquisa em nota ruim — ou excesso de pesquisa em nota boa. Cada pergunta gera seu próprio resultado.</p>
+      </div>
+
+      <div class="metric-pair">
+        <article class="metric-card primary">
+          <span class="metric-label">Resultado 1 · 0–100</span>
+          <h3>IDU-Br</h3>
+          <p>Quão adequado é o ecossistema local de dados para o piloto: profundidade, acesso, frescor, território, equilíbrio e resiliência.</p>
+        </article>
+        <article class="metric-card confidence">
+          <span class="metric-label">Resultado 2 · 0–100</span>
+          <h3>C-IDU</h3>
+          <p>Quão confiável é a nossa avaliação: completude da auditoria, força da evidência, reprodução, concordância e recência.</p>
+        </article>
+      </div>
+
+      <div class="metric-rule"><strong>Regra central:</strong> IDU-Br e C-IDU nunca são multiplicados. Uma cidade excelente ainda pouco auditada deve aparecer como “qualidade possivelmente alta, confiança baixa” — e não ser artificialmente rebaixada.</div>
+
+      <h3>Oito domínios canônicos</h3>
+      <div class="domain-chips" aria-label="Domínios avaliados">
+        <span class="domain-chip">Saúde</span>
+        <span class="domain-chip">Segurança</span>
+        <span class="domain-chip">Educação</span>
+        <span class="domain-chip">Mobilidade e trânsito</span>
+        <span class="domain-chip">Comércio e economia</span>
+        <span class="domain-chip">Finanças</span>
+        <span class="domain-chip">Urbanismo e habitação</span>
+        <span class="domain-chip">Meio ambiente</span>
+      </div>
+
+      <h3>Cinco eixos por domínio</h3>
+      <div class="axis-grid">
+        <article class="axis-card"><span class="axis-letter">D</span><h3>Profundidade</h3><p>Vai de lista isolada a microdados e eventos diversos, documentados.</p></article>
+        <article class="axis-card"><span class="axis-letter">U</span><h3>Acesso</h3><p>Vai de painel fechado a API, bulk download e esquema testado.</p></article>
+        <article class="axis-card"><span class="axis-letter">F</span><h3>Frescor</h3><p>Mede atualização contra a periodicidade declarada e a continuidade da série.</p></article>
+        <article class="axis-card"><span class="axis-letter">T</span><h3>Território</h3><p>Vai do total municipal a registro fino com malha e cobertura da cidade.</p></article>
+        <article class="axis-card"><span class="axis-letter">R</span><h3>Resiliência</h3><p>Origem, licença, metadados, responsáveis, estabilidade e canais alternativos.</p></article>
+      </div>
+
+      <div class="scale" aria-label="Escala de pontuação de zero a quatro">
+        <div class="scale-item"><strong>0</strong><span>ausente, inacessível ou sem evidência</span></div>
+        <div class="scale-item"><strong>1</strong><span>mínimo, frágil ou muito defasado</span></div>
+        <div class="scale-item"><strong>2</strong><span>parcial, manual ou pouco profundo</span></div>
+        <div class="scale-item"><strong>3</strong><span>bom, reutilizável e relativamente atual</span></div>
+        <div class="scale-item"><strong>4</strong><span>profundo, testado, contínuo e documentado</span></div>
+      </div>
+
+      <div class="formula-grid">
+        <div class="formula-box">
+          <h3>Fórmula da qualidade</h3>
+          <pre>IDU-Br v2 = 30A + 25U + 15F + 10T + 10B + 10R
+
+A = amplitude/profundidade
+U = acesso útil ponderado pela profundidade
+F = frescor ponderado pela profundidade
+T = cobertura territorial útil
+B = média dos quatro domínios mais fracos
+R = governança e resiliência</pre>
+        </div>
+        <div class="balance-box">
+          <h3>Por que existe o componente B?</h3>
+          <p>Para impedir que excelência em duas áreas esconda seis vazios. A média dos quatro domínios mais fracos recompensa cobertura equilibrada e atende diretamente ao terceiro critério do projeto.</p>
+        </div>
+      </div>
+
+      <h3>Autonomia municipal e ecossistema local</h3>
+      <div class="layers">
+        <div class="layer"><strong>M · municipal</strong><span>Fonte produzida e mantida pela prefeitura.</span></div>
+        <div class="layer"><strong>E · estadual/local</strong><span>Fonte estadual, distrital ou metropolitana com recorte local.</span></div>
+        <div class="layer"><strong>N · nacional</strong><span>Baseline para todos os municípios; não diferencia e não pontua.</span></div>
+        <div class="layer"><strong>C · civil</strong><span>Complemento universitário ou cívico; nunca substituto silencioso.</span></div>
+      </div>
+      <p class="table-note">A publicação terá <strong>IDU-M</strong> (autonomia municipal) e <strong>IDU-E</strong> (ecossistema utilizável no território). A diferença entre os dois mostra dependência externa.</p>
+
+      <h3>Como o C-IDU mede a confiança</h3>
+      <div class="weight-list" aria-label="Pesos do índice de confiança">
+        <div class="weight-row"><span>Completude</span><span class="weight-track"><span class="weight-fill" style="--w:100%"></span></span><strong>25%</strong></div>
+        <div class="weight-row"><span>Força da evidência</span><span class="weight-track"><span class="weight-fill" style="--w:100%"></span></span><strong>25%</strong></div>
+        <div class="weight-row"><span>Reprodutibilidade</span><span class="weight-track"><span class="weight-fill" style="--w:80%"></span></span><strong>20%</strong></div>
+        <div class="weight-row"><span>Concordância independente</span><span class="weight-track"><span class="weight-fill" style="--w:60%"></span></span><strong>15%</strong></div>
+        <div class="weight-row"><span>Consistência</span><span class="weight-track"><span class="weight-fill" style="--w:40%"></span></span><strong>10%</strong></div>
+        <div class="weight-row"><span>Recência</span><span class="weight-track"><span class="weight-fill" style="--w:20%"></span></span><strong>5%</strong></div>
+      </div>
+
+      <div class="cap-grid" aria-label="Tetos obrigatórios de confiança">
+        <div class="cap-card"><strong>≤ 79</strong><span>nenhum esquema de arquivo ou API foi lido</span></div>
+        <div class="cap-card"><strong>≤ 69</strong><span>três ou mais domínios permanecem desconhecidos</span></div>
+        <div class="cap-card"><strong>≤ 59</strong><span>há contradição material não resolvida</span></div>
+        <div class="cap-card"><strong>≤ 39</strong><span>avaliação baseada somente em busca ou notícia</span></div>
+      </div>
+
+      <div class="warning"><strong>Estado atual:</strong> a fórmula e o motor de cálculo estão implementados, mas as cidades ainda não foram recodificadas célula por célula. Por isso este relatório apresenta faixas e confiança qualitativa, não casas decimais falsas.</div>
+    </section>
+
+    <section id="outliers" aria-labelledby="outliers-titulo">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Pente-fino de cidades médias</p>
+          <h2 id="outliers-titulo">O outlier institucional e a surpresa técnica</h2>
+        </div>
+        <p>Riqueza, industrialização e fama tecnológica serviram para descobrir candidatas — nunca como pontos. A evidência prática continuou sendo o filtro.</p>
+      </div>
+
+      <div class="outlier-grid">
+        <article class="outlier-card featured">
+          <span class="mini-label">Outlier institucional · top 10</span>
+          <h3>Jundiaí/SP</h3>
+          <p>Combina companhia municipal de informática, política própria de dados abertos, GEOJundiaí e mais de 385 indicadores intersetoriais. É a cidade que mais se aproxima da ideia de “governo que pensa por dados”.</p>
+        </article>
+        <article class="outlier-card">
+          <span class="mini-label">Surpresa técnica · reserva 11</span>
+          <h3>Toledo/PR</h3>
+          <p>API OpenAPI oficial com licitações, receita, RH e produção de saúde. Precisa provar resposta real, frescor, território e mais domínios antes de subir.</p>
+        </article>
+        <article class="outlier-card">
+          <span class="mini-label">Forte, mas setorial</span>
+          <h3>Jaraguá do Sul/SC</h3>
+          <p>Bom GeoPortal e TSVs atuais, porém a abertura encontrada é concentrada em urbanismo, cadastro e administração. Serve melhor a um piloto geográfico.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="correcoes-titulo">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Auditoria da própria pesquisa</p>
+          <h2 id="correcoes-titulo">O que mudou depois da rechecagem</h2>
+        </div>
+        <p>Correções não foram apagadas: elas mostram onde reputação, portal antigo ou suposição metodológica poderiam distorcer o ranking.</p>
+      </div>
+
+      <div class="correction-grid">
+        <article class="correction-card"><p class="old">Porto Alegre não é calculável porque o DataPOA morreu.</p><p class="new"><strong>Correção:</strong> o catálogo migrou para dadosabertos.poa.br e está ativo.</p></article>
+        <article class="correction-card"><p class="old">Curitiba não possui saúde e segurança abertas.</p><p class="new"><strong>Correção:</strong> existem microdados atuais do E-Saúde e da Guarda Municipal.</p></article>
+        <article class="correction-card"><p class="old">Brasília não possui granularidade territorial mensurável.</p><p class="new"><strong>Correção:</strong> SSP-DF e PDAD-A comprovam recorte por Região Administrativa.</p></article>
+        <article class="correction-card"><p class="old">Cidade rica tende automaticamente a ter dados melhores.</p><p class="new"><strong>Correção:</strong> digitalização de serviços e dados abertos são capacidades diferentes.</p></article>
+      </div>
+    </section>
+
+    <section id="limites" aria-labelledby="limites-titulo">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Transparência metodológica</p>
+          <h2 id="limites-titulo">O que ainda falta — e como fechar a decisão</h2>
+        </div>
+        <p>A confiança cresce quando o trabalho deixa de testar portais e passa a testar recursos, esquemas, atualização e repetibilidade.</p>
+      </div>
+
+      <div class="final-grid">
+        <article class="list-card">
+          <h3>Limitações atuais</h3>
+          <ul>
+            <li>Portais JavaScript podem esconder conteúdo de ferramentas de leitura simples.</li>
+            <li>Um botão “Dados Abertos” de fornecedor não prova governança municipal.</li>
+            <li>Segurança pública frequentemente depende de dados estaduais.</li>
+            <li>Algumas cidades têm muitos painéis, mas poucos arquivos reutilizáveis.</li>
+            <li>A busca orientada por hipótese não equivale a um censo dos 5.570 municípios.</li>
+          </ul>
+        </article>
+        <article class="list-card">
+          <h3>Próximas validações</h3>
+          <ol>
+            <li>Codificar as 12 primeiras candidatas nos oito domínios e cinco eixos.</li>
+            <li>Usar dois avaliadores independentes por célula.</li>
+            <li>Abrir um recurso real por domínio e ler seu esquema.</li>
+            <li>Calcular intervalos e estabilidade com pesos perturbados.</li>
+            <li>Medir custo real de ingestão durante o piloto.</li>
+          </ol>
+        </article>
+      </div>
+
+      <div class="next-step">
+        <h3>Próximo passo de maior retorno</h3>
+        <p>Antes de coletar tudo, executar uma auditoria curta e padronizada das 12 primeiras cidades. A saída deve ser: IDU-M e IDU-E com intervalo, C-IDU, probabilidade de permanecer no top 10, dependência externa e domínios fracos.</p>
+      </div>
+
+      <div class="source-links" aria-label="Documentos do projeto">
+        <a href="DOSSIE_PILOTO.md">Dossiê consolidado</a>
+        <a href="docs/METRICA_IDU_V2.md">Métrica IDU-Br v2</a>
+        <a href="docs/PROTOCOLO_DOC_VIVO.md">Protocolo de evidências</a>
+        <a href="docs/parciais/outliers-cidades-medias.md">Pente-fino de cidades médias</a>
+        <a href="idu_v2.py">Motor de cálculo</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Projeto iA Brasil</strong>
+        <p>Transformar dados públicos do Brasil em informação simples, pública e útil — começando por um piloto que possa crescer com método.</p>
+        <a class="footer-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">Ver projeto no GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="date">Relatório parcial<br>Compilação: 01/08/2026</div>
+    </div>
+  </footer>
+</body>
+</html>

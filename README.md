@@ -1,0 +1,60 @@
+# Projeto iA Brasil — piloto de dados municipais
+
+Levantamento para selecionar municípios brasileiros com melhor combinação de dados públicos locais, cobertura temática, acesso por máquina, atualização e granularidade territorial.
+
+O projeto está na fase de **seleção e auditoria das candidatas**. Ele não contém coleta em massa de dados municipais.
+
+## Resultado atual
+
+A shortlist provisória está em [DOSSIE_PILOTO.md](DOSSIE_PILOTO.md). A seleção atual inclui Recife, São Paulo, Fortaleza, Rio de Janeiro, Porto Alegre, Curitiba, Belo Horizonte, Brasília, Jundiaí e Belém, com diferentes níveis de confiança e ressalvas documentadas.
+
+O ranking mede adequação para um piloto de ingestão e análise. Ele não mede qualidade geral da administração municipal nem qualidade de vida.
+
+## Estrutura
+
+- `index.html` — página inicial do site, pronta para GitHub Pages;
+- `DOSSIE_PILOTO.md` — decisão consolidada e shortlist nacional;
+- `relatorio_parcial.html` — versão visual e autônoma do relatório parcial;
+- `docs/METRICA_IDU_V2.md` — definição do IDU-Br v2 e do índice de confiança C-IDU;
+- `idu_v2.py` — implementação do cálculo, sem notas de cidades embutidas;
+- `docs/parciais/` — evidências, limitações e levantamentos regionais/setoriais;
+- `docs/PROTOCOLO_DOC_VIVO.md` — regras de procedência e verificação das fontes;
+- `idu.py` e `docs/METRICA_IDU.md` — versão 1 preservada apenas como legado reproduzível.
+
+## Executar o cálculo
+
+Requisito: Python 3.9 ou superior. O código utiliza somente a biblioteca padrão.
+
+```bash
+python idu_v2.py --self-test
+python idu_v2.py caminho/para/matriz-auditada.json
+python idu_v2.py caminho/para/matriz-auditada.json --equal-weights --json
+```
+
+O formato resumido da matriz de entrada está documentado no início de `idu_v2.py`. A separação entre a matriz auditada e o motor de cálculo evita notas hardcoded e permite revisão independente.
+
+## Como interpretar a evidência
+
+Cada fonte nos relatórios parciais deve usar um marcador:
+
+- `[fetch-ok]` — a página ou recurso foi aberto na sessão declarada;
+- `[fetch-falhou]` — a tentativa falhou e o motivo foi registrado;
+- `[nao-testado]` — a URL é apenas uma pista e não conta como evidência confirmada;
+- `[NACIONAL — não pontua]` — fonte disponível igualmente para todos os municípios.
+
+O IDU-Br avalia a qualidade do ecossistema de dados. O C-IDU avalia a confiabilidade da nossa medição. Os dois valores não devem ser multiplicados.
+
+## Segurança e privacidade
+
+O projeto não necessita de tokens, chaves ou credenciais. Não versione `.env`, registros de agentes, matrizes privadas ou arquivos de acesso. Consulte [SECURITY.md](SECURITY.md) para relatar problemas.
+
+## Limitações
+
+- Portais JavaScript podem ser subestimados quando não expõem catálogo ou API legível.
+- Segurança pública frequentemente depende de fontes estaduais; por isso a métrica separa capacidade municipal e ecossistema local.
+- Portais padronizados de fornecedores não provam governança municipal: somente recursos testados pontuam acesso.
+- A shortlist continua provisória até a leitura de pelo menos um recurso real por domínio nas cidades finalistas.
+
+## Licença
+
+A licença do código e dos textos ainda não foi definida. Até que os mantenedores escolham uma licença, a publicação no GitHub não concede automaticamente permissão de reutilização.
