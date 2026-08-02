@@ -1,13 +1,13 @@
 # Projeto iA Brasil — experimento com cidades pequenas
 
-**Status:** pré-filtro reproduzível concluído; triagem rápida de portais concluída; auditoria IDU-Br ainda pendente  
+**Status:** pré-filtro reproduzível concluído; pente-fino da faixa de ≈100 mil concluído; auditoria IDU-Br ainda pendente
 **Data de corte:** 2026-08-01  
 **Escopo:** municípios próximos de 10 mil e 100 mil habitantes; ranking separado do Top 10 nacional
 
 ## Resposta curta
 
 - **≈ 10 mil habitantes:** Casca/RS é a primeira cidade a auditar. Águas da Prata/SP e Auriflama/SP vêm logo depois.
-- **≈ 100 mil habitantes:** Nova Lima/MG, Rio do Sul/SC e Guaratinguetá/SP formam o primeiro lote de auditoria.
+- **≈ 100 mil habitantes:** Nova Lima/MG lidera; Rio do Sul/SC permanece condicional; Vinhedo/SP é a próxima auditoria. Guaratinguetá/SP foi rebaixada por conteúdo legado.
 
 O resultado ainda não afirma que essas são as cidades com os melhores dados. Ele afirma algo mais restrito e verificável: **entre as 20 candidatas escolhidas pelo pré-filtro, elas apresentaram os sinais oficiais mais promissores numa busca rápida**.
 
@@ -103,14 +103,14 @@ Faixa: 70.000 a 150.000 habitantes.
 
 | Prioridade | Município | Evidência diferenciadora localizada | Limite encontrado | Decisão |
 |---:|---|---|---|---|
-| 1 | **Nova Lima/MG** | GeoPNL público com camadas, ferramentas territoriais e indicação de downloads pela INDE | É preciso enumerar camadas, formatos, atualização e cobertura além do urbanismo | **auditar agora** |
-| 2 | **Rio do Sul/SC** | Portal Atende declara dados abertos segundo recomendações da INDA; prefeitura mantém inventário e SIGEP de projetos | Ainda falta enumerar recursos sociais e testar as exportações | **auditar agora** |
-| 3 | **Guaratinguetá/SP** | Observatório municipal, fichas metodológicas, relatórios e APEMs compostas por grupos de bairros | Parte importante do conteúdo localizado é de 2017–2020 e pode estar descontinuada | **auditar agora** |
-| 4 | Vinhedo/SP | JSON administrativo e Mappa Web público com bairros, logradouros, quadras, lotes, risco e zoneamento | O JSON exclui sistemas externos e não comprova dados operacionais | reserva forte |
-| 5 | Valinhos/SP | JSON administrativo e coleção municipal de mapas temáticos | O catálogo é de conteúdo do site, não um catálogo multidomínio integrado | reserva forte |
-| 6 | Assis/SP | JSON administrativo e mapas temáticos de escolas, unidades de saúde, CRAS, ambiente e viário | Boa documentação territorial, mas acesso majoritariamente por documento/mapa | reserva |
-| 7–9 | Pirassununga, Concórdia e Fernandópolis | Sistemas de transparência ou geoprocessamento foram localizados | A publicação efetiva, exportação e governança precisam ser confirmadas | reserva |
-| 10 | São João da Boa Vista/SP | Indicadores nacionais sobre o município aparecem no portal | Nenhum catálogo ou sistema municipal diferenciador foi localizado | nova busca posterior |
+| 1 | **Nova Lima/MG** | Mapa público com 91 recursos-folha, FeatureServers e cobertura territorial de saúde, ensino, assistência, mobilidade, ambiente e urbanismo | A contagem inclui ortofotos e camadas correlatas; microdados operacionais ainda não foram provados | **líder · auditar agora** |
+| 2 | **Rio do Sul/SC** | A aplicação atual implementa botão e mensagem de download para itens marcados como dados abertos; prefeitura mantém o SIGEP | Nenhum arquivo exportado teve formato, esquema e período lidos | **auditar agora · condicional** |
+| 3 | **Vinhedo/SP** | JSON administrativo e Mappa Web público com bairros, logradouros, quadras, lotes, risco e zoneamento | O JSON exclui sistemas externos e não comprova dados operacionais | **próxima auditoria** |
+| 4 | Valinhos/SP | JSON administrativo e coleção municipal de mapas temáticos | O catálogo é de conteúdo do site, não um catálogo multidomínio integrado | reserva forte |
+| 5 | Assis/SP | JSON administrativo e mapas temáticos de escolas, unidades de saúde, CRAS, ambiente e viário | Boa documentação territorial, mas acesso majoritariamente por documento/mapa | reserva |
+| 6–8 | Pirassununga, Concórdia e Fernandópolis | Sistemas de transparência ou geoprocessamento foram localizados | A publicação efetiva, exportação e governança precisam ser confirmadas | reserva |
+| 9 | São João da Boa Vista/SP | Indicadores nacionais sobre o município aparecem no portal | Nenhum catálogo ou sistema municipal diferenciador foi localizado | nova busca posterior |
+| 10 | **Guaratinguetá/SP** | Metodologia APEM organiza grupos de bairros e escolas | Participa Guará exibe 0 eventos, 0 pessoas e 0 demandas; relatório 2019/2020; sem API/export atual localizada | **legado · rebaixada** |
 
 Evidências principais:
 
@@ -120,6 +120,15 @@ Evidências principais:
 - Vinhedo: [dados abertos JSON](https://www.vinhedo.sp.gov.br/portal/dados-abertos) e [descrição oficial do Mappa Web](https://www.vinhedo.sp.gov.br/portal/noticias/0/3/16111/procon).
 - Valinhos: [dados abertos JSON](https://www.valinhos.sp.gov.br/portal/dados-abertos) e [mapas municipais](https://www.valinhos.sp.gov.br/mapas/).
 - Assis: [dados abertos JSON](https://www.assis.sp.gov.br/portal/dados-abertos) e [mapas temáticos do Plano Diretor](https://www.assis.sp.gov.br/portal/servicos/1041/plano-diretor-do-municipio/).
+
+### Sensibilidade e cidades novas dos PRs
+
+- **Camboriú/SC (117.324):** está dentro da faixa, mas os 17 produtos de planejamento são majoritariamente mapas PDF; não entra na fila.
+- **Tubarão/SC (116.725):** IDHM 0,796, logo abaixo do corte do Top 10; geoportal público anunciado e transparência atual, porém nenhum arquivo/API enumerável foi confirmado; reserva de descoberta.
+- **Balneário Camboriú/SC (151.674):** é outro município e ficou 1.674 habitantes acima do teto. O WFS público tem 73 tipos de feição e dados reais de bairros, lotes, iluminação, setores e zoneamento, mas é geo/cadastral e várias camadas temáticas estão vazias; reserva de sensibilidade.
+- **Toledo/PR (160.701):** também está fora da faixa. A OpenAPI documenta nove rotas, mas as chamadas reais seguem em HTTP 400 sem corpo; não entra.
+
+Detalhes, contagens e fontes: [AUDITORIA_PENTE_FINO_100MIL.md](AUDITORIA_PENTE_FINO_100MIL.md).
 
 ---
 
@@ -145,16 +154,17 @@ Uma plataforma genérica de fornecedor pode produzir uma API tecnicamente corret
 - Média para a comparação substantiva, porque o IDHM está defasado e não mede abertura de dados.
 - O cruzamento deixou uma incompatibilidade entre município histórico/topologia atual, sem efeito sobre os 20 selecionados.
 
-### Confiança da triagem: baixa a média
+### Confiança da triagem: variável por cidade
 
 - Evidência positiva vem de página oficial ou sistema indicado pela prefeitura.
+- A confiança é alta para a existência e o esquema do GeoPNL e do WFS de Balneário Camboriú; média-baixa para Rio do Sul, onde o arquivo final ainda não foi lido.
 - “Não localizado” não significa “não existe”. Portais em JavaScript, páginas não indexadas e serviços protegidos podem gerar falso negativo.
 - Contratação de sistema prova intenção/capacidade interna, não publicação externa.
 - Página de catálogo prova existência do catálogo, não a qualidade de cada recurso.
 
 ### Confiança exigida para promover uma cidade
 
-Para cada uma das seis finalistas, abrir pelo menos um recurso real em saúde, segurança, educação, mobilidade, economia, finanças, urbanismo e ambiente. Registrar URL, produtor, formato, esquema, data, recorte territorial, resultado do acesso e repetibilidade. Só então calcular IDU-E e C-IDU.
+Para cada finalista, abrir pelo menos um recurso real em saúde, segurança, educação, mobilidade, economia, finanças, urbanismo e ambiente. Registrar URL, produtor, formato, esquema, data, recorte territorial, resultado do acesso e repetibilidade. Só então calcular IDU-E e C-IDU.
 
 ---
 
@@ -162,9 +172,9 @@ Para cada uma das seis finalistas, abrir pelo menos um recurso real em saúde, s
 
 1. **Casca:** localizar e abrir o SIGWeb; testar um CSV; procurar bases municipais de saúde e educação.
 2. **Águas da Prata e Auriflama:** chamar os endpoints documentados, contar registros por módulo e verificar se existem módulos não anunciados.
-3. **Nova Lima:** inventariar todas as camadas do GeoPNL/INDE, formatos, produtores, atualização e granularidade.
-4. **Rio do Sul:** enumerar o inventário de dados abertos e baixar recursos de áreas diferentes.
-5. **Guaratinguetá:** separar conteúdo vivo de legado; localizar arquivos estruturados por APEM/bairro.
-6. Comparar o resultado com as reservas Vinhedo e Valinhos para reduzir o risco de escolher um excelente geoportal com cobertura temática estreita.
+3. **Nova Lima:** abrir uma amostra de FeatureServers por domínio e procurar microdados operacionais fora do GeoPNL.
+4. **Rio do Sul:** executar três exportações, registrar formato/esquema/período e testar repetibilidade sem sessão.
+5. **Vinhedo:** testar o JSON administrativo e as camadas territoriais como possível terceira finalista formal.
+6. **Balneário Camboriú:** só promover na análise de sensibilidade se aparecerem dados operacionais além do WFS cadastral.
 
 Nenhuma coleta em massa é necessária antes desses testes.

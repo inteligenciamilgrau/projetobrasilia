@@ -18,7 +18,7 @@
     .state-layer{margin:0 0 1rem;padding:.9rem 1.05rem;border:1px solid var(--line);border-left:5px solid var(--green);border-radius:12px;background:var(--surface);font-size:.82rem}.state-layer strong{display:block;margin-bottom:.3rem}.state-layer a{color:var(--green);font-weight:800;text-underline-offset:3px}
     .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:white}table{width:100%;min-width:900px;border-collapse:collapse}th,td{padding:.78rem .8rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:.83rem}th{position:sticky;top:0;color:var(--muted);background:#eef1ed;font-size:.67rem;letter-spacing:.06em;text-transform:uppercase}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafbf8}.uf{font-weight:900;color:var(--green)}.city{font-weight:840}.pop{font-variant-numeric:tabular-nums;white-space:nowrap}
     .badge{display:inline-flex;padding:.24rem .5rem;border-radius:999px;font-size:.66rem;font-weight:850;white-space:nowrap}.badge.otima{color:white;background:var(--green)}.badge.ampliada{color:var(--dark);background:var(--soft)}.badge.metropole{color:#65500f;background:var(--yellow-soft)}
-    .badge.auditado{color:white;background:var(--green)}.badge.top10{color:var(--dark);background:var(--soft)}.badge.pendente{color:var(--muted);background:#ededea}
+    .badge.triado{color:white;background:var(--green)}.badge.inventariado{color:var(--dark);background:var(--soft)}.badge.pendente{color:var(--muted);background:#ededea}
     .fontes{display:flex;flex-direction:column;gap:.22rem;max-width:34rem}.fontes a{font-size:.76rem;font-weight:780;text-underline-offset:3px}.fontes .st{display:inline-block;width:.55rem;height:.55rem;margin-right:.3rem;border-radius:50%;vertical-align:baseline}.st.confirmado{background:var(--green)}.st.parcial{background:var(--yellow)}.st.pista{background:#9aa8a1}.st.lacuna{background:var(--red)}.nota{margin:.15rem 0 0;color:var(--muted);font-size:.74rem}
     .legend{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.8rem;color:var(--muted);font-size:.74rem}.legend span{display:inline-flex;align-items:center;gap:.35rem}
     .empty,.error{padding:2rem;border:1px dashed var(--line);border-radius:14px;color:var(--muted);text-align:center}
@@ -29,12 +29,12 @@
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <header><div class="container"><div class="topbar"><a class="brand" href="index.html"><span class="mark">iA</span><span>Projeto iA Brasil</span></a><nav aria-label="Navegação principal"><a href="index.html#top10">Top 10 interativo</a><a href="cidades-pequenas.html">Cidades pequenas</a><a href="inventario.html">Inventário</a><a href="fontes.html">Fontes</a><a class="github" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div>
-    <div class="hero"><div><p class="eyebrow">Expansão da coleta · por estado</p><h1>338 municípios acima de 100 mil.</h1><p>Todos os municípios brasileiros com mais de 100 mil habitantes na estimativa oficial de 2025, organizados por estado. Cada linha mostra o estado da coleta de fontes de dados abertos — a tabela é o mapa de trabalho para a comunidade dividir os estados.</p></div><aside class="starter"><strong>Santa Catarina é o primeiro estado triado.</strong><p>Os 14 municípios catarinenses da faixa já têm fontes verificadas com marcadores de procedência. Escolha um estado pendente e contribua com a próxima triagem.</p></aside></div></div></header>
+    <div class="hero"><div><p class="eyebrow">Expansão da coleta · por estado</p><h1>338 municípios acima de 100 mil.</h1><p>Todos os municípios brasileiros com mais de 100 mil habitantes na estimativa oficial de 2025, organizados por estado. Cada linha mostra o estado da coleta de fontes de dados abertos — a tabela é o mapa de trabalho para a comunidade dividir os estados.</p></div><aside class="starter"><strong>Santa Catarina é o primeiro estado triado.</strong><p>Triado não significa auditado: as fontes foram mapeadas, mas só algumas tiveram recurso e esquema lidos. Camboriú e Balneário Camboriú são municípios distintos e permanecem separados pelo código IBGE.</p></aside></div></div></header>
 
   <main id="conteudo" class="container">
     <div class="rule"><strong>Como contribuir.</strong><span>Escolha um estado <em>pendente</em>, faça a triagem no padrão de <a href="docs/CIDADES_PEQUENAS.md">CIDADES_PEQUENAS.md</a> (acesso, cobertura, território, atualidade, governança), registre cada URL com marcador de verificação conforme o <a href="docs/PROTOCOLO_DOC_VIVO.md">protocolo do documento vivo</a> e envie um PR com o parcial e a atualização do <code>municipios_100mil.json</code>. O método desta tabela está em <a href="docs/MUNICIPIOS_100MIL.md">docs/MUNICIPIOS_100MIL.md</a>.</span></div>
-    <form class="filters" autocomplete="off"><label>Buscar município<input id="search" type="search" placeholder="Ex.: Joinville, Niterói, Sobral"></label><label>Estado<select id="uf"><option value="">Todos</option></select></label><label>Coleta<select id="status"><option value="">Todas</option><option value="auditado">Auditado</option><option value="top10">Top 10</option><option value="pendente">Pendente</option></select></label><button class="reset" id="reset" type="button">Limpar</button></form>
-    <div class="summary" aria-live="polite"><span class="pill"><strong id="visiveis">0</strong> municípios visíveis</span><span class="pill"><strong id="auditados">0</strong> auditados</span><span class="pill"><strong id="estados">0</strong> estados</span><span class="pill">população: IBGE 2025 (rev. 13/01/2026)</span></div>
+    <form class="filters" autocomplete="off"><label>Buscar município<input id="search" type="search" placeholder="Ex.: Joinville, Niterói, Sobral"></label><label>Estado<select id="uf"><option value="">Todos</option></select></label><label>Coleta<select id="status"><option value="">Todas</option><option value="triado">Triado</option><option value="inventariado">Inventariado</option><option value="pendente">Pendente</option></select></label><button class="reset" id="reset" type="button">Limpar</button></form>
+    <div class="summary" aria-live="polite"><span class="pill"><strong id="visiveis">0</strong> municípios visíveis</span><span class="pill"><strong id="triados">0</strong> triados</span><span class="pill"><strong id="estados">0</strong> estados</span><span class="pill">população: IBGE 2025 (rev. 13/01/2026)</span></div>
     <div id="camada-estadual"></div>
     <div class="table-wrap">
       <table>
@@ -51,15 +51,16 @@
     const key="ia-brasil-municipios-100mil-v1";const fmt=new Intl.NumberFormat("pt-BR");
     const norm=v=>String(v||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
     const esc=v=>String(v).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
-    const statusLabel={auditado:"Auditado",top10:"Top 10",pendente:"Pendente"};
+    const safeUrl=value=>{try{const url=new URL(value,location.href);return ["http:","https:"].includes(url.protocol)?url.href:"#"}catch(e){return "#"}};
+    const statusLabel={triado:"Triado",inventariado:"Inventariado · Top 10",pendente:"Pendente"};
     const faixa=p=>p>1000000?["metropole","metrópole"]:p>=200000&&p<=600000?["otima","faixa ótima"]:["ampliada","ampliada"];
     let dados=null;
     function save(){try{localStorage.setItem(key,JSON.stringify({search:els.search.value,uf:els.uf.value,status:els.status.value}))}catch(e){}}
     function load(){try{const s=JSON.parse(localStorage.getItem(key));if(!s)return;els.search.value=s.search||"";["uf","status"].forEach(k=>{if([...els[k].options].some(o=>o.value===s[k]))els[k].value=s[k]})}catch(e){}}
     function fontesCell(m){
-      if(m.status_coleta==="top10")return '<div class="fontes"><a href="inventario.html">Ver inventário do Top 10 →</a></div>';
+      if(m.papel==="top10")return '<div class="fontes"><a href="inventario.html">Ver inventário do Top 10 →</a></div>';
       if(!m.fontes||!m.fontes.length)return '<span style="color:var(--muted)">—</span>';
-      const links=m.fontes.map(f=>`<span><i class="st ${esc(f.status)}"></i><a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">${esc(f.nome)}</a> <span style="color:var(--muted)">· ${esc(f.acesso)}</span></span>`).join("");
+      const links=m.fontes.map(f=>`<span><i class="st ${esc(f.status)}"></i><a href="${esc(safeUrl(f.url))}" target="_blank" rel="noopener noreferrer">${esc(f.nome)}</a> <span style="color:var(--muted)">· ${esc(f.acesso)}</span></span>`).join("");
       const nota=m.nota?`<p class="nota">${esc(m.nota)}</p>`:"";
       return `<div class="fontes">${links}${nota}</div>`;
     }
@@ -70,10 +71,10 @@
       for(const uf of dados.ufs)for(const m of uf.municipios)flat.push({uf:uf.uf,ufNome:uf.nome,...m});
       const vis=flat.filter(m=>(!q||norm(m.municipio+" "+m.uf+" "+m.ufNome).includes(q))&&(!els.uf.value||m.uf===els.uf.value)&&(!els.status.value||m.status_coleta===els.status.value));
       document.querySelector("#visiveis").textContent=vis.length;
-      document.querySelector("#auditados").textContent=vis.filter(m=>m.status_coleta==="auditado").length;
+      document.querySelector("#triados").textContent=vis.filter(m=>m.status_coleta==="triado").length;
       document.querySelector("#estados").textContent=new Set(vis.map(m=>m.uf)).size;
       const ufSel=dados.ufs.find(u=>u.uf===els.uf.value);
-      els.camada.innerHTML=ufSel&&ufSel.fontes_estaduais&&ufSel.fontes_estaduais.length?`<div class="state-layer"><strong>Camada estadual de ${esc(ufSel.nome)}</strong>${ufSel.fontes_estaduais.map(f=>`<span><i class="st ${esc(f.status)}" style="display:inline-block;width:.55rem;height:.55rem;border-radius:50%;margin-right:.3rem"></i><a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">${esc(f.nome)}</a> <span style="color:var(--muted)">· ${esc(f.acesso)}</span></span><br>`).join("")}</div>`:"";
+      els.camada.innerHTML=ufSel&&ufSel.fontes_estaduais&&ufSel.fontes_estaduais.length?`<div class="state-layer"><strong>Camada estadual de ${esc(ufSel.nome)}</strong>${ufSel.fontes_estaduais.map(f=>`<span><i class="st ${esc(f.status)}" style="display:inline-block;width:.55rem;height:.55rem;border-radius:50%;margin-right:.3rem"></i><a href="${esc(safeUrl(f.url))}" target="_blank" rel="noopener noreferrer">${esc(f.nome)}</a> <span style="color:var(--muted)">· ${esc(f.acesso)}</span></span><br>`).join("")}</div>`:"";
       els.linhas.innerHTML=vis.length?vis.map(m=>{const[fc,fl]=faixa(m.populacao_2025);return `<tr><td class="uf">${esc(m.uf)}</td><td class="city">${esc(m.municipio)}</td><td class="pop">${fmt.format(m.populacao_2025)}</td><td><span class="badge ${fc}">${fl}</span></td><td><span class="badge ${esc(m.status_coleta)}">${statusLabel[m.status_coleta]||esc(m.status_coleta)}</span></td><td>${fontesCell(m)}</td></tr>`}).join(""):'<tr><td colspan="6"><div class="empty">Nenhum município corresponde aos filtros.</div></td></tr>';
     }
     fetch("municipios_100mil.json").then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>{

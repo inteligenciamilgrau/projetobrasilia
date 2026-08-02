@@ -35,7 +35,7 @@ Esta ordem registra a força do ecossistema encontrado. Ela **não é mais a ord
 | 6 | **Curitiba/PR** | Sul | B — segunda onda | Microdados atuais e raros: atendimentos de saúde, Guarda Municipal, SIAC 156, alvarás, mobilidade e geodados | Educação é quase só cadastro/geo; meio ambiente é sobretudo cartográfico | **alta** |
 | 7 | **Belo Horizonte/MG** | Sudeste | B — segunda onda | Melhor combinação de CKAN + WFS/GTFS para engenharia; catálogo amplo e atual | Taxonomia incompleta; grupos oficiais mostram saúde rasa e segurança zerada | **alta** |
 | 8 | **Brasília/DF** | Centro-Oeste | B — segunda onda | Competências estaduais e municipais na mesma jurisdição; segurança 2014–2026 por RA, PDAD-A nas 35 RAs e bons geosserviços | Portal central não enumera bem o acervo; ingestão precisa ser fonte a fonte | **média** |
-| 9 | **Jundiaí/SP** | Sudeste | B/C — auditar e iniciar | CIJUN municipal, política própria de dados abertos, mais de 385 indicadores intersetoriais, CSV/TXT/XLS declarados e GEOJundiaí | Exportação/API do Observatório e um recurso real por domínio ainda não foram auditados | **média-alta** |
+| 9 | **Jundiaí/SP** | Sudeste | B/C — auditar e iniciar | CIJUN municipal, política própria de dados abertos, 407 indicadores em JSON, 5.038 linhas de série e WFS público com 103 FeatureTypes | Indicadores agregados e geo não substituem dados operacionais; saúde, educação, segurança e mobilidade ainda precisam de recurso próprio por domínio | **alta no acesso; média-alta no equilíbrio** |
 | 10 | **Belém/PA** | Norte | C — condicional | Único caso nortista multidomínio, segurança corrente por bairro e painel municipal em 15 temas | Sem API; arquivos em Drive/RAR, séries municipais antigas e downloads do Anuário quebrados | **média** |
 
 ### O efeito do porte na decisão
@@ -57,12 +57,12 @@ Populações da estimativa oficial do IBGE para 1º de julho de 2025. P-Piloto u
 
 Fonte: [IBGE — Estimativas da População 2025](https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-depopulacao.html). A nota de porte não mede qualidade urbana ou administrativa.
 
-Outliers fora do top 10 reforçam a nova prioridade de auditoria: Niterói/RJ (516.787), Caxias do Sul/RS (479.599) e Jaraguá do Sul/SC (199.519) recebem P-Piloto próximo de 100; Toledo/PR (160.701) recebe 88,2. Eles ainda precisam provar cobertura temática e acesso real — facilidade de escala não compensa dados fracos.
+Outliers fora do top 10 reforçam a prioridade de cidade média. **Niterói/RJ (516.787) já provou acesso real**: API JSON/CSV com 340 indicadores, ArcGIS REST multidomínio e dados territoriais atuais. Caxias do Sul/RS (479.599) provou acesso técnico, mas continua geo-centrada; Jaraguá do Sul/SC (199.519) permanece um teste geográfico. Toledo/PR (160.701) não passou no teste de execução da API. Facilidade de escala não compensa desequilíbrio temático.
 
 ### Como usar a lista
 
 - **Piloto integral inicial:** auditar Jundiaí por dois dias e, confirmados recursos reais nos oito domínios, iniciar por ela.
-- **Candidatas-sombra de porte ótimo:** auditar imediatamente Niterói e Caxias do Sul; manter Toledo como teste técnico e Jaraguá do Sul como teste geográfico.
+- **Candidatas-sombra de porte ótimo:** recalcular formalmente Niterói contra Belém — o gate técnico foi superado; manter Caxias do Sul e Jaraguá do Sul como testes geográficos. Toledo fica suspensa até a API responder com dados.
 - **Benchmarks controlados:** usar Recife para CKAN, Curitiba para microdados, Belo Horizonte para WFS/GTFS e Rio para granularidade — inicialmente em um ou dois domínios, não na cidade inteira.
 - **Escala posterior:** São Paulo, Fortaleza, Brasília e demais metrópoles entram quando o pipeline já tiver custo, volume e tempo medidos na cidade média.
 - **Condicional:** Belém só entra depois de teste focado em download real, esquema, atualização e cobertura dos quatro domínios mais fracos.
@@ -75,8 +75,8 @@ Essa composição cobre as cinco grandes regiões sem impor cota regional: Sudes
 
 | Ordem | Cidade | Quando promover | Motivo de ainda não entrar |
 |---:|---|---|---|
-| 11 | **Toledo/PR** | Se os endpoints responderem com dados atuais e surgirem mais domínios/recorte territorial | API OpenAPI oficial rara em cidade média, incluindo produção de saúde; Observatório Econômico e Social ainda está em implantação |
-| 12 | **Niterói/RJ** | Se o ArcGIS/ObservaNit oferecerem downloads atuais e variedade mensurável | Saúde por bairro e boa cultura de indicadores, mas sem catálogo funcional revalidado e com profundidade incerta |
+| 11 | **Niterói/RJ** | Após recalcular IDU-E/C-IDU com a nova evidência e confrontar diretamente Belém | O gate de acesso foi superado: CSV integral, API JSON, 340 indicadores e ArcGIS REST atual; falta fechar o inventário por domínio e a nota formal |
+| 12 | **Toledo/PR** | Se os endpoints responderem com dados atuais e surgirem mais domínios/recorte territorial | OpenAPI oficial rara em cidade média, mas as rotas reais devolveram HTTP 400 sem corpo e o painel público ainda é incipiente |
 | 13 | **Maceió/AL** | Se downloads do Observatório tiverem data, esquema e séries consistentes | Boa amplitude em saúde, educação, transporte, urbanismo e economia, mas sem API, sem datas públicas e com lacunas em segurança, finanças e ambiente |
 | 14 | **Salvador/BA** | Se o piloto aceitar um eixo prioritariamente geoespacial | ArcGIS municipal excelente e multi-secretaria, porém publica muito mais “onde estão as coisas” do que eventos e séries operacionais |
 | 15 | **Caxias do Sul/RS** | Para piloto de cidade média/geo | Acesso técnico bom, mas concentração em urbanismo, ambiente e localização de equipamentos |
@@ -95,10 +95,11 @@ Essa composição cobre as cinco grandes regiões sem impor cota regional: Sudes
 - **Brasília/DF:** a SSP-DF publica XLS por Região Administrativa e RISP de 2014 a 2026; a PDAD-A 2024 cobre as 35 RAs e 12 municípios da periferia metropolitana. `[fetch-ok]` — <https://ssp.df.gov.br/dados-por-regiao-administrativa> e <https://pdad.ipe.df.gov.br/>
 - **Rio:** o FeatureServer municipal está consultável, contém bairro, RA, RP e AP e responde em JSON; o MapServer também declara GeoJSON. `[fetch-ok]` — <https://pgeo3.rio.rj.gov.br/arcgis/rest/services/Cartografia/Limites_administrativos/FeatureServer>
 - **Belém:** a página municipal de mobilidade oferece os arquivos-fonte e séries operacionais até 2023; a SEGUP-PA mantém segurança atualizada até 30/06/2026 com filtros territoriais. `[fetch-ok]` — <https://numeros.belem.pa.gov.br/mobilidade-urbana/> e <https://codec.segup.pa.gov.br/>
-- **Niterói:** o ArcGIS Hub antigo retornou página sem catálogo legível nesta retomada; as alegações de saúde por bairro e 14 painéis permanecem apoiadas nas verificações anteriores, não foram renovadas agora. `[fetch-falhou]` — <https://dados-geoniteroi.opendata.arcgis.com/>
-- **Jundiaí:** o portal atual declara CSV/TXT/XLS sem cadastro; a cidade mantém política própria de dados abertos, GEOJundiaí e Observatório com mais de 385 indicadores intersetoriais. O conjunto institucional é mais forte e mais verificável que o de Niterói. `[fetch-ok]` — <https://transparencia.jundiai.sp.gov.br/>, <https://cidadedascriancas.jundiai.sp.gov.br/> e <https://imprensaoficial.jundiai.sp.gov.br/wp-content/uploads/2021/10/145134f6-eb45-4b47-b33a-6373e58ddf9c_Edicao-4978-08-10-2021.pdf>
-- **Toledo:** a especificação OpenAPI 3.0 expõe licitações, receita, RH e uma rota de saúde por mês/ano/unidade; o endpoint real e o frescor dos registros ainda precisam ser testados. `[fetch-ok]` documentação; `[fetch-falhou]` resposta do recurso nesta ferramenta — <https://www.toledo.pr.gov.br/api-publica/docs/api-docs.json>
-- **Pente-fino de cidades médias:** Jundiaí foi o outlier institucional; Toledo, a surpresa técnica; Jaraguá do Sul e São Bento do Sul confirmaram força geográfica, mas não equilíbrio temático. Relatório completo em [outliers-cidades-medias.md](docs/parciais/outliers-cidades-medias.md).
+- **Niterói:** o ecossistema vivo não está no Hub legado. A API do ObservaNit respondeu em JSON e CSV: 340 indicadores, 247 ativos e 314 com série histórica. O ArcGIS REST municipal respondeu com 181 FeatureServers hospedados; amostras reais cobriram escolas, saúde, ônibus, balneabilidade, startups, lotes e dengue. `[fetch-ok]` — <https://observa.niteroi.rj.gov.br/indicadores/>, <https://dataview.niteroi.rj.gov.br/api/v2/indicadores/csv> e <https://sig.niteroi.rj.gov.br/server/rest/services?f=pjson>
+- **Jundiaí:** o GeoServer WFS expõe atualmente 103 FeatureTypes e o Observatório carrega endpoints JSON públicos: 407 indicadores e 5.038 linhas de série, de 1991 a 2026. A pendência agora é conteúdo operacional por domínio, não descobrir API/exportação. `[fetch-ok]` — <https://geo.jundiai.sp.gov.br/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities> e <https://observatorio.jundiai.sp.gov.br/functions/api.php?sheet=indicadores>
+- **Caxias do Sul:** o feed DCAT retornou 126 IDs, mas inclui item externo e metadado de publicador defeituoso; 70 distribuições têm CSV/GeoJSON e o conteúdo continua concentrado em urbanismo/ambiente/localização de equipamentos. `[fetch-ok]` — <https://dadosabertos.caxias.rs.gov.br/api/feed/dcat-us/1.1.json>
+- **Toledo:** a OpenAPI 3.0 expõe nove rotas, mas chamadas reais com e sem datas retornaram HTTP 400 e corpo vazio; a documentação não traz esquema de resposta ou exemplos. `[fetch-ok]` documentação; `[fetch-falhou]` recursos — <https://www.toledo.pr.gov.br/api-publica/docs/api-docs.json>
+- **Pente-fino das contribuições:** Niterói e Jundiaí subiram; Joinville e Caxias ficaram como referências geo; Toledo, Camboriú, Tubarão e Guaratinguetá não passaram os gates atuais. Auditoria consolidada em [AUDITORIA_PENTE_FINO_100MIL.md](docs/AUDITORIA_PENTE_FINO_100MIL.md).
 
 ---
 

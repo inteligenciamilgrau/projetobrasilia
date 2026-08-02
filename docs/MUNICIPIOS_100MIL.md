@@ -49,9 +49,11 @@ Cada município da tabela carrega um `status_coleta`:
 
 | Status | Significado |
 |---|---|
-| `auditado` | O estado passou por triagem datada, com fontes registradas e marcadores de verificação em um parcial próprio |
-| `top10` | Cidade já coberta pelo inventário principal do projeto ([inventario.html](../inventario.html)) |
+| `triado` | O estado passou por busca datada, com fontes e limitações registradas; não significa auditoria IDU-Br completa |
+| `inventariado` | Cidade já coberta pelo inventário principal do projeto ([inventario.html](../inventario.html)) |
 | `pendente` | Aguardando triagem — é aqui que novas contribuições entram |
+
+O papel no ranking é outra dimensão: as dez cidades atuais carregam `papel: "top10"`. Assim, entrar no Top 10 não é confundido com estágio ou profundidade da coleta.
 
 Cada fonte registrada carrega um status herdado dos marcadores do parcial: `confirmado` (aberto na sessão da triagem), `parcial` (existe, mas não plenamente verificável por fetch), `pista` (localizado apenas em busca) e `lacuna` (verificado morto ou ausente). O JSON também aceita `fontes_estaduais` por UF, para a camada E da métrica.
 
@@ -63,7 +65,7 @@ Cada fonte registrada carrega um status herdado dos marcadores do parcial: `conf
 
 ## 5. Resultado da primeira triagem — Santa Catarina
 
-Síntese (evidência completa no [parcial](parciais/regiao-sc-100mil.md)): o padrão catarinense é **geo forte, multidomínio ausente**. Dez das catorze cidades têm iniciativa própria de geoprocessamento — com destaque para o SIMGeo de Joinville (34 serviços ArcGIS REST, incluindo saúde e educação) e para Camboriú, a menor da lista, com 17 produtos georreferenciados datados para download — mas **nenhuma tem catálogo municipal de dados abertos**, e a transparência fiscal é dominada por plataformas de fornecedor em JavaScript (IPM/Betha). A capital mantém o portal de dados legado morto em DNS, enquanto reconstrói pela via geográfica (IDE municipal por decreto de 2024). Camada estadual utilizável: CKAN `dados.sc.gov.br` (112 conjuntos) e SSP-SC (boletins mensais).
+Síntese após o [pente-fino](AUDITORIA_PENTE_FINO_100MIL.md): o padrão catarinense é **geo forte e operacionalmente estreito**. Joinville expõe 35 entradas de serviço/32 nomes únicos no SIMGeo e respondeu com cadastros de saúde e educação. **Camboriú** (4203204) publica 17 produtos majoritariamente em PDF, portanto não é outlier de dados estruturados. **Balneário Camboriú** (4202008) é outro município e expõe WFS com 73 tipos de feição, mas o acervo é cadastral e várias camadas testadas estão vazias. Tubarão mantém bons sinais de digitalização, ainda sem arquivo/API enumerado. Os 14 municípios têm status `triado`, não `auditado`. Camada estadual utilizável: CKAN `dados.sc.gov.br` e SSP-SC.
 
 ## 6. Limites
 

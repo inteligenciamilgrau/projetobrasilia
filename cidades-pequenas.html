@@ -34,7 +34,7 @@
         </nav>
       </div>
       <div class="hero">
-        <div><p class="eyebrow">Experimento separado · cidades pequenas</p><h1>Duas faixas. Vinte candidatas.</h1><p><strong>Casca/RS lidera a fila de auditoria perto de 10 mil habitantes.</strong> Perto de 100 mil, Nova Lima/MG, Rio do Sul/SC e Guaratinguetá/SP apresentam os sinais mais interessantes. O IDHM serviu apenas para reduzir a busca; não é nota de dados.</p></div>
+        <div><p class="eyebrow">Experimento separado · cidades pequenas</p><h1>Duas faixas. Vinte candidatas.</h1><p><strong>Casca/RS lidera a fila de auditoria perto de 10 mil habitantes.</strong> Perto de 100 mil, Nova Lima/MG lidera, Rio do Sul/SC continua sob condição e Vinhedo/SP é a próxima cidade a testar. O IDHM serviu apenas para reduzir a busca; não é nota de dados.</p></div>
         <aside class="decision"><span>Por que separar?</span><strong>Uma cidade minúscula pode permitir análise por bairro — ou até por rua — com custo controlado.</strong><p>Ela não deve competir na mesma régua de representatividade de uma capital. Este ranking é uma investigação paralela.</p></aside>
       </div>
     </div>
@@ -57,21 +57,22 @@
           </table>
         </div>
         <p class="note"><strong>Faixas operacionais:</strong> 7.000–15.000 e 70.000–150.000 habitantes. Empates de IDHM são resolvidos pela proximidade do alvo e depois pelo nome. População: IBGE 2025. IDHM: Atlas Brasil/PNUD, Censo 2010.</p>
+        <p class="warning" style="margin-top:1rem"><strong>Teste de sensibilidade em Santa Catarina:</strong> Camboriú (117.324 hab.) está dentro da faixa, mas os 17 produtos encontrados são majoritariamente mapas PDF; Tubarão (116.725) ainda não expôs arquivo/API comprovado. <strong>Balneário Camboriú é outro município</strong> (código IBGE 4202008) e ficou só 1.674 habitantes acima do teto: seu WFS público tem 73 tipos de feição, porém é fortemente cadastral e várias camadas temáticas estão vazias. Nenhuma das três entra na fila imediata. <a href="docs/AUDITORIA_PENTE_FINO_100MIL.md">Ver auditoria completa.</a></p>
       </div>
     </section>
 
     <section aria-labelledby="fila-titulo">
-      <div class="section-head"><div><p class="kicker">Resultado do primeiro pente-fino</p><h2 id="fila-titulo">Seis cidades para abrir arquivo por arquivo.</h2></div><p>O corte privilegia sinais que realmente diferenciam o município, não a simples existência de um portal de transparência.</p></div>
+      <div class="section-head"><div><p class="kicker">Resultado do pente-fino</p><h2 id="fila-titulo">Seis cidades para abrir arquivo por arquivo.</h2></div><p>O corte privilegia sinais que realmente diferenciam o município, não a simples existência de um portal de transparência.</p></div>
       <div class="shortlists">
         <article class="shortlist"><h3>Faixa de ≈ 10 mil</h3><p>O melhor achado é técnico, ainda não temático.</p>
           <div class="candidate"><b>1</b><div><strong>Casca/RS · 9.698 hab.</strong><p>Exportações CSV atuais e SIGWeb contratado para cadastro, viabilidade, iluminação e endereçamento. Falta confirmar o mapa público e dados fora da administração.</p></div></div>
           <div class="candidate"><b>2</b><div><strong>Águas da Prata/SP · 7.463 hab.</strong><p>API oficial sem autenticação, JSON/XML, paginação e documentação. Limite: os sete módulos encontrados são administrativos.</p></div></div>
           <div class="candidate"><b>3</b><div><strong>Auriflama/SP · 13.856 hab.</strong><p>Mesma boa arquitetura de API e a mesma dúvida: tecnologia pronta, cobertura social ainda estreita.</p></div></div>
         </article>
-        <article class="shortlist"><h3>Faixa de ≈ 100 mil</h3><p>Aqui já aparecem estruturas municipais próprias.</p>
-          <div class="candidate"><b>1</b><div><strong>Nova Lima/MG · 120.959 hab.</strong><p>GeoPNL público, camadas para análise territorial e download pela INDE. É a candidata mais forte para começar pelo nível intraurbano.</p></div></div>
-          <div class="candidate"><b>2</b><div><strong>Rio do Sul/SC · 77.451 hab.</strong><p>Portal com área de dados abertos, inventário e atualização corrente, além do SIGEP municipal de projetos.</p></div></div>
-          <div class="candidate"><b>3</b><div><strong>Guaratinguetá/SP · 121.916 hab.</strong><p>Observatório municipal, áreas de planejamento formadas por grupos de bairros e metodologia de indicadores. O risco é o envelhecimento de parte do conteúdo.</p></div></div>
+        <article class="shortlist"><h3>Faixa de ≈ 100 mil</h3><p>Uma aprovada no geo, uma condicional e a próxima auditoria.</p>
+          <div class="candidate"><b>1</b><div><strong>Nova Lima/MG · 120.959 hab.</strong><p>GeoPNL com 91 recursos-folha no mapa público, incluindo saúde, ensino, assistência, mobilidade e território. Lidera o microlaboratório intraurbano; ainda precisa provar dados operacionais.</p></div></div>
+          <div class="candidate"><b>2</b><div><strong>Rio do Sul/SC · 77.451 hab.</strong><p>O portal implementa a função de dados abertos, mas nenhum arquivo exportado teve formato e esquema lidos. Permanece na fila com confiança média-baixa.</p></div></div>
+          <div class="candidate"><b>3</b><div><strong>Vinhedo/SP · 79.089 hab.</strong><p>JSON administrativo e Mappa Web com bairros e lotes fazem dela o próximo teste completo. Ainda não é uma candidata confirmada.</p></div></div>
         </article>
       </div>
     </section>
@@ -95,7 +96,7 @@
         <article class="criterion"><strong>4. Atualidade</strong><p>Existem registros atuais, série histórica e rotina visível de atualização?</p></article>
         <article class="criterion"><strong>5. Governança</strong><p>O município mantém inventário, documentação e responsáveis, ou só usa uma tela genérica de fornecedor?</p></article>
       </div>
-      <p class="warning" style="margin-top:1rem"><strong>Confiança desta etapa: média no pré-filtro e baixa a média na triagem de dados.</strong> População e IDHM vêm de bases oficiais completas. Já a ausência de um portal numa busca rápida não prova que ele não exista; portais JavaScript e sistemas sem indexação podem gerar falso negativo.</p>
+      <p class="warning" style="margin-top:1rem"><strong>Confiança desta etapa: alta para população e identidade municipal; variável para dados.</strong> Nova Lima e Balneário Camboriú tiveram serviços e esquemas testados. Rio do Sul ainda depende de exportação interativa; a ausência de portal numa busca não prova que ele não exista. A conclusão e cada intervalo estão na <a href="docs/AUDITORIA_PENTE_FINO_100MIL.md">auditoria pente-fino</a>.</p>
     </section>
 
     <section aria-labelledby="fontes-titulo">
@@ -122,18 +123,20 @@
       {band:"micro",idhmRank:8,auditRank:9,city:"Ouro/SC",population:7062,idhm:.774,access:"Portal Atende; export não confirmado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://ouro.sc.gov.br/cartaservicos/detalhe-portal-da-transparencia4/"},
       {band:"micro",idhmRank:9,auditRank:10,city:"Paraí/RS",population:7362,idhm:.773,access:"Portal e licitações; sem base aberta",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://parai.rs.gov.br/licitacao/?ano=2026&idModalidade=5"},
       {band:"micro",idhmRank:10,auditRank:3,city:"Auriflama/SP",population:13856,idhm:.773,access:"API JSON/XML documentada",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.auriflama.sp.gov.br/dados-abertos"},
-      {band:"small",idhmRank:1,auditRank:5,city:"Valinhos/SP",population:132258,idhm:.819,access:"JSON administrativo",territory:"Mapas temáticos em arquivos",triage:"reserve",triageLabel:"Reserva forte",url:"https://www.valinhos.sp.gov.br/portal/dados-abertos"},
-      {band:"small",idhmRank:2,auditRank:4,city:"Vinhedo/SP",population:79089,idhm:.817,access:"JSON administrativo",territory:"Mappa Web com bairros e lotes",triage:"reserve",triageLabel:"Reserva forte",url:"https://www.vinhedo.sp.gov.br/portal/dados-abertos"},
-      {band:"small",idhmRank:3,auditRank:1,city:"Nova Lima/MG",population:120959,idhm:.813,access:"Geoportal e download pela INDE",territory:"GeoPNL público",triage:"now",triageLabel:"Auditar agora",url:"https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl"},
-      {band:"small",idhmRank:4,auditRank:6,city:"Assis/SP",population:104858,idhm:.805,access:"JSON administrativo e relatórios",territory:"Mapas temáticos, escolas e UBS",triage:"reserve",triageLabel:"Reserva",url:"https://www.assis.sp.gov.br/portal/dados-abertos"},
-      {band:"small",idhmRank:5,auditRank:2,city:"Rio do Sul/SC",population:77451,idhm:.802,access:"Dados abertos e inventário",territory:"Projetos municipais no SIGEP",triage:"now",triageLabel:"Auditar agora",url:"https://riodosul.atende.net/transparencia/"},
-      {band:"small",idhmRank:6,auditRank:7,city:"Pirassununga/SP",population:75594,idhm:.801,access:"SIG municipal previsto; export a testar",territory:"Cadastro territorial multifinalitário",triage:"reserve",triageLabel:"Reserva",url:"https://pirassununga.sp.gov.br/Publicacoes/Licitacoes/2022/Concorr%C3%AAncia%20P%C3%BAblica/CP%20001-22%20-%20Loca%C3%A7%C3%A3o%20de%20software%20de%20gest%C3%A3o%20do%20cadastro%20territorial%20multifinalit%C3%A1rio/001%20-%20Edital%20e%20Termo%20de%20Refer%C3%AAncia/001%20-%20Termo%20de%20Refer%C3%AAncia.pdf"},
-      {band:"small",idhmRank:7,auditRank:8,city:"Concórdia/SC",population:87206,idhm:.800,access:"Transparência Atende",territory:"Servidor geo localizado; não validado",triage:"reserve",triageLabel:"Reserva",url:"https://concordia.atende.net/transparencia/"},
-      {band:"small",idhmRank:8,auditRank:3,city:"Guaratinguetá/SP",population:121916,idhm:.798,access:"Observatório e relatórios",territory:"APEMs formadas por bairros",triage:"now",triageLabel:"Auditar agora",url:"https://observatorio.guaratingueta.sp.gov.br/observatorio-de-politicas-publicas/"},
-      {band:"small",idhmRank:9,auditRank:10,city:"São João da Boa Vista/SP",population:96080,idhm:.797,access:"Sem catálogo diferenciado localizado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.saojoao.sp.gov.br/"},
-      {band:"small",idhmRank:10,auditRank:9,city:"Fernandópolis/SP",population:73508,idhm:.797,access:"SIG contratado; acesso público a testar",territory:"Ortofoto e cadastro imobiliário",triage:"reserve",triageLabel:"Reserva",url:"https://www.fernandopolis.sp.gov.br/publicacoes/pregao-eletronico/edital-de-pregao-eletronico-n-0832023-contratacao-de-empresa-de-engenharia-especializada-em-geoprocessamento"}
+      {band:"small",idhmRank:1,auditRank:4,city:"Valinhos/SP",population:132258,idhm:.819,access:"JSON administrativo",territory:"Mapas temáticos em arquivos",triage:"reserve",triageLabel:"Reserva forte",url:"https://www.valinhos.sp.gov.br/portal/dados-abertos"},
+      {band:"small",idhmRank:2,auditRank:3,city:"Vinhedo/SP",population:79089,idhm:.817,access:"JSON administrativo",territory:"Mappa Web com bairros e lotes",triage:"now",triageLabel:"Próxima auditoria",url:"https://www.vinhedo.sp.gov.br/portal/dados-abertos"},
+      {band:"small",idhmRank:3,auditRank:1,city:"Nova Lima/MG",population:120959,idhm:.813,access:"FeatureServer público; 91 recursos-folha",territory:"Saúde, ensino, assistência, mobilidade e cadastro",triage:"now",triageLabel:"Líder confirmada",url:"https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl"},
+      {band:"small",idhmRank:4,auditRank:5,city:"Assis/SP",population:104858,idhm:.805,access:"JSON administrativo e relatórios",territory:"Mapas temáticos, escolas e UBS",triage:"reserve",triageLabel:"Reserva",url:"https://www.assis.sp.gov.br/portal/dados-abertos"},
+      {band:"small",idhmRank:5,auditRank:2,city:"Rio do Sul/SC",population:77451,idhm:.802,access:"Exportação existe na interface; arquivo não lido",territory:"Projetos municipais no SIGEP",triage:"now",triageLabel:"Condicional",url:"https://riodosul.atende.net/transparencia/"},
+      {band:"small",idhmRank:6,auditRank:6,city:"Pirassununga/SP",population:75594,idhm:.801,access:"SIG municipal previsto; export a testar",territory:"Cadastro territorial multifinalitário",triage:"reserve",triageLabel:"Reserva",url:"https://pirassununga.sp.gov.br/Publicacoes/Licitacoes/2022/Concorr%C3%AAncia%20P%C3%BAblica/CP%20001-22%20-%20Loca%C3%A7%C3%A3o%20de%20software%20de%20gest%C3%A3o%20do%20cadastro%20territorial%20multifinalit%C3%A1rio/001%20-%20Edital%20e%20Termo%20de%20Refer%C3%AAncia/001%20-%20Termo%20de%20Refer%C3%AAncia.pdf"},
+      {band:"small",idhmRank:7,auditRank:7,city:"Concórdia/SC",population:87206,idhm:.800,access:"Transparência Atende",territory:"Servidor geo localizado; não validado",triage:"reserve",triageLabel:"Reserva",url:"https://concordia.atende.net/transparencia/"},
+      {band:"small",idhmRank:8,auditRank:10,city:"Guaratinguetá/SP",population:121916,idhm:.798,access:"Observatório legado; sem API/export atual",territory:"APEMs formadas por bairros",triage:"gap",triageLabel:"Legado",url:"https://observatorio.guaratingueta.sp.gov.br/elementor-11721/"},
+      {band:"small",idhmRank:9,auditRank:9,city:"São João da Boa Vista/SP",population:96080,idhm:.797,access:"Sem catálogo diferenciado localizado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.saojoao.sp.gov.br/"},
+      {band:"small",idhmRank:10,auditRank:8,city:"Fernandópolis/SP",population:73508,idhm:.797,access:"SIG contratado; acesso público a testar",territory:"Ortofoto e cadastro imobiliário",triage:"reserve",triageLabel:"Reserva",url:"https://www.fernandopolis.sp.gov.br/publicacoes/pregao-eletronico/edital-de-pregao-eletronico-n-0832023-contratacao-de-empresa-de-engenharia-especializada-em-geoprocessamento"}
     ];
     const formatter = new Intl.NumberFormat("pt-BR");
+    const esc = value => String(value).replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
+    const safeUrl = value => { try { const url = new URL(value, location.href); return ["http:","https:"].includes(url.protocol) ? url.href : "#"; } catch(error) { return "#"; } };
     const results = document.querySelector("#results");
     const status = document.querySelector("#status");
     const bandButtons = [...document.querySelectorAll("[data-band]")];
@@ -153,7 +156,7 @@
       bandButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.band===activeBand)));
       sortButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.sort===activeSort)));
       status.textContent=`Faixa ${meta.label} (${meta.range} habitantes) · ordem por ${sortLabels[activeSort]} · escolhas salvas neste navegador`;
-      results.innerHTML=rows.map((item,index)=>`<tr><td class="rank">${index+1}</td><td class="city">${item.city}</td><td class="number-cell">${formatter.format(item.population)}</td><td class="number-cell">${item.idhm.toFixed(3).replace(".",",")}</td><td>${item.access}</td><td>${item.territory}</td><td><span class="badge ${item.triage}">${item.triageLabel}</span></td><td><a class="evidence-link" href="${item.url}" target="_blank" rel="noopener noreferrer">Abrir ↗</a></td></tr>`).join("");
+      results.innerHTML=rows.map((item,index)=>`<tr><td class="rank">${index+1}</td><td class="city">${esc(item.city)}</td><td class="number-cell">${formatter.format(item.population)}</td><td class="number-cell">${item.idhm.toFixed(3).replace(".",",")}</td><td>${esc(item.access)}</td><td>${esc(item.territory)}</td><td><span class="badge ${esc(item.triage)}">${esc(item.triageLabel)}</span></td><td><a class="evidence-link" href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">Abrir ↗</a></td></tr>`).join("");
     }
     bandButtons.forEach(button=>button.addEventListener("click",()=>{activeBand=button.dataset.band;save();render()}));
     sortButtons.forEach(button=>button.addEventListener("click",()=>{activeSort=button.dataset.sort;save();render()}));

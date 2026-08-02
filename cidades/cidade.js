@@ -2,6 +2,8 @@ const slug = document.body.dataset.city;
 const root = "../";
 const formatter = new Intl.NumberFormat("pt-BR");
 const escapeHtml = value => String(value).replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
+const safeUrl = value => { try { const url=new URL(value,location.href); return ["http:","https:"].includes(url.protocol) ? url.href : "#"; } catch(error) { return "#"; } };
+const safeSlug = value => /^[a-z0-9-]+$/.test(String(value)) ? String(value) : "";
 const cityPages = {"Recife/PE":"recife","São Paulo/SP":"sao-paulo","Fortaleza/CE":"fortaleza","Rio de Janeiro/RJ":"rio-de-janeiro","Porto Alegre/RS":"porto-alegre","Curitiba/PR":"curitiba","Belo Horizonte/MG":"belo-horizonte","Brasília/DF":"brasilia","Jundiaí/SP":"jundiai","Belém/PA":"belem"};
 
 Promise.all([
@@ -37,9 +39,9 @@ Promise.all([
   const maxCount = Math.max(...domainCounts.map(item => item.count), 1);
   document.querySelector("#domains").innerHTML = domainCounts.map(item => `<article class="domain-card"><strong>${escapeHtml(item.domain)}</strong><span>${item.count} ${item.count === 1 ? "evidência catalogada" : "evidências catalogadas"}</span><div class="bar" aria-hidden="true"><i style="width:${Math.round(item.count/maxCount*100)}%"></i></div></article>`).join("");
 
-  document.querySelector("#sources").innerHTML = sources.map(item => `<article class="source"><div><div class="tags"><span class="tag domain">${escapeHtml(item.domain)}</span><span class="tag">${escapeHtml(item.layer)}</span></div><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.note)}</p></div><dl class="meta"><div><dt>Produtor</dt><dd>${escapeHtml(item.producer)}</dd></div><div><dt>Acesso</dt><dd>${escapeHtml(item.access)}</dd></div></dl><dl class="meta"><div><dt>Território</dt><dd>${escapeHtml(item.granularity)}</dd></div><div><dt>Frescor</dt><dd>${escapeHtml(item.freshness)}</dd></div></dl><div><span class="status ${escapeHtml(item.status)}">${escapeHtml(item.status)}</span><br><a class="open" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></div></article>`).join("");
+  document.querySelector("#sources").innerHTML = sources.map(item => `<article class="source"><div><div class="tags"><span class="tag domain">${escapeHtml(item.domain)}</span><span class="tag">${escapeHtml(item.layer)}</span></div><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.note)}</p></div><dl class="meta"><div><dt>Produtor</dt><dd>${escapeHtml(item.producer)}</dd></div><div><dt>Acesso</dt><dd>${escapeHtml(item.access)}</dd></div></dl><dl class="meta"><div><dt>Território</dt><dd>${escapeHtml(item.granularity)}</dd></div><div><dt>Frescor</dt><dd>${escapeHtml(item.freshness)}</dd></div></dl><div><span class="status ${escapeHtml(item.status)}">${escapeHtml(item.status)}</span><br><a class="open" href="${escapeHtml(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></div></article>`).join("");
 
-  document.querySelector("#city-nav").innerHTML = profilesData.profiles.map(item => `<a href="${item.slug}.html"${item.slug === slug ? ' aria-current="page"' : ""}>${escapeHtml(item.city.replace(/\/.*/,""))}</a>`).join("");
+  document.querySelector("#city-nav").innerHTML = profilesData.profiles.map(item => `<a href="${escapeHtml(safeSlug(item.slug))}.html"${item.slug === slug ? ' aria-current="page"' : ""}>${escapeHtml(item.city.replace(/\/.*/,""))}</a>`).join("");
 }).catch(() => {
   document.querySelector("#city-summary").textContent = "Não foi possível carregar os dados desta cidade. Abra a página por um servidor HTTP ou consulte os arquivos JSON do projeto.";
   document.querySelector("#sources").innerHTML = '<div class="empty">Dados indisponíveis nesta visualização. <a href="../inventario_top10.json">Abrir inventário JSON</a>.</div>';

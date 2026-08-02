@@ -1,5 +1,5 @@
-{
- "schema_version": "1.0",
+﻿{
+ "schema_version": "1.1",
  "updated_at": "2026-08-01",
  "criterio": "Municípios com população estimada acima de 100.000 habitantes",
  "fonte_populacao": {
@@ -7,7 +7,7 @@
   "url_ods": "https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2025/POP2025_20260113.ods",
   "url_api": "https://apisidra.ibge.gov.br/values/t/6579/n6/all/v/9324/p/2025"
  },
- "metodo": "Extraído da tabela SIDRA 6579 (variável 9324) em 2026-08-01 e validado contra os valores publicados no DOSSIE_PILOTO.md e em docs/CIDADES_PEQUENAS.md. A coleta de fontes por município é incremental: status \"pendente\" marca municípios ainda sem varredura.",
+ "metodo": "Extraído da tabela SIDRA 6579 (variável 9324) em 2026-08-01 e validado contra os valores publicados no DOSSIE_PILOTO.md e em docs/CIDADES_PEQUENAS.md. A coleta é incremental: pendente = sem varredura, triado = busca estadual documentada sem IDU-Br completo, inventariado = fontes registradas no inventário principal. O campo papel=top10 é separado do estágio da coleta.",
  "total_municipios": 338,
  "ufs": [
   {
@@ -248,7 +248,8 @@
      "municipio": "Fortaleza",
      "codigo_ibge": "2304400",
      "populacao_2025": 2578483,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -319,7 +320,8 @@
      "municipio": "Brasília",
      "codigo_ibge": "5300108",
      "populacao_2025": 2996899,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     }
    ],
@@ -617,7 +619,8 @@
      "municipio": "Belo Horizonte",
      "codigo_ibge": "3106200",
      "populacao_2025": 2415872,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -785,8 +788,22 @@
      "municipio": "Nova Lima",
      "codigo_ibge": "3144805",
      "populacao_2025": 120959,
-     "status_coleta": "pendente",
-     "fontes": []
+     "status_coleta": "triado",
+     "fontes": [
+      {
+       "nome": "GeoPNL — serviço oficial",
+       "url": "https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl",
+       "acesso": "Geoportal público",
+       "status": "confirmado"
+      },
+      {
+       "nome": "Mapa Público Territorial Municipal",
+       "url": "https://www.arcgis.com/apps/webappviewer/index.html?id=ff761e397b904ad4b164eb8a71cb7d86",
+       "acesso": "91 recursos-folha; FeatureServers",
+       "status": "confirmado"
+      }
+     ],
+     "nota": "Líder da faixa de ≈100 mil para microlaboratório territorial; cobertura geo forte, microdados operacionais ainda pendentes."
     },
     {
      "municipio": "Araxá",
@@ -956,7 +973,8 @@
      "municipio": "Belém",
      "codigo_ibge": "1501402",
      "populacao_2025": 1397315,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -1105,7 +1123,8 @@
      "municipio": "Recife",
      "codigo_ibge": "2611606",
      "populacao_2025": 1588376,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -1240,7 +1259,8 @@
      "municipio": "Curitiba",
      "codigo_ibge": "4106902",
      "populacao_2025": 1830795,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -1317,8 +1337,22 @@
      "municipio": "Toledo",
      "codigo_ibge": "4127700",
      "populacao_2025": 160701,
-     "status_coleta": "pendente",
-     "fontes": []
+     "status_coleta": "triado",
+     "fontes": [
+      {
+       "nome": "API Pública — OpenAPI 3.0",
+       "url": "https://www.toledo.pr.gov.br/api-publica/docs/api-docs.json",
+       "acesso": "9 rotas documentadas",
+       "status": "confirmado"
+      },
+      {
+       "nome": "Indicadores Públicos",
+       "url": "https://www.toledo.pr.gov.br/secretarias/ti/indicadores-publicos",
+       "acesso": "Painel incipiente",
+       "status": "parcial"
+      }
+     ],
+     "nota": "Chamadas reais com e sem datas retornaram HTTP 400 sem corpo; documentação não basta para promover a cidade."
     },
     {
      "municipio": "Paranaguá",
@@ -1416,7 +1450,8 @@
      "municipio": "Rio de Janeiro",
      "codigo_ibge": "3304557",
      "populacao_2025": 6730729,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -1458,8 +1493,28 @@
      "municipio": "Niterói",
      "codigo_ibge": "3303302",
      "populacao_2025": 516787,
-     "status_coleta": "pendente",
-     "fontes": []
+     "status_coleta": "triado",
+     "fontes": [
+      {
+       "nome": "ObservaNit/DataView — CSV integral",
+       "url": "https://dataview.niteroi.rj.gov.br/api/v2/indicadores/csv",
+       "acesso": "CSV + API JSON; 340 indicadores",
+       "status": "confirmado"
+      },
+      {
+       "nome": "SIG Niterói — ArcGIS REST",
+       "url": "https://sig.niteroi.rj.gov.br/server/rest/services?f=pjson",
+       "acesso": "181 FeatureServers hospedados",
+       "status": "confirmado"
+      },
+      {
+       "nome": "Dados Abertos da Saúde",
+       "url": "https://saude.niteroi.rj.gov.br/dados-abertos/",
+       "acesso": "TabNit: CSV/Excel/TabWin por bairro",
+       "status": "confirmado"
+      }
+     ],
+     "nota": "Gate técnico superado; candidata à reclassificação formal contra Belém após fechar a matriz por domínio."
     },
     {
      "municipio": "São João de Meriti",
@@ -1714,15 +1769,24 @@
      "municipio": "Porto Alegre",
      "codigo_ibge": "4314902",
      "populacao_2025": 1388794,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
      "municipio": "Caxias do Sul",
      "codigo_ibge": "4305108",
      "populacao_2025": 479599,
-     "status_coleta": "pendente",
-     "fontes": []
+     "status_coleta": "triado",
+     "fontes": [
+      {
+       "nome": "Dados Abertos Caxias — feed DCAT",
+       "url": "https://dadosabertos.caxias.rs.gov.br/api/feed/dcat-us/1.1.json",
+       "acesso": "126 IDs; 70 CSV e 70 GeoJSON",
+       "status": "confirmado"
+      }
+     ],
+     "nota": "Bom acesso técnico, mas catálogo inclui item externo e metadado defeituoso; conteúdo permanece geo-centrado."
     },
     {
      "municipio": "Canoas",
@@ -1855,7 +1919,7 @@
      "municipio": "Joinville",
      "codigo_ibge": "4209102",
      "populacao_2025": 664541,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "SIMGeo — diretório ArcGIS REST",
@@ -1876,13 +1940,13 @@
        "status": "parcial"
       }
      ],
-     "nota": "Geo mais estruturado de SC: SIMGeo com 34 serviços ArcGIS REST (inclui saúde e educação); multidomínio anual em PDF."
+     "nota": "SIMGeo com 35 entradas de serviço e 32 nomes únicos; saúde e educação responderam em JSON/GeoJSON, sobretudo como cadastros de equipamentos. O multidomínio amplo permanece em PDF anual."
     },
     {
      "municipio": "Florianópolis",
      "codigo_ibge": "4205407",
      "populacao_2025": 587486,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "GeoPortal — IDE municipal",
@@ -1915,7 +1979,7 @@
      "municipio": "Blumenau",
      "codigo_ibge": "4202404",
      "populacao_2025": 385558,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "GEO Blumenau — diretório ArcGIS REST",
@@ -1936,7 +2000,7 @@
      "municipio": "São José",
      "codigo_ibge": "4216602",
      "populacao_2025": 295658,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Portal da Transparência",
@@ -1957,7 +2021,7 @@
      "municipio": "Itajaí",
      "codigo_ibge": "4208203",
      "populacao_2025": 294850,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "INIS — análise espacial e geoprocessamento",
@@ -1978,7 +2042,7 @@
      "municipio": "Chapecó",
      "codigo_ibge": "4204202",
      "populacao_2025": 282648,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Site da prefeitura",
@@ -1999,7 +2063,7 @@
      "municipio": "Palhoça",
      "codigo_ibge": "4211900",
      "populacao_2025": 253469,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Portal da Transparência (IPM atende.net)",
@@ -2014,7 +2078,7 @@
      "municipio": "Criciúma",
      "codigo_ibge": "4204608",
      "populacao_2025": 227438,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Portal Transparência — bases de dados abertos",
@@ -2029,7 +2093,7 @@
      "municipio": "Jaraguá do Sul",
      "codigo_ibge": "4208906",
      "populacao_2025": 199519,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "GeoPortal (página oficial)",
@@ -2050,7 +2114,7 @@
      "municipio": "Lages",
      "codigo_ibge": "4209300",
      "populacao_2025": 172458,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Portal da Transparência (Betha)",
@@ -2065,7 +2129,7 @@
      "municipio": "Brusque",
      "codigo_ibge": "4202909",
      "populacao_2025": 155307,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Portal da Transparência (atende.net)",
@@ -2086,46 +2150,58 @@
      "municipio": "Balneário Camboriú",
      "codigo_ibge": "4202008",
      "populacao_2025": 151674,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Plataforma geoespacial",
        "url": "https://geo.bc.sc.gov.br/",
-       "acesso": "Acesso público declarado",
-       "status": "pista"
+       "acesso": "Aplicação pública",
+       "status": "confirmado"
+      },
+      {
+       "nome": "GeoServer WFS 2.0",
+       "url": "https://geo.bc.sc.gov.br/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+       "acesso": "73 FeatureTypes; GetFeature em JSON",
+       "status": "confirmado"
       }
      ],
-     "nota": "Plataforma geoespacial com botão de acesso público declarado; não aberta nesta triagem."
+     "nota": "Município distinto de Camboriú e 1.674 habitantes acima do teto de 150 mil. WFS real, mas geo/cadastral: 18 bairros, 22.254 lotes, 10.059 pontos de iluminação; camadas testadas de ensino e área de risco estavam vazias."
     },
     {
      "municipio": "Camboriú",
      "codigo_ibge": "4203204",
      "populacao_2025": 117324,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Produtos georreferenciados — Depto. de Geoinformação",
        "url": "https://camboriu.sc.gov.br/planejamento-urbano/",
-       "acesso": "Download (Drive/PDF)",
-       "status": "confirmado"
+       "acesso": "Mapas estáticos (Drive/PDF)",
+       "status": "parcial"
       }
      ],
-     "nota": "Outlier positivo: 17 produtos georreferenciados datados (jan–fev/2025) para download, incluindo saúde e ensino."
+     "nota": "Município distinto de Balneário Camboriú. Os 17 produtos datados são majoritariamente mapas PDF; saúde e ensino não são camadas/tabelas reutilizáveis e ao menos um link estava quebrado."
     },
     {
      "municipio": "Tubarão",
      "codigo_ibge": "4218707",
      "populacao_2025": 116725,
-     "status_coleta": "auditado",
+     "status_coleta": "triado",
      "fontes": [
       {
        "nome": "Portal da Transparência (Betha)",
        "url": "https://tubarao.sc.gov.br/portal-da-transparencia/",
-       "acesso": "Fornecedor; mapa de obras",
-       "status": "pista"
+       "acesso": "Fornecedor JavaScript",
+       "status": "parcial"
+      },
+      {
+       "nome": "Geoprocessamento público — anúncio oficial",
+       "url": "https://tubarao.sc.gov.br/acesso-publico-ao-sistema-de-geoprocessamento-de-tubarao-esta-disponivel-desde-a-ultima-sexta-feira-4/",
+       "acesso": "Acesso público declarado; endpoint não enumerado",
+       "status": "parcial"
       }
      ],
-     "nota": "Portal Betha novo (94% de conformidade declarada, mapa de obras) e geoprocessamento aberto ao público."
+     "nota": "Boa pista de capacidade institucional, mas nenhum catálogo, WFS/REST ou arquivo estruturado foi confirmado; não entra no ranking de qualidade da faixa."
     }
    ],
    "fontes_estaduais": [
@@ -2201,7 +2277,8 @@
      "municipio": "São Paulo",
      "codigo_ibge": "3550308",
      "populacao_2025": 11904961,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -2278,7 +2355,8 @@
      "municipio": "Jundiaí",
      "codigo_ibge": "3525904",
      "populacao_2025": 463039,
-     "status_coleta": "top10",
+     "status_coleta": "inventariado",
+     "papel": "top10",
      "fontes": []
     },
     {
@@ -2670,8 +2748,16 @@
      "municipio": "Guaratinguetá",
      "codigo_ibge": "3518404",
      "populacao_2025": 121916,
-     "status_coleta": "pendente",
-     "fontes": []
+     "status_coleta": "triado",
+     "fontes": [
+      {
+       "nome": "Participa Guará — APEMs",
+       "url": "https://observatorio.guaratingueta.sp.gov.br/elementor-11721/",
+       "acesso": "Relatório/painel legado",
+       "status": "parcial"
+      }
+     ],
+     "nota": "Metodologia territorial útil, mas painel atual zerado, relatório 2019/2020 e nenhuma API/exportação corrente localizada; rebaixada."
     },
     {
      "municipio": "Jandira",

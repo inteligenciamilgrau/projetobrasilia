@@ -163,6 +163,7 @@
     let data = { cities: [], sources: [] };
     const normalize = value => String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const escapeHtml = value => String(value).replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
+    const safeUrl = value => { try { const url=new URL(value,location.href); return ["http:","https:"].includes(url.protocol) ? url.href : "#"; } catch(error) { return "#"; } };
 
     function unique(field) { return [...new Set(data.sources.map(item => item[field]))].sort((a,b) => a.localeCompare(b,"pt-BR")); }
     function fillSelect(select, values) { values.forEach(value => select.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`)); }
@@ -191,7 +192,7 @@
         <div><div class="city-domain"><a class="tag" href="cidades/${cityPages[item.city]}.html">${escapeHtml(item.city)}</a><span class="tag domain">${escapeHtml(item.domain)}</span></div><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.note)}</p></div>
         <dl class="meta"><div><dt>Produtor</dt><dd>${escapeHtml(item.producer)}</dd></div><div><dt>Camada</dt><dd>${escapeHtml(item.layer)}</dd></div><div><dt>Acesso</dt><dd>${escapeHtml(item.access)}</dd></div></dl>
         <dl class="meta"><div><dt>Território</dt><dd>${escapeHtml(item.granularity)}</dd></div><div><dt>Atualização</dt><dd>${escapeHtml(item.freshness)}</dd></div></dl>
-        <div><span class="status ${escapeHtml(item.status)}">${escapeHtml(item.status)}</span><br><a class="open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></div>
+        <div><span class="status ${escapeHtml(item.status)}">${escapeHtml(item.status)}</span><br><a class="open-link" href="${escapeHtml(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></div>
       </article>`).join("");
     }
 

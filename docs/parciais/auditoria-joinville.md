@@ -1,5 +1,7 @@
 # auditoria:joinville — reavaliação do descarte com evidência nova
 
+> **Nota de auditoria posterior (2026-08-01): o bloqueio da página de download não bloqueia os dados.** O diretório ArcGIS REST do SIMGeo tem 35 entradas/32 nomes únicos. Foram testados 92 equipamentos de saúde, 52 coberturas de UBSF, 230 escolas e 61 equipamentos de assistência em respostas JSON/GeoJSON. Isso corrige o diagnóstico de “geo hostil a máquina”; permanece válida a conclusão de que o acervo é sobretudo cadastral e não sustenta piloto multidomínio sozinho.
+
 **Status:** em andamento
 **Última atualização:** 2026-08-01
 **Agente:** `auditoria:joinville`

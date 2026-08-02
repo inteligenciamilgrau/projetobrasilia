@@ -1146,7 +1146,7 @@
         </article>
         <article class="process-card">
           <h3>Pente-fino de outliers</h3>
-          <p>Cidades ricas, industriais e tecnológicas foram testadas. Jundiaí se destacou institucionalmente; Toledo, tecnicamente.</p>
+          <p>Cidades ricas, industriais e tecnológicas foram testadas. Jundiaí confirmou APIs próprias; Niterói foi a maior surpresa multidomínio. Toledo não passou no teste de execução.</p>
         </article>
         <article class="process-card">
           <h3>Métrica e confiança</h3>
@@ -1252,9 +1252,9 @@
               <td class="rank">09</td>
               <td><a class="city-name" href="cidades/jundiai.html">Jundiaí/SP</a><span class="region-label">Sudeste</span></td>
               <td><span class="badge badge-a">A · auditar/iniciar</span></td>
-              <td>CIJUN própria, norma de dados abertos, GEOJundiaí e mais de 385 indicadores.</td>
-              <td>Exportação/API do Observatório e um recurso por domínio ainda não auditados.</td>
-              <td><span class="badge conf-high">média-alta</span></td>
+              <td>CIJUN própria, 407 indicadores em JSON e GEOJundiaí com WFS público.</td>
+              <td>Indicadores e geo ainda não substituem dados operacionais equilibrados nos oito domínios.</td>
+              <td><span class="badge conf-high">alta no acesso</span></td>
             </tr>
             <tr>
               <td class="rank">10</td>
@@ -1267,7 +1267,7 @@
           </tbody>
         </table>
       </div>
-      <p class="table-note"><strong>Reservas imediatas:</strong> Toledo/PR, Niterói/RJ, Maceió/AL, Salvador/BA, Caxias do Sul/RS e Goiânia/GO.</p>
+      <p class="table-note"><strong>Reservas imediatas:</strong> Niterói/RJ (gate técnico superado; falta reclassificação formal), Toledo/PR, Maceió/AL, Salvador/BA, Caxias do Sul/RS e Goiânia/GO.</p>
       <div class="warning"><strong>Impacto do novo critério:</strong> Jundiaí sobe de 9ª referência de qualidade para candidata principal à execução do primeiro piloto. São Paulo e Rio continuam padrões de comparação, mas deixam de ser escolhas naturais para uma implantação integral inicial.</div>
     </section>
 
@@ -1383,7 +1383,7 @@ Sensibilidade: testar porte com 15%, 25% e 35%</pre>
         </div>
         <div class="balance-box">
           <h3>Melhor equilíbrio encontrado</h3>
-          <p><strong>Jundiaí/SP · 463.039 habitantes · P-Piloto 100.</strong> Niterói e Caxias do Sul também estão na faixa ótima; Toledo e Jaraguá ficam próximos, mas ainda precisam provar equilíbrio temático.</p>
+          <p><strong>Jundiaí/SP · 463.039 habitantes · P-Piloto 100.</strong> Niterói também está na faixa ótima e já provou API/CSV/ArcGIS multidomínio; Caxias do Sul continua geo-centrada. Toledo falhou na execução da API.</p>
         </div>
       </div>
 
@@ -1413,7 +1413,7 @@ Sensibilidade: testar porte com 15%, 25% e 35%</pre>
       <div class="section-heading">
         <div>
           <p class="kicker">Pente-fino de cidades médias</p>
-          <h2 id="outliers-titulo">O outlier institucional e a surpresa técnica</h2>
+          <h2 id="outliers-titulo">Dois outliers confirmados — e uma promessa reprovada</h2>
         </div>
         <p>Riqueza, industrialização e fama tecnológica serviram para descobrir candidatas — nunca como pontos. A evidência prática continuou sendo o filtro.</p>
       </div>
@@ -1422,17 +1422,17 @@ Sensibilidade: testar porte com 15%, 25% e 35%</pre>
         <article class="outlier-card featured">
           <span class="mini-label">Outlier institucional · top 10</span>
           <h3>Jundiaí/SP</h3>
-          <p>Combina companhia municipal de informática, política própria de dados abertos, GEOJundiaí e mais de 385 indicadores intersetoriais. É a cidade que mais se aproxima da ideia de “governo que pensa por dados”.</p>
+          <p>Combina companhia municipal de informática, política própria, 407 indicadores em JSON e WFS com 103 FeatureTypes. O próximo gate são recursos operacionais equilibrados.</p>
         </article>
         <article class="outlier-card">
-          <span class="mini-label">Surpresa técnica · reserva 11</span>
+          <span class="mini-label">Surpresa multidomínio · reserva 11</span>
+          <h3>Niterói/RJ</h3>
+          <p>API/CSV com 340 indicadores e ArcGIS REST atual em educação, saúde, mobilidade, ambiente, economia e território. Precisa agora da nota formal para disputar a vaga de Belém.</p>
+        </article>
+        <article class="outlier-card">
+          <span class="mini-label">Promessa documentada · reprovada no runtime</span>
           <h3>Toledo/PR</h3>
-          <p>API OpenAPI oficial com licitações, receita, RH e produção de saúde. Precisa provar resposta real, frescor, território e mais domínios antes de subir.</p>
-        </article>
-        <article class="outlier-card">
-          <span class="mini-label">Forte, mas setorial</span>
-          <h3>Jaraguá do Sul/SC</h3>
-          <p>Bom GeoPortal e TSVs atuais, porém a abertura encontrada é concentrada em urbanismo, cadastro e administração. Serve melhor a um piloto geográfico.</p>
+          <p>A OpenAPI descreve nove rotas, mas chamadas reais retornaram HTTP 400 sem corpo. Documentação sem resposta não sustenta integração nem promoção.</p>
         </article>
       </div>
     </section>
@@ -1451,6 +1451,8 @@ Sensibilidade: testar porte com 15%, 25% e 35%</pre>
         <article class="correction-card"><p class="old">Curitiba não possui saúde e segurança abertas.</p><p class="new"><strong>Correção:</strong> existem microdados atuais do E-Saúde e da Guarda Municipal.</p></article>
         <article class="correction-card"><p class="old">Brasília não possui granularidade territorial mensurável.</p><p class="new"><strong>Correção:</strong> SSP-DF e PDAD-A comprovam recorte por Região Administrativa.</p></article>
         <article class="correction-card"><p class="old">Cidade rica tende automaticamente a ter dados melhores.</p><p class="new"><strong>Correção:</strong> digitalização de serviços e dados abertos são capacidades diferentes.</p></article>
+        <article class="correction-card"><p class="old">Niterói era apenas um Hub legado quebrado.</p><p class="new"><strong>Correção:</strong> o ecossistema vivo está no ObservaNit/DataView e no SIG municipal, com JSON, CSV e FeatureServers atuais.</p></article>
+        <article class="correction-card"><p class="old">Camboriú tinha 17 bases georreferenciadas reutilizáveis.</p><p class="new"><strong>Correção:</strong> são majoritariamente mapas PDF; Balneário Camboriú é outro município e tem WFS próprio.</p></article>
       </div>
     </section>
 
@@ -1489,7 +1491,7 @@ Sensibilidade: testar porte com 15%, 25% e 35%</pre>
 
       <div class="next-step">
         <h3>Próximo passo de maior retorno</h3>
-        <p>Antes de coletar tudo, auditar Jundiaí, Niterói, Caxias do Sul e Toledo junto das referências líderes. A saída deve ser: IDU-M e IDU-E com intervalo, P-Piloto, IPS-Br, C-IDU, dependência externa, custo estimado e domínios fracos.</p>
+        <p>Antes de coletar tudo, fechar a matriz por domínio de Jundiaí e Niterói, executar três exportações de Rio do Sul e testar Vinhedo como terceira candidata da faixa de ≈100 mil. A saída deve ser: IDU-M e IDU-E com intervalo, P-Piloto, IPS-Br, C-IDU, dependência externa, custo estimado e domínios fracos.</p>
       </div>
 
       <div class="source-links" aria-label="Documentos do projeto">
@@ -1499,6 +1501,7 @@ Sensibilidade: testar porte com 15%, 25% e 35%</pre>
         <a href="docs/METRICA_IDU_V2.md">Métrica IDU-Br v2.1</a>
         <a href="docs/PROTOCOLO_DOC_VIVO.md">Protocolo de evidências</a>
         <a href="docs/parciais/outliers-cidades-medias.md">Pente-fino de cidades médias</a>
+        <a href="docs/AUDITORIA_PENTE_FINO_100MIL.md">Auditoria PRs #1 e #2</a>
         <a href="https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-depopulacao.html" target="_blank" rel="noopener noreferrer">População IBGE 2025</a>
         <a href="idu_v2.py">Motor de cálculo</a>
       </div>
