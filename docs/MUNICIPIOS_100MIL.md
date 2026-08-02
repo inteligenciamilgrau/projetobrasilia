@@ -1,4 +1,4 @@
-# Projeto iA Brasil — tabela nacional dos municípios acima de 100 mil habitantes
+# Projeto Brasil iA — tabela nacional dos municípios acima de 100 mil habitantes
 
 **Status:** tabela completa publicada; Santa Catarina é o primeiro estado com triagem de fontes concluída
 **Data de corte:** 2026-08-01

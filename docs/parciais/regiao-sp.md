@@ -227,7 +227,7 @@ ATENÇÃO - a cobertura NÃO é tão equilibrada quanto o total de 474 sugere, e
 
 **`why` (por que o agente apontou esta candidata):**
 
-Recomendação estratégica, não uma cidade. A auditoria mostrou que quase todo município paulista fora da capital é fraco em dados abertos próprios. Mas o estado publica dados com granularidade MUNICIPAL e até por logradouro/lat-long que cobrem os domínios exatamente onde as prefeituras falham: segurança (SSP-SP) e sinistros de trânsito (Infosiga). Isso permite que o piloto entregue saúde/segurança/trânsito para QUALQUER cidade paulista sem depender da prefeitura local. Para o iA Brasil isso é mais valioso que escolher uma segunda cidade.
+Recomendação estratégica, não uma cidade. A auditoria mostrou que quase todo município paulista fora da capital é fraco em dados abertos próprios. Mas o estado publica dados com granularidade MUNICIPAL e até por logradouro/lat-long que cobrem os domínios exatamente onde as prefeituras falham: segurança (SSP-SP) e sinistros de trânsito (Infosiga). Isso permite que o piloto entregue saúde/segurança/trânsito para QUALQUER cidade paulista sem depender da prefeitura local. Para o Brasil iA isso é mais valioso que escolher uma segunda cidade.
 
 **`coverage_notes` (cobertura por domínio, palavras do agente):**
 
@@ -267,7 +267,7 @@ Radicalmente desequilibrada - praticamente só fiscal/orçamentário. Falha o cr
 
 **`why` (por que o agente apontou esta candidata):**
 
-Verificado e REPROVADO - e este é o achado mais contraintuitivo da auditoria. Campinas é polo tecnológico e seria a aposta natural de qualquer pessoa escolhendo a segunda cidade do piloto. Não sustenta. Documento aqui explicitamente para evitar que o iA Brasil perca tempo com ela.
+Verificado e REPROVADO - e este é o achado mais contraintuitivo da auditoria. Campinas é polo tecnológico e seria a aposta natural de qualquer pessoa escolhendo a segunda cidade do piloto. Não sustenta. Documento aqui explicitamente para evitar que o Brasil iA perca tempo com ela.
 
 **`coverage_notes` (cobertura por domínio, palavras do agente):**
 
@@ -362,7 +362,7 @@ O portal sjview.sjc.sp.gov.br carrega mas é aplicação JavaScript: retornou ap
 
 **Piracicaba/SP — `red_flags`:**
 
-ELIMINATÓRIO pelo critério 2: os dados são exclusivamente PDF, um documento por conjunto, com séries históricas em tabelas. Não há CSV, XLSX, API nem catálogo legível por máquina. O enunciado define que 'PDF vale pouco' - aqui é PDF puro. Além disso boa parte é compilação de fontes federais (IBGE, SEADE, RAIS, CAGED), ou seja, não é dado municipal primário; o iA Brasil obteria os mesmos números melhor e já estruturados direto no SEADE e no IBGE. Nome 'histórico Ipplap' sugere acervo legado, não série viva - não confirmei atualização recente.
+ELIMINATÓRIO pelo critério 2: os dados são exclusivamente PDF, um documento por conjunto, com séries históricas em tabelas. Não há CSV, XLSX, API nem catálogo legível por máquina. O enunciado define que 'PDF vale pouco' - aqui é PDF puro. Além disso boa parte é compilação de fontes federais (IBGE, SEADE, RAIS, CAGED), ou seja, não é dado municipal primário; o Brasil iA obteria os mesmos números melhor e já estruturados direto no SEADE e no IBGE. Nome 'histórico Ipplap' sugere acervo legado, não série viva - não confirmei atualização recente.
 
 **São Bernardo do Campo/SP — `red_flags`:**
 
@@ -407,7 +407,7 @@ O QUE NAO CONSEGUI CONFIRMAR (registrado como fetch-falhou ou com ressalva expli
 
 CIDADES DA LISTA QUE NAO TESTEI (esgotei o orcamento de 200 WebSearch da sessao antes de chegar nelas; nao inventei nada sobre elas): Ribeirao Preto, Osasco, Piracicaba, Barueri, Bauru, Americana, Indaiatuba. Nao tenho NENHUMA evidencia sobre essas sete - nao as ranqueei nem para cima nem para baixo. Recomendo uma segunda rodada focada nelas, tentando primeiro os padroes que funcionaram aqui: /api/3/action/package_search (caso tenham CKAN) e /geoserver/wfs?request=GetCapabilities (caso tenham GeoServer).
 
-RECOMENDACAO DE PILOTO. Sao Paulo capital nao tem concorrente no estado, e a distancia e enorme, nao marginal: e a unica cidade paulista onde verifiquei acesso programatico real (CKAN API + WFS + WMS + API de tempo real) em pelo menos seis dominios, com granularidade por distrito comprovada e dados atualizados neste mes. Todas as outras cidades da lista, entre as que consegui testar, ficam presas em um destes tres padroes: (a) so financas em portal de transparencia, (b) geoportal apenas de visualizacao sem download, ou (c) portal existente mas 100 % JavaScript/CAPTCHA/TLS quebrado, inutilizavel para ingestao. Para o piloto do 'iA Brasil' eu comecaria por SP capital combinando CKAN + GeoSampa WFS + Observa Sampa (distrito) e cobriria as duas lacunas municipais reais - saude assistencial e seguranca - com fontes estaduais (TABNET, Infosiga) em vez de esperar dado municipal que nao existe.
+RECOMENDACAO DE PILOTO. Sao Paulo capital nao tem concorrente no estado, e a distancia e enorme, nao marginal: e a unica cidade paulista onde verifiquei acesso programatico real (CKAN API + WFS + WMS + API de tempo real) em pelo menos seis dominios, com granularidade por distrito comprovada e dados atualizados neste mes. Todas as outras cidades da lista, entre as que consegui testar, ficam presas em um destes tres padroes: (a) so financas em portal de transparencia, (b) geoportal apenas de visualizacao sem download, ou (c) portal existente mas 100 % JavaScript/CAPTCHA/TLS quebrado, inutilizavel para ingestao. Para o piloto do 'Brasil iA' eu comecaria por SP capital combinando CKAN + GeoSampa WFS + Observa Sampa (distrito) e cobriria as duas lacunas municipais reais - saude assistencial e seguranca - com fontes estaduais (TABNET, Infosiga) em vez de esperar dado municipal que nao existe.
 
 RESSALVA FINAL DE HONESTIDADE: as contagens de datasets, formatos e datas que cito vieram de respostas de API que eu abri nesta sessao, mas foram lidas e resumidas por um modelo intermediario ao converter a pagina. Sao numeros que eu vi, nao numeros que eu lembrei - porem um auditor que quiser rigor absoluto deve reexecutar as URLs de API que listei, que sao todas publicas e reproduziveis sem autenticacao.
 
@@ -440,7 +440,7 @@ COMO BUSQUEI: comecei pela capital indo direto às URLs canônicas em vez de con
 
 TRÊS DESCOBERTAS QUE MUDAM A DECISÃO:
 1) O grupo 'transporte' do CKAN da capital é uma armadilha. Inspecionei seus datasets e são folha de pagamento e fluxo de caixa da CET e da SPTrans - dados administrativos. Quem contar 'transporte: 8 datasets' e concluir que São Paulo tem mobilidade aberta no CKAN estará errado. A mobilidade real está na API Olho Vivo, no GTFS e na camada WFS acidente_cet.
-2) Padrão de CAPTCHA da Prodam-SP: as interfaces WEB em *.prefeitura.sp.gov.br (GeoSampa PaginasPublicas, Portal da Transparência) bloqueiam acesso automatizado, mas os subdomínios dados. (CKAN) e wfs./wms. (GeoServer) NÃO bloqueiam. Recomendação arquitetural direta para o iA Brasil: entrar por API e WFS, nunca por scraping de UI.
+2) Padrão de CAPTCHA da Prodam-SP: as interfaces WEB em *.prefeitura.sp.gov.br (GeoSampa PaginasPublicas, Portal da Transparência) bloqueiam acesso automatizado, mas os subdomínios dados. (CKAN) e wfs./wms. (GeoServer) NÃO bloqueiam. Recomendação arquitetural direta para o Brasil iA: entrar por API e WFS, nunca por scraping de UI.
 3) Saúde e segurança são fracas até em São Paulo capital no CKAN (5 datasets cada) e trabalho/renda tem 1. O equilíbrio só existe somando CKAN + WFS + APIs setoriais + camada estadual. Por isso incluí a camada estadual (Infosiga e SSP-SP) como candidato próprio - resolve saúde/segurança/trânsito para qualquer município paulista, inclusive os que não têm portal.
 
 O QUE NÃO CONSEGUI CONFIRMAR (limitações honestas):

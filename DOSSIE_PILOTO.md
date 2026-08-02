@@ -1,4 +1,4 @@
-# Projeto iA Brasil — seleção do piloto: 10 cidades/regiões com melhor ecossistema de dados públicos locais
+# Projeto Brasil iA — seleção do piloto: 10 cidades/regiões com melhor ecossistema de dados públicos locais
 
 **Status:** shortlist nacional revisada; IDU-Br v2.1 passa a separar qualidade, porte do piloto e confiança, mas a matriz por domínio ainda aguarda codificação
 **Última compilação:** 2026-08-01

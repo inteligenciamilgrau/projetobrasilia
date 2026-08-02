@@ -121,7 +121,7 @@ Transcrição literal de `why` e `coverage_notes` de cada candidato.
 
 **`why` (por que o agente apontou esta candidata):**
 
-Melhor equilibrio do Sul e provavelmente do Brasil em dados MICRODADOS municipais atualizados. Confirmado ATIVO em 2026: o portal dadosabertos.curitiba.pr.gov.br entrega CSV com granularidade de registro individual e bairro em quatro dominios distintos, com atualizacao mensal ou DIARIA verificada em julho/2026. Diferencial decisivo para o iA Brasil: E-Saude (cada atendimento medico com CID, procedimento, medicamento), SiGesGuarda (cada ocorrencia da Guarda Municipal com bairro e hora), SIAC 156 (cada demanda do cidadao, atualizacao diaria, 86 MB) e Alvaras (cada licenca comercial com CNAE e endereco). Nenhuma outra cidade do Sul entrega esse nivel de detalhe. Soma-se geoservico ArcGIS REST 11.5 vivo (GeoCuritiba) e shapefiles do IPPUC, cobrindo urbanismo e meio ambiente por via geografica.
+Melhor equilibrio do Sul e provavelmente do Brasil em dados MICRODADOS municipais atualizados. Confirmado ATIVO em 2026: o portal dadosabertos.curitiba.pr.gov.br entrega CSV com granularidade de registro individual e bairro em quatro dominios distintos, com atualizacao mensal ou DIARIA verificada em julho/2026. Diferencial decisivo para o Brasil iA: E-Saude (cada atendimento medico com CID, procedimento, medicamento), SiGesGuarda (cada ocorrencia da Guarda Municipal com bairro e hora), SIAC 156 (cada demanda do cidadao, atualizacao diaria, 86 MB) e Alvaras (cada licenca comercial com CNAE e endereco). Nenhuma outra cidade do Sul entrega esse nivel de detalhe. Soma-se geoservico ArcGIS REST 11.5 vivo (GeoCuritiba) e shapefiles do IPPUC, cobrindo urbanismo e meio ambiente por via geografica.
 
 **`coverage_notes` (cobertura por domínio, palavras do agente):**
 
@@ -131,7 +131,7 @@ Equilibrada em 6 dominios com dados reais: saude (microdados), seguranca (ocorre
 
 **`why` (por que o agente apontou esta candidata):**
 
-Empate tecnico com Curitiba, e VENCE em maturidade de acesso programatico. Confirmei que o DataPOA historico MIGROU e esta vivo em dadosabertos.poa.br, rodando CKAN com API REST funcional (package_list retornou 67 slugs; package_show retorna metadata_modified e last_modified por recurso). Isso e o unico portal municipal do Sul onde eu consegui ler metadados por API - vale ouro para um pipeline automatizado do iA Brasil. Cobertura de dominios e a mais larga do Sul: 8 grupos tematicos, com saude em microdados de sistemas nacionais (SINAN, SINASC, SIM, GERCON, GERINT em CSV), tributos por imovel (IPTU 2013-2026), despesa orcamentaria 2018-2026, mobilidade da EPTC (incluindo acidentes com vitima em CSV) e shapefiles do PDDUA/APP/AEIS/bairros. O estado complementa com dados.rs.gov.br (404 conjuntos, 360 em CSV, 35 da SSP com granularidade municipal), preenchendo seguranca e educacao.
+Empate tecnico com Curitiba, e VENCE em maturidade de acesso programatico. Confirmei que o DataPOA historico MIGROU e esta vivo em dadosabertos.poa.br, rodando CKAN com API REST funcional (package_list retornou 67 slugs; package_show retorna metadata_modified e last_modified por recurso). Isso e o unico portal municipal do Sul onde eu consegui ler metadados por API - vale ouro para um pipeline automatizado do Brasil iA. Cobertura de dominios e a mais larga do Sul: 8 grupos tematicos, com saude em microdados de sistemas nacionais (SINAN, SINASC, SIM, GERCON, GERINT em CSV), tributos por imovel (IPTU 2013-2026), despesa orcamentaria 2018-2026, mobilidade da EPTC (incluindo acidentes com vitima em CSV) e shapefiles do PDDUA/APP/AEIS/bairros. O estado complementa com dados.rs.gov.br (404 conjuntos, 360 em CSV, 35 da SSP com granularidade municipal), preenchendo seguranca e educacao.
 
 **`coverage_notes` (cobertura por domínio, palavras do agente):**
 
@@ -151,7 +151,7 @@ CONCENTRADA em urbanismo/geo e meio ambiente. Saude e educacao aparecem apenas c
 
 **`why` (por que o agente apontou esta candidata):**
 
-Melhor infraestrutura geoespacial municipal de Santa Catarina que consegui verificar de fato. O diretorio ArcGIS REST em geo.blumenau.sc.gov.br esta ATIVO e expoe 23 pastas tematicas consultaveis por API, incluindo Defesa Civil, Meio Ambiente, Planejamento Urbano, Sistema Viario, Drenagem, Geologia, Cadastro Imobiliario, Ciclovias e uma pasta 'dadosestatisticos'. Para uma cidade com historico de desastres hidrologicos, ter Defesa Civil, Drenagem e Geologia como geoservicos vivos e um caso de uso forte e diferenciado para o iA Brasil.
+Melhor infraestrutura geoespacial municipal de Santa Catarina que consegui verificar de fato. O diretorio ArcGIS REST em geo.blumenau.sc.gov.br esta ATIVO e expoe 23 pastas tematicas consultaveis por API, incluindo Defesa Civil, Meio Ambiente, Planejamento Urbano, Sistema Viario, Drenagem, Geologia, Cadastro Imobiliario, Ciclovias e uma pasta 'dadosestatisticos'. Para uma cidade com historico de desastres hidrologicos, ter Defesa Civil, Drenagem e Geologia como geoservicos vivos e um caso de uso forte e diferenciado para o Brasil iA.
 
 **`coverage_notes` (cobertura por domínio, palavras do agente):**
 
@@ -181,7 +181,7 @@ Concentracao TOTAL em financas/orcamento e compras. Confirmei na propria pagina 
 
 **`why` (por que o agente apontou esta candidata):**
 
-Incluida como CASO NEGATIVO documentado, porque o briefing a listou. Joinville tem uma publicacao estatistica robusta e tematicamente ampla, 'Joinville Cidade em Dados 2025', dividida em Ambiente Construido, Ambiente Natural, Desenvolvimento Economico, Desenvolvimento Social e Gestao Institucional. Mas TUDO e PDF. Pelo criterio 2 do briefing ('PDF vale pouco'), Joinville nao e candidata a piloto: seria preciso extrair tabela de PDF, o oposto do que o iA Brasil quer fazer.
+Incluida como CASO NEGATIVO documentado, porque o briefing a listou. Joinville tem uma publicacao estatistica robusta e tematicamente ampla, 'Joinville Cidade em Dados 2025', dividida em Ambiente Construido, Ambiente Natural, Desenvolvimento Economico, Desenvolvimento Social e Gestao Institucional. Mas TUDO e PDF. Pelo criterio 2 do briefing ('PDF vale pouco'), Joinville nao e candidata a piloto: seria preciso extrair tabela de PDF, o oposto do que o Brasil iA quer fazer.
 
 **`coverage_notes` (cobertura por domínio, palavras do agente):**
 

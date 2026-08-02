@@ -5,7 +5,7 @@ NAO USE este arquivo para a selecao atual. Ele preserva o primeiro experimento
 de forma reproduzivel, mas contem entradas superadas pelas verificacoes de
 2026-08-01. A formula revisada esta em idu_v2.py e docs/METRICA_IDU_V2.md.
 
-Projeto iA Brasil. Calcula a nota 0-100 de cada cidade candidata ao piloto,
+Projeto Brasil iA. Calcula a nota 0-100 de cada cidade candidata ao piloto,
 a partir dos dados VERIFICADOS em docs/parciais/.
 
 Rode:  python idu.py
@@ -64,7 +64,7 @@ ACESSO = {
     "ausente":        0.00,
 }
 # Bloqueio a automacao (CAPTCHA, login, exige contorno) corta a usabilidade pela
-# metade: o dado existe mas nao e coletavel em escala, que e o requisito do iA Brasil.
+# metade: o dado existe mas nao e coletavel em escala, que e o requisito do Brasil iA.
 PENAL_BLOQUEIO = 0.5
 
 # ---------------------------------------------------------------------------
@@ -294,7 +294,7 @@ def main():
 
     print("=" * 96)
     print("IDU-Br v1 LEGADO — nao usar para a selecao atual; veja idu_v2.py")
-    print("Projeto iA Brasil  |  IDU = 40*A + 35*U + 25*E + G - F   (0-100)")
+    print("Projeto Brasil iA  |  IDU = 40*A + 35*U + 25*E + G - F   (0-100)")
     print("=" * 96)
     print(f'{"#":<3}{"Cidade":<22}{"IDU":>6}{"faixa":>13}{"A":>7}{"U":>7}{"E":>7}'
           f'{"G":>4}{"F":>4}{"NC":>4}')

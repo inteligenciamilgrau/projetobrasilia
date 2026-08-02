@@ -19,7 +19,7 @@ Promise.all([
   const layers = new Set(sources.map(item => item.layer)).size;
   const domains = [...new Set(sources.map(item => item.domain))].sort((a,b) => a.localeCompare(b,"pt-BR"));
 
-  document.title = `${profile.city} — Projeto iA Brasil`;
+  document.title = `${profile.city} — Projeto Brasil iA`;
   document.querySelector("#city-name").textContent = profile.city;
   document.querySelector("#city-summary").textContent = profile.summary;
   document.querySelector("#city-role").textContent = profile.role;

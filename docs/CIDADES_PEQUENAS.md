@@ -1,4 +1,4 @@
-# Projeto iA Brasil — experimento com cidades pequenas
+# Projeto Brasil iA — experimento com cidades pequenas
 
 **Status:** pré-filtro reproduzível concluído; pente-fino da faixa de ≈100 mil concluído; auditoria IDU-Br ainda pendente
 **Data de corte:** 2026-08-01  

@@ -1,4 +1,4 @@
-# Protocolo do documento vivo — Projeto iA Brasil
+# Protocolo do documento vivo — Projeto Brasil iA
 
 Todo agente que pesquisa neste projeto **escreve enquanto pesquisa**. Não existe "entrego no fim".
 

@@ -239,7 +239,7 @@ URLS QUE FALHARAM (informacao valiosa, nao erro). Mortas/inexistentes: dados.nat
 
 CONFIABILIDADE DOS AGREGADORES. O CSV dadosgovbr/catalogos-dados-brasil (branch master, nao main - main da 404) foi o unico agregador com dado estruturado util, mas esta desatualizado: lista dados.natal.br como CKAN ativo (esta morto), classifica data.rio como CKAN (e ArcGIS Hub), e aponta a URL antiga de Porto Alegre. A pagina oficial dados.gov.br/dados/conteudo/catalogos-municipais respondeu SEM a lista (so cabecalho), entao o catalogo de catalogos federal nao serviu nesta sessao. dataportals.org e majoritariamente estadual/tribunais.
 
-VIES REGIONAL A DECLARAR. Nao encontrei nenhum portal municipal de dados abertos verificavel no Norte nem no Centro-Oeste, com a excecao de Brasilia/DF que nao pude qualificar. Os sete finalistas estao todos em Sudeste, Nordeste e Sul. Um piloto "iA Brasil" com pretensao nacional precisa assumir esse vazio explicitamente em vez de presumir cobertura.
+VIES REGIONAL A DECLARAR. Nao encontrei nenhum portal municipal de dados abertos verificavel no Norte nem no Centro-Oeste, com a excecao de Brasilia/DF que nao pude qualificar. Os sete finalistas estao todos em Sudeste, Nordeste e Sul. Um piloto "Brasil iA" com pretensao nacional precisa assumir esse vazio explicitamente em vez de presumir cobertura.
 
 PROXIMOS PASSOS SUGERIDOS PARA FECHAR LACUNAS. Testar www.dados.df.gov.br via feed/sitemap ou renderizacao JS para qualificar o Centro-Oeste; auditar o catalogo completo do data.rio paginando a OGC API (limit/offset) em vez do DCAT truncado; testar acesso ANONIMO ao datalake do Rio; ler os 60 nomes completos de Porto Alegre para confirmar educacao; verificar hubdedados.recife.pe.gov.br e ckan.pbh.gov.br.
 

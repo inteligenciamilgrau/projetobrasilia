@@ -1,4 +1,4 @@
-# Projeto iA Brasil — piloto de dados municipais
+# Projeto Brasil iA — piloto de dados municipais
 
 Levantamento para selecionar municípios brasileiros com melhor combinação de dados públicos locais, cobertura temática, acesso por máquina, atualização e granularidade territorial.
 

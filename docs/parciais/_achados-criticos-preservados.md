@@ -51,7 +51,7 @@ Casos concretos medidos:
 - **Data.Rio**: single-page application em ArcGIS Hub; único feed legível por máquina (DCAT-US) expõe 50 conjuntos com distribuição **exclusivamente `text/html`**. Três domínios concorrentes para o mesmo portal. `dados.mobilidade.rio` = 404
 - **Brasília/DF**: portal abre mas é SPA, não permitiu contar nada
 
-**Consequência arquitetural:** o iA Brasil precisa assumir portais instáveis e **cachear localmente desde o dia um**.
+**Consequência arquitetural:** o Brasil iA precisa assumir portais instáveis e **cachear localmente desde o dia um**.
 
 ---
 
