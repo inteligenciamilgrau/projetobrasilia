@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Evidências, limites e próximos testes de Ouro/SC no ranking de ≈ 10 mil habitantes do Projeto Brasil iA.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../cidades/cidade.css">
+  <link rel="stylesheet" href="municipio.css">
+  <title>Ouro/SC — cidades pequenas — Projeto Brasil iA</title>
+  <script src="municipio.js" defer></script>
+</head>
+<body data-city="ouro">
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header><div class="container">
+    <div class="topbar">
+      <a class="brand" href="../index.html"><span class="mark">iA</span><span>Projeto Brasil iA</span></a>
+      <nav aria-label="Navegação principal"><a href="../index.html">Início</a><a href="../index.html#top10">Top 10</a><a href="../cidades-pequenas.html">Cidades pequenas</a><a href="../municipios-100mil.html">Municípios +100 mil</a><a href="../inventario.html">Inventário</a><a href="../fontes.html">Fontes</a><a href="../relatorio_parcial.html">Relatório</a><a class="github" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a></nav>
+    </div>
+    <div class="hero"><div><p class="eyebrow" id="band-label">Dossiê municipal · carregando faixa</p><h1 id="city-name">Ouro/SC</h1><p class="hero-summary" id="city-summary">Carregando síntese da cidade…</p></div><aside class="decision"><span>Situação da triagem</span><strong id="triage-role">Carregando…</strong><p id="confidence">Carregando confiança da evidência…</p></aside></div>
+  </div></header>
+
+  <main id="conteudo" class="container">
+    <div class="snapshot">
+      <div class="stat"><strong id="idhm-rank">—</strong><span>posição no pré-filtro por IDHM</span></div>
+      <div class="stat"><strong id="audit-rank">—</strong><span>prioridade de auditoria na faixa</span></div>
+      <div class="stat"><strong id="population">—</strong><span>habitantes · IBGE 2025</span></div>
+      <div class="stat"><strong id="idhm">—</strong><span>IDHM 2010 · apenas pré-filtro</span></div>
+      <div class="stat"><strong id="ibge-code">—</strong><span>código IBGE do município</span></div>
+    </div>
+
+    <div class="rule micro-rule"><strong>Leitura correta:</strong> IDHM escolheu onde procurar; não mede abertura de dados. A posição de auditoria usa uma triagem rápida e não substitui IDU-Br, C-IDU nem a leitura de um recurso real por área.</div>
+
+    <section class="city-brief" aria-labelledby="scope-title">
+      <article class="scope-card"><p class="kicker">Recorte recomendado</p><h2 id="scope-title">O teste que faz sentido aqui.</h2><p class="scope-copy" id="recommended-scope">Carregando recorte…</p></article>
+      <aside class="evidence-card"><p class="kicker">Decisão provisória</p><h2>Como interpretar.</h2><span class="triage-state" id="triage-role-copy">Triagem</span><p id="triage-reading">Carregando leitura…</p><p><strong><span id="source-count">—</span> evidências municipais</strong> catalogadas nesta página.</p></aside>
+    </section>
+
+    <section aria-labelledby="triage-title"><div class="section-heading"><div><p class="kicker">Resposta direta</p><h2 id="triage-title">Força, risco e próximo teste.</h2></div><p>A ausência de evidência na primeira busca é registrada como incerteza, não como prova de inexistência.</p></div><div class="triage"><article class="strength"><h3>Forças</h3><ul id="strengths"></ul></article><article class="risk"><h3>Riscos</h3><ul id="risks"></ul></article><article class="next"><h3>Próximos testes</h3><ol class="next-list" id="next"></ol></article></div></section>
+
+    <section aria-labelledby="sources-title"><div class="section-heading"><div><p class="kicker">Evidência localizada</p><h2 id="sources-title">O link real e o que ele prova.</h2></div><p>Contrato e anúncio são pistas; portal ou API aberta são acesso. A situação aparece em cada registro.</p></div><div class="source-list" id="sources"><div class="empty">Carregando fontes…</div></div></section>
+
+    <section aria-labelledby="baseline-title"><div class="section-heading"><div><p class="kicker">Base comum</p><h2 id="baseline-title">População e IDHM usados no corte.</h2></div><p>Estas fontes selecionam candidatas, mas não pontuam o esforço de dados da prefeitura.</p></div><div class="baseline"><article><h3>IBGE · população 2025</h3><p>Estimativa oficial usada para enquadrar a cidade nas faixas de 7–15 mil ou 70–150 mil habitantes.</p><a href="https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-de-populacao.html" target="_blank" rel="noopener noreferrer">Abrir IBGE ↗</a></article><article><h3>PNUD · IDHM municipal 2010</h3><p>Heurística do pré-filtro. O valor é antigo e não mede digitalização, transparência nem qualidade do dado atual.</p><a href="https://www.undp.org/pt/brazil/idhm-municipios-2010" target="_blank" rel="noopener noreferrer">Abrir PNUD ↗</a></article></div></section>
+
+    <section class="deeper" aria-labelledby="gate-title"><div><p class="kicker">Gate de promoção</p><h2 id="gate-title">O que falta para virar piloto.</h2><p>Uma página individual melhora a rastreabilidade, mas não aumenta a nota. A promoção exige evidência reproduzível.</p></div><div class="checklist"><div class="check"><div><strong>Abrir um recurso real</strong><span>Não apenas catálogo, edital, notícia ou painel.</span></div></div><div class="check"><div><strong>Ler esquema e território</strong><span>Campos, linhas, datas, bairro, equipamento ou registro.</span></div></div><div class="check"><div><strong>Cobrir oito domínios</strong><span>Saúde, educação, segurança, mobilidade, economia, finanças, urbanismo e ambiente.</span></div></div><div class="check"><div><strong>Calcular IDU-Br e C-IDU</strong><span>Qualidade e confiança continuam separadas.</span></div></div></div></section>
+
+    <section aria-labelledby="peers-title"><div class="section-heading"><div><p class="kicker">Compare a mesma faixa</p><h2 id="peers-title">As dez candidatas lado a lado.</h2></div></div><nav class="city-nav" id="peer-nav" aria-label="Outras cidades da mesma faixa"></nav><a class="band-return" id="other-band" href="../cidades-pequenas.html#ranking">Voltar ao ranking</a></section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Dossiê de triagem atualizado a partir do levantamento de 01/08/2026.</p></div><div class="footer-links"><a href="../index.html">Início</a><a href="../cidades-pequenas.html">Cidades pequenas</a><a href="../inventario.html">Inventário</a><a href="../fontes.html">Fontes</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+</body>
+</html>
