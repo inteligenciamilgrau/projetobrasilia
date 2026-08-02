@@ -6,183 +6,27 @@
   <meta name="description" content="Relatório parcial do Projeto Brasil iA sobre cidades brasileiras com melhor ecossistema de dados públicos locais.">
   <meta name="color-scheme" content="light">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
   <title>Projeto Brasil iA — Relatório parcial</title>
   <style>
     :root {
-      --ink: #13251f;
-      --muted: #5f6d68;
-      --paper: #f6f3ea;
-      --surface: #fffdf8;
       --surface-2: #eef4ee;
-      --line: #d8ded7;
-      --green: #0b6b4b;
-      --green-dark: #07513a;
-      --green-soft: #dff0e8;
-      --yellow: #e4b72e;
-      --yellow-soft: #fbf1c9;
       --blue: #235a78;
       --blue-soft: #e2eef4;
-      --red: #a94335;
-      --red-soft: #f7e4df;
-      --shadow: 0 18px 45px rgba(22, 46, 37, 0.08);
       --radius: 18px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--paper);
     }
 
     body {
-      margin: 0;
-      color: var(--ink);
       background:
-        radial-gradient(circle at 10% 0%, rgba(228, 183, 46, 0.11), transparent 30rem),
+        radial-gradient(circle at 10% 0%, rgba(229, 184, 47, 0.11), transparent 30rem),
         var(--paper);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: var(--green-dark); }
+    main a { color: var(--green-dark); }
+    main a:hover { color: var(--blue); }
 
-    a:hover { color: var(--blue); }
-
-    a:focus-visible,
-    button:focus-visible {
-      outline: 3px solid var(--yellow);
-      outline-offset: 3px;
-    }
-
-    .skip-link {
-      position: fixed;
-      left: 1rem;
-      top: -5rem;
-      z-index: 100;
-      padding: 0.7rem 1rem;
-      border-radius: 10px;
-      background: var(--ink);
-      color: white;
-      text-decoration: none;
-    }
-
-    .skip-link:focus { top: 1rem; }
-
-    .container {
-      width: min(calc(100% - 2rem), var(--max));
-      margin-inline: auto;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      color: white;
-      background:
-        linear-gradient(125deg, rgba(8, 86, 60, 0.97), rgba(9, 53, 48, 0.99)),
-        var(--green-dark);
-      border-bottom: 6px solid var(--yellow);
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero::before {
-      width: 32rem;
-      height: 32rem;
-      right: -12rem;
-      top: -16rem;
-      border: 1px solid rgba(255,255,255,.13);
-      box-shadow: 0 0 0 5rem rgba(255,255,255,.025), 0 0 0 10rem rgba(255,255,255,.018);
-    }
-
-    .hero::after {
-      width: 11rem;
-      height: 11rem;
-      right: 18%;
-      bottom: -7rem;
-      background: rgba(228, 183, 46, 0.16);
-    }
-
-    .topbar {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding-block: 1.15rem;
-      border-bottom: 1px solid rgba(255,255,255,.16);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: inherit;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
-
-    .brand-mark {
-      display: grid;
-      width: 2.15rem;
-      height: 2.15rem;
-      place-items: center;
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 10px;
-      color: var(--yellow);
-      background: rgba(255,255,255,.08);
-      font-size: 0.8rem;
-      letter-spacing: 0.03em;
-    }
-
-    .top-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 0.25rem;
-    }
-
-    .top-actions > a {
-      padding: 0.45rem 0.52rem;
-      border-radius: 8px;
-      color: white;
-      font-size: 0.76rem;
-      font-weight: 750;
-      text-decoration: none;
-    }
-
-    .top-actions > a:hover { background: rgba(255,255,255,.12); }
-
-    .github-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.52rem 0.72rem;
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 10px;
-      color: white;
-      background: rgba(255,255,255,.08);
-      font-size: 0.78rem;
-      font-weight: 750;
-      text-decoration: none;
-    }
-
-    .github-link:hover,
     .github-link:focus-visible,
-    .print-button:hover { background: rgba(255,255,255,.15); }
-
-    .github-link svg { flex: 0 0 auto; }
+    .print-button:hover { background: rgba(255,255,255,.16); }
 
     .status-pill {
       display: inline-flex;
@@ -218,63 +62,6 @@
       cursor: pointer;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(280px, .75fr);
-      gap: 3rem;
-      align-items: end;
-      padding-block: clamp(3.2rem, 8vw, 6.5rem);
-    }
-
-    .eyebrow {
-      margin: 0 0 0.8rem;
-      color: var(--yellow);
-      font-size: 0.78rem;
-      font-weight: 850;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-
-    h1 {
-      max-width: 14ch;
-      margin-bottom: 1.2rem;
-      font-size: clamp(2.65rem, 7vw, 5.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.065em;
-    }
-
-    .hero-lede {
-      max-width: 67ch;
-      margin-bottom: 0;
-      color: rgba(255,255,255,.82);
-      font-size: clamp(1.02rem, 2vw, 1.22rem);
-    }
-
-    .hero-note {
-      padding: 1.2rem;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 16px;
-      background: rgba(255,255,255,.08);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-note strong {
-      display: block;
-      margin-bottom: 0.35rem;
-      color: white;
-      font-size: 1.05rem;
-    }
-
-    .hero-note p {
-      margin: 0;
-      color: rgba(255,255,255,.73);
-      font-size: 0.88rem;
-    }
-
     .section-nav {
       position: relative;
       z-index: 3;
@@ -301,32 +88,10 @@
     .section-nav a:hover { color: var(--green); }
     .section-nav .print-button { flex:0 0 auto;margin:.42rem 0 .42rem auto;color:var(--green);border-color:var(--line);background:var(--green-soft) }
 
-    main { padding-block: 3.2rem 5rem; }
+    section { scroll-margin-top: 4rem; }
 
-    section {
-      scroll-margin-top: 4rem;
-      margin-bottom: clamp(4rem, 8vw, 7rem);
-    }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
-      gap: 2rem;
-      align-items: end;
-      margin-bottom: 2rem;
-    }
-
-    .section-heading h2 {
-      margin-bottom: 0;
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      line-height: 1.04;
-      letter-spacing: -0.045em;
-    }
-
-    .section-heading p:last-child {
-      margin-bottom: 0;
-      color: var(--muted);
-    }
+    .section-heading { margin-bottom: 2rem; }
+    .section-heading h2 { margin-bottom: 0; }
 
     .kicker {
       margin-bottom: 0.45rem;
@@ -937,29 +702,10 @@
       text-decoration: none;
     }
 
-    footer {
-      padding-block: 2.4rem;
-      color: #cad8d1;
-      background: var(--ink);
-    }
-
-    .footer-grid {
-      display: flex;
-      justify-content: space-between;
-      gap: 2rem;
-      align-items: end;
-    }
-
-    footer strong { display: block; color: white; }
-    footer p { max-width: 62ch; margin: 0.35rem 0 0; font-size: 0.82rem; }
     footer .date { text-align: right; font-size: 0.78rem; }
-    footer a { color: white; font-weight: 750; }
-    footer a:hover { color: var(--yellow); }
     .footer-link { display: inline-block; margin-top: 0.65rem; }
 
     @media (max-width: 920px) {
-      .hero-content,
-      .section-heading,
       .formula-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .process-grid { grid-template-columns: repeat(2, 1fr); }
@@ -969,14 +715,7 @@
       .cap-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 650px) {
-      .container { width: min(calc(100% - 1.25rem), var(--max)); }
-      .top-actions { gap: 0.45rem; }
-      .top-actions > a:not(.github-link) { display: none; }
-      .github-link span { display: none; }
-      .hero-content { gap: 1.5rem; padding-block: 3rem; }
-      h1 { font-size: clamp(2.7rem, 16vw, 4.3rem); }
-      main { padding-top: 2.4rem; }
+    @media (max-width: 620px) {
       .stats-grid,
       .process-grid,
       .evidence-legend,
@@ -1006,18 +745,19 @@
     @media print {
       :root { --paper: white; --surface: white; }
       body { background: white; font-size: 10pt; }
-      .hero { color: var(--ink); background: white; border-top: 8px solid var(--green); }
-      .hero::before, .hero::after, .section-nav, .print-button, .github-link { display: none; }
+      .site-header { color: var(--ink); background: white; border-top: 8px solid var(--green); border-bottom-width: 3px; }
+      .section-nav, .print-button, .github-link { display: none; }
       .topbar { border-color: var(--line); }
-      .brand, .hero-note strong { color: var(--ink); }
+      .brand, .decision strong { color: var(--ink); }
       .brand-mark { color: var(--green); border-color: var(--line); }
-      .hero-lede, .hero-note p { color: var(--muted); }
-      .hero-note { border-color: var(--line); background: white; }
+      .lede, .decision p, .decision span { color: var(--muted); }
+      .decision { border-color: var(--line); background: white; }
       .status-pill { color: var(--ink); border-color: var(--line); }
-      .hero-content { padding-block: 2rem; }
+      .hero { padding-block: 2rem; }
       h1 { color: var(--ink); font-size: 3rem; }
       main { padding-block: 2rem; }
       section { break-inside: avoid; margin-bottom: 2.5rem; }
+      section + section { margin-top: 0; }
       .table-wrap { box-shadow: none; }
       a { color: inherit; text-decoration: none; }
       footer { color: var(--ink); background: white; border-top: 1px solid var(--line); }
@@ -1028,35 +768,35 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="hero">
+  <header class="site-header">
     <div class="container">
       <div class="topbar">
-        <a class="brand" href="index.html" aria-label="Voltar à página inicial do Projeto Brasil iA">
+        <a class="brand" href="./" aria-label="Página inicial do Projeto Brasil iA">
           <span class="brand-mark" aria-hidden="true">iA</span>
           <span>Projeto Brasil iA</span>
         </a>
-        <nav class="top-actions" aria-label="Navegação principal">
-          <a href="index.html">Início</a>
-          <a href="index.html#top10">Top 10</a>
-          <a href="cidades-pequenas.html">Cidades pequenas</a>
-          <a href="municipios-100mil.html">Municípios +100 mil</a>
-          <a href="inventario.html">Inventário</a>
-          <a href="fontes.html">Fontes</a>
-          <a href="relatorio_parcial.html">Relatório</a>
-          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir repositório do Projeto Brasil iA no GitHub">
-            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="./">Início</a>
+          <a class="top-link" href="cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="inventario.html">Inventário</a>
+          <a class="top-link" href="fontes.html">Fontes</a>
+          <a class="top-link" href="relatorio_parcial.html" aria-current="page">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
             <span>GitHub</span>
           </a>
         </nav>
       </div>
 
-      <div class="hero-content">
+      <div class="hero">
         <div>
           <p class="eyebrow">Seleção do piloto nacional · 01 ago 2026</p>
           <h1>Dados locais que viram informação pública.</h1>
-          <p class="hero-lede">Levantamento das cidades brasileiras mais preparadas para um piloto de ingestão e análise de dados públicos — com método explícito, evidência rastreável e incerteza assumida.</p>
+          <p class="lede">Levantamento das cidades brasileiras mais preparadas para um piloto de ingestão e análise de dados públicos — com método explícito, evidência rastreável e incerteza assumida.</p>
         </div>
-        <aside class="hero-note" aria-label="Escopo deste relatório">
+        <aside class="decision" aria-label="Escopo deste relatório">
+          <span>Escopo</span>
           <strong>O que este relatório é</strong>
           <p>Uma síntese da seleção, das métricas propostas e do trabalho realizado. Ainda não é a coleta nacional nem uma nota definitiva de desempenho municipal.</p>
         </aside>

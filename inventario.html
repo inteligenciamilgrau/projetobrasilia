@@ -6,37 +6,15 @@
   <meta name="description" content="Inventário auditável de fontes e dados disponíveis para as dez cidades candidatas ao piloto do Projeto Brasil iA.">
   <meta name="theme-color" content="#07563c">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
   <title>Inventário por cidade — Projeto Brasil iA</title>
   <style>
-    :root { --green:#08724e; --green-dark:#063e30; --soft:#ddefe7; --yellow:#e5b82f; --yellow-soft:#fff3c5; --ink:#10241d; --muted:#52635d; --paper:#f4f2e9; --surface:#fff; --line:#d8ded9; --red:#9b382e; --max:1220px; --shadow:0 18px 50px rgba(12,52,40,.1); }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.5; }
-    a { color:inherit; }
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
-    h1,h2,h3,p { margin-top:0; }
-    .container { width:min(calc(100% - 2rem),var(--max)); margin-inline:auto; }
-    .skip { position:fixed; top:-5rem; left:1rem; z-index:20; padding:.7rem 1rem; color:white; background:var(--ink); border-radius:8px; }
-    .skip:focus { top:1rem; }
-    header { color:white; background:linear-gradient(125deg,var(--green),var(--green-dark) 75%); border-bottom:6px solid var(--yellow); }
-    .topbar { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding-block:1rem; border-bottom:1px solid rgba(255,255,255,.16); }
-    .brand { display:flex; align-items:center; gap:.7rem; color:white; font-weight:850; text-decoration:none; }
-    .mark { display:grid; width:2.1rem; height:2.1rem; place-items:center; border:1px solid rgba(255,255,255,.3); border-radius:9px; color:var(--yellow); background:rgba(255,255,255,.08); font-size:.78rem; }
-    nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:.55rem; }
-    nav a { padding:.48rem .65rem; border-radius:8px; color:white; font-size:.8rem; font-weight:760; text-decoration:none; }
-    nav a:hover { background:rgba(255,255,255,.12); }
-    .github { border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.08); }
-    .hero { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr); gap:3rem; align-items:center; padding-block:clamp(2.6rem,6vw,5rem); }
-    .eyebrow,.kicker { margin-bottom:.65rem; color:var(--yellow); font-size:.75rem; font-weight:850; letter-spacing:.13em; text-transform:uppercase; }
-    h1 { max-width:13ch; margin-bottom:.9rem; font-size:clamp(2.7rem,7vw,5.2rem); line-height:.94; letter-spacing:-.065em; }
-    .hero p:last-child { max-width:68ch; margin:0; color:rgba(255,255,255,.8); }
     .hero-stats { display:grid; grid-template-columns:1fr 1fr; overflow:hidden; border:1px solid rgba(255,255,255,.2); border-radius:15px; background:rgba(255,255,255,.08); }
     .hero-stat { padding:1rem; border-right:1px solid rgba(255,255,255,.16); border-bottom:1px solid rgba(255,255,255,.16); }
     .hero-stat:nth-child(2n) { border-right:0; }
     .hero-stat:nth-last-child(-n+2) { border-bottom:0; }
     .hero-stat strong { display:block; color:var(--yellow); font-size:1.8rem; line-height:1; }
     .hero-stat span { color:rgba(255,255,255,.72); font-size:.72rem; }
-    main { padding-block:clamp(2.5rem,6vw,5rem); }
     .rule { margin-bottom:1.2rem; padding:1rem 1.15rem; border:1px solid #dbc878; border-radius:12px; background:var(--yellow-soft); font-size:.88rem; }
     .rule strong { margin-right:.3rem; }
     .filters { position:sticky; top:.5rem; z-index:10; display:grid; grid-template-columns:1.5fr repeat(4,minmax(125px,.75fr)) auto; gap:.65rem; padding:.9rem; border:1px solid var(--line); border-radius:15px; background:rgba(255,255,255,.96); box-shadow:var(--shadow); backdrop-filter:blur(8px); }
@@ -46,10 +24,7 @@
     .live-summary { display:flex; flex-wrap:wrap; gap:.55rem; margin:1rem 0 1.4rem; }
     .pill { padding:.42rem .62rem; border:1px solid var(--line); border-radius:999px; background:white; font-size:.77rem; }
     .pill strong { color:var(--green); }
-    .section-title { display:flex; justify-content:space-between; gap:2rem; align-items:end; margin:2.5rem 0 1rem; }
-    .section-title .kicker { color:var(--green); }
-    h2 { margin-bottom:.35rem; font-size:clamp(1.8rem,4vw,3rem); line-height:1; letter-spacing:-.05em; }
-    .section-title > p { max-width:58ch; margin:0; color:var(--muted); }
+    .section-title { margin-top:2.5rem; }
     .city-volumes { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
     .volume-card { padding:1rem; border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.75); }
     .volume-card strong { display:block; margin-bottom:.25rem; }
@@ -77,30 +52,31 @@
     .method article { padding:1.1rem; border:1px solid var(--line); border-radius:13px; background:white; }
     .method h3 { margin-bottom:.35rem; font-size:.95rem; }
     .method p { margin:0; color:var(--muted); font-size:.78rem; }
-    footer { padding-block:2.2rem; color:#cbd8d2; background:var(--ink); }
-    .footer-grid { display:flex; justify-content:space-between; gap:2rem; }
-    footer strong { color:white; }
-    footer p { margin:.3rem 0 0; font-size:.8rem; }
-    .footer-links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:1rem; font-size:.8rem; }
-    footer a { color:white; font-weight:760; }
-    footer a:hover { color:var(--yellow); }
-    @media(max-width:940px){ .filters{position:static;grid-template-columns:repeat(2,1fr)} .filters label:first-child{grid-column:1/-1} .source-card{grid-template-columns:1fr 1fr} .hero{grid-template-columns:1fr} }
-    @media(max-width:650px){ .container{width:min(calc(100% - 1.25rem),var(--max))} nav a:not(.github){display:none} .github span{display:none} .filters,.city-volumes,.method,.source-card{grid-template-columns:1fr} .filters label:first-child{grid-column:auto} .section-title{display:block} .footer-grid{display:block} .footer-links{justify-content:flex-start;margin-top:1rem} }
+    @media(max-width:940px){ .filters{position:static;grid-template-columns:repeat(2,1fr)} .filters label:first-child{grid-column:1/-1} .source-card{grid-template-columns:1fr 1fr} }
+    @media(max-width:620px){ .filters,.city-volumes,.method,.source-card{grid-template-columns:1fr} .filters label:first-child{grid-column:auto} }
   </style>
 </head>
 <body>
-  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-  <header>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
     <div class="container">
       <div class="topbar">
-        <a class="brand" href="index.html"><span class="mark">iA</span><span>Projeto Brasil iA</span></a>
-        <nav aria-label="Navegação principal">
-          <a href="index.html">Início</a><a href="index.html#top10">Top 10</a><a href="cidades-pequenas.html">Cidades pequenas</a><a href="municipios-100mil.html">Municípios +100 mil</a><a href="inventario.html">Inventário</a><a href="fontes.html">Fontes</a><a href="relatorio_parcial.html">Relatório</a>
-          <a class="github" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+        <a class="brand" href="./" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="./">Início</a>
+          <a class="top-link" href="cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="inventario.html" aria-current="page">Inventário</a>
+          <a class="top-link" href="fontes.html">Fontes</a>
+          <a class="top-link" href="relatorio_parcial.html">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
         </nav>
       </div>
       <div class="hero">
-        <div><p class="eyebrow">Evidência para validar o piloto</p><h1>O dado, o dono e o link.</h1><p>Inventário inicial por cidade e área. Se não sabemos quem produz, como acessar, qual o território e quando atualizou, ainda não sabemos se o dado serve.</p></div>
+        <div><p class="eyebrow">Evidência para validar o piloto</p><h1>O dado, o dono e o link.</h1><p class="lede">Inventário inicial por cidade e área. Se não sabemos quem produz, como acessar, qual o território e quando atualizou, ainda não sabemos se o dado serve.</p></div>
         <div class="hero-stats" aria-label="Resumo do inventário">
           <div class="hero-stat"><strong id="total-sources">60</strong><span>links catalogados</span></div>
           <div class="hero-stat"><strong id="total-confirmed">52</strong><span>confirmados</span></div>
@@ -150,7 +126,7 @@
     </section>
   </main>
 
-  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Inventário atualizado em 01/08/2026. Evidências continuam abertas a correção e reprodução.</p></div><div class="footer-links"><a href="index.html">Início</a><a href="relatorio_parcial.html">Relatório</a><a href="fontes.html">Fontes nacionais</a><a href="inventario_top10.json">JSON</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Inventário atualizado em 01/08/2026. Evidências continuam abertas a correção e reprodução.</p></div><div class="footer-links"><a href="./">Início</a><a href="relatorio_parcial.html">Relatório</a><a href="fontes.html">Fontes nacionais</a><a href="inventario_top10.json">JSON</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
 
   <script>
     const elements = {

@@ -6,74 +6,14 @@
   <meta name="description" content="Top 10 provisório de cidades brasileiras para o piloto do Projeto Brasil iA, com método, porte e confiança da avaliação.">
   <meta name="theme-color" content="#07563c">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
   <title>Projeto Brasil iA — Top 10 do piloto</title>
   <style>
-    :root {
-      --green: #08724e;
-      --green-dark: #063e30;
-      --green-soft: #ddefe7;
-      --yellow: #e5b82f;
-      --yellow-soft: #fff3c5;
-      --ink: #10241d;
-      --muted: #52635d;
-      --paper: #f4f2e9;
-      --surface: #fff;
-      --line: #d8ded9;
-      --max: 1160px;
-      --shadow: 0 20px 55px rgba(12,52,40,.11);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
-    h1, h2, h3, p { margin-top: 0; }
-    .container { width: min(calc(100% - 2rem), var(--max)); margin-inline: auto; }
-    .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .7rem 1rem; border-radius: 10px; color: white; background: var(--ink); text-decoration: none; }
-    .skip-link:focus { top: 1rem; }
-
-    .site-header {
-      color: white;
-      background: radial-gradient(circle at 88% 20%, rgba(229,184,47,.18) 0 9%, transparent 9.2%), linear-gradient(125deg, #08724e, var(--green-dark) 72%);
-      border-bottom: 6px solid var(--yellow);
-    }
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; border-bottom: 1px solid rgba(255,255,255,.16); }
-    .brand { display: flex; align-items: center; gap: .7rem; color: white; font-weight: 820; letter-spacing: -.02em; text-decoration: none; }
-    .brand-mark { display: grid; width: 2.15rem; height: 2.15rem; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 10px; color: var(--yellow); background: rgba(255,255,255,.08); font-size: .8rem; }
-    .top-links { display: flex; align-items: center; gap: .55rem; }
-    .top-link { padding: .5rem .7rem; border-radius: 9px; color: white; font-size: .82rem; font-weight: 760; text-decoration: none; }
-    .top-link:hover { background: rgba(255,255,255,.11); }
-    .github-link { display: inline-flex; align-items: center; gap: .45rem; padding: .52rem .75rem; border: 1px solid rgba(255,255,255,.28); border-radius: 10px; color: white; background: rgba(255,255,255,.08); font-size: .82rem; font-weight: 760; text-decoration: none; }
-    .github-link:hover { background: rgba(255,255,255,.16); }
-
-    .hero { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(260px,.6fr); gap: clamp(1.5rem,5vw,4rem); align-items: center; padding-block: clamp(2.7rem,6vw,5rem); }
-    .eyebrow, .kicker { margin: 0 0 .65rem; color: var(--yellow); font-size: .76rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-    h1 { max-width: 13ch; margin-bottom: 1rem; font-size: clamp(2.7rem,7vw,5.4rem); line-height: .94; letter-spacing: -.065em; }
-    .lede { max-width: 66ch; margin-bottom: 1.2rem; color: rgba(255,255,255,.84); font-size: clamp(1rem,2vw,1.18rem); }
     .hero-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
     .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.85rem; padding: .68rem .95rem; border: 1px solid transparent; border-radius: 10px; font-size: .86rem; font-weight: 800; text-decoration: none; }
     .button-primary { color: var(--ink); background: var(--yellow); }
     .button-primary:hover { background: #f0c84a; }
     .button-secondary { color: white; border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.08); }
-    .decision { padding: 1.25rem; border: 1px solid rgba(255,255,255,.2); border-radius: 16px; background: rgba(255,255,255,.09); }
-    .decision span { display: block; margin-bottom: .45rem; color: var(--yellow); font-size: .72rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
-    .decision strong { display: block; margin-bottom: .3rem; font-size: 1.25rem; line-height: 1.2; }
-    .decision p { margin: 0; color: rgba(255,255,255,.75); font-size: .87rem; }
-
-    main { padding-block: clamp(2.5rem,6vw,5rem); }
-    section + section { margin-top: clamp(3.4rem,8vw,7rem); }
-    .section-head { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 1.25rem; }
-    .section-head .kicker { color: var(--green); }
-    h2 { margin-bottom: .55rem; font-size: clamp(2rem,4vw,3.35rem); line-height: 1; letter-spacing: -.055em; }
-    .section-head p:last-child { max-width: 55ch; margin-bottom: .15rem; color: var(--muted); }
 
     .ranking-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
     table { width: 100%; border-collapse: collapse; min-width: 760px; }
@@ -154,34 +94,17 @@
     .link-card h3 { margin: .55rem 0 .35rem; }
     .link-card p { margin: 0; color: var(--muted); font-size: .87rem; }
 
-    footer { padding-block: 2.3rem; color: #cad8d1; background: var(--ink); }
-    .footer-grid { display: flex; justify-content: space-between; gap: 2rem; align-items: end; }
-    footer strong { display: block; color: white; }
-    footer p { max-width: 62ch; margin: .3rem 0 0; font-size: .82rem; }
-    .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1rem; font-size: .8rem; }
-    footer a { color: white; font-weight: 760; }
-    footer a:hover { color: var(--yellow); }
-
     @media (max-width: 820px) {
-      .hero, .calc-panel, .objectives { grid-template-columns: 1fr; }
+      .calc-panel, .objectives { grid-template-columns: 1fr; }
       .small-city-callout { grid-template-columns: 1fr; }
-      .section-head { display: block; }
       .link-grid { grid-template-columns: 1fr; }
       .calculator-head { display: block; }
       .control-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 620px) {
-      .container { width: min(calc(100% - 1.25rem), var(--max)); }
-      .top-link { display: none; }
-      .github-link span { display: none; }
-      .hero { padding-block: 2.5rem; }
-      h1 { font-size: clamp(2.65rem,15vw,4.3rem); }
       .editorial-rule { grid-template-columns: 1fr; gap: .35rem; }
       .objective { grid-template-columns: 1fr; }
-      .footer-grid { display: block; }
-      .footer-links { justify-content: flex-start; margin-top: 1rem; }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 </head>
 <body>
@@ -190,10 +113,10 @@
   <header class="site-header">
     <div class="container">
       <div class="topbar">
-        <a class="brand" href="index.html" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <a class="brand" href="./" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
         <nav class="top-links" aria-label="Navegação principal">
-          <a class="top-link" href="index.html">Início</a>
-          <a class="top-link" href="index.html#top10">Top 10</a>
+          <a class="top-link" href="./" aria-current="page">Início</a>
+
           <a class="top-link" href="cidades-pequenas.html">Cidades pequenas</a>
           <a class="top-link" href="municipios-100mil.html">Municípios +100 mil</a>
           <a class="top-link" href="inventario.html">Inventário</a>
