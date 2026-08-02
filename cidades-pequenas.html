@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pré-seleção eficiente de municípios brasileiros com cerca de 10 mil e 100 mil habitantes, usando IDHM e uma triagem de dados públicos.">
+  <meta name="description" content="Pré-seleção eficiente de municípios brasileiros com cerca de 10 mil e 100 mil habitantes, usando IPS Brasil 2026 e uma triagem de dados públicos.">
   <meta name="theme-color" content="#07563c">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/site.css">
@@ -38,7 +38,7 @@
         </nav>
       </div>
       <div class="hero">
-        <div><p class="eyebrow">Experimento separado · cidades pequenas</p><h1>Duas faixas. Vinte candidatas.</h1><p class="lede"><strong>Casca/RS lidera a fila de auditoria perto de 10 mil habitantes.</strong> Perto de 100 mil, Nova Lima/MG lidera, Rio do Sul/SC continua sob condição e Vinhedo/SP é a próxima cidade a testar. O IDHM serviu apenas para reduzir a busca; não é nota de dados.</p></div>
+        <div><p class="eyebrow">Experimento separado · cidades pequenas</p><h1>Duas faixas. Vinte candidatas.</h1><p class="lede"><strong>Águas da Prata/SP lidera a fila de auditoria perto de 10 mil habitantes.</strong> Perto de 100 mil, Nova Lima/MG continua líder e Vinhedo/SP é a segunda prioridade. O pré-filtro migrou de IDHM 2010 para IPS Brasil 2026 em 02/08/2026; ele só serve para reduzir a busca, não é nota de dados.</p></div>
         <aside class="decision"><span>Por que separar?</span><strong>Uma cidade minúscula pode permitir análise por bairro — ou até por rua — com custo controlado.</strong><p>Ela não deve competir na mesma régua de representatividade de uma capital. Este ranking é uma investigação paralela.</p></aside>
       </div>
     </div>
@@ -46,48 +46,48 @@
 
   <main id="conteudo" class="container">
     <section id="ranking" aria-labelledby="ranking-titulo">
-      <div class="section-head"><div><p class="kicker">Top 10 IDHM por faixa</p><h2 id="ranking-titulo">Comece pelas candidatas, não pelos 5.564 municípios.</h2></div><p>Escolha a faixa e reordene a tabela. As preferências ficam salvas neste navegador.</p></div>
-      <div class="result-callout"><span class="number">!</span><div><strong>O ranking objetivo abaixo é o pré-filtro por IDHM 2010.</strong><p>“Prioridade de auditoria” é outra ordem: usa somente evidências oficiais localizadas numa varredura rápida e ainda não substitui o IDU-Br completo.</p></div></div>
+      <div class="section-head"><div><p class="kicker">Top 10 IPS Brasil 2026 por faixa</p><h2 id="ranking-titulo">Comece pelas candidatas, não pelos 5.570 municípios.</h2></div><p>Escolha a faixa e reordene a tabela. As preferências ficam salvas neste navegador.</p></div>
+      <div class="result-callout"><span class="number">!</span><div><strong>O ranking objetivo abaixo é o pré-filtro por IPS Brasil 2026 (não existe IDHM municipal mais recente que 2010 — ver nota de fonte abaixo).</strong><p>“Prioridade de auditoria” é outra ordem: usa somente evidências oficiais localizadas numa varredura rápida e ainda não substitui o IDU-Br completo.</p></div></div>
       <div class="calculator">
         <div class="controls">
           <div class="control-group" aria-label="Faixa populacional"><span class="control-label">Faixa</span><button type="button" data-band="micro" aria-pressed="true">≈ 10 mil</button><button type="button" data-band="small" aria-pressed="false">≈ 100 mil</button></div>
-          <div class="control-group" aria-label="Ordenação"><span class="control-label">Ordenar por</span><button type="button" data-sort="idhm" aria-pressed="true">IDHM</button><button type="button" data-sort="audit" aria-pressed="false">Prioridade de auditoria</button><button type="button" data-sort="target" aria-pressed="false">Mais perto do alvo</button><button type="button" data-sort="population" aria-pressed="false">População</button></div>
+          <div class="control-group" aria-label="Ordenação"><span class="control-label">Ordenar por</span><button type="button" data-sort="metric" aria-pressed="true">IPS Brasil 2026</button><button type="button" data-sort="audit" aria-pressed="false">Prioridade de auditoria</button><button type="button" data-sort="target" aria-pressed="false">Mais perto do alvo</button><button type="button" data-sort="population" aria-pressed="false">População</button></div>
         </div>
         <div id="status" class="status" aria-live="polite"></div>
         <div class="ranking-wrap">
           <table class="ranking">
-            <thead><tr><th>Posição</th><th>Cidade</th><th>População 2025</th><th>IDHM 2010</th><th>Acesso encontrado</th><th>Território</th><th>Triagem</th><th>Evidência</th></tr></thead>
+            <thead><tr><th>Posição</th><th>Cidade</th><th>População 2025</th><th>IPS Brasil 2026</th><th>Acesso encontrado</th><th>Território</th><th>Triagem</th><th>Evidência</th></tr></thead>
             <tbody id="results"></tbody>
           </table>
         </div>
-        <p class="note"><strong>Faixas operacionais:</strong> 7.000–15.000 e 70.000–150.000 habitantes. Empates de IDHM são resolvidos pela proximidade do alvo e depois pelo nome. População: IBGE 2025. IDHM: Atlas Brasil/PNUD, Censo 2010.</p>
-        <p class="warning" style="margin-top:1rem"><strong>Teste de sensibilidade em Santa Catarina:</strong> Camboriú (117.324 hab.) está dentro da faixa, mas os 17 produtos encontrados são majoritariamente mapas PDF; Tubarão (116.725) ainda não expôs arquivo/API comprovado. <strong>Balneário Camboriú é outro município</strong> (código IBGE 4202008) e ficou só 1.674 habitantes acima do teto: seu WFS público tem 73 tipos de feição, porém é fortemente cadastral e várias camadas temáticas estão vazias. Nenhuma das três entra na fila imediata. <a href="docs/AUDITORIA_PENTE_FINO_100MIL.md">Ver auditoria completa.</a></p>
+        <p class="note"><strong>Faixas operacionais:</strong> 7.000–15.000 e 70.000–150.000 habitantes (1.452 e 276 municípios, respectivamente). Empates de IPS são resolvidos pela proximidade do alvo e depois pelo nome. População: IBGE 2025. IPS Brasil: edição 2026 (5.570 municípios).</p>
+        <p class="warning" style="margin-top:1rem"><strong>Ranking anterior (IDHM 2010) arquivado, não descartado:</strong> a rodada anterior deste pré-filtro usava IDHM 2010 e elegeu outras 15 cidades (Casca/RS, Treze Tílias/SC, Valinhos/SP e Rio do Sul/SC entre elas). Os dossiês continuam publicados — só saíram do Top 10 <em>desta métrica</em>. <a href="docs/CIDADES_PEQUENAS.md#9-apêndice--ranking-anterior-por-idhm-2010-arquivado-não-usar-para-decisão">Ver ranking arquivado e por quê o IDHM não tem substituto mais novo.</a></p>
       </div>
     </section>
 
     <section aria-labelledby="fila-titulo">
-      <div class="section-head"><div><p class="kicker">Resultado do pente-fino</p><h2 id="fila-titulo">Seis cidades para abrir arquivo por arquivo.</h2></div><p>O corte privilegia sinais que realmente diferenciam o município, não a simples existência de um portal de transparência.</p></div>
+      <div class="section-head"><div><p class="kicker">Resultado da triagem</p><h2 id="fila-titulo">Sete cidades para abrir arquivo por arquivo.</h2></div><p>O corte privilegia sinais que realmente diferenciam o município, não a simples existência de um portal de transparência.</p></div>
       <div class="shortlists">
-        <article class="shortlist"><h3>Faixa de ≈ 10 mil</h3><p>O melhor achado é técnico, ainda não temático.</p>
-          <div class="candidate"><b>1</b><div><strong>Casca/RS · 9.698 hab.</strong><p>Exportações CSV atuais e SIGWeb contratado para cadastro, viabilidade, iluminação e endereçamento. Falta confirmar o mapa público e dados fora da administração.</p></div></div>
-          <div class="candidate"><b>2</b><div><strong>Águas da Prata/SP · 7.463 hab.</strong><p>API oficial sem autenticação, JSON/XML, paginação e documentação. Limite: os sete módulos encontrados são administrativos.</p></div></div>
-          <div class="candidate"><b>3</b><div><strong>Auriflama/SP · 13.856 hab.</strong><p>Mesma boa arquitetura de API e a mesma dúvida: tecnologia pronta, cobertura social ainda estreita.</p></div></div>
+        <article class="shortlist"><h3>Faixa de ≈ 10 mil</h3><p>Três candidatas publicam JSON real da própria Prefeitura.</p>
+          <div class="candidate"><b>1</b><div><strong>Águas da Prata/SP · 7.463 hab.</strong><p>API oficial sem autenticação, JSON/XML, paginação e documentação. Limite: os sete módulos encontrados são administrativos.</p></div></div>
+          <div class="candidate"><b>2</b><div><strong>Confins/MG · 7.758 hab.</strong><p>Catálogo JSON próprio (13 conjuntos) e portal de transparência com governança nomeada — coordenador, CNPJ, licença CC 4.0. Mesmo limite: escopo só administrativo.</p></div></div>
+          <div class="candidate"><b>3</b><div><strong>Quintana/SP · 7.260 hab.</strong><p>Catálogo JSON próprio (14 conjuntos), atualizado diariamente. Mesma arquitetura técnica de Águas da Prata.</p></div></div>
         </article>
-        <article class="shortlist"><h3>Faixa de ≈ 100 mil</h3><p>Uma aprovada no geo, uma condicional e a próxima auditoria.</p>
-          <div class="candidate"><b>1</b><div><strong>Nova Lima/MG · 120.959 hab.</strong><p>GeoPNL com 91 recursos-folha no mapa público, incluindo saúde, ensino, assistência, mobilidade e território. Lidera o microlaboratório intraurbano; ainda precisa provar dados operacionais.</p></div></div>
-          <div class="candidate"><b>2</b><div><strong>Rio do Sul/SC · 77.451 hab.</strong><p>O portal implementa a função de dados abertos, mas nenhum arquivo exportado teve formato e esquema lidos. Permanece na fila com confiança média-baixa.</p></div></div>
-          <div class="candidate"><b>3</b><div><strong>Vinhedo/SP · 79.089 hab.</strong><p>JSON administrativo e Mappa Web com bairros e lotes fazem dela o próximo teste completo. Ainda não é uma candidata confirmada.</p></div></div>
+        <article class="shortlist"><h3>Faixa de ≈ 100 mil</h3><p>Uma líder confirmada, uma condicional e duas próximas auditorias.</p>
+          <div class="candidate"><b>1</b><div><strong>Nova Lima/MG · 120.959 hab.</strong><p>GeoPNL com 91 recursos-folha no mapa público, incluindo saúde, ensino, assistência, mobilidade e território. Continua líder nas duas métricas (IDHM e IPS Brasil).</p></div></div>
+          <div class="candidate"><b>2</b><div><strong>Lavras/MG · 110.682 hab.</strong><p>Geoportal (GEO LAVRAS) com camadas WMS ativáveis — novidade desta rodada. Partes do sistema ainda estão "em construção".</p></div></div>
+          <div class="candidate"><b>3</b><div><strong>Vinhedo/SP · 79.089 hab.</strong><p>JSON administrativo e Mappa Web com bairros e lotes. Sobe para segunda prioridade da faixa nesta rodada.</p></div></div>
         </article>
       </div>
     </section>
 
     <section id="metodo" aria-labelledby="metodo-titulo">
-      <div class="section-head"><div><p class="kicker">Busca eficiente</p><h2 id="metodo-titulo">Um funil barato antes da auditoria cara.</h2></div><p>O IDHM escolhe onde olhar. Quem decide o piloto continua sendo a qualidade dos dados.</p></div>
+      <div class="section-head"><div><p class="kicker">Busca eficiente</p><h2 id="metodo-titulo">Um funil barato antes da auditoria cara.</h2></div><p>O IPS Brasil 2026 escolhe onde olhar. Quem decide o piloto continua sendo a qualidade dos dados.</p></div>
       <div class="funnel">
-        <article class="step"><span>1 · Universo</span><strong>5.564 municípios cruzados</strong><p>IDHM 2010 disponível e município compatível com a malha populacional atual.</p></article>
-        <article class="step"><span>2 · Porte</span><strong>Duas faixas populacionais</strong><p>Filtro em lote, sem abrir portal municipal por portal municipal.</p></article>
-        <article class="step"><span>3 · IDHM</span><strong>20 candidatas</strong><p>Top 10 de cada faixa. Redução superior a 99% do universo de busca.</p></article>
-        <article class="step"><span>4 · Dados</span><strong>6 para auditoria profunda</strong><p>Abrir recursos reais nos oito domínios do IDU-Br e medir confiança.</p></article>
+        <article class="step"><span>1 · Universo</span><strong>5.570 municípios cruzados</strong><p>IPS Brasil 2026 e população IBGE 2025, para cada município do país.</p></article>
+        <article class="step"><span>2 · Porte</span><strong>Duas faixas populacionais</strong><p>1.452 e 276 municípios, respectivamente — filtro em lote, sem abrir portal por portal.</p></article>
+        <article class="step"><span>3 · IPS Brasil</span><strong>20 candidatas</strong><p>Top 10 de cada faixa. Redução superior a 99% do universo de busca.</p></article>
+        <article class="step"><span>4 · Dados</span><strong>7 para auditoria profunda</strong><p>Abrir recursos reais nos oito domínios do IDU-Br e medir confiança.</p></article>
       </div>
     </section>
 
@@ -100,16 +100,16 @@
         <article class="criterion"><strong>4. Atualidade</strong><p>Existem registros atuais, série histórica e rotina visível de atualização?</p></article>
         <article class="criterion"><strong>5. Governança</strong><p>O município mantém inventário, documentação e responsáveis, ou só usa uma tela genérica de fornecedor?</p></article>
       </div>
-      <p class="warning" style="margin-top:1rem"><strong>Confiança desta etapa: alta para população e identidade municipal; variável para dados.</strong> Nova Lima e Balneário Camboriú tiveram serviços e esquemas testados. Rio do Sul ainda depende de exportação interativa; a ausência de portal numa busca não prova que ele não exista. A conclusão e cada intervalo estão na <a href="docs/AUDITORIA_PENTE_FINO_100MIL.md">auditoria pente-fino</a>.</p>
+      <p class="warning" style="margin-top:1rem"><strong>Confiança desta etapa: alta para população e IPS Brasil; variável para dados.</strong> Cinco cidades desta rodada (Cajobi, Tabatinga/SP, Guaiçara, Rafard e Leme) têm um botão "Dados Abertos" atrás de postback JavaScript que não pôde ser verificado por automação — nenhuma foi promovida a "auditar agora" só por isso. Duas (Antônio Carlos/SC e Itajubá/MG) bloqueiam acesso automatizado por completo. A ausência de portal numa busca não prova que ele não exista. Conclusão completa e cada fonte: <a href="docs/CIDADES_PEQUENAS.md">CIDADES_PEQUENAS.md</a>.</p>
     </section>
 
     <section aria-labelledby="fontes-titulo">
       <div class="section-head"><div><p class="kicker">Fontes e rastreabilidade</p><h2 id="fontes-titulo">De onde saíram os números.</h2></div><p>Os links municipais ficam na própria tabela. As bases nacionais usadas para o corte estão aqui.</p></div>
       <div class="sources">
         <article class="source"><strong>População municipal 2025</strong><p>Estimativas oficiais do IBGE, revisão publicada em 13/01/2026. <a href="https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2025/POP2025_20260113.ods" target="_blank" rel="noopener noreferrer">Baixar ODS ↗</a></p></article>
-        <article class="source"><strong>IDHM municipal 2010</strong><p>Atlas do Desenvolvimento Humano/PNUD, baseado no Censo 2010. <a href="https://www.undp.org/pt/brazil/idhm-municipios-2010" target="_blank" rel="noopener noreferrer">Ver ranking completo ↗</a></p></article>
-        <article class="source"><strong>Série reproduzível do IDHM</strong><p>IPEAData, série ADH_IDHM, fonte Atlas Brasil/Censo IBGE. <a href="http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='ADH_IDHM')" target="_blank" rel="noopener noreferrer">Abrir API ↗</a></p></article>
-        <article class="source"><strong>Memória metodológica</strong><p>Faixas, lista completa, evidências e limitações estão em <a href="docs/CIDADES_PEQUENAS.md">docs/CIDADES_PEQUENAS.md</a>.</p></article>
+        <article class="source"><strong>IPS Brasil 2026</strong><p>Índice de Progresso Social, Imazon + Social Progress Imperative + parceiros. Cobre os 5.570 municípios; substitui o IDHM 2010 como heurística porque não existe IDHM municipal mais recente (ver nota de fonte). <a href="https://ipsbrasil.org.br/explore/data" target="_blank" rel="noopener noreferrer">Ver dados ↗</a></p></article>
+        <article class="source"><strong>Metodologia do IPS Brasil</strong><p>57 indicadores, 3 dimensões, 12 componentes, escala 0–100. <a href="https://ipsbrasil.org.br/conheca/metodologia" target="_blank" rel="noopener noreferrer">Abrir metodologia ↗</a></p></article>
+        <article class="source"><strong>Memória metodológica</strong><p>Faixas, lista completa, evidências, limitações e o ranking anterior por IDHM 2010 estão em <a href="docs/CIDADES_PEQUENAS.md">docs/CIDADES_PEQUENAS.md</a>.</p></article>
       </div>
     </section>
   </main>
@@ -117,26 +117,26 @@
   <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Informação simples para entender a cidade, comparar regiões e ampliar a participação social.</p></div><div class="footer-links"><a href="./">Top 10 principal</a><a href="relatorio_parcial.html">Relatório</a><a href="fontes.html">Fontes</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
   <script>
     const candidates = [
-      {band:"micro",idhmRank:1,auditRank:6,city:"Treze Tílias/SC",population:9531,idhm:.795,access:"ERP interno; sem base aberta localizada",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.trezetilias.sc.gov.br/licitacao/licitacao-189258/"},
-      {band:"micro",idhmRank:2,auditRank:4,city:"Saltinho/SP",population:8407,idhm:.791,access:"Protocolo digital; sem dataset aberto",territory:"Não localizado",triage:"reserve",triageLabel:"Reserva",url:"https://saltinho.sp.gov.br/noticias/1533/prefeitura-orienta-moradores-sobre-como-realizar-protocolo-digital-pelo-sistema-flowdocs"},
-      {band:"micro",idhmRank:3,auditRank:1,city:"Casca/RS",population:9698,idhm:.785,access:"CSV/PDF em bases administrativas",territory:"SIGWeb contratado; confirmar acesso",triage:"now",triageLabel:"Auditar agora",url:"https://www.casca.rs.gov.br/portal/editais/1"},
-      {band:"micro",idhmRank:4,auditRank:2,city:"Águas da Prata/SP",population:7463,idhm:.781,access:"API JSON/XML documentada",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.aguasdaprata.sp.gov.br/dados-abertos"},
-      {band:"micro",idhmRank:5,auditRank:5,city:"Itaú de Minas/MG",population:14634,idhm:.776,access:"4 JSON da Câmara; não da Prefeitura",territory:"Não localizado",triage:"reserve",triageLabel:"Reserva",url:"https://www.itaudeminas.mg.leg.br/transparencia/dados-abertos"},
-      {band:"micro",idhmRank:6,auditRank:8,city:"Trombudo Central/SC",population:7599,idhm:.775,access:"Transparência; sem export confirmado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.trombudocentral.sc.gov.br/acesso-a-informacao-2/"},
-      {band:"micro",idhmRank:7,auditRank:7,city:"Siderópolis/SC",population:14156,idhm:.774,access:"Transparência administrativa",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.sideropolis.sc.gov.br/cartaservicos/detalhe-transparenciapublica/"},
-      {band:"micro",idhmRank:8,auditRank:9,city:"Ouro/SC",population:7062,idhm:.774,access:"Portal Atende; export não confirmado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://ouro.sc.gov.br/cartaservicos/detalhe-portal-da-transparencia4/"},
-      {band:"micro",idhmRank:9,auditRank:10,city:"Paraí/RS",population:7362,idhm:.773,access:"Portal e licitações; sem base aberta",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://parai.rs.gov.br/licitacao/?ano=2026&idModalidade=5"},
-      {band:"micro",idhmRank:10,auditRank:3,city:"Auriflama/SP",population:13856,idhm:.773,access:"API JSON/XML documentada",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.auriflama.sp.gov.br/dados-abertos"},
-      {band:"small",idhmRank:1,auditRank:4,city:"Valinhos/SP",population:132258,idhm:.819,access:"JSON administrativo",territory:"Mapas temáticos em arquivos",triage:"reserve",triageLabel:"Reserva forte",url:"https://www.valinhos.sp.gov.br/portal/dados-abertos"},
-      {band:"small",idhmRank:2,auditRank:3,city:"Vinhedo/SP",population:79089,idhm:.817,access:"JSON administrativo",territory:"Mappa Web com bairros e lotes",triage:"now",triageLabel:"Próxima auditoria",url:"https://www.vinhedo.sp.gov.br/portal/dados-abertos"},
-      {band:"small",idhmRank:3,auditRank:1,city:"Nova Lima/MG",population:120959,idhm:.813,access:"FeatureServer público; 91 recursos-folha",territory:"Saúde, ensino, assistência, mobilidade e cadastro",triage:"now",triageLabel:"Líder confirmada",url:"https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl"},
-      {band:"small",idhmRank:4,auditRank:5,city:"Assis/SP",population:104858,idhm:.805,access:"JSON administrativo e relatórios",territory:"Mapas temáticos, escolas e UBS",triage:"reserve",triageLabel:"Reserva",url:"https://www.assis.sp.gov.br/portal/dados-abertos"},
-      {band:"small",idhmRank:5,auditRank:2,city:"Rio do Sul/SC",population:77451,idhm:.802,access:"Exportação existe na interface; arquivo não lido",territory:"Projetos municipais no SIGEP",triage:"now",triageLabel:"Condicional",url:"https://riodosul.atende.net/transparencia/"},
-      {band:"small",idhmRank:6,auditRank:6,city:"Pirassununga/SP",population:75594,idhm:.801,access:"SIG municipal previsto; export a testar",territory:"Cadastro territorial multifinalitário",triage:"reserve",triageLabel:"Reserva",url:"https://pirassununga.sp.gov.br/Publicacoes/Licitacoes/2022/Concorr%C3%AAncia%20P%C3%BAblica/CP%20001-22%20-%20Loca%C3%A7%C3%A3o%20de%20software%20de%20gest%C3%A3o%20do%20cadastro%20territorial%20multifinalit%C3%A1rio/001%20-%20Edital%20e%20Termo%20de%20Refer%C3%AAncia/001%20-%20Termo%20de%20Refer%C3%AAncia.pdf"},
-      {band:"small",idhmRank:7,auditRank:7,city:"Concórdia/SC",population:87206,idhm:.800,access:"Transparência Atende",territory:"Servidor geo localizado; não validado",triage:"reserve",triageLabel:"Reserva",url:"https://concordia.atende.net/transparencia/"},
-      {band:"small",idhmRank:8,auditRank:10,city:"Guaratinguetá/SP",population:121916,idhm:.798,access:"Observatório legado; sem API/export atual",territory:"APEMs formadas por bairros",triage:"gap",triageLabel:"Legado",url:"https://observatorio.guaratingueta.sp.gov.br/elementor-11721/"},
-      {band:"small",idhmRank:9,auditRank:9,city:"São João da Boa Vista/SP",population:96080,idhm:.797,access:"Sem catálogo diferenciado localizado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.saojoao.sp.gov.br/"},
-      {band:"small",idhmRank:10,auditRank:8,city:"Fernandópolis/SP",population:73508,idhm:.797,access:"SIG contratado; acesso público a testar",territory:"Ortofoto e cadastro imobiliário",triage:"reserve",triageLabel:"Reserva",url:"https://www.fernandopolis.sp.gov.br/publicacoes/pregao-eletronico/edital-de-pregao-eletronico-n-0832023-contratacao-de-empresa-de-engenharia-especializada-em-geoprocessamento"}
+      {band:"micro",metricRank:1,auditRank:8,city:"Rafard/SP",population:9145,metric:71.08,access:"Portal próprio; dados abertos da Câmara falhou (HTTP 501)",territory:"Não localizado",triage:"reserve",triageLabel:"Reserva",url:"https://transparencia.rafard.sp.gov.br/home"},
+      {band:"micro",metricRank:2,auditRank:1,city:"Águas da Prata/SP",population:7463,metric:70.44,access:"API JSON/XML documentada",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.aguasdaprata.sp.gov.br/dados-abertos"},
+      {band:"micro",metricRank:3,auditRank:3,city:"Quintana/SP",population:7260,metric:69.92,access:"JSON próprio da Prefeitura (14 conjuntos)",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.quintana.sp.gov.br/portal/dados-abertos"},
+      {band:"micro",metricRank:4,auditRank:2,city:"Confins/MG",population:7758,metric:69.67,access:"JSON próprio da Prefeitura (13 conjuntos)",territory:"Não localizado",triage:"now",triageLabel:"Auditar agora",url:"https://www.confins.mg.gov.br/portal/dados-abertos"},
+      {band:"micro",metricRank:5,auditRank:7,city:"Guaiçara/SP",population:11478,metric:69.47,access:"Botão 'Dados Abertos' não verificável (SCPI)",territory:"Não localizado",triage:"reserve",triageLabel:"Reserva",url:"http://transparencia.guaicara.sp.gov.br:8079/TRANSPARENCIA/"},
+      {band:"micro",metricRank:6,auditRank:4,city:"Itaú de Minas/MG",population:14634,metric:69.46,access:"4 JSON da Câmara; não da Prefeitura",territory:"Não localizado",triage:"reserve",triageLabel:"Reserva",url:"https://www.itaudeminas.mg.leg.br/transparencia/dados-abertos"},
+      {band:"micro",metricRank:7,auditRank:9,city:"Antônio Carlos/SC",population:12464,metric:69.31,access:"Site bloqueia acesso automatizado; sem dados abertos",territory:"Só descrição textual",triage:"gap",triageLabel:"Sem diferencial",url:"https://antoniocarlos.sc.gov.br/"},
+      {band:"micro",metricRank:8,auditRank:10,city:"Lindóia/SP",population:7158,metric:69.08,access:"Portais de saúde/educação anunciados, mas com 404",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.lindoia.sp.gov.br/portal-da-saude/portal-da-saude-1"},
+      {band:"micro",metricRank:9,auditRank:5,city:"Cajobi/SP",population:9210,metric:69.07,access:"Botão 'Dados Abertos' não verificável; 2 mapas PDF",territory:"Mapas estáticos (viário e geral)",triage:"reserve",triageLabel:"Reserva",url:"http://transparencia.cajobi.sp.gov.br:35002/transparencia/"},
+      {band:"micro",metricRank:10,auditRank:6,city:"Tabatinga/SP",population:14997,metric:68.81,access:"Mesmo padrão de Cajobi; botão não verificável",territory:"Um ponto de lat/long da sede",triage:"reserve",triageLabel:"Reserva",url:"http://189.20.141.242:8079/Transparencia/"},
+      {band:"small",metricRank:1,auditRank:1,city:"Nova Lima/MG",population:120959,metric:71.22,access:"FeatureServer público; 91 recursos-folha",territory:"Saúde, ensino, assistência, mobilidade e cadastro",triage:"now",triageLabel:"Líder confirmada",url:"https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl"},
+      {band:"small",metricRank:2,auditRank:6,city:"Itupeva/SP",population:74994,metric:71.08,access:"Transparência 'Setorial'; sem dataset confirmado",territory:"Mapas do Plano Diretor em PDF",triage:"reserve",triageLabel:"Reserva",url:"https://itupeva.sp.gov.br/transparencia"},
+      {band:"small",metricRank:3,auditRank:9,city:"São João da Boa Vista/SP",population:96080,metric:69.94,access:"Sem catálogo diferenciado localizado",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"https://www.saojoao.sp.gov.br/"},
+      {band:"small",metricRank:4,auditRank:5,city:"Votuporanga/SP",population:100568,metric:69.34,access:"Transparência setorial em HTML; sem exportação",territory:"34 unidades de saúde com endereço",triage:"reserve",triageLabel:"Reserva",url:"https://web.votuporanga.sp.gov.br:8055/transparencia/"},
+      {band:"small",metricRank:5,auditRank:3,city:"Lavras/MG",population:110682,metric:69.32,access:"Geoportal com camadas WMS ativáveis",territory:"Infraestrutura e meio ambiente (genérico)",triage:"now",triageLabel:"Condicional",url:"https://lavras.mg.gov.br/geolavras/"},
+      {band:"small",metricRank:6,auditRank:4,city:"Paulínia/SP",population:116674,metric:68.86,access:"API JSON real e testada (Diário Oficial)",territory:"Mapas de zoneamento em PDF",triage:"now",triageLabel:"Auditar agora",url:"https://www.paulinia.sp.gov.br/portal/dados-abertos"},
+      {band:"small",metricRank:7,auditRank:2,city:"Vinhedo/SP",population:79089,metric:68.85,access:"JSON administrativo",territory:"Mappa Web com bairros e lotes",triage:"now",triageLabel:"Auditar agora",url:"https://www.vinhedo.sp.gov.br/portal/dados-abertos"},
+      {band:"small",metricRank:8,auditRank:8,city:"Bebedouro/SP",population:78257,metric:68.84,access:"Transparência fiscal padrão; mapas do PD fora do ar",territory:"Não confirmado (link 404)",triage:"reserve",triageLabel:"Reserva",url:"http://www.sp.portaldatransparencia.com.br/prefeitura/bebedouro/"},
+      {band:"small",metricRank:9,auditRank:10,city:"Itajubá/MG",population:96855,metric:68.79,access:"Site bloqueado por Cloudflare; sem dados abertos",territory:"Não localizado",triage:"gap",triageLabel:"Sem diferencial",url:"http://web.archive.org/web/20251217185113/https://www.itajuba.mg.gov.br/"},
+      {band:"small",metricRank:10,auditRank:7,city:"Leme/SP",population:101537,metric:68.72,access:"Link de 'Dados Abertos' retornou 404",territory:"Mapas de zoneamento por bairro (PDF)",triage:"reserve",triageLabel:"Reserva",url:"https://lemespscpi.dcfiorilli.com.br:879/TRANSPARENCIA/"}
     ];
     const formatter = new Intl.NumberFormat("pt-BR");
     const esc = value => String(value).replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
@@ -146,22 +146,24 @@
     const status = document.querySelector("#status");
     const bandButtons = [...document.querySelectorAll("[data-band]")];
     const sortButtons = [...document.querySelectorAll("[data-sort]")];
-    const storageKey = "ia-brasil-cidades-pequenas-v1";
+    const storageKey = "ia-brasil-cidades-pequenas-v2";
     let activeBand = "micro";
-    let activeSort = "idhm";
+    let activeSort = "metric";
     const bandMeta = {micro:{label:"≈ 10 mil",range:"7.000–15.000",target:10000},small:{label:"≈ 100 mil",range:"70.000–150.000",target:100000}};
-    const sortLabels = {idhm:"IDHM 2010",audit:"prioridade de auditoria",target:"proximidade do alvo",population:"população"};
+    const sortLabels = {metric:"IPS Brasil 2026",audit:"prioridade de auditoria",target:"proximidade do alvo",population:"população"};
+    // slugs não seguem o padrão automático de citySlug() nestes dois casos (colisão de nome entre municípios)
+    const slugOverrides = {"Antônio Carlos/SC":"antonio-carlos-sc","Tabatinga/SP":"tabatinga-sp"};
     function load(){try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved&&bandMeta[saved.band])activeBand=saved.band;if(saved&&sortLabels[saved.sort])activeSort=saved.sort}catch(error){/* usa o padrão */}}
     function save(){try{localStorage.setItem(storageKey,JSON.stringify({band:activeBand,sort:activeSort}))}catch(error){/* armazenamento opcional */}}
     function render(){
       const meta=bandMeta[activeBand];
       const rows=candidates.filter(item=>item.band===activeBand);
-      const sorters={idhm:(a,b)=>a.idhmRank-b.idhmRank,audit:(a,b)=>a.auditRank-b.auditRank,target:(a,b)=>Math.abs(a.population-meta.target)-Math.abs(b.population-meta.target)||a.idhmRank-b.idhmRank,population:(a,b)=>a.population-b.population};
+      const sorters={metric:(a,b)=>a.metricRank-b.metricRank,audit:(a,b)=>a.auditRank-b.auditRank,target:(a,b)=>Math.abs(a.population-meta.target)-Math.abs(b.population-meta.target)||a.metricRank-b.metricRank,population:(a,b)=>a.population-b.population};
       rows.sort(sorters[activeSort]);
       bandButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.band===activeBand)));
       sortButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.sort===activeSort)));
       status.textContent=`Faixa ${meta.label} (${meta.range} habitantes) · ordem por ${sortLabels[activeSort]} · escolhas salvas neste navegador`;
-      results.innerHTML=rows.map((item,index)=>`<tr><td class="rank">${index+1}</td><td class="city"><a href="cidades-pequenas/${esc(citySlug(item.city))}.html"><span>${esc(item.city)}</span><small>Ver dossiê →</small></a></td><td class="number-cell">${formatter.format(item.population)}</td><td class="number-cell">${item.idhm.toFixed(3).replace(".",",")}</td><td>${esc(item.access)}</td><td>${esc(item.territory)}</td><td><span class="badge ${esc(item.triage)}">${esc(item.triageLabel)}</span></td><td><a class="evidence-link" href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">Abrir ↗</a></td></tr>`).join("");
+      results.innerHTML=rows.map((item,index)=>`<tr><td class="rank">${index+1}</td><td class="city"><a href="cidades-pequenas/${esc(slugOverrides[item.city]||citySlug(item.city))}.html"><span>${esc(item.city)}</span><small>Ver dossiê →</small></a></td><td class="number-cell">${formatter.format(item.population)}</td><td class="number-cell">${item.metric.toFixed(2).replace(".",",")}</td><td>${esc(item.access)}</td><td>${esc(item.territory)}</td><td><span class="badge ${esc(item.triage)}">${esc(item.triageLabel)}</span></td><td><a class="evidence-link" href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">Abrir ↗</a></td></tr>`).join("");
     }
     bandButtons.forEach(button=>button.addEventListener("click",()=>{activeBand=button.dataset.band;save();render()}));
     sortButtons.forEach(button=>button.addEventListener("click",()=>{activeSort=button.dataset.sort;save();render()}));

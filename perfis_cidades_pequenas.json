@@ -1,203 +1,1739 @@
 {
-  "updated_at": "2026-08-01",
+  "updated_at": "2026-08-02",
   "profiles": [
     {
-      "slug": "treze-tilias", "city": "Treze Tílias/SC", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 1, "audit_rank": 6, "population": 9531, "idhm": 0.795, "ibge_code": "4218509", "triage": "gap", "triage_label": "Sem diferencial localizado", "confidence": "média-baixa",
-      "summary": "Lidera o pré-filtro por IDHM, mas a varredura rápida não confirmou catálogo, API ou arquivo municipal multidomínio disponível ao público.",
-      "recommended_scope": "Reabrir a busca a partir dos sistemas citados em contratações municipais e testar se algum módulo permite exportação pública.",
-      "strengths": ["Primeira colocada no pré-filtro de IDHM da faixa", "Porte muito próximo do alvo de 10 mil habitantes", "Sistema de gestão municipal localizado em documentação oficial"],
-      "risks": ["ERP interno não equivale a dado aberto", "Nenhum recorte territorial público foi confirmado", "Ausência de diferencial temático na primeira varredura"],
-      "next": ["Identificar o fornecedor e os módulos públicos do ERP", "Testar transparência, saúde, educação e cadastro territorial", "Só promover se um arquivo ou endpoint real puder ser repetido"],
-      "sources": [{"name":"Licitação municipal relacionada ao sistema de gestão", "producer":"Prefeitura de Treze Tílias", "access":"Página/documento", "territory":"Não demonstrado", "status":"pista", "url":"https://www.trezetilias.sc.gov.br/licitacao/licitacao-189258/", "note":"Comprova contratação ou uso administrativo; não comprova publicação de base aberta."}]
-    },
-    {
-      "slug": "saltinho", "city": "Saltinho/SP", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 2, "audit_rank": 4, "population": 8407, "idhm": 0.791, "ibge_code": "3545159", "triage": "reserve", "triage_label": "Reserva", "confidence": "média-baixa",
-      "summary": "O município mostra digitalização de serviços e protocolo eletrônico corrente, mas ainda sem evidência de base aberta reutilizável.",
-      "recommended_scope": "Verificar se o protocolo digital gera consultas ou exportações anônimas e procurar dados territoriais em planejamento e cadastro.",
-      "strengths": ["Segundo IDHM da faixa selecionada", "Serviço de protocolo digital divulgado pela prefeitura", "Escala favorável a um teste territorial pequeno"],
-      "risks": ["Serviço digital não é sinônimo de dado aberto", "Sem dataset municipal confirmado", "Sem granularidade territorial localizada"],
-      "next": ["Testar exportação e consulta sem autenticação", "Procurar bases de saúde, educação e obras", "Registrar fornecedor, licença e atualização de cada sistema"],
-      "sources": [{"name":"Orientação sobre protocolo digital FlowDocs", "producer":"Prefeitura de Saltinho", "access":"Serviço/página", "territory":"Protocolo administrativo", "status":"confirmado", "url":"https://saltinho.sp.gov.br/noticias/1533/prefeitura-orienta-moradores-sobre-como-realizar-protocolo-digital-pelo-sistema-flowdocs", "note":"Prova digitalização do atendimento, mas não prova download ou API."}]
-    },
-    {
-      "slug": "casca", "city": "Casca/RS", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 3, "audit_rank": 1, "population": 9698, "idhm": 0.785, "ibge_code": "4304903", "triage": "now", "triage_label": "Auditar agora", "confidence": "média",
-      "summary": "É a melhor prioridade de auditoria na faixa: há exportações administrativas atuais e uma contratação de SIGWeb com escopo territorial incomum para o porte.",
-      "recommended_scope": "Abrir um CSV administrativo, localizar o SIGWeb público e testar cadastro territorial, iluminação, numeração predial e equipamentos.",
-      "strengths": ["População quase exatamente no alvo de 10 mil", "Editais administrativos com exportação CSV/PDF", "SIGWeb descrito com múltiplos módulos territoriais"],
-      "risks": ["Acesso público ao SIGWeb ainda não confirmado", "Contratação comprova capacidade, não abertura", "Saúde e educação ainda sem recursos próprios verificados"],
-      "next": ["Baixar um CSV e registrar campos, linhas e atualização", "Encontrar e consultar o endereço público do SIGWeb", "Abrir ao menos uma fonte social antes de calcular IDU-Br"],
+      "slug": "rafard",
+      "city": "Rafard/SP",
+      "ibge_code": "3542107",
+      "population": 9145,
+      "metric_rank": 1,
+      "audit_rank": 8,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa para acesso; média para governança",
+      "summary": "Tem portal de transparência próprio e atualizado, mas a única página de dados abertos localizada pertence à Câmara e falhou ao abrir (HTTP 501) em duas tentativas.",
+      "recommended_scope": "Reabrir a página de dados abertos da Câmara em outro horário e testar se a Prefeitura mantém um catálogo próprio fora desse link.",
+      "strengths": [
+        "Primeiro colocado no pré-filtro por IPS Brasil 2026",
+        "Portal de transparência próprio, atualizado em 31/07/2026",
+        "LOA 2027 e Consulta Pública da LDO 2027 já publicadas"
+      ],
+      "risks": [
+        "Página de dados abertos (Câmara) retornou HTTP 501 em duas tentativas",
+        "Nenhum CSV/JSON/API da Prefeitura confirmado",
+        "Sem recorte territorial localizado"
+      ],
+      "next": [
+        "Testar a página de dados abertos da Câmara em outro momento/IP",
+        "Procurar catálogo próprio da Prefeitura fora desse link",
+        "Buscar saúde, educação e geoportal por secretaria"
+      ],
       "sources": [
-        {"name":"Editais e bases administrativas", "producer":"Prefeitura de Casca", "access":"CSV/PDF", "territory":"Município e processo administrativo", "status":"confirmado", "url":"https://www.casca.rs.gov.br/portal/editais/1", "note":"A página declara exportação estruturada e contém registros correntes."},
-        {"name":"Contratação do SIGWeb municipal", "producer":"Prefeitura de Casca", "access":"Edital/documento", "territory":"Cadastro, iluminação, numeração predial e cemitério", "status":"pista", "url":"https://www.casca.rs.gov.br/portal/editais/0/1/993/", "note":"Sinal técnico forte; a interface pública e seus recursos ainda precisam ser encontrados."}
-      ]
+        {
+          "name": "Portal de Transparência municipal",
+          "producer": "Prefeitura de Rafard",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://transparencia.rafard.sp.gov.br/home",
+          "note": "Atualizado em 31/07/2026; nenhuma seção de dados abertos/exportação CSV-JSON-XML/API visível no conteúdo capturado."
+        },
+        {
+          "name": "Programa de Dados Abertos (Câmara)",
+          "producer": "Câmara Municipal de Rafard",
+          "access": "Não verificado",
+          "territory": "Não demonstrado",
+          "status": "lacuna",
+          "url": "https://www.camararafard.sp.gov.br/",
+          "note": "HTTP 501 (Not Implemented) em duas tentativas; é do Legislativo, não da Prefeitura."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 71.08,
+      "metric_value_label": "71,08",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
     },
     {
-      "slug": "aguas-da-prata", "city": "Águas da Prata/SP", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 4, "audit_rank": 2, "population": 7463, "idhm": 0.781, "ibge_code": "3500402", "triage": "now", "triage_label": "Auditar agora", "confidence": "média-alta para acesso; baixa para cobertura",
+      "slug": "aguas-da-prata",
+      "city": "Águas da Prata/SP",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 1,
+      "population": 7463,
+      "ibge_code": "3500402",
+      "triage": "now",
+      "triage_label": "Auditar agora",
+      "confidence": "média-alta para acesso; baixa para cobertura",
       "summary": "A prefeitura documenta uma API anônima em JSON e XML, um achado técnico raro nesse porte, porém concentrado em conteúdo administrativo.",
       "recommended_scope": "Executar todos os módulos documentados, contar registros e verificar se existem endpoints não anunciados para serviços ou território.",
-      "strengths": ["API oficial sem autenticação", "JSON/XML, paginação e limite documentados", "Sete módulos administrativos identificados"],
-      "risks": ["Cobertura concentrada em licitações, legislação e notícias", "Nenhum recorte territorial localizado", "Boa API pode refletir apenas o CMS do portal"],
-      "next": ["Chamar cada endpoint e guardar amostra e esquema", "Medir frescor, estabilidade e paginação", "Buscar saúde, educação, ambiente e urbanismo fora do portal central"],
-      "sources": [{"name":"Documentação municipal de dados abertos", "producer":"Prefeitura de Águas da Prata", "access":"API JSON/XML", "territory":"Conteúdo administrativo", "status":"confirmado", "url":"https://www.aguasdaprata.sp.gov.br/dados-abertos", "note":"Documentação técnica clara; amplitude temática ainda estreita."}]
+      "strengths": [
+        "API oficial sem autenticação",
+        "JSON/XML, paginação e limite documentados",
+        "Sete módulos administrativos identificados"
+      ],
+      "risks": [
+        "Cobertura concentrada em licitações, legislação e notícias",
+        "Nenhum recorte territorial localizado",
+        "Boa API pode refletir apenas o CMS do portal"
+      ],
+      "next": [
+        "Chamar cada endpoint e guardar amostra e esquema",
+        "Medir frescor, estabilidade e paginação",
+        "Buscar saúde, educação, ambiente e urbanismo fora do portal central"
+      ],
+      "sources": [
+        {
+          "name": "Documentação municipal de dados abertos",
+          "producer": "Prefeitura de Águas da Prata",
+          "access": "API JSON/XML",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.aguasdaprata.sp.gov.br/dados-abertos",
+          "note": "Documentação técnica clara; amplitude temática ainda estreita."
+        }
+      ],
+      "metric_rank": 2,
+      "previous_metric": {
+        "name": "IDHM 2010",
+        "rank": 4,
+        "value_label": "0,781"
+      },
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 70.44,
+      "metric_value_label": "70,44",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
     },
     {
-      "slug": "itau-de-minas", "city": "Itaú de Minas/MG", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 5, "audit_rank": 5, "population": 14634, "idhm": 0.776, "ibge_code": "3133758", "triage": "reserve", "triage_label": "Reserva", "confidence": "média",
+      "slug": "quintana",
+      "city": "Quintana/SP",
+      "ibge_code": "3542008",
+      "population": 7260,
+      "metric_rank": 3,
+      "audit_rank": 3,
+      "triage": "now",
+      "triage_label": "Auditar agora",
+      "confidence": "média-alta para acesso; baixa para cobertura",
+      "summary": "A Prefeitura publica um catálogo próprio de dados abertos em JSON, com 14 conjuntos e atualização diária — o mesmo padrão técnico que promoveu Águas da Prata e Auriflama na rodada anterior.",
+      "recommended_scope": "Chamar os 14 endpoints, contar registros por conjunto e procurar módulos de saúde, educação ou território fora do catálogo padrão.",
+      "strengths": [
+        "Página própria de dados abertos com JSON confirmado (14 conjuntos)",
+        "Timestamp de atualização em 31/07/2026 10:58",
+        "Sistema versionado (indica operação permanente)"
+      ],
+      "risks": [
+        "Os 14 conjuntos são 100% organizacional/financeiro/legislativo",
+        "Nenhuma API territorial ou geográfica localizada",
+        "/portal/mapa é mapa do site, não GIS"
+      ],
+      "next": [
+        "Baixar e descrever os 14 conjuntos JSON",
+        "Procurar dados de saúde/educação fora do catálogo padrão",
+        "Comparar o esquema com Águas da Prata e Confins (mesmo fornecedor de CMS)"
+      ],
+      "sources": [
+        {
+          "name": "Dados abertos da Prefeitura",
+          "producer": "Prefeitura de Quintana",
+          "access": "JSON",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.quintana.sp.gov.br/portal/dados-abertos",
+          "note": "14 datasets em 4 categorias (organizacional, financeiro, participação, contratos/licitações); atualização declarada 31/07/2026 10:58."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.92,
+      "metric_value_label": "69,92",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "confins",
+      "city": "Confins/MG",
+      "ibge_code": "3117876",
+      "population": 7758,
+      "metric_rank": 4,
+      "audit_rank": 2,
+      "triage": "now",
+      "triage_label": "Auditar agora",
+      "confidence": "média-alta para acesso e governança; baixa para cobertura",
+      "summary": "A Prefeitura publica um catálogo JSON próprio (13 conjuntos) e mantém um portal de transparência dedicado com governança nomeada — coordenador, supervisora, CNPJ e licença Creative Commons 4.0, a documentação mais completa desta rodada.",
+      "recommended_scope": "Chamar os endpoints JSON, confirmar o conteúdo completo do portal dedicado (carregamento parcial nesta triagem) e procurar módulos fora do catálogo padrão.",
+      "strengths": [
+        "Catálogo JSON próprio com 13 conjuntos",
+        "Portal de transparência dedicado com governança nomeada e licença CC 4.0",
+        "Atualização declarada 31/07/2026 15:33"
+      ],
+      "risks": [
+        "Conjuntos JSON cobrem só organizacional/financeiro/licitação",
+        "Portal de transparência dedicado carregou de forma incompleta na triagem",
+        "Nenhum território ou geoportal localizado"
+      ],
+      "next": [
+        "Recarregar o portal de transparência dedicado (portaltp.com.br) para confirmar exportações adicionais",
+        "Baixar e descrever os 13 conjuntos JSON",
+        "Procurar saúde, educação e mobilidade fora do catálogo"
+      ],
+      "sources": [
+        {
+          "name": "Dados abertos da Prefeitura",
+          "producer": "Prefeitura de Confins",
+          "access": "JSON",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.confins.mg.gov.br/portal/dados-abertos",
+          "note": "13 datasets, mesmo padrão técnico de Quintana; versão do sistema 3.5.3 (19/06/2026)."
+        },
+        {
+          "name": "Governança do portal de transparência dedicado",
+          "producer": "Prefeitura de Confins",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://confins-mg.portaltp.com.br/consultas/informacoes/sobre.aspx",
+          "note": "Nomeia coordenador, supervisora, CNPJ e licença CC 4.0; conteúdo completo do portal não carregou na triagem."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.67,
+      "metric_value_label": "69,67",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "guaicara",
+      "city": "Guaiçara/SP",
+      "ibge_code": "3517208",
+      "population": 11478,
+      "metric_rank": 5,
+      "audit_rank": 7,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa",
+      "summary": "O portal de transparência padrão (SCPI) tem um botão de 'Dados Abertos', mas seu conteúdo não pôde ser verificado; o único relatório estatístico encontrado é de 2016.",
+      "recommended_scope": "Testar o botão 'Dados Abertos' com navegador real e procurar sistemas municipais além do módulo de transparência fiscal padrão.",
+      "strengths": [
+        "Botão 'Dados Abertos' presente no portal de transparência",
+        "13 secretarias mapeadas no site institucional",
+        "Contratos correntes indexados (ex.: 14/2026)"
+      ],
+      "risks": [
+        "Conteúdo do botão 'Dados Abertos' não verificável (postback JS)",
+        "Secretarias têm só página de contato, sem dado operacional",
+        "Único relatório estatístico encontrado é de 2016"
+      ],
+      "next": [
+        "Testar o botão com navegador headless",
+        "Procurar dados fora do módulo de transparência padrão",
+        "Buscar geoportal ou cadastro territorial"
+      ],
+      "sources": [
+        {
+          "name": "Portal de transparência municipal (SCPI)",
+          "producer": "Prefeitura de Guaiçara",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "http://transparencia.guaicara.sp.gov.br:8079/TRANSPARENCIA/",
+          "note": "Botão 'Dados Abertos' (postback JS) presente; conteúdo não verificado nesta triagem."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.47,
+      "metric_value_label": "69,47",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "itau-de-minas",
+      "city": "Itaú de Minas/MG",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 4,
+      "population": 14634,
+      "ibge_code": "3133758",
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "média",
       "summary": "Foram localizados quatro conjuntos JSON oficiais, mas todos pertencem à Câmara Municipal e não demonstram cobertura do Executivo ou dos serviços públicos.",
       "recommended_scope": "Usar a Câmara como teste de ingestão simples e procurar, separadamente, bases da prefeitura e dados territoriais.",
-      "strengths": ["Quatro conjuntos JSON oficiais", "Origem institucional e página de dados abertos identificadas", "Porte dentro do recorte experimental"],
-      "risks": ["Dados legislativos não representam a prefeitura", "Cobertura temática institucional e estreita", "População próxima do teto de 15 mil"],
-      "next": ["Baixar e descrever os quatro JSONs", "Procurar dados do Executivo por secretaria", "Não somar Legislativo e Executivo sem indicar a dependência"],
-      "sources": [{"name":"Dados abertos da Câmara Municipal", "producer":"Câmara Municipal de Itaú de Minas", "access":"JSON", "territory":"Instituição e processo legislativo", "status":"confirmado", "url":"https://www.itaudeminas.mg.leg.br/transparencia/dados-abertos", "note":"Fonte estruturada real, porém fora do Executivo municipal."}]
-    },
-    {
-      "slug": "trombudo-central", "city": "Trombudo Central/SC", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 6, "audit_rank": 8, "population": 7599, "idhm": 0.775, "ibge_code": "4218608", "triage": "gap", "triage_label": "Sem diferencial localizado", "confidence": "baixa",
-      "summary": "A primeira busca encontrou transparência e acesso à informação, mas não confirmou exportação estruturada, API ou dado territorial.",
-      "recommended_scope": "Fazer uma segunda busca curta nos sistemas de transparência, planejamento e cadastro antes de gastar uma auditoria completa.",
-      "strengths": ["IDHM alto dentro da faixa", "Canal oficial de acesso à informação localizado", "Porte adequado ao microlaboratório"],
-      "risks": ["Transparência pode estar limitada a consultas e PDFs", "Sem cobertura multidomínio comprovada", "Sem território ou recurso executado"],
-      "next": ["Testar botões de exportação do portal", "Buscar geoportal e cadastro multifinalitário", "Encerrar a busca se nenhum recurso estruturado aparecer"],
-      "sources": [{"name":"Acesso à informação municipal", "producer":"Prefeitura de Trombudo Central", "access":"Portal", "territory":"Não demonstrado", "status":"parcial", "url":"https://www.trombudocentral.sc.gov.br/acesso-a-informacao-2/", "note":"Ponto de entrada oficial; exportação ainda não confirmada."}]
-    },
-    {
-      "slug": "sideropolis", "city": "Siderópolis/SC", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 7, "audit_rank": 7, "population": 14156, "idhm": 0.774, "ibge_code": "4217600", "triage": "gap", "triage_label": "Sem diferencial localizado", "confidence": "baixa",
-      "summary": "Foi localizada transparência administrativa, mas nenhum catálogo, recurso multidomínio ou geosserviço diferenciador na varredura rápida.",
-      "recommended_scope": "Testar exportações da transparência e procurar planejamento territorial apenas numa segunda rodada de descoberta.",
-      "strengths": ["Canal oficial de transparência localizado", "Município permanece dentro da faixa", "Boa posição no pré-filtro de IDHM"],
-      "risks": ["Página de serviço não prova acesso estruturado", "Sem granularidade territorial localizada", "Nenhuma área social diferenciadora confirmada"],
-      "next": ["Abrir consultas e verificar CSV/XLS/JSON", "Buscar mapas e cadastro territorial", "Manter fora da auditoria cara sem nova evidência"],
-      "sources": [{"name":"Serviço municipal de transparência pública", "producer":"Prefeitura de Siderópolis", "access":"Portal", "territory":"Não demonstrado", "status":"parcial", "url":"https://www.sideropolis.sc.gov.br/cartaservicos/detalhe-transparenciapublica/", "note":"Confirma o serviço, não um conjunto de dados reutilizável."}]
-    },
-    {
-      "slug": "ouro", "city": "Ouro/SC", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 8, "audit_rank": 9, "population": 7062, "idhm": 0.774, "ibge_code": "4211801", "triage": "gap", "triage_label": "Sem diferencial localizado", "confidence": "baixa",
-      "summary": "O Portal Atende foi localizado, mas a primeira triagem não conseguiu confirmar arquivo estruturado ou API de interesse regional.",
-      "recommended_scope": "Executar uma exportação real no portal e procurar sistemas geográficos antes de decidir por nova auditoria.",
-      "strengths": ["Porte mínimo reduz o volume potencial", "Portal oficial de transparência identificado", "IDHM suficiente para entrar no pré-filtro"],
-      "risks": ["Exportação ainda não confirmada", "Portal de fornecedor pode ser apenas interface", "Sem território e sem cobertura temática"],
-      "next": ["Testar exportações sem sessão", "Registrar formatos, campos e período", "Buscar dados além de finanças e licitações"],
-      "sources": [{"name":"Portal municipal da transparência", "producer":"Prefeitura de Ouro", "access":"Portal Atende", "territory":"Não demonstrado", "status":"parcial", "url":"https://ouro.sc.gov.br/cartaservicos/detalhe-portal-da-transparencia4/", "note":"A existência do portal foi confirmada; a reutilização não."}]
-    },
-    {
-      "slug": "parai", "city": "Paraí/RS", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 9, "audit_rank": 10, "population": 7362, "idhm": 0.773, "ibge_code": "4314001", "triage": "gap", "triage_label": "Sem diferencial localizado", "confidence": "baixa",
-      "summary": "A busca encontrou portal e licitações atuais, sem catálogo aberto, API ou recorte territorial que justificasse promoção.",
-      "recommended_scope": "Fazer somente um teste de exportação administrativa e uma busca de geoportal antes de encerrar esta rodada.",
-      "strengths": ["Registros administrativos atuais localizados", "Escala pequena para um teste controlado", "Fonte oficial municipal identificada"],
-      "risks": ["Licitação é apenas um domínio administrativo", "Sem base aberta confirmada", "Última prioridade da triagem na faixa"],
-      "next": ["Testar download da consulta de licitações", "Buscar saúde, educação e planejamento", "Manter como comparação negativa documentada"],
-      "sources": [{"name":"Licitações municipais", "producer":"Prefeitura de Paraí", "access":"Consulta web", "territory":"Processo administrativo", "status":"confirmado", "url":"https://parai.rs.gov.br/licitacao/?ano=2026&idModalidade=5", "note":"Registros atuais, porém domínio estreito e sem exportação comprovada."}]
-    },
-    {
-      "slug": "auriflama", "city": "Auriflama/SP", "band": "micro", "band_label": "≈ 10 mil habitantes", "idhm_rank": 10, "audit_rank": 3, "population": 13856, "idhm": 0.773, "ibge_code": "3504206", "triage": "now", "triage_label": "Auditar agora", "confidence": "média-alta para acesso; baixa para cobertura",
-      "summary": "Apesar da décima posição por IDHM, sobe para terceira na fila porque publica uma API oficial JSON/XML documentada e anônima.",
-      "recommended_scope": "Executar os módulos da API, medir conteúdo e procurar sistemas municipais que não façam parte do CMS administrativo.",
-      "strengths": ["API oficial documentada", "JSON/XML e acesso sem autenticação declarados", "Sinal técnico superior ao da maioria da faixa"],
-      "risks": ["Conteúdo provavelmente administrativo", "Sem recorte territorial localizado", "Fica perto do teto populacional da faixa"],
-      "next": ["Chamar endpoints e contar registros", "Comparar o esquema com Águas da Prata", "Procurar fontes próprias de serviços e território"],
-      "sources": [{"name":"Documentação municipal de dados abertos", "producer":"Prefeitura de Auriflama", "access":"API JSON/XML", "territory":"Conteúdo administrativo", "status":"confirmado", "url":"https://www.auriflama.sp.gov.br/dados-abertos", "note":"Boa evidência de acesso; cobertura ainda precisa ser provada."}]
-    },
-    {
-      "slug": "valinhos", "city": "Valinhos/SP", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 1, "audit_rank": 4, "population": 132258, "idhm": 0.819, "ibge_code": "3556206", "triage": "reserve", "triage_label": "Reserva forte", "confidence": "média",
-      "summary": "Lidera o pré-filtro por IDHM e combina JSON administrativo com mapas municipais, mas ainda não demonstra catálogo operacional multidomínio.",
-      "recommended_scope": "Testar o JSON e abrir uma amostra dos mapas para verificar formato, recorte, atualização e possibilidade de integração.",
-      "strengths": ["Maior IDHM do recorte", "JSON administrativo oficial", "Coleção municipal de mapas temáticos"],
-      "risks": ["JSON do portal pode conter apenas conteúdo editorial", "Mapas não garantem dados vetoriais", "Está próxima do teto de 150 mil"],
-      "next": ["Baixar o JSON e classificar seus módulos", "Verificar se os mapas têm arquivos ou serviços", "Procurar fontes operacionais em saúde e mobilidade"],
+      "strengths": [
+        "Quatro conjuntos JSON oficiais",
+        "Origem institucional e página de dados abertos identificadas",
+        "Porte dentro do recorte experimental"
+      ],
+      "risks": [
+        "Dados legislativos não representam a prefeitura",
+        "Cobertura temática institucional e estreita",
+        "População próxima do teto de 15 mil"
+      ],
+      "next": [
+        "Baixar e descrever os quatro JSONs",
+        "Procurar dados do Executivo por secretaria",
+        "Não somar Legislativo e Executivo sem indicar a dependência"
+      ],
       "sources": [
-        {"name":"Dados abertos do portal municipal", "producer":"Prefeitura de Valinhos", "access":"JSON", "territory":"Conteúdo administrativo", "status":"confirmado", "url":"https://www.valinhos.sp.gov.br/portal/dados-abertos", "note":"Acesso estruturado real, com amplitude temática ainda não demonstrada."},
-        {"name":"Mapas municipais", "producer":"Prefeitura de Valinhos", "access":"Mapas/arquivos", "territory":"Temático municipal", "status":"confirmado", "url":"https://www.valinhos.sp.gov.br/mapas/", "note":"Coleção territorial que precisa de inspeção formato a formato."}
-      ]
+        {
+          "name": "Dados abertos da Câmara Municipal",
+          "producer": "Câmara Municipal de Itaú de Minas",
+          "access": "JSON",
+          "territory": "Instituição e processo legislativo",
+          "status": "confirmado",
+          "url": "https://www.itaudeminas.mg.leg.br/transparencia/dados-abertos",
+          "note": "Fonte estruturada real, porém fora do Executivo municipal."
+        }
+      ],
+      "metric_rank": 6,
+      "previous_metric": {
+        "name": "IDHM 2010",
+        "rank": 5,
+        "value_label": "0,776"
+      },
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.46,
+      "metric_value_label": "69,46",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
     },
     {
-      "slug": "vinhedo", "city": "Vinhedo/SP", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 2, "audit_rank": 3, "population": 79089, "idhm": 0.817, "ibge_code": "3556701", "triage": "now", "triage_label": "Próxima auditoria", "confidence": "média",
-      "summary": "É a terceira prioridade da faixa: combina JSON administrativo com Mappa Web territorial, incluindo bairros, logradouros, lotes, risco e zoneamento.",
-      "recommended_scope": "Validar o JSON administrativo e consultar camadas do Mappa Web como terceiro caso formal depois de Nova Lima e Rio do Sul.",
-      "strengths": ["Segundo IDHM da faixa", "Mappa Web com recorte cadastral fino", "Porte confortável para piloto controlado"],
-      "risks": ["JSON exclui sistemas externos", "Geo não equivale a microdado operacional", "Saúde, educação e segurança ainda sem recursos comprovados"],
-      "next": ["Enumerar e abrir as camadas do Mappa Web", "Ler esquema e frescor do JSON", "Buscar um recurso real nos oito domínios"],
+      "slug": "antonio-carlos-sc",
+      "city": "Antônio Carlos/SC",
+      "ibge_code": "4201208",
+      "population": 12464,
+      "metric_rank": 7,
+      "audit_rank": 9,
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
+      "summary": "O site institucional está ativo (inclusive bloqueando acesso automatizado direto por WAF), mas nenhuma evidência de dado estruturado, API ou geoportal foi localizada além do módulo padrão de transparência fiscal.",
+      "recommended_scope": "Reabrir o domínio principal com navegador real (o acesso automatizado foi bloqueado) e procurar catálogo de dados fora do módulo Betha de transparência.",
+      "strengths": [
+        "Site institucional ativo e atualizado (notícias e editais de 2026)",
+        "'Aspectos Geográficos' descreve área, população e coordenadas do município",
+        "Carta de Serviços (Betha) cobre atendimento administrativo online"
+      ],
+      "risks": [
+        "Domínio principal bloqueia acesso automatizado (HTTP 403/WAF)",
+        "Nenhum CSV/JSON/API ou geoportal localizado",
+        "'Aspectos Geográficos' é texto descritivo, não camada estruturada"
+      ],
+      "next": [
+        "Reabrir o site com navegador real (sem bloqueio automatizado)",
+        "Procurar dados de saúde e educação por secretaria",
+        "Testar se a Carta de Serviços expõe algum endpoint de dados"
+      ],
       "sources": [
-        {"name":"Dados abertos do portal municipal", "producer":"Prefeitura de Vinhedo", "access":"JSON", "territory":"Conteúdo administrativo", "status":"confirmado", "url":"https://www.vinhedo.sp.gov.br/portal/dados-abertos", "note":"Estruturado, mas não representa automaticamente os sistemas setoriais."},
-        {"name":"Descrição oficial do Mappa Web", "producer":"Prefeitura de Vinhedo", "access":"Aplicação geográfica", "territory":"Bairro, logradouro, quadra, lote, risco e zoneamento", "status":"pista", "url":"https://www.vinhedo.sp.gov.br/portal/noticias/0/3/16111/procon", "note":"A aplicação territorial foi localizada; serviços e exportações precisam ser enumerados."}
-      ]
+        {
+          "name": "Site institucional (via proxy leitor, domínio bloqueia acesso direto)",
+          "producer": "Prefeitura de Antônio Carlos",
+          "access": "Portal",
+          "territory": "Descrição textual em 'Aspectos Geográficos'",
+          "status": "parcial",
+          "url": "https://antoniocarlos.sc.gov.br/",
+          "note": "HTTP 403 em acesso direto (WebFetch e curl); conteúdo só recuperado via proxy leitor."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.31,
+      "metric_value_label": "69,31",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
     },
     {
-      "slug": "nova-lima", "city": "Nova Lima/MG", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 3, "audit_rank": 1, "population": 120959, "idhm": 0.813, "ibge_code": "3144805", "triage": "now", "triage_label": "Líder · auditar agora", "confidence": "alta para geo; média para o ecossistema",
+      "slug": "lindoia",
+      "city": "Lindóia/SP",
+      "ibge_code": "3527009",
+      "population": 7158,
+      "metric_rank": 8,
+      "audit_rank": 10,
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
+      "summary": "Anuncia 'Portal da Educação' e 'Portal da Saúde', mas ambos resolvem em páginas de navegação vazias e várias sub-páginas retornam erro 404; o portal de transparência é o mesmo módulo financeiro genérico usado em Guaiçara.",
+      "recommended_scope": "Verificar se os portais de educação/saúde têm conteúdo real por trás de outras rotas, já que várias URLs esperadas retornaram 404.",
+      "strengths": [
+        "'Portal da Educação' e 'Portal da Saúde' anunciados no menu institucional",
+        "Portal de transparência (SCPI) com botão 'Dados Abertos'",
+        "Site institucional ativo"
+      ],
+      "risks": [
+        "Múltiplas sub-páginas de educação/saúde retornam HTTP 404",
+        "Balancete de trânsito mostrado como imagem estática, não dado",
+        "Dados abertos do SAAE encontrados pertencem ao município vizinho Águas de Lindóia, não a Lindóia"
+      ],
+      "next": [
+        "Mapear as rotas reais dos portais de educação e saúde",
+        "Testar o botão 'Dados Abertos' do SCPI",
+        "Confirmar se existe algum catálogo próprio da Prefeitura de Lindóia (não confundir com Águas de Lindóia)"
+      ],
+      "sources": [
+        {
+          "name": "Portal da Saúde (menu institucional)",
+          "producer": "Prefeitura de Lindóia",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://www.lindoia.sp.gov.br/portal-da-saude/portal-da-saude-1",
+          "note": "Página de navegação sem endereços ou estatísticas; sub-rotas relacionadas (ex.: /sus) retornam 404."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.08,
+      "metric_value_label": "69,08",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "cajobi",
+      "city": "Cajobi/SP",
+      "ibge_code": "3509304",
+      "population": 9210,
+      "metric_rank": 9,
+      "audit_rank": 5,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa para acesso; média para governança",
+      "summary": "O portal de transparência tem um botão 'Dados Abertos' não verificável e dois mapas municipais em PDF; nenhum dataset ou serviço geográfico foi confirmado.",
+      "recommended_scope": "Testar o botão 'Dados Abertos' com navegador headless e verificar se os mapas em PDF têm uma versão vetorial/interativa.",
+      "strengths": [
+        "Portal de transparência com licitações, pessoal e patrimônio",
+        "Dois mapas municipais publicados (viário e geral)",
+        "Site institucional ativo com notícias até 2026"
+      ],
+      "risks": [
+        "Botão 'Dados Abertos' usa postback JS; conteúdo não verificado",
+        "Mapas são PDF estático de 2017 e 2024, sem GIS",
+        "Secretarias (saúde, educação, ambiente) só têm página de contato"
+      ],
+      "next": [
+        "Testar o botão 'Dados Abertos' com navegador real",
+        "Verificar se os mapas têm fonte vetorial por trás do PDF",
+        "Procurar dados de saúde/educação fora do site institucional"
+      ],
+      "sources": [
+        {
+          "name": "Portal de transparência municipal",
+          "producer": "Prefeitura de Cajobi",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "http://transparencia.cajobi.sp.gov.br:35002/transparencia/",
+          "note": "Botão 'Dados Abertos' (postback JS, mesmo fornecedor de Tabatinga/SP); conteúdo não verificado."
+        },
+        {
+          "name": "Mapas da cidade",
+          "producer": "Prefeitura de Cajobi",
+          "access": "PDF",
+          "territory": "Mapa viário e mapa municipal",
+          "status": "confirmado",
+          "url": "https://www.cajobi.sp.gov.br/mapas-da-cidade",
+          "note": "Dois PDFs estáticos (2017 e 2024); sem mapa interativo ou GIS."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.07,
+      "metric_value_label": "69,07",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "tabatinga-sp",
+      "city": "Tabatinga/SP",
+      "ibge_code": "3552700",
+      "population": 14997,
+      "metric_rank": 10,
+      "audit_rank": 6,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa para acesso; média para governança",
+      "summary": "Mesmo padrão técnico de Cajobi (mesmo fornecedor de portal de transparência): botão 'Dados Abertos' não verificável, legislação e licitações em bases pesquisáveis, mas território reduzido a um único ponto de lat/long da sede.",
+      "recommended_scope": "Testar o botão 'Dados Abertos' com navegador headless e comparar o esquema com Cajobi para confirmar se é o mesmo fornecedor nacional.",
+      "strengths": [
+        "Base de legislação pesquisável com decretos até set/2025",
+        "Base de licitações/contratos pesquisável em tela HTML",
+        "Site institucional com sistema PrimeFaces/JSF ativo"
+      ],
+      "risks": [
+        "Botão 'Dados Abertos' usa postback JS; conteúdo não verificado",
+        "Território reduzido a um único ponto de lat/long da sede da prefeitura",
+        "Legislação e licitações são só telas pesquisáveis, sem exportação"
+      ],
+      "next": [
+        "Testar o botão 'Dados Abertos' com navegador real",
+        "Verificar se existe geoportal ou cadastro territorial fora do site institucional",
+        "Comparar com Cajobi para confirmar fornecedor comum"
+      ],
+      "sources": [
+        {
+          "name": "Portal de transparência municipal",
+          "producer": "Prefeitura de Tabatinga/SP",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "http://189.20.141.242:8079/Transparencia/",
+          "note": "Mesma estrutura técnica de Cajobi/SP (mesmo fornecedor); botão 'Dados Abertos' não verificado."
+        }
+      ],
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 68.81,
+      "metric_value_label": "68,81",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "nova-lima",
+      "city": "Nova Lima/MG",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 1,
+      "population": 120959,
+      "ibge_code": "3144805",
+      "triage": "now",
+      "triage_label": "Líder · auditar agora",
+      "confidence": "alta para geo; média para o ecossistema",
       "summary": "É a líder da fila de ≈100 mil: o GeoPNL expõe 91 recursos-folha e camadas de saúde, ensino, assistência, mobilidade, ambiente e urbanismo.",
       "recommended_scope": "Abrir uma amostra de FeatureServers por domínio e procurar microdados operacionais fora do ecossistema geográfico.",
-      "strengths": ["FeatureServers públicos e enumeráveis", "Cobertura territorial de várias políticas públicas", "Porte adequado ao piloto ampliado"],
-      "risks": ["Contagem inclui ortofotos e recursos correlatos", "Predomínio geográfico/cadastral", "Microdados operacionais ainda não provados"],
-      "next": ["Consultar recursos reais por domínio", "Registrar esquema, feições e datas", "Procurar séries operacionais de saúde, educação e mobilidade"],
-      "sources": [{"name":"GeoPNL", "producer":"Prefeitura de Nova Lima", "access":"ArcGIS/FeatureServer", "territory":"Saúde, ensino, assistência, mobilidade, ambiente e cadastro", "status":"confirmado", "url":"https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl", "note":"Melhor evidência territorial encontrada na faixa; ainda requer amostra de recursos."}]
-    },
-    {
-      "slug": "assis", "city": "Assis/SP", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 4, "audit_rank": 5, "population": 104858, "idhm": 0.805, "ibge_code": "3504008", "triage": "reserve", "triage_label": "Reserva", "confidence": "média",
-      "summary": "Combina JSON administrativo e mapas temáticos de escolas, unidades de saúde, CRAS, ambiente e viário, ainda muito apoiados em documentos.",
-      "recommended_scope": "Testar o JSON e verificar se os mapas do Plano Diretor possuem dados vetoriais ou apenas representação estática.",
-      "strengths": ["População próxima do alvo de 100 mil", "Mapas cobrem equipamentos e temas sociais", "JSON administrativo oficial"],
-      "risks": ["Documentos e mapas podem exigir tratamento manual", "Sem API territorial confirmada", "Dados operacionais não demonstrados"],
-      "next": ["Classificar os mapas por formato", "Baixar e ler o JSON", "Procurar exportações de saúde, educação e serviços"],
+      "strengths": [
+        "FeatureServers públicos e enumeráveis",
+        "Cobertura territorial de várias políticas públicas",
+        "Porte adequado ao piloto ampliado"
+      ],
+      "risks": [
+        "Contagem inclui ortofotos e recursos correlatos",
+        "Predomínio geográfico/cadastral",
+        "Microdados operacionais ainda não provados"
+      ],
+      "next": [
+        "Consultar recursos reais por domínio",
+        "Registrar esquema, feições e datas",
+        "Procurar séries operacionais de saúde, educação e mobilidade"
+      ],
       "sources": [
-        {"name":"Dados abertos do portal municipal", "producer":"Prefeitura de Assis", "access":"JSON", "territory":"Conteúdo administrativo", "status":"confirmado", "url":"https://www.assis.sp.gov.br/portal/dados-abertos", "note":"Acesso estruturado; cobertura setorial precisa ser separada."},
-        {"name":"Mapas temáticos do Plano Diretor", "producer":"Prefeitura de Assis", "access":"Mapas/documentos", "territory":"Escolas, UBS, CRAS, ambiente e sistema viário", "status":"confirmado", "url":"https://www.assis.sp.gov.br/portal/servicos/1041/plano-diretor-do-municipio/", "note":"Boa documentação territorial, com automação ainda não comprovada."}
-      ]
+        {
+          "name": "GeoPNL",
+          "producer": "Prefeitura de Nova Lima",
+          "access": "ArcGIS/FeatureServer",
+          "territory": "Saúde, ensino, assistência, mobilidade, ambiente e cadastro",
+          "status": "confirmado",
+          "url": "https://www.novalima.mg.gov.br/inicio/portal-servicos/servico/geopnl",
+          "note": "Melhor evidência territorial encontrada na faixa; ainda requer amostra de recursos."
+        }
+      ],
+      "metric_rank": 1,
+      "previous_metric": {
+        "name": "IDHM 2010",
+        "rank": 3,
+        "value_label": "0,813"
+      },
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 71.22,
+      "metric_value_label": "71,22",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
     },
     {
-      "slug": "rio-do-sul", "city": "Rio do Sul/SC", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 5, "audit_rank": 2, "population": 77451, "idhm": 0.802, "ibge_code": "4214805", "triage": "now", "triage_label": "Auditar agora · condicional", "confidence": "média-baixa",
-      "summary": "A interface atual oferece mecanismo de download para itens marcados como dados abertos e a prefeitura mantém o SIGEP, mas nenhum arquivo final foi lido.",
-      "recommended_scope": "Executar três exportações sem sessão, registrar formato e período e abrir um projeto territorial no SIGEP.",
-      "strengths": ["Botão e mensagem de download implementados", "Sistema municipal de gestão de projetos", "Porte baixo dentro da faixa"],
-      "risks": ["Nenhuma exportação concluída na auditoria", "Formato e esquema desconhecidos", "Pode depender de sessão ou fornecedor"],
-      "next": ["Baixar três itens e guardar hashes", "Repetir os downloads em dias diferentes", "Abrir uma camada ou projeto do SIGEP"],
+      "slug": "itupeva",
+      "city": "Itupeva/SP",
+      "ibge_code": "3524006",
+      "population": 74994,
+      "metric_rank": 2,
+      "audit_rank": 6,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa",
+      "summary": "A transparência institucional tem uma seção 'Setorial' citando saúde, mobilidade, educação e defesa civil, e o Plano Diretor (LC 527/2023) tem mapas de zoneamento — mas tudo em tela HTML ou PDF estático.",
+      "recommended_scope": "Verificar se a seção 'Setorial' da transparência linka para algum dataset real e não apenas para páginas de contato.",
+      "strengths": [
+        "Transparência com seção 'Setorial' (saúde, mobilidade, educação, defesa civil)",
+        "Plano Diretor 2023 com 3 mapas anexos (unidades de estruturação, setorização, viário)",
+        "Dados gerais do município documentados (população, área, hidrografia)"
+      ],
+      "risks": [
+        "Nenhum CSV/JSON/API ou geoportal confirmado",
+        "Mapas do Plano Diretor são PDF estático, sem shapefile/WFS",
+        "Página de saúde é só índice de links, sem dado estruturado"
+      ],
+      "next": [
+        "Testar links da seção 'Setorial' da transparência um a um",
+        "Verificar se os mapas do Plano Diretor têm fonte vetorial",
+        "Procurar geoportal fora do site institucional"
+      ],
       "sources": [
-        {"name":"Dados abertos no Portal da Transparência", "producer":"Prefeitura de Rio do Sul", "access":"Download pela interface", "territory":"Varia por consulta", "status":"parcial", "url":"https://riodosul.atende.net/transparencia/", "note":"A função existe, mas o arquivo final ainda não foi inspecionado."},
-        {"name":"SIGEP municipal", "producer":"Prefeitura de Rio do Sul", "access":"Aplicação", "territory":"Projetos municipais", "status":"confirmado", "url":"https://sigep.riodosul.sc.gov.br/index", "note":"Complemento territorial; exportação e esquema permanecem pendentes."}
-      ]
+        {
+          "name": "Portal de transparência",
+          "producer": "Prefeitura de Itupeva",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://itupeva.sp.gov.br/transparencia",
+          "note": "Seção 'Setorial' cita saúde/mobilidade/educação/defesa civil como menu, sem dataset confirmado."
+        },
+        {
+          "name": "Plano Diretor — mapas anexos",
+          "producer": "Prefeitura de Itupeva",
+          "access": "PDF",
+          "territory": "Unidades de estruturação urbana, setorização, sistema viário",
+          "status": "confirmado",
+          "url": "https://itupeva.sp.gov.br/prefeitura/plano-diretor",
+          "note": "3 anexos em PDF estático, base legal LC 527/2023; sem versão interativa."
+        }
+      ],
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 71.08,
+      "metric_value_label": "71,08",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
     },
     {
-      "slug": "pirassununga", "city": "Pirassununga/SP", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 6, "audit_rank": 6, "population": 75594, "idhm": 0.801, "ibge_code": "3539301", "triage": "reserve", "triage_label": "Reserva", "confidence": "baixa",
-      "summary": "A documentação municipal prevê cadastro territorial multifinalitário, mas acesso público, exportação e atualização do sistema ainda não foram confirmados.",
-      "recommended_scope": "Localizar a implantação pública do SIG e executar uma consulta territorial antes de qualquer auditoria por domínio.",
-      "strengths": ["Cadastro multifinalitário descrito em documento oficial", "Possível base territorial integrada", "População adequada ao experimento"],
-      "risks": ["Edital não comprova sistema implantado ou aberto", "Sem recurso real executado", "Cobertura social desconhecida"],
-      "next": ["Encontrar o endereço público do SIG", "Verificar WMS, WFS, arquivo ou API", "Só manter na fila se houver resposta reproduzível"],
-      "sources": [{"name":"Termo de referência do cadastro territorial", "producer":"Prefeitura de Pirassununga", "access":"PDF", "territory":"Cadastro territorial multifinalitário", "status":"pista", "url":"https://pirassununga.sp.gov.br/Publicacoes/Licitacoes/2022/Concorr%C3%AAncia%20P%C3%BAblica/CP%20001-22%20-%20Loca%C3%A7%C3%A3o%20de%20software%20de%20gest%C3%A3o%20do%20cadastro%20territorial%20multifinalit%C3%A1rio/001%20-%20Edital%20e%20Termo%20de%20Refer%C3%AAncia/001%20-%20Termo%20de%20Refer%C3%AAncia.pdf", "note":"Prova intenção e escopo técnico, não disponibilidade pública."}]
-    },
-    {
-      "slug": "concordia", "city": "Concórdia/SC", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 7, "audit_rank": 7, "population": 87206, "idhm": 0.800, "ibge_code": "4204301", "triage": "reserve", "triage_label": "Reserva", "confidence": "baixa",
-      "summary": "A transparência municipal foi localizada e há pista de servidor geográfico, ainda sem serviço, camada ou exportação validada.",
-      "recommended_scope": "Testar os formatos do Portal Atende e confirmar tecnicamente o servidor geográfico antes de promover a cidade.",
-      "strengths": ["Portal de transparência ativo", "Pista de infraestrutura geográfica", "Porte próximo do alvo"],
-      "risks": ["Servidor geo não validado", "Sem camada real lida", "Cobertura pode ficar restrita à transparência"],
-      "next": ["Executar exportação no Atende", "Localizar GetCapabilities ou diretório de serviços", "Testar uma camada com feições"],
-      "sources": [{"name":"Portal municipal da transparência", "producer":"Prefeitura de Concórdia", "access":"Portal Atende", "territory":"Varia por consulta", "status":"parcial", "url":"https://concordia.atende.net/transparencia/", "note":"Ponto de entrada oficial; exportação e geo ainda aguardam validação."}]
-    },
-    {
-      "slug": "guaratingueta", "city": "Guaratinguetá/SP", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 8, "audit_rank": 10, "population": 121916, "idhm": 0.798, "ibge_code": "3518404", "triage": "gap", "triage_label": "Legado · rebaixada", "confidence": "média",
-      "summary": "O observatório organiza bairros e escolas pela metodologia APEM, mas a participação está vazia, os relatórios são antigos e não foi encontrada API atual.",
-      "recommended_scope": "Manter como caso histórico e só reabrir a auditoria se o observatório voltar a publicar dados atuais ou exportáveis.",
-      "strengths": ["Metodologia territorial por grupos de bairros", "Observatório municipal documentado", "População adequada à faixa"],
-      "risks": ["Participa Guará mostra zero eventos, pessoas e demandas", "Relatórios encontrados são de 2019/2020", "Sem API ou exportação atual localizada"],
-      "next": ["Verificar se há nova versão do observatório", "Procurar arquivos-fonte dos relatórios", "Não promover com base apenas no legado"],
-      "sources": [
-        {"name":"Observatório de Políticas Públicas", "producer":"Prefeitura de Guaratinguetá", "access":"Portal/relatórios", "territory":"APEMs e grupos de bairros", "status":"parcial", "url":"https://observatorio.guaratingueta.sp.gov.br/observatorio-de-politicas-publicas/", "note":"Estrutura metodológica útil, mas com conteúdo antigo."},
-        {"name":"Participa Guará e APEMs", "producer":"Prefeitura de Guaratinguetá", "access":"Portal", "territory":"Bairros e escolas", "status":"lacuna", "url":"https://observatorio.guaratingueta.sp.gov.br/elementor-11721/", "note":"Na auditoria exibia zero eventos, pessoas e demandas."}
-      ]
-    },
-    {
-      "slug": "sao-joao-da-boa-vista", "city": "São João da Boa Vista/SP", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 9, "audit_rank": 9, "population": 96080, "idhm": 0.797, "ibge_code": "3549102", "triage": "gap", "triage_label": "Sem diferencial localizado", "confidence": "baixa",
+      "slug": "sao-joao-da-boa-vista",
+      "city": "São João da Boa Vista/SP",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 9,
+      "population": 96080,
+      "ibge_code": "3549102",
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
       "summary": "Indicadores nacionais aparecem no portal, mas a varredura não encontrou catálogo ou sistema municipal de dados com diferencial técnico.",
       "recommended_scope": "Fazer uma busca orientada por secretarias e geoportal; encerrar a rodada se continuarem aparecendo apenas indicadores nacionais.",
-      "strengths": ["População muito próxima do alvo", "Bom IDHM no pré-filtro", "Portal municipal oficial disponível"],
-      "risks": ["Indicador nacional não mede autonomia municipal", "Sem catálogo municipal diferenciado", "Sem recorte territorial localizado"],
-      "next": ["Buscar saúde, educação e planejamento por órgão", "Testar transparência e arquivos", "Registrar resultado negativo de forma reproduzível"],
-      "sources": [{"name":"Portal municipal", "producer":"Prefeitura de São João da Boa Vista", "access":"Portal", "territory":"Não demonstrado", "status":"pista", "url":"https://www.saojoao.sp.gov.br/", "note":"Ponto inicial; nenhum sistema municipal diferenciador foi confirmado."}]
+      "strengths": [
+        "População muito próxima do alvo",
+        "Bom IDHM no pré-filtro",
+        "Portal municipal oficial disponível"
+      ],
+      "risks": [
+        "Indicador nacional não mede autonomia municipal",
+        "Sem catálogo municipal diferenciado",
+        "Sem recorte territorial localizado"
+      ],
+      "next": [
+        "Buscar saúde, educação e planejamento por órgão",
+        "Testar transparência e arquivos",
+        "Registrar resultado negativo de forma reproduzível"
+      ],
+      "sources": [
+        {
+          "name": "Portal municipal",
+          "producer": "Prefeitura de São João da Boa Vista",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "pista",
+          "url": "https://www.saojoao.sp.gov.br/",
+          "note": "Ponto inicial; nenhum sistema municipal diferenciador foi confirmado."
+        }
+      ],
+      "metric_rank": 3,
+      "previous_metric": {
+        "name": "IDHM 2010",
+        "rank": 9,
+        "value_label": "0,797"
+      },
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.94,
+      "metric_value_label": "69,94",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
     },
     {
-      "slug": "fernandopolis", "city": "Fernandópolis/SP", "band": "small", "band_label": "≈ 100 mil habitantes", "idhm_rank": 10, "audit_rank": 8, "population": 73508, "idhm": 0.797, "ibge_code": "3515509", "triage": "reserve", "triage_label": "Reserva", "confidence": "baixa",
+      "slug": "votuporanga",
+      "city": "Votuporanga/SP",
+      "ibge_code": "3557105",
+      "population": 100568,
+      "metric_rank": 4,
+      "audit_rank": 5,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa para acesso; média para cobertura e atualidade",
+      "summary": "É a candidata de reserva mais forte da faixa: a transparência lista explicitamente saúde, educação, cultura e obras, há uma página HTML com as 34 unidades de saúde do município e 13 mapas do Plano Diretor atualizados em 2026 — mas tudo ainda em HTML/PDF, sem formato aberto.",
+      "recommended_scope": "Verificar se o portal de transparência setorial (porta 8055) tem alguma opção de exportação CSV/JSON não visível na primeira tela.",
+      "strengths": [
+        "Transparência com categorias 'saúde, educação, cultura, obras' explícitas",
+        "Lista HTML das 34 unidades de saúde com endereço e bairro",
+        "13 mapas do Plano Diretor (LC 578/2026) atualizados em 2026"
+      ],
+      "risks": [
+        "Nenhum CSV/JSON/API confirmado",
+        "Mapas do Plano Diretor são PDF estático, sem GeoServer/WFS",
+        "Unidades de saúde estão em lista HTML, não em dataset baixável"
+      ],
+      "next": [
+        "Testar o portal de transparência setorial por exportação oculta",
+        "Georreferenciar a lista de unidades de saúde como teste piloto",
+        "Verificar se os mapas do Plano Diretor têm fonte vetorial"
+      ],
+      "sources": [
+        {
+          "name": "Portal de transparência setorial",
+          "producer": "Prefeitura de Votuporanga",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://web.votuporanga.sp.gov.br:8055/transparencia/",
+          "note": "Categorias incluem saúde/educação/cultura/obras; dados atualizados em 02/08/2026 segundo a própria página."
+        },
+        {
+          "name": "Relação das unidades de saúde",
+          "producer": "Prefeitura de Votuporanga",
+          "access": "HTML",
+          "territory": "34 unidades com endereço e bairro",
+          "status": "confirmado",
+          "url": "https://www.votuporanga.sp.gov.br/portal/secretarias-paginas/5/relacao-das-unidades-de-saude/",
+          "note": "Lista textual completa; não é dataset baixável, mas é o sinal territorial mais forte da faixa reserva."
+        }
+      ],
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.34,
+      "metric_value_label": "69,34",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "lavras",
+      "city": "Lavras/MG",
+      "ibge_code": "3138203",
+      "population": 110682,
+      "metric_rank": 5,
+      "audit_rank": 3,
+      "triage": "now",
+      "triage_label": "Auditar agora · condicional",
+      "confidence": "alta para a existência do geoportal; baixa para cobertura e atualidade",
+      "summary": "É a novidade mais forte desta rodada: o GEO LAVRAS é um geoportal municipal com camadas WMS ativáveis, o único serviço geográfico real (fora de Nova Lima e Vinhedo) encontrado nas duas faixas.",
+      "recommended_scope": "Confirmar com navegador real quais camadas do GEO LAVRAS estão ativas — partes do sistema aparecem marcadas 'Em Construção' — e localizar o portal de transparência oficial (retornou 404 nas tentativas diretas apesar do Selo Ouro de Transparência 2025 do TCE-MG).",
+      "strengths": [
+        "Geoportal municipal (GEO LAVRAS) com camadas WMS ativáveis",
+        "Categorias citadas: infraestrutura, serviços públicos, meio ambiente",
+        "Selo Ouro de Transparência 2025 do TCE-MG (85,39%), segundo notícia não aberta nesta triagem"
+      ],
+      "risks": [
+        "Partes do geoportal estão marcadas 'Em Construção'",
+        "Portal de transparência oficial não localizado (404 direto)",
+        "Cobertura por saúde/educação/mobilidade não confirmada nas camadas"
+      ],
+      "next": [
+        "Abrir o GEO LAVRAS com navegador real e listar as camadas WMS ativas",
+        "Localizar o portal de transparência oficial (fora do caminho /transparencia/ testado)",
+        "Confirmar a notícia do Selo Ouro de Transparência 2025 diretamente na fonte"
+      ],
+      "sources": [
+        {
+          "name": "GEO LAVRAS",
+          "producer": "Prefeitura de Lavras",
+          "access": "WebGIS/WMS",
+          "territory": "Infraestrutura, serviços públicos e meio ambiente (camadas genéricas citadas)",
+          "status": "parcial",
+          "url": "https://lavras.mg.gov.br/geolavras/",
+          "note": "Camadas WMS ativáveis confirmadas; 3 das 4 guias de ajuda marcadas 'Em Construção'; conteúdo específico das camadas não verificado."
+        }
+      ],
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 69.32,
+      "metric_value_label": "69,32",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "paulinia",
+      "city": "Paulínia/SP",
+      "ibge_code": "3536505",
+      "population": 116674,
+      "metric_rank": 6,
+      "audit_rank": 4,
+      "triage": "now",
+      "triage_label": "Auditar agora",
+      "confidence": "média-alta para acesso; baixa para cobertura",
+      "summary": "A Prefeitura publica um catálogo de dados abertos em JSON real e testado — o endpoint do Diário Oficial responde com registros diários até 31/07/2026 — mas o escopo é só organizacional/financeiro; o Plano Diretor tem mapas de zoneamento apenas em PDF.",
+      "recommended_scope": "Testar os demais endpoints do catálogo (legislação, contratos) em anos anteriores a 2026 e procurar módulos de saúde/educação fora do catálogo padrão.",
+      "strengths": [
+        "Catálogo de dados abertos em JSON, testado e funcional (Content-Type application/json)",
+        "Diário Oficial atualizado diariamente até 31/07/2026",
+        "Mapas de zoneamento do Plano Diretor (revisão 2023) disponíveis"
+      ],
+      "risks": [
+        "Catálogo cobre só organizacional/financeiro/contratos",
+        "Mapas de zoneamento são PDF estático, sem geoportal",
+        "'Giss Online' é sistema de nota fiscal, não GIS, apesar do nome do domínio"
+      ],
+      "next": [
+        "Testar os endpoints de legislação/contratos em anos anteriores a 2026",
+        "Procurar módulos de saúde e educação fora do catálogo padrão",
+        "Verificar se existe geoportal municipal fora do 'Giss Online'"
+      ],
+      "sources": [
+        {
+          "name": "Dados abertos da Prefeitura",
+          "producer": "Prefeitura de Paulínia",
+          "access": "API JSON",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.paulinia.sp.gov.br/portal/dados-abertos",
+          "note": "4 categorias (organizacional, financeira, participação, contratos); endpoint de Diário Oficial testado e funcional."
+        }
+      ],
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 68.86,
+      "metric_value_label": "68,86",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "vinhedo",
+      "city": "Vinhedo/SP",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 2,
+      "population": 79089,
+      "ibge_code": "3556701",
+      "triage": "now",
+      "triage_label": "Auditar agora",
+      "confidence": "média",
+      "summary": "É a segunda prioridade da faixa: combina JSON administrativo com Mappa Web territorial, incluindo bairros, logradouros, lotes, risco e zoneamento.",
+      "recommended_scope": "Validar o JSON administrativo e consultar camadas do Mappa Web como segundo caso formal depois de Nova Lima.",
+      "strengths": [
+        "Segundo IDHM da faixa",
+        "Mappa Web com recorte cadastral fino",
+        "Porte confortável para piloto controlado"
+      ],
+      "risks": [
+        "JSON exclui sistemas externos",
+        "Geo não equivale a microdado operacional",
+        "Saúde, educação e segurança ainda sem recursos comprovados"
+      ],
+      "next": [
+        "Enumerar e abrir as camadas do Mappa Web",
+        "Ler esquema e frescor do JSON",
+        "Buscar um recurso real nos oito domínios"
+      ],
+      "sources": [
+        {
+          "name": "Dados abertos do portal municipal",
+          "producer": "Prefeitura de Vinhedo",
+          "access": "JSON",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.vinhedo.sp.gov.br/portal/dados-abertos",
+          "note": "Estruturado, mas não representa automaticamente os sistemas setoriais."
+        },
+        {
+          "name": "Descrição oficial do Mappa Web",
+          "producer": "Prefeitura de Vinhedo",
+          "access": "Aplicação geográfica",
+          "territory": "Bairro, logradouro, quadra, lote, risco e zoneamento",
+          "status": "pista",
+          "url": "https://www.vinhedo.sp.gov.br/portal/noticias/0/3/16111/procon",
+          "note": "A aplicação territorial foi localizada; serviços e exportações precisam ser enumerados."
+        }
+      ],
+      "metric_rank": 7,
+      "previous_metric": {
+        "name": "IDHM 2010",
+        "rank": 2,
+        "value_label": "0,817"
+      },
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 68.85,
+      "metric_value_label": "68,85",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "bebedouro",
+      "city": "Bebedouro/SP",
+      "ibge_code": "3506102",
+      "population": 78257,
+      "metric_rank": 8,
+      "audit_rank": 8,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa",
+      "summary": "Expõe só o padrão mínimo de transparência fiscal via portal terceirizado; a página que listaria os mapas temáticos do Plano Diretor (LC 122/2017) está fora do ar (HTTP 404) no momento do teste.",
+      "recommended_scope": "Reabrir a página de mapas do Plano Diretor em outro momento e confirmar se o SIPLADU tem alguma consulta pública além do autoatendimento individual.",
+      "strengths": [
+        "Portal de transparência ativo com itens de 2026",
+        "Plano Diretor (LC 122/2017) previsto com mapas temáticos anexos",
+        "Secretarias de saúde, educação, mobilidade e ambiente mapeadas no site"
+      ],
+      "risks": [
+        "Página que lista os mapas do Plano Diretor retornou HTTP 404",
+        "Nenhum CSV/JSON/API confirmado",
+        "SIPLADU parece ser consulta individual, não geoportal público"
+      ],
+      "next": [
+        "Reabrir a página de mapas do Plano Diretor em outro momento",
+        "Confirmar o escopo público do SIPLADU",
+        "Procurar dados de saúde/educação fora do portal de transparência"
+      ],
+      "sources": [
+        {
+          "name": "Portal Oficial da Transparência (terceirizado)",
+          "producer": "Prefeitura de Bebedouro",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "http://www.sp.portaldatransparencia.com.br/prefeitura/bebedouro/",
+          "note": "Categorias só institucional/financeiro/legal; item corrente de 2026 confirmado."
+        }
+      ],
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 68.84,
+      "metric_value_label": "68,84",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "itajuba",
+      "city": "Itajubá/MG",
+      "ibge_code": "3132404",
+      "population": 96855,
+      "metric_rank": 9,
+      "audit_rank": 10,
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
+      "summary": "O site oficial está protegido por Cloudflare e bloqueou toda tentativa de acesso automatizado (inclusive básico); pelo snapshot arquivado (Wayback Machine), a transparência cobre só e-SIC, convênios e controle interno, sem dados abertos ou geoportal.",
+      "recommended_scope": "Acessar o site com navegador real (o bloqueio é só para automação) antes de descartar a cidade; o próprio bloqueio já é, em si, um sinal de baixa maturidade para um piloto de coleta automatizada.",
+      "strengths": [
+        "Estrutura padrão de e-SIC, Controladoria e Ouvidoria (snapshot arquivado)",
+        "Secretarias mapeadas (educação, ambiente, saúde, obras, planejamento)",
+        "Subdomínio de sistemas (GRP/Sonner) ativo para protocolo"
+      ],
+      "risks": [
+        "Site bloqueia acesso automatizado (HTTP 403/Cloudflare) até para leitura básica",
+        "Nenhuma seção de dados abertos ou geoportal localizada nem no snapshot arquivado",
+        "Diário Oficial antigo hospedado em IP bruto (baixa maturidade técnica)"
+      ],
+      "next": [
+        "Acessar com navegador real para confirmar se o bloqueio impede também usuários humanos comuns",
+        "Procurar dados abertos fora do caminho /transparencia",
+        "Verificar se há geoportal ou cadastro territorial em subdomínio separado"
+      ],
+      "sources": [
+        {
+          "name": "Site institucional (snapshot arquivado, acesso direto bloqueado)",
+          "producer": "Prefeitura de Itajubá",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "lacuna",
+          "url": "http://web.archive.org/web/20251217185113/https://www.itajuba.mg.gov.br/",
+          "note": "Acesso direto retorna HTTP 403 (Cloudflare); conteúdo recuperado via Wayback Machine, snapshot dez/2025."
+        }
+      ],
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 68.79,
+      "metric_value_label": "68,79",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "leme",
+      "city": "Leme/SP",
+      "ibge_code": "3526704",
+      "population": 101537,
+      "metric_rank": 10,
+      "audit_rank": 7,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa para acesso; média para governança",
+      "summary": "Mantém múltiplos portais institucionais (prefeitura, câmara, SAECIL água/esgoto, RPPS) e mapas de zoneamento por bairro no Plano Diretor, mas o link direto de 'Dados Abertos' do portal de transparência retornou 404.",
+      "recommended_scope": "Testar o endereço de API citado no portal de transparência (porta 8443) e confirmar se o link de 'Dados Abertos' existe em outro caminho.",
+      "strengths": [
+        "Múltiplos portais institucionais ativos (prefeitura, câmara, SAECIL, RPPS)",
+        "Plano Diretor com mapas de zoneamento por bairro (revisão 2019)",
+        "Boletim epidemiológico com rótulo de ano corrente (2025)"
+      ],
+      "risks": [
+        "Link direto de 'Dados Abertos' retornou HTTP 404",
+        "Planilha de convênios (Google Sheets) retornou 403 (sem acesso público)",
+        "Mapas do Plano Diretor são de 2019, sem versão interativa"
+      ],
+      "next": [
+        "Testar o endereço de API citado no portal (porta 8443)",
+        "Confirmar acesso público à planilha de convênios",
+        "Procurar geoportal fora do módulo de transparência Fiorilli"
+      ],
+      "sources": [
+        {
+          "name": "Portal de transparência (Fiorilli)",
+          "producer": "Prefeitura de Leme",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://lemespscpi.dcfiorilli.com.br:879/TRANSPARENCIA/",
+          "note": "Menciona 'Dados Abertos' e endereço tipo API (porta 8443); link direto para a seção retornou HTTP 404."
+        }
+      ],
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "current": true,
+      "metric_name": "IPS Brasil 2026",
+      "metric_value": 68.72,
+      "metric_value_label": "68,72",
+      "metric_source_url": "https://ipsbrasil.org.br/explore/data"
+    },
+    {
+      "slug": "treze-tilias",
+      "city": "Treze Tílias/SC",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 6,
+      "population": 9531,
+      "ibge_code": "4218509",
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "média-baixa",
+      "summary": "Lidera o pré-filtro por IDHM, mas a varredura rápida não confirmou catálogo, API ou arquivo municipal multidomínio disponível ao público.",
+      "recommended_scope": "Reabrir a busca a partir dos sistemas citados em contratações municipais e testar se algum módulo permite exportação pública.",
+      "strengths": [
+        "Primeira colocada no pré-filtro de IDHM da faixa",
+        "Porte muito próximo do alvo de 10 mil habitantes",
+        "Sistema de gestão municipal localizado em documentação oficial"
+      ],
+      "risks": [
+        "ERP interno não equivale a dado aberto",
+        "Nenhum recorte territorial público foi confirmado",
+        "Ausência de diferencial temático na primeira varredura"
+      ],
+      "next": [
+        "Identificar o fornecedor e os módulos públicos do ERP",
+        "Testar transparência, saúde, educação e cadastro territorial",
+        "Só promover se um arquivo ou endpoint real puder ser repetido"
+      ],
+      "sources": [
+        {
+          "name": "Licitação municipal relacionada ao sistema de gestão",
+          "producer": "Prefeitura de Treze Tílias",
+          "access": "Página/documento",
+          "territory": "Não demonstrado",
+          "status": "pista",
+          "url": "https://www.trezetilias.sc.gov.br/licitacao/licitacao-189258/",
+          "note": "Comprova contratação ou uso administrativo; não comprova publicação de base aberta."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 1,
+      "metric_value": 0.795,
+      "metric_value_label": "0,795",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "saltinho",
+      "city": "Saltinho/SP",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 4,
+      "population": 8407,
+      "ibge_code": "3545159",
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "média-baixa",
+      "summary": "O município mostra digitalização de serviços e protocolo eletrônico corrente, mas ainda sem evidência de base aberta reutilizável.",
+      "recommended_scope": "Verificar se o protocolo digital gera consultas ou exportações anônimas e procurar dados territoriais em planejamento e cadastro.",
+      "strengths": [
+        "Segundo IDHM da faixa selecionada",
+        "Serviço de protocolo digital divulgado pela prefeitura",
+        "Escala favorável a um teste territorial pequeno"
+      ],
+      "risks": [
+        "Serviço digital não é sinônimo de dado aberto",
+        "Sem dataset municipal confirmado",
+        "Sem granularidade territorial localizada"
+      ],
+      "next": [
+        "Testar exportação e consulta sem autenticação",
+        "Procurar bases de saúde, educação e obras",
+        "Registrar fornecedor, licença e atualização de cada sistema"
+      ],
+      "sources": [
+        {
+          "name": "Orientação sobre protocolo digital FlowDocs",
+          "producer": "Prefeitura de Saltinho",
+          "access": "Serviço/página",
+          "territory": "Protocolo administrativo",
+          "status": "confirmado",
+          "url": "https://saltinho.sp.gov.br/noticias/1533/prefeitura-orienta-moradores-sobre-como-realizar-protocolo-digital-pelo-sistema-flowdocs",
+          "note": "Prova digitalização do atendimento, mas não prova download ou API."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 2,
+      "metric_value": 0.791,
+      "metric_value_label": "0,791",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "casca",
+      "city": "Casca/RS",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 1,
+      "population": 9698,
+      "ibge_code": "4304903",
+      "triage": "now",
+      "triage_label": "Auditar agora",
+      "confidence": "média",
+      "summary": "É a melhor prioridade de auditoria na faixa: há exportações administrativas atuais e uma contratação de SIGWeb com escopo territorial incomum para o porte.",
+      "recommended_scope": "Abrir um CSV administrativo, localizar o SIGWeb público e testar cadastro territorial, iluminação, numeração predial e equipamentos.",
+      "strengths": [
+        "População quase exatamente no alvo de 10 mil",
+        "Editais administrativos com exportação CSV/PDF",
+        "SIGWeb descrito com múltiplos módulos territoriais"
+      ],
+      "risks": [
+        "Acesso público ao SIGWeb ainda não confirmado",
+        "Contratação comprova capacidade, não abertura",
+        "Saúde e educação ainda sem recursos próprios verificados"
+      ],
+      "next": [
+        "Baixar um CSV e registrar campos, linhas e atualização",
+        "Encontrar e consultar o endereço público do SIGWeb",
+        "Abrir ao menos uma fonte social antes de calcular IDU-Br"
+      ],
+      "sources": [
+        {
+          "name": "Editais e bases administrativas",
+          "producer": "Prefeitura de Casca",
+          "access": "CSV/PDF",
+          "territory": "Município e processo administrativo",
+          "status": "confirmado",
+          "url": "https://www.casca.rs.gov.br/portal/editais/1",
+          "note": "A página declara exportação estruturada e contém registros correntes."
+        },
+        {
+          "name": "Contratação do SIGWeb municipal",
+          "producer": "Prefeitura de Casca",
+          "access": "Edital/documento",
+          "territory": "Cadastro, iluminação, numeração predial e cemitério",
+          "status": "pista",
+          "url": "https://www.casca.rs.gov.br/portal/editais/0/1/993/",
+          "note": "Sinal técnico forte; a interface pública e seus recursos ainda precisam ser encontrados."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 3,
+      "metric_value": 0.785,
+      "metric_value_label": "0,785",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "trombudo-central",
+      "city": "Trombudo Central/SC",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 8,
+      "population": 7599,
+      "ibge_code": "4218608",
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
+      "summary": "A primeira busca encontrou transparência e acesso à informação, mas não confirmou exportação estruturada, API ou dado territorial.",
+      "recommended_scope": "Fazer uma segunda busca curta nos sistemas de transparência, planejamento e cadastro antes de gastar uma auditoria completa.",
+      "strengths": [
+        "IDHM alto dentro da faixa",
+        "Canal oficial de acesso à informação localizado",
+        "Porte adequado ao microlaboratório"
+      ],
+      "risks": [
+        "Transparência pode estar limitada a consultas e PDFs",
+        "Sem cobertura multidomínio comprovada",
+        "Sem território ou recurso executado"
+      ],
+      "next": [
+        "Testar botões de exportação do portal",
+        "Buscar geoportal e cadastro multifinalitário",
+        "Encerrar a busca se nenhum recurso estruturado aparecer"
+      ],
+      "sources": [
+        {
+          "name": "Acesso à informação municipal",
+          "producer": "Prefeitura de Trombudo Central",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://www.trombudocentral.sc.gov.br/acesso-a-informacao-2/",
+          "note": "Ponto de entrada oficial; exportação ainda não confirmada."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 6,
+      "metric_value": 0.775,
+      "metric_value_label": "0,775",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "sideropolis",
+      "city": "Siderópolis/SC",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 7,
+      "population": 14156,
+      "ibge_code": "4217600",
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
+      "summary": "Foi localizada transparência administrativa, mas nenhum catálogo, recurso multidomínio ou geosserviço diferenciador na varredura rápida.",
+      "recommended_scope": "Testar exportações da transparência e procurar planejamento territorial apenas numa segunda rodada de descoberta.",
+      "strengths": [
+        "Canal oficial de transparência localizado",
+        "Município permanece dentro da faixa",
+        "Boa posição no pré-filtro de IDHM"
+      ],
+      "risks": [
+        "Página de serviço não prova acesso estruturado",
+        "Sem granularidade territorial localizada",
+        "Nenhuma área social diferenciadora confirmada"
+      ],
+      "next": [
+        "Abrir consultas e verificar CSV/XLS/JSON",
+        "Buscar mapas e cadastro territorial",
+        "Manter fora da auditoria cara sem nova evidência"
+      ],
+      "sources": [
+        {
+          "name": "Serviço municipal de transparência pública",
+          "producer": "Prefeitura de Siderópolis",
+          "access": "Portal",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://www.sideropolis.sc.gov.br/cartaservicos/detalhe-transparenciapublica/",
+          "note": "Confirma o serviço, não um conjunto de dados reutilizável."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 7,
+      "metric_value": 0.774,
+      "metric_value_label": "0,774",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "ouro",
+      "city": "Ouro/SC",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 9,
+      "population": 7062,
+      "ibge_code": "4211801",
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
+      "summary": "O Portal Atende foi localizado, mas a primeira triagem não conseguiu confirmar arquivo estruturado ou API de interesse regional.",
+      "recommended_scope": "Executar uma exportação real no portal e procurar sistemas geográficos antes de decidir por nova auditoria.",
+      "strengths": [
+        "Porte mínimo reduz o volume potencial",
+        "Portal oficial de transparência identificado",
+        "IDHM suficiente para entrar no pré-filtro"
+      ],
+      "risks": [
+        "Exportação ainda não confirmada",
+        "Portal de fornecedor pode ser apenas interface",
+        "Sem território e sem cobertura temática"
+      ],
+      "next": [
+        "Testar exportações sem sessão",
+        "Registrar formatos, campos e período",
+        "Buscar dados além de finanças e licitações"
+      ],
+      "sources": [
+        {
+          "name": "Portal municipal da transparência",
+          "producer": "Prefeitura de Ouro",
+          "access": "Portal Atende",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://ouro.sc.gov.br/cartaservicos/detalhe-portal-da-transparencia4/",
+          "note": "A existência do portal foi confirmada; a reutilização não."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 8,
+      "metric_value": 0.774,
+      "metric_value_label": "0,774",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "parai",
+      "city": "Paraí/RS",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 10,
+      "population": 7362,
+      "ibge_code": "4314001",
+      "triage": "gap",
+      "triage_label": "Sem diferencial localizado",
+      "confidence": "baixa",
+      "summary": "A busca encontrou portal e licitações atuais, sem catálogo aberto, API ou recorte territorial que justificasse promoção.",
+      "recommended_scope": "Fazer somente um teste de exportação administrativa e uma busca de geoportal antes de encerrar esta rodada.",
+      "strengths": [
+        "Registros administrativos atuais localizados",
+        "Escala pequena para um teste controlado",
+        "Fonte oficial municipal identificada"
+      ],
+      "risks": [
+        "Licitação é apenas um domínio administrativo",
+        "Sem base aberta confirmada",
+        "Última prioridade da triagem na faixa"
+      ],
+      "next": [
+        "Testar download da consulta de licitações",
+        "Buscar saúde, educação e planejamento",
+        "Manter como comparação negativa documentada"
+      ],
+      "sources": [
+        {
+          "name": "Licitações municipais",
+          "producer": "Prefeitura de Paraí",
+          "access": "Consulta web",
+          "territory": "Processo administrativo",
+          "status": "confirmado",
+          "url": "https://parai.rs.gov.br/licitacao/?ano=2026&idModalidade=5",
+          "note": "Registros atuais, porém domínio estreito e sem exportação comprovada."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 9,
+      "metric_value": 0.773,
+      "metric_value_label": "0,773",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "auriflama",
+      "city": "Auriflama/SP",
+      "band": "micro",
+      "band_label": "≈ 10 mil habitantes",
+      "audit_rank": 3,
+      "population": 13856,
+      "ibge_code": "3504206",
+      "triage": "now",
+      "triage_label": "Auditar agora",
+      "confidence": "média-alta para acesso; baixa para cobertura",
+      "summary": "Apesar da décima posição por IDHM, sobe para terceira na fila porque publica uma API oficial JSON/XML documentada e anônima.",
+      "recommended_scope": "Executar os módulos da API, medir conteúdo e procurar sistemas municipais que não façam parte do CMS administrativo.",
+      "strengths": [
+        "API oficial documentada",
+        "JSON/XML e acesso sem autenticação declarados",
+        "Sinal técnico superior ao da maioria da faixa"
+      ],
+      "risks": [
+        "Conteúdo provavelmente administrativo",
+        "Sem recorte territorial localizado",
+        "Fica perto do teto populacional da faixa"
+      ],
+      "next": [
+        "Chamar endpoints e contar registros",
+        "Comparar o esquema com Águas da Prata",
+        "Procurar fontes próprias de serviços e território"
+      ],
+      "sources": [
+        {
+          "name": "Documentação municipal de dados abertos",
+          "producer": "Prefeitura de Auriflama",
+          "access": "API JSON/XML",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.auriflama.sp.gov.br/dados-abertos",
+          "note": "Boa evidência de acesso; cobertura ainda precisa ser provada."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 10,
+      "metric_value": 0.773,
+      "metric_value_label": "0,773",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "valinhos",
+      "city": "Valinhos/SP",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 4,
+      "population": 132258,
+      "ibge_code": "3556206",
+      "triage": "reserve",
+      "triage_label": "Reserva forte",
+      "confidence": "média",
+      "summary": "Lidera o pré-filtro por IDHM e combina JSON administrativo com mapas municipais, mas ainda não demonstra catálogo operacional multidomínio.",
+      "recommended_scope": "Testar o JSON e abrir uma amostra dos mapas para verificar formato, recorte, atualização e possibilidade de integração.",
+      "strengths": [
+        "Maior IDHM do recorte",
+        "JSON administrativo oficial",
+        "Coleção municipal de mapas temáticos"
+      ],
+      "risks": [
+        "JSON do portal pode conter apenas conteúdo editorial",
+        "Mapas não garantem dados vetoriais",
+        "Está próxima do teto de 150 mil"
+      ],
+      "next": [
+        "Baixar o JSON e classificar seus módulos",
+        "Verificar se os mapas têm arquivos ou serviços",
+        "Procurar fontes operacionais em saúde e mobilidade"
+      ],
+      "sources": [
+        {
+          "name": "Dados abertos do portal municipal",
+          "producer": "Prefeitura de Valinhos",
+          "access": "JSON",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.valinhos.sp.gov.br/portal/dados-abertos",
+          "note": "Acesso estruturado real, com amplitude temática ainda não demonstrada."
+        },
+        {
+          "name": "Mapas municipais",
+          "producer": "Prefeitura de Valinhos",
+          "access": "Mapas/arquivos",
+          "territory": "Temático municipal",
+          "status": "confirmado",
+          "url": "https://www.valinhos.sp.gov.br/mapas/",
+          "note": "Coleção territorial que precisa de inspeção formato a formato."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 1,
+      "metric_value": 0.819,
+      "metric_value_label": "0,819",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "assis",
+      "city": "Assis/SP",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 5,
+      "population": 104858,
+      "ibge_code": "3504008",
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "média",
+      "summary": "Combina JSON administrativo e mapas temáticos de escolas, unidades de saúde, CRAS, ambiente e viário, ainda muito apoiados em documentos.",
+      "recommended_scope": "Testar o JSON e verificar se os mapas do Plano Diretor possuem dados vetoriais ou apenas representação estática.",
+      "strengths": [
+        "População próxima do alvo de 100 mil",
+        "Mapas cobrem equipamentos e temas sociais",
+        "JSON administrativo oficial"
+      ],
+      "risks": [
+        "Documentos e mapas podem exigir tratamento manual",
+        "Sem API territorial confirmada",
+        "Dados operacionais não demonstrados"
+      ],
+      "next": [
+        "Classificar os mapas por formato",
+        "Baixar e ler o JSON",
+        "Procurar exportações de saúde, educação e serviços"
+      ],
+      "sources": [
+        {
+          "name": "Dados abertos do portal municipal",
+          "producer": "Prefeitura de Assis",
+          "access": "JSON",
+          "territory": "Conteúdo administrativo",
+          "status": "confirmado",
+          "url": "https://www.assis.sp.gov.br/portal/dados-abertos",
+          "note": "Acesso estruturado; cobertura setorial precisa ser separada."
+        },
+        {
+          "name": "Mapas temáticos do Plano Diretor",
+          "producer": "Prefeitura de Assis",
+          "access": "Mapas/documentos",
+          "territory": "Escolas, UBS, CRAS, ambiente e sistema viário",
+          "status": "confirmado",
+          "url": "https://www.assis.sp.gov.br/portal/servicos/1041/plano-diretor-do-municipio/",
+          "note": "Boa documentação territorial, com automação ainda não comprovada."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 4,
+      "metric_value": 0.805,
+      "metric_value_label": "0,805",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "rio-do-sul",
+      "city": "Rio do Sul/SC",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 2,
+      "population": 77451,
+      "ibge_code": "4214805",
+      "triage": "now",
+      "triage_label": "Auditar agora · condicional",
+      "confidence": "média-baixa",
+      "summary": "A interface atual oferece mecanismo de download para itens marcados como dados abertos e a prefeitura mantém o SIGEP, mas nenhum arquivo final foi lido.",
+      "recommended_scope": "Executar três exportações sem sessão, registrar formato e período e abrir um projeto territorial no SIGEP.",
+      "strengths": [
+        "Botão e mensagem de download implementados",
+        "Sistema municipal de gestão de projetos",
+        "Porte baixo dentro da faixa"
+      ],
+      "risks": [
+        "Nenhuma exportação concluída na auditoria",
+        "Formato e esquema desconhecidos",
+        "Pode depender de sessão ou fornecedor"
+      ],
+      "next": [
+        "Baixar três itens e guardar hashes",
+        "Repetir os downloads em dias diferentes",
+        "Abrir uma camada ou projeto do SIGEP"
+      ],
+      "sources": [
+        {
+          "name": "Dados abertos no Portal da Transparência",
+          "producer": "Prefeitura de Rio do Sul",
+          "access": "Download pela interface",
+          "territory": "Varia por consulta",
+          "status": "parcial",
+          "url": "https://riodosul.atende.net/transparencia/",
+          "note": "A função existe, mas o arquivo final ainda não foi inspecionado."
+        },
+        {
+          "name": "SIGEP municipal",
+          "producer": "Prefeitura de Rio do Sul",
+          "access": "Aplicação",
+          "territory": "Projetos municipais",
+          "status": "confirmado",
+          "url": "https://sigep.riodosul.sc.gov.br/index",
+          "note": "Complemento territorial; exportação e esquema permanecem pendentes."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 5,
+      "metric_value": 0.802,
+      "metric_value_label": "0,802",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "pirassununga",
+      "city": "Pirassununga/SP",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 6,
+      "population": 75594,
+      "ibge_code": "3539301",
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa",
+      "summary": "A documentação municipal prevê cadastro territorial multifinalitário, mas acesso público, exportação e atualização do sistema ainda não foram confirmados.",
+      "recommended_scope": "Localizar a implantação pública do SIG e executar uma consulta territorial antes de qualquer auditoria por domínio.",
+      "strengths": [
+        "Cadastro multifinalitário descrito em documento oficial",
+        "Possível base territorial integrada",
+        "População adequada ao experimento"
+      ],
+      "risks": [
+        "Edital não comprova sistema implantado ou aberto",
+        "Sem recurso real executado",
+        "Cobertura social desconhecida"
+      ],
+      "next": [
+        "Encontrar o endereço público do SIG",
+        "Verificar WMS, WFS, arquivo ou API",
+        "Só manter na fila se houver resposta reproduzível"
+      ],
+      "sources": [
+        {
+          "name": "Termo de referência do cadastro territorial",
+          "producer": "Prefeitura de Pirassununga",
+          "access": "PDF",
+          "territory": "Cadastro territorial multifinalitário",
+          "status": "pista",
+          "url": "https://pirassununga.sp.gov.br/Publicacoes/Licitacoes/2022/Concorr%C3%AAncia%20P%C3%BAblica/CP%20001-22%20-%20Loca%C3%A7%C3%A3o%20de%20software%20de%20gest%C3%A3o%20do%20cadastro%20territorial%20multifinalit%C3%A1rio/001%20-%20Edital%20e%20Termo%20de%20Refer%C3%AAncia/001%20-%20Termo%20de%20Refer%C3%AAncia.pdf",
+          "note": "Prova intenção e escopo técnico, não disponibilidade pública."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 6,
+      "metric_value": 0.801,
+      "metric_value_label": "0,801",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "concordia",
+      "city": "Concórdia/SC",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 7,
+      "population": 87206,
+      "ibge_code": "4204301",
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa",
+      "summary": "A transparência municipal foi localizada e há pista de servidor geográfico, ainda sem serviço, camada ou exportação validada.",
+      "recommended_scope": "Testar os formatos do Portal Atende e confirmar tecnicamente o servidor geográfico antes de promover a cidade.",
+      "strengths": [
+        "Portal de transparência ativo",
+        "Pista de infraestrutura geográfica",
+        "Porte próximo do alvo"
+      ],
+      "risks": [
+        "Servidor geo não validado",
+        "Sem camada real lida",
+        "Cobertura pode ficar restrita à transparência"
+      ],
+      "next": [
+        "Executar exportação no Atende",
+        "Localizar GetCapabilities ou diretório de serviços",
+        "Testar uma camada com feições"
+      ],
+      "sources": [
+        {
+          "name": "Portal municipal da transparência",
+          "producer": "Prefeitura de Concórdia",
+          "access": "Portal Atende",
+          "territory": "Varia por consulta",
+          "status": "parcial",
+          "url": "https://concordia.atende.net/transparencia/",
+          "note": "Ponto de entrada oficial; exportação e geo ainda aguardam validação."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 7,
+      "metric_value": 0.8,
+      "metric_value_label": "0,800",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "guaratingueta",
+      "city": "Guaratinguetá/SP",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 10,
+      "population": 121916,
+      "ibge_code": "3518404",
+      "triage": "gap",
+      "triage_label": "Legado · rebaixada",
+      "confidence": "média",
+      "summary": "O observatório organiza bairros e escolas pela metodologia APEM, mas a participação está vazia, os relatórios são antigos e não foi encontrada API atual.",
+      "recommended_scope": "Manter como caso histórico e só reabrir a auditoria se o observatório voltar a publicar dados atuais ou exportáveis.",
+      "strengths": [
+        "Metodologia territorial por grupos de bairros",
+        "Observatório municipal documentado",
+        "População adequada à faixa"
+      ],
+      "risks": [
+        "Participa Guará mostra zero eventos, pessoas e demandas",
+        "Relatórios encontrados são de 2019/2020",
+        "Sem API ou exportação atual localizada"
+      ],
+      "next": [
+        "Verificar se há nova versão do observatório",
+        "Procurar arquivos-fonte dos relatórios",
+        "Não promover com base apenas no legado"
+      ],
+      "sources": [
+        {
+          "name": "Observatório de Políticas Públicas",
+          "producer": "Prefeitura de Guaratinguetá",
+          "access": "Portal/relatórios",
+          "territory": "APEMs e grupos de bairros",
+          "status": "parcial",
+          "url": "https://observatorio.guaratingueta.sp.gov.br/observatorio-de-politicas-publicas/",
+          "note": "Estrutura metodológica útil, mas com conteúdo antigo."
+        },
+        {
+          "name": "Participa Guará e APEMs",
+          "producer": "Prefeitura de Guaratinguetá",
+          "access": "Portal",
+          "territory": "Bairros e escolas",
+          "status": "lacuna",
+          "url": "https://observatorio.guaratingueta.sp.gov.br/elementor-11721/",
+          "note": "Na auditoria exibia zero eventos, pessoas e demandas."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 8,
+      "metric_value": 0.798,
+      "metric_value_label": "0,798",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
+    },
+    {
+      "slug": "fernandopolis",
+      "city": "Fernandópolis/SP",
+      "band": "small",
+      "band_label": "≈ 100 mil habitantes",
+      "audit_rank": 8,
+      "population": 73508,
+      "ibge_code": "3515509",
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "baixa",
       "summary": "Uma contratação municipal descreve geoprocessamento, ortofoto e cadastro imobiliário, mas a publicação efetiva ainda precisa ser localizada.",
       "recommended_scope": "Encontrar o SIG resultante da contratação e confirmar se há consulta, serviço geográfico ou exportação pública.",
-      "strengths": ["Escopo geográfico documentado oficialmente", "Ortofoto e cadastro imobiliário previstos", "Porte dentro da faixa"],
-      "risks": ["Contrato não prova acesso público", "Sem endpoint ou arquivo enumerado", "Cobertura operacional desconhecida"],
-      "next": ["Localizar a aplicação implantada", "Testar capacidades e uma camada real", "Procurar dados além do cadastro urbano"],
-      "sources": [{"name":"Contratação de geoprocessamento", "producer":"Prefeitura de Fernandópolis", "access":"Edital/documento", "territory":"Ortofoto e cadastro imobiliário", "status":"pista", "url":"https://www.fernandopolis.sp.gov.br/publicacoes/pregao-eletronico/edital-de-pregao-eletronico-n-0832023-contratacao-de-empresa-de-engenharia-especializada-em-geoprocessamento", "note":"Sinal de capacidade interna; acesso público ainda não provado."}]
+      "strengths": [
+        "Escopo geográfico documentado oficialmente",
+        "Ortofoto e cadastro imobiliário previstos",
+        "Porte dentro da faixa"
+      ],
+      "risks": [
+        "Contrato não prova acesso público",
+        "Sem endpoint ou arquivo enumerado",
+        "Cobertura operacional desconhecida"
+      ],
+      "next": [
+        "Localizar a aplicação implantada",
+        "Testar capacidades e uma camada real",
+        "Procurar dados além do cadastro urbano"
+      ],
+      "sources": [
+        {
+          "name": "Contratação de geoprocessamento",
+          "producer": "Prefeitura de Fernandópolis",
+          "access": "Edital/documento",
+          "territory": "Ortofoto e cadastro imobiliário",
+          "status": "pista",
+          "url": "https://www.fernandopolis.sp.gov.br/publicacoes/pregao-eletronico/edital-de-pregao-eletronico-n-0832023-contratacao-de-empresa-de-engenharia-especializada-em-geoprocessamento",
+          "note": "Sinal de capacidade interna; acesso público ainda não provado."
+        }
+      ],
+      "current": false,
+      "metric_name": "IDHM 2010",
+      "metric_rank": 10,
+      "metric_value": 0.797,
+      "metric_value_label": "0,797",
+      "metric_source_url": "https://www.undp.org/pt/brazil/idhm-municipios-2010"
     }
   ]
 }
