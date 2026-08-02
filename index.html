@@ -83,8 +83,9 @@
     tbody tr:hover { background: #fafbf8; }
     .rank { width: 3.2rem; color: var(--green); font-size: 1.05rem; font-weight: 900; }
     .city { font-weight: 820; }
-    .city a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .city a { display: inline-grid; gap: .16rem; text-decoration-thickness: 1px; text-underline-offset: 3px; }
     .city a:hover { color: var(--green); }
+    .city a small { color: var(--green); font-size: .67rem; font-weight: 760; }
     .muted { color: var(--muted); font-size: .82rem; }
     .badge { display: inline-flex; padding: .27rem .52rem; border-radius: 999px; color: var(--green-dark); background: var(--green-soft); font-size: .72rem; font-weight: 820; white-space: nowrap; }
     .badge.benchmark { color: #66500c; background: var(--yellow-soft); }
@@ -452,7 +453,7 @@
         if (activeSort === "fit") score = city.fit.toFixed(1).replace(".0", "").replace(".", ",");
         if (activeSort === "smallest" || activeSort === "largest") score = formatter.format(city.population);
         const roleClass = city.pilot ? "badge" : "badge benchmark";
-        return `<tr${city.pilot ? ' class="best-row"' : ""}><td class="rank">${index + 1}</td><td class="city"><a href="cidades/${city.slug}.html">${city.city}</a></td><td>${formatter.format(city.population)}</td><td>${city.fit.toFixed(1).replace(".0", "").replace(".", ",")}</td><td><span class="${roleClass}">${city.role}</span></td><td class="score-cell">${score}</td></tr>`;
+        return `<tr${city.pilot ? ' class="best-row"' : ""}><td class="rank">${index + 1}</td><td class="city"><a href="cidades/${city.slug}.html"><span>${city.city}</span><small>Ver dossiê →</small></a></td><td>${formatter.format(city.population)}</td><td>${city.fit.toFixed(1).replace(".0", "").replace(".", ",")}</td><td><span class="${roleClass}">${city.role}</span></td><td class="score-cell">${score}</td></tr>`;
       }).join("");
     }
 
