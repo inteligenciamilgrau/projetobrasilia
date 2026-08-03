@@ -52,7 +52,7 @@ function showTooltip(tip, wrap, xPx, yPx, titleText, rows) {
     key.style.background = r.color;
     row.appendChild(key);
     const val = document.createElement("span");
-    val.textContent = r.label + ": " + r.value;
+    val.textContent = r.value ? (r.label + ": " + r.value) : r.label;
     row.appendChild(val);
     tip.appendChild(row);
   });
@@ -65,7 +65,7 @@ function hideTooltip(tip) { tip.classList.remove("show"); }
 // ---------------------------------------------------------------------------
 // Gráfico de linha (1 ou 2 séries), com crosshair + tooltip + rótulo final.
 // ---------------------------------------------------------------------------
-function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yFormatFull, markCensus }) {
+function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yFormatFull, markCensus, missingLabel }) {
   const W = 760, H = 300, M = { top: 16, right: 18, bottom: 30, left: 54 };
   const innerW = W - M.left - M.right, innerH = H - M.top - M.bottom;
 
@@ -75,6 +75,20 @@ function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yForm
   const xN = xValues.length;
   const xScale = (i) => M.left + (innerW * i) / (xN - 1);
   const yScale = (v) => M.top + innerH - (innerH * (v - yMin)) / (yMax - yMin);
+
+  // Índices onde NENHUMA série tem valor — o "buraco" vira marca visível, não
+  // um espaço em branco silencioso. O gráfico nunca inventa um valor ali.
+  const missingIdx = xValues.map((_, i) => i).filter(i => series.every(s => s.points[i] == null || s.points[i].y == null));
+  const missingColorVar = "var(--v-neg)";
+
+  // Legenda: sempre que houver 2+ séries, ou quando há pontos sem dado (o
+  // ponto vermelho é uma segunda categoria visual e precisa de identidade
+  // própria — nunca só a cor, ver marks-and-anatomy.md).
+  if (series.length > 1 || missingIdx.length > 0) {
+    const items = series.map(s => ({ label: s.label, color: s.color }));
+    if (missingIdx.length > 0) items.push({ label: missingLabel || "Sem dado", color: missingColorVar, dot: true });
+    legend(root, items);
+  }
 
   const wrap = document.createElement("div");
   wrap.className = "viz-svg-wrap";
@@ -146,6 +160,10 @@ function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yForm
   const overlay = el("rect", { x: M.left, y: M.top, width: innerW, height: innerH, fill: "transparent" }, svg);
   const tip = makeTooltip(wrap);
 
+  function missingRowFor(idx) {
+    return [{ label: `${missingLabel || "Sem dado"} publicado para ${xValues[idx]}`, value: "", color: missingColorVar, dot: true }];
+  }
+
   function handleMove(clientX, svgRect) {
     const relX = clientX - svgRect.left;
     const scaleX = svgRect.width / W;
@@ -159,13 +177,35 @@ function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yForm
     const rows = series
       .filter(s => s.points[idx] && s.points[idx].y != null)
       .map(s => ({ label: s.label, value: yFormatFull ? yFormatFull(s.points[idx].y) : yFormat(s.points[idx].y), color: s.color }));
-    if (!rows.length) { hideTooltip(tip); return; }
+    if (!rows.length) {
+      if (missingIdx.includes(idx)) showTooltip(tip, wrap, px * scaleX, yScale(yMin) * scaleX, xValues[idx], missingRowFor(idx));
+      else hideTooltip(tip);
+      return;
+    }
     const anyY = series.find(s => s.points[idx] && s.points[idx].y != null).points[idx].y;
     showTooltip(tip, wrap, px * scaleX, yScale(anyY) * scaleX, xValues[idx], rows);
   }
 
   overlay.addEventListener("pointermove", (ev) => handleMove(ev.clientX, svg.getBoundingClientRect()));
   overlay.addEventListener("pointerleave", () => { hideTooltip(tip); crosshair.setAttribute("opacity", 0); });
+
+  // Marca persistente do "sem dado": um ponto vermelho na base do eixo — nunca
+  // na altura de um valor interpolado, pra não sugerir uma quantidade que não
+  // existe — mais um rótulo curto, porque cor sozinha nunca carrega o significado.
+  missingIdx.forEach(idx => {
+    const x = xScale(idx), y = yScale(yMin);
+    const g = el("g", { class: "viz-missing", tabindex: 0, role: "img", "aria-label": `${xValues[idx]}: ${missingLabel || "sem dado publicado"}` }, svg);
+    el("line", { x1: x, x2: x, y1: M.top, y2: y - 7, stroke: missingColorVar, "stroke-width": 1, "stroke-dasharray": "2,3", opacity: .45 }, g);
+    el("circle", { cx: x, cy: y, r: 5, fill: missingColorVar, stroke: "var(--v-surface)", "stroke-width": 2 }, g);
+    const label = el("text", { x, y: y + 17, "text-anchor": "middle", class: "viz-axis-text", fill: missingColorVar, "font-weight": 800 }, g);
+    label.textContent = missingLabel || "sem dado";
+    const onEnter = () => showTooltip(tip, wrap, x * (svg.getBoundingClientRect().width / W), y * (svg.getBoundingClientRect().width / W), xValues[idx], missingRowFor(idx));
+    const onLeave = () => hideTooltip(tip);
+    g.addEventListener("pointerenter", onEnter);
+    g.addEventListener("focus", onEnter);
+    g.addEventListener("pointerleave", onLeave);
+    g.addEventListener("blur", onLeave);
+  });
 }
 
 // ---------------------------------------------------------------------------
