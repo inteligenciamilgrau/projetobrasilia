@@ -138,6 +138,9 @@
 .viz-map-wrap{background:var(--v-surface)}
 .viz-map-setor{cursor:pointer}
 .viz-map-setor:hover,.viz-map-setor:focus-visible{stroke:var(--v-text-primary);stroke-width:1.6;outline:none}
+.viz-map-anot-label{font-size:12px;font-weight:850;font-family:inherit}
+.viz-map-anot-sub{font-size:9.5px;font-weight:700;font-family:inherit}
+
 /* Referência secundária: fica discreta para não competir com o coroplético,
    que é o dado principal — 40 marcas em cima do núcleo urbano viram ruído. */
 .viz-map-bairro-mark{cursor:pointer;opacity:.45}

@@ -549,11 +549,33 @@ function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, 
   // Anotações (ex.: perímetro de zoneamento): tracejado numa cor fora da rampa,
   // para ler como camada de referência e não como mais um valor de densidade.
   (annotations || []).forEach(a => {
-    a.aneis.forEach(anel => {
+    a.aneis.forEach((anel, i) => {
       el("path", {
         d: ringD(anel), fill: "none", stroke: corAnot, "stroke-width": 2,
         "stroke-dasharray": "7 4", "stroke-linejoin": "round", "pointer-events": "none",
       }, svg);
+      // Rótulo do núcleo: sem ele, um anel pequeno e isolado no meio da zona
+      // rural parece sujeira de processamento em vez de a vila que ele é.
+      const meta = (a.info || [])[i];
+      if (meta && meta.nome) {
+        const x = px(meta.rotulo_lon), y = py(meta.rotulo_lat);
+        const pequeno = meta.area_km2 < 5;
+        const ty = pequeno ? y - 10 : y;
+        const t = el("text", {
+          x, y: ty, "text-anchor": "middle", "pointer-events": "none",
+          class: "viz-map-anot-label", stroke: "var(--v-surface)", "stroke-width": 3,
+          "paint-order": "stroke", fill: corAnot,
+        }, svg);
+        t.textContent = meta.nome;
+        if (pequeno) {
+          const sub = el("text", {
+            x, y: ty + 11, "text-anchor": "middle", "pointer-events": "none",
+            class: "viz-map-anot-sub", stroke: "var(--v-surface)", "stroke-width": 3,
+            "paint-order": "stroke", fill: "var(--v-text-secondary)",
+          }, svg);
+          sub.textContent = `${meta.papel} · ${fmtInt.format(meta.populacao)} hab.`;
+        }
+      }
     });
   });
 
@@ -809,7 +831,7 @@ function buildEducacaoStats(root, snapshot, educ) {
 // ---------------------------------------------------------------------------
 // Monta o mapa de calor por setor censitário dentro de #map-territorio.
 // ---------------------------------------------------------------------------
-function buildTerritorioMap(root, contorno, setores, bairros, zonaUrbana) {
+function buildTerritorioMap(root, contorno, setores, bairros, zonaUrbana, mancha) {
   // dentro_do_municipio: a coleta original no Overpass foi por bbox e trouxe
   // localidade de município vizinho junto (ver observacao em bairros_osm.json).
   const suburbLabels = bairros.localidades.filter(b => b.tipo === "suburb" && b.dentro_do_municipio !== false);
@@ -821,7 +843,7 @@ function buildTerritorioMap(root, contorno, setores, bairros, zonaUrbana) {
     valueFormat: (v) => fmtInt.format(Math.round(v)) + " hab./km²",
     legendTitle: "Densidade populacional",
     labelPoints: suburbLabels,
-    annotations: zonaUrbana ? [{ label: "Zona urbana no Censo 2022", aneis: zonaUrbana.aneis }] : [],
+    annotations: zonaUrbana ? [{ label: "Zona urbana no Censo 2022", aneis: zonaUrbana.aneis, info: zonaUrbana.aneis_info }] : [],
   });
   renderTable(root, {
     caption: "Setores censitários de Itajubá/MG — Censo 2022",
@@ -861,10 +883,17 @@ function buildTerritorioMap(root, contorno, setores, bairros, zonaUrbana) {
     root.appendChild(noteFix);
   }
 
+  if (mancha) {
+    const noteM = document.createElement("p");
+    noteM.className = "viz-note";
+    noteM.textContent = `"Urbano" tem três definições diferentes aqui, e é isso que confunde quem compara mapas: (1) a mancha efetivamente construída, mapeada por satélite, tem ${mancha.area_km2.toFixed(1)} km² em ${mancha.n_manchas} pedaços separados (IBGE, Áreas Urbanizadas 2019); (2) a zona urbana censitária tem ${zonaUrbana ? zonaUrbana.area_km2.toFixed(1) : "45"} km², ${zonaUrbana ? (zonaUrbana.area_km2 / mancha.area_km2).toFixed(1) : "2,3"}× maior, porque engloba setores inteiros incluindo o vazio entre os bairros; (3) o perímetro urbano da lei municipal é maior ainda, pois reserva área para crescimento futuro. O contorno interno que o Google Maps desenha acompanha a mancha construída — não o setor censitário nem o perímetro legal.`;
+    root.appendChild(noteM);
+  }
+
   if (zonaUrbana) {
     const note4 = document.createElement("p");
     note4.className = "viz-note";
-    note4.textContent = `A linha tracejada é a zona urbana do Censo 2022 (${zonaUrbana.area_km2.toFixed(0)} km², ${Math.round(100 * zonaUrbana.area_km2 / somaArea)}% do município), unindo os ${zonaUrbana.n_setores_urbanos} setores que o IBGE classificou como urbanos — em dois pedaços: a sede e a vila de Lourenço Velho, o segundo distrito. Como o IBGE deriva essa classificação do perímetro urbano fixado em lei e vigente na coleta, ela é a melhor aproximação que conseguimos do zoneamento em vigor em 2022. Mas é aproximação, e por um motivo estrutural: o setor censitário é indivisível — ou ele inteiro é urbano, ou inteiro é rural. Como o setor urbano típico de Itajubá tem uns 300 m de lado (mediana 0,087 km²), a borda só consegue seguir os recortes dos setores e "engorda" onde o perímetro legal corta pelo meio de um. Ou seja: ela nunca vai coincidir com o traçado do Google Maps nem com o do Anexo 2 da lei, que seguem ruas e divisas de lote. É um teto de resolução do método, não erro do dado.`;
+    note4.textContent = `A linha tracejada é a zona urbana do Censo 2022 (${zonaUrbana.area_km2.toFixed(0)} km², ${Math.round(100 * zonaUrbana.area_km2 / somaArea)}% do município), unindo os ${zonaUrbana.n_setores_urbanos} setores que o IBGE classificou como urbanos. ${zonaUrbana.observacao_aneis || ""} O anel pequeno tem confirmação independente: a mancha construída do IBGE 2019, mapeada por satélite, registra 0,06 km² de área urbanizada exatamente ali. Como o IBGE deriva essa classificação do perímetro urbano fixado em lei e vigente na coleta, ela é a melhor aproximação que conseguimos do zoneamento em vigor em 2022. Mas é aproximação, e por um motivo estrutural: o setor censitário é indivisível — ou ele inteiro é urbano, ou inteiro é rural. Como o setor urbano típico de Itajubá tem uns 300 m de lado (mediana 0,087 km²), a borda só consegue seguir os recortes dos setores e "engorda" onde o perímetro legal corta pelo meio de um. Ou seja: ela nunca vai coincidir com o traçado do Google Maps nem com o do Anexo 2 da lei, que seguem ruas e divisas de lote. É um teto de resolução do método, não erro do dado.`;
     root.appendChild(note4);
   }
 }
@@ -1221,7 +1250,8 @@ function initItajubaCharts() {
       fetch("../dados/itajuba/setores_poligonos_2022.json").then(r => r.json()),
       fetch("../dados/itajuba/bairros_osm.json").then(r => r.json()),
       fetch("../dados/itajuba/zona_urbana_censo2022.json").then(r => r.ok ? r.json() : null).catch(() => null),
-    ]).then(([contorno, setores, bairros, zonaUrbana]) => buildTerritorioMap(mapRoot, contorno, setores, bairros, zonaUrbana))
+      fetch("../dados/itajuba/mancha_urbana_2019.json").then(r => r.ok ? r.json() : null).catch(() => null),
+    ]).then(([contorno, setores, bairros, zonaUrbana, mancha]) => buildTerritorioMap(mapRoot, contorno, setores, bairros, zonaUrbana, mancha))
       .catch(() => showError(mapRoot));
   });
 
