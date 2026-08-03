@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pilotos de análise contínua de dados públicos, cidade por cidade — o primeiro é Itajubá/MG. Projeto Brasil iA.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="piloto.css">
+  <title>Piloto de análise — Projeto Brasil iA</title>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="../" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="../">Início</a>
+          <a class="top-link" href="../cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="./" aria-current="page">Piloto</a>
+          <a class="top-link" href="../municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="../inventario.html">Inventário</a>
+          <a class="top-link" href="../fontes.html">Fontes</a>
+          <a class="top-link" href="../relatorio_parcial.html">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div><p class="eyebrow">Aba nova · construída aos poucos</p><h1>Piloto de análise, cidade por cidade.</h1><p class="lede">Enquanto o resto do projeto faz triagem rápida em centenas de municípios, o Piloto faz o oposto: escolhe uma cidade e vai fundo — todas as fontes públicas que existirem, evolução histórica, e recorte territorial quando o dado permitir. Cada cidade entra aqui só quando já tem sinal real o suficiente para justificar o investimento.</p></div>
+        <aside class="decision"><span>Como uma cidade entra</span><strong>Sinal real encontrado, não só boa vontade.</strong><p>Itajubá entrou porque uma varredura extra achou Câmara Municipal, PNCP e SICONFI respondendo onde o site da Prefeitura bloqueava.</p></aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <section aria-labelledby="cidades-title">
+      <div class="section-head"><div><p class="kicker">Cidades no piloto</p><h2 id="cidades-title">Uma até agora. O formato está pronto para mais.</h2></div><p>Cada cidade ganha fontes próprias, um plano de fases e uma pasta de dados coletados — nada é compartilhado entre pilotos além do formato da página.</p></div>
+      <div class="pilot-grid">
+        <a class="pilot-card" href="itajuba.html">
+          <span class="pilot-status">Fase 0 de 9 · em construção</span>
+          <h3>Itajubá/MG</h3>
+          <p>96.855 habitantes · saiu de "sem sinal" para piloto dedicado depois de uma varredura extra encontrar Câmara Municipal, PNCP e SICONFI acessíveis.</p>
+          <div class="pilot-facts"><span class="pilot-fact">IPS Brasil 2026: 68,79</span><span class="pilot-fact">3 fontes já coletadas</span></div>
+        </a>
+        <div class="pilot-card placeholder"><strong>A próxima cidade entra aqui</strong><p>Candidatas naturais: as outras 19 do <a href="../cidades-pequenas.html">pré-filtro de cidades pequenas</a> ou qualquer uma do <a href="../municipios-100mil.html">Top 338</a> com sinal real encontrado numa varredura extra.</p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="metodo-title">
+      <div class="section-head"><div><p class="kicker">Como este piloto funciona</p><h2 id="metodo-title">Regras iguais para toda cidade que entrar.</h2></div></div>
+      <div class="roadmap">
+        <article class="phase done"><div class="phase-num">1</div><div><h3>Vai fundo, não largo</h3><p>Uma cidade por vez, não uma triagem rasa em muitas. O piloto só existe onde já há sinal real de dado público.</p></div></article>
+        <article class="phase done"><div class="phase-num">2</div><div><h3>Aos poucos, sempre com fonte</h3><p>Cada fase de coleta é registrada com URL, parâmetro de consulta e data. Nada de buscar tudo de uma vez só "porque pode".</p></div></article>
+        <article class="phase done"><div class="phase-num">3</div><div><h3>Dado salvo é dado que não se paga duas vezes</h3><p>Toda coleta vira arquivo em <code>dados/&lt;cidade&gt;/</code>, com metadados — a próxima fase lê o que já existe antes de buscar de novo.</p></div></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Piloto de análise por cidade, construído aos poucos a partir de fontes públicas verificáveis.</p></div><div class="footer-links"><a href="../">Início</a><a href="../cidades-pequenas.html">Cidades pequenas</a><a href="../fontes.html">Catálogo nacional</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+</body>
+</html>

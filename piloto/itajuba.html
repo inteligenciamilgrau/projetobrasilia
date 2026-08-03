@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Piloto de análise de dados públicos de Itajubá/MG: fontes reunidas, dados já coletados e o plano de trabalho por fases do Projeto Brasil iA.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="piloto.css">
+  <title>Itajubá/MG — piloto de análise — Projeto Brasil iA</title>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="../" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="../">Início</a>
+          <a class="top-link" href="../cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="./" aria-current="page">Piloto</a>
+          <a class="top-link" href="../municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="../inventario.html">Inventário</a>
+          <a class="top-link" href="../fontes.html">Fontes</a>
+          <a class="top-link" href="../relatorio_parcial.html">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div><p class="eyebrow">Piloto dedicado · 1ª cidade · em construção</p><h1>Itajubá, dado a dado.</h1><p class="lede">Um acompanhamento contínuo de Itajubá/MG usando só fontes públicas verificáveis — demografia, desenvolvimento humano, finanças, saúde, educação e, quando o dado existir, o recorte por bairro. Construído aos poucos: cada fase é uma sessão de coleta, não uma promessa de tudo de uma vez.</p></div>
+        <aside class="decision"><span>Por que Itajubá</span><strong>Saiu de "sem sinal" para candidata ativa numa varredura extra.</strong><p>O Executivo está bloqueado por Cloudflare, mas a Câmara Municipal, o PNCP e o SICONFI responderam — o suficiente para justificar um piloto dedicado.</p></aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <p class="crumb"><a href="./">← Todos os pilotos</a></p>
+    <div class="snapshot">
+      <div class="stat"><strong>96.855</strong><span>habitantes · IBGE 2025</span></div>
+      <div class="stat"><strong>68,79</strong><span>IPS Brasil 2026 (0–100)</span></div>
+      <div class="stat"><strong>#9</strong><span>posição no pré-filtro ≈100 mil</span></div>
+      <div class="stat"><strong>3132404</strong><span>código IBGE do município</span></div>
+      <div class="stat"><strong>294,8 km²</strong><span>área territorial</span></div>
+    </div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Fase 0 concluída (02/08/2026) — estrutura, catálogo de fontes e 3 conjuntos de dados já coletados. Ainda não há gráficos com série histórica nem recorte por bairro; isso é o trabalho das próximas fases.</div>
+
+    <section aria-labelledby="contexto-title">
+      <div class="section-head"><div><p class="kicker">Como Itajubá entrou aqui</p><h2 id="contexto-title">Do pré-filtro de cidades pequenas a um piloto próprio.</h2></div><p>Itajubá apareceu no Top 10 de ≈100 mil habitantes do <a href="../cidades-pequenas.html">experimento de cidades pequenas</a>, ordenado por IPS Brasil 2026. A triagem-padrão marcou "sem sinal" porque o site da Prefeitura bloqueia acesso automatizado. Uma varredura extra, pedida especificamente, encontrou dado real fora do Executivo: a Câmara Municipal (domínio próprio, sem bloqueio), o PNCP e o SICONFI. Isso foi o suficiente para justificar tirar Itajubá do lote de 20 candidatas e abrir um piloto só dela.</p></div>
+      <p class="muted-note">Ver o dossiê de triagem original: <a href="../cidades-pequenas/itajuba.html">cidades-pequenas/itajuba.html</a> · Ver a varredura extra completa: <a href="../docs/CIDADES_PEQUENAS.md">docs/CIDADES_PEQUENAS.md §5.1</a>.</p>
+    </section>
+
+    <section aria-labelledby="plano-title">
+      <div class="section-head"><div><p class="kicker">Plano de análise</p><h2 id="plano-title">Uma fase por sessão, não tudo de uma vez.</h2></div><p>Cada fase é um lote de coleta e visualização fechado em si. Uma fase só começa quando a anterior está registrada — nada de buscar em massa "por via das dúvidas".</p></div>
+      <div class="roadmap">
+        <article class="phase done"><div class="phase-num">0</div><div><h3>Estrutura, fontes e plano</h3><p>Esta página, o catálogo de fontes abaixo e 3 conjuntos de dados de prova de conceito (IPS Brasil completo, amostra do PNCP, amostra do SICONFI) salvos em <code>dados/itajuba/</code>.</p></div><span class="phase-tag done">Concluída 02/08/2026</span></article>
+        <article class="phase"><div class="phase-num">1</div><div><h3>Demografia e evolução populacional (2000–2026)</h3><p>SIDRA/IBGE: série de população, pirâmide etária, urbano/rural. Primeiro gráfico de linha real da aba.</p></div><span class="phase-tag next">Próxima</span></article>
+        <article class="phase"><div class="phase-num">2</div><div><h3>Desenvolvimento humano histórico</h3><p>IDHM 2000 e 2010 (IPEAData/Atlas Brasil) ao lado do IPS Brasil 2024–2026 já coletado — mesmo sem série contínua, dá para comparar os pontos que existem.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase"><div class="phase-num">3</div><div><h3>Finanças públicas</h3><p>SICONFI em série histórica (não só o bimestre já amostrado): receita, despesa, investimento por ano, separando Prefeitura do consórcio CIMASAS.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase"><div class="phase-num">4</div><div><h3>Compras, obras e Legislativo</h3><p>PNCP em série histórica + SISCAM (Câmara): o que a cidade compra e o que a Câmara decide, com gráfico de categorias (pizza) por tipo de objeto/contratação.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase"><div class="phase-num">5</div><div><h3>Saúde</h3><p>DATASUS TabNet, CNES e SINASC/SIM: natalidade, mortalidade, estabelecimentos e leitos.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase"><div class="phase-num">6</div><div><h3>Educação</h3><p>INEP/Ideb e Censo Escolar: matrículas, escolas e desempenho ao longo do tempo.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase"><div class="phase-num">7</div><div><h3>Território e bairros</h3><p>Setores censitários do IBGE (2000/2010/2022) e malhas territoriais: a tentativa real de dividir a cidade em regiões, o pedido mais difícil do plano.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase"><div class="phase-num">8</div><div><h3>Emprego e economia</h3><p>RAIS/Novo CAGED e CNPJ aberto: emprego formal e empresas ativas por período.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase"><div class="phase-num">9</div><div><h3>Síntese</h3><p>Consolidar tudo num painel único com IDU-Br calculado para Itajubá, se a cobertura acumulada permitir.</p></div><span class="phase-tag todo">Planejada</span></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="fontes-title">
+      <div class="section-head"><div><p class="kicker">Fontes de dados do piloto</p><h2 id="fontes-title">O que vamos usar, área por área.</h2></div><p>Catálogo específico de Itajubá. O catálogo nacional completo (43 fontes, todas as áreas do país) está em <a href="../fontes.html">fontes.html</a> — aqui ficam só as que se aplicam a este piloto, com status real de coleta.</p></div>
+      <div class="rule"><strong>Selo "nacional" não é defeito.</strong><p>PNCP, SICONFI, DATASUS, INEP e RAIS não diferenciam Itajubá de nenhuma outra cidade — mas são exatamente o que permite "acompanhar o desenvolvimento à distância", que foi o pedido que abriu este piloto.</p></div>
+
+      <h3 class="category-heading">Demografia e território</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IBGE Cidades — Panorama</h3><p class="what">População, PIB, indicadores sociais básicos e histórico de censos. Página testada (é SPA; carrega só com navegador real).</p><a class="open" href="https://cidades.ibge.gov.br/brasil/mg/itajuba/panorama" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>SIDRA/IBGE</h3><p class="what">Série de estimativas populacionais 2000–2026 por município — base da Fase 1.</p><a class="open" href="https://sidra.ibge.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Demográfico por setor censitário</h3><p class="what">2000, 2010 e 2022 — a única forma de dividir Itajubá em regiões/bairros com dado oficial. Base da Fase 7.</p><a class="open" href="https://sidra.ibge.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Malhas territoriais do IBGE</h3><p class="what">Limites do município e dos setores censitários, para desenhar os mapas por região.</p><a class="open" href="https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>PIB dos Municípios</h3><p class="what">Série histórica de PIB e valor adicionado por setor, divulgação excepcional 2022–2023 saiu em dez/2025.</p><a class="open" href="https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9088-produto-interno-bruto-dos-municipios.html" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Desenvolvimento humano e progresso social</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IPS Brasil 2026</h3><p class="what">79 indicadores em 3 dimensões e 12 componentes, coletados por completo nesta sessão.</p><a class="open" href="https://ipsbrasil.org.br/explore/data" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/ips_brasil_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IDHM 2000 e 2010 (Atlas Brasil / IPEAData)</h3><p class="what">Não existe versão municipal mais recente (ver <a href="../docs/CIDADES_PEQUENAS.md">docs/CIDADES_PEQUENAS.md §2</a>) — mas os dois pontos históricos entram na Fase 2 para mostrar evolução desde os anos 2000.</p><a class="open" href="https://www.ipeadata.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Finanças públicas e compras</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional</h3><p class="what">RREO Anexo 01, 3º bimestre de 2025. Atenção: a consulta por município traz também o consórcio CIMASAS junto da Prefeitura — ver observação no arquivo salvo.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo%2001&id_ente=3132404" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/siconfi_rreo_2025_bimestre3.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">Amostra de 2 meses (jun–ago/2026), CNPJ da Prefeitura 18.025.940/0001-09. Base para o gráfico de categorias de compra da Fase 4.</p><a class="open" href="https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/pncp_amostra_2026-08.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Portal da Transparência da União</h3><p class="what">Transferências federais recebidas por Itajubá (convênios, emendas, FPM).</p><a class="open" href="https://portaldatransparencia.gov.br/download-de-dados/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Câmara Municipal (Legislativo)</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>SISCAM — documentos da Câmara</h3><p class="what">Busca de Portarias, Atos da Mesa e da Presidência, com filtros e exportação. Testado e funcional; ainda não baixado em lote.</p><a class="open" href="https://itajuba.siscam.com.br/Documentos/Pesquisa?Pesquisa=Avancada&id=79&pagina=1&Modulo=8&Documento=114" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>Licitações e orçamento da Câmara</h3><p class="what">Painéis filtráveis por data e status (aberta/concluída/deserta/etc.), específicos do Legislativo municipal.</p><a class="open" href="https://sistemasgerenciais3.com.br/publicacoes/front_camitajuba_licitacoes/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Saúde</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>DATASUS TABNET</h3><p class="what">Óbitos, nascimentos, internações e produção ambulatorial por município.</p><a class="open" href="https://datasus.saude.gov.br/informacoes-de-saude-tabnet/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>CNES</h3><p class="what">Estabelecimentos, leitos e equipes de saúde — com endereço, útil para o recorte por bairro da Fase 7.</p><a class="open" href="https://cnes.datasus.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>SINASC e SIM</h3><p class="what">Nascidos vivos e mortalidade, com variáveis demográficas e territoriais.</p><a class="open" href="https://datasus.saude.gov.br/transferencia-de-arquivos/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Educação</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IDEB</h3><p class="what">Fluxo escolar e desempenho por escola e rede, série histórica.</p><a class="open" href="https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Escolar</h3><p class="what">Matrículas, turmas, docentes e infraestrutura das escolas de Itajubá.</p><a class="open" href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Emprego e economia</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>RAIS e Novo CAGED</h3><p class="what">Emprego formal, admissões, desligamentos e salários por setor.</p><a class="open" href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/microdados-rais-e-caged" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Dados abertos do CNPJ</h3><p class="what">Empresas ativas por endereço — outra via para dividir a cidade por região.</p><a class="open" href="https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos/cadastros" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Meio ambiente, clima e segurança</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>INMET — dados históricos</h3><p class="what">Série meteorológica da estação mais próxima de Itajubá.</p><a class="open" href="https://portal.inmet.gov.br/dadoshistoricos" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>MapBiomas</h3><p class="what">Uso e cobertura da terra desde 1985 — a série mais longa disponível para "evolução desde os anos 2000".</p><a class="open" href="https://brasil.mapbiomas.org/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>SINESP / MJSP</h3><p class="what">Estatísticas nacionais de segurança pública; granularidade municipal ainda não confirmada para MG.</p><a class="open" href="https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/seguranca-publica/estatistica" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Executivo municipal</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label bloqueado">Bloqueado</span></div><h3>www.itajuba.mg.gov.br</h3><p class="what">Site, transparência e dados abertos da Prefeitura — HTTP 403 (Cloudflare) mesmo com navegador headless completo. Os 8 domínios do IDU-Br dependem majoritariamente dele.</p><a class="open secondary" href="http://web.archive.org/web/20251217185113/https://www.itajuba.mg.gov.br/" target="_blank" rel="noopener noreferrer">Ver snapshot arquivado ↗</a></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="dados-title">
+      <div class="section-head"><div><p class="kicker">Dados já coletados</p><h2 id="dados-title">O que já está salvo em <code>dados/itajuba/</code>.</h2></div><p>Arquivos reais, com metadados de origem, parâmetros de consulta e data de coleta — para as próximas fases lerem em vez de buscar de novo.</p></div>
+      <div class="dataset-grid">
+        <article class="dataset"><h3>ips_brasil_2026.json</h3><p>79 indicadores do IPS Brasil 2026 para Itajubá, com nomes traduzidos dos cabeçalhos originais.</p><p class="meta">Coletado 02/08/2026 · IPS Brasil</p></article>
+        <article class="dataset"><h3>pncp_amostra_2026-08.json</h3><p>10 processos de compra (jun–ago/2026) da Prefeitura, resposta bruta da API preservada.</p><p class="meta">Coletado 02/08/2026 · PNCP</p></article>
+        <article class="dataset"><h3>siconfi_rreo_2025_bimestre3.json</h3><p>487 linhas do Balanço Orçamentário, 3º bimestre 2025 — 333 da Prefeitura, 154 do consórcio CIMASAS.</p><p class="meta">Coletado 02/08/2026 · SICONFI</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Piloto dedicado a Itajubá/MG, construído aos poucos a partir de fontes públicas verificáveis.</p></div><div class="footer-links"><a href="./">Todos os pilotos</a><a href="../cidades-pequenas/itajuba.html">Dossiê de triagem</a><a href="../docs/CIDADES_PEQUENAS.md">Metodologia</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+</body>
+</html>
