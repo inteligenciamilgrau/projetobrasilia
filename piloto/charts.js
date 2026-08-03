@@ -19,16 +19,27 @@ function el(tag, attrs = {}, parent = null) {
   return node;
 }
 
-// Rampa sequencial (1 hue, claro→escuro) do skill de dataviz — references/palette.md.
-// Usada para o mapa de calor: densidade baixa = claro, densidade alta = escuro.
-const SEQ_BLUE = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf", "#1c5cab", "#184f95", "#104281", "#0d366b"];
-function seqColor(t) {
-  // t em [0,1] -> interpola entre os 13 degraus da rampa sequencial.
+// Rampa sequencial (1 hue) do skill de dataviz. Os degraus vivem no CSS
+// (--v-seq-1..7) porque claro e escuro usam rampas DIFERENTES, não uma o
+// inverso da outra: no claro vai de azul médio a azul escuro; no escuro, de
+// azul escuro a azul claro. Ambas validadas em validate_palette.py --ordinal.
+const SEQ_FALLBACK = ["#87afe3", "#6499de", "#3f83da", "#246ecd", "#1b5bae", "#14488d", "#0d366b"];
+function readSeqRamp(node) {
+  const cs = getComputedStyle(node);
+  const ramp = [];
+  for (let i = 1; i <= 7; i++) {
+    const v = cs.getPropertyValue(`--v-seq-${i}`).trim();
+    if (v) ramp.push(v);
+  }
+  return ramp.length >= 2 ? ramp : SEQ_FALLBACK;
+}
+function seqColor(t, ramp) {
+  const steps = ramp || SEQ_FALLBACK;
   const clamped = Math.max(0, Math.min(1, t));
-  const pos = clamped * (SEQ_BLUE.length - 1);
-  const i0 = Math.floor(pos), i1 = Math.min(SEQ_BLUE.length - 1, i0 + 1);
+  const pos = clamped * (steps.length - 1);
+  const i0 = Math.floor(pos), i1 = Math.min(steps.length - 1, i0 + 1);
   const frac = pos - i0;
-  const c0 = hexToRgb(SEQ_BLUE[i0]), c1 = hexToRgb(SEQ_BLUE[i1]);
+  const c0 = hexToRgb(steps[i0]), c1 = hexToRgb(steps[i1]);
   const r = Math.round(c0[0] + (c1[0] - c0[0]) * frac);
   const g = Math.round(c0[1] + (c1[1] - c0[1]) * frac);
   const b = Math.round(c0[2] + (c1[2] - c0[2]) * frac);
@@ -437,69 +448,108 @@ function renderStats(root, items) {
 }
 
 // ---------------------------------------------------------------------------
-// Mapa de calor: contorno do município + um ponto por setor censitário,
-// cor = densidade populacional (rampa sequencial). Projeção equirretangular
-// simples com correção de cosseno da latitude — a área é pequena demais
-// (1 município) pra justificar uma projeção cartográfica completa.
+// Coroplético: cada setor censitário desenhado com o POLÍGONO real do IBGE,
+// preenchido por densidade (rampa sequencial). Projeção equirretangular com
+// correção de cosseno da latitude — 1 município é área pequena demais pra
+// justificar projeção cartográfica completa.
+//
+// A versão anterior desenhava um ponto no centroide de cada setor. Era errado:
+// um setor rural de 23 km² virava a mesma bolinha que um setor urbano de
+// 0,016 km², então 85% do território (a zona rural) aparecia como espaço vazio
+// e o mapa não parecia a cidade. Área é a variável visual que o olho lê num
+// mapa — ela tem que vir da geometria, não de um marcador de tamanho fixo.
 // ---------------------------------------------------------------------------
-function renderHeatMap(root, { boundary, points, valueKey, valueFormat, legendTitle, labelPoints }) {
-  const W = 720, H = 620, M = 18;
+function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, legendTitle, labelPoints }) {
+  const W = 720, H = 640, M = 18;
   const lats = boundary.map(p => p[1]);
   const lons = boundary.map(p => p[0]);
   const latMin = Math.min(...lats), latMax = Math.max(...lats);
   const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
-  const meanLatRad = ((latMin + latMax) / 2) * Math.PI / 180;
-  const cosLat = Math.cos(meanLatRad);
+  const cosLat = Math.cos(((latMin + latMax) / 2) * Math.PI / 180);
 
   const spanX = (lonMax - lonMin) * cosLat;
   const spanY = latMax - latMin;
-  const scale = Math.min((W - 2 * M) / spanX, (H - 2 * M) / spanY);
-  const drawnW = spanX * scale, drawnH = spanY * scale;
-  const offX = M + ((W - 2 * M) - drawnW) / 2;
-  const offY = M + ((H - 2 * M) - drawnH) / 2;
+  const scale = Math.min((W - 2 * M) / spanX, (H - 2 * M - 34) / spanY);
+  const offX = M + ((W - 2 * M) - spanX * scale) / 2;
+  const offY = M + ((H - 2 * M - 34) - spanY * scale) / 2;
 
   const px = (lon) => offX + (lon - lonMin) * cosLat * scale;
   const py = (lat) => offY + (latMax - lat) * scale;
+  const ringD = (ring) => "M" + ring.map(([lon, lat]) => `${px(lon).toFixed(1)},${py(lat).toFixed(1)}`).join("L") + "Z";
 
   const wrap = document.createElement("div");
   wrap.className = "viz-svg-wrap viz-map-wrap";
   root.appendChild(wrap);
   const svg = el("svg", { class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": legendTitle }, wrap);
 
-  const pathD = "M" + boundary.map(([lon, lat]) => `${px(lon).toFixed(1)},${py(lat).toFixed(1)}`).join("L") + "Z";
-  el("path", { d: pathD, fill: "var(--v-neutral)", stroke: "var(--v-text-secondary)", "stroke-width": 1.5, "fill-opacity": 0.35 }, svg);
-
-  const values = points.map(p => p[valueKey]).filter(v => v != null);
+  const ramp = readSeqRamp(root);
+  const values = features.map(f => f[valueKey]).filter(v => v != null);
   const vMin = Math.min(...values), vMax = Math.max(...values);
-  // A cor usa um teto no percentil 97, não o máximo literal: em setores censitários
-  // urbanos, uma área oficial muito pequena (ex.: 1-2 quadras) pode gerar densidade
-  // extrapolada (hab./km²) bem acima do restante da cidade, mesmo com poucos moradores.
-  // Sem o teto, esses 3-6 setores esticam a escala e "apagam" a cor de todos os outros
-  // no mapa. Os pontos acima do teto continuam aparecendo — só ficam na cor mais escura,
-  // em vez de numa cor exclusiva só deles.
-  const sortedValues = values.slice().sort((a, b) => a - b);
-  const p97Idx = Math.min(sortedValues.length - 1, Math.ceil(0.97 * sortedValues.length) - 1);
-  const vCap = sortedValues[p97Idx];
+  // Teto de cor no percentil 97: uns poucos setores urbanos de área minúscula
+  // (1-2 quadras) têm densidade extrapolada muito acima do resto e, sem o teto,
+  // esticam a rampa e achatam a cor de todos os outros. Eles continuam no mapa,
+  // só saturam na cor mais escura em vez de ganharem uma faixa exclusiva.
+  const sorted = values.slice().sort((a, b) => a - b);
+  const vCap = sorted[Math.min(sorted.length - 1, Math.ceil(0.97 * sorted.length) - 1)];
   const clipped = vMax > vCap;
   const colorMax = clipped ? vCap : vMax;
 
   const tip = makeTooltip(wrap);
 
-  // Camada de referência: bairros (contexto geográfico, sem valor associado a cor).
-  // Nome só aparece no hover/foco — com ~40 bairros concentrados no centro urbano,
-  // rótulo de texto fixo colide e vira ruído ilegível (ver marks-and-anatomy.md:
-  // "quando rótulos colidem, não empilhe" — aqui a saída é a tooltip, não o texto fixo).
+  // Setores: polígono real, com 0,6px de traço na cor da superfície separando
+  // vizinhos (o "gap de 2px entre preenchimentos" do skill, na escala do mapa).
+  const gSetores = el("g", {}, svg);
+  features.forEach(f => {
+    const t = Math.max(0, Math.min(1, colorMax > vMin ? (f[valueKey] - vMin) / (colorMax - vMin) : 0.5));
+    const color = seqColor(t, ramp);
+    const d = f.aneis.map(ringD).join(" ");
+    const isOutlier = clipped && f[valueKey] > vCap;
+    const area = f.area_km2 < 0.1 ? f.area_km2.toFixed(3) : f.area_km2.toFixed(2);
+    const path = el("path", {
+      d, fill: color, stroke: "var(--v-surface)", "stroke-width": 0.6, "fill-rule": "evenodd",
+      tabindex: 0, role: "img", class: "viz-map-setor",
+      "aria-label": `Setor ${f.setor}, ${f.situacao}: ${valueFormat(f[valueKey])}, ${f.populacao} habitantes em ${area} km²`,
+    }, gSetores);
+    const onEnter = (ev) => {
+      const r = svg.getBoundingClientRect();
+      const s = r.width / W;
+      // âncora no ponteiro quando houver (polígonos são irregulares, o centro
+      // do bounding box cai fora da forma com frequência)
+      let ax, ay;
+      if (ev && ev.clientX != null) { ax = ev.clientX - r.left; ay = ev.clientY - r.top; }
+      else { const b = path.getBBox(); ax = (b.x + b.width / 2) * s; ay = (b.y + b.height / 2) * s; }
+      showTooltip(tip, wrap, ax, ay, `Setor ${f.setor.slice(-6)} · ${f.situacao}`, [
+        { label: legendTitle, value: valueFormat(f[valueKey]) + (isOutlier ? " (satura a escala)" : ""), color, dot: true },
+        { label: "Área", value: area.replace(".", ",") + " km²", color: "transparent" },
+        { label: "População", value: fmtInt.format(f.populacao) + " hab.", color: "transparent" },
+        { label: "Domicílios", value: fmtInt.format(f.domicilios), color: "transparent" },
+      ]);
+    };
+    path.addEventListener("pointerenter", onEnter);
+    path.addEventListener("pointermove", onEnter);
+    path.addEventListener("focus", onEnter);
+    path.addEventListener("pointerleave", () => hideTooltip(tip));
+    path.addEventListener("blur", () => hideTooltip(tip));
+  });
+
+  // Contorno do município por cima, sem preenchimento (só delimita).
+  el("path", {
+    d: ringD(boundary), fill: "none", stroke: "var(--v-text-primary)",
+    "stroke-width": 1.6, "stroke-linejoin": "round", "pointer-events": "none",
+  }, svg);
+
+  // Camada de referência: bairros do OSM. Rótulo só no hover — ~40 nomes
+  // concentrados no centro urbano colidem demais como texto fixo.
   if (labelPoints && labelPoints.length) {
     labelPoints.forEach(b => {
       const x = px(b.lon), y = py(b.lat);
       const mark = el("rect", {
-        x: x - 2.6, y: y - 2.6, width: 5.2, height: 5.2, transform: `rotate(45 ${x} ${y})`,
-        fill: "var(--v-surface)", stroke: "var(--v-text-secondary)", "stroke-width": 1.3,
+        x: x - 2.1, y: y - 2.1, width: 4.2, height: 4.2, transform: `rotate(45 ${x} ${y})`,
+        fill: "var(--v-surface)", stroke: "var(--v-text-primary)", "stroke-width": 1,
         tabindex: 0, role: "img", "aria-label": `Bairro ${b.nome}`, class: "viz-map-bairro-mark",
       }, svg);
       const onEnter = () => {
-        const svgRect = svg.getBoundingClientRect();
-        const s = svgRect.width / W;
+        const s = svg.getBoundingClientRect().width / W;
         showTooltip(tip, wrap, x * s, y * s, "Bairro (OpenStreetMap)", [{ label: b.nome, value: "", color: "var(--v-text-secondary)", dot: true }]);
       };
       mark.addEventListener("pointerenter", onEnter);
@@ -509,49 +559,16 @@ function renderHeatMap(root, { boundary, points, valueKey, valueFormat, legendTi
     });
   }
 
-  points.forEach(p => {
-    const x = px(p.lon), y = py(p.lat);
-    const tRaw = colorMax > vMin ? (p[valueKey] - vMin) / (colorMax - vMin) : 0.5;
-    const t = Math.max(0, Math.min(1, tRaw));
-    const color = seqColor(t);
-    const r = p.situacao === "Rural" ? 3.2 : 4.6;
-    const isOutlier = clipped && p[valueKey] > vCap;
-    const dot = el("circle", {
-      cx: x, cy: y, r, fill: color, stroke: "var(--v-surface)", "stroke-width": 1.2,
-      tabindex: 0, role: "img",
-      "aria-label": `Setor ${p.setor}: ${valueFormat(p[valueKey])}, ${p.populacao} habitantes, área ${p.area_km2} km²`,
-      class: "viz-map-dot",
-    }, svg);
-    const onEnter = () => {
-      const svgRect = svg.getBoundingClientRect();
-      const s = svgRect.width / W;
-      const rows = [
-        { label: legendTitle, value: valueFormat(p[valueKey]) + (isOutlier ? " (acima do teto de cor)" : ""), color, dot: true },
-        { label: "Área", value: (p.area_km2 < 0.1 ? p.area_km2.toFixed(3) : p.area_km2.toFixed(2)).replace(".", ",") + " km²", color: "transparent" },
-        { label: "População", value: fmtInt.format(p.populacao) + " hab.", color: "transparent" },
-        { label: "Domicílios", value: fmtInt.format(p.domicilios), color: "transparent" },
-      ];
-      showTooltip(tip, wrap, x * s, y * s, `Setor ${p.setor.slice(-6)} · ${p.situacao}`, rows);
-    };
-    dot.addEventListener("pointerenter", onEnter);
-    dot.addEventListener("focus", onEnter);
-    dot.addEventListener("pointerleave", () => hideTooltip(tip));
-    dot.addEventListener("blur", () => hideTooltip(tip));
-  });
-
   // legenda de gradiente (rampa contínua, não degraus categóricos)
   const gradId = "heatgrad-" + Math.random().toString(36).slice(2, 8);
-  const defs = el("defs", {}, svg);
-  const grad = el("linearGradient", { id: gradId, x1: "0", x2: "1", y1: "0", y2: "0" }, defs);
-  for (let i = 0; i <= 10; i++) {
-    el("stop", { offset: `${i * 10}%`, "stop-color": seqColor(i / 10) }, grad);
-  }
+  const grad = el("linearGradient", { id: gradId, x1: "0", x2: "1", y1: "0", y2: "0" }, el("defs", {}, svg));
+  for (let i = 0; i <= 10; i++) el("stop", { offset: `${i * 10}%`, "stop-color": seqColor(i / 10, ramp) }, grad);
   const legendY = H - 26;
-  el("rect", { x: M, y: legendY, width: 200, height: 10, rx: 3, fill: `url(#${gradId})` }, svg);
+  el("rect", { x: M, y: legendY, width: 200, height: 10, rx: 3, fill: `url(#${gradId})`, stroke: "var(--v-grid)", "stroke-width": 0.5 }, svg);
   const tLo = el("text", { x: M, y: legendY + 24, class: "viz-axis-text" }, svg);
-  tLo.textContent = valueFormat(vMin) + " (baixa)";
+  tLo.textContent = valueFormat(vMin);
   const tHi = el("text", { x: M + 200, y: legendY + 24, "text-anchor": "end", class: "viz-axis-text" }, svg);
-  tHi.textContent = valueFormat(colorMax) + (clipped ? " ou mais" : " (alta)");
+  tHi.textContent = valueFormat(colorMax) + (clipped ? " ou mais" : "");
 }
 
 // ---------------------------------------------------------------------------
@@ -769,9 +786,9 @@ function buildEducacaoStats(root, snapshot, educ) {
 // ---------------------------------------------------------------------------
 function buildTerritorioMap(root, contorno, setores, bairros) {
   const suburbLabels = bairros.localidades.filter(b => b.tipo === "suburb");
-  renderHeatMap(root, {
+  renderChoroplethMap(root, {
     boundary: contorno.contorno_lon_lat,
-    points: setores.setores,
+    features: setores.setores,
     valueKey: "densidade_hab_km2",
     valueFormat: (v) => fmtInt.format(Math.round(v)) + " hab./km²",
     legendTitle: "Densidade populacional",
@@ -785,17 +802,27 @@ function buildTerritorioMap(root, contorno, setores, bairros) {
       .sort((a, b) => b.densidade_hab_km2 - a.densidade_hab_km2)
       .map(s => [s.setor, s.situacao, fmtInt.format(s.populacao), fmtInt.format(s.domicilios), s.area_km2.toFixed(3).replace(".", ","), fmtInt.format(Math.round(s.densidade_hab_km2))]),
   });
+  const urb = setores.setores.filter(s => s.situacao === "Urbana");
+  const rur = setores.setores.filter(s => s.situacao === "Rural");
+  const somaArea = setores.setores.reduce((a, s) => a + s.area_km2, 0);
+  const somaPop = setores.setores.reduce((a, s) => a + s.populacao, 0);
+  const km2 = (v) => v.toFixed(0).replace(".", ",");
+  renderStats(root, [
+    { value: fmtInt.format(Math.round(urb.reduce((a, s) => a + s.populacao, 0) / urb.reduce((a, s) => a + s.area_km2, 0))), label: "Densidade na área urbana (hab./km²)", note: `${urb.length} setores · ${km2(urb.reduce((a, s) => a + s.area_km2, 0))} km² · ${fmtInt.format(urb.reduce((a, s) => a + s.populacao, 0))} hab.` },
+    { value: fmtInt.format(Math.round(rur.reduce((a, s) => a + s.populacao, 0) / rur.reduce((a, s) => a + s.area_km2, 0))), label: "Densidade na área rural (hab./km²)", note: `${rur.length} setores · ${km2(rur.reduce((a, s) => a + s.area_km2, 0))} km² · ${fmtInt.format(rur.reduce((a, s) => a + s.populacao, 0))} hab.` },
+  ]);
+
   const note1 = document.createElement("p");
   note1.className = "viz-note";
-  note1.textContent = `${setores.n_setores} setores censitários somam ${fmtInt.format(setores.setores.reduce((a, s) => a + s.populacao, 0))} habitantes — bate exatamente com a população do Censo 2022 (93.073), confirmando que a geometria e os dados vêm da mesma base. A área também confere: somando os 71 vértices do contorno dá cerca de 295 km², em linha com a área territorial oficial do município. Cada ponto é o centroide do setor (calculado a partir do contorno oficial do IBGE), não um endereço real.`;
+  note1.textContent = `Cada mancha é o polígono oficial de um setor censitário do IBGE, não uma aproximação: os ${setores.n_setores} setores somam ${fmtInt.format(somaPop)} habitantes (bate exatamente com o Censo 2022) e ${km2(somaArea)} km², que é a área territorial oficial do município — ou seja, cobrem 100% do território, sem sobra nem falta.`;
   root.appendChild(note1);
   const note2 = document.createElement("p");
   note2.className = "viz-note";
-  note2.textContent = `Os losangos cinzas são ${suburbLabels.length} bairros mapeados pela comunidade OpenStreetMap — passe o mouse para ver o nome (texto fixo colidia demais no centro da cidade). Não há contorno oficial de bairro, já que o site da Prefeitura, que teria essa base, está bloqueado; a cor do heatmap segue os setores censitários, não os bairros.`;
+  note2.textContent = `A leitura principal do mapa é o contraste de tamanho: ${urb.length} setores urbanos espremidos em ${km2(urb.reduce((a, s) => a + s.area_km2, 0))} km² concentram ${Math.round(100 * urb.reduce((a, s) => a + s.populacao, 0) / somaPop)}% da população, enquanto ${rur.length} setores rurais ocupam ${Math.round(100 * rur.reduce((a, s) => a + s.area_km2, 0) / somaArea)}% do território com o restante. É por isso que a mancha escura fica toda num canto — não é erro de projeção, é a forma da ocupação de Itajubá.`;
   root.appendChild(note2);
   const note3 = document.createElement("p");
   note3.className = "viz-note";
-  note3.textContent = `Se você comparar com o Google Maps, o contorno vai parecer bem diferente — e isso é esperado, não é erro de coordenada. O Google normalmente destaca só o perímetro urbano (os bairros da cidade), enquanto este mapa usa o limite oficial do município inteiro do IBGE, que inclui uma extensão bem maior de zona rural (por isso a "aba" que se estende para o canto direito do mapa, com poucos pontos — é área rural de baixa densidade, não um erro de desenho).`;
+  note3.textContent = `Os losangos são ${suburbLabels.length} bairros mapeados pela comunidade OpenStreetMap — passe o mouse para ver o nome. Eles são só referência: o IBGE não publica contorno de bairro para Itajubá (a coluna de bairro vem vazia nos 192 setores) e o site da Prefeitura, que teria essa base, está bloqueado. Por isso a cor segue o setor censitário, que é a menor unidade oficial disponível aqui.`;
   root.appendChild(note3);
 }
 
@@ -1148,7 +1175,7 @@ function initItajubaCharts() {
   onFirstOpen(mapRoot && mapRoot.closest("details.phase"), () => {
     Promise.all([
       fetch("../dados/itajuba/municipio_contorno.json").then(r => r.json()),
-      fetch("../dados/itajuba/setores_censitarios_2022.json").then(r => r.json()),
+      fetch("../dados/itajuba/setores_poligonos_2022.json").then(r => r.json()),
       fetch("../dados/itajuba/bairros_osm.json").then(r => r.json()),
     ]).then(([contorno, setores, bairros]) => buildTerritorioMap(mapRoot, contorno, setores, bairros))
       .catch(() => showError(mapRoot));

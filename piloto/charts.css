@@ -16,6 +16,18 @@
   --v-ord-2: #5598e7;
   --v-ord-3: #2a78d6;
   --v-ord-4: #1c5cab;
+  /* rampa sequencial do mapa coroplético — claro→escuro sobre fundo claro.
+     Validada em scripts/validate_palette.py --mode light --ordinal:
+     matiz único (2°), ΔL adjacente >= .06, ponta clara 2,21:1 vs superfície.
+     A ponta clara NÃO pode ser mais clara que isso: no coroplético ela cobre
+     a zona rural (85% do território) e precisa se distinguir do cartão. */
+  --v-seq-1: #87afe3;
+  --v-seq-2: #6499de;
+  --v-seq-3: #3f83da;
+  --v-seq-4: #246ecd;
+  --v-seq-5: #1b5bae;
+  --v-seq-6: #14488d;
+  --v-seq-7: #0d366b;
   margin-bottom: .8rem;
   padding: 1.2rem 1.3rem 1rem;
   border: 1px solid var(--line);
@@ -40,6 +52,15 @@
     --v-ord-2: #6da7ec;
     --v-ord-3: #256abf;
     --v-ord-4: #184f95;
+    /* rampa sequencial INVERTIDA para fundo escuro — ver comentário no bloco
+       :root[data-theme="dark"] abaixo. Precisa estar nos DOIS lugares. */
+    --v-seq-1: #33648f;
+    --v-seq-2: #357cbd;
+    --v-seq-3: #4a92d8;
+    --v-seq-4: #6aa9e8;
+    --v-seq-5: #8ec0f4;
+    --v-seq-6: #b6d7fc;
+    --v-seq-7: #e3f0ff;
   }
 }
 :root[data-theme="dark"] .viz-root {
@@ -58,6 +79,17 @@
   --v-ord-2: #6da7ec;
   --v-ord-3: #256abf;
   --v-ord-4: #184f95;
+  /* No escuro a rampa INVERTE (escuro→claro): densidade baixa recua para o
+     fundo, densidade alta salta. Não é o flip automático da rampa clara —
+     aquela reprovava aqui (extremo a 1,46:1 do fundo, some no preto).
+     Validada em --mode dark --ordinal: matiz 5°, ΔL >= .06, ponta 2,79:1. */
+  --v-seq-1: #33648f;
+  --v-seq-2: #357cbd;
+  --v-seq-3: #4a92d8;
+  --v-seq-4: #6aa9e8;
+  --v-seq-5: #8ec0f4;
+  --v-seq-6: #b6d7fc;
+  --v-seq-7: #e3f0ff;
 }
 
 .viz-subhead{margin:1.4rem 0 .5rem;color:var(--v-text-primary);font-size:.88rem;font-weight:850}
@@ -104,10 +136,12 @@
 .viz-bar:hover,.viz-bar:focus-visible{opacity:.85}
 
 .viz-map-wrap{background:var(--v-surface)}
-.viz-map-dot{cursor:pointer}
-.viz-map-dot:hover,.viz-map-dot:focus-visible{stroke:var(--v-text-primary);stroke-width:2}
-.viz-map-bairro-mark{cursor:pointer;opacity:.8}
-.viz-map-bairro-mark:hover,.viz-map-bairro-mark:focus-visible{opacity:1;stroke:var(--green)}
+.viz-map-setor{cursor:pointer}
+.viz-map-setor:hover,.viz-map-setor:focus-visible{stroke:var(--v-text-primary);stroke-width:1.6;outline:none}
+/* Referência secundária: fica discreta para não competir com o coroplético,
+   que é o dado principal — 40 marcas em cima do núcleo urbano viram ruído. */
+.viz-map-bairro-mark{cursor:pointer;opacity:.45}
+.viz-map-bairro-mark:hover,.viz-map-bairro-mark:focus-visible{opacity:1;stroke:var(--green);stroke-width:2}
 
 .viz-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-top:.9rem}
 .viz-stat{padding:.85rem .95rem;border:1px solid var(--line);border-radius:11px;background:var(--v-surface)}
