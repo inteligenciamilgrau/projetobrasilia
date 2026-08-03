@@ -1,0 +1,191 @@
+{
+  "municipio": "Itajubá/MG",
+  "fonte": "PNCP — Portal Nacional de Contratações Públicas (governo federal)",
+  "cnpj_prefeitura": "18.025.940/0001-09",
+  "url_origem_template": "https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?dataInicial={inicio}&dataFinal={fim}&codigoModalidadeContratacao={modalidade}&pagina={pagina}&cnpj=18025940000109",
+  "coletado_em": "2026-08-03",
+  "periodo_label": "jan/2025-ago/2026",
+  "modalidades_incluidas": [
+    {
+      "modalidade": "Pregão - Eletrônico",
+      "quantidade": 148,
+      "valor_estimado": 280663180.97
+    },
+    {
+      "modalidade": "Inexigibilidade",
+      "quantidade": 101,
+      "valor_estimado": 89157670.14
+    },
+    {
+      "modalidade": "Concorrência - Eletrônica",
+      "quantidade": 10,
+      "valor_estimado": 163970553.77
+    }
+  ],
+  "total_processos": 259,
+  "valor_total_estimado": 533791404.88,
+  "por_categoria": [
+    {
+      "categoria": "Saúde",
+      "quantidade": 91,
+      "valor_estimado": 236225216.58
+    },
+    {
+      "categoria": "Outros",
+      "quantidade": 82,
+      "valor_estimado": 44437776.42
+    },
+    {
+      "categoria": "Educação",
+      "quantidade": 32,
+      "valor_estimado": 33722864.83
+    },
+    {
+      "categoria": "Serviços administrativos e gerais",
+      "quantidade": 23,
+      "valor_estimado": 2225400.38
+    },
+    {
+      "categoria": "Obras e infraestrutura",
+      "quantidade": 22,
+      "valor_estimado": 194248632.81
+    },
+    {
+      "categoria": "Tecnologia e comunicação",
+      "quantidade": 5,
+      "valor_estimado": 473094.9
+    },
+    {
+      "categoria": "Veículos e transporte",
+      "quantidade": 2,
+      "valor_estimado": 2373200.0
+    },
+    {
+      "categoria": "Limpeza e materiais de consumo",
+      "quantidade": 2,
+      "valor_estimado": 20085218.96
+    }
+  ],
+  "por_mes": [
+    {
+      "mes": "2025-01",
+      "mes_label": "jan/25",
+      "quantidade": 2,
+      "valor_estimado": 2517338.49
+    },
+    {
+      "mes": "2025-02",
+      "mes_label": "fev/25",
+      "quantidade": 12,
+      "valor_estimado": 8233275.49
+    },
+    {
+      "mes": "2025-03",
+      "mes_label": "mar/25",
+      "quantidade": 19,
+      "valor_estimado": 1688452.94
+    },
+    {
+      "mes": "2025-04",
+      "mes_label": "abr/25",
+      "quantidade": 8,
+      "valor_estimado": 11845683.88
+    },
+    {
+      "mes": "2025-05",
+      "mes_label": "mai/25",
+      "quantidade": 9,
+      "valor_estimado": 3075696.5
+    },
+    {
+      "mes": "2025-06",
+      "mes_label": "jun/25",
+      "quantidade": 18,
+      "valor_estimado": 18117807.06
+    },
+    {
+      "mes": "2025-07",
+      "mes_label": "jul/25",
+      "quantidade": 16,
+      "valor_estimado": 28112411.9
+    },
+    {
+      "mes": "2025-08",
+      "mes_label": "ago/25",
+      "quantidade": 10,
+      "valor_estimado": 3673617.97
+    },
+    {
+      "mes": "2025-09",
+      "mes_label": "set/25",
+      "quantidade": 12,
+      "valor_estimado": 110943809.67
+    },
+    {
+      "mes": "2025-10",
+      "mes_label": "out/25",
+      "quantidade": 10,
+      "valor_estimado": 2737455.03
+    },
+    {
+      "mes": "2025-11",
+      "mes_label": "nov/25",
+      "quantidade": 15,
+      "valor_estimado": 39666003.8
+    },
+    {
+      "mes": "2025-12",
+      "mes_label": "dez/25",
+      "quantidade": 7,
+      "valor_estimado": 36494976.41
+    },
+    {
+      "mes": "2026-01",
+      "mes_label": "jan/26",
+      "quantidade": 5,
+      "valor_estimado": 9589505.92
+    },
+    {
+      "mes": "2026-02",
+      "mes_label": "fev/26",
+      "quantidade": 16,
+      "valor_estimado": 29837588.52
+    },
+    {
+      "mes": "2026-03",
+      "mes_label": "mar/26",
+      "quantidade": 16,
+      "valor_estimado": 7288885.99
+    },
+    {
+      "mes": "2026-04",
+      "mes_label": "abr/26",
+      "quantidade": 12,
+      "valor_estimado": 25618957.62
+    },
+    {
+      "mes": "2026-05",
+      "mes_label": "mai/26",
+      "quantidade": 22,
+      "valor_estimado": 107129532.7
+    },
+    {
+      "mes": "2026-06",
+      "mes_label": "jun/26",
+      "quantidade": 25,
+      "valor_estimado": 38132313.78
+    },
+    {
+      "mes": "2026-07",
+      "mes_label": "jul/26",
+      "quantidade": 25,
+      "valor_estimado": 49088091.21
+    }
+  ],
+  "erros_de_coleta": [
+    "20250101-20251231 m=8 p=1: TimeoutError('The read operation timed out')",
+    "20250101-20251231 m=9 p=6: TimeoutError('The read operation timed out')",
+    "20260101-20260802 m=8 p=3: TimeoutError('The read operation timed out')"
+  ],
+  "observacao": "[NACIONAL — não pontua como diferencial entre cidades no IDU-Br, mas é dado real, atual e específico do município] Inclui as modalidades Pregão Eletrônico (148/148, completo), Concorrência Eletrônica (10/10, completo) e Inexigibilidade (101/129, ~78% — a API do PNCP falhou nas últimas páginas de 2025 após várias tentativas). A modalidade Dispensa de Licitação (provavelmente a maior categoria por volume, com ~215 processos numa sondagem inicial) ficou de fora desta rodada: a API travou repetidamente nela (timeout mesmo com 4 tentativas por página) e só 20 dos ~215 registros esperados vieram (~9%) — amostra incompleta demais para incluir sem distorcer a categorização. Categorias são inferidas por palavras-chave no texto do objeto da compra (não há campo de categoria estruturado no PNCP) — classificação aproximada, não oficial."
+}
