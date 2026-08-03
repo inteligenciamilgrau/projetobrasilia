@@ -86,7 +86,17 @@ function hideTooltip(tip) { tip.classList.remove("show"); }
 // Gráfico de linha (1 ou 2 séries), com crosshair + tooltip + rótulo final.
 // ---------------------------------------------------------------------------
 function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yFormatFull, markCensus, missingLabel, yMaxCap }) {
-  const W = 760, H = 300, M = { top: 16, right: 18, bottom: 30, left: 54 };
+  const W = 760, H = 300;
+  // margem direita cresce com a largura do rótulo final (só existe p/ série
+  // única) — "R$ 4.498M" precisa de bem mais espaço que "97k" ou "23%", senão
+  // o texto vaza pra fora do cartão (viewBox tem overflow:visible, mas o
+  // container em volta não).
+  let endLabelChars = 0;
+  if (series.length === 1) {
+    const pts = series[0].points.filter(p => p.y != null);
+    if (pts.length) endLabelChars = String(yFormat(pts[pts.length - 1].y)).length;
+  }
+  const M = { top: 16, right: Math.max(18, endLabelChars * 7.2 + 12), bottom: 30, left: 54 };
   const innerW = W - M.left - M.right, innerH = H - M.top - M.bottom;
 
   const allYs = series.flatMap(s => s.points.map(p => p.y).filter(y => y != null));
@@ -286,6 +296,59 @@ function renderDivergingBars(root, { data, xKey, yKey, yFormat, yFormatFull, pos
     rect.addEventListener("focus", onEnter);
     rect.addEventListener("pointerleave", () => hideTooltip(tip));
     rect.addEventListener("blur", () => hideTooltip(tip));
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Barras horizontais (ranking de categorias por magnitude) — 1 hue só: a
+// identidade de cada barra já está no rótulo direto, cor não codifica nada
+// extra aqui, então não entra legenda (ver color-formula.md).
+// ---------------------------------------------------------------------------
+function renderBarsHorizontal(root, { data, labelKey, valueKey, valueFormat, valueFormatFull, color, ariaLabelPrefix }) {
+  const rowH = 34;
+  const M = { top: 8, right: 64, bottom: 8, left: 172 };
+  const W = 760;
+  const innerW = W - M.left - M.right;
+  const H = M.top + M.bottom + data.length * rowH;
+  const maxV = niceMax(Math.max(...data.map(d => d[valueKey])) * 1.15);
+  const xScale = (v) => (innerW * v) / maxV;
+
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap";
+  root.appendChild(wrap);
+  const svg = el("svg", { class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": ariaLabelPrefix || "" }, wrap);
+
+  const tip = makeTooltip(wrap);
+
+  data.forEach((d, i) => {
+    const y = M.top + i * rowH;
+    const barH = Math.min(20, rowH - 12);
+    const barY = y + (rowH - barH) / 2;
+    const w = Math.max(2, xScale(d[valueKey]));
+
+    const label = el("text", { x: M.left - 10, y: y + rowH / 2 + 4, "text-anchor": "end", class: "viz-axis-text" }, svg);
+    label.textContent = d[labelKey];
+
+    const bar = el("rect", {
+      class: "viz-bar", x: M.left, y: barY, width: w, height: barH, rx: 4,
+      fill: color, tabindex: 0, role: "img",
+      "aria-label": `${d[labelKey]}: ${valueFormatFull(d[valueKey])}`,
+    }, svg);
+
+    const valLabel = el("text", { x: M.left + w + 8, y: y + rowH / 2 + 4, class: "viz-axis-text" }, svg);
+    valLabel.textContent = valueFormat(d[valueKey]);
+
+    function onEnter() {
+      const svgRect = svg.getBoundingClientRect();
+      const s = svgRect.width / W;
+      showTooltip(tip, wrap, (M.left + w / 2) * s, barY * s, String(d[labelKey]), [
+        { label: "Total", value: valueFormatFull(d[valueKey]), color },
+      ]);
+    }
+    bar.addEventListener("pointerenter", onEnter);
+    bar.addEventListener("focus", onEnter);
+    bar.addEventListener("pointerleave", () => hideTooltip(tip));
+    bar.addEventListener("blur", () => hideTooltip(tip));
   });
 }
 
@@ -780,6 +843,155 @@ function buildFinancasCharts(finRoot, saldoRoot, fin) {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Monta os gráficos de emprego formal (CEMPRE) dentro de #chart-emprego e
+// #chart-empresas.
+// ---------------------------------------------------------------------------
+function buildEmpregoCharts(assalariadoRoot, empresasRoot, cempre) {
+  const xValues = cempre.serie.map(p => String(p.ano));
+
+  if (assalariadoRoot) {
+    const cor = getComputedStyle(assalariadoRoot).getPropertyValue("--v-series-receita").trim() || "#08724e";
+    renderLineChart(assalariadoRoot, {
+      series: [{ key: "assalariado", label: "Pessoal ocupado assalariado", color: cor, points: cempre.serie.map(p => ({ y: p.pessoal_ocupado_assalariado })) }],
+      xValues, yLabel: "Pessoas",
+      yFormat: (v) => fmtMoneyCompact(v), yFormatFull: (v) => fmtInt.format(Math.round(v)) + " pessoas",
+    });
+    renderTable(assalariadoRoot, {
+      caption: "Pessoal ocupado assalariado em Itajubá/MG, 2006–2021",
+      columns: ["Ano", "Pessoal ocupado assalariado", "Salário médio mensal"],
+      rows: cempre.serie.map(p => [String(p.ano), fmtInt.format(p.pessoal_ocupado_assalariado), "R$ " + p.salario_medio_mensal_reais.toLocaleString("pt-BR", { minimumFractionDigits: 2 })]),
+    });
+    const ultimo = cempre.serie[cempre.serie.length - 1];
+    const primeiro = cempre.serie[0];
+    renderStats(assalariadoRoot, [
+      { value: fmtInt.format(ultimo.pessoal_ocupado_assalariado), label: `Pessoal ocupado assalariado · ${ultimo.ano}` },
+      { value: "R$ " + ultimo.salario_medio_mensal_reais.toLocaleString("pt-BR", { minimumFractionDigits: 2 }), label: `Salário médio mensal (nominal) · ${ultimo.ano}`, note: `Era R$ ${primeiro.salario_medio_mensal_reais.toLocaleString("pt-BR", { minimumFractionDigits: 2 })} em ${primeiro.ano} — sem ajuste pela inflação` },
+    ]);
+    const note = document.createElement("p");
+    note.className = "viz-note";
+    note.textContent = "Substitui RAIS/Novo CAGED nesta fase: aqueles são microdados que exigem baixar e processar arquivos em lote, sem API simples. O CEMPRE (Cadastro Central de Empresas) do IBGE cobre a mesma pergunta — emprego formal — pronto via SIDRA, mas é uma série encerrada em 2021 (o IBGE não atualizou depois disso).";
+    assalariadoRoot.appendChild(note);
+  }
+
+  if (empresasRoot) {
+    const cEmpresas = getComputedStyle(empresasRoot).getPropertyValue("--v-series-receita").trim() || "#08724e";
+    const cUnidades = getComputedStyle(empresasRoot).getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+    renderLineChart(empresasRoot, {
+      series: [
+        { key: "empresas", label: "Empresas atuantes", color: cEmpresas, points: cempre.serie.map(p => ({ y: p.empresas_atuantes })) },
+        { key: "unidades", label: "Unidades locais", color: cUnidades, points: cempre.serie.map(p => ({ y: p.unidades_locais })) },
+      ],
+      xValues, yLabel: "Unidades",
+      yFormat: (v) => fmtInt.format(Math.round(v)), yFormatFull: (v) => fmtInt.format(Math.round(v)) + " unidades",
+    });
+    renderTable(empresasRoot, {
+      caption: "Empresas e unidades locais atuantes em Itajubá/MG, 2006–2021",
+      columns: ["Ano", "Empresas atuantes", "Unidades locais"],
+      rows: cempre.serie.map(p => [String(p.ano), fmtInt.format(p.empresas_atuantes), fmtInt.format(p.unidades_locais)]),
+    });
+    const note = document.createElement("p");
+    note.className = "viz-note";
+    note.textContent = "Unidades locais ≥ empresas porque uma empresa pode ter mais de um endereço (filiais) contado separadamente. Os dois recuaram entre 2014 e 2018 — mesmo período em que o pessoal ocupado assalariado também caiu no gráfico acima.";
+    empresasRoot.appendChild(note);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Monta o gráfico de PIB dentro de #chart-pib.
+// ---------------------------------------------------------------------------
+function buildEconomiaChart(root, pib) {
+  const xValues = pib.pib_total.map(p => String(p.ano));
+  const cor = getComputedStyle(root).getPropertyValue("--v-series-receita").trim() || "#08724e";
+  renderLineChart(root, {
+    series: [{ key: "pib", label: "PIB total", color: cor, points: pib.pib_total.map(p => ({ y: p.valor_mil_reais * 1000 })) }],
+    xValues, yLabel: "PIB a preços correntes (R$)",
+    yFormat: (v) => "R$ " + fmtMoneyCompact(v), yFormatFull: (v) => fmtMoneyFull(v),
+  });
+  renderTable(root, {
+    caption: "PIB total de Itajubá/MG a preços correntes, 2002–2023",
+    columns: ["Ano", "PIB total"],
+    rows: pib.pib_total.map(p => [String(p.ano), fmtMoneyFull(p.valor_mil_reais * 1000)]),
+  });
+
+  const c = pib.composicao_setorial_2021;
+  const pctOfTotal = (v) => (v / c.pib_total * 100).toFixed(1).replace(".", ",") + "%";
+  renderStats(root, [
+    { value: pctOfTotal(c.servicos), label: "Serviços — % do PIB · 2021" },
+    { value: pctOfTotal(c.industria), label: "Indústria — % do PIB · 2021" },
+    { value: pctOfTotal(c.administracao_publica), label: "Administração pública — % do PIB · 2021" },
+    { value: pctOfTotal(c.agropecuaria), label: "Agropecuária — % do PIB · 2021" },
+  ]);
+  const somaSetores = c.agropecuaria + c.industria + c.servicos + c.administracao_publica;
+  const note = document.createElement("p");
+  note.className = "viz-note";
+  note.textContent = `Valores correntes de cada ano, sem ajuste pela inflação — não comparar a variação ano a ano como se fosse crescimento real. A composição por setor só existe até 2021 nesta tabela do IBGE (2022–2023 ainda não têm a quebra publicada); os 4 setores acima somam ${pctOfTotal(somaSetores)} do PIB — o restante (${pctOfTotal(c.impostos_liquidos)}) são impostos líquidos de subsídios sobre produtos.`;
+  root.appendChild(note);
+}
+
+// ---------------------------------------------------------------------------
+// Monta os gráficos de compras públicas (PNCP) dentro de #chart-compras.
+// ---------------------------------------------------------------------------
+function buildComprasChart(root, pncp) {
+  const cor = getComputedStyle(root).getPropertyValue("--v-series-receita").trim() || "#08724e";
+
+  subhead(root, "Por categoria de objeto");
+  renderBarsHorizontal(root, {
+    data: pncp.por_categoria,
+    labelKey: "categoria", valueKey: "quantidade",
+    valueFormat: (v) => fmtInt.format(v), valueFormatFull: (v) => fmtInt.format(v) + " processos",
+    color: cor, ariaLabelPrefix: "Processos de compra por categoria de objeto",
+  });
+  renderTable(root, {
+    caption: "Processos de compra da Prefeitura de Itajubá por categoria, jan/2025–ago/2026",
+    columns: ["Categoria", "Processos", "Valor estimado somado"],
+    rows: pncp.por_categoria.map(c => [c.categoria, fmtInt.format(c.quantidade), fmtMoneyFull(c.valor_estimado)]),
+  });
+
+  subhead(root, "Ao longo do tempo");
+  renderLineChart(root, {
+    series: [{ key: "processos", label: "Processos publicados", color: cor, points: pncp.por_mes.map(p => ({ y: p.quantidade })) }],
+    xValues: pncp.por_mes.map(p => p.mes_label), yLabel: "Processos por mês",
+    yFormat: (v) => fmtInt.format(Math.round(v)), yFormatFull: (v) => fmtInt.format(Math.round(v)) + " processos",
+  });
+  renderTable(root, {
+    caption: "Processos de compra da Prefeitura de Itajubá por mês, jan/2025–ago/2026",
+    columns: ["Mês", "Processos", "Valor estimado somado"],
+    rows: pncp.por_mes.map(p => [p.mes_label, fmtInt.format(p.quantidade), fmtMoneyFull(p.valor_estimado)]),
+  });
+
+  renderStats(root, [
+    { value: fmtInt.format(pncp.total_processos), label: `Processos publicados · ${pncp.periodo_label}` },
+    { value: "R$ " + fmtMoneyCompact(pncp.valor_total_estimado), label: "Valor total estimado somado", note: fmtMoneyFull(pncp.valor_total_estimado) },
+  ]);
+  const note = document.createElement("p");
+  note.className = "viz-note";
+  note.textContent = pncp.observacao;
+  root.appendChild(note);
+}
+
+// ---------------------------------------------------------------------------
+// Monta o gráfico de Portarias da Câmara dentro de #chart-legislativo.
+// ---------------------------------------------------------------------------
+function buildLegislativoChart(root, siscam) {
+  const cor = getComputedStyle(root).getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  renderBarsHorizontal(root, {
+    data: siscam.serie.map(p => ({ ano: p.completo ? String(p.ano) : `${p.ano} (até ago)`, quantidade: p.portarias_emitidas })),
+    labelKey: "ano", valueKey: "quantidade",
+    valueFormat: (v) => fmtInt.format(v), valueFormatFull: (v) => fmtInt.format(v) + " portarias",
+    color: cor, ariaLabelPrefix: "Portarias emitidas pela Câmara Municipal, por ano",
+  });
+  renderTable(root, {
+    caption: "Portarias emitidas pela Câmara Municipal de Itajubá, por ano",
+    columns: ["Ano", "Portarias emitidas"],
+    rows: siscam.serie.map(p => [p.completo ? String(p.ano) : `${p.ano} (até ${p.nota || "ago"})`, fmtInt.format(p.portarias_emitidas)]),
+  });
+  const note = document.createElement("p");
+  note.className = "viz-note";
+  note.textContent = siscam.observacao;
+  root.appendChild(note);
+}
+
 function showError(...roots) {
   roots.forEach(r => {
     if (r) r.innerHTML = '<p class="viz-note">Não foi possível carregar os dados do gráfico. Abra a página por um servidor HTTP e tente de novo.</p>';
@@ -851,6 +1063,34 @@ function initItajubaCharts() {
       fetch("../dados/itajuba/bairros_osm.json").then(r => r.json()),
     ]).then(([contorno, setores, bairros]) => buildTerritorioMap(mapRoot, contorno, setores, bairros))
       .catch(() => showError(mapRoot));
+  });
+
+  const comprasRoot = document.querySelector("#chart-compras");
+  onFirstOpen(comprasRoot && comprasRoot.closest("details.phase"), () => {
+    fetch("../dados/itajuba/pncp_serie_2025_2026.json").then(r => r.json())
+      .then(pncp => buildComprasChart(comprasRoot, pncp))
+      .catch(() => showError(comprasRoot));
+  });
+  const legislativoRoot = document.querySelector("#chart-legislativo");
+  onFirstOpen(legislativoRoot && legislativoRoot.closest("details.phase"), () => {
+    fetch("../dados/itajuba/siscam_portarias_2023_2026.json").then(r => r.json())
+      .then(siscam => buildLegislativoChart(legislativoRoot, siscam))
+      .catch(() => showError(legislativoRoot));
+  });
+
+  const assalariadoRoot = document.querySelector("#chart-emprego");
+  const empresasRoot = document.querySelector("#chart-empresas");
+  const empregoDetails = (assalariadoRoot || empresasRoot) && (assalariadoRoot || empresasRoot).closest("details.phase");
+  onFirstOpen(empregoDetails, () => {
+    fetch("../dados/itajuba/cempre_empresas_emprego_2006_2021.json").then(r => r.json())
+      .then(cempre => buildEmpregoCharts(assalariadoRoot, empresasRoot, cempre))
+      .catch(() => showError(assalariadoRoot, empresasRoot));
+  });
+  const pibRoot = document.querySelector("#chart-pib");
+  onFirstOpen(pibRoot && pibRoot.closest("details.phase"), () => {
+    fetch("../dados/itajuba/pib_municipal_2002_2023.json").then(r => r.json())
+      .then(pib => buildEconomiaChart(pibRoot, pib))
+      .catch(() => showError(pibRoot));
   });
 }
 

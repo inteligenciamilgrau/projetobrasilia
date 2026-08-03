@@ -1,0 +1,15 @@
+{
+  "municipio": "Itajubá/MG",
+  "orgao": "Câmara Municipal de Itajubá",
+  "fonte": "SISCAM — sistema de documentos administrativos da Câmara Municipal de Itajubá",
+  "url_origem": "https://itajuba.siscam.com.br/Documentos/Pesquisa?Pesquisa=Avancada&id=79&Pagina=1&Modulo=8&Documento=114",
+  "coletado_em": "2026-08-03",
+  "metodologia": "Contagem direta: paginação da busca (15 resultados/página, 44 páginas lidas) extraindo número e ano de cada Portaria publicada. A numeração reinicia em Nº 1 todo mês de janeiro (confirmado nos 4 anos coletados: o menor número de cada ano é 1) — por isso o maior número de Portaria do ano é, na prática, a contagem do ano (com raras exceções por número pulado/cancelado, daí a pequena diferença entre 'maior número' e 'total contado').",
+  "observacao": "Não é o mesmo tipo de dado do PNCP acima — Portaria é ato administrativo interno da Câmara (nomeações, autorizações de despesa, normas de funcionamento), não uma compra pública. 2022 ficou de fora da série: a coleta parou ao alcançar esse ano (orçamento de sessão), e só capturou Portarias de nº 104 a nº 118 — não representa o ano inteiro. 2026 é até 02/08/2026, ano incompleto.",
+  "serie": [
+    { "ano": 2023, "portarias_emitidas": 193, "completo": true },
+    { "ano": 2024, "portarias_emitidas": 137, "completo": true },
+    { "ano": 2025, "portarias_emitidas": 222, "completo": true },
+    { "ano": 2026, "portarias_emitidas": 92, "completo": false, "nota": "até 02/08/2026" }
+  ]
+}

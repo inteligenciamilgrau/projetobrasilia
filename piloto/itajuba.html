@@ -47,7 +47,7 @@
       <div class="stat"><strong>3132404</strong><span>código IBGE do município</span></div>
       <div class="stat"><strong>294,8 km²</strong><span>área territorial</span></div>
     </div>
-    <div class="status-banner"><strong>Status desta aba:</strong> Fases 0, 1, 2, 3, 5, 6 e 7 concluídas (03/08/2026) — população, IDHM histórico, finanças, saúde, educação e o mapa de calor por setor censitário já têm dado real. Faltam compras/Legislativo e emprego.</div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Fases 0–8 concluídas (03/08/2026) — população, IDHM histórico, finanças, saúde, educação, mapa de calor por setor censitário, compras/Legislativo e emprego/economia já têm dado real. Falta só a síntese final (Fase 9).</div>
 
     <section aria-labelledby="contexto-title">
       <div class="section-head"><div><p class="kicker">Como Itajubá entrou aqui</p><h2 id="contexto-title">Do pré-filtro de cidades pequenas a um piloto próprio.</h2></div><p>Itajubá apareceu no Top 10 de ≈100 mil habitantes do <a href="../cidades-pequenas.html">experimento de cidades pequenas</a>, ordenado por IPS Brasil 2026. A triagem-padrão marcou "sem sinal" porque o site da Prefeitura bloqueia acesso automatizado. Uma varredura extra, pedida especificamente, encontrou dado real fora do Executivo: a Câmara Municipal (domínio próprio, sem bloqueio), o PNCP e o SICONFI. Isso foi o suficiente para justificar tirar Itajubá do lote de 20 candidatas e abrir um piloto só dela.</p></div>
@@ -99,7 +99,18 @@
             <p class="muted-note">Fonte salva: <a href="../dados/itajuba/siconfi_receita_despesa_2015_2025.json" target="_blank" rel="noopener noreferrer">dados/itajuba/siconfi_receita_despesa_2015_2025.json ↗</a></p>
           </div>
         </details>
-        <article class="phase"><div class="phase-num">4</div><div><h3>Compras, obras e Legislativo</h3><p>PNCP em série histórica + SISCAM (Câmara): o que a cidade compra e o que a Câmara decide, com gráfico de categorias (pizza) por tipo de objeto/contratação.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">4</div><div class="phase-text"><h3>Compras, obras e Legislativo</h3><p>PNCP em série histórica (jan/2025–ago/2026, 3 modalidades) e Portarias da Câmara Municipal via SISCAM (2023–2026) — o que a cidade compra e o que a Câmara decide.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-compras">
+              <div class="viz-head"><div><h3>Compras da Prefeitura, por categoria e ao longo do tempo</h3><p>PNCP — Pregão Eletrônico, Dispensa e Inexigibilidade, jan/2025–ago/2026.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-legislativo">
+              <div class="viz-head"><div><h3>Portarias emitidas pela Câmara Municipal, por ano</h3><p>SISCAM — atos administrativos internos (nomeações, autorizações de despesa, normas de funcionamento).</p></div></div>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/itajuba/pncp_serie_2025_2026.json" target="_blank" rel="noopener noreferrer">pncp_serie_2025_2026.json ↗</a> · <a href="../dados/itajuba/siscam_portarias_2023_2026.json" target="_blank" rel="noopener noreferrer">siscam_portarias_2023_2026.json ↗</a></p>
+          </div>
+        </details>
         <details class="phase done">
           <summary class="phase-summary"><div class="phase-num">5</div><div class="phase-text"><h3>Saúde</h3><p>Nascidos vivos e óbitos, 2003–2024 (IBGE/Registro Civil). CNES (estabelecimentos e leitos) tentado nesta sessão, mas a API retornou 503 — fica para uma próxima fase.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
           <div class="phase-body">
@@ -127,7 +138,21 @@
             <p class="muted-note">Fontes salvas: <a href="../dados/itajuba/setores_censitarios_2022.json" target="_blank" rel="noopener noreferrer">setores_censitarios_2022.json ↗</a> · <a href="../dados/itajuba/municipio_contorno.json" target="_blank" rel="noopener noreferrer">municipio_contorno.json ↗</a> · <a href="../dados/itajuba/bairros_osm.json" target="_blank" rel="noopener noreferrer">bairros_osm.json ↗</a></p>
           </div>
         </details>
-        <article class="phase"><div class="phase-num">8</div><div><h3>Emprego e economia</h3><p>RAIS/Novo CAGED e CNPJ aberto: emprego formal e empresas ativas por período.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">8</div><div class="phase-text"><h3>Emprego e economia</h3><p>CEMPRE/IBGE (empresas e emprego formal, 2006–2021) e PIB municipal (2002–2023). RAIS/Novo CAGED e CNPJ aberto exigem microdados em lote — substituídos aqui por tabelas agregadas do SIDRA.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-emprego">
+              <div class="viz-head"><div><h3>Pessoal ocupado assalariado, 2006–2021</h3><p>IBGE — Cadastro Central de Empresas (CEMPRE). Série encerrada em 2021, sem ano mais recente disponível.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-empresas">
+              <div class="viz-head"><div><h3>Empresas e unidades locais ativas, 2006–2021</h3><p>IBGE — CEMPRE.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-pib">
+              <div class="viz-head"><div><h3>PIB total a preços correntes, 2002–2023</h3><p>IBGE — Produto Interno Bruto dos Municípios, referência 2010.</p></div></div>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/itajuba/cempre_empresas_emprego_2006_2021.json" target="_blank" rel="noopener noreferrer">cempre_empresas_emprego_2006_2021.json ↗</a> · <a href="../dados/itajuba/pib_municipal_2002_2023.json" target="_blank" rel="noopener noreferrer">pib_municipal_2002_2023.json ↗</a></p>
+          </div>
+        </details>
         <article class="phase"><div class="phase-num">9</div><div><h3>Síntese</h3><p>Consolidar tudo num painel único com IDU-Br calculado para Itajubá, se a cobertura acumulada permitir.</p></div><span class="phase-tag todo">Planejada</span></article>
       </div>
     </section>
@@ -143,7 +168,7 @@
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Censo Demográfico 2022 por setor censitário</h3><p class="what">192 setores censitários de Itajubá — população, domicílios e área, cada um com geometria oficial do IBGE. Vira o mapa de calor da Fase 7.</p><a class="open" href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/setores_censitarios_2022.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Malhas territoriais do IBGE</h3><p class="what">Contorno do município (API de malhas) e geometria dos setores censitários (GeoPackage por estado) — usados para calcular os centroides do mapa.</p><a class="open" href="https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/municipio_contorno.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Bairros — OpenStreetMap</h3><p class="what">68 localidades/bairros nomeados dentro de Itajubá (Overpass API), vários com fonte declarada "Prefeitura de Itajubá". Não é contorno oficial — são pontos, usados como referência no mapa.</p><a class="open" href="https://overpass-api.de/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/bairros_osm.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>PIB dos Municípios</h3><p class="what">Série histórica de PIB e valor adicionado por setor, divulgação excepcional 2022–2023 saiu em dez/2025.</p><a class="open" href="https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9088-produto-interno-bruto-dos-municipios.html" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>PIB dos Municípios</h3><p class="what">PIB total 2002–2023 e composição setorial 2021 (agropecuária, indústria, serviços, administração pública). Vira o gráfico de economia da Fase 8.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/5938" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/pib_municipal_2002_2023.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
       </div>
 
       <h3 class="category-heading">Desenvolvimento humano e progresso social</h3>
@@ -155,13 +180,13 @@
       <h3 class="category-heading">Finanças públicas e compras</h3>
       <div class="source-grid">
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional</h3><p class="what">RREO Anexo 01, acumulado do ano, 2015–2025 (11 exercícios). Vira os dois gráficos de finanças acima. Atenção: a consulta por município traz também o consórcio CIMASAS junto da Prefeitura — já filtrado nos arquivos salvos.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo%2001&id_ente=3132404" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/siconfi_receita_despesa_2015_2025.json" target="_blank" rel="noopener noreferrer">Ver série 2015–2025 ↗</a></article>
-        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">Amostra de 2 meses (jun–ago/2026), CNPJ da Prefeitura 18.025.940/0001-09. Base para o gráfico de categorias de compra da Fase 4.</p><a class="open" href="https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/pncp_amostra_2026-08.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">Série histórica jan/2025–ago/2026 (Pregão Eletrônico, Dispensa, Inexigibilidade e Concorrência), CNPJ da Prefeitura 18.025.940/0001-09. Base do gráfico de categorias e evolução mensal da Fase 4.</p><a class="open" href="https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/pncp_serie_2025_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Portal da Transparência da União</h3><p class="what">Transferências federais recebidas por Itajubá (convênios, emendas, FPM).</p><a class="open" href="https://portaldatransparencia.gov.br/download-de-dados/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
       <h3 class="category-heading">Câmara Municipal (Legislativo)</h3>
       <div class="source-grid">
-        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>SISCAM — documentos da Câmara</h3><p class="what">Busca de Portarias, Atos da Mesa e da Presidência, com filtros e exportação. Testado e funcional; ainda não baixado em lote.</p><a class="open" href="https://itajuba.siscam.com.br/Documentos/Pesquisa?Pesquisa=Avancada&id=79&pagina=1&Modulo=8&Documento=114" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SISCAM — Portarias da Câmara</h3><p class="what">659 Portarias lidas por paginação (2022–2026) para contar quantas foram emitidas por ano. Atos da Mesa e da Presidência (outros tipos de documento do mesmo sistema) ainda não coletados.</p><a class="open" href="https://itajuba.siscam.com.br/Documentos/Pesquisa?Pesquisa=Avancada&id=79&pagina=1&Modulo=8&Documento=114" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/siscam_portarias_2023_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>Licitações e orçamento da Câmara</h3><p class="what">Painéis filtráveis por data e status (aberta/concluída/deserta/etc.), específicos do Legislativo municipal.</p><a class="open" href="https://sistemasgerenciais3.com.br/publicacoes/front_camitajuba_licitacoes/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
@@ -181,7 +206,8 @@
 
       <h3 class="category-heading">Emprego e economia</h3>
       <div class="source-grid">
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>RAIS e Novo CAGED</h3><p class="what">Emprego formal, admissões, desligamentos e salários por setor.</p><a class="open" href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/microdados-rais-e-caged" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>CEMPRE — Cadastro Central de Empresas</h3><p class="what">Empresas atuantes, unidades locais, pessoal ocupado (total e assalariado) e salário médio, 2006–2021. Vira os dois gráficos de emprego da Fase 8.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/1685" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/cempre_empresas_emprego_2006_2021.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>RAIS e Novo CAGED</h3><p class="what">Emprego formal, admissões, desligamentos e salários por setor de atividade — mais detalhado que o CEMPRE, mas exige baixar e processar microdados em lote (sem API simples). Fica para uma fase futura, se o detalhe setorial for necessário.</p><a class="open" href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/microdados-rais-e-caged" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Dados abertos do CNPJ</h3><p class="what">Empresas ativas por endereço — outra via para dividir a cidade por região.</p><a class="open" href="https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos/cadastros" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
@@ -213,6 +239,10 @@
         <article class="dataset"><h3>setores_censitarios_2022.json</h3><p>192 setores censitários com população, domicílios, área e centroide calculado a partir da geometria oficial — soma exatamente os 93.073 habitantes do Censo.</p><p class="meta">Coletado 03/08/2026 · IBGE (Censo + GeoPackage/MG)</p></article>
         <article class="dataset"><h3>municipio_contorno.json</h3><p>Contorno externo do município de Itajubá (71 vértices), usado como base do mapa.</p><p class="meta">Coletado 03/08/2026 · IBGE (API de malhas)</p></article>
         <article class="dataset"><h3>bairros_osm.json</h3><p>68 bairros/localidades nomeados e geolocalizados, várias com fonte declarada da própria Prefeitura de Itajubá.</p><p class="meta">Coletado 03/08/2026 · OpenStreetMap</p></article>
+        <article class="dataset"><h3>pncp_serie_2025_2026.json</h3><p>Processos de compra da Prefeitura, jan/2025–ago/2026, agregados por categoria de objeto e por mês (Pregão, Dispensa, Inexigibilidade e Concorrência).</p><p class="meta">Coletado 03/08/2026 · PNCP</p></article>
+        <article class="dataset"><h3>siscam_portarias_2023_2026.json</h3><p>Contagem de Portarias emitidas pela Câmara Municipal por ano, 2023–2026 (659 registros lidos por paginação).</p><p class="meta">Coletado 03/08/2026 · SISCAM</p></article>
+        <article class="dataset"><h3>cempre_empresas_emprego_2006_2021.json</h3><p>Empresas atuantes, unidades locais, pessoal ocupado e salário médio mensal, 2006–2021 — série encerrada pelo IBGE nesse ano.</p><p class="meta">Coletado 03/08/2026 · IBGE/CEMPRE</p></article>
+        <article class="dataset"><h3>pib_municipal_2002_2023.json</h3><p>PIB total 2002–2023 e composição setorial de 2021 (agropecuária, indústria, serviços, administração pública).</p><p class="meta">Coletado 03/08/2026 · IBGE</p></article>
       </div>
     </section>
   </main>

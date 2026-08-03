@@ -1,0 +1,29 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "IBGE — Cadastro Central de Empresas (CEMPRE), tabela SIDRA 1685",
+  "url_origem": "https://sidra.ibge.gov.br/tabela/1685",
+  "coletado_em": "2026-08-03",
+  "observacao": "[NACIONAL — nao pontua como diferencial entre cidades no IDU-Br, mas e dado real, atual e especifico do municipio] Substitui RAIS/Novo CAGED nesta fase: RAIS/CAGED sao microdados que exigem download em lote e processamento local (sem API simples); o CEMPRE cobre o mesmo tipo de pergunta (emprego formal, empresas ativas) com uma tabela agregada pronta via SIDRA. RAIS/CAGED continuam \"planejados\" para uma fase futura, se for necessario o detalhe por setor de atividade que o CEMPRE nao tem nesta consulta. Serie encerrada pelo IBGE em 2021 (tabela nao e mais atualizada); nao ha ano mais recente disponivel nesta tabela.",
+  "unidade_pessoal": "Pessoas",
+  "unidade_empresas": "Unidades",
+  "unidade_salario": "R$ (salário médio mensal nominal)",
+  "serie": [
+    { "ano": 2006, "unidades_locais": 3210, "empresas_atuantes": 3122, "pessoal_ocupado_total": 22841, "pessoal_ocupado_assalariado": 18702, "salario_medio_mensal_reais": 1040.69 },
+    { "ano": 2007, "unidades_locais": 3178, "empresas_atuantes": 3083, "pessoal_ocupado_total": 25112, "pessoal_ocupado_assalariado": 20836, "salario_medio_mensal_reais": 1093.85 },
+    { "ano": 2008, "unidades_locais": 3304, "empresas_atuantes": 3212, "pessoal_ocupado_total": 25840, "pessoal_ocupado_assalariado": 21403, "salario_medio_mensal_reais": 1177.34 },
+    { "ano": 2009, "unidades_locais": 3532, "empresas_atuantes": 3417, "pessoal_ocupado_total": 27272, "pessoal_ocupado_assalariado": 22602, "salario_medio_mensal_reais": 1309.17 },
+    { "ano": 2010, "unidades_locais": 3631, "empresas_atuantes": 3520, "pessoal_ocupado_total": 32050, "pessoal_ocupado_assalariado": 27167, "salario_medio_mensal_reais": 1461.78 },
+    { "ano": 2011, "unidades_locais": 3574, "empresas_atuantes": 3452, "pessoal_ocupado_total": 30446, "pessoal_ocupado_assalariado": 25270, "salario_medio_mensal_reais": 1655.46 },
+    { "ano": 2012, "unidades_locais": 3565, "empresas_atuantes": 3451, "pessoal_ocupado_total": 31573, "pessoal_ocupado_assalariado": 26229, "salario_medio_mensal_reais": 1795.68 },
+    { "ano": 2013, "unidades_locais": 3698, "empresas_atuantes": 3575, "pessoal_ocupado_total": 31933, "pessoal_ocupado_assalariado": 26572, "salario_medio_mensal_reais": 1979.10 },
+    { "ano": 2014, "unidades_locais": 3561, "empresas_atuantes": 3448, "pessoal_ocupado_total": 31018, "pessoal_ocupado_assalariado": 25707, "salario_medio_mensal_reais": 2136.54 },
+    { "ano": 2015, "unidades_locais": 3543, "empresas_atuantes": 3432, "pessoal_ocupado_total": 29218, "pessoal_ocupado_assalariado": 23997, "salario_medio_mensal_reais": 2309.03 },
+    { "ano": 2016, "unidades_locais": 3432, "empresas_atuantes": 3317, "pessoal_ocupado_total": 28166, "pessoal_ocupado_assalariado": 23278, "salario_medio_mensal_reais": 2412.01 },
+    { "ano": 2017, "unidades_locais": 3368, "empresas_atuantes": 3238, "pessoal_ocupado_total": 28135, "pessoal_ocupado_assalariado": 23437, "salario_medio_mensal_reais": 2641.41 },
+    { "ano": 2018, "unidades_locais": 3308, "empresas_atuantes": 3189, "pessoal_ocupado_total": 27463, "pessoal_ocupado_assalariado": 22831, "salario_medio_mensal_reais": 2719.15 },
+    { "ano": 2019, "unidades_locais": 3495, "empresas_atuantes": 3372, "pessoal_ocupado_total": 27260, "pessoal_ocupado_assalariado": 22477, "salario_medio_mensal_reais": 2759.78 },
+    { "ano": 2020, "unidades_locais": 3515, "empresas_atuantes": 3386, "pessoal_ocupado_total": 26772, "pessoal_ocupado_assalariado": 21903, "salario_medio_mensal_reais": 2780.81 },
+    { "ano": 2021, "unidades_locais": 3651, "empresas_atuantes": 3526, "pessoal_ocupado_total": 28303, "pessoal_ocupado_assalariado": 23298, "salario_medio_mensal_reais": 3036.21 }
+  ]
+}

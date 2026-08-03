@@ -1,0 +1,43 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "IBGE — Produto Interno Bruto dos Municípios, referência 2010, tabela SIDRA 5938",
+  "url_origem": "https://sidra.ibge.gov.br/tabela/5938",
+  "coletado_em": "2026-08-03",
+  "observacao": "[NACIONAL — nao pontua como diferencial entre cidades no IDU-Br, mas e dado real, atual e especifico do municipio] Valores correntes (nao deflacionados) de cada ano — nao comparar ano a ano sem ajustar pela inflacao. A quebra por setor (agropecuaria/industria/servicos/administracao publica) so tem dado ate 2021 nesta tabela; 2022 e 2023 ainda nao tem a quebra setorial publicada pelo IBGE, so o total.",
+  "unidade": "Mil Reais (preços correntes)",
+  "pib_total": [
+    { "ano": 2002, "valor_mil_reais": 702591 },
+    { "ano": 2003, "valor_mil_reais": 736735 },
+    { "ano": 2004, "valor_mil_reais": 880600 },
+    { "ano": 2005, "valor_mil_reais": 1010231 },
+    { "ano": 2006, "valor_mil_reais": 1131984 },
+    { "ano": 2007, "valor_mil_reais": 1375402 },
+    { "ano": 2008, "valor_mil_reais": 1480278 },
+    { "ano": 2009, "valor_mil_reais": 1665337 },
+    { "ano": 2010, "valor_mil_reais": 1993811 },
+    { "ano": 2011, "valor_mil_reais": 2082555 },
+    { "ano": 2012, "valor_mil_reais": 2262721 },
+    { "ano": 2013, "valor_mil_reais": 2409881 },
+    { "ano": 2014, "valor_mil_reais": 2672407 },
+    { "ano": 2015, "valor_mil_reais": 2716197 },
+    { "ano": 2016, "valor_mil_reais": 2643851 },
+    { "ano": 2017, "valor_mil_reais": 3010403 },
+    { "ano": 2018, "valor_mil_reais": 2990736 },
+    { "ano": 2019, "valor_mil_reais": 3172446 },
+    { "ano": 2020, "valor_mil_reais": 3290733 },
+    { "ano": 2021, "valor_mil_reais": 3611716 },
+    { "ano": 2022, "valor_mil_reais": 4121334 },
+    { "ano": 2023, "valor_mil_reais": 4497959 }
+  ],
+  "composicao_setorial_2021": {
+    "observacao": "Ultimo ano com quebra por setor publicada. Valor adicionado bruto (VA), nao o PIB total — a diferenca entre a soma dos 4 setores e o PIB total sao impostos liquidos de subsidios sobre produtos.",
+    "unidade": "Mil Reais (preços correntes)",
+    "agropecuaria": 16019,
+    "industria": 1069961,
+    "servicos": 1458481,
+    "administracao_publica": 452169,
+    "impostos_liquidos": 615086,
+    "pib_total": 3611716
+  }
+}
