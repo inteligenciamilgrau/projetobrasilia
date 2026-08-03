@@ -420,6 +420,150 @@ function renderBarsHorizontal(root, { data, labelKey, valueKey, valueFormat, val
 }
 
 // ---------------------------------------------------------------------------
+// COMBINADO receita × despesa × saldo, em dois painéis que dividem o eixo do
+// tempo. Substitui dois gráficos separados: eles contavam a mesma história e
+// obrigavam o leitor a guardar um na memória para entender o outro.
+//
+// Por que NÃO é eixo duplo (bar+line sobreposto com duas escalas). O saldo de
+// Itajubá vale entre 0,4% e 6,8% da receita. Numa escala própria sobreposta, a
+// barra de 2025 (+R$ 36 mi) apareceria com quase a mesma altura da linha de
+// receita (R$ 536 mi) — o leitor veria "sobrou quase tudo" onde sobraram 6,7%.
+// Dois eixos deixam o autor escolher a conclusão só mexendo nos limites.
+//
+// A saída: painéis empilhados. O de cima traz receita e despesa na mesma escala
+// e PINTA a área entre elas — essa faixa é literalmente o saldo, no tamanho
+// real, mostrando de onde ele vem. O de baixo repete o saldo ampliado, para
+// conseguir ler anos como 2016 e 2024, que somem na escala do orçamento. Ler
+// verticalmente é comparação legítima; sobrepor com duas réguas não é.
+// ---------------------------------------------------------------------------
+function renderReceitaDespesaSaldo(root, { serie, cReceita, cDespesa, posColor, negColor, notas }) {
+  const W = 760;
+  const M = { top: 20, right: 18, bottom: 28, left: 60 };
+  const topH = 226, gap = 34, botH = 104;
+  const H = M.top + topH + gap + botH + M.bottom;
+  const innerW = W - M.left - M.right;
+  const n = serie.length;
+
+  const maxFluxo = niceMax(Math.max(...serie.map(p => Math.max(p.receita_realizada, p.despesa_empenhada))) * 1.06);
+  const maxSaldo = niceMax(Math.max(...serie.map(p => Math.abs(p.saldo))) * 1.25);
+
+  const x = (i) => M.left + (innerW * i) / (n - 1);
+  const yT = (v) => M.top + topH - (topH * v) / maxFluxo;
+  const yBzero = M.top + topH + gap + botH / 2;
+  const yB = (v) => yBzero - (botH / 2) * (v / maxSaldo);
+
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap";
+  root.appendChild(wrap);
+  const svg = el("svg", {
+    class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img",
+    "aria-label": "Receita, despesa e saldo orçamentário de Itajubá ano a ano",
+  }, wrap);
+
+  // --- grade do painel de cima ---
+  for (let i = 0; i <= 4; i++) {
+    const v = (maxFluxo * i) / 4, y = yT(v);
+    el("line", { x1: M.left, x2: W - M.right, y1: y, y2: y, class: "viz-gridline" }, svg);
+    const t = el("text", { x: M.left - 8, y: y + 3, "text-anchor": "end", class: "viz-axis-text" }, svg);
+    t.textContent = "R$ " + fmtMoneyCompact(v);
+  }
+  // --- grade do painel de baixo ---
+  [maxSaldo, 0, -maxSaldo].forEach(v => {
+    const y = yB(v);
+    el("line", { x1: M.left, x2: W - M.right, y1: y, y2: y, class: "viz-gridline", "stroke-width": v === 0 ? 1.4 : 1 }, svg);
+    const t = el("text", { x: M.left - 8, y: y + 3, "text-anchor": "end", class: "viz-axis-text" }, svg);
+    t.textContent = (v > 0 ? "+" : v < 0 ? "−" : "") + "R$ " + fmtMoneyCompact(Math.abs(v));
+  });
+
+  // rótulos dos painéis
+  const rot1 = el("text", { x: M.left, y: M.top - 7, class: "viz-panel-label" }, svg);
+  rot1.textContent = "Receita e despesa no ano";
+  const rot2 = el("text", { x: M.left, y: M.top + topH + gap - 9, class: "viz-panel-label" }, svg);
+  rot2.textContent = "Sobrou ou faltou · régua ampliada";
+
+  // --- faixa entre as linhas = o saldo, no tamanho real ---
+  // Quando as linhas se cruzam dentro de um intervalo, o polígono é cortado no
+  // ponto exato do cruzamento; senão a cor invadiria o ano vizinho.
+  for (let i = 0; i < n - 1; i++) {
+    const r0 = serie[i].receita_realizada, d0 = serie[i].despesa_empenhada;
+    const r1 = serie[i + 1].receita_realizada, d1 = serie[i + 1].despesa_empenhada;
+    const s0 = r0 - d0, s1 = r1 - d1;
+    const x0 = x(i), x1 = x(i + 1);
+    const poli = (pts, positivo) => el("polygon", {
+      points: pts.map(p => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" "),
+      fill: positivo ? posColor : negColor, "fill-opacity": .17, stroke: "none", "pointer-events": "none",
+    }, svg);
+    if (s0 === 0 || s1 === 0 || (s0 > 0) === (s1 > 0)) {
+      poli([[x0, yT(r0)], [x1, yT(r1)], [x1, yT(d1)], [x0, yT(d0)]], s0 + s1 >= 0);
+    } else {
+      const t = s0 / (s0 - s1);
+      const xc = x0 + t * (x1 - x0);
+      const yc = yT(r0 + t * (r1 - r0));
+      poli([[x0, yT(r0)], [xc, yc], [x0, yT(d0)]], s0 > 0);
+      poli([[xc, yc], [x1, yT(r1)], [x1, yT(d1)]], s1 > 0);
+    }
+  }
+
+  // --- linhas ---
+  const linha = (chave, cor) => {
+    const d = serie.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${yT(p[chave]).toFixed(1)}`).join("");
+    el("path", { d, fill: "none", stroke: cor, "stroke-width": 2, "stroke-linejoin": "round", "pointer-events": "none" }, svg);
+  };
+  linha("receita_realizada", cReceita);
+  linha("despesa_empenhada", cDespesa);
+
+  // --- barras do saldo ---
+  const bandW = innerW / n;
+  const barW = Math.min(26, bandW * 0.5);
+  serie.forEach((p, i) => {
+    const y = yB(p.saldo), top = Math.min(y, yBzero);
+    el("rect", {
+      class: "viz-bar", x: x(i) - barW / 2, y: top, width: barW,
+      height: Math.max(Math.abs(yBzero - y), 1.5), rx: 3,
+      fill: p.saldo >= 0 ? posColor : negColor, "pointer-events": "none",
+    }, svg);
+    const t = el("text", { x: x(i), y: H - M.bottom + 16, "text-anchor": "middle", class: "viz-axis-text" }, svg);
+    t.textContent = String(p.ano);
+  });
+
+  // --- camada de leitura: uma faixa por ano, cobrindo OS DOIS painéis ---
+  const tip = makeTooltip(wrap);
+  const guia = el("line", {
+    x1: 0, x2: 0, y1: M.top, y2: M.top + topH + gap + botH,
+    class: "viz-guia", "pointer-events": "none", opacity: 0,
+  }, svg);
+
+  serie.forEach((p, i) => {
+    const cx = x(i);
+    const esq = M.left + Math.max(0, (innerW * (i - 0.5)) / (n - 1));
+    const dir = M.left + Math.min(innerW, (innerW * (i + 0.5)) / (n - 1));
+    const nota = notas ? notas[p.ano] : null;
+    const alvo = el("rect", {
+      class: "viz-hit", x: esq, y: M.top, width: dir - esq, height: topH + gap + botH,
+      fill: "transparent", tabindex: 0, role: "img",
+      "aria-label": `${p.ano}: receita ${fmtMoneyFull(p.receita_realizada)}, despesa ${fmtMoneyFull(p.despesa_empenhada)}, ` +
+        `${p.saldo >= 0 ? "superávit" : "déficit"} de ${fmtMoneyFull(Math.abs(p.saldo))}` +
+        (nota ? ". " + nota.replace(/<[^>]+>/g, "") : ""),
+    }, svg);
+
+    function onEnter() {
+      guia.setAttribute("x1", cx); guia.setAttribute("x2", cx); guia.setAttribute("opacity", 1);
+      const s = svg.getBoundingClientRect().width / W;
+      showTooltip(tip, wrap, cx * s, yT(p.receita_realizada) * s, String(p.ano), [
+        { label: "Receita realizada", value: fmtMoneyFull(p.receita_realizada), color: cReceita },
+        { label: "Despesa empenhada", value: fmtMoneyFull(p.despesa_empenhada), color: cDespesa },
+        { label: p.saldo >= 0 ? "Sobrou" : "Faltou", value: fmtMoneyFull(Math.abs(p.saldo)), color: p.saldo >= 0 ? posColor : negColor },
+      ], nota, { esquerda: esq * s, direita: dir * s, centroY: (M.top + (topH + gap + botH) / 2) * s });
+    }
+    function onLeave() { guia.setAttribute("opacity", 0); hideTooltip(tip); }
+    alvo.addEventListener("pointerenter", onEnter);
+    alvo.addEventListener("focus", onEnter);
+    alvo.addEventListener("pointerleave", onLeave);
+    alvo.addEventListener("blur", onLeave);
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Barras horizontais DIVERGENTES (variação com sinal por categoria). Diferente
 // de renderDivergingBars, que é vertical e serve para uma série temporal curta:
 // aqui as categorias são muitas (uma por função de governo) e os rótulos são
@@ -1116,53 +1260,52 @@ const SALDO_NOTAS = {
 // Monta os gráficos de finanças dentro de #chart-financas e #chart-saldo.
 // ---------------------------------------------------------------------------
 function buildFinancasCharts(finRoot, saldoRoot, fin) {
-    if (finRoot) {
-      const xValues = fin.serie.map(p => String(p.ano));
-      const colorReceita = getComputedStyle(finRoot).getPropertyValue("--v-series-receita").trim() || "#08724e";
-      const colorDespesa = getComputedStyle(finRoot).getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
-      renderLineChart(finRoot, {
-        series: [
-          { key: "receita", label: "Receita realizada", color: colorReceita, points: fin.serie.map(p => ({ y: p.receita_realizada })) },
-          { key: "despesa", label: "Despesa empenhada", color: colorDespesa, points: fin.serie.map(p => ({ y: p.despesa_empenhada })) },
-        ],
-        xValues, yLabel: "Receita e despesa (R$)",
-        yFormat: (v) => "R$ " + fmtMoneyCompact(v), yFormatFull: (v) => fmtMoneyFull(v),
-      });
-      renderTable(finRoot, {
-        caption: "Receita e despesa de Itajubá/MG, 2015–2025",
-        columns: ["Ano", "Receita realizada", "Despesa empenhada", "Saldo"],
-        rows: fin.serie.map(p => [String(p.ano), fmtMoneyFull(p.receita_realizada), fmtMoneyFull(p.despesa_empenhada), fmtMoneyFull(p.saldo)]),
-      });
-    }
+    // Um gráfico só: entra pelo #chart-financas e o #chart-saldo deixou de
+    // existir. Receita, despesa e saldo eram três leituras da mesma conta
+    // espalhadas por dois cartões — o leitor tinha que guardar um de cabeça
+    // para entender o outro.
+    const root = finRoot || saldoRoot;
+    if (!root) return;
+    const st = getComputedStyle(root);
+    const cReceita = st.getPropertyValue("--v-series-receita").trim() || "#08724e";
+    // A despesa sai do azul e vai para o laranja SÓ neste gráfico. O azul aqui
+    // já significa "sobrou" (é a cor positiva da paleta divergente), e ter a
+    // linha da despesa no mesmo azul faria a legenda mentir. Verde/laranja nas
+    // linhas e azul/vermelho no saldo deixa os quatro papéis distinguíveis,
+    // inclusive para daltônicos — que é o motivo de o par divergente do projeto
+    // ser azul/vermelho e não verde/vermelho.
+    const cDespesa = st.getPropertyValue("--v-series-3").trim() || "#eb6834";
+    const posColor = st.getPropertyValue("--v-pos").trim() || "#2a78d6";
+    const negColor = st.getPropertyValue("--v-neg").trim() || "#e34948";
 
-    if (saldoRoot) {
-      const posColor = getComputedStyle(saldoRoot).getPropertyValue("--v-pos").trim() || "#2a78d6";
-      const negColor = getComputedStyle(saldoRoot).getPropertyValue("--v-neg").trim() || "#e34948";
-      legend(saldoRoot, [
-        { label: "Superávit", color: posColor },
-        { label: "Déficit", color: negColor },
+    {
+      legend(root, [
+        { label: "Receita realizada", color: cReceita },
+        { label: "Despesa empenhada", color: cDespesa },
+        { label: "Sobrou (receita acima da despesa)", color: posColor },
+        { label: "Faltou", color: negColor },
       ]);
-      renderDivergingBars(saldoRoot, {
+
+      renderReceitaDespesaSaldo(root, {
+        serie: fin.serie, cReceita, cDespesa, posColor, negColor,
         // O tooltip recebe só o texto: link dentro dele não é clicável (o balão
         // tem pointer-events:none, senão fugiria do mouse). As fontes ficam no
         // bloco recolhido abaixo, onde dá para clicar.
-        data: fin.serie.map(p => ({
-          ano: String(p.ano), saldo: p.saldo,
-          nota: (SALDO_NOTAS[p.ano] || {}).texto,
-        })),
-        xKey: "ano", yKey: "saldo", notaKey: "nota",
-        yFormat: (v) => "R$ " + fmtMoneyCompact(v), yFormatFull: (v) => fmtMoneyFull(v),
-        posColor, negColor,
+        notas: Object.fromEntries(Object.entries(SALDO_NOTAS).map(([a, v]) => [a, v.texto])),
       });
 
-      note(saldoRoot, `Saldo mede equilíbrio de caixa, não qualidade do gasto — dá para fechar no azul deixando de
-        investir. Mas cada ano tem causa identificável: <strong>passe o mouse por uma coluna</strong> e ela conta o que
-        aconteceu naquele exercício. Lendo a série inteira, <strong>o vermelho aparece quando um custo específico dispara
-        com a receita parada; o azul, quando entra dinheiro extraordinário ou quando a prefeitura freia depois de um ciclo
-        de obras</strong>.`);
+      note(root, `<strong>Passe o mouse por um ano</strong> e ele mostra receita, despesa, quanto sobrou ou faltou e o que
+        aconteceu naquele exercício. A faixa colorida no painel de cima <em>é</em> o saldo — a distância entre as duas
+        linhas — e o painel de baixo repete a mesma coisa com a régua ampliada, porque em anos como 2016 e 2024 a sobra é
+        fina demais para enxergar na escala do orçamento.`);
 
-      noteToggle(saldoRoot, "Ler a explicação de todos os anos, com as fontes",
-        `<p class="viz-note-lead">As barras estão em reais de cada ano, como no balanço. Onde o texto diz "corrigido", o
+      note(root, `Saldo mede equilíbrio de caixa, não qualidade do gasto: dá para fechar no azul deixando de investir.
+        Lendo a série inteira, <strong>o vermelho aparece quando um custo específico dispara com a receita parada; o azul,
+        quando entra dinheiro extraordinário ou quando a prefeitura freia depois de um ciclo de obras</strong>. Repare que
+        a receita cresce sem parar mesmo nos anos de déficit — o problema nunca foi falta de dinheiro entrando.`);
+
+      noteToggle(root, "Ler a explicação de todos os anos, com as fontes",
+        `<p class="viz-note-lead">Todos os valores em reais de cada ano, como no balanço. Onde o texto diz "corrigido", o
          valor está em R$ de 2025 — por isso é maior nos anos mais antigos. Os anos sem link são explicados pelo próprio
          dado do SICONFI, sem referência externa.</p>` +
         fin.serie.map(p => {
@@ -1174,10 +1317,11 @@ function buildFinancasCharts(finRoot, saldoRoot, fin) {
             (fontes ? `<span class="viz-note-fontes">Fontes: ${fontes}</span>` : "") + `</p>`;
         }).join(""));
 
-      renderTable(saldoRoot, {
-        caption: "Saldo orçamentário de Itajubá/MG, 2015–2025",
-        columns: ["Ano", "Saldo (receita − despesa)"],
-        rows: fin.serie.map(p => [String(p.ano), fmtMoneyFull(p.saldo)]),
+      renderTable(root, {
+        caption: "Receita, despesa e saldo de Itajubá/MG, 2015–2025",
+        columns: ["Ano", "Receita realizada", "Despesa empenhada", "Saldo"],
+        rows: fin.serie.map(p => [String(p.ano), fmtMoneyFull(p.receita_realizada),
+          fmtMoneyFull(p.despesa_empenhada), fmtMoneyFull(p.saldo)]),
       });
     }
 }
@@ -1378,6 +1522,144 @@ function buildDespesaFuncoes(root, desp) {
     caption: `Despesa empenhada por função em ${ult.ano}`,
     columns: ["Função", "Valor empenhado", "% do orçamento"],
     rows: todas.map(f => [f.funcao, fmtMoneyFull(f.valor), (100 * f.valor / total).toFixed(1).replace(".", ",") + "%"]),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// PEQUENOS MÚLTIPLOS: uma mini-série por função, todas na MESMA régua vertical.
+//
+// A alternativa óbvia seria um gráfico só com seis linhas coloridas. Não dá:
+// seriam seis matizes categóricos disputando espaço, e o skill de dataviz é
+// explícito — a partir de umas poucas séries a saída é small multiples, não
+// gerar mais cores. Aqui cada painel tem identidade no título, então basta um
+// matiz. E como a escala é compartilhada, comparar painéis continua válido:
+// a Saúde ocupa o quadro inteiro, a Cultura quase não sai do chão.
+// ---------------------------------------------------------------------------
+function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueFormatFull, colunas = 3 }) {
+  const grade = document.createElement("div");
+  grade.className = "viz-multiples";
+  grade.style.setProperty("--viz-mult-cols", colunas);
+  root.appendChild(grade);
+
+  const yMax = niceMax(Math.max(...paineis.flatMap(p => p.valores)) * 1.08);
+  const W = 240, H = 104, M = { top: 8, right: 8, bottom: 4, left: 8 };
+  const innerW = W - M.left - M.right, innerH = H - M.top - M.bottom;
+  const n = xValues.length;
+
+  paineis.forEach(p => {
+    const cel = document.createElement("div");
+    cel.className = "viz-multiple";
+    grade.appendChild(cel);
+
+    const cab = document.createElement("div");
+    cab.className = "viz-multiple-head";
+    const nomeEl = document.createElement("span");
+    nomeEl.className = "m-nome";
+    nomeEl.textContent = p.nome;
+    const valEl = document.createElement("span");
+    valEl.className = "m-valor";
+    valEl.textContent = valueFormat(p.valores[n - 1]);
+    cab.appendChild(nomeEl); cab.appendChild(valEl);
+    cel.appendChild(cab);
+
+    const wrap = document.createElement("div");
+    wrap.className = "viz-svg-wrap";
+    cel.appendChild(wrap);
+    const svg = el("svg", {
+      class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img",
+      "aria-label": `${p.nome}: de ${valueFormatFull(p.valores[0])} em ${xValues[0]} a ${valueFormatFull(p.valores[n - 1])} em ${xValues[n - 1]}`,
+    }, wrap);
+
+    const x = (i) => M.left + (innerW * i) / (n - 1);
+    const y = (v) => M.top + innerH - (innerH * v) / yMax;
+
+    el("line", { x1: M.left, x2: W - M.right, y1: y(0), y2: y(0), class: "viz-gridline" }, svg);
+    const d = p.valores.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
+    el("path", {
+      d: `${d}L${x(n - 1).toFixed(1)},${y(0).toFixed(1)}L${x(0).toFixed(1)},${y(0).toFixed(1)}Z`,
+      fill: cor, "fill-opacity": .16, stroke: "none", "pointer-events": "none",
+    }, svg);
+    el("path", { d, fill: "none", stroke: cor, "stroke-width": 2, "stroke-linejoin": "round", "pointer-events": "none" }, svg);
+
+    const tip = makeTooltip(wrap);
+    xValues.forEach((xv, i) => {
+      const meia = innerW / (n - 1) / 2;
+      const alvo = el("rect", {
+        class: "viz-hit", x: Math.max(M.left, x(i) - meia), y: M.top,
+        width: Math.min(innerW, meia * 2), height: innerH, fill: "transparent", tabindex: 0,
+        role: "img", "aria-label": `${p.nome}, ${xv}: ${valueFormatFull(p.valores[i])}`,
+      }, svg);
+      function onEnter() {
+        const r = svg.getBoundingClientRect();
+        showTooltip(tip, wrap, x(i) * (r.width / W), y(p.valores[i]) * (r.height / H), `${p.nome} · ${xv}`,
+          [{ label: "Empenhado", value: valueFormatFull(p.valores[i]), color: cor }]);
+      }
+      alvo.addEventListener("pointerenter", onEnter);
+      alvo.addEventListener("focus", onEnter);
+      alvo.addEventListener("pointerleave", () => hideTooltip(tip));
+      alvo.addEventListener("blur", () => hideTooltip(tip));
+    });
+
+    const pe = document.createElement("div");
+    pe.className = "viz-multiple-foot";
+    const a = document.createElement("span"); a.textContent = xValues[0];
+    const b = document.createElement("span"); b.textContent = xValues[n - 1];
+    pe.appendChild(a); pe.appendChild(b);
+    cel.appendChild(pe);
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Fase 3 — a repartição do orçamento ao longo do tempo, função por função.
+// ---------------------------------------------------------------------------
+function buildFuncoesNoTempo(root, desp) {
+  const st = getComputedStyle(root);
+  const cor = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const serie = desp.serie;
+  const ult = serie[serie.length - 1];
+
+  // Escolhe as funções pelo tamanho no último ano; o resto vira um painel só,
+  // para o leitor não achar que o orçamento acabou nas seis primeiras.
+  const ranking = Object.entries(ult.funcoes).sort((a, b) => b[1] - a[1]).map(([k]) => k);
+  // Cinco funções + "outras" fecham 6 painéis, ou seja, duas fileiras cheias de
+  // três. Com 7 sobrava um painel sozinho na terceira fileira.
+  const TOPO = ranking.slice(0, 5);
+  const resto = ranking.slice(5);
+
+  const paineis = TOPO.map(nome => ({
+    nome,
+    valores: serie.map(p => (p.funcoes[nome] || 0) * p.ipca_fator_para_2025),
+  }));
+  if (resto.length) {
+    paineis.push({
+      nome: `Outras ${resto.length} funções`,
+      valores: serie.map(p => resto.reduce((s, f) => s + (p.funcoes[f] || 0), 0) * p.ipca_fator_para_2025),
+    });
+  }
+
+  renderSmallMultiples(root, {
+    paineis, xValues: serie.map(p => String(p.ano)), cor,
+    valueFormat: (v) => milhoes(v), valueFormatFull: (v) => fmtMoneyFull(v),
+  });
+
+  const saude = paineis.find(p => p.nome === "Saúde");
+  const shareIni = 100 * saude.valores[0] / (serie[0].total_empenhado * serie[0].ipca_fator_para_2025);
+  const shareFim = 100 * saude.valores[saude.valores.length - 1] / (ult.total_empenhado * ult.ipca_fator_para_2025);
+
+  note(root, `Todos os painéis dividem a mesma régua vertical, então a altura de um vale contra a do outro — por isso a
+    Saúde ocupa o quadro inteiro e as demais mal saem do chão. <strong>A Saúde saiu de ${shareIni.toFixed(0)}% do
+    orçamento em ${serie[0].ano} para ${shareFim.toFixed(0)}% em ${ult.ano}</strong>, com a virada concentrada em 2016.
+    A <strong>Educação</strong> tem forma de degrau: fica plana até 2021 e sobe de uma vez em 2022, quando o piso do
+    magistério subiu 33,24%. E o <strong>Urbanismo</strong> é o único com forma de serra — dois picos isolados, 2020 e
+    2024, exatamente os anos de empréstimo (gráfico 7); fora deles volta sempre ao mesmo patamar.`);
+
+  note(root, `Repare no que <em>não</em> muda: fora Saúde e Educação, quase nenhuma função cresceu de forma sustentada em
+    doze anos. O orçamento de Itajubá não se expandiu em várias frentes — ele se concentrou em uma.`);
+
+  renderTable(root, {
+    caption: "Despesa por função ao longo do tempo, em R$ de 2025",
+    columns: ["Ano"].concat(paineis.map(p => p.nome)),
+    rows: serie.map((p, i) => [String(p.ano)].concat(paineis.map(pa => fmtMoneyFull(pa.valores[i])))),
   });
 }
 
@@ -1826,6 +2108,7 @@ function initItajubaCharts() {
   const realRoot = document.querySelector("#chart-despesa-real");
   const pibDespRoot = document.querySelector("#chart-pib-despesa");
   const funcoesRoot = document.querySelector("#chart-despesa-funcoes");
+  const funcoesTempoRoot = document.querySelector("#chart-funcoes-tempo");
   const variacaoRoot = document.querySelector("#chart-despesa-variacao");
   const investRoot = document.querySelector("#chart-investimento");
   const origemRoot = document.querySelector("#chart-receita-origem");
@@ -1846,10 +2129,11 @@ function initItajubaCharts() {
       if (realRoot) buildDespesaReal(realRoot, desp);
       if (pibDespRoot) buildPibVsDespesa(pibDespRoot, desp);
       if (funcoesRoot) buildDespesaFuncoes(funcoesRoot, desp);
+      if (funcoesTempoRoot) buildFuncoesNoTempo(funcoesTempoRoot, desp);
       if (variacaoRoot) buildDespesaVariacao(variacaoRoot, desp);
       if (investRoot) buildInvestimentoCredito(investRoot, desp, rec);
       if (origemRoot) buildReceitaOrigem(origemRoot, rec);
-    }).catch(() => showError(realRoot, pibDespRoot, funcoesRoot, variacaoRoot, investRoot, origemRoot));
+    }).catch(() => showError(realRoot, pibDespRoot, funcoesRoot, funcoesTempoRoot, variacaoRoot, investRoot, origemRoot));
   });
 
   const idhmRoot = document.querySelector("#chart-idhm");

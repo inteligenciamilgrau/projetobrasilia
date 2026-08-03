@@ -157,6 +157,9 @@
    Ganha um véu de fundo no hover para o leitor ver qual coluna está ativa. */
 .viz-hit{cursor:pointer;outline:none}
 .viz-hit:hover,.viz-hit:focus-visible{fill:var(--v-neutral);fill-opacity:.55}
+/* Guia vertical do gráfico combinado: amarra os dois painéis no mesmo ano. */
+.viz-guia{stroke:var(--v-text-secondary);stroke-width:1;stroke-dasharray:3 3;transition:opacity .1s linear}
+.viz-panel-label{fill:var(--v-text-secondary);font-size:10px;font-weight:850;font-family:inherit;text-transform:uppercase;letter-spacing:.05em}
 
 .viz-map-wrap{background:var(--v-surface)}
 .viz-map-setor{cursor:pointer}
@@ -174,6 +177,16 @@
 .viz-stat strong{display:block;color:var(--v-text-primary);font-size:1.4rem;line-height:1.1}
 .viz-stat span{display:block;margin-top:.3rem;color:var(--v-text-secondary);font-size:.72rem}
 .viz-stat small{display:block;margin-top:.15rem;color:var(--v-text-secondary);font-size:.65rem;opacity:.8}
+
+/* Pequenos múltiplos: grade de mini-séries com a MESMA escala vertical. */
+.viz-multiples{display:grid;grid-template-columns:repeat(var(--viz-mult-cols,3),minmax(0,1fr));gap:.8rem;margin-top:.5rem}
+@media (max-width:760px){.viz-multiples{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.viz-multiples{grid-template-columns:1fr}}
+.viz-multiple{padding:.6rem .7rem .45rem;border:1px solid var(--v-grid);border-radius:11px;background:var(--v-surface)}
+.viz-multiple-head{display:flex;align-items:baseline;justify-content:space-between;gap:.4rem;margin-bottom:.25rem}
+.viz-multiple-head .m-nome{color:var(--v-text-primary);font-size:.76rem;font-weight:850;line-height:1.2}
+.viz-multiple-head .m-valor{color:var(--v-text-secondary);font-size:.7rem;font-weight:800;white-space:nowrap}
+.viz-multiple-foot{display:flex;justify-content:space-between;margin-top:.15rem;color:var(--v-text-secondary);font-size:.62rem;font-weight:700}
 
 .viz-stackbars{display:grid;gap:.9rem;margin-top:.4rem}
 .viz-stackbar-row{display:grid;grid-template-columns:3.2rem 1fr;gap:.7rem;align-items:center}
