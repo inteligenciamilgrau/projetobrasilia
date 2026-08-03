@@ -408,6 +408,17 @@ function renderHeatMap(root, { boundary, points, valueKey, valueFormat, legendTi
 
   const values = points.map(p => p[valueKey]).filter(v => v != null);
   const vMin = Math.min(...values), vMax = Math.max(...values);
+  // A cor usa um teto no percentil 97, não o máximo literal: em setores censitários
+  // urbanos, uma área oficial muito pequena (ex.: 1-2 quadras) pode gerar densidade
+  // extrapolada (hab./km²) bem acima do restante da cidade, mesmo com poucos moradores.
+  // Sem o teto, esses 3-6 setores esticam a escala e "apagam" a cor de todos os outros
+  // no mapa. Os pontos acima do teto continuam aparecendo — só ficam na cor mais escura,
+  // em vez de numa cor exclusiva só deles.
+  const sortedValues = values.slice().sort((a, b) => a - b);
+  const p97Idx = Math.min(sortedValues.length - 1, Math.ceil(0.97 * sortedValues.length) - 1);
+  const vCap = sortedValues[p97Idx];
+  const clipped = vMax > vCap;
+  const colorMax = clipped ? vCap : vMax;
 
   const tip = makeTooltip(wrap);
 
@@ -437,23 +448,27 @@ function renderHeatMap(root, { boundary, points, valueKey, valueFormat, legendTi
 
   points.forEach(p => {
     const x = px(p.lon), y = py(p.lat);
-    const t = vMax > vMin ? (p[valueKey] - vMin) / (vMax - vMin) : 0.5;
+    const tRaw = colorMax > vMin ? (p[valueKey] - vMin) / (colorMax - vMin) : 0.5;
+    const t = Math.max(0, Math.min(1, tRaw));
     const color = seqColor(t);
     const r = p.situacao === "Rural" ? 3.2 : 4.6;
+    const isOutlier = clipped && p[valueKey] > vCap;
     const dot = el("circle", {
       cx: x, cy: y, r, fill: color, stroke: "var(--v-surface)", "stroke-width": 1.2,
       tabindex: 0, role: "img",
-      "aria-label": `Setor ${p.setor}: ${valueFormat(p[valueKey])}, ${p.populacao} habitantes`,
+      "aria-label": `Setor ${p.setor}: ${valueFormat(p[valueKey])}, ${p.populacao} habitantes, área ${p.area_km2} km²`,
       class: "viz-map-dot",
     }, svg);
     const onEnter = () => {
       const svgRect = svg.getBoundingClientRect();
       const s = svgRect.width / W;
-      showTooltip(tip, wrap, x * s, y * s, `Setor ${p.setor.slice(-6)} · ${p.situacao}`, [
-        { label: legendTitle, value: valueFormat(p[valueKey]), color, dot: true },
+      const rows = [
+        { label: legendTitle, value: valueFormat(p[valueKey]) + (isOutlier ? " (acima do teto de cor)" : ""), color, dot: true },
+        { label: "Área", value: (p.area_km2 < 0.1 ? p.area_km2.toFixed(3) : p.area_km2.toFixed(2)).replace(".", ",") + " km²", color: "transparent" },
         { label: "População", value: fmtInt.format(p.populacao) + " hab.", color: "transparent" },
         { label: "Domicílios", value: fmtInt.format(p.domicilios), color: "transparent" },
-      ]);
+      ];
+      showTooltip(tip, wrap, x * s, y * s, `Setor ${p.setor.slice(-6)} · ${p.situacao}`, rows);
     };
     dot.addEventListener("pointerenter", onEnter);
     dot.addEventListener("focus", onEnter);
@@ -473,7 +488,7 @@ function renderHeatMap(root, { boundary, points, valueKey, valueFormat, legendTi
   const tLo = el("text", { x: M, y: legendY + 24, class: "viz-axis-text" }, svg);
   tLo.textContent = valueFormat(vMin) + " (baixa)";
   const tHi = el("text", { x: M + 200, y: legendY + 24, "text-anchor": "end", class: "viz-axis-text" }, svg);
-  tHi.textContent = valueFormat(vMax) + " (alta)";
+  tHi.textContent = valueFormat(colorMax) + (clipped ? " ou mais" : " (alta)");
 }
 
 // ---------------------------------------------------------------------------
@@ -709,12 +724,16 @@ function buildTerritorioMap(root, contorno, setores, bairros) {
   });
   const note1 = document.createElement("p");
   note1.className = "viz-note";
-  note1.textContent = `${setores.n_setores} setores censitários somam ${fmtInt.format(setores.setores.reduce((a, s) => a + s.populacao, 0))} habitantes — bate exatamente com a população do Censo 2022 (93.073), confirmando que a geometria e os dados vêm da mesma base. Cada ponto é o centroide do setor (calculado a partir do contorno oficial do IBGE), não um endereço real.`;
+  note1.textContent = `${setores.n_setores} setores censitários somam ${fmtInt.format(setores.setores.reduce((a, s) => a + s.populacao, 0))} habitantes — bate exatamente com a população do Censo 2022 (93.073), confirmando que a geometria e os dados vêm da mesma base. A área também confere: somando os 71 vértices do contorno dá cerca de 295 km², em linha com a área territorial oficial do município. Cada ponto é o centroide do setor (calculado a partir do contorno oficial do IBGE), não um endereço real.`;
   root.appendChild(note1);
   const note2 = document.createElement("p");
   note2.className = "viz-note";
   note2.textContent = `Os losangos cinzas são ${suburbLabels.length} bairros mapeados pela comunidade OpenStreetMap — passe o mouse para ver o nome (texto fixo colidia demais no centro da cidade). Não há contorno oficial de bairro, já que o site da Prefeitura, que teria essa base, está bloqueado; a cor do heatmap segue os setores censitários, não os bairros.`;
   root.appendChild(note2);
+  const note3 = document.createElement("p");
+  note3.className = "viz-note";
+  note3.textContent = `Se você comparar com o Google Maps, o contorno vai parecer bem diferente — e isso é esperado, não é erro de coordenada. O Google normalmente destaca só o perímetro urbano (os bairros da cidade), enquanto este mapa usa o limite oficial do município inteiro do IBGE, que inclui uma extensão bem maior de zona rural (por isso a "aba" que se estende para o canto direito do mapa, com poucos pontos — é área rural de baixa densidade, não um erro de desenho).`;
+  root.appendChild(note3);
 }
 
 // ---------------------------------------------------------------------------
