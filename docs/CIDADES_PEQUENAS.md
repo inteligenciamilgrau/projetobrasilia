@@ -140,10 +140,12 @@ Três cidades repetem da rodada por IDHM 2010: **Nova Lima** (era #3, agora #1 �
 | 4 | **Paulínia/SP** | `/portal/dados-abertos` da própria Prefeitura devolve JSON real e testado (Diário Oficial atualizado diariamente até 31/07/2026) | Catálogo 100% institucional/financeiro; mapas de zoneamento existem só em PDF | **auditar agora** |
 | 5 | Votuporanga/SP | Portal de transparência lista explicitamente "saúde, educação, cultura, obras"; página HTML com as 34 unidades de saúde (nome, endereço, bairro); 13 mapas do plano diretor atualizados em 2026 | Tudo em HTML/PDF — nenhum CSV/API/geoportal confirmado | reserva |
 | 6 | Itupeva/SP | Transparência com seção "Setorial" (saúde, mobilidade, educação, defesa civil); Plano Diretor 2023 com mapas de zoneamento | Só telas HTML e PDF estático; nenhum dataset baixável | reserva |
-| 7 | Leme/SP | Múltiplos portais institucionais (prefeitura, câmara, SAECIL água/esgoto, RPPS); Plano Diretor com mapas de zoneamento por bairro | Link direto de "Dados Abertos" no portal de transparência retornou 404 | reserva |
-| 8 | Bebedouro/SP | Portal de transparência ativo (item de 2026); Plano Diretor (LC 122/2017) teria mapas temáticos anexos | Página que lista os mapas do plano diretor está fora do ar (HTTP 404) no momento do teste | reserva |
-| 9 | São João da Boa Vista/SP | Portal municipal oficial (evidência reaproveitada; não gerou nova busca nesta rodada) | Nenhum catálogo ou sistema municipal diferenciador foi localizado na rodada anterior | sem sinal |
-| 10 | Itajubá/MG | — | Site protegido por Cloudflare (HTTP 403) mesmo para leitura básica; nenhuma seção de dados abertos ou geoportal localizada nem no snapshot arquivado (Wayback Machine) | sem sinal |
+| 7 | Itajubá/MG | Câmara Municipal (domínio próprio) totalmente acessível: SISCAM tem busca estruturada de documentos com filtros e exportação; PNCP e SICONFI confirmados com dados reais e correntes do município | Executivo continua bloqueado por Cloudflare mesmo para navegador headless completo; os 8 domínios do IDU-Br dependem majoritariamente dele, não do Legislativo | reserva *(revisado)* |
+| 8 | Leme/SP | Múltiplos portais institucionais (prefeitura, câmara, SAECIL água/esgoto, RPPS); Plano Diretor com mapas de zoneamento por bairro | Link direto de "Dados Abertos" no portal de transparência retornou 404 | reserva |
+| 9 | Bebedouro/SP | Portal de transparência ativo (item de 2026); Plano Diretor (LC 122/2017) teria mapas temáticos anexos | Página que lista os mapas do plano diretor está fora do ar (HTTP 404) no momento do teste | reserva |
+| 10 | São João da Boa Vista/SP | Portal municipal oficial (evidência reaproveitada; não gerou nova busca nesta rodada) | Nenhum catálogo ou sistema municipal diferenciador foi localizado na rodada anterior | sem sinal |
+
+**CORRIGIDO 2026-08-02 (varredura extra sobre Itajubá):** a linha de Itajubá acima substitui a classificação original desta rodada, que era `10 | Itajubá/MG | — | Site protegido por Cloudflare (HTTP 403) mesmo para leitura básica; nenhuma seção de dados abertos ou geoportal localizada nem no snapshot arquivado (Wayback Machine) | sem sinal`. A correção não veio de dado novo do Executivo (que segue bloqueado) — veio de procurar fora dele: a Câmara Municipal roda em domínio separado (`itajuba.cam.mg.gov.br`) e não está atrás do mesmo WAF. Ver seção 8.1 para o detalhamento completo desta varredura.
 
 Evidências principais (verificadas em 2026-08-02):
 
@@ -153,8 +155,31 @@ Evidências principais (verificadas em 2026-08-02):
 - Paulínia: [dados abertos JSON](https://www.paulinia.sp.gov.br/portal/dados-abertos), [endpoint testado do Diário Oficial](https://www.paulinia.sp.gov.br/portal/dados-abertos/diario-oficial/2026).
 - Votuporanga: [portal de transparência setorial](https://web.votuporanga.sp.gov.br:8055/transparencia/), [unidades de saúde](https://www.votuporanga.sp.gov.br/portal/secretarias-paginas/5/relacao-das-unidades-de-saude/), [mapas do plano diretor](https://www.votuporanga.sp.gov.br/mapas-plano-diretor).
 - Itupeva: [transparência](https://itupeva.sp.gov.br/transparencia), [plano diretor](https://itupeva.sp.gov.br/prefeitura/plano-diretor).
+- Itajubá: [SISCAM — busca de documentos da Câmara](https://itajuba.siscam.com.br/Documentos/Pesquisa?Pesquisa=Avancada&id=79&pagina=1&Modulo=8&Documento=114), [licitações da Câmara](https://sistemasgerenciais3.com.br/publicacoes/front_camitajuba_licitacoes/), [PNCP — compras da Prefeitura](https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109) `[NACIONAL — não pontua]`, [SICONFI — execução orçamentária](https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?id_ente=3132404) `[NACIONAL — não pontua]`.
 - Leme: [portal de transparência](https://lemespscpi.dcfiorilli.com.br:879/TRANSPARENCIA/), [plano diretor](https://www.leme.sp.gov.br/pagina/9).
 - Bebedouro: [portal da transparência](http://www.sp.portaldatransparencia.com.br/prefeitura/bebedouro/).
+
+### 5.1 Varredura extra — Itajubá/MG: o que existe para acompanhar a cidade à distância
+
+Pedido específico: verificar se Itajubá tem dado suficiente para uma análise remota e acompanhamento contínuo, além do que a triagem-padrão captura.
+
+**O que está bloqueado.** `www.itajuba.mg.gov.br` (site institucional, transparência, dados abertos, SIC) devolve HTTP 403 com desafio Cloudflare ("Performing security verification") — testado com WebFetch, `curl` com user-agent de navegador **e um Chromium headless completo via Playwright**, todos bloqueados da mesma forma. O backend do portal alternativo da Prefeitura (`sistemassonner.itajuba.mg.gov.br/GRP/portalcidadao/webservices/...`) existe e foi identificado via inspeção de rede, mas também responde 403 a chamadas diretas, mesmo originadas do próprio navegador autenticado na sessão. `legislacaodigital.com.br/Itajuba-MG` (texto integral das leis) está atrás do mesmo tipo de bloqueio Cloudflare.
+
+**O que não está bloqueado — a Câmara Municipal.** `itajuba.cam.mg.gov.br` é um domínio separado, sem Cloudflare, e traz:
+- **SISCAM** (`itajuba.siscam.com.br`) — busca estruturada de documentos administrativos (Portarias, Atos da Mesa Diretora, Atos da Presidência) com filtros por número, ano, data, situação, autor e assunto, e um botão **Exportar**. Registros correntes confirmados (ex.: Portaria nº 92/2026, 16/07/2026, protocolo 01579/2026).
+- **Licitações, Viagens e Orçamento** (`sistemasgerenciais3.com.br/publicacoes/front_camitajuba_*`) — três painéis de publicação filtráveis por data e por status (aberta/cancelada/concluída/deserta/em andamento/homologada/revogada/suspensa), específicos do Legislativo.
+- **Diário Oficial Eletrônico** (`imprensaoficialmunicipal.com.br/itajuba`) — mesmo sistema (P&P Colibri) usado pelo Executivo, com painel de busca de publicações.
+- Produção legislativa, sessões e proposições em `itajuba.siscam.com.br/vereadores` e `/sessoes`.
+
+Limite: tudo isso é o **Legislativo**, não o Executivo. Não cobre saúde, educação, mobilidade, urbanismo ou meio ambiente — os domínios que o IDU-Br pontua vêm quase todos da Prefeitura, que segue bloqueada.
+
+**O que existe fora do município — dados nacionais atualizáveis.** Estes não diferenciam Itajubá de nenhum outro dos 5.570 municípios (regra 5 do protocolo do documento vivo), mas respondem diretamente à pergunta "dá para acompanhar a cidade à distância": **sim**, via:
+- **PNCP** (`pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109`) — API JSON testada e funcional; todo processo de compra da Prefeitura desde a Lei 14.133/2021, com objeto, datas, órgão e modalidade. CNPJ do município: 18.025.940/0001-09.
+- **SICONFI/Tesouro Nacional** (`apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?id_ente=3132404`) — API JSON testada e funcional; Relatório Resumido de Execução Orçamentária (receitas e despesas por período), série histórica por código IBGE 3132404.
+- **IBGE Cidades** (`cidades.ibge.gov.br/brasil/mg/itajuba/panorama`) — carrega via navegador (é SPA; falha em fetch simples), traz população, PIB, indicadores sociais básicos e histórico de censos.
+- Sistemas nacionais já catalogados no projeto e igualmente válidos para Itajubá, não testados nesta sessão: DATASUS/TabNet (saúde), INEP/Ideb (educação, bienal), RAIS/Novo CAGED (emprego, mensal), SNIS (saneamento, anual), Atlas Brasil (IDHM 2010, estático).
+
+**Resposta direta ao pedido:** não há um portal único e amplo da própria cidade — o Executivo, que teria isso, está bloqueado. Mas dá para montar um acompanhamento remoto real combinando três fontes já confirmadas nesta sessão: SISCAM (o que a Câmara decide e contrata), PNCP (o que a Prefeitura compra) e SICONFI (quanto a Prefeitura arrecada e gasta) — nenhuma exige login, todas têm série temporal, e as duas últimas são API JSON.
 
 ---
 
@@ -183,9 +208,9 @@ Uma plataforma genérica de fornecedor pode produzir uma tela de transparência 
 ### Confiança da triagem: variável por cidade
 
 - Evidência positiva vem de página oficial ou sistema indicado pela prefeitura, aberta nesta sessão (marcador `[fetch-ok]` nas notas de pesquisa).
-- Vários municípios desta rodada (Antônio Carlos/SC, Itajubá/MG, Cajobi/SP, Tabatinga/SP, Paulínia/SP) bloqueiam acesso automatizado direto (HTTP 403/Cloudflare) — nesses casos a evidência veio de acesso via proxy leitor, `curl` com user-agent de navegador, ou Wayback Machine, e está marcada como tal.
+- Vários municípios desta rodada (Antônio Carlos/SC, o Executivo de Itajubá/MG, Cajobi/SP, Tabatinga/SP, Paulínia/SP) bloqueiam acesso automatizado direto (HTTP 403/Cloudflare) — nesses casos a evidência veio de acesso via proxy leitor, `curl` com user-agent de navegador, ou Wayback Machine, e está marcada como tal. No caso de Itajubá, o bloqueio foi confirmado mesmo com Chromium headless completo (não é só filtro de user-agent), mas é específico do domínio do Executivo — a Câmara Municipal, em domínio separado, respondeu normalmente (ver seção 5.1).
 - Um botão de "Dados Abertos" atrás de postback JavaScript (Cajobi, Tabatinga, Guaiçara, Rafard, Leme) não é evidência de acesso — é uma pista que exige navegador real/headless para confirmar. Nenhuma dessas cinco cidades foi promovida a "auditar agora" só por causa do botão.
-- "Não localizado" não significa "não existe". Portais em JavaScript, páginas não indexadas e serviços protegidos podem gerar falso negativo — o próprio bloqueio Cloudflare de Itajubá e Antônio Carlos é, em si, um dado sobre a maturidade digital do portal, não uma prova de ausência de conteúdo.
+- "Não localizado" não significa "não existe". Portais em JavaScript, páginas não indexadas e serviços protegidos podem gerar falso negativo — o próprio bloqueio Cloudflare do Executivo de Itajubá e de Antônio Carlos é, em si, um dado sobre a maturidade digital do portal, não uma prova de ausência de conteúdo. Itajubá é o exemplo direto: o mesmo bloqueio parecia "sem sinal" até a varredura extra encontrar a Câmara, o PNCP e o SICONFI fora dele.
 
 ### Confiança exigida para promover uma cidade
 

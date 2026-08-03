@@ -609,7 +609,7 @@
       "city": "São João da Boa Vista/SP",
       "band": "small",
       "band_label": "≈ 100 mil habitantes",
-      "audit_rank": 9,
+      "audit_rank": 10,
       "population": 96080,
       "ibge_code": "3549102",
       "triage": "gap",
@@ -868,7 +868,7 @@
       "ibge_code": "3506102",
       "population": 78257,
       "metric_rank": 8,
-      "audit_rank": 8,
+      "audit_rank": 9,
       "triage": "reserve",
       "triage_label": "Reserva",
       "confidence": "baixa",
@@ -914,26 +914,26 @@
       "ibge_code": "3132404",
       "population": 96855,
       "metric_rank": 9,
-      "audit_rank": 10,
-      "triage": "gap",
-      "triage_label": "Sem diferencial localizado",
-      "confidence": "baixa",
-      "summary": "O site oficial está protegido por Cloudflare e bloqueou toda tentativa de acesso automatizado (inclusive básico); pelo snapshot arquivado (Wayback Machine), a transparência cobre só e-SIC, convênios e controle interno, sem dados abertos ou geoportal.",
-      "recommended_scope": "Acessar o site com navegador real (o bloqueio é só para automação) antes de descartar a cidade; o próprio bloqueio já é, em si, um sinal de baixa maturidade para um piloto de coleta automatizada.",
+      "audit_rank": 7,
+      "triage": "reserve",
+      "triage_label": "Reserva",
+      "confidence": "alta para dados nacionais (PNCP, SICONFI) e para o Legislativo; nula para o site do Executivo (bloqueado)",
+      "summary": "O Executivo segue inacessível à automação — até um navegador headless completo recebe o desafio Cloudflare (HTTP 403) — mas a Câmara Municipal tem domínio próprio sem bloqueio, com busca estruturada de documentos (SISCAM, com filtros e botão de exportação) e módulos de licitação/orçamento pesquisáveis. PNCP e SICONFI confirmam dados nacionais reais e correntes para o município, utilizáveis como substituto parcial do portal bloqueado.",
+      "recommended_scope": "Tratar a Câmara (Legislativo) como a porta de entrada de dados própria da cidade e combinar com PNCP (compras) e SICONFI (finanças) para montar um acompanhamento à distância sem depender do site bloqueado da Prefeitura.",
       "strengths": [
-        "Estrutura padrão de e-SIC, Controladoria e Ouvidoria (snapshot arquivado)",
-        "Secretarias mapeadas (educação, ambiente, saúde, obras, planejamento)",
-        "Subdomínio de sistemas (GRP/Sonner) ativo para protocolo"
+        "Câmara Municipal (itajuba.cam.mg.gov.br) totalmente acessível, ao contrário do Executivo",
+        "SISCAM: busca estruturada de documentos administrativos com filtros (autor, data, situação, protocolo) e botão de exportação",
+        "PNCP e SICONFI confirmados com dados reais e correntes do município (compras públicas e execução orçamentária)"
       ],
       "risks": [
-        "Site bloqueia acesso automatizado (HTTP 403/Cloudflare) até para leitura básica",
-        "Nenhuma seção de dados abertos ou geoportal localizada nem no snapshot arquivado",
-        "Diário Oficial antigo hospedado em IP bruto (baixa maturidade técnica)"
+        "Site da Prefeitura (Executivo) bloqueia até navegador headless completo (Cloudflare, HTTP 403) — os oito domínios do IDU-Br dependem majoritariamente do Executivo, não do Legislativo",
+        "Webservice do portal alternativo da Prefeitura (sistemassonner.itajuba.mg.gov.br) também retorna 403 em chamada direta, mesmo autenticado pelo próprio navegador",
+        "legislacaodigital.com.br (texto integral das leis municipais) também está atrás de Cloudflare"
       ],
       "next": [
-        "Acessar com navegador real para confirmar se o bloqueio impede também usuários humanos comuns",
-        "Procurar dados abertos fora do caminho /transparencia",
-        "Verificar se há geoportal ou cadastro territorial em subdomínio separado"
+        "Acessar o site da Prefeitura com navegador real (não automatizado) para confirmar se o bloqueio afeta usuários humanos comuns",
+        "Testar o botão Exportar do SISCAM até identificar o formato de saída (CSV/XLS/PDF)",
+        "Montar consulta recorrente ao PNCP (CNPJ 18.025.940/0001-09) e ao SICONFI (código IBGE 3132404) como substituto viável do portal bloqueado"
       ],
       "sources": [
         {
@@ -943,7 +943,43 @@
           "territory": "Não demonstrado",
           "status": "lacuna",
           "url": "http://web.archive.org/web/20251217185113/https://www.itajuba.mg.gov.br/",
-          "note": "Acesso direto retorna HTTP 403 (Cloudflare); conteúdo recuperado via Wayback Machine, snapshot dez/2025."
+          "note": "Acesso direto retorna HTTP 403 (Cloudflare) mesmo via navegador headless completo; conteúdo recuperado via Wayback Machine, snapshot dez/2025."
+        },
+        {
+          "name": "SISCAM — busca de documentos administrativos da Câmara",
+          "producer": "Câmara Municipal de Itajubá",
+          "access": "Busca estruturada + exportação",
+          "territory": "Não demonstrado",
+          "status": "confirmado",
+          "url": "https://itajuba.siscam.com.br/Documentos/Pesquisa?Pesquisa=Avancada&id=79&pagina=1&Modulo=8&Documento=114",
+          "note": "Registros reais e correntes (ex.: Portaria 92/2026, 16/07/2026) com data, protocolo, situação, autoria e assunto; botão Exportar presente, formato de saída não confirmado nesta sessão."
+        },
+        {
+          "name": "Licitações e Orçamento da Câmara (sistema de publicações)",
+          "producer": "Câmara Municipal de Itajubá",
+          "access": "Busca filtrável",
+          "territory": "Não demonstrado",
+          "status": "parcial",
+          "url": "https://sistemasgerenciais3.com.br/publicacoes/front_camitajuba_licitacoes/",
+          "note": "Filtros por publicação, data e status (aberta/concluída/deserta/homologada etc.); conteúdo dos resultados não aberto nesta sessão."
+        },
+        {
+          "name": "PNCP — compras da Prefeitura de Itajubá",
+          "producer": "Portal Nacional de Contratações Públicas (governo federal)",
+          "access": "API JSON",
+          "territory": "Município (CNPJ 18.025.940/0001-09)",
+          "status": "confirmado",
+          "url": "https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109",
+          "note": "[NACIONAL — não pontua como diferencial entre cidades, mas é dado real, atual e específico do município] API testada e funcional; retornou processos de compra de 2026 com objeto, datas e órgão."
+        },
+        {
+          "name": "SICONFI — execução orçamentária municipal",
+          "producer": "Tesouro Nacional",
+          "access": "API JSON",
+          "territory": "Município (código IBGE 3132404)",
+          "status": "confirmado",
+          "url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?id_ente=3132404",
+          "note": "[NACIONAL — não pontua como diferencial entre cidades, mas é dado real, atual e específico do município] Relatório Resumido de Execução Orçamentária testado e funcional; receitas e despesas, série 2025."
         }
       ],
       "band": "small",
@@ -960,7 +996,7 @@
       "ibge_code": "3526704",
       "population": 101537,
       "metric_rank": 10,
-      "audit_rank": 7,
+      "audit_rank": 8,
       "triage": "reserve",
       "triage_label": "Reserva",
       "confidence": "baixa para acesso; média para governança",
