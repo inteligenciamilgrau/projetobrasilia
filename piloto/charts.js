@@ -864,7 +864,7 @@ function buildTerritorioMap(root, contorno, setores, bairros, zonaUrbana) {
   if (zonaUrbana) {
     const note4 = document.createElement("p");
     note4.className = "viz-note";
-    note4.textContent = `A linha tracejada é a zona urbana do Censo 2022 (${zonaUrbana.area_km2.toFixed(0)} km², ${Math.round(100 * zonaUrbana.area_km2 / somaArea)}% do município), obtida unindo os ${zonaUrbana.n_setores_urbanos} setores que o IBGE classificou como urbanos. Ela importa porque o IBGE deriva essa classificação do perímetro urbano fixado em lei municipal e vigente na coleta: como o Censo é de 2022, o tracejado registra o macrozoneamento da Lei 3.352/2019 antes da alteração posterior. ${zonaUrbana.ressalva}`;
+    note4.textContent = `A linha tracejada é a zona urbana do Censo 2022 (${zonaUrbana.area_km2.toFixed(0)} km², ${Math.round(100 * zonaUrbana.area_km2 / somaArea)}% do município), unindo os ${zonaUrbana.n_setores_urbanos} setores que o IBGE classificou como urbanos — em dois pedaços: a sede e a vila de Lourenço Velho, o segundo distrito. Como o IBGE deriva essa classificação do perímetro urbano fixado em lei e vigente na coleta, ela é a melhor aproximação que conseguimos do zoneamento em vigor em 2022. Mas é aproximação, e por um motivo estrutural: o setor censitário é indivisível — ou ele inteiro é urbano, ou inteiro é rural. Como o setor urbano típico de Itajubá tem uns 300 m de lado (mediana 0,087 km²), a borda só consegue seguir os recortes dos setores e "engorda" onde o perímetro legal corta pelo meio de um. Ou seja: ela nunca vai coincidir com o traçado do Google Maps nem com o do Anexo 2 da lei, que seguem ruas e divisas de lote. É um teto de resolução do método, não erro do dado.`;
     root.appendChild(note4);
   }
 }
