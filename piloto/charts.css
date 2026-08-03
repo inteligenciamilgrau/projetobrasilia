@@ -111,6 +111,17 @@
 
 .viz-tooltip{position:absolute;z-index:5;padding:.55rem .7rem;border:1px solid var(--v-grid);border-radius:9px;background:var(--v-surface);box-shadow:var(--shadow);font-size:.76rem;pointer-events:none;opacity:0;transform:translate(-50%,calc(-100% - 10px));transition:opacity .08s linear;white-space:nowrap}
 .viz-tooltip.show{opacity:1}
+/* Modo "com explicação": deixa de ser etiqueta de valor e vira um cartãozinho
+   de texto. Largura fixa em ch para a linha ficar legível, e quebra liberada. */
+.viz-tooltip--wide{width:min(42ch,84vw);white-space:normal}
+.viz-tooltip--wide .viz-tooltip-row{align-items:flex-start}
+.viz-tooltip-note{margin:.45rem 0 0;padding-top:.45rem;border-top:1px solid var(--v-grid);color:var(--v-text-secondary);font-size:.73rem;line-height:1.5;font-weight:600}
+.viz-tooltip-note strong{color:var(--v-text-primary);font-weight:850}
+/* Quando não cabe acima do ponto, o balão vira para baixo. */
+.viz-tooltip.flip-below{transform:translate(-50%,10px)}
+/* Ao lado da coluna: o texto nunca cobre a barra que está sendo explicada. */
+.viz-tooltip.side-right{transform:translate(0,-50%)}
+.viz-tooltip.side-left{transform:translate(-100%,-50%)}
 .viz-tooltip .t-title{margin-bottom:.3rem;color:var(--v-text-secondary);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}
 .viz-tooltip-row{display:flex;align-items:center;gap:.4rem;font-weight:700;color:var(--v-text-primary)}
 .viz-tooltip-row+.viz-tooltip-row{margin-top:.2rem}
@@ -126,6 +137,14 @@
 .viz-table-toggle th:first-child,.viz-table-toggle td:first-child{text-align:left}
 .viz-table-toggle th{color:var(--muted);font-weight:800;font-size:.68rem;text-transform:uppercase}
 
+.viz-note-toggle-body{margin-top:.6rem}
+.viz-note-toggle-body p{margin:0 0 .55rem;color:var(--v-text-secondary);font-size:.78rem;line-height:1.58}
+.viz-note-toggle-body p:last-child{margin-bottom:0}
+.viz-note-toggle-body strong{color:var(--v-text-primary);font-weight:850}
+.viz-note-toggle-body .viz-note-lead{padding-bottom:.55rem;border-bottom:1px solid var(--v-grid);font-style:italic}
+.viz-note-fontes{display:block;margin-top:.3rem;font-size:.72rem}
+.viz-note-fontes a{color:var(--green);font-weight:750}
+
 .idu-table{width:100%;margin-top:1rem;border-collapse:collapse;font-size:.8rem}
 .idu-table th,.idu-table td{padding:.55rem .7rem;border-bottom:1px solid var(--v-grid);text-align:left;vertical-align:top;color:var(--v-text-primary)}
 .idu-table th{color:var(--v-text-secondary);font-weight:800;font-size:.68rem;text-transform:uppercase}
@@ -134,6 +153,10 @@
 
 .viz-bar{cursor:pointer}
 .viz-bar:hover,.viz-bar:focus-visible{opacity:.85}
+/* Alvo invisível do tamanho da coluna — barra de 3 px não se pega com o mouse.
+   Ganha um véu de fundo no hover para o leitor ver qual coluna está ativa. */
+.viz-hit{cursor:pointer;outline:none}
+.viz-hit:hover,.viz-hit:focus-visible{fill:var(--v-neutral);fill-opacity:.55}
 
 .viz-map-wrap{background:var(--v-surface)}
 .viz-map-setor{cursor:pointer}

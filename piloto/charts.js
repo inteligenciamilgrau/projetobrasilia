@@ -70,8 +70,12 @@ function makeTooltip(wrap) {
   return tip;
 }
 
-function showTooltip(tip, wrap, xPx, yPx, titleText, rows) {
+// noteHtml (opcional): parágrafo explicativo dentro do próprio tooltip. Quando
+// existe, o balão troca de modo — ganha largura fixa e quebra de linha, porque
+// o padrão é nowrap (bom para "Receita: R$ 12M", péssimo para uma frase).
+function showTooltip(tip, wrap, xPx, yPx, titleText, rows, noteHtml, lado) {
   tip.textContent = "";
+  tip.classList.toggle("viz-tooltip--wide", !!noteHtml);
   const title = document.createElement("div");
   title.className = "t-title";
   title.textContent = titleText;
@@ -88,9 +92,43 @@ function showTooltip(tip, wrap, xPx, yPx, titleText, rows) {
     row.appendChild(val);
     tip.appendChild(row);
   });
+  if (noteHtml) {
+    const p = document.createElement("p");
+    p.className = "viz-tooltip-note";
+    p.innerHTML = noteHtml;
+    tip.appendChild(p);
+  }
+  tip.classList.remove("flip-below", "side-left", "side-right");
   tip.style.left = xPx + "px";
   tip.style.top = yPx + "px";
   tip.classList.add("show");
+
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  const ww = wrap.clientWidth, wh = wrap.clientHeight;
+
+  // Modo LADO: o balão fica ao lado da coluna, nunca por cima dela. É o que
+  // permite ler a explicação e continuar vendo o tamanho da barra — se o texto
+  // cobrisse a marca, o leitor perderia justamente o que o gráfico mostra.
+  if (lado) {
+    const dirEsquerda = lado.direita + 14 + tw > ww;
+    tip.classList.add(dirEsquerda ? "side-left" : "side-right");
+    tip.style.left = (dirEsquerda ? lado.esquerda - 14 : lado.direita + 14) + "px";
+    // centraliza na vertical e prende dentro do cartão
+    let y = lado.centroY;
+    if (y - th / 2 < 4) y = th / 2 + 4;
+    if (y + th / 2 > wh - 4) y = wh - 4 - th / 2;
+    tip.style.top = y + "px";
+    return;
+  }
+
+  // Modo padrão (acima do ponto): se não couber em cima, vira para baixo; se
+  // encostar nas laterais, desgruda da borda.
+  if (yPx - th - 10 < 0) tip.classList.add("flip-below");
+  const meio = tw / 2;
+  let x = xPx;
+  if (x - meio < 4) x = meio + 4;
+  if (x + meio > ww - 4) x = ww - 4 - meio;
+  tip.style.left = x + "px";
 }
 function hideTooltip(tip) { tip.classList.remove("show"); }
 
@@ -256,7 +294,7 @@ function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yForm
 // ---------------------------------------------------------------------------
 // Barras divergentes (saldo positivo/negativo) com tooltip por barra.
 // ---------------------------------------------------------------------------
-function renderDivergingBars(root, { data, xKey, yKey, yFormat, yFormatFull, posColor, negColor }) {
+function renderDivergingBars(root, { data, xKey, yKey, yFormat, yFormatFull, posColor, negColor, notaKey, posWord, negWord }) {
   const W = 760, H = 260, M = { top: 16, right: 18, bottom: 30, left: 58 };
   const innerW = W - M.left - M.right, innerH = H - M.top - M.bottom;
 
@@ -288,26 +326,43 @@ function renderDivergingBars(root, { data, xKey, yKey, yFormat, yFormatFull, pos
     const y = yScale(v);
     const top = Math.min(y, zeroY), h = Math.abs(zeroY - y);
     const color = v >= 0 ? posColor : negColor;
-    const statusLabel = v >= 0 ? "Superávit" : "Déficit";
-    const rect = el("rect", {
+    const statusLabel = v >= 0 ? (posWord || "Superávit") : (negWord || "Déficit");
+    const nota = notaKey ? d[notaKey] : null;
+
+    el("rect", {
       class: "viz-bar", x: cx - barW / 2, y: top, width: barW, height: Math.max(h, 1),
-      rx: 4, fill: color, tabindex: 0, role: "img", "aria-label": `${d[xKey]}: ${statusLabel} de ${yFormatFull(Math.abs(v))}`,
+      rx: 4, fill: color, "pointer-events": "none",
     }, svg);
 
     const t = el("text", { x: cx, y: H - M.bottom + 18, "text-anchor": "middle", class: "viz-axis-text" }, svg);
     t.textContent = d[xKey];
 
+    // O alvo de hover é a COLUNA inteira, não a barra. Em 2016 e 2024 o saldo é
+    // quase zero e a barra tem 3 px de altura — impossível de acertar com o
+    // mouse, e é justamente onde a explicação importa ("por que deu zero?").
+    const alvo = el("rect", {
+      class: "viz-hit", x: M.left + bandW * i, y: M.top, width: bandW, height: innerH,
+      fill: "transparent", tabindex: 0, role: "img",
+      "aria-label": `${d[xKey]}: ${statusLabel} de ${yFormatFull(Math.abs(v))}${nota ? ". " + nota.replace(/<[^>]+>/g, "") : ""}`,
+    }, svg);
+
     function onEnter() {
       const svgRect = svg.getBoundingClientRect();
-      const scaleX = svgRect.width / W;
-      showTooltip(tip, wrap, cx * scaleX, top * scaleX, String(d[xKey]), [
-        { label: statusLabel, value: yFormatFull(Math.abs(v)), color },
-      ]);
+      const s = svgRect.width / W;
+      // Com explicação, o balão vai para o LADO da coluna; sem ela, continua
+      // acima do ponto, que é o comportamento certo para uma etiqueta curta.
+      const lado = nota ? {
+        esquerda: (M.left + bandW * i) * s,
+        direita: (M.left + bandW * (i + 1)) * s,
+        centroY: (M.top + innerH / 2) * s,
+      } : null;
+      showTooltip(tip, wrap, cx * s, top * s, String(d[xKey]),
+        [{ label: statusLabel, value: yFormatFull(Math.abs(v)), color }], nota, lado);
     }
-    rect.addEventListener("pointerenter", onEnter);
-    rect.addEventListener("focus", onEnter);
-    rect.addEventListener("pointerleave", () => hideTooltip(tip));
-    rect.addEventListener("blur", () => hideTooltip(tip));
+    alvo.addEventListener("pointerenter", onEnter);
+    alvo.addEventListener("focus", onEnter);
+    alvo.addEventListener("pointerleave", () => hideTooltip(tip));
+    alvo.addEventListener("blur", () => hideTooltip(tip));
   });
 }
 
@@ -833,10 +888,23 @@ function buildSaudeChart(root, registroCivil, snapshot) {
     { value: s.mortalidade_infantil.valor.toFixed(2).replace(".", ",").replace(/,00$/, ""), label: `Mortalidade infantil (por mil nasc. vivos) · ${s.mortalidade_infantil.ano}` },
     { value: s.internacoes_por_diarreia_sus.valor.toFixed(1).replace(".", ","), label: `Internações por diarreia (SUS, por 100 mil hab.) · ${s.internacoes_por_diarreia_sus.ano}` },
   ]);
-  const note = document.createElement("p");
-  note.className = "viz-note";
-  note.textContent = "O pico de óbitos em 2021 (1.101, ante ~800–900 nos anos vizinhos) coincide com a pandemia de Covid-19. Nascimentos caem de forma consistente desde 2015, acompanhando a tendência nacional.";
-  root.appendChild(note);
+  // Os dois rótulos são termos técnicos do Registro Civil e um deles engana:
+  // "óbitos" aqui é mortalidade TOTAL, não infantil. Vale explicar na cara.
+  note(root, `<strong>O que cada palavra quer dizer aqui.</strong> <em>Nascidos vivos</em> é o termo oficial do Registro
+    Civil e não é sinônimo de "nascimentos": ele conta só os bebês que nasceram com vida. Os natimortos — que nascem sem
+    vida — são registrados numa tabela separada do IBGE e não entram nesta linha. <em>Óbitos</em> são <strong>todas as
+    mortes, de qualquer idade</strong>, e não mortalidade infantil. Em 2024 foram 964 nascidos vivos e 800 óbitos no total
+    do município. A mortalidade infantil é outro indicador, bem menor, e está no retrato do IBGE Cidades: <strong>11,45
+    óbitos por mil nascidos vivos</strong> (DATASUS/SIM).`);
+
+  note(root, `Duas coisas que a série mostra. O <strong>pico de óbitos em 2021</strong> — 1.101, contra 800 a 900 nos anos
+    vizinhos — coincide com o ano mais letal da pandemia de Covid-19 no Brasil. E os <strong>nascimentos caem de forma
+    consistente desde 2015</strong> (1.284 em 2003 para 964 em 2024), acompanhando a queda da natalidade nacional. É a
+    mesma tendência que aparece na Fase 1: a população de Itajubá parou de crescer.`);
+
+  note(root, `Ressalva de método: são registros por <strong>local de ocorrência</strong>, não de residência. Como Itajubá
+    concentra o hospital de referência da microrregião, parte desses nascimentos e óbitos é de moradores das cidades
+    vizinhas que vieram se tratar aqui. O IBGE publica as tabelas por residência separadamente.`);
 }
 
 // ---------------------------------------------------------------------------
@@ -987,6 +1055,63 @@ function buildTerritorioMap(root, contorno, setores, bairros, zonaUrbana, mancha
   }
 }
 
+// O que aconteceu em cada ano do saldo orçamentário. Vive aqui, e não no JSON,
+// porque é síntese editorial cruzando quatro arquivos (RREO, DCA I-C, I-D e
+// I-E) — os arquivos de dados guardam só o que foi coletado. Valores marcados
+// como "corrigidos" estão em R$ de 2025; os do gráfico são de cada ano.
+// `fontes` só entra quando existe uma referência externa que sustenta a
+// afirmação — os anos explicados apenas pelo próprio SICONFI não têm link, e é
+// proposital: link decorativo é pior que link nenhum. Todas as URLs foram
+// testadas e respondiam 200 em 03/08/2026.
+const SALDO_NOTAS = {
+  2015: {
+    texto: `<strong>Recessão.</strong> O PIB do Brasil encolheu 3,5% — a pior queda da série histórica. Em Itajubá as transferências caíram R$ 11 mi e o ISS caiu 9% (corrigidos). A folha de pessoal não caiu junto, e o ano fechou no vermelho.`,
+    fontes: [{ t: "IBGE — Contas Nacionais Trimestrais (SIDRA, tabela 1846)", u: "https://sidra.ibge.gov.br/tabela/1846" }],
+  },
+  2016: {
+    texto: `<strong>A virada da saúde.</strong> Primeiro ano em que o município passa a pagar direto o atendimento hospitalar: essa rubrica salta de R$ 16 mi para R$ 63 mi e as transferências sobem R$ 55 mi (corrigidos). A despesa acompanhou quase tudo — sobrou pouco, mas sobrou. O ato que produziu essa mudança não foi localizado em fonte pública; ver a nota do gráfico 6.`,
+  },
+  2017: {
+    texto: `<strong>A folha estourou.</strong> Receita parada e a despesa com pessoal saltando de R$ 130 mi para R$ 143 mi em um ano, +9,7% corrigido. Não foi obra: 2017 teve o <em>menor</em> investimento de doze anos, R$ 12,2 mi.`,
+  },
+  2018: {
+    texto: `<strong>Ajuste.</strong> Depois do rombo, a folha parou de crescer e o investimento seguiu no chão (R$ 12,9 mi). A arrecadação própria reagiu — o IPTU subiu 40% corrigido em um ano.`,
+  },
+  2019: {
+    texto: `<strong>Recuperação.</strong> ISS e IPTU em alta e transferências +R$ 15 mi (corrigidos). O investimento quase dobrou, para R$ 24,3 mi, e ainda coube dentro da receita.`,
+  },
+  2020: {
+    texto: `<strong>Pandemia e empréstimo, ao mesmo tempo.</strong> As transferências pularam R$ 61 mi (+21% corrigido) com o auxílio federal da Lei Complementar 173/2020 — metade carimbada para saúde e assistência social. Entrou também R$ 30 mi de empréstimo, que bancou o maior pacote de obras até então. <strong>Sem o empréstimo, o ano teria fechado com déficit de cerca de R$ 10 mi.</strong>`,
+    fontes: [
+      { t: "SICONFI/Tesouro — comunicado sobre o auxílio financeiro da LC 173/2020", u: "https://siconfi.tesouro.gov.br/siconfi/pages/public/conteudo/conteudo.jsf?id=24303" },
+      { t: "TCE-SP — o que a LC 173/2020 mudou para os municípios", u: "https://www.tce.sp.gov.br/6524-artigo-breves-consideracoes-sobre-lei-complementar-173-2020" },
+    ],
+  },
+  2021: {
+    texto: `<strong>Gestão nova pisa no freio.</strong> Primeiro ano de Christian Gonçalves, logo depois do pico de obras: o investimento despenca de R$ 55 mi para R$ 16 mi (corrigidos) enquanto as transferências continuam altas. O superávit é o freio, não a economia.`,
+  },
+  2022: {
+    texto: `<strong>O novo FUNDEB chega à conta.</strong> A Educação sobe 36% corrigido de uma vez, puxada pelo piso nacional do magistério (+33,24%). As transferências até caíram R$ 15 mi, mas a arrecadação própria subiu R$ 10 mi e o investimento ficou baixo — deu para fechar no azul.`,
+    fontes: [
+      { t: "Câmara dos Deputados — reajuste do piso do magistério", u: "https://www.camara.leg.br/noticias/1274520-camara-aprova-novo-metodo-de-reajuste-do-piso-salarial-do-magisterio-publico-da-educacao-basica/" },
+      { t: "CNTE — como se chegou aos 33,24% de 2022", u: "https://cnte.org.br/noticias/bolsonaro-quer-barrar-reajuste-de-33-no-piso-salarial-de-professores-fca1" },
+    ],
+  },
+  2023: {
+    texto: `<strong>O maior déficit da série.</strong> Receita estagnada, com as transferências caindo, e despesa subindo 10% corrigido: a Saúde consumiu R$ 17 mi a mais e o investimento, R$ 11 mi a mais. É o ano anterior à eleição.`,
+  },
+  2024: {
+    texto: `<strong>Zero a zero — mas só no papel.</strong> Ano de eleição com o maior investimento de toda a série, R$ 71,9 mi corrigidos, bancado por R$ 42 mi de empréstimo novo. <strong>Sem essa operação de crédito, 2024 teria fechado com déficit de cerca de R$ 40 mi.</strong>`,
+  },
+  2025: {
+    texto: `<strong>O maior superávit da série.</strong> Primeiro ano do novo mandato de Rodrigo Riera: o investimento cai 69% (de R$ 71,9 mi para R$ 22,1 mi) enquanto a receita sobe. Exatamente o mesmo padrão de 2021 — gestão que chega, freia. Em maio a Câmara aprovou, em primeiro turno, novo empréstimo de R$ 70 mi para obras.`,
+    fontes: [
+      { t: "Câmara Municipal de Itajubá — aprovação do empréstimo de R$ 70 milhões (PL 4856/2025)", u: "https://itajuba.cam.mg.gov.br/site/camara-municipal-de-itajuba-aprova-emprestimo-para-obras-de-infraestrutura-e-discute-demandas-da-populacao-em-sessao-ordinaria/" },
+      { t: "O Tempo — perfil de Rodrigo Riera, eleito em 2024", u: "https://www.otempo.com.br/eleicoes/2024/candidatos/minas-gerais/itajuba/prefeito/rodrigo-riera-55" },
+    ],
+  },
+};
+
 // ---------------------------------------------------------------------------
 // Monta os gráficos de finanças dentro de #chart-financas e #chart-saldo.
 // ---------------------------------------------------------------------------
@@ -1018,17 +1143,36 @@ function buildFinancasCharts(finRoot, saldoRoot, fin) {
         { label: "Déficit", color: negColor },
       ]);
       renderDivergingBars(saldoRoot, {
-        data: fin.serie.map(p => ({ ano: String(p.ano), saldo: p.saldo })),
-        xKey: "ano", yKey: "saldo",
+        // O tooltip recebe só o texto: link dentro dele não é clicável (o balão
+        // tem pointer-events:none, senão fugiria do mouse). As fontes ficam no
+        // bloco recolhido abaixo, onde dá para clicar.
+        data: fin.serie.map(p => ({
+          ano: String(p.ano), saldo: p.saldo,
+          nota: (SALDO_NOTAS[p.ano] || {}).texto,
+        })),
+        xKey: "ano", yKey: "saldo", notaKey: "nota",
         yFormat: (v) => "R$ " + fmtMoneyCompact(v), yFormatFull: (v) => fmtMoneyFull(v),
         posColor, negColor,
       });
-      note(saldoRoot, `<strong>O que este gráfico responde — e o que ele não responde.</strong> Ele diz se a prefeitura
-        comprometeu mais ou menos do que arrecadou em cada ano, e é assim que a Lei de Responsabilidade Fiscal olha para a
-        conta. Só isso. <strong>Saldo positivo não significa que o dinheiro foi bem gasto, e saldo negativo não significa
-        desperdício</strong> — uma prefeitura pode fechar no azul deixando de investir em escola, e fechar no vermelho porque
-        antecipou uma obra necessária. O saldo mede equilíbrio de caixa, não qualidade da despesa. Para saber onde o dinheiro
-        foi parar, os gráficos abaixo abrem a despesa por função, corrigem pela inflação e mostram de onde vem a receita.`);
+
+      note(saldoRoot, `Saldo mede equilíbrio de caixa, não qualidade do gasto — dá para fechar no azul deixando de
+        investir. Mas cada ano tem causa identificável: <strong>passe o mouse por uma coluna</strong> e ela conta o que
+        aconteceu naquele exercício. Lendo a série inteira, <strong>o vermelho aparece quando um custo específico dispara
+        com a receita parada; o azul, quando entra dinheiro extraordinário ou quando a prefeitura freia depois de um ciclo
+        de obras</strong>.`);
+
+      noteToggle(saldoRoot, "Ler a explicação de todos os anos, com as fontes",
+        `<p class="viz-note-lead">As barras estão em reais de cada ano, como no balanço. Onde o texto diz "corrigido", o
+         valor está em R$ de 2025 — por isso é maior nos anos mais antigos. Os anos sem link são explicados pelo próprio
+         dado do SICONFI, sem referência externa.</p>` +
+        fin.serie.map(p => {
+          const n = SALDO_NOTAS[p.ano] || {};
+          const fontes = (n.fontes || []).map(f =>
+            `<a href="${f.u}" target="_blank" rel="noopener noreferrer">${f.t} ↗</a>`).join(" · ");
+          return `<p><strong>${p.ano}</strong> · ${p.saldo >= 0 ? "superávit" : "déficit"} de
+            ${fmtMoneyFull(Math.abs(p.saldo))} — ${n.texto || ""}` +
+            (fontes ? `<span class="viz-note-fontes">Fontes: ${fontes}</span>` : "") + `</p>`;
+        }).join(""));
 
       renderTable(saldoRoot, {
         caption: "Saldo orçamentário de Itajubá/MG, 2015–2025",
@@ -1046,6 +1190,22 @@ function note(root, html) {
   p.innerHTML = html;
   root.appendChild(p);
   return p;
+}
+
+// Nota recolhida: o mesmo conteúdo do tooltip fica disponível sem mouse — para
+// leitura no celular, para quem usa teclado/leitor de tela e para quem quer ler
+// tudo de uma vez. Fechada por padrão para não devolver o "textão" à página.
+function noteToggle(root, resumo, html) {
+  const det = document.createElement("details");
+  det.className = "viz-table-toggle viz-note-toggle";
+  const sum = document.createElement("summary");
+  sum.textContent = resumo;
+  det.appendChild(sum);
+  const div = document.createElement("div");
+  div.className = "viz-note-toggle-body";
+  div.innerHTML = html;
+  det.appendChild(div);
+  root.appendChild(det);
 }
 
 const pct = (v, casas = 0) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(casas).replace(".", ",") + "%";
@@ -1089,21 +1249,94 @@ function buildDespesaReal(root, desp) {
     { value: "R$ " + fmtInt.format(Math.round(b.per_capita_r2025)), label: "Gasto por habitante em 2025, no ano todo", note: "Vale como foto do ano, não como tendência — ver ressalva" },
   ]);
 
-  note(root, `A distância entre as duas linhas é a inflação. O orçamento quase triplicou no papel, mas ${pct(inflPct)}
-    disso é só o real valendo menos: <strong>o crescimento verdadeiro foi de ${pct(realPct)} em onze anos</strong>, algo como 5,6% ao ano.
-    É crescimento real e consistente — não é ilusão contábil, mas também não é a explosão que o número nominal sugere.
-    Correção feita pelo IPCA/IBGE, usando a média anual do índice (e não o valor de dezembro), porque despesa é um fluxo
-    espalhado pelo ano inteiro.`);
+  note(root, `A distância entre as linhas é a inflação: dos ${pct(nomPct)} nominais, ${pct(inflPct)} é só o real valendo
+    menos. Sobra <strong>${pct(realPct)} de crescimento verdadeiro</strong>. O que explica esses ${pct(realPct)}, em ordem
+    de tamanho:`);
 
-  note(root, `<strong>Por que a série começa em 2014 e não antes.</strong> ${desp.por_que_comeca_em_2014}`);
+  note(root, `<strong>1. Transferências de fora: +R$ 204 milhões reais</strong> (de R$ 218 mi para R$ 422 mi, +93%). É de
+    longe o principal, e tem três eventos datados dentro dele. Em <strong>2016</strong> o município passou a receber e pagar
+    diretamente o atendimento hospitalar, e só essa rubrica saltou de R$ 16 mi para R$ 63 mi num ano (detalhe no gráfico 6).
+    Em <strong>2020</strong> veio o auxílio federal da pandemia (LC 173/2020). E a partir de <strong>2021</strong> o novo
+    FUNDEB, criado pela Emenda Constitucional 108/2020, elevou a complementação da União de 10% para 23% do fundo até 2026 —
+    o efeito aparece em 2022, quando o piso nacional do magistério subiu 33,24% e a despesa com Educação em Itajubá subiu
+    36% real de uma vez.`);
 
-  note(root, `<strong>Ressalva sobre o valor por habitante.</strong> ${desp.ressalva_per_capita}`);
+  note(root, `<strong>2. Arrecadação própria: +R$ 50 milhões reais</strong> (de R$ 83 mi para R$ 133 mi, +60%), puxada quase
+    só pelo <strong>ISS, o imposto sobre serviços, que dobrou</strong>: R$ 24,9 mi em 2015 para R$ 49,8 mi em 2025,
+    corrigidos. IPTU e ITBI ficaram praticamente parados no mesmo período. Isso é a economia de serviços em torno da UNIFEI:
+    a cidade concentra mais de 150 empresas de base tecnológica e está implantando o ParCTeC, terceiro parque científico e
+    tecnológico de Minas Gerais, numa área de 289 hectares em parceria com a universidade.`);
+
+  note(root, `<strong>3. A população não cresceu</strong> — 96 mil em 2015, 96,8 mil em 2025. Nada desse aumento foi
+    absorvido por gente nova: virou gasto por habitante. <span style="opacity:.85">Duas notas de método: a série começa em
+    2014 porque é onde a base do SICONFI começa para todos os municípios (São Paulo capital também volta vazia antes disso);
+    e o valor por habitante vale como foto de um ano, não como tendência, porque as estimativas do IBGE anteriores ao Censo
+    2022 estavam cerca de 5% infladas — o detalhe está no arquivo de dados.</span>`);
 
   renderTable(root, {
     caption: "Despesa empenhada de Itajubá/MG, nominal e corrigida pela inflação, 2014–2025",
     columns: ["Ano", "Nominal", "Em R$ de 2025", "População", "Por habitante (R$ de 2025)"],
     rows: s.map(p => [String(p.ano), fmtMoneyFull(p.total_empenhado), fmtMoneyFull(p.total_empenhado_r2025),
       p.populacao ? fmtInt.format(p.populacao) : "sem estimativa", p.per_capita_r2025 ? fmtMoneyFull(p.per_capita_r2025) : "—"]),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Fase 3 — "a prefeitura cresceu junto com a cidade?".
+//
+// Índice 2014=100 nas duas séries, NÃO dois eixos. O PIB municipal é ~9x o
+// orçamento: num eixo único a despesa vira uma reta no rodapé, e dois eixos com
+// escalas independentes deixam sugerir qualquer conclusão só escolhendo onde
+// cortar cada um (é o anti-padrão nº 1 do skill de dataviz). Índice comum
+// responde exatamente a pergunta feita — quem subiu mais — sem essa liberdade.
+// ---------------------------------------------------------------------------
+function buildPibVsDespesa(root, desp) {
+  const cmp = desp.comparacao_com_pib;
+  if (!cmp) return;
+  const st = getComputedStyle(root);
+  const cDesp = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const cPib = st.getPropertyValue("--v-series-3").trim() || "#eb6834";
+
+  renderLineChart(root, {
+    series: [
+      { key: "desp", label: "Despesa da Prefeitura", color: cDesp, points: cmp.serie.map(p => ({ y: p.indice_despesa })) },
+      { key: "pib", label: "PIB do município", color: cPib, points: cmp.serie.map(p => ({ y: p.indice_pib })) },
+    ],
+    xValues: cmp.serie.map(p => String(p.ano)),
+    yLabel: `Índice ${cmp.base_indice} = 100 (ambos corrigidos pela inflação)`,
+    yFormat: (v) => String(Math.round(v)),
+    yFormatFull: (v) => v.toFixed(1).replace(".", ",") + " (base 100 em " + cmp.base_indice + ")",
+  });
+
+  const pri = cmp.serie[0], ult = cmp.serie[cmp.serie.length - 1];
+  renderStats(root, [
+    { value: Math.round(ult.indice_despesa) + " / 100", label: `Despesa da Prefeitura em ${ult.ano}`, note: `Cresceu ${pct(ult.indice_despesa - 100)} em termos reais desde ${cmp.base_indice}` },
+    { value: Math.round(ult.indice_pib) + " / 100", label: `PIB do município em ${ult.ano}`, note: `Praticamente o mesmo de ${cmp.base_indice}, descontada a inflação` },
+    { value: ult.despesa_sobre_pib_pct.toFixed(1).replace(".", ",") + "%", label: "Quanto a Prefeitura pesa na economia local", note: `Era ${pri.despesa_sobre_pib_pct.toFixed(1).replace(".", ",")}% em ${cmp.base_indice}` },
+  ]);
+
+  note(root, `A resposta é <strong>não — e o contrário do que se esperaria</strong>. Corrigido pela inflação,
+    <strong>o PIB de Itajubá em ${ult.ano} está praticamente onde estava em ${cmp.base_indice}</strong> (índice ${ult.indice_pib.toString().replace(".", ",")}),
+    enquanto a despesa da Prefeitura subiu ${pct(ult.indice_despesa - 100)}. A economia da cidade despencou na recessão de
+    2015–2016 (chegou ao índice ${cmp.serie[2].indice_pib.toString().replace(".", ",")} em 2016, uma queda real de
+    ${pct(cmp.serie[2].indice_pib - 100)}) e levou sete anos para voltar ao ponto de partida. O orçamento não acompanhou
+    essa queda: seguiu subindo o tempo todo. Resultado: <strong>a Prefeitura saiu de
+    ${pri.despesa_sobre_pib_pct.toFixed(1).replace(".", ",")}% para ${ult.despesa_sobre_pib_pct.toFixed(1).replace(".", ",")}% da economia local</strong> —
+    quase o dobro de peso. Como o crescimento do orçamento veio sobretudo de transferências de fora (gráfico 8), o que
+    aconteceu não foi a cidade ficando mais rica e sustentando uma prefeitura maior: foi a prefeitura crescendo por
+    repasse enquanto a economia local ficava parada.`);
+
+  note(root, `<strong>Duas ressalvas honestas.</strong> O IBGE não publica PIB municipal a preços constantes, então a
+    correção usa o mesmo IPCA do resto da página — é o procedimento usual, mas o IPCA mede preços ao consumidor e não a
+    estrutura de preços da produção, então o índice do PIB tem margem de erro maior que o da despesa. E a série do PIB
+    municipal termina em ${ult.ano}, último ano publicado; por isso este gráfico para ali enquanto os outros vão até 2025.`);
+
+  renderTable(root, {
+    caption: `PIB municipal e despesa da Prefeitura, índice ${cmp.base_indice}=100, em R$ de 2025`,
+    columns: ["Ano", "PIB (R$ de 2025)", "Despesa (R$ de 2025)", "Índice PIB", "Índice despesa", "Despesa / PIB"],
+    rows: cmp.serie.map(p => [String(p.ano), fmtMoneyFull(p.pib_r2025), fmtMoneyFull(p.despesa_r2025),
+      p.indice_pib.toString().replace(".", ","), p.indice_despesa.toString().replace(".", ","),
+      p.despesa_sobre_pib_pct.toFixed(2).replace(".", ",") + "%"]),
   });
 }
 
@@ -1591,6 +1824,7 @@ function initItajubaCharts() {
   });
 
   const realRoot = document.querySelector("#chart-despesa-real");
+  const pibDespRoot = document.querySelector("#chart-pib-despesa");
   const funcoesRoot = document.querySelector("#chart-despesa-funcoes");
   const variacaoRoot = document.querySelector("#chart-despesa-variacao");
   const investRoot = document.querySelector("#chart-investimento");
@@ -1610,11 +1844,12 @@ function initItajubaCharts() {
       fetch("../dados/itajuba/receita_origem_2014_2025.json").then(r => r.json()),
     ]).then(([desp, rec]) => {
       if (realRoot) buildDespesaReal(realRoot, desp);
+      if (pibDespRoot) buildPibVsDespesa(pibDespRoot, desp);
       if (funcoesRoot) buildDespesaFuncoes(funcoesRoot, desp);
       if (variacaoRoot) buildDespesaVariacao(variacaoRoot, desp);
       if (investRoot) buildInvestimentoCredito(investRoot, desp, rec);
       if (origemRoot) buildReceitaOrigem(origemRoot, rec);
-    }).catch(() => showError(realRoot, funcoesRoot, variacaoRoot, investRoot, origemRoot));
+    }).catch(() => showError(realRoot, pibDespRoot, funcoesRoot, variacaoRoot, investRoot, origemRoot));
   });
 
   const idhmRoot = document.querySelector("#chart-idhm");

@@ -597,5 +597,92 @@
    "variacao_real_reais": -4549905.92
   }
  ],
- "ressalva_per_capita": "O valor por habitante é confiável como FOTO de um ano, não como TENDÊNCIA. A série de população mistura duas coisas: contagem (Censo 2000, 2010 e 2022) e estimativa amostral (demais anos). Em Itajubá a estimativa de 2021 apontava 97.782 pessoas e o Censo de 2022 contou 93.073 — ou seja, as estimativas anteriores estavam cerca de 5% infladas. E as estimativas de 2024 (96.632) e 2025 (96.855) voltaram a ficar acima da contagem de 2022, o que implicaria um crescimento pouco plausível em dois anos. Um gráfico de despesa por habitante ao longo do tempo herdaria esses saltos e mostraria degraus que são do denominador, não do gasto. Por isso a página usa o total real (corrigido pela inflação) como medida de tendência e reserva o valor por habitante para ancorar um ano isolado. 2023 fica sem valor: o IBGE não publicou estimativa para Itajubá naquele ano."
+ "ressalva_per_capita": "O valor por habitante é confiável como FOTO de um ano, não como TENDÊNCIA. A série de população mistura duas coisas: contagem (Censo 2000, 2010 e 2022) e estimativa amostral (demais anos). Em Itajubá a estimativa de 2021 apontava 97.782 pessoas e o Censo de 2022 contou 93.073 — ou seja, as estimativas anteriores estavam cerca de 5% infladas. E as estimativas de 2024 (96.632) e 2025 (96.855) voltaram a ficar acima da contagem de 2022, o que implicaria um crescimento pouco plausível em dois anos. Um gráfico de despesa por habitante ao longo do tempo herdaria esses saltos e mostraria degraus que são do denominador, não do gasto. Por isso a página usa o total real (corrigido pela inflação) como medida de tendência e reserva o valor por habitante para ancorar um ano isolado. 2023 fica sem valor: o IBGE não publicou estimativa para Itajubá naquele ano.",
+ "comparacao_com_pib": {
+  "base_indice": 2014,
+  "fonte_pib": "IBGE — Produto Interno Bruto dos Municípios, referência 2010, tabela SIDRA 5938",
+  "observacao": "PIB municipal do IBGE, deflacionado pelo mesmo IPCA e indexado a 2014=100, para responder se a prefeitura cresceu junto com a economia da cidade. Usamos índice em vez de dois eixos: o PIB é cerca de nove vezes maior que o orçamento, então num eixo único a despesa viraria uma linha achatada no rodapé, e dois eixos com escalas independentes permitem sugerir qualquer conclusão apenas escolhendo onde cortar cada escala. A série do PIB termina em 2023, que é o último ano publicado pelo IBGE — por isso a comparação vai até ali, enquanto os demais gráficos desta fase chegam a 2025.",
+  "serie": [
+   {
+    "ano": 2014,
+    "pib_r2025": 4935401247.6,
+    "despesa_r2025": 277066407.64,
+    "indice_pib": 100.0,
+    "indice_despesa": 100.0,
+    "despesa_sobre_pib_pct": 5.61
+   },
+   {
+    "ano": 2015,
+    "pib_r2025": 4600966098.3,
+    "despesa_r2025": 288135311.34,
+    "indice_pib": 93.2,
+    "indice_despesa": 104.0,
+    "despesa_sobre_pib_pct": 6.26
+   },
+   {
+    "ano": 2016,
+    "pib_r2025": 4118326702.7,
+    "despesa_r2025": 318562738.35,
+    "indice_pib": 83.4,
+    "indice_despesa": 115.0,
+    "despesa_sobre_pib_pct": 7.74
+   },
+   {
+    "ano": 2017,
+    "pib_r2025": 4533365877.7,
+    "despesa_r2025": 330027786.53,
+    "indice_pib": 91.9,
+    "indice_despesa": 119.1,
+    "despesa_sobre_pib_pct": 7.28
+   },
+   {
+    "ano": 2018,
+    "pib_r2025": 4344343113.6,
+    "despesa_r2025": 329545343.06,
+    "indice_pib": 88.0,
+    "indice_despesa": 118.9,
+    "despesa_sobre_pib_pct": 7.59
+   },
+   {
+    "ano": 2019,
+    "pib_r2025": 4442376133.8,
+    "despesa_r2025": 353205799.09,
+    "indice_pib": 90.0,
+    "indice_despesa": 127.5,
+    "despesa_sobre_pib_pct": 7.95
+   },
+   {
+    "ano": 2020,
+    "pib_r2025": 4464866534.4,
+    "despesa_r2025": 424051280.54,
+    "indice_pib": 90.5,
+    "indice_despesa": 153.1,
+    "despesa_sobre_pib_pct": 9.5
+   },
+   {
+    "ano": 2021,
+    "pib_r2025": 4524757804.8,
+    "despesa_r2025": 424051017.3,
+    "indice_pib": 91.7,
+    "indice_despesa": 153.1,
+    "despesa_sobre_pib_pct": 9.37
+   },
+   {
+    "ano": 2022,
+    "pib_r2025": 4724697297.6,
+    "despesa_r2025": 425236442.88,
+    "indice_pib": 95.7,
+    "indice_despesa": 153.5,
+    "despesa_sobre_pib_pct": 9.0
+   },
+   {
+    "ano": 2023,
+    "pib_r2025": 4929763064.0,
+    "despesa_r2025": 469449445.64,
+    "indice_pib": 99.9,
+    "indice_despesa": 169.4,
+    "despesa_sobre_pib_pct": 9.52
+   }
+  ]
+ }
 }
