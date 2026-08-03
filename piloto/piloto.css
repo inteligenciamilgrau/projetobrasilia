@@ -29,6 +29,24 @@
 .phase-tag.next{color:#66500c;background:var(--yellow-soft)}
 .phase-tag.todo{color:var(--muted);background:var(--soft)}
 
+/* variante expansível: <details class="phase done"><summary class="phase-summary">…</summary><div class="phase-body">…</div></details> */
+details.phase{display:block;padding:0}
+details.phase > summary.phase-summary{display:grid;grid-template-columns:2.4rem 1fr auto auto;gap:1rem;align-items:center;padding:1rem 1.1rem;cursor:pointer;list-style:none}
+details.phase > summary.phase-summary::-webkit-details-marker{display:none}
+details.phase > summary.phase-summary::marker{content:""}
+details.phase > summary.phase-summary:hover{background:var(--soft)}
+details.phase > summary.phase-summary:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+details.phase .phase-text h3{margin-bottom:.25rem;font-size:1rem}
+details.phase .phase-text p{margin:0;color:var(--muted);font-size:.82rem}
+details.phase .phase-chevron{justify-self:end;color:var(--muted);font-size:.85rem;transition:transform .15s ease}
+details.phase[open] .phase-chevron{transform:rotate(180deg)}
+details.phase .phase-body{padding:.2rem 1.1rem 1.2rem;border-top:1px solid var(--line)}
+details.phase .phase-body .viz-root{margin-top:1rem;margin-bottom:0}
+details.phase .phase-body .viz-root+.viz-root{margin-top:1rem}
+details.phase .phase-body .viz-note{margin:.6rem 0 0;color:var(--muted);font-size:.78rem}
+details.phase .phase-body .muted-note{margin:.7rem 0 0}
+details.phase .phase-body .dataset-grid{margin-top:.7rem}
+
 .source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
 .card{display:flex;flex-direction:column;padding:1.1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
 .labels{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.65rem}

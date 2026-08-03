@@ -269,21 +269,9 @@ function legend(root, items) {
 }
 
 // ---------------------------------------------------------------------------
-// Carrega os dados e monta os 3 gráficos da página de Itajubá.
+// Monta o gráfico de população dentro de #chart-populacao.
 // ---------------------------------------------------------------------------
-async function initItajubaCharts() {
-  const popRoot = document.querySelector("#chart-populacao");
-  const finRoot = document.querySelector("#chart-financas");
-  const saldoRoot = document.querySelector("#chart-saldo");
-  if (!popRoot && !finRoot && !saldoRoot) return;
-
-  try {
-    const [pop, fin] = await Promise.all([
-      fetch("../dados/itajuba/populacao_2000_2025.json").then(r => r.json()),
-      fetch("../dados/itajuba/siconfi_receita_despesa_2015_2025.json").then(r => r.json()),
-    ]);
-
-    if (popRoot) {
+function buildPopulacaoChart(popRoot, pop) {
       const xValues = pop.serie.map(p => String(p.ano));
       const points = pop.serie.map(p => ({ y: p.populacao, kind: p.fonte }));
       const style = getComputedStyle(popRoot);
@@ -298,8 +286,12 @@ async function initItajubaCharts() {
         columns: ["Ano", "População", "Fonte"],
         rows: pop.serie.map(p => [String(p.ano), p.populacao != null ? fmtInt.format(p.populacao) : "sem dado", p.fonte === "censo" ? "Censo" : p.fonte === "estimativa" ? "Estimativa" : "—"]),
       });
-    }
+}
 
+// ---------------------------------------------------------------------------
+// Monta os gráficos de finanças dentro de #chart-financas e #chart-saldo.
+// ---------------------------------------------------------------------------
+function buildFinancasCharts(finRoot, saldoRoot, fin) {
     if (finRoot) {
       const xValues = fin.serie.map(p => String(p.ano));
       const colorReceita = getComputedStyle(finRoot).getPropertyValue("--v-series-receita").trim() || "#08724e";
@@ -342,11 +334,43 @@ async function initItajubaCharts() {
         rows: fin.serie.map(p => [String(p.ano), fmtMoneyFull(p.saldo)]),
       });
     }
-  } catch (err) {
-    [popRoot, finRoot, saldoRoot].forEach(r => {
-      if (r) r.innerHTML = '<p class="viz-note">Não foi possível carregar os dados do gráfico. Abra a página por um servidor HTTP e tente de novo.</p>';
-    });
-  }
+}
+
+function showError(...roots) {
+  roots.forEach(r => {
+    if (r) r.innerHTML = '<p class="viz-note">Não foi possível carregar os dados do gráfico. Abra a página por um servidor HTTP e tente de novo.</p>';
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Cada gráfico só é montado na primeira vez que a <details> da sua Fase abre —
+// os dados de fases ainda fechadas não chegam a ser processados no DOM.
+// ---------------------------------------------------------------------------
+function onFirstOpen(detailsEl, cb) {
+  if (!detailsEl) return;
+  let done = false;
+  detailsEl.addEventListener("toggle", () => {
+    if (detailsEl.open && !done) { done = true; cb(); }
+  });
+}
+
+function initItajubaCharts() {
+  const popRoot = document.querySelector("#chart-populacao");
+  const finRoot = document.querySelector("#chart-financas");
+  const saldoRoot = document.querySelector("#chart-saldo");
+
+  onFirstOpen(popRoot && popRoot.closest("details.phase"), () => {
+    fetch("../dados/itajuba/populacao_2000_2025.json").then(r => r.json())
+      .then(pop => buildPopulacaoChart(popRoot, pop))
+      .catch(() => showError(popRoot));
+  });
+
+  const financasDetails = (finRoot || saldoRoot) && (finRoot || saldoRoot).closest("details.phase");
+  onFirstOpen(financasDetails, () => {
+    fetch("../dados/itajuba/siconfi_receita_despesa_2015_2025.json").then(r => r.json())
+      .then(fin => buildFinancasCharts(finRoot, saldoRoot, fin))
+      .catch(() => showError(finRoot, saldoRoot));
+  });
 }
 
 initItajubaCharts();
