@@ -88,15 +88,43 @@
           </div>
         </details>
         <details class="phase done">
-          <summary class="phase-summary"><div class="phase-num">3</div><div class="phase-text"><h3>Finanças públicas</h3><p>SICONFI em série histórica 2015–2025 (RREO Anexo 01, acumulado do ano): receita realizada, despesa empenhada e saldo, já separando a Prefeitura do consórcio CIMASAS.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <summary class="phase-summary"><div class="phase-num">3</div><div class="phase-text"><h3>Finanças públicas</h3><p>Onze anos de orçamento no SICONFI: quanto entrou, quanto saiu, para onde foi cada real por função de governo, quanto disso foi só inflação e de onde vem o dinheiro. Prefeitura separada do consórcio CIMASAS.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
           <div class="phase-body">
+            <div class="explainer">
+              <h4>Como ler esta fase</h4>
+              <p>Um orçamento municipal só quer dizer alguma coisa depois de responder a quatro perguntas, nesta ordem: <strong>quanto entrou e saiu</strong>, <strong>quanto disso é apenas a moeda perdendo valor</strong>, <strong>em que a prefeitura gastou</strong> e <strong>de onde o dinheiro veio</strong>. Os gráficos abaixo seguem essa sequência.</p>
+              <p>Duas palavras aparecem o tempo todo e vale fixar o sentido. <em>Despesa empenhada</em> é o momento em que a prefeitura assume o compromisso de gastar — não é necessariamente o momento em que o dinheiro sai do caixa (isso é a despesa paga). É a medida que a lei usa para o balanço e é a que está aqui. <em>Função</em> é a classificação obrigatória que divide todo gasto público em áreas — Saúde, Educação, Urbanismo, Encargos Especiais — e é o que permite comparar Itajubá com qualquer outro município do país.</p>
+              <p>Todos os valores corrigidos pela inflação usam o IPCA do IBGE e estão em reais de 2025. Onde não estiverem corrigidos, está dito explicitamente.</p>
+            </div>
             <div class="viz-root" id="chart-financas">
-              <div class="viz-head"><div><h3>Receita e despesa da Prefeitura, 2015–2025</h3><p>RREO Anexo 01, acumulado do ano (dez/cada exercício). Valores correntes, sem ajuste pela inflação.</p></div></div>
+              <div class="viz-head"><div><h3>1. Receita e despesa da Prefeitura, 2015–2025</h3><p>RREO Anexo 01, acumulado do ano (dez/cada exercício). Valores correntes, sem ajuste pela inflação — é assim que aparecem no balanço oficial.</p></div></div>
             </div>
             <div class="viz-root" id="chart-saldo">
-              <div class="viz-head"><div><h3>Saldo orçamentário, 2015–2025</h3><p>Receita realizada menos despesa empenhada. Três anos de déficit: 2015, 2017 e 2023.</p></div></div>
+              <div class="viz-head"><div><h3>2. Saldo orçamentário, 2015–2025</h3><p>Receita realizada menos despesa empenhada. Três anos de déficit: 2015, 2017 e 2023.</p></div></div>
             </div>
-            <p class="muted-note">Fonte salva: <a href="../dados/itajuba/siconfi_receita_despesa_2015_2025.json" target="_blank" rel="noopener noreferrer">dados/itajuba/siconfi_receita_despesa_2015_2025.json ↗</a></p>
+            <div class="viz-root" id="chart-despesa-real">
+              <div class="viz-head"><div><h3>3. O gasto subiu — mas quanto disso foi inflação?</h3><p>A mesma despesa de duas formas: como está no balanço de cada ano e corrigida pelo IPCA para reais de 2025. Série do DCA, que alcança 2014.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-despesa-funcoes">
+              <div class="viz-head"><div><h3>4. Para onde foi o dinheiro em 2025</h3><p>Despesa empenhada por função de governo, do maior para o menor. Passe o mouse para ver o valor cheio e o percentual do orçamento.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-despesa-variacao">
+              <div class="viz-head"><div><h3>5. Quem cresceu e quem encolheu, 2015→2025</h3><p>Variação de cada função já descontada a inflação, em reais de 2025. À direita, quem ganhou espaço no orçamento; à esquerda, quem perdeu.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-investimento">
+              <div class="viz-head"><div><h3>6. As obras seguem os empréstimos</h3><p>Investimento (obras e equipamentos) contra o dinheiro de operações de crédito que entrou em cada ano. Ambos em reais de 2025.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-receita-origem">
+              <div class="viz-head"><div><h3>7. De onde vem o dinheiro</h3><p>Receita bruta de 2025 por origem. Mostra o quanto da conta a cidade arrecada e o quanto depende de repasse de fora.</p></div></div>
+            </div>
+            <div class="explainer">
+              <h4>O que esta fase não consegue mostrar</h4>
+              <p><strong>Não há dado estruturado antes de 2014.</strong> A base do SICONFI começa ali para todos os municípios do país — confirmamos consultando a mesma API para São Paulo capital, que também volta vazia em 2012 e 2013. Séries anteriores existem em outro formato (os arquivos históricos do FINBRA), com outro plano de contas, e não foram incorporadas aqui.</p>
+              <p><strong>Empenhado não é pago.</strong> Um compromisso assumido em dezembro pode ser pago no ano seguinte, como resto a pagar. A série de despesa paga existe no mesmo anexo e não foi usada — para acompanhar a execução ano a ano, o empenho é a medida padrão, mas ele não prova que a obra saiu do papel.</p>
+              <p><strong>Função diz a área, não a qualidade.</strong> Saber que a Saúde recebeu R$ 197 milhões não diz se o atendimento melhorou. Cruzar orçamento com resultado (fila, mortalidade, aprovação escolar) é outro trabalho, e é o que a Fase 9 começa a tentar com o IDU-Br.</p>
+              <p><strong>Uma pergunta ficou em aberto</strong>, e está marcada como tal no gráfico 5: não localizamos em fonte pública o ato que, a partir de 2016, quadruplicou o gasto municipal com assistência hospitalar. A hipótese mais provável está descrita ali, mas hipótese não vira conclusão nesta página.</p>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/itajuba/siconfi_receita_despesa_2015_2025.json" target="_blank" rel="noopener noreferrer">siconfi_receita_despesa_2015_2025.json ↗</a> · <a href="../dados/itajuba/despesa_funcao_natureza_2014_2025.json" target="_blank" rel="noopener noreferrer">despesa_funcao_natureza_2014_2025.json ↗</a> · <a href="../dados/itajuba/receita_origem_2014_2025.json" target="_blank" rel="noopener noreferrer">receita_origem_2014_2025.json ↗</a></p>
           </div>
         </details>
         <details class="phase done">
@@ -190,7 +218,7 @@
 
       <h3 class="category-heading">Finanças públicas e compras</h3>
       <div class="source-grid">
-        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional</h3><p class="what">RREO Anexo 01, acumulado do ano, 2015–2025 (11 exercícios). Vira os dois gráficos de finanças acima. Atenção: a consulta por município traz também o consórcio CIMASAS junto da Prefeitura — já filtrado nos arquivos salvos.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo%2001&id_ente=3132404" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/siconfi_receita_despesa_2015_2025.json" target="_blank" rel="noopener noreferrer">Ver série 2015–2025 ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional</h3><p class="what">Três demonstrativos, não um: o RREO Anexo 01 (receita × despesa, 2015–2025) e, do DCA — a declaração anual definitiva —, o Anexo I-E (despesa por função), o I-D (despesa por natureza) e o I-C (receita por origem), todos 2014–2025. É o DCA que alcança 2014 e permite abrir "para onde foi o dinheiro". Duas armadilhas já tratadas: a consulta por município traz o consórcio CIMASAS junto da Prefeitura, e a coluna de dedução do FUNDEB vem repetida em todos os níveis da árvore de contas (somar tudo quadruplica o valor).</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio=2025&no_anexo=DCA-Anexo%20I-E&id_ente=3132404" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/despesa_funcao_natureza_2014_2025.json" target="_blank" rel="noopener noreferrer">Ver despesa por função ↗</a></article>
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">Série histórica jan/2025–ago/2026 (Pregão Eletrônico, Concorrência e Inexigibilidade — Dispensa ficou de fora, API travou repetidamente nela), CNPJ da Prefeitura 18.025.940/0001-09. Base do gráfico de categorias e evolução mensal da Fase 4.</p><a class="open" href="https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/pncp_serie_2025_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Portal da Transparência da União</h3><p class="what">Transferências federais recebidas por Itajubá (convênios, emendas, FPM).</p><a class="open" href="https://portaldatransparencia.gov.br/download-de-dados/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
@@ -243,6 +271,8 @@
         <article class="dataset"><h3>siconfi_rreo_2025_anual.json</h3><p>487 linhas do Balanço Orçamentário, acumulado 2025 — 333 da Prefeitura, 154 do consórcio CIMASAS. (Corrigido: o nome antigo dizia "bimestre3" por engano.)</p><p class="meta">Coletado 02/08/2026 · SICONFI</p></article>
         <article class="dataset"><h3>populacao_2000_2025.json</h3><p>26 anos de população residente — Censos 2000/2010/2022 e Estimativas nos demais anos, com a fonte de cada ponto marcada.</p><p class="meta">Coletado 03/08/2026 · IBGE</p></article>
         <article class="dataset"><h3>siconfi_receita_despesa_2015_2025.json</h3><p>Série anual de receita realizada, despesa empenhada e saldo, 2015–2025, já filtrada só para a Prefeitura.</p><p class="meta">Coletado 03/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>despesa_funcao_natureza_2014_2025.json</h3><p>12 anos de despesa empenhada aberta por função (Saúde, Educação, Urbanismo…) e por natureza (pessoal, investimento, dívida), com cada ano também corrigido pelo IPCA para reais de 2025 e a comparação real 2015→2025 por função.</p><p class="meta">Coletado 03/08/2026 · SICONFI (DCA Anexos I-E e I-D) + IPCA/IBGE</p></article>
+        <article class="dataset"><h3>receita_origem_2014_2025.json</h3><p>12 anos de receita por origem: arrecadação própria, transferências da União e do estado, empréstimos e dedução do FUNDEB. Costura os dois planos de contas (antes e depois de 2018) e passa em teste de fechamento contra o RREO.</p><p class="meta">Coletado 03/08/2026 · SICONFI (DCA Anexo I-C)</p></article>
         <article class="dataset"><h3>idhm_historico_1991_2010.json</h3><p>IDHM geral e as 3 dimensões (educação, longevidade, renda) de Itajubá em 1991, 2000 e 2010.</p><p class="meta">Coletado 03/08/2026 · IPEAData</p></article>
         <article class="dataset"><h3>registro_civil_2003_2024.json</h3><p>22 anos de nascidos vivos e óbitos registrados em Itajubá, incluindo o pico de óbitos de 2021 (Covid-19).</p><p class="meta">Coletado 03/08/2026 · IBGE</p></article>
         <article class="dataset"><h3>ibge_cidades_snapshot_2026.json</h3><p>Retrato mais recente de educação (Ideb, escolarização), saúde (mortalidade infantil) e economia (PIB, receitas/despesas).</p><p class="meta">Coletado 03/08/2026 · IBGE Cidades</p></article>

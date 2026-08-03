@@ -54,11 +54,12 @@ function niceMax(v) {
   if (v <= 0) return 1;
   const mag = Math.pow(10, Math.floor(Math.log10(v)));
   const norm = v / mag;
-  let step;
-  if (norm <= 1) step = 1;
-  else if (norm <= 2) step = 2;
-  else if (norm <= 5) step = 5;
-  else step = 10;
+  // Escada fina de propósito. Com só 1/2/5/10, qualquer valor acima de 5×10^n
+  // pulava direto para 10×10^n: a despesa de R$ 522M levava o eixo a R$ 1.000M
+  // e metade do cartão ficava em branco, achatando a série que é o dado. Todos
+  // os degraus abaixo dividem bem por 4, que é o número de gridlines.
+  const escada = [1, 2, 3, 4, 5, 6, 8, 10];
+  const step = escada.find(s => norm <= s) || 10;
   return step * mag;
 }
 
@@ -355,6 +356,94 @@ function renderBarsHorizontal(root, { data, labelKey, valueKey, valueFormat, val
       showTooltip(tip, wrap, (M.left + w / 2) * s, barY * s, String(d[labelKey]), [
         { label: "Total", value: valueFormatFull(d[valueKey]), color },
       ]);
+    }
+    bar.addEventListener("pointerenter", onEnter);
+    bar.addEventListener("focus", onEnter);
+    bar.addEventListener("pointerleave", () => hideTooltip(tip));
+    bar.addEventListener("blur", () => hideTooltip(tip));
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Barras horizontais DIVERGENTES (variação com sinal por categoria). Diferente
+// de renderDivergingBars, que é vertical e serve para uma série temporal curta:
+// aqui as categorias são muitas (uma por função de governo) e os rótulos são
+// longos, então o eixo tem que ser o horizontal — nome à esquerda, barra saindo
+// de um zero central para a direita (cresceu) ou para a esquerda (encolheu).
+// Duas cores + zero neutro é a regra de paleta divergente (color-formula.md).
+// ---------------------------------------------------------------------------
+function renderBarsHorizontalDiverging(root, { data, labelKey, valueKey, valueFormat, valueFormatFull, posColor, negColor, posWord, negWord, ariaLabelPrefix }) {
+  const rowH = 30;
+  const M = { top: 22, right: 16, bottom: 8, left: 168 };
+  const W = 760;
+  const innerW = W - M.left - M.right;
+  const H = M.top + M.bottom + data.length * rowH;
+  const vs = data.map(d => d[valueKey]);
+  const posMax = Math.max(0, ...vs);
+  const negMax = Math.max(0, ...vs.map(v => -v));
+
+  // O zero NÃO fica no centro. Centrá-lo desperdiçaria metade da largura sempre
+  // que um dos lados for muito menor que o outro — que é o caso aqui: a maior
+  // queda é 26× menor que a maior alta. A fração de largura dada ao lado
+  // negativo acompanha o dado, com piso para caber o rótulo do valor.
+  // O que NÃO muda é a escala: px por real é único para os dois lados, senão
+  // uma queda pequena apareceria do mesmo tamanho de uma alta grande.
+  const fracNeg = negMax > 0
+    ? Math.min(0.5, Math.max(0.17, negMax / (posMax + negMax)))
+    : 0.04;
+  const negW = innerW * fracNeg;
+  const posW = innerW - negW;
+  const zeroX = M.left + negW;
+  const unit = Math.min(
+    negMax > 0 ? (negW * 0.80) / negMax : Infinity,
+    posMax > 0 ? (posW * 0.86) / posMax : Infinity,
+  );
+  const xScale = (v) => v * unit;
+
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap";
+  root.appendChild(wrap);
+  const svg = el("svg", { class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": ariaLabelPrefix || "" }, wrap);
+
+  // Só a linha do zero. Não há régua de valores porque cada barra já carrega o
+  // número impresso ao lado — gridlines aqui seriam redundância competindo com
+  // o dado (marks-and-anatomy.md: rótulo direto dispensa eixo).
+  el("line", { x1: zeroX, x2: zeroX, y1: M.top - 6, y2: H - M.bottom, class: "viz-gridline", "stroke-width": 1.4 }, svg);
+  const t0 = el("text", { x: zeroX, y: M.top - 11, "text-anchor": "middle", class: "viz-axis-text" }, svg);
+  t0.textContent = "0";
+
+  const tip = makeTooltip(wrap);
+
+  data.forEach((d, i) => {
+    const y = M.top + i * rowH;
+    const barH = Math.min(18, rowH - 12);
+    const barY = y + (rowH - barH) / 2;
+    const v = d[valueKey];
+    const w = Math.max(2, Math.abs(xScale(v)));
+    const x = v >= 0 ? zeroX : zeroX - w;
+    const color = v >= 0 ? posColor : negColor;
+    const palavra = v >= 0 ? posWord : negWord;
+
+    const label = el("text", { x: M.left - 12, y: y + rowH / 2 + 4, "text-anchor": "end", class: "viz-axis-text" }, svg);
+    label.textContent = d[labelKey];
+
+    const bar = el("rect", {
+      class: "viz-bar", x, y: barY, width: w, height: barH, rx: 4,
+      fill: color, tabindex: 0, role: "img",
+      "aria-label": `${d[labelKey]}: ${palavra} ${valueFormatFull(Math.abs(v))}`,
+    }, svg);
+
+    // rótulo direto do valor, do lado de fora da barra
+    const vx = v >= 0 ? x + w + 7 : x - 7;
+    const valLabel = el("text", { x: vx, y: y + rowH / 2 + 4, "text-anchor": v >= 0 ? "start" : "end", class: "viz-axis-text" }, svg);
+    valLabel.textContent = (v >= 0 ? "+" : "−") + valueFormat(Math.abs(v));
+
+    function onEnter() {
+      const svgRect = svg.getBoundingClientRect();
+      const s = svgRect.width / W;
+      showTooltip(tip, wrap, (x + w / 2) * s, barY * s, String(d[labelKey]),
+        [{ label: palavra, value: valueFormatFull(Math.abs(v)), color }]
+          .concat(d.detalhe ? [{ label: "Variação", value: d.detalhe, color }] : []));
     }
     bar.addEventListener("pointerenter", onEnter);
     bar.addEventListener("focus", onEnter);
@@ -934,12 +1023,304 @@ function buildFinancasCharts(finRoot, saldoRoot, fin) {
         yFormat: (v) => "R$ " + fmtMoneyCompact(v), yFormatFull: (v) => fmtMoneyFull(v),
         posColor, negColor,
       });
+      note(saldoRoot, `<strong>O que este gráfico responde — e o que ele não responde.</strong> Ele diz se a prefeitura
+        comprometeu mais ou menos do que arrecadou em cada ano, e é assim que a Lei de Responsabilidade Fiscal olha para a
+        conta. Só isso. <strong>Saldo positivo não significa que o dinheiro foi bem gasto, e saldo negativo não significa
+        desperdício</strong> — uma prefeitura pode fechar no azul deixando de investir em escola, e fechar no vermelho porque
+        antecipou uma obra necessária. O saldo mede equilíbrio de caixa, não qualidade da despesa. Para saber onde o dinheiro
+        foi parar, os gráficos abaixo abrem a despesa por função, corrigem pela inflação e mostram de onde vem a receita.`);
+
       renderTable(saldoRoot, {
         caption: "Saldo orçamentário de Itajubá/MG, 2015–2025",
         columns: ["Ano", "Saldo (receita − despesa)"],
         rows: fin.serie.map(p => [String(p.ano), fmtMoneyFull(p.saldo)]),
       });
     }
+}
+
+// Nota abaixo de um gráfico. Aceita HTML porque várias notas precisam citar
+// fonte com link — o texto vem do código, nunca do dado carregado.
+function note(root, html) {
+  const p = document.createElement("p");
+  p.className = "viz-note";
+  p.innerHTML = html;
+  root.appendChild(p);
+  return p;
+}
+
+const pct = (v, casas = 0) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(casas).replace(".", ",") + "%";
+const milhoes = (v) => "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + "M";
+
+// ---------------------------------------------------------------------------
+// Fase 3 — "quanto subiu de verdade": despesa nominal × deflacionada pelo IPCA.
+//
+// Por que duas linhas e não uma: sozinha, a série nominal responde a pergunta
+// errada. Ela sobe 194% entre 2015 e 2025, mas 69% disso é só a moeda perdendo
+// valor. Sobrepor as duas deixa a distância entre elas ser a inflação — o leitor
+// vê o desconto acontecendo em vez de ter que confiar num número solto.
+// ---------------------------------------------------------------------------
+function buildDespesaReal(root, desp) {
+  const st = getComputedStyle(root);
+  const cReal = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const cNom = st.getPropertyValue("--v-series-3").trim() || "#eb6834";
+  const s = desp.serie;
+
+  renderLineChart(root, {
+    series: [
+      { key: "real", label: "Corrigido pela inflação (em R$ de 2025)", color: cReal, points: s.map(p => ({ y: p.total_empenhado_r2025 })) },
+      { key: "nom", label: "Em reais de cada ano (como aparece no balanço)", color: cNom, points: s.map(p => ({ y: p.total_empenhado })) },
+    ],
+    xValues: s.map(p => String(p.ano)),
+    yLabel: "Despesa empenhada (R$)",
+    yFormat: (v) => "R$ " + fmtMoneyCompact(v),
+    yFormatFull: (v) => fmtMoneyFull(v),
+  });
+
+  const a = s.find(p => p.ano === 2015);
+  const b = s[s.length - 1];
+  const nomPct = (b.total_empenhado / a.total_empenhado - 1) * 100;
+  const realPct = (b.total_empenhado_r2025 / a.total_empenhado_r2025 - 1) * 100;
+  const inflPct = (a.ipca_fator_para_2025 - 1) * 100;
+
+  renderStats(root, [
+    { value: pct(nomPct), label: "Aumento nominal do gasto, 2015→2025", note: `De ${milhoes(a.total_empenhado)} para ${milhoes(b.total_empenhado)}` },
+    { value: pct(inflPct), label: "Inflação acumulada no período (IPCA)", note: `R$ 1 de 2015 = R$ ${a.ipca_fator_para_2025.toFixed(2).replace(".", ",")} hoje` },
+    { value: pct(realPct), label: "Aumento REAL, já descontada a inflação", note: `De ${milhoes(a.total_empenhado_r2025)} para ${milhoes(b.total_empenhado_r2025)}, em R$ de 2025` },
+    { value: "R$ " + fmtInt.format(Math.round(b.per_capita_r2025)), label: "Gasto por habitante em 2025, no ano todo", note: "Vale como foto do ano, não como tendência — ver ressalva" },
+  ]);
+
+  note(root, `A distância entre as duas linhas é a inflação. O orçamento quase triplicou no papel, mas ${pct(inflPct)}
+    disso é só o real valendo menos: <strong>o crescimento verdadeiro foi de ${pct(realPct)} em onze anos</strong>, algo como 5,6% ao ano.
+    É crescimento real e consistente — não é ilusão contábil, mas também não é a explosão que o número nominal sugere.
+    Correção feita pelo IPCA/IBGE, usando a média anual do índice (e não o valor de dezembro), porque despesa é um fluxo
+    espalhado pelo ano inteiro.`);
+
+  note(root, `<strong>Por que a série começa em 2014 e não antes.</strong> ${desp.por_que_comeca_em_2014}`);
+
+  note(root, `<strong>Ressalva sobre o valor por habitante.</strong> ${desp.ressalva_per_capita}`);
+
+  renderTable(root, {
+    caption: "Despesa empenhada de Itajubá/MG, nominal e corrigida pela inflação, 2014–2025",
+    columns: ["Ano", "Nominal", "Em R$ de 2025", "População", "Por habitante (R$ de 2025)"],
+    rows: s.map(p => [String(p.ano), fmtMoneyFull(p.total_empenhado), fmtMoneyFull(p.total_empenhado_r2025),
+      p.populacao ? fmtInt.format(p.populacao) : "sem estimativa", p.per_capita_r2025 ? fmtMoneyFull(p.per_capita_r2025) : "—"]),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Fase 3 — "para onde foi o dinheiro": despesa por função no último ano.
+// Ranking de magnitude com rótulo direto = barras horizontais, 1 hue só
+// (a identidade está no texto, a cor não codifica nada — color-formula.md).
+// ---------------------------------------------------------------------------
+function buildDespesaFuncoes(root, desp) {
+  const st = getComputedStyle(root);
+  const cor = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const ult = desp.serie[desp.serie.length - 1];
+  const total = ult.total_empenhado;
+
+  const todas = Object.entries(ult.funcoes).map(([funcao, valor]) => ({ funcao, valor }))
+    .sort((x, y) => y.valor - x.valor);
+  const TOPO = 9;
+  const principais = todas.slice(0, TOPO);
+  const resto = todas.slice(TOPO);
+  const dados = principais.concat(resto.length
+    ? [{ funcao: `Outras ${resto.length} funções`, valor: resto.reduce((s, r) => s + r.valor, 0) }]
+    : []);
+
+  renderBarsHorizontal(root, {
+    data: dados, labelKey: "funcao", valueKey: "valor",
+    valueFormat: (v) => milhoes(v),
+    valueFormatFull: (v) => `${fmtMoneyFull(v)} (${(100 * v / total).toFixed(1).replace(".", ",")}% do orçamento)`,
+    color: cor, ariaLabelPrefix: `Despesa por função em ${ult.ano}`,
+  });
+
+  const saude = ult.funcoes["Saúde"] || 0;
+  const educ = ult.funcoes["Educação"] || 0;
+  note(root, `Só <strong>Saúde e Educação somam ${(100 * (saude + educ) / total).toFixed(0)}% de tudo que a prefeitura gastou em ${ult.ano}</strong>
+    (${milhoes(saude)} e ${milhoes(educ)}). Não é escolha livre do prefeito: a Constituição obriga o município a aplicar no mínimo
+    15% da receita de impostos em saúde e 25% em educação, e boa parte do dinheiro chega carimbado, vindo do SUS e do FUNDEB
+    já com destino definido. A função "Encargos Especiais" é quase toda serviço da dívida — juros e amortização de empréstimos.`);
+
+  renderTable(root, {
+    caption: `Despesa empenhada por função em ${ult.ano}`,
+    columns: ["Função", "Valor empenhado", "% do orçamento"],
+    rows: todas.map(f => [f.funcao, fmtMoneyFull(f.valor), (100 * f.valor / total).toFixed(1).replace(".", ",") + "%"]),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Fase 3 — "onde o aumento foi parar": variação REAL por função, 2015→2025.
+// Este é o gráfico que responde a pergunta que o saldo não respondia. O total
+// cresceu R$ 212M em valores de 2025; aqui dá pra ver quem ficou com eles.
+// ---------------------------------------------------------------------------
+function buildDespesaVariacao(root, desp) {
+  const st = getComputedStyle(root);
+  const posColor = st.getPropertyValue("--v-pos").trim() || "#2a78d6";
+  const negColor = st.getPropertyValue("--v-neg").trim() || "#e34948";
+
+  // Corte em R$ 1M: abaixo disso a barra fica invisível e a linha só polui.
+  const CORTE = 1e6;
+  const comp = desp.comparacao_2015_2025_r2025.filter(c => Math.abs(c.variacao_real_reais) >= CORTE);
+  const fora = desp.comparacao_2015_2025_r2025.length - comp.length;
+
+  legend(root, [
+    { label: "Cresceu acima da inflação", color: posColor },
+    { label: "Encolheu em termos reais", color: negColor },
+  ]);
+  renderBarsHorizontalDiverging(root, {
+    data: comp.map(c => ({
+      funcao: c.funcao, delta: c.variacao_real_reais,
+      detalhe: c.variacao_real_pct == null ? "rubrica nova" : pct(c.variacao_real_pct, 1),
+    })),
+    labelKey: "funcao", valueKey: "delta",
+    valueFormat: (v) => milhoes(v).replace("R$ ", ""),
+    valueFormatFull: (v) => fmtMoneyFull(v),
+    posColor, negColor, posWord: "Cresceu", negWord: "Encolheu",
+    ariaLabelPrefix: "Variação real da despesa por função entre 2015 e 2025",
+  });
+
+  const saude = comp.find(c => c.funcao === "Saúde");
+  const totalAlta = desp.serie[desp.serie.length - 1].total_empenhado_r2025
+    - desp.serie.find(p => p.ano === 2015).total_empenhado_r2025;
+  const urb = desp.comparacao_2015_2025_r2025.find(c => c.funcao === "Urbanismo");
+
+  note(root, `Tudo em R$ de 2025, então o que aparece aqui já é aumento <em>além</em> da inflação.
+    O orçamento cresceu ${milhoes(totalAlta)} em termos reais no período — e <strong>a Saúde sozinha ficou com
+    ${milhoes(saude.variacao_real_reais)}, ou ${(100 * saude.variacao_real_reais / totalAlta).toFixed(0)}% de todo o aumento</strong>.
+    No outro extremo, o Urbanismo (obras e serviços urbanos) <strong>encolheu ${pct(urb.variacao_real_pct, 1)}</strong>:
+    gasta-se hoje menos com a cidade física do que se gastava em 2015, depois de corrigir pela inflação.
+    ${fora > 0 ? `${fora} funções de valor pequeno ficaram fora do gráfico (variação menor que R$ 1 milhão); estão todas na tabela.` : ""}`);
+
+  note(root, `<strong>O que explica o salto da Saúde.</strong> A virada está numa subfunção específica: "Assistência Hospitalar
+    e Ambulatorial" saiu de R$ 16,1 milhões em 2015 para R$ 63,1 milhões já em 2016 — quase quatro vezes em um único ano — e
+    chegou a R$ 116,8 milhões em 2025 (tudo em R$ de 2025). Hoje é a maior linha isolada do orçamento inteiro. No mesmo ano de
+    2016 as transferências recebidas subiram na mesma proporção, o que indica mudança na forma como o atendimento hospitalar
+    passou a ser pago: quando um município é habilitado em gestão plena do SUS, o teto financeiro de média e alta complexidade
+    (MAC) passa a cair direto no Fundo Municipal de Saúde, e é a prefeitura que paga o hospital, em vez de o repasse ir do
+    Ministério para o prestador. <strong>Não localizamos em fonte pública o ato específico que fez essa mudança em Itajubá</strong>
+    — fica registrado como pergunta em aberto, não como conclusão. O que é verificável: houve ampliações posteriores do teto MAC
+    do município, como as portarias de 2023 que habilitaram no Hospital de Clínicas de Itajubá um Centro de Atendimento de
+    Urgência a pacientes com AVC (tipo II) e serviço de oftalmologia, ambas com recursos incorporados ao teto de Itajubá.`);
+
+  renderTable(root, {
+    caption: "Variação real da despesa por função, 2015→2025, em R$ de 2025",
+    columns: ["Função", "2015 (R$ de 2025)", "2025", "Variação", "Variação %"],
+    rows: desp.comparacao_2015_2025_r2025.map(c => [c.funcao, fmtMoneyFull(c.r2025_em_2015),
+      fmtMoneyFull(c.r2025_em_2025), fmtMoneyFull(c.variacao_real_reais),
+      c.variacao_real_pct == null ? "rubrica nova" : pct(c.variacao_real_pct, 1)]),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Fase 3 — "os picos de obra são empréstimo": investimento × operação de crédito.
+// As duas séries estão na mesma unidade (R$ de 2025), então cabem no mesmo eixo.
+// É justamente a coincidência entre elas que é o achado — separar em dois
+// gráficos esconderia o que o leitor precisa ver.
+// ---------------------------------------------------------------------------
+function buildInvestimentoCredito(root, desp, rec) {
+  const st = getComputedStyle(root);
+  const cInv = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const cCred = st.getPropertyValue("--v-series-receita").trim() || "#08724e";
+  const anos = desp.serie.map(p => p.ano);
+  const credPorAno = {};
+  rec.serie.forEach(p => { credPorAno[p.ano] = p.operacoes_credito * p.ipca_fator_para_2025; });
+
+  renderLineChart(root, {
+    series: [
+      { key: "inv", label: "Investimento (obras e equipamentos)", color: cInv, points: desp.serie.map(p => ({ y: (p.natureza["Investimentos"] || 0) * p.ipca_fator_para_2025 })) },
+      { key: "cred", label: "Empréstimos tomados no ano", color: cCred, points: anos.map(a => ({ y: credPorAno[a] || 0 })) },
+    ],
+    xValues: anos.map(String),
+    yLabel: "Valores em R$ de 2025",
+    yFormat: (v) => "R$ " + fmtMoneyCompact(v),
+    yFormatFull: (v) => fmtMoneyFull(v),
+  });
+
+  const ult = desp.serie[desp.serie.length - 1];
+  const pri = desp.serie[0];
+  const encUlt = ult.funcoes["Encargos Especiais"] * ult.ipca_fator_para_2025;
+  const encPri = pri.funcoes["Encargos Especiais"] * pri.ipca_fator_para_2025;
+
+  renderStats(root, [
+    { value: milhoes(40.7e6), label: "Empréstimos tomados em 2020", note: "Ano do primeiro pico de obras" },
+    { value: milhoes(44.3e6), label: "Empréstimos tomados em 2024", note: "Ano do segundo pico de obras" },
+    { value: milhoes(encUlt), label: "Custo da dívida em 2025 (juros + amortização)", note: `Era ${milhoes(encPri)} em 2014, em valores de hoje` },
+    { value: (100 * encUlt / (ult.total_empenhado * ult.ipca_fator_para_2025)).toFixed(1).replace(".", ",") + "%", label: "Quanto a dívida come do orçamento", note: "Contra 1,7% em 2014" },
+  ]);
+
+  // Os números do texto saem do próprio dado, não são digitados: assim eles
+  // não envelhecem quando a série ganhar mais um ano.
+  const invPorAno = {};
+  desp.serie.forEach(p => { invPorAno[p.ano] = (p.natureza["Investimentos"] || 0) * p.ipca_fator_para_2025; });
+  const PICOS = [2020, 2024];
+  const normais = Object.entries(invPorAno).filter(([a]) => !PICOS.includes(+a)).map(([, v]) => v);
+  const inv2016 = invPorAno[2016];
+  const ordenados = Object.values(invPorAno).slice().sort((a, b) => a - b);
+  const mediana = (ordenados[5] + ordenados[6]) / 2;
+  const posicao2016 = ordenados.filter(v => v < inv2016).length + 1;
+
+  note(root, `As duas linhas sobem juntas, e isso não é coincidência: <strong>Itajubá só faz obra grande em ano que pega
+    empréstimo</strong>. Em doze anos houve exatamente dois picos de investimento — 2020 e 2024 — e são exatamente os dois
+    anos em que entrou dinheiro de operação de crédito (R$ 40,7 mi e R$ 44,3 mi, corrigidos). Nos outros dez anos o
+    investimento fica entre ${milhoes(Math.min(...normais))} e ${milhoes(Math.max(...normais))}, e a subfunção
+    "Infraestrutura Urbana" oscila em torno de R$ 10 a 15 milhões — contra R$ 50,9 mi em 2020 e R$ 58,6 mi em 2024.`);
+
+  note(root, `<strong>Um alerta contra a leitura fácil de ciclo eleitoral.</strong> 2020 e 2024 são anos de eleição
+    municipal, e é tentador ler os picos como obra de vitrine. Mas o dado não sustenta isso sozinho:
+    <strong>2016 também foi ano de eleição e investiu apenas ${milhoes(inv2016)}</strong> — abaixo da mediana da série
+    (${milhoes(mediana)}) e o ${posicao2016}º menor valor de doze anos. Ou seja, eleição por si só não produz obra aqui.
+    O que se repete nos dois picos é o empréstimo. A conta que vem depois é visível: o custo da dívida saiu de
+    ${milhoes(encPri)} ao ano em 2014 para ${milhoes(encUlt)} em 2025, em valores de hoje — mais de dez vezes — e agora consome
+    ${(100 * encUlt / (ult.total_empenhado * ult.ipca_fator_para_2025)).toFixed(1).replace(".", ",")}% do orçamento.
+    Em maio de 2025 a Câmara aprovou, em primeiro turno, o Projeto de Lei nº 4856/2025, que autoriza nova operação de
+    crédito de R$ 70 milhões junto à Caixa Econômica Federal para obras de infraestrutura
+    (<a href="https://itajuba.cam.mg.gov.br/site/camara-municipal-de-itajuba-aprova-emprestimo-para-obras-de-infraestrutura-e-discute-demandas-da-populacao-em-sessao-ordinaria/" target="_blank" rel="noopener noreferrer">Câmara Municipal de Itajubá ↗</a>).
+    Se for contratada e executada, é o terceiro ciclo do mesmo padrão.`);
+}
+
+// ---------------------------------------------------------------------------
+// Fase 3 — "de onde vem o dinheiro". Sem isso o leitor supõe que a prefeitura
+// arrecada o que gasta, e quase nada aqui é assim.
+// ---------------------------------------------------------------------------
+function buildReceitaOrigem(root, rec) {
+  const st = getComputedStyle(root);
+  const cor = st.getPropertyValue("--v-series-receita").trim() || "#08724e";
+  const ult = rec.serie[rec.serie.length - 1];
+
+  const dados = Object.entries(ult.origens).map(([origem, valor]) => ({ origem, valor }))
+    .filter(d => d.valor > 0).sort((a, b) => b.valor - a.valor);
+  const total = dados.reduce((s, d) => s + d.valor, 0);
+
+  renderBarsHorizontal(root, {
+    data: dados, labelKey: "origem", valueKey: "valor",
+    valueFormat: (v) => milhoes(v),
+    valueFormatFull: (v) => `${fmtMoneyFull(v)} (${(100 * v / total).toFixed(1).replace(".", ",")}% da receita)`,
+    color: cor, ariaLabelPrefix: `Receita por origem em ${ult.ano}`,
+  });
+
+  renderStats(root, [
+    { value: ult.dependencia_transferencias_pct.toFixed(0) + "%", label: "Da receita vem de transferências", note: "União e estado — FPM, cota-parte do ICMS, SUS, FUNDEB" },
+    { value: (100 * ult.arrecadacao_propria / ult.receita_bruta).toFixed(0) + "%", label: "É arrecadação própria do município", note: "IPTU, ISS, ITBI, taxas, COSIP e receita patrimonial" },
+    { value: milhoes(ult.origens["Impostos e taxas próprios"] || 0), label: "Impostos e taxas cobrados na cidade", note: `Em ${ult.ano}, valores correntes` },
+  ]);
+
+  note(root, `Esta é a informação que muda a leitura de todo o resto: <strong>cerca de três quartos do orçamento de Itajubá
+    não é dinheiro que a cidade arrecada — é repasse da União e do estado</strong>, e boa parte já chega carimbada para saúde,
+    educação ou uma obra específica. A proporção é estável em toda a série (entre 69% e 79% desde 2014). Na prática, a margem
+    real de escolha do governo municipal é bem menor que o valor total do orçamento sugere, e a receita da cidade sobe e desce
+    conforme a arrecadação federal e estadual — algo sobre o que a prefeitura não tem controle nenhum.`);
+
+  note(root, `Valores brutos, como o SICONFI publica: incluem a parcela retida na fonte para o FUNDEB, que depois volta
+    redistribuída pelo estado. Por isso o total aqui é maior que a "receita realizada" do primeiro gráfico desta fase,
+    que já vem líquida dessa dedução (${milhoes(ult.deducoes_fundeb)} em ${ult.ano}).
+    <strong>Conferência:</strong> ${rec.teste_de_fechamento}`);
+
+  renderTable(root, {
+    caption: "Receita bruta por origem, 2014–2025",
+    columns: ["Ano", "Receita bruta", "Arrecadação própria", "Transferências", "Empréstimos", "% de transferências"],
+    rows: rec.serie.map(p => [String(p.ano), fmtMoneyFull(p.receita_bruta), fmtMoneyFull(p.arrecadacao_propria),
+      fmtMoneyFull(p.transferencias), fmtMoneyFull(p.operacoes_credito), p.dependencia_transferencias_pct.toFixed(1).replace(".", ",") + "%"]),
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -1209,11 +1590,31 @@ function initItajubaCharts() {
       .catch(() => showError(popRoot));
   });
 
+  const realRoot = document.querySelector("#chart-despesa-real");
+  const funcoesRoot = document.querySelector("#chart-despesa-funcoes");
+  const variacaoRoot = document.querySelector("#chart-despesa-variacao");
+  const investRoot = document.querySelector("#chart-investimento");
+  const origemRoot = document.querySelector("#chart-receita-origem");
+
   const financasDetails = (finRoot || saldoRoot) && (finRoot || saldoRoot).closest("details.phase");
   onFirstOpen(financasDetails, () => {
     fetch("../dados/itajuba/siconfi_receita_despesa_2015_2025.json").then(r => r.json())
       .then(fin => buildFinancasCharts(finRoot, saldoRoot, fin))
       .catch(() => showError(finRoot, saldoRoot));
+
+    // Despesa por função/natureza e receita por origem vêm de outros dois
+    // anexos do SICONFI (DCA I-E/I-D e I-C) e cobrem 2014–2025, um ano a mais
+    // que o RREO acima — daí serem arquivos separados.
+    Promise.all([
+      fetch("../dados/itajuba/despesa_funcao_natureza_2014_2025.json").then(r => r.json()),
+      fetch("../dados/itajuba/receita_origem_2014_2025.json").then(r => r.json()),
+    ]).then(([desp, rec]) => {
+      if (realRoot) buildDespesaReal(realRoot, desp);
+      if (funcoesRoot) buildDespesaFuncoes(funcoesRoot, desp);
+      if (variacaoRoot) buildDespesaVariacao(variacaoRoot, desp);
+      if (investRoot) buildInvestimentoCredito(investRoot, desp, rec);
+      if (origemRoot) buildReceitaOrigem(origemRoot, rec);
+    }).catch(() => showError(realRoot, funcoesRoot, variacaoRoot, investRoot, origemRoot));
   });
 
   const idhmRoot = document.querySelector("#chart-idhm");

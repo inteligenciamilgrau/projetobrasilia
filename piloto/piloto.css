@@ -45,6 +45,16 @@ details.phase .phase-body .viz-root{margin-top:1rem;margin-bottom:0}
 details.phase .phase-body .viz-root+.viz-root{margin-top:1rem}
 details.phase .phase-body .viz-note{margin:.6rem 0 0;color:var(--muted);font-size:.78rem}
 details.phase .phase-body .muted-note{margin:.7rem 0 0}
+
+/* Bloco de texto explicativo dentro de uma fase. Existe porque um gráfico
+   sozinho não conta o histórico da cidade: quem lê precisa saber o que a
+   medida significa, o que ela não significa e o que ficou de fora. */
+details.phase .phase-body .explainer{margin:1.1rem 0 0;padding:1rem 1.15rem;border-left:3px solid var(--green);border-radius:0 12px 12px 0;background:var(--soft);color:var(--ink);font-size:.85rem;line-height:1.62}
+details.phase .phase-body .explainer h4{margin:0 0 .5rem;color:var(--green-dark);font-size:.82rem;font-weight:850;text-transform:uppercase;letter-spacing:.04em}
+details.phase .phase-body .explainer p{margin:0 0 .6rem;color:var(--ink);font-size:.85rem}
+details.phase .phase-body .explainer p:last-child{margin-bottom:0}
+details.phase .phase-body .explainer a{color:var(--green-dark);font-weight:800}
+details.phase .phase-body .viz-root+.explainer{margin-top:1rem}
 details.phase .phase-body .dataset-grid{margin-top:.7rem}
 
 .source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}

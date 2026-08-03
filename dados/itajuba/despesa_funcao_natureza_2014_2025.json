@@ -1,0 +1,601 @@
+{
+ "municipio": "Itajubá/MG",
+ "ibge_codigo": "3132404",
+ "entidade": "Prefeitura Municipal de Itajubá - MG (apenas o ente; não inclui o consórcio CIMASAS)",
+ "titulo": "Despesa empenhada por função e por natureza, 2014–2025",
+ "fonte": "SICONFI/Tesouro Nacional — DCA (Declaração de Contas Anuais), Anexo I-E (despesa por função/subfunção) e Anexo I-D (despesa por natureza). Deflator: IPCA/IBGE (SIDRA 1737, variável 2266), média anual do número-índice.",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-E&id_ente=3132404",
+ "url_ipca": "https://servicodados.ibge.gov.br/api/v3/agregados/1737/periodos/201401-202512/variaveis/2266?localidades=N1[all]",
+ "coletado_em": "2026-08-03",
+ "base_deflator": 2025,
+ "por_que_comeca_em_2014": "A série termina para trás em 2014 porque é ali que a base estruturada do SICONFI começa — não porque Itajubá tenha deixado de declarar. Verificamos consultando a mesma API para São Paulo capital (id_ente 3550308): DCA devolve zero registros em 2012 e 2013 e passa a devolver a partir de 2014; o RREO devolve zero em 2013 e 2014 e passa a devolver a partir de 2015. O corte é do sistema, é igual para todos os municípios, e por isso a série por função (DCA) alcança um ano a mais que a série de receita×despesa (RREO) que aparece no gráfico anterior.",
+ "observacao": "Despesa EMPENHADA (o momento em que a prefeitura assume o compromisso), não paga. Os totais do Anexo I-E e do I-D fecham entre si em todos os 12 anos e batem com o RREO em 11 deles; em 2021 o DCA registra R$ 996.804,01 a menos que o RREO do 6º bimestre (0,29%), diferença típica de retificação no encerramento do exercício — aqui vale o DCA, que é a declaração anual definitiva. A coluna em R$ de 2025 usa a média anual do IPCA, não o índice de dezembro, porque a despesa é um fluxo distribuído ao longo do ano.",
+ "serie": [
+  {
+   "ano": 2014,
+   "total_empenhado": 150021880.07,
+   "total_empenhado_r2025": 277066407.64,
+   "populacao": 95491,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 2901.49,
+   "ipca_fator_para_2025": 1.8468,
+   "funcoes": {
+    "Legislativa": 5118576.39,
+    "Judiciária": 1806248.73,
+    "Administração": 20022748.37,
+    "Segurança Pública": 1582244.72,
+    "Assistência Social": 2984275.65,
+    "Previdência Social": 8241786.06,
+    "Saúde": 36621486.54,
+    "Educação": 41195109.77,
+    "Cultura": 1598148.83,
+    "Urbanismo": 23300443.44,
+    "Habitação": 572702.08,
+    "Saneamento": 1327271.15,
+    "Gestão Ambiental": 663869.16,
+    "Ciência e Tecnologia": 995812.32,
+    "Agricultura": 866208.35,
+    "Indústria": 79177.05,
+    "Transporte": 325726.33,
+    "Desporto e Lazer": 1302465.46,
+    "Encargos Especiais": 1417579.67
+   },
+   "natureza": {
+    "Pessoal e encargos": 70739261.12,
+    "Juros da dívida": 589000.83,
+    "Outras despesas correntes": 66855404.77,
+    "Investimentos": 11009634.51,
+    "Amortização da dívida": 828578.84
+   }
+  },
+  {
+   "ano": 2015,
+   "total_empenhado": 170103336.67,
+   "total_empenhado_r2025": 288135311.34,
+   "populacao": 96020,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3000.78,
+   "ipca_fator_para_2025": 1.6939,
+   "funcoes": {
+    "Legislativa": 5663052.25,
+    "Judiciária": 1398199.11,
+    "Essencial à Justiça": 175214,
+    "Administração": 23399006.71,
+    "Segurança Pública": 2038398.2,
+    "Assistência Social": 3617501.75,
+    "Previdência Social": 8544992.51,
+    "Saúde": 47331197.14,
+    "Educação": 40019413.24,
+    "Cultura": 1798966.67,
+    "Urbanismo": 28122461.68,
+    "Habitação": 197460.64,
+    "Saneamento": 1780645.46,
+    "Gestão Ambiental": 682108.6,
+    "Ciência e Tecnologia": 910742.05,
+    "Agricultura": 868549.79,
+    "Indústria": 14328,
+    "Transporte": 292691.24,
+    "Desporto e Lazer": 1452969.06,
+    "Encargos Especiais": 1795438.57
+   },
+   "natureza": {
+    "Pessoal e encargos": 77851612.46,
+    "Juros da dívida": 593295.47,
+    "Outras despesas correntes": 77575170.53,
+    "Investimentos": 12881115.11,
+    "Amortização da dívida": 1202143.1
+   }
+  },
+  {
+   "ano": 2016,
+   "total_empenhado": 204501845.51,
+   "total_empenhado_r2025": 318562738.35,
+   "populacao": 96523,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3300.38,
+   "ipca_fator_para_2025": 1.5577,
+   "funcoes": {
+    "Legislativa": 6347180.27,
+    "Judiciária": 1483847.45,
+    "Administração": 25236548.33,
+    "Segurança Pública": 2823316.65,
+    "Assistência Social": 4802797.38,
+    "Previdência Social": 8576072.35,
+    "Saúde": 75652967.65,
+    "Educação": 45335745.05,
+    "Cultura": 1212096.87,
+    "Urbanismo": 23966195.34,
+    "Habitação": 295852.56,
+    "Saneamento": 1699901.91,
+    "Gestão Ambiental": 673283.38,
+    "Ciência e Tecnologia": 825243,
+    "Agricultura": 1024092.02,
+    "Indústria": 49000,
+    "Transporte": 181369.37,
+    "Desporto e Lazer": 1022983.22,
+    "Encargos Especiais": 3293352.71
+   },
+   "natureza": {
+    "Pessoal e encargos": 83730030.32,
+    "Juros da dívida": 854189.76,
+    "Outras despesas correntes": 107507528.34,
+    "Investimentos": 9970934.14,
+    "Amortização da dívida": 2439162.95
+   }
+  },
+  {
+   "ano": 2017,
+   "total_empenhado": 219163401.4,
+   "total_empenhado_r2025": 330027786.53,
+   "populacao": 97000,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3402.35,
+   "ipca_fator_para_2025": 1.5059,
+   "funcoes": {
+    "Legislativa": 6699925.93,
+    "Judiciária": 2662518.62,
+    "Administração": 24852670.31,
+    "Segurança Pública": 2741411.23,
+    "Assistência Social": 4941546.37,
+    "Previdência Social": 9307541.92,
+    "Saúde": 83236860.52,
+    "Educação": 46497480.4,
+    "Cultura": 1284732.6,
+    "Urbanismo": 23641944.12,
+    "Habitação": 71354.32,
+    "Saneamento": 2263624.43,
+    "Gestão Ambiental": 797056.12,
+    "Ciência e Tecnologia": 942956.65,
+    "Agricultura": 1413667.8,
+    "Indústria": 84000,
+    "Transporte": 192147.02,
+    "Desporto e Lazer": 2259868.2,
+    "Encargos Especiais": 5272094.84
+   },
+   "natureza": {
+    "Pessoal e encargos": 94951828.67,
+    "Juros da dívida": 1461538.15,
+    "Outras despesas correntes": 110855232.03,
+    "Investimentos": 8084245.86,
+    "Amortização da dívida": 3810556.69
+   }
+  },
+  {
+   "ano": 2018,
+   "total_empenhado": 226863291.59,
+   "total_empenhado_r2025": 329545343.06,
+   "populacao": 96389,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3418.91,
+   "ipca_fator_para_2025": 1.4526,
+   "funcoes": {
+    "Legislativa": 7901216.11,
+    "Judiciária": 3342970.04,
+    "Administração": 26569841.07,
+    "Segurança Pública": 2515859.62,
+    "Assistência Social": 5186726.08,
+    "Previdência Social": 9425813.27,
+    "Saúde": 88908764.51,
+    "Educação": 46081914.96,
+    "Cultura": 1125915.43,
+    "Urbanismo": 23353994.49,
+    "Habitação": 76432.48,
+    "Saneamento": 2294693.66,
+    "Gestão Ambiental": 629241.53,
+    "Ciência e Tecnologia": 1023309.9,
+    "Agricultura": 1166718.56,
+    "Indústria": 28000,
+    "Comércio e Serviços": 3300,
+    "Transporte": 332866.56,
+    "Desporto e Lazer": 2377775.84,
+    "Encargos Especiais": 4517937.48
+   },
+   "natureza": {
+    "Pessoal e encargos": 97216656.65,
+    "Juros da dívida": 1189013.65,
+    "Outras despesas correntes": 116267135.49,
+    "Investimentos": 8861561.97,
+    "Amortização da dívida": 3328923.83
+   }
+  },
+  {
+   "ano": 2019,
+   "total_empenhado": 252228242.66,
+   "total_empenhado_r2025": 353205799.09,
+   "populacao": 96869,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3646.22,
+   "ipca_fator_para_2025": 1.4003,
+   "funcoes": {
+    "Legislativa": 8223985.47,
+    "Judiciária": 4246315.82,
+    "Administração": 29530336.52,
+    "Segurança Pública": 3201562.48,
+    "Assistência Social": 5093896.71,
+    "Previdência Social": 9569468.47,
+    "Saúde": 92400710.61,
+    "Educação": 53871712.67,
+    "Cultura": 2859771.7,
+    "Urbanismo": 29868973.4,
+    "Habitação": 49500,
+    "Saneamento": 2369577.63,
+    "Gestão Ambiental": 694884.8,
+    "Ciência e Tecnologia": 1078230.5,
+    "Agricultura": 1861690.23,
+    "Indústria": 179.48,
+    "Comércio e Serviços": 7307,
+    "Comunicações": 4024.51,
+    "Transporte": 269040.59,
+    "Desporto e Lazer": 2324222.26,
+    "Encargos Especiais": 4702851.81
+   },
+   "natureza": {
+    "Pessoal e encargos": 105031626.93,
+    "Juros da dívida": 1175481.34,
+    "Outras despesas correntes": 123101715.55,
+    "Investimentos": 17373128.9,
+    "Amortização da dívida": 5546289.94
+   }
+  },
+  {
+   "ano": 2020,
+   "total_empenhado": 312545669.11,
+   "total_empenhado_r2025": 424051280.54,
+   "populacao": 97334,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 4356.66,
+   "ipca_fator_para_2025": 1.3568,
+   "funcoes": {
+    "Legislativa": 8087835.73,
+    "Judiciária": 2878408.73,
+    "Administração": 31129192.49,
+    "Segurança Pública": 3074640.84,
+    "Assistência Social": 6433501.68,
+    "Previdência Social": 9698382.13,
+    "Saúde": 122153357.67,
+    "Educação": 53429516.87,
+    "Cultura": 1762901.9,
+    "Urbanismo": 59201577.64,
+    "Saneamento": 2365026.56,
+    "Gestão Ambiental": 752211.25,
+    "Ciência e Tecnologia": 1178271.88,
+    "Agricultura": 1506849.8,
+    "Indústria": 112500,
+    "Transporte": 280582.63,
+    "Desporto e Lazer": 2091674.38,
+    "Encargos Especiais": 6409236.93
+   },
+   "natureza": {
+    "Pessoal e encargos": 114282592.67,
+    "Juros da dívida": 2591969.24,
+    "Outras despesas correntes": 151039016.1,
+    "Investimentos": 40645429.74,
+    "Amortização da dívida": 3986661.36
+   }
+  },
+  {
+   "ano": 2021,
+   "total_empenhado": 338491937.02,
+   "total_empenhado_r2025": 424051017.3,
+   "populacao": 97782,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 4336.7,
+   "ipca_fator_para_2025": 1.2528,
+   "funcoes": {
+    "Legislativa": 7251831.2,
+    "Judiciária": 4338115.77,
+    "Administração": 37247032.45,
+    "Segurança Pública": 2901910.8,
+    "Assistência Social": 6392098.05,
+    "Previdência Social": 9452929.08,
+    "Saúde": 163366746.47,
+    "Educação": 62979170.25,
+    "Cultura": 1309178.08,
+    "Urbanismo": 27169616.31,
+    "Saneamento": 2258894.03,
+    "Gestão Ambiental": 712859.77,
+    "Ciência e Tecnologia": 1166724.28,
+    "Agricultura": 1590479.71,
+    "Indústria": 343500,
+    "Transporte": 278149.82,
+    "Desporto e Lazer": 1881904.56,
+    "Encargos Especiais": 7850796.39
+   },
+   "natureza": {
+    "Pessoal e encargos": 125369925.93,
+    "Juros da dívida": 3919699.62,
+    "Outras despesas correntes": 189443850.23,
+    "Investimentos": 12937237.47,
+    "Amortização da dívida": 6821223.77
+   }
+  },
+  {
+   "ano": 2022,
+   "total_empenhado": 370938407.6,
+   "total_empenhado_r2025": 425236442.88,
+   "populacao": 93073,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 4568.85,
+   "ipca_fator_para_2025": 1.1464,
+   "funcoes": {
+    "Legislativa": 7745173.58,
+    "Judiciária": 2292475.39,
+    "Administração": 37264016.41,
+    "Segurança Pública": 3794165.33,
+    "Assistência Social": 8491823.49,
+    "Previdência Social": 10211532.34,
+    "Saúde": 145976010.31,
+    "Educação": 93910155.1,
+    "Cultura": 2873226.01,
+    "Urbanismo": 33738408.88,
+    "Saneamento": 2383747.1,
+    "Gestão Ambiental": 817770.47,
+    "Ciência e Tecnologia": 1755045.98,
+    "Agricultura": 3567922.92,
+    "Comércio e Serviços": 8561,
+    "Transporte": 1713092.32,
+    "Desporto e Lazer": 2915929.36,
+    "Encargos Especiais": 11479351.61
+   },
+   "natureza": {
+    "Pessoal e encargos": 144987523.39,
+    "Juros da dívida": 5519885.4,
+    "Outras despesas correntes": 197033812.57,
+    "Investimentos": 16539771.3,
+    "Amortização da dívida": 6857414.94
+   }
+  },
+  {
+   "ano": 2023,
+   "total_empenhado": 428316804.77,
+   "total_empenhado_r2025": 469449445.64,
+   "populacao": null,
+   "populacao_fonte": null,
+   "per_capita_r2025": null,
+   "ipca_fator_para_2025": 1.096,
+   "funcoes": {
+    "Legislativa": 8316971.97,
+    "Judiciária": 1881070.5,
+    "Administração": 46770564.69,
+    "Segurança Pública": 3595555.4,
+    "Assistência Social": 9890213.46,
+    "Previdência Social": 10439293.64,
+    "Saúde": 168274051.46,
+    "Educação": 101007233.28,
+    "Cultura": 5782987.78,
+    "Urbanismo": 37915639.5,
+    "Saneamento": 3092886.19,
+    "Gestão Ambiental": 842982.22,
+    "Ciência e Tecnologia": 5423807.63,
+    "Agricultura": 1714976.6,
+    "Indústria": 3301767.29,
+    "Transporte": 5704860.77,
+    "Desporto e Lazer": 2232678.42,
+    "Encargos Especiais": 12129263.97
+   },
+   "natureza": {
+    "Pessoal e encargos": 157697806.38,
+    "Juros da dívida": 5132523.19,
+    "Outras despesas correntes": 227892413.66,
+    "Investimentos": 27291785.04,
+    "Inversões financeiras": 3301767.29,
+    "Amortização da dívida": 7000509.21
+   }
+  },
+  {
+   "ano": 2024,
+   "total_empenhado": 497406577.56,
+   "total_empenhado_r2025": 522360235.95,
+   "populacao": 96632,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 5405.67,
+   "ipca_fator_para_2025": 1.0502,
+   "funcoes": {
+    "Legislativa": 8140772.35,
+    "Judiciária": 1845738.22,
+    "Administração": 51972110.56,
+    "Segurança Pública": 5699635.8,
+    "Assistência Social": 10638880.23,
+    "Previdência Social": 7460548.54,
+    "Saúde": 185464323.43,
+    "Educação": 101218311.98,
+    "Cultura": 5678154.35,
+    "Urbanismo": 85764200.69,
+    "Saneamento": 2861524.39,
+    "Gestão Ambiental": 1012250.49,
+    "Ciência e Tecnologia": 6778995.26,
+    "Agricultura": 2014408.01,
+    "Indústria": 82500,
+    "Transporte": 4504920.56,
+    "Desporto e Lazer": 1912808.24,
+    "Encargos Especiais": 14356494.46
+   },
+   "natureza": {
+    "Pessoal e encargos": 167049726.82,
+    "Juros da dívida": 7673599.27,
+    "Outras despesas correntes": 247523628.32,
+    "Investimentos": 68473271.86,
+    "Amortização da dívida": 6686351.29
+   }
+  },
+  {
+   "ano": 2025,
+   "total_empenhado": 499799483.37,
+   "total_empenhado_r2025": 499799483.37,
+   "populacao": 96855,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 5160.29,
+   "ipca_fator_para_2025": 1.0,
+   "funcoes": {
+    "Legislativa": 10471972.82,
+    "Judiciária": 2719421.18,
+    "Administração": 52117658.29,
+    "Segurança Pública": 7230782.87,
+    "Assistência Social": 13042467.83,
+    "Previdência Social": 9924319.72,
+    "Saúde": 197099095,
+    "Educação": 112092615.85,
+    "Cultura": 5850043.67,
+    "Urbanismo": 46054681.94,
+    "Saneamento": 3083241.15,
+    "Gestão Ambiental": 1145565.94,
+    "Ciência e Tecnologia": 1757783.41,
+    "Agricultura": 2286029.06,
+    "Indústria": 4690,
+    "Transporte": 4643594.86,
+    "Desporto e Lazer": 1980891.35,
+    "Encargos Especiais": 28294628.43
+   },
+   "natureza": {
+    "Pessoal e encargos": 180435983.35,
+    "Juros da dívida": 13950958.58,
+    "Outras despesas correntes": 268405535.39,
+    "Investimentos": 22110562.36,
+    "Amortização da dívida": 14896443.69
+   }
+  }
+ ],
+ "comparacao_2015_2025_r2025": [
+  {
+   "funcao": "Saúde",
+   "r2025_em_2015": 80173555.03,
+   "r2025_em_2025": 197099095.0,
+   "variacao_real_pct": 145.8,
+   "variacao_real_reais": 116925539.97
+  },
+  {
+   "funcao": "Educação",
+   "r2025_em_2015": 67788241.66,
+   "r2025_em_2025": 112092615.85,
+   "variacao_real_pct": 65.4,
+   "variacao_real_reais": 44304374.19
+  },
+  {
+   "funcao": "Encargos Especiais",
+   "r2025_em_2015": 3041264.57,
+   "r2025_em_2025": 28294628.43,
+   "variacao_real_pct": 830.4,
+   "variacao_real_reais": 25253363.86
+  },
+  {
+   "funcao": "Administração",
+   "r2025_em_2015": 39635201.85,
+   "r2025_em_2025": 52117658.29,
+   "variacao_real_pct": 31.5,
+   "variacao_real_reais": 12482456.44
+  },
+  {
+   "funcao": "Assistência Social",
+   "r2025_em_2015": 6127628.14,
+   "r2025_em_2025": 13042467.83,
+   "variacao_real_pct": 112.8,
+   "variacao_real_reais": 6914839.69
+  },
+  {
+   "funcao": "Transporte",
+   "r2025_em_2015": 495784.99,
+   "r2025_em_2025": 4643594.86,
+   "variacao_real_pct": 836.6,
+   "variacao_real_reais": 4147809.87
+  },
+  {
+   "funcao": "Segurança Pública",
+   "r2025_em_2015": 3452809.99,
+   "r2025_em_2025": 7230782.87,
+   "variacao_real_pct": 109.4,
+   "variacao_real_reais": 3777972.88
+  },
+  {
+   "funcao": "Cultura",
+   "r2025_em_2015": 3047240.76,
+   "r2025_em_2025": 5850043.67,
+   "variacao_real_pct": 92.0,
+   "variacao_real_reais": 2802802.91
+  },
+  {
+   "funcao": "Legislativa",
+   "r2025_em_2015": 9592553.3,
+   "r2025_em_2025": 10471972.82,
+   "variacao_real_pct": 9.2,
+   "variacao_real_reais": 879419.52
+  },
+  {
+   "funcao": "Agricultura",
+   "r2025_em_2015": 1471222.55,
+   "r2025_em_2025": 2286029.06,
+   "variacao_real_pct": 55.4,
+   "variacao_real_reais": 814806.51
+  },
+  {
+   "funcao": "Judiciária",
+   "r2025_em_2015": 2368387.03,
+   "r2025_em_2025": 2719421.18,
+   "variacao_real_pct": 14.8,
+   "variacao_real_reais": 351034.15
+  },
+  {
+   "funcao": "Ciência e Tecnologia",
+   "r2025_em_2015": 1542691.34,
+   "r2025_em_2025": 1757783.41,
+   "variacao_real_pct": 13.9,
+   "variacao_real_reais": 215092.07
+  },
+  {
+   "funcao": "Saneamento",
+   "r2025_em_2015": 3016206.76,
+   "r2025_em_2025": 3083241.15,
+   "variacao_real_pct": 2.2,
+   "variacao_real_reais": 67034.39
+  },
+  {
+   "funcao": "Gestão Ambiental",
+   "r2025_em_2015": 1155412.81,
+   "r2025_em_2025": 1145565.94,
+   "variacao_real_pct": -0.9,
+   "variacao_real_reais": -9846.87
+  },
+  {
+   "funcao": "Indústria",
+   "r2025_em_2015": 24269.97,
+   "r2025_em_2025": 4690.0,
+   "variacao_real_pct": -80.7,
+   "variacao_real_reais": -19579.97
+  },
+  {
+   "funcao": "Essencial à Justiça",
+   "r2025_em_2015": 296792.18,
+   "r2025_em_2025": 0.0,
+   "variacao_real_pct": -100.0,
+   "variacao_real_reais": -296792.18
+  },
+  {
+   "funcao": "Habitação",
+   "r2025_em_2015": 334475.41,
+   "r2025_em_2025": 0.0,
+   "variacao_real_pct": -100.0,
+   "variacao_real_reais": -334475.41
+  },
+  {
+   "funcao": "Desporto e Lazer",
+   "r2025_em_2015": 2461160.97,
+   "r2025_em_2025": 1980891.35,
+   "variacao_real_pct": -19.5,
+   "variacao_real_reais": -480269.62
+  },
+  {
+   "funcao": "Urbanismo",
+   "r2025_em_2015": 47636186.39,
+   "r2025_em_2025": 46054681.94,
+   "variacao_real_pct": -3.3,
+   "variacao_real_reais": -1581504.45
+  },
+  {
+   "funcao": "Previdência Social",
+   "r2025_em_2015": 14474225.64,
+   "r2025_em_2025": 9924319.72,
+   "variacao_real_pct": -31.4,
+   "variacao_real_reais": -4549905.92
+  }
+ ],
+ "ressalva_per_capita": "O valor por habitante é confiável como FOTO de um ano, não como TENDÊNCIA. A série de população mistura duas coisas: contagem (Censo 2000, 2010 e 2022) e estimativa amostral (demais anos). Em Itajubá a estimativa de 2021 apontava 97.782 pessoas e o Censo de 2022 contou 93.073 — ou seja, as estimativas anteriores estavam cerca de 5% infladas. E as estimativas de 2024 (96.632) e 2025 (96.855) voltaram a ficar acima da contagem de 2022, o que implicaria um crescimento pouco plausível em dois anos. Um gráfico de despesa por habitante ao longo do tempo herdaria esses saltos e mostraria degraus que são do denominador, não do gasto. Por isso a página usa o total real (corrigido pela inflação) como medida de tendência e reserva o valor por habitante para ancorar um ano isolado. 2023 fica sem valor: o IBGE não publicou estimativa para Itajubá naquele ano."
+}
