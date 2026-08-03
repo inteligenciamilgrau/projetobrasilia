@@ -12,6 +12,10 @@
   --v-pos: #2a78d6;
   --v-neg: #e34948;
   --v-neutral: #f0efec;
+  --v-ord-1: #86b6ef;
+  --v-ord-2: #5598e7;
+  --v-ord-3: #2a78d6;
+  --v-ord-4: #1c5cab;
   margin-bottom: .8rem;
   padding: 1.2rem 1.3rem 1rem;
   border: 1px solid var(--line);
@@ -32,6 +36,10 @@
     --v-pos: #3987e5;
     --v-neg: #e66767;
     --v-neutral: #383835;
+    --v-ord-1: #9ec5f4;
+    --v-ord-2: #6da7ec;
+    --v-ord-3: #256abf;
+    --v-ord-4: #184f95;
   }
 }
 :root[data-theme="dark"] .viz-root {
@@ -46,7 +54,14 @@
   --v-pos: #3987e5;
   --v-neg: #e66767;
   --v-neutral: #383835;
+  --v-ord-1: #9ec5f4;
+  --v-ord-2: #6da7ec;
+  --v-ord-3: #256abf;
+  --v-ord-4: #184f95;
 }
+
+.viz-subhead{margin:1.4rem 0 .5rem;color:var(--v-text-primary);font-size:.88rem;font-weight:850}
+.viz-subhead:first-of-type{margin-top:1.6rem}
 
 .viz-head{display:flex;justify-content:space-between;align-items:start;gap:1rem;margin-bottom:.7rem}
 .viz-head h3{margin:0 0 .2rem;font-size:1.05rem;color:var(--v-text-primary)}
@@ -87,3 +102,12 @@
 .viz-stat strong{display:block;color:var(--v-text-primary);font-size:1.4rem;line-height:1.1}
 .viz-stat span{display:block;margin-top:.3rem;color:var(--v-text-secondary);font-size:.72rem}
 .viz-stat small{display:block;margin-top:.15rem;color:var(--v-text-secondary);font-size:.65rem;opacity:.8}
+
+.viz-stackbars{display:grid;gap:.9rem;margin-top:.4rem}
+.viz-stackbar-row{display:grid;grid-template-columns:3.2rem 1fr;gap:.7rem;align-items:center}
+.viz-stackbar-row .row-label{color:var(--v-text-secondary);font-size:.78rem;font-weight:800}
+.viz-stackbar-track{display:flex;height:2.2rem;border-radius:6px;overflow:hidden}
+.viz-stackbar-seg{position:relative;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;border-right:2px solid var(--v-surface)}
+.viz-stackbar-seg:last-child{border-right:0}
+.viz-stackbar-seg span{color:#fff;font-size:.72rem;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.25);white-space:nowrap}
+.viz-stackbar-seg:hover,.viz-stackbar-seg:focus-visible{filter:brightness(1.08)}

@@ -110,12 +110,12 @@
           </div>
         </details>
         <details class="phase done">
-          <summary class="phase-summary"><div class="phase-num">6</div><div class="phase-text"><h3>Educação</h3><p>Ideb e taxa de escolarização (retrato mais recente, via IBGE Cidades). Série histórica do Ideb e matrículas do Censo Escolar exigem planilha do INEP — ficam para depois.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <summary class="phase-summary"><div class="phase-num">6</div><div class="phase-text"><h3>Educação</h3><p>Ideb e escolarização (retrato mais recente), alfabetização 2000–2022 e nível de instrução 2010×2022, todos por Censo/IBGE. Mestrado e doutorado não existem em tabela agregada — ver observação abaixo.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
           <div class="phase-body">
             <div class="viz-root" id="stats-educacao">
-              <div class="viz-head"><div><h3>Indicadores educacionais — retrato mais recente</h3><p>Cada número tem o próprio ano-base; ainda não é uma série no tempo.</p></div></div>
+              <div class="viz-head"><div><h3>Indicadores educacionais</h3><p>Ideb e escolarização são retrato de 1 ano; alfabetização e nível de instrução já têm mais de um ponto no tempo.</p></div></div>
             </div>
-            <p class="muted-note">Fonte salva: <a href="../dados/itajuba/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">dados/itajuba/ibge_cidades_snapshot_2026.json ↗</a></p>
+            <p class="muted-note">Fontes salvas: <a href="../dados/itajuba/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">ibge_cidades_snapshot_2026.json ↗</a> · <a href="../dados/itajuba/educacao_alfabetizacao_nivel_instrucao.json" target="_blank" rel="noopener noreferrer">educacao_alfabetizacao_nivel_instrucao.json ↗</a></p>
           </div>
         </details>
         <article class="phase"><div class="phase-num">7</div><div><h3>Território e bairros</h3><p>Setores censitários do IBGE (2000/2010/2022) e malhas territoriais: a tentativa real de dividir a cidade em regiões, o pedido mais difícil do plano.</p></div><span class="phase-tag todo">Planejada</span></article>
@@ -166,6 +166,7 @@
       <h3 class="category-heading">Educação</h3>
       <div class="source-grid">
         <article class="card"><div class="labels"><span class="label coletado">Coletado (retrato 2023)</span></div><h3>IDEB, via IBGE Cidades</h3><p class="what">Anos iniciais (6,6) e finais (4,9) do fundamental, rede pública. Só o ano mais recente — série histórica bienal exige a planilha oficial do INEP (API comunitária que existia está fora do ar).</p><a class="open" href="https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Alfabetização e nível de instrução (Censos)</h3><p class="what">Taxa de alfabetização 2000/2010/2022 (bases etárias diferentes por Censo) e nível de instrução 2010×2022 (sem instrução até superior completo). Mestrado/doutorado não existem separados em tabela agregada por município — só nos microdados.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/9543" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/educacao_alfabetizacao_nivel_instrucao.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Escolar (microdados INEP)</h3><p class="what">Matrículas, turmas, docentes e infraestrutura das escolas de Itajubá — precisa baixar e ler o CSV/ZIP oficial, sem API simples.</p><a class="open" href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
@@ -199,6 +200,7 @@
         <article class="dataset"><h3>idhm_historico_1991_2010.json</h3><p>IDHM geral e as 3 dimensões (educação, longevidade, renda) de Itajubá em 1991, 2000 e 2010.</p><p class="meta">Coletado 03/08/2026 · IPEAData</p></article>
         <article class="dataset"><h3>registro_civil_2003_2024.json</h3><p>22 anos de nascidos vivos e óbitos registrados em Itajubá, incluindo o pico de óbitos de 2021 (Covid-19).</p><p class="meta">Coletado 03/08/2026 · IBGE</p></article>
         <article class="dataset"><h3>ibge_cidades_snapshot_2026.json</h3><p>Retrato mais recente de educação (Ideb, escolarização), saúde (mortalidade infantil) e economia (PIB, receitas/despesas).</p><p class="meta">Coletado 03/08/2026 · IBGE Cidades</p></article>
+        <article class="dataset"><h3>educacao_alfabetizacao_nivel_instrucao.json</h3><p>Alfabetização 2000/2010/2022 e nível de instrução 2010×2022 (4 faixas, de sem instrução a superior completo), com as ressalvas de base etária documentadas.</p><p class="meta">Coletado 03/08/2026 · IBGE/Censos</p></article>
       </div>
     </section>
   </main>

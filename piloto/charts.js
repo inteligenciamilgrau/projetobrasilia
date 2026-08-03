@@ -65,12 +65,15 @@ function hideTooltip(tip) { tip.classList.remove("show"); }
 // ---------------------------------------------------------------------------
 // Gráfico de linha (1 ou 2 séries), com crosshair + tooltip + rótulo final.
 // ---------------------------------------------------------------------------
-function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yFormatFull, markCensus, missingLabel }) {
+function renderLineChart(root, { series, xValues, xLabel, yLabel, yFormat, yFormatFull, markCensus, missingLabel, yMaxCap }) {
   const W = 760, H = 300, M = { top: 16, right: 18, bottom: 30, left: 54 };
   const innerW = W - M.left - M.right, innerH = H - M.top - M.bottom;
 
   const allYs = series.flatMap(s => s.points.map(p => p.y).filter(y => y != null));
-  const yMax = niceMax(Math.max(...allYs) * 1.08);
+  // yMaxCap: teto rígido do domínio (ex.: 100 para série em %) — niceMax() sozinho
+  // arredonda 97 para 200 (próximo múltiplo "redondo"), o que sobra metade do
+  // gráfico em branco quando o valor real não pode passar de 100.
+  const yMax = yMaxCap != null ? Math.min(yMaxCap, niceMax(Math.max(...allYs) * 1.08)) : niceMax(Math.max(...allYs) * 1.08);
   const yMin = Math.min(0, Math.min(...allYs) * (Math.min(...allYs) < 0 ? 1.08 : 0));
   const xN = xValues.length;
   const xScale = (i) => M.left + (innerW * i) / (xN - 1);
@@ -267,6 +270,64 @@ function renderDivergingBars(root, { data, xKey, yKey, yFormat, yFormatFull, pos
 }
 
 // ---------------------------------------------------------------------------
+// Barras 100% empilhadas (composição por período) — categorias ORDINAIS
+// (baixo→alto nível de instrução), por isso 1 hue só em degradê, não cores
+// categóricas distintas (ver color-formula.md: ordinal = 1 hue, L monótono).
+// ---------------------------------------------------------------------------
+function renderStackedBars(root, { rows, categories, labels, colors, valueFormat }) {
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap";
+  root.appendChild(wrap);
+
+  legend(root, categories.map((c, i) => ({ label: labels[c], color: colors[i] })));
+
+  const bars = document.createElement("div");
+  bars.className = "viz-stackbars";
+  wrap.appendChild(bars);
+  const tip = makeTooltip(wrap);
+
+  rows.forEach(row => {
+    const rowEl = document.createElement("div");
+    rowEl.className = "viz-stackbar-row";
+    const rowLabel = document.createElement("span");
+    rowLabel.className = "row-label";
+    rowLabel.textContent = row.label;
+    rowEl.appendChild(rowLabel);
+    const track = document.createElement("div");
+    track.className = "viz-stackbar-track";
+    categories.forEach((cat, i) => {
+      const pct = row.values[cat];
+      const seg = document.createElement("div");
+      seg.className = "viz-stackbar-seg";
+      seg.style.width = pct + "%";
+      seg.style.background = colors[i];
+      seg.tabIndex = 0;
+      seg.setAttribute("role", "img");
+      seg.setAttribute("aria-label", `${row.label} — ${labels[cat]}: ${valueFormat(pct)}`);
+      if (pct >= 9) {
+        const span = document.createElement("span");
+        span.textContent = valueFormat(pct);
+        seg.appendChild(span);
+      }
+      const onEnter = () => {
+        const segRect = seg.getBoundingClientRect();
+        const wrapRect = wrap.getBoundingClientRect();
+        showTooltip(tip, wrap, segRect.left - wrapRect.left + segRect.width / 2, segRect.top - wrapRect.top, row.label, [
+          { label: labels[cat], value: valueFormat(pct), color: colors[i] },
+        ]);
+      };
+      seg.addEventListener("pointerenter", onEnter);
+      seg.addEventListener("focus", onEnter);
+      seg.addEventListener("pointerleave", () => hideTooltip(tip));
+      seg.addEventListener("blur", () => hideTooltip(tip));
+      track.appendChild(seg);
+    });
+    rowEl.appendChild(track);
+    bars.appendChild(rowEl);
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Estatísticas avulsas (quando o dado é 1-2 pontos, não uma série — "às vezes
 // a resposta certa não é um gráfico", ver choosing-a-form.md).
 // ---------------------------------------------------------------------------
@@ -425,10 +486,18 @@ function buildSaudeChart(root, registroCivil, snapshot) {
 }
 
 // ---------------------------------------------------------------------------
-// Monta as estatísticas de educação dentro de #stats-educacao (sem gráfico:
-// são pontos isolados de um ano cada, não uma série — ver choosing-a-form.md).
+// Monta as estatísticas de educação dentro de #stats-educacao: Ideb/escolarização
+// (pontos isolados, sem gráfico — ver choosing-a-form.md), alfabetização desde
+// 2000 (linha) e nível de instrução 2010×2022 (barras 100% empilhadas).
 // ---------------------------------------------------------------------------
-function buildEducacaoStats(root, snapshot) {
+function subhead(root, text) {
+  const h = document.createElement("h4");
+  h.className = "viz-subhead";
+  h.textContent = text;
+  root.appendChild(h);
+}
+
+function buildEducacaoStats(root, snapshot, educ) {
   const e = snapshot.indicadores.educacao;
   renderStats(root, [
     { value: e.ideb_anos_iniciais_fundamental_rede_publica.valor.toFixed(1).replace(".", ","), label: `Ideb — anos iniciais (rede pública) · ${e.ideb_anos_iniciais_fundamental_rede_publica.ano}`, note: "Escala 0–10" },
@@ -437,8 +506,61 @@ function buildEducacaoStats(root, snapshot) {
   ]);
   const note = document.createElement("p");
   note.className = "viz-note";
-  note.textContent = "Só o retrato mais recente por enquanto — cada indicador tem o próprio ano-base. Série histórica do Ideb (bienal, INEP) e matrículas do Censo Escolar ficam para uma fase futura: exigem baixar e ler as planilhas oficiais do INEP, não têm API simples.";
+  note.textContent = "Ideb e taxa de escolarização: só o retrato mais recente — cada um tem o próprio ano-base. Série histórica do Ideb (bienal) e matrículas do Censo Escolar ficam para uma fase futura: exigem baixar e ler as planilhas oficiais do INEP, não têm API simples.";
   root.appendChild(note);
+
+  // Alfabetização, 2000-2022
+  subhead(root, "Alfabetização, 2000–2022");
+  const alfaXValues = educ.alfabetizacao.serie.map(p => String(p.ano));
+  const style = getComputedStyle(root);
+  const cAlfa = style.getPropertyValue("--v-series-receita").trim() || "#08724e";
+  renderLineChart(root, {
+    series: [{ key: "alfa", label: "Taxa de alfabetização", color: cAlfa, points: educ.alfabetizacao.serie.map(p => ({ y: p.taxa })) }],
+    xValues: alfaXValues, yLabel: "Taxa de alfabetização (%)", yMaxCap: 100,
+    yFormat: (v) => v.toFixed(0) + "%", yFormatFull: (v) => v.toFixed(2).replace(".", ",") + "%",
+  });
+  renderTable(root, {
+    caption: "Taxa de alfabetização de Itajubá/MG, 2000–2022",
+    columns: ["Ano", "Taxa", "Base etária"],
+    rows: educ.alfabetizacao.serie.map(p => [String(p.ano), p.taxa.toFixed(2).replace(".", ",") + "%", p.base_etaria]),
+  });
+  const alfaNote = document.createElement("p");
+  alfaNote.className = "viz-note";
+  alfaNote.textContent = educ.alfabetizacao.observacao;
+  root.appendChild(alfaNote);
+
+  // Nível de instrução, 2010 vs 2022
+  subhead(root, "Nível de instrução, 2010 × 2022");
+  const ord = [
+    style.getPropertyValue("--v-ord-1").trim() || "#86b6ef",
+    style.getPropertyValue("--v-ord-2").trim() || "#5598e7",
+    style.getPropertyValue("--v-ord-3").trim() || "#2a78d6",
+    style.getPropertyValue("--v-ord-4").trim() || "#1c5cab",
+  ];
+  const cats = educ.nivel_de_instrucao.categorias_ordem;
+  renderStackedBars(root, {
+    rows: [
+      { label: "2010", values: educ.nivel_de_instrucao["2010"].percentual },
+      { label: "2022", values: educ.nivel_de_instrucao["2022"].percentual },
+    ],
+    categories: cats,
+    labels: educ.nivel_de_instrucao.rotulos,
+    colors: ord,
+    valueFormat: (v) => v.toFixed(1).replace(".", ",") + "%",
+  });
+  renderTable(root, {
+    caption: "Nível de instrução de Itajubá/MG, 2010 e 2022 (% da população na base etária de cada ano)",
+    columns: ["Categoria", "2010", "2022"],
+    rows: cats.map(c => [educ.nivel_de_instrucao.rotulos[c], educ.nivel_de_instrucao["2010"].percentual[c].toFixed(1).replace(".", ",") + "%", educ.nivel_de_instrucao["2022"].percentual[c].toFixed(1).replace(".", ",") + "%"]),
+  });
+  const nivelNote = document.createElement("p");
+  nivelNote.className = "viz-note";
+  nivelNote.textContent = educ.nivel_de_instrucao.observacao;
+  root.appendChild(nivelNote);
+  const posNote = document.createElement("p");
+  posNote.className = "viz-note";
+  posNote.textContent = "Mestrado e doutorado: " + educ.pos_graduacao.observacao;
+  root.appendChild(posNote);
 }
 
 // ---------------------------------------------------------------------------
@@ -541,8 +663,10 @@ function initItajubaCharts() {
 
   const educRoot = document.querySelector("#stats-educacao");
   onFirstOpen(educRoot && educRoot.closest("details.phase"), () => {
-    fetch("../dados/itajuba/ibge_cidades_snapshot_2026.json").then(r => r.json())
-      .then(snapshot => buildEducacaoStats(educRoot, snapshot))
+    Promise.all([
+      fetch("../dados/itajuba/ibge_cidades_snapshot_2026.json").then(r => r.json()),
+      fetch("../dados/itajuba/educacao_alfabetizacao_nivel_instrucao.json").then(r => r.json()),
+    ]).then(([snapshot, educ]) => buildEducacaoStats(educRoot, snapshot, educ))
       .catch(() => showError(educRoot));
   });
 }

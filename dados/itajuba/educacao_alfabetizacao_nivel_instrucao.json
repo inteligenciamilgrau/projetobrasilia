@@ -1,0 +1,84 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "IBGE — Censos Demográficos 2000/2010/2022 (SIDRA, várias tabelas — ver campos abaixo)",
+  "coletado_em": "2026-08-03",
+  "alfabetizacao": {
+    "observacao": "Cada Censo mediu alfabetizacao numa base etaria diferente (5+, 10+, 15+) - nao e uma serie perfeitamente comparavel. O numero de 2000 (91,85%) tende a ficar mais baixo que os outros SO por incluir criancas de 5 a 9 anos, que ainda nao terminaram de aprender a ler; nao da para separar quanto da melhora e alfabetizacao real e quanto e base etaria diferente.",
+    "serie": [
+      {
+        "ano": 2000,
+        "taxa": 91.85,
+        "base_etaria": "5 anos ou mais",
+        "total": 77001,
+        "alfabetizadas": 70727,
+        "tabela_sidra": 204
+      },
+      {
+        "ano": 2010,
+        "taxa": 96.3,
+        "base_etaria": "10 anos ou mais",
+        "tabela_sidra": 1699
+      },
+      {
+        "ano": 2022,
+        "taxa": 97.29,
+        "base_etaria": "15 anos ou mais",
+        "tabela_sidra": 9543
+      }
+    ]
+  },
+  "nivel_de_instrucao": {
+    "observacao": "2010 mediu pessoas de 10 anos ou mais; 2022 mediu pessoas de 18 anos ou mais - bases etarias DIFERENTES. Isso infla artificialmente os percentuais de 2022 nas categorias mais altas (Medio completo e Superior completo), porque a populacao de 10 a 17 anos (que por definicao nao pode ter concluido o superior, e normalmente ainda esta no fundamental/medio) fica de fora do denominador de 2022 mas entra no de 2010. Nao existe tabela publicada com a mesma base etaria nos dois Censos para este recorte no SIDRA. Nao encontramos tabela de nivel de instrucao do Censo 2000 no SIDRA nesta sessao de pesquisa (as tabelas por municipio desse ano nao usam a mesma classificacao de 4 niveis das edicoes seguintes).",
+    "categorias_ordem": [
+      "sem_instrucao_fundamental_incompleto",
+      "fundamental_completo_medio_incompleto",
+      "medio_completo_superior_incompleto",
+      "superior_completo"
+    ],
+    "rotulos": {
+      "sem_instrucao_fundamental_incompleto": "Sem instrução / fundamental incompleto",
+      "fundamental_completo_medio_incompleto": "Fundamental completo / médio incompleto",
+      "medio_completo_superior_incompleto": "Médio completo / superior incompleto",
+      "superior_completo": "Superior completo"
+    },
+    "2010": {
+      "base_etaria": "10 anos ou mais",
+      "tabela_sidra": 3540,
+      "contagem": {
+        "sem_instrucao_fundamental_incompleto": 32363,
+        "fundamental_completo_medio_incompleto": 14126,
+        "medio_completo_superior_incompleto": 22813,
+        "superior_completo": 9479
+      },
+      "total": 78781,
+      "percentual": {
+        "sem_instrucao_fundamental_incompleto": 41.08,
+        "fundamental_completo_medio_incompleto": 17.93,
+        "medio_completo_superior_incompleto": 28.96,
+        "superior_completo": 12.03
+      }
+    },
+    "2022": {
+      "base_etaria": "18 anos ou mais",
+      "tabela_sidra": 10061,
+      "contagem": {
+        "sem_instrucao_fundamental_incompleto": 17967,
+        "fundamental_completo_medio_incompleto": 10240,
+        "medio_completo_superior_incompleto": 28008,
+        "superior_completo": 17147
+      },
+      "total": 73362,
+      "percentual": {
+        "sem_instrucao_fundamental_incompleto": 24.49,
+        "fundamental_completo_medio_incompleto": 13.96,
+        "medio_completo_superior_incompleto": 38.18,
+        "superior_completo": 23.37
+      }
+    }
+  },
+  "pos_graduacao": {
+    "observacao": "Mestrado e doutorado NAO aparecem separados em nenhuma tabela SIDRA agregada por municipio - ficam embutidos dentro de \"Superior completo\". Para separar seria preciso processar os microdados do Censo (arquivos individuais, nao agregados) - tarefa bem maior, fica para uma fase futura dedicada, nao e so mais uma chamada de API.",
+    "disponivel": false
+  }
+}
