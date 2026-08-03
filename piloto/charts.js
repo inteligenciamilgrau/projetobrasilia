@@ -459,7 +459,7 @@ function renderStats(root, items) {
 // e o mapa não parecia a cidade. Área é a variável visual que o olho lê num
 // mapa — ela tem que vir da geometria, não de um marcador de tamanho fixo.
 // ---------------------------------------------------------------------------
-function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, legendTitle, labelPoints }) {
+function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, legendTitle, labelPoints, annotations }) {
   const W = 720, H = 640, M = 18;
   const lats = boundary.map(p => p[1]);
   const lons = boundary.map(p => p[0]);
@@ -476,6 +476,14 @@ function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, 
   const px = (lon) => offX + (lon - lonMin) * cosLat * scale;
   const py = (lat) => offY + (latMax - lat) * scale;
   const ringD = (ring) => "M" + ring.map(([lon, lat]) => `${px(lon).toFixed(1)},${py(lat).toFixed(1)}`).join("L") + "Z";
+
+  const cs = getComputedStyle(root);
+  const corAnot = cs.getPropertyValue("--v-series-3").trim() || "#eb6834";
+  legend(root, [
+    { label: "Limite do município (IBGE)", color: cs.getPropertyValue("--v-text-primary").trim() || "#10241d" },
+    ...(annotations || []).map(a => ({ label: a.label, color: corAnot, dashed: true })),
+    ...(labelPoints && labelPoints.length ? [{ label: "Bairro (OpenStreetMap)", color: cs.getPropertyValue("--v-text-secondary").trim() || "#52635d", dot: true }] : []),
+  ]);
 
   const wrap = document.createElement("div");
   wrap.className = "viz-svg-wrap viz-map-wrap";
@@ -537,6 +545,17 @@ function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, 
     d: ringD(boundary), fill: "none", stroke: "var(--v-text-primary)",
     "stroke-width": 1.6, "stroke-linejoin": "round", "pointer-events": "none",
   }, svg);
+
+  // Anotações (ex.: perímetro de zoneamento): tracejado numa cor fora da rampa,
+  // para ler como camada de referência e não como mais um valor de densidade.
+  (annotations || []).forEach(a => {
+    a.aneis.forEach(anel => {
+      el("path", {
+        d: ringD(anel), fill: "none", stroke: corAnot, "stroke-width": 2,
+        "stroke-dasharray": "7 4", "stroke-linejoin": "round", "pointer-events": "none",
+      }, svg);
+    });
+  });
 
   // Camada de referência: bairros do OSM. Rótulo só no hover — ~40 nomes
   // concentrados no centro urbano colidem demais como texto fixo.
@@ -605,7 +624,13 @@ function legend(root, items) {
     span.className = "viz-legend-item";
     const sw = document.createElement("span");
     sw.className = "viz-legend-swatch" + (it.dot ? " dot" : "");
-    sw.style.background = it.color;
+    if (it.dashed) {
+      sw.style.background = "transparent";
+      sw.style.height = "0";
+      sw.style.borderTop = `2px dashed ${it.color}`;
+    } else {
+      sw.style.background = it.color;
+    }
     span.appendChild(sw);
     span.appendChild(document.createTextNode(it.label));
     box.appendChild(span);
@@ -784,8 +809,11 @@ function buildEducacaoStats(root, snapshot, educ) {
 // ---------------------------------------------------------------------------
 // Monta o mapa de calor por setor censitário dentro de #map-territorio.
 // ---------------------------------------------------------------------------
-function buildTerritorioMap(root, contorno, setores, bairros) {
-  const suburbLabels = bairros.localidades.filter(b => b.tipo === "suburb");
+function buildTerritorioMap(root, contorno, setores, bairros, zonaUrbana) {
+  // dentro_do_municipio: a coleta original no Overpass foi por bbox e trouxe
+  // localidade de município vizinho junto (ver observacao em bairros_osm.json).
+  const suburbLabels = bairros.localidades.filter(b => b.tipo === "suburb" && b.dentro_do_municipio !== false);
+  const foraDoMunicipio = bairros.localidades.filter(b => b.dentro_do_municipio === false);
   renderChoroplethMap(root, {
     boundary: contorno.contorno_lon_lat,
     features: setores.setores,
@@ -793,6 +821,7 @@ function buildTerritorioMap(root, contorno, setores, bairros) {
     valueFormat: (v) => fmtInt.format(Math.round(v)) + " hab./km²",
     legendTitle: "Densidade populacional",
     labelPoints: suburbLabels,
+    annotations: zonaUrbana ? [{ label: "Zona urbana no Censo 2022", aneis: zonaUrbana.aneis }] : [],
   });
   renderTable(root, {
     caption: "Setores censitários de Itajubá/MG — Censo 2022",
@@ -824,6 +853,20 @@ function buildTerritorioMap(root, contorno, setores, bairros) {
   note3.className = "viz-note";
   note3.textContent = `Os losangos são ${suburbLabels.length} bairros mapeados pela comunidade OpenStreetMap — passe o mouse para ver o nome. Eles são só referência: o IBGE não publica contorno de bairro para Itajubá (a coluna de bairro vem vazia nos 192 setores) e o site da Prefeitura, que teria essa base, está bloqueado. Por isso a cor segue o setor censitário, que é a menor unidade oficial disponível aqui.`;
   root.appendChild(note3);
+
+  if (foraDoMunicipio.length) {
+    const noteFix = document.createElement("p");
+    noteFix.className = "viz-note";
+    noteFix.textContent = `Correção: a coleta no OpenStreetMap foi feita por caixa delimitadora, não pelo contorno do município, e trouxe ${foraDoMunicipio.length} localidade de fora junto — ${foraDoMunicipio.map(b => `"${b.nome}", que é de ${b.municipio_osm}`).join("; ")}. Não é mais desenhada aqui, mas continua no arquivo salvo, marcada com dentro_do_municipio: false.`;
+    root.appendChild(noteFix);
+  }
+
+  if (zonaUrbana) {
+    const note4 = document.createElement("p");
+    note4.className = "viz-note";
+    note4.textContent = `A linha tracejada é a zona urbana do Censo 2022 (${zonaUrbana.area_km2.toFixed(0)} km², ${Math.round(100 * zonaUrbana.area_km2 / somaArea)}% do município), obtida unindo os ${zonaUrbana.n_setores_urbanos} setores que o IBGE classificou como urbanos. Ela importa porque o IBGE deriva essa classificação do perímetro urbano fixado em lei municipal e vigente na coleta: como o Censo é de 2022, o tracejado registra o macrozoneamento da Lei 3.352/2019 antes da alteração posterior. ${zonaUrbana.ressalva}`;
+    root.appendChild(note4);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -1177,7 +1220,8 @@ function initItajubaCharts() {
       fetch("../dados/itajuba/municipio_contorno.json").then(r => r.json()),
       fetch("../dados/itajuba/setores_poligonos_2022.json").then(r => r.json()),
       fetch("../dados/itajuba/bairros_osm.json").then(r => r.json()),
-    ]).then(([contorno, setores, bairros]) => buildTerritorioMap(mapRoot, contorno, setores, bairros))
+      fetch("../dados/itajuba/zona_urbana_censo2022.json").then(r => r.ok ? r.json() : null).catch(() => null),
+    ]).then(([contorno, setores, bairros, zonaUrbana]) => buildTerritorioMap(mapRoot, contorno, setores, bairros, zonaUrbana))
       .catch(() => showError(mapRoot));
   });
 
