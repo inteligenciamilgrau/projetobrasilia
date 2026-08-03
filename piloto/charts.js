@@ -992,6 +992,95 @@ function buildLegislativoChart(root, siscam) {
   root.appendChild(note);
 }
 
+// ---------------------------------------------------------------------------
+// Monta o painel síntese dentro de #painel-sintese — 1 número por fase, sem
+// refazer os gráficos já mostrados acima.
+// ---------------------------------------------------------------------------
+function buildPainelSintese(root, docs) {
+  const items = [];
+  if (docs.pop) {
+    const ultimo = docs.pop.serie.filter(p => p.populacao != null).slice(-1)[0];
+    items.push({ value: fmtInt.format(ultimo.populacao), label: `População · ${ultimo.ano}` });
+  }
+  if (docs.ips) items.push({ value: docs.ips.indicadores.ips_geral.toFixed(2).replace(".", ","), label: "IPS Brasil · edição 2026" });
+  if (docs.fin) {
+    const ultimo = docs.fin.serie[docs.fin.serie.length - 1];
+    items.push({ value: "R$ " + fmtMoneyCompact(ultimo.saldo), label: `Saldo orçamentário · ${ultimo.ano}`, note: ultimo.saldo >= 0 ? "Superávit" : "Déficit" });
+  }
+  if (docs.snapshot) {
+    const s = docs.snapshot.indicadores.saude.mortalidade_infantil;
+    items.push({ value: s.valor.toFixed(1).replace(".", ","), label: `Mortalidade infantil (por mil) · ${s.ano}` });
+  }
+  if (docs.educ) {
+    const ultimo = docs.educ.alfabetizacao.serie[docs.educ.alfabetizacao.serie.length - 1];
+    items.push({ value: ultimo.taxa.toFixed(1).replace(".", ",") + "%", label: `Alfabetização · ${ultimo.ano}` });
+  }
+  if (docs.setores) {
+    const pop = docs.setores.setores.reduce((a, s) => a + s.populacao, 0);
+    const area = docs.setores.setores.reduce((a, s) => a + s.area_km2, 0);
+    items.push({ value: fmtInt.format(Math.round(pop / area)), label: "Densidade média (hab./km²)", note: "192 setores censitários, Censo 2022" });
+  }
+  if (docs.siscam) {
+    const ultimo = docs.siscam.serie.filter(p => p.completo).slice(-1)[0];
+    if (ultimo) items.push({ value: fmtInt.format(ultimo.portarias_emitidas), label: `Portarias da Câmara · ${ultimo.ano}` });
+  }
+  if (docs.pib) {
+    const ultimo = docs.pib.pib_total[docs.pib.pib_total.length - 1];
+    items.push({ value: "R$ " + fmtMoneyCompact(ultimo.valor_mil_reais * 1000), label: `PIB total · ${ultimo.ano}` });
+  }
+  if (docs.cempre) {
+    const ultimo = docs.cempre.serie[docs.cempre.serie.length - 1];
+    items.push({ value: fmtInt.format(ultimo.pessoal_ocupado_assalariado), label: `Pessoal ocupado assalariado · ${ultimo.ano}` });
+  }
+  if (docs.pncp) {
+    items.push({ value: fmtInt.format(docs.pncp.total_processos), label: `Processos de compra · ${docs.pncp.periodo_label}` });
+  }
+  renderStats(root, items);
+  const note = document.createElement("p");
+  note.className = "viz-note";
+  note.textContent = "Cada número vem da fase correspondente acima, com a mesma fonte e ressalvas — este painel só resume, não recalcula nada.";
+  root.appendChild(note);
+}
+
+// ---------------------------------------------------------------------------
+// Monta a seção do IDU-Br dentro de #idu-br: score, faixa de confiança e a
+// matriz por domínio, com o motivo de cada nota.
+// ---------------------------------------------------------------------------
+function buildIduBrSection(root, idu) {
+  const r = idu.resultado;
+  renderStats(root, [
+    { value: r.IDU_E.toFixed(1).replace(".", ","), label: "IDU-Br (ecossistema próprio)", note: `Faixa ${r.IDU_E_faixa[0].toFixed(1)}–${r.IDU_E_faixa[1].toFixed(1)} · escala 0–100` },
+    { value: r.C_IDU.toFixed(0), label: "Confiança da avaliação (C-IDU)", note: r.C_IDU_faixa_qualitativa },
+  ]);
+
+  const explain = document.createElement("p");
+  explain.className = "viz-note";
+  explain.textContent = idu.observacao_geral;
+  root.appendChild(explain);
+
+  const table = document.createElement("table");
+  table.className = "idu-table";
+  const thead = document.createElement("thead");
+  thead.innerHTML = "<tr><th>Domínio</th><th>Melhor fonte encontrada</th><th>Nota (0–100)</th><th>Por quê</th></tr>";
+  table.appendChild(thead);
+  const tbody = document.createElement("tbody");
+  idu.por_dominio.forEach(d => {
+    const tr = document.createElement("tr");
+    const tdDom = document.createElement("td"); tdDom.textContent = d.dominio; tr.appendChild(tdDom);
+    const tdFonte = document.createElement("td"); tdFonte.textContent = d.camada; tr.appendChild(tdFonte);
+    const tdNota = document.createElement("td"); tdNota.textContent = d.Q_0_100.toFixed(1).replace(".", ","); tr.appendChild(tdNota);
+    const tdNote = document.createElement("td"); tdNote.textContent = d.nota; tr.appendChild(tdNote);
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  root.appendChild(table);
+
+  const note2 = document.createElement("p");
+  note2.className = "viz-note";
+  note2.textContent = `Avaliação de 1 pessoa só nesta sessão, sem segunda codificação independente — por isso C-IDU fica em "média", não "alta" (o componente de concordância independente zera). P-Piloto (adequação de porte para um primeiro piloto nacional) seria ${idu.resultado.P_Piloto.toFixed(1)}, mas não é usado aqui: Itajubá já é o piloto escolhido, essa nota serve para comparar candidatas, não para reavaliar quem já entrou.`;
+  root.appendChild(note2);
+}
+
 function showError(...roots) {
   roots.forEach(r => {
     if (r) r.innerHTML = '<p class="viz-note">Não foi possível carregar os dados do gráfico. Abra a página por um servidor HTTP e tente de novo.</p>';
@@ -1091,6 +1180,34 @@ function initItajubaCharts() {
     fetch("../dados/itajuba/pib_municipal_2002_2023.json").then(r => r.json())
       .then(pib => buildEconomiaChart(pibRoot, pib))
       .catch(() => showError(pibRoot));
+  });
+
+  const sinteseRoot = document.querySelector("#painel-sintese");
+  const iduRoot = document.querySelector("#idu-br");
+  const sinteseDetails = (sinteseRoot || iduRoot) && (sinteseRoot || iduRoot).closest("details.phase");
+  onFirstOpen(sinteseDetails, () => {
+    const j = (path) => fetch(path).then(r => r.ok ? r.json() : null).catch(() => null);
+    if (sinteseRoot) {
+      Promise.all([
+        j("../dados/itajuba/populacao_2000_2025.json"),
+        j("../dados/itajuba/ips_brasil_2026.json"),
+        j("../dados/itajuba/siconfi_receita_despesa_2015_2025.json"),
+        j("../dados/itajuba/ibge_cidades_snapshot_2026.json"),
+        j("../dados/itajuba/educacao_alfabetizacao_nivel_instrucao.json"),
+        j("../dados/itajuba/setores_censitarios_2022.json"),
+        j("../dados/itajuba/siscam_portarias_2023_2026.json"),
+        j("../dados/itajuba/pib_municipal_2002_2023.json"),
+        j("../dados/itajuba/cempre_empresas_emprego_2006_2021.json"),
+        j("../dados/itajuba/pncp_serie_2025_2026.json"),
+      ]).then(([pop, ips, fin, snapshot, educ, setores, siscam, pib, cempre, pncp]) => {
+        buildPainelSintese(sinteseRoot, { pop, ips, fin, snapshot, educ, setores, siscam, pib, cempre, pncp });
+      }).catch(() => showError(sinteseRoot));
+    }
+    if (iduRoot) {
+      j("../dados/itajuba/idu_br_2026.json").then(idu => {
+        if (idu) buildIduBrSection(iduRoot, idu); else showError(iduRoot);
+      });
+    }
   });
 }
 

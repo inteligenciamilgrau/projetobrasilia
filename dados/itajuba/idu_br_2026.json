@@ -1,0 +1,39 @@
+{
+  "municipio": "Itajubá/MG",
+  "metodologia": "IDU-Br v2.1 — docs/METRICA_IDU_V2.md",
+  "motor_de_calculo": "idu_v2.py (mesmo motor usado no dossiê nacional de seleção de piloto, sem notas hardcoded)",
+  "avaliado_em": "2026-08-03",
+  "avaliador": "1 avaliador (esta sessão) — sem segunda codificação independente",
+  "observacao_geral": "IDU-Br mede a maturidade do ecossistema de dados ABERTOS PRÓPRIO do município (portal/API/sistema mantido pela Prefeitura ou pelo Estado) — não mede a qualidade da cidade nem quanto este piloto conseguiu descobrir sobre ela. Fontes nacionais (IBGE/SIDRA, SICONFI, PNCP, IPEAData), por desenho da métrica, contam como camada 'N' e não pontuam: elas tratam toda cidade do Brasil igual, então não diferenciam o ecossistema PRÓPRIO de Itajubá. O piloto usou fartamente essas fontes nacionais nas Fases 1-8 — o IDU-Br baixo não contradiz isso, só mede uma pergunta diferente: 'a Prefeitura mantém a própria infraestrutura de dados abertos?'. A resposta encontrada foi: quase não, principalmente porque o portal da Prefeitura (que teria a maioria dos domínios) está bloqueado por Cloudflare desde a primeira varredura.",
+  "resultado": {
+    "IDU_M": 3.1,
+    "IDU_M_faixa": [1.4, 16.6],
+    "IDU_E": 3.1,
+    "IDU_E_faixa": [1.4, 16.6],
+    "dependencia_externa": 0.0,
+    "C_IDU": 63.75,
+    "C_IDU_faixa_qualitativa": "média (60-79)",
+    "P_Piloto": 68.1,
+    "IPS_Br": 19.4,
+    "sensibilidade_pesos_iguais": { "IDU_E": 3.5, "IDU_E_faixa": [1.6, 16.7] }
+  },
+  "por_dominio": [
+    { "dominio": "Finanças", "camada": "M — SISCAM (Câmara Municipal)", "D": 2, "U": 1, "F": 4, "T": 0, "R": 2, "Q_0_100": 23.1, "nota": "Único domínio com evidência municipal própria real: 659 Portarias extraídas por paginação (não API/bulk), atualizadas há dias, sem recorte territorial (ato administrativo, não tem geografia)." },
+    { "dominio": "Saúde", "camada": "nenhuma M/E encontrada", "D": 0, "U": 0, "F": 0, "T": 0, "R": 0, "Q_0_100": 0.0, "nota": "CNES tentado, HTTP 503. Executivo (teria Vigilância Sanitária/Secretaria de Saúde) bloqueado." },
+    { "dominio": "Segurança", "camada": "nenhuma M/E encontrada", "D": 0, "U": 0, "F": 0, "T": 0, "R": 0, "Q_0_100": 0.0, "nota": "Fogo Cruzado não cobre Minas Gerais. SINESP é nacional. Nenhuma fonte estadual (MG) específica de Itajubá encontrada." },
+    { "dominio": "Educação", "camada": "nenhuma M/E encontrada", "D": 0, "U": 0, "F": 0, "T": 0, "R": 0, "Q_0_100": 0.0, "nota": "Ideb/Censo Escolar são nacionais (INEP). Executivo (Secretaria de Educação) bloqueado." },
+    { "dominio": "Mobilidade/trânsito", "camada": "não pesquisado nesta sessão", "D": 0, "U": 0, "F": 0, "T": 0, "R": 0, "Q_0_100": 0.0, "nota": "Único domínio genuinamente não verificado (nem a varredura extra nem o catálogo de fontes chegaram a procurar) — por isso a faixa fica mais larga [0,2] em vez de [0,1]." },
+    { "dominio": "Comércio/economia", "camada": "nenhuma M/E encontrada", "D": 0, "U": 0, "F": 0, "T": 0, "R": 0, "Q_0_100": 0.0, "nota": "CEMPRE/PIB/CNPJ aberto são nacionais (IBGE/Receita Federal). Nenhum portal econômico municipal encontrado." },
+    { "dominio": "Urbanismo/habitação", "camada": "nenhuma M/E encontrada", "D": 0, "U": 0, "F": 0, "T": 0, "R": 0, "Q_0_100": 0.0, "nota": "Zoneamento/plano diretor ficariam no Executivo, bloqueado. Malha censitária usada na Fase 7 é do IBGE (nacional)." },
+    { "dominio": "Meio ambiente", "camada": "nenhuma M/E encontrada", "D": 0, "U": 0, "F": 0, "T": 0, "R": 0, "Q_0_100": 0.0, "nota": "INMET/MapBiomas são nacionais. Nenhuma fonte ambiental municipal ou estadual (MG) específica encontrada." }
+  ],
+  "confianca_componentes": {
+    "completude": { "nota_0_4": 3, "leitura": "7 dos 8 domínios foram examinados; só mobilidade ficou sem checagem" },
+    "forca_da_evidencia": { "nota_0_4": 2, "leitura": "Portarias: scraping estruturado real (não só página), mas sem API/schema formal; demais domínios: teste de bloqueio real (HTTP 403/503), não só busca" },
+    "reprodutibilidade": { "nota_0_4": 4, "leitura": "Toda fonte tem URL, parâmetro e data registrados nos datasets desta pasta" },
+    "concordancia_independente": { "nota_0_4": 0, "leitura": "1 avaliador só, sem segunda codificação cega" },
+    "consistencia": { "nota_0_4": 3, "leitura": "Contradições encontradas nesta sessão foram corrigidas (ex.: SICONFI/CIMASAS, nome de arquivo errado)" },
+    "recencia_da_verificacao": { "nota_0_4": 4, "leitura": "Todos os testes desta matriz são da mesma semana (02–03/08/2026)" }
+  },
+  "matriz_completa_usada_no_calculo": "ver idu_v2.py — motor de cálculo; matriz de entrada replicável a partir de por_dominio acima (M=E em todos os domínios, pois nenhuma fonte estadual foi encontrada)"
+}

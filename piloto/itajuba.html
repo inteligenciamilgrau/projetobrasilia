@@ -47,7 +47,7 @@
       <div class="stat"><strong>3132404</strong><span>código IBGE do município</span></div>
       <div class="stat"><strong>294,8 km²</strong><span>área territorial</span></div>
     </div>
-    <div class="status-banner"><strong>Status desta aba:</strong> Fases 0–8 concluídas (03/08/2026) — população, IDHM histórico, finanças, saúde, educação, mapa de calor por setor censitário, compras/Legislativo e emprego/economia já têm dado real. Falta só a síntese final (Fase 9).</div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Todas as 10 fases concluídas (03/08/2026) — população, IDHM histórico, finanças, saúde, educação, mapa de calor por setor censitário, compras/Legislativo, emprego/economia e a síntese com IDU-Br já têm dado real.</div>
 
     <section aria-labelledby="contexto-title">
       <div class="section-head"><div><p class="kicker">Como Itajubá entrou aqui</p><h2 id="contexto-title">Do pré-filtro de cidades pequenas a um piloto próprio.</h2></div><p>Itajubá apareceu no Top 10 de ≈100 mil habitantes do <a href="../cidades-pequenas.html">experimento de cidades pequenas</a>, ordenado por IPS Brasil 2026. A triagem-padrão marcou "sem sinal" porque o site da Prefeitura bloqueia acesso automatizado. Uma varredura extra, pedida especificamente, encontrou dado real fora do Executivo: a Câmara Municipal (domínio próprio, sem bloqueio), o PNCP e o SICONFI. Isso foi o suficiente para justificar tirar Itajubá do lote de 20 candidatas e abrir um piloto só dela.</p></div>
@@ -153,7 +153,18 @@
             <p class="muted-note">Fontes salvas: <a href="../dados/itajuba/cempre_empresas_emprego_2006_2021.json" target="_blank" rel="noopener noreferrer">cempre_empresas_emprego_2006_2021.json ↗</a> · <a href="../dados/itajuba/pib_municipal_2002_2023.json" target="_blank" rel="noopener noreferrer">pib_municipal_2002_2023.json ↗</a></p>
           </div>
         </details>
-        <article class="phase"><div class="phase-num">9</div><div><h3>Síntese</h3><p>Consolidar tudo num painel único com IDU-Br calculado para Itajubá, se a cobertura acumulada permitir.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Síntese</h3><p>Painel único com o número-chave de cada fase, e o IDU-Br calculado para Itajubá pela metodologia v2.1 do projeto.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="painel-sintese">
+              <div class="viz-head"><div><h3>Um número de cada fase</h3><p>O retrato mais recente disponível em cada área — o resto do detalhe está nas fases 1 a 8 acima.</p></div></div>
+            </div>
+            <div class="viz-root" id="idu-br">
+              <div class="viz-head"><div><h3>IDU-Br — ecossistema de dados abertos próprio de Itajubá</h3><p>Metodologia do projeto (<a href="../docs/METRICA_IDU_V2.md" target="_blank" rel="noopener noreferrer">METRICA_IDU_V2.md ↗</a>), mesmo motor de cálculo usado na seleção nacional de piloto.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/itajuba/idu_br_2026.json" target="_blank" rel="noopener noreferrer">idu_br_2026.json ↗</a></p>
+          </div>
+        </details>
       </div>
     </section>
 

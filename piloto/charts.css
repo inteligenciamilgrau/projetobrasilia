@@ -94,6 +94,12 @@
 .viz-table-toggle th:first-child,.viz-table-toggle td:first-child{text-align:left}
 .viz-table-toggle th{color:var(--muted);font-weight:800;font-size:.68rem;text-transform:uppercase}
 
+.idu-table{width:100%;margin-top:1rem;border-collapse:collapse;font-size:.8rem}
+.idu-table th,.idu-table td{padding:.55rem .7rem;border-bottom:1px solid var(--v-grid);text-align:left;vertical-align:top;color:var(--v-text-primary)}
+.idu-table th{color:var(--v-text-secondary);font-weight:800;font-size:.68rem;text-transform:uppercase}
+.idu-table td:nth-child(3){font-weight:800;white-space:nowrap}
+.idu-table td:last-child{color:var(--v-text-secondary);font-size:.76rem}
+
 .viz-bar{cursor:pointer}
 .viz-bar:hover,.viz-bar:focus-visible{opacity:.85}
 
