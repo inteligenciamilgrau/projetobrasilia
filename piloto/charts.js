@@ -1535,7 +1535,7 @@ function buildDespesaFuncoes(root, desp) {
 // matiz. E como a escala é compartilhada, comparar painéis continua válido:
 // a Saúde ocupa o quadro inteiro, a Cultura quase não sai do chão.
 // ---------------------------------------------------------------------------
-function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueFormatFull, colunas = 3 }) {
+function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueFormatFull, colunas = 3, detalhe }) {
   const grade = document.createElement("div");
   grade.className = "viz-multiples";
   grade.style.setProperty("--viz-mult-cols", colunas);
@@ -1584,15 +1584,23 @@ function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueF
     const tip = makeTooltip(wrap);
     xValues.forEach((xv, i) => {
       const meia = innerW / (n - 1) / 2;
+      const det = detalhe ? detalhe(p, i) : null;
+      const linhas = [{ label: "Empenhado", value: valueFormatFull(p.valores[i]), color: cor }]
+        .concat((det && det.linhas) || []);
+      const nota = det && det.nota;
       const alvo = el("rect", {
         class: "viz-hit", x: Math.max(M.left, x(i) - meia), y: M.top,
         width: Math.min(innerW, meia * 2), height: innerH, fill: "transparent", tabindex: 0,
-        role: "img", "aria-label": `${p.nome}, ${xv}: ${valueFormatFull(p.valores[i])}`,
+        role: "img",
+        "aria-label": `${p.nome}, ${xv}: ` + linhas.map(l => `${l.label} ${l.value}`).join(", ") +
+          (nota ? ". " + nota.replace(/<[^>]+>/g, "") : ""),
       }, svg);
       function onEnter() {
         const r = svg.getBoundingClientRect();
-        showTooltip(tip, wrap, x(i) * (r.width / W), y(p.valores[i]) * (r.height / H), `${p.nome} · ${xv}`,
-          [{ label: "Empenhado", value: valueFormatFull(p.valores[i]), color: cor }]);
+        // Painel estreito: o balão com texto não cabe ao lado dentro do cartão.
+        // Ancorar no ponto e deixar o showTooltip virar para baixo/laterais.
+        showTooltip(tip, wrap, x(i) * (r.width / W), y(p.valores[i]) * (r.height / H),
+          `${p.nome} · ${xv}`, linhas, nota);
       }
       alvo.addEventListener("pointerenter", onEnter);
       alvo.addEventListener("focus", onEnter);
@@ -1608,6 +1616,26 @@ function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueF
     cel.appendChild(pe);
   });
 }
+
+// Notas por função e ano. Só os anos em que algo identificável aconteceu: nos
+// demais o tooltip já traz percentual do orçamento, valor por habitante e
+// variação sobre o ano anterior, que é informação suficiente. Encher os 72
+// pares com frase genérica ensinaria o leitor a ignorar o balão.
+const FUNCAO_NOTAS = {
+  "Saúde|2016": `<strong>A virada.</strong> "Assistência Hospitalar e Ambulatorial" salta de R$ 16 mi para R$ 63 mi em um ano. <strong>Não é mais gente sendo atendida — é a prefeitura passando a pagar diretamente</strong> um atendimento que antes o Ministério repassava ao hospital. Mudou o pagador, não o paciente.`,
+  "Saúde|2020": `<strong>Pandemia.</strong> A subfunção "Administração Geral" da Saúde, onde entra a compra emergencial, sai de R$ 5 mi para R$ 40 mi. O atendimento hospitalar segue no mesmo patamar.`,
+  "Saúde|2021": `<strong>O pico da série:</strong> 48% de todo o orçamento municipal e R$ 2.093 por habitante. A "Administração Geral" da Saúde chega a R$ 66 mi — treze vezes o valor de 2019.`,
+  "Saúde|2022": `<strong>A queda não é corte.</strong> É o fim do dinheiro emergencial: a "Administração Geral" despenca de R$ 66 mi para R$ 15 mi. O atendimento hospitalar, esse, continuou subindo.`,
+  "Saúde|2025": `O atendimento hospitalar e ambulatorial chega a <strong>R$ 116,8 mi — a maior linha isolada do orçamento inteiro</strong>, sozinha maior que toda a Educação. Por habitante, a Saúde saiu de R$ 708 em 2014 para R$ 2.035, corrigido: quase o triplo, com a população parada.`,
+  "Educação|2020": `Ano de escola fechada: a despesa cai em termos reais pela primeira vez desde 2018.`,
+  "Educação|2022": `<strong>O degrau.</strong> O piso nacional do magistério sobe 33,24% e o novo FUNDEB (Emenda Constitucional 108/2020) eleva a complementação da União de 10% para 23% do fundo até 2026. A despesa sobe 36% real de uma vez — e fica nesse novo patamar.`,
+  "Urbanismo|2020": `<strong>Primeiro pico:</strong> R$ 80 mi, quase o dobro de qualquer ano vizinho. É o ano em que entraram R$ 30 mi de empréstimo.`,
+  "Urbanismo|2024": `<strong>Segundo pico:</strong> R$ 90 mi, no ano em que entraram R$ 42 mi de empréstimo. Só "Infraestrutura Urbana" consumiu R$ 58,6 mi.`,
+  "Urbanismo|2025": `Volta ao patamar de sempre. <strong>Em doze anos o Urbanismo encolheu 3,3% em termos reais</strong> — gasta-se hoje menos com a cidade física do que em 2015.`,
+  "Encargos Especiais|2025": `<strong>Quase dobra em um ano</strong>, de R$ 15,1 mi para R$ 28,3 mi. É quase tudo serviço da dívida: a conta dos empréstimos de 2020 e 2024 chegando.`,
+  "Administração|2025": `Cresceu 31% em doze anos, contra 69% do orçamento inteiro — ou seja, <strong>perdeu peso relativo</strong>. A máquina administrativa não foi o que fez o orçamento crescer.`,
+  "outras|2025": `Todo o resto do governo municipal somado — Assistência Social, Segurança, Cultura, Previdência, Saneamento, Transporte, Agricultura, Meio Ambiente e as demais. <strong>Juntas, ainda cabem dentro de um terço do que vai só para a Saúde.</strong>`,
+};
 
 // ---------------------------------------------------------------------------
 // Fase 3 — a repartição do orçamento ao longo do tempo, função por função.
@@ -1627,12 +1655,12 @@ function buildFuncoesNoTempo(root, desp) {
   const resto = ranking.slice(5);
 
   const paineis = TOPO.map(nome => ({
-    nome,
+    nome, chave: nome,
     valores: serie.map(p => (p.funcoes[nome] || 0) * p.ipca_fator_para_2025),
   }));
   if (resto.length) {
     paineis.push({
-      nome: `Outras ${resto.length} funções`,
+      nome: `Outras ${resto.length} funções`, chave: "outras",
       valores: serie.map(p => resto.reduce((s, f) => s + (p.funcoes[f] || 0), 0) * p.ipca_fator_para_2025),
     });
   }
@@ -1640,21 +1668,67 @@ function buildFuncoesNoTempo(root, desp) {
   renderSmallMultiples(root, {
     paineis, xValues: serie.map(p => String(p.ano)), cor,
     valueFormat: (v) => milhoes(v), valueFormatFull: (v) => fmtMoneyFull(v),
+    // Cada ano ganha três números que o gráfico sozinho não mostra: o peso no
+    // orçamento, o valor POR HABITANTE — que é o que separa "cresceu porque a
+    // cidade cresceu" de "cresceu de verdade" — e a variação sobre o ano
+    // anterior. A nota editorial só aparece nos anos que têm história.
+    detalhe: (painel, i) => {
+      const ano = serie[i];
+      const bruto = painel.chave === "outras"
+        ? resto.reduce((s, f) => s + (ano.funcoes[f] || 0), 0)
+        : (ano.funcoes[painel.chave] || 0);
+      const linhas = [{
+        label: "Do orçamento do ano",
+        value: (100 * bruto / ano.total_empenhado).toFixed(1).replace(".", ",") + "%",
+        color: cor, dot: true,
+      }];
+      if (ano.populacao) {
+        linhas.push({
+          label: "Por habitante",
+          value: "R$ " + fmtInt.format(Math.round(painel.valores[i] / ano.populacao)),
+          color: cor, dot: true,
+        });
+      }
+      if (i > 0 && painel.valores[i - 1] > 0) {
+        const v = 100 * (painel.valores[i] / painel.valores[i - 1] - 1);
+        linhas.push({
+          label: `Ante ${serie[i - 1].ano}, já sem inflação`,
+          value: pct(v, 1), color: cor, dot: true,
+        });
+      }
+      return { linhas, nota: FUNCAO_NOTAS[`${painel.chave}|${ano.ano}`] };
+    },
   });
 
   const saude = paineis.find(p => p.nome === "Saúde");
   const shareIni = 100 * saude.valores[0] / (serie[0].total_empenhado * serie[0].ipca_fator_para_2025);
   const shareFim = 100 * saude.valores[saude.valores.length - 1] / (ult.total_empenhado * ult.ipca_fator_para_2025);
 
+  note(root, `<strong>Passe o mouse por qualquer ano de qualquer painel.</strong> Ele mostra quanto aquela função levou,
+    quanto isso representou do orçamento, <strong>quanto deu por habitante</strong> e o quanto variou em relação ao ano
+    anterior já sem inflação — e conta o que aconteceu, nos anos em que houve algo a contar.`);
+
+  // Esta nota existe porque é a primeira pergunta que qualquer leitor faz ao
+  // ver a Saúde triplicar, e a resposta ("mudou o pagador") não é intuitiva.
+  const saudePcIni = saude.valores[0] / serie[0].populacao;
+  const saudePcFim = saude.valores[saude.valores.length - 1] / ult.populacao;
+  note(root, `<strong>A pergunta óbvia: a Saúde quase triplicou e a população não mudou. Como?</strong> A população de
+    Itajubá era 95 mil em ${serie[0].ano} e é 97 mil hoje — e a Saúde saiu de
+    <strong>R$ ${fmtInt.format(Math.round(saudePcIni))} para R$ ${fmtInt.format(Math.round(saudePcFim))} por habitante</strong>,
+    já corrigido. Ou seja: não foi gente nova, foi mais dinheiro por pessoa. E a maior parte disso não é mais atendimento —
+    <strong>é a prefeitura tendo virado a pagadora de um atendimento que já existia</strong>. Até 2015 o repasse do SUS ia
+    do Ministério direto ao hospital e não passava pelo caixa municipal; a partir de 2016 passa, e a rubrica "Assistência
+    Hospitalar e Ambulatorial" pula de R$ 16 mi para R$ 63 mi sem que um único leito tenha sido criado naquele ano. O
+    orçamento cresceu porque mudou de tamanho o que ele <em>contabiliza</em>. Parte do aumento é real (a Atenção Básica
+    subiu de R$ 46 mi para R$ 58 mi no período), mas a maior parte é essa troca de mãos.`);
+
   note(root, `Todos os painéis dividem a mesma régua vertical, então a altura de um vale contra a do outro — por isso a
     Saúde ocupa o quadro inteiro e as demais mal saem do chão. <strong>A Saúde saiu de ${shareIni.toFixed(0)}% do
-    orçamento em ${serie[0].ano} para ${shareFim.toFixed(0)}% em ${ult.ano}</strong>, com a virada concentrada em 2016.
-    A <strong>Educação</strong> tem forma de degrau: fica plana até 2021 e sobe de uma vez em 2022, quando o piso do
-    magistério subiu 33,24%. E o <strong>Urbanismo</strong> é o único com forma de serra — dois picos isolados, 2020 e
-    2024, exatamente os anos de empréstimo (gráfico 7); fora deles volta sempre ao mesmo patamar.`);
-
-  note(root, `Repare no que <em>não</em> muda: fora Saúde e Educação, quase nenhuma função cresceu de forma sustentada em
-    doze anos. O orçamento de Itajubá não se expandiu em várias frentes — ele se concentrou em uma.`);
+    orçamento em ${serie[0].ano} para ${shareFim.toFixed(0)}% em ${ult.ano}</strong>. A <strong>Educação</strong> tem
+    forma de degrau: plana até 2021, sobe de uma vez em 2022. E o <strong>Urbanismo</strong> é o único com forma de serra
+    — dois picos isolados, 2020 e 2024, exatamente os anos de empréstimo (gráfico 7). Repare no que <em>não</em> muda:
+    fora Saúde e Educação, quase nenhuma função cresceu de forma sustentada em doze anos. O orçamento de Itajubá não se
+    expandiu em várias frentes — concentrou-se em uma.`);
 
   renderTable(root, {
     caption: "Despesa por função ao longo do tempo, em R$ de 2025",

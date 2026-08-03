@@ -183,6 +183,11 @@
 @media (max-width:760px){.viz-multiples{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:460px){.viz-multiples{grid-template-columns:1fr}}
 .viz-multiple{padding:.6rem .7rem .45rem;border:1px solid var(--v-grid);border-radius:11px;background:var(--v-surface)}
+/* O balão de um painel é mais alto que o painel e precisa passar POR CIMA dos
+   vizinhos; sem isto o cartão seguinte da grade o cobre pela metade. */
+.viz-multiple:hover,.viz-multiple:focus-within{position:relative;z-index:20}
+/* E mais estreito aqui do que nos gráficos grandes, para caber na coluna. */
+.viz-multiple .viz-tooltip--wide{width:min(33ch,80vw)}
 .viz-multiple-head{display:flex;align-items:baseline;justify-content:space-between;gap:.4rem;margin-bottom:.25rem}
 .viz-multiple-head .m-nome{color:var(--v-text-primary);font-size:.76rem;font-weight:850;line-height:1.2}
 .viz-multiple-head .m-valor{color:var(--v-text-secondary);font-size:.7rem;font-weight:800;white-space:nowrap}
