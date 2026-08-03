@@ -103,11 +103,8 @@
             <div class="viz-root" id="chart-pib-despesa">
               <div class="viz-head"><div><h3>3. A prefeitura cresceu junto com a cidade?</h3><p>PIB do município e despesa da Prefeitura, os dois corrigidos pela inflação e postos na mesma base (2014 = 100). Índice, não dois eixos — a explicação está na nota abaixo.</p></div></div>
             </div>
-            <div class="viz-root" id="chart-despesa-funcoes">
-              <div class="viz-head"><div><h3>4. Para onde foi o dinheiro em 2025</h3><p>Despesa empenhada por função de governo, do maior para o menor. Passe o mouse para ver o valor cheio e o percentual do orçamento.</p></div></div>
-            </div>
             <div class="viz-root" id="chart-funcoes-tempo">
-              <div class="viz-head"><div><h3>5. E ao longo dos doze anos, função por função</h3><p>A mesma repartição acompanhada desde 2014, tudo corrigido para reais de 2025. Todos os painéis usam a mesma régua vertical — a altura de um é comparável à do outro.</p></div></div>
+              <div class="viz-head"><div><h3>4. Para onde foi o dinheiro, ano a ano</h3><p>Despesa por função de governo, de 2014 a 2025, tudo corrigido para reais de 2025. Todos os painéis usam a mesma régua vertical — a altura de um é comparável à do outro. Passe o mouse por qualquer ano.</p></div></div>
             </div>
             <div class="explainer">
               <h4>O que está e o que não está nesta conta</h4>
@@ -117,20 +114,20 @@
               <p>A regra geral: o orçamento municipal mostra o que a <em>Prefeitura</em> executa, não o que o poder público gasta na cidade. Boa parte do serviço público que o morador usa — escola estadual, polícia, hospital, universidade — é pago por outro ente e não entra em nenhum destes gráficos.</p>
             </div>
             <div class="viz-root" id="chart-despesa-variacao">
-              <div class="viz-head"><div><h3>6. Quem cresceu e quem encolheu, 2015→2025</h3><p>Variação de cada função já descontada a inflação, em reais de 2025. À direita, quem ganhou espaço no orçamento; à esquerda, quem perdeu.</p></div></div>
+              <div class="viz-head"><div><h3>5. Quem cresceu e quem encolheu, 2015→2025</h3><p>Variação de cada função já descontada a inflação, em reais de 2025. À direita, quem ganhou espaço no orçamento; à esquerda, quem perdeu.</p></div></div>
             </div>
             <div class="viz-root" id="chart-investimento">
-              <div class="viz-head"><div><h3>7. As obras seguem os empréstimos</h3><p>Investimento (obras e equipamentos) contra o dinheiro de operações de crédito que entrou em cada ano. Ambos em reais de 2025.</p></div></div>
+              <div class="viz-head"><div><h3>6. As obras seguem os empréstimos</h3><p>Investimento (obras e equipamentos) contra o dinheiro de operações de crédito que entrou em cada ano. Ambos em reais de 2025.</p></div></div>
             </div>
             <div class="viz-root" id="chart-receita-origem">
-              <div class="viz-head"><div><h3>8. De onde vem o dinheiro</h3><p>Receita bruta de 2025 por origem. Mostra o quanto da conta a cidade arrecada e o quanto depende de repasse de fora.</p></div></div>
+              <div class="viz-head"><div><h3>7. De onde vem o dinheiro</h3><p>Receita bruta de 2025 por origem. Mostra o quanto da conta a cidade arrecada e o quanto depende de repasse de fora.</p></div></div>
             </div>
             <div class="explainer">
               <h4>O que esta fase não consegue mostrar</h4>
               <p><strong>Não há dado estruturado antes de 2014.</strong> A base do SICONFI começa ali para todos os municípios do país — confirmamos consultando a mesma API para São Paulo capital, que também volta vazia em 2012 e 2013. Séries anteriores existem em outro formato (os arquivos históricos do FINBRA), com outro plano de contas, e não foram incorporadas aqui.</p>
               <p><strong>Empenhado não é pago.</strong> Um compromisso assumido em dezembro pode ser pago no ano seguinte, como resto a pagar. A série de despesa paga existe no mesmo anexo e não foi usada — para acompanhar a execução ano a ano, o empenho é a medida padrão, mas ele não prova que a obra saiu do papel.</p>
               <p><strong>Função diz a área, não a qualidade.</strong> Saber que a Saúde recebeu R$ 197 milhões não diz se o atendimento melhorou. Cruzar orçamento com resultado (fila, mortalidade, aprovação escolar) é outro trabalho, e é o que a Fase 9 começa a tentar com o IDU-Br.</p>
-              <p><strong>Uma pergunta ficou em aberto</strong>, e está marcada como tal no gráfico 6: não localizamos em fonte pública o ato que, a partir de 2016, quadruplicou o gasto municipal com assistência hospitalar. A hipótese mais provável está descrita ali, mas hipótese não vira conclusão nesta página.</p>
+              <p><strong>Uma pergunta ficou em aberto</strong>, e está marcada como tal no gráfico 5: não localizamos em fonte pública o ato que, a partir de 2016, quadruplicou o gasto municipal com assistência hospitalar. A hipótese mais provável está descrita ali, mas hipótese não vira conclusão nesta página.</p>
             </div>
             <p class="muted-note">Fontes salvas: <a href="../dados/itajuba/siconfi_receita_despesa_2015_2025.json" target="_blank" rel="noopener noreferrer">siconfi_receita_despesa_2015_2025.json ↗</a> · <a href="../dados/itajuba/despesa_funcao_natureza_2014_2025.json" target="_blank" rel="noopener noreferrer">despesa_funcao_natureza_2014_2025.json ↗</a> · <a href="../dados/itajuba/receita_origem_2014_2025.json" target="_blank" rel="noopener noreferrer">receita_origem_2014_2025.json ↗</a></p>
           </div>

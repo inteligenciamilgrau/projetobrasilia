@@ -1213,7 +1213,7 @@ const SALDO_NOTAS = {
     fontes: [{ t: "IBGE — Contas Nacionais Trimestrais (SIDRA, tabela 1846)", u: "https://sidra.ibge.gov.br/tabela/1846" }],
   },
   2016: {
-    texto: `<strong>A virada da saúde.</strong> Primeiro ano em que o município passa a pagar direto o atendimento hospitalar: essa rubrica salta de R$ 16 mi para R$ 63 mi e as transferências sobem R$ 55 mi (corrigidos). A despesa acompanhou quase tudo — sobrou pouco, mas sobrou. O ato que produziu essa mudança não foi localizado em fonte pública; ver a nota do gráfico 6.`,
+    texto: `<strong>A virada da saúde.</strong> Primeiro ano em que o município passa a pagar direto o atendimento hospitalar: essa rubrica salta de R$ 16 mi para R$ 63 mi e as transferências sobem R$ 55 mi (corrigidos). A despesa acompanhou quase tudo — sobrou pouco, mas sobrou. O ato que produziu essa mudança não foi localizado em fonte pública; ver a nota do gráfico 5.`,
   },
   2017: {
     texto: `<strong>A folha estourou.</strong> Receita parada e a despesa com pessoal saltando de R$ 130 mi para R$ 143 mi em um ano, +9,7% corrigido. Não foi obra: 2017 teve o <em>menor</em> investimento de doze anos, R$ 12,2 mi.`,
@@ -1399,7 +1399,7 @@ function buildDespesaReal(root, desp) {
 
   note(root, `<strong>1. Transferências de fora: +R$ 204 milhões reais</strong> (de R$ 218 mi para R$ 422 mi, +93%). É de
     longe o principal, e tem três eventos datados dentro dele. Em <strong>2016</strong> o município passou a receber e pagar
-    diretamente o atendimento hospitalar, e só essa rubrica saltou de R$ 16 mi para R$ 63 mi num ano (detalhe no gráfico 6).
+    diretamente o atendimento hospitalar, e só essa rubrica saltou de R$ 16 mi para R$ 63 mi num ano (detalhe no gráfico 5).
     Em <strong>2020</strong> veio o auxílio federal da pandemia (LC 173/2020). E a partir de <strong>2021</strong> o novo
     FUNDEB, criado pela Emenda Constitucional 108/2020, elevou a complementação da União de 10% para 23% do fundo até 2026 —
     o efeito aparece em 2022, quando o piso nacional do magistério subiu 33,24% e a despesa com Educação em Itajubá subiu
@@ -1466,7 +1466,7 @@ function buildPibVsDespesa(root, desp) {
     ${pct(cmp.serie[2].indice_pib - 100)}) e levou sete anos para voltar ao ponto de partida. O orçamento não acompanhou
     essa queda: seguiu subindo o tempo todo. Resultado: <strong>a Prefeitura saiu de
     ${pri.despesa_sobre_pib_pct.toFixed(1).replace(".", ",")}% para ${ult.despesa_sobre_pib_pct.toFixed(1).replace(".", ",")}% da economia local</strong> —
-    quase o dobro de peso. Como o crescimento do orçamento veio sobretudo de transferências de fora (gráfico 8), o que
+    quase o dobro de peso. Como o crescimento do orçamento veio sobretudo de transferências de fora (gráfico 7), o que
     aconteceu não foi a cidade ficando mais rica e sustentando uma prefeitura maior: foi a prefeitura crescendo por
     repasse enquanto a economia local ficava parada.`);
 
@@ -1484,46 +1484,13 @@ function buildPibVsDespesa(root, desp) {
   });
 }
 
-// ---------------------------------------------------------------------------
-// Fase 3 — "para onde foi o dinheiro": despesa por função no último ano.
-// Ranking de magnitude com rótulo direto = barras horizontais, 1 hue só
-// (a identidade está no texto, a cor não codifica nada — color-formula.md).
-// ---------------------------------------------------------------------------
-function buildDespesaFuncoes(root, desp) {
-  const st = getComputedStyle(root);
-  const cor = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
-  const ult = desp.serie[desp.serie.length - 1];
-  const total = ult.total_empenhado;
-
-  const todas = Object.entries(ult.funcoes).map(([funcao, valor]) => ({ funcao, valor }))
-    .sort((x, y) => y.valor - x.valor);
-  const TOPO = 9;
-  const principais = todas.slice(0, TOPO);
-  const resto = todas.slice(TOPO);
-  const dados = principais.concat(resto.length
-    ? [{ funcao: `Outras ${resto.length} funções`, valor: resto.reduce((s, r) => s + r.valor, 0) }]
-    : []);
-
-  renderBarsHorizontal(root, {
-    data: dados, labelKey: "funcao", valueKey: "valor",
-    valueFormat: (v) => milhoes(v),
-    valueFormatFull: (v) => `${fmtMoneyFull(v)} (${(100 * v / total).toFixed(1).replace(".", ",")}% do orçamento)`,
-    color: cor, ariaLabelPrefix: `Despesa por função em ${ult.ano}`,
-  });
-
-  const saude = ult.funcoes["Saúde"] || 0;
-  const educ = ult.funcoes["Educação"] || 0;
-  note(root, `Só <strong>Saúde e Educação somam ${(100 * (saude + educ) / total).toFixed(0)}% de tudo que a prefeitura gastou em ${ult.ano}</strong>
-    (${milhoes(saude)} e ${milhoes(educ)}). Não é escolha livre do prefeito: a Constituição obriga o município a aplicar no mínimo
-    15% da receita de impostos em saúde e 25% em educação, e boa parte do dinheiro chega carimbado, vindo do SUS e do FUNDEB
-    já com destino definido. A função "Encargos Especiais" é quase toda serviço da dívida — juros e amortização de empréstimos.`);
-
-  renderTable(root, {
-    caption: `Despesa empenhada por função em ${ult.ano}`,
-    columns: ["Função", "Valor empenhado", "% do orçamento"],
-    rows: todas.map(f => [f.funcao, fmtMoneyFull(f.valor), (100 * f.valor / total).toFixed(1).replace(".", ",") + "%"]),
-  });
-}
+// NOTA: havia aqui um buildDespesaFuncoes — barras horizontais com a despesa
+// por função só de 2025. Foi removido: os pequenos múltiplos mostram a mesma
+// repartição E a trajetória de cada função, com percentual do orçamento e valor
+// por habitante no hover. Dois gráficos para o mesmo recorte cansam o leitor
+// sem acrescentar. O que era exclusivo do gráfico antigo — o motivo de Saúde e
+// Educação dominarem, e o ranking completo do último ano — migrou para as notas
+// e para o bloco recolhido de buildFuncoesNoTempo.
 
 // ---------------------------------------------------------------------------
 // PEQUENOS MÚLTIPLOS: uma mini-série por função, todas na MESMA régua vertical.
@@ -1708,6 +1675,18 @@ function buildFuncoesNoTempo(root, desp) {
     quanto isso representou do orçamento, <strong>quanto deu por habitante</strong> e o quanto variou em relação ao ano
     anterior já sem inflação — e conta o que aconteceu, nos anos em que houve algo a contar.`);
 
+  // Conteúdo que vivia num gráfico separado de barras (só 2025). O gráfico foi
+  // removido por redundância: estes painéis mostram o mesmo e ainda no tempo.
+  // O que não podia se perder era o motivo de Saúde e Educação dominarem — que
+  // não é escolha do prefeito — e o ranking completo do último ano.
+  const saude25 = ult.funcoes["Saúde"] || 0, educ25 = ult.funcoes["Educação"] || 0;
+  note(root, `<strong>Saúde e Educação sozinhas levam ${(100 * (saude25 + educ25) / ult.total_empenhado).toFixed(0)}% de
+    tudo que a prefeitura gasta</strong> — e isso não é escolha livre do prefeito. A Constituição obriga o município a
+    aplicar no mínimo 15% da receita de impostos em saúde e 25% em educação, e boa parte do dinheiro chega carimbada,
+    vinda do SUS e do FUNDEB já com destino definido. A função "Encargos Especiais" é quase toda serviço da dívida:
+    juros e amortização de empréstimos.`);
+
+
   // Esta nota existe porque é a primeira pergunta que qualquer leitor faz ao
   // ver a Saúde triplicar, e a resposta ("mudou o pagador") não é intuitiva.
   const saudePcIni = saude.valores[0] / serie[0].populacao;
@@ -1726,9 +1705,18 @@ function buildFuncoesNoTempo(root, desp) {
     Saúde ocupa o quadro inteiro e as demais mal saem do chão. <strong>A Saúde saiu de ${shareIni.toFixed(0)}% do
     orçamento em ${serie[0].ano} para ${shareFim.toFixed(0)}% em ${ult.ano}</strong>. A <strong>Educação</strong> tem
     forma de degrau: plana até 2021, sobe de uma vez em 2022. E o <strong>Urbanismo</strong> é o único com forma de serra
-    — dois picos isolados, 2020 e 2024, exatamente os anos de empréstimo (gráfico 7). Repare no que <em>não</em> muda:
+    — dois picos isolados, 2020 e 2024, exatamente os anos de empréstimo (gráfico 6). Repare no que <em>não</em> muda:
     fora Saúde e Educação, quase nenhuma função cresceu de forma sustentada em doze anos. O orçamento de Itajubá não se
     expandiu em várias frentes — concentrou-se em uma.`);
+
+  // Fica por último, depois da prosa: é consulta, não leitura. Substitui o
+  // ranking que existia no gráfico de barras removido.
+  const todas2025 = Object.entries(ult.funcoes).map(([f, v]) => ({ f, v })).sort((a, b) => b.v - a.v);
+  noteToggle(root, `Ver as ${todas2025.length} funções de ${ult.ano}, da maior para a menor`,
+    `<p class="viz-note-lead">Valores de ${ult.ano} em reais correntes. Os painéis acima agrupam as menores em
+     "Outras".</p>` +
+    todas2025.map(x => `<p><strong>${x.f}</strong> · ${fmtMoneyFull(x.v)} ·
+      ${(100 * x.v / ult.total_empenhado).toFixed(1).replace(".", ",")}% do orçamento</p>`).join(""));
 
   renderTable(root, {
     caption: "Despesa por função ao longo do tempo, em R$ de 2025",
@@ -2181,7 +2169,6 @@ function initItajubaCharts() {
 
   const realRoot = document.querySelector("#chart-despesa-real");
   const pibDespRoot = document.querySelector("#chart-pib-despesa");
-  const funcoesRoot = document.querySelector("#chart-despesa-funcoes");
   const funcoesTempoRoot = document.querySelector("#chart-funcoes-tempo");
   const variacaoRoot = document.querySelector("#chart-despesa-variacao");
   const investRoot = document.querySelector("#chart-investimento");
@@ -2202,12 +2189,11 @@ function initItajubaCharts() {
     ]).then(([desp, rec]) => {
       if (realRoot) buildDespesaReal(realRoot, desp);
       if (pibDespRoot) buildPibVsDespesa(pibDespRoot, desp);
-      if (funcoesRoot) buildDespesaFuncoes(funcoesRoot, desp);
       if (funcoesTempoRoot) buildFuncoesNoTempo(funcoesTempoRoot, desp);
       if (variacaoRoot) buildDespesaVariacao(variacaoRoot, desp);
       if (investRoot) buildInvestimentoCredito(investRoot, desp, rec);
       if (origemRoot) buildReceitaOrigem(origemRoot, rec);
-    }).catch(() => showError(realRoot, pibDespRoot, funcoesRoot, funcoesTempoRoot, variacaoRoot, investRoot, origemRoot));
+    }).catch(() => showError(realRoot, pibDespRoot, funcoesTempoRoot, variacaoRoot, investRoot, origemRoot));
   });
 
   const idhmRoot = document.querySelector("#chart-idhm");
