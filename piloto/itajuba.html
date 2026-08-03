@@ -8,6 +8,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/site.css">
   <link rel="stylesheet" href="piloto.css">
+  <link rel="stylesheet" href="charts.css">
   <title>Itajubá/MG — piloto de análise — Projeto Brasil iA</title>
 </head>
 <body>
@@ -46,7 +47,24 @@
       <div class="stat"><strong>3132404</strong><span>código IBGE do município</span></div>
       <div class="stat"><strong>294,8 km²</strong><span>área territorial</span></div>
     </div>
-    <div class="status-banner"><strong>Status desta aba:</strong> Fase 0 concluída (02/08/2026) — estrutura, catálogo de fontes e 3 conjuntos de dados já coletados. Ainda não há gráficos com série histórica nem recorte por bairro; isso é o trabalho das próximas fases.</div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Fases 0, 1 e 3 concluídas (03/08/2026) — estrutura, catálogo de fontes, população 2000–2025 e finanças 2015–2025 já têm gráfico real. Ainda faltam desenvolvimento humano histórico, compras/Legislativo, saúde, educação, território/bairros e emprego — isso é o trabalho das próximas fases.</div>
+
+    <section aria-labelledby="graficos-title">
+      <div class="section-head"><div><p class="kicker">Fase 1 e Fase 3 · dado real</p><h2 id="graficos-title">O que os números já mostram.</h2></div><p>Todo valor abaixo vem de fetch direto ao IBGE (SIDRA) e ao SICONFI/Tesouro Nacional nesta sessão — nenhum número estimado ou preenchido à mão. Passe o mouse (ou navegue por teclado) para ver o valor exato; "Ver como tabela" abre os mesmos dados sem gráfico.</p></div>
+
+      <div class="viz-root" id="chart-populacao">
+        <div class="viz-head"><div><h3>População residente, 2000–2025</h3><p>Censos (marcador maior) e Estimativas anuais do IBGE. 2007 e 2023 não têm valor publicado para Itajubá nessa tabela.</p></div></div>
+      </div>
+      <p class="viz-note" style="margin:-0.4rem 0 1.4rem">Repare na queda de 2021 (97.782, estimado) para 2022 (93.073, contado pelo Censo) — a Estimativa vinha superestimando havia anos; padrão visto em vários municípios no Censo 2022.</p>
+
+      <div class="viz-root" id="chart-financas">
+        <div class="viz-head"><div><h3>Receita e despesa da Prefeitura, 2015–2025</h3><p>RREO Anexo 01, acumulado do ano (dez/cada exercício). Valores correntes, sem ajuste pela inflação.</p></div></div>
+      </div>
+
+      <div class="viz-root" id="chart-saldo">
+        <div class="viz-head"><div><h3>Saldo orçamentário, 2015–2025</h3><p>Receita realizada menos despesa empenhada. Três anos de déficit: 2015, 2017 e 2023.</p></div></div>
+      </div>
+    </section>
 
     <section aria-labelledby="contexto-title">
       <div class="section-head"><div><p class="kicker">Como Itajubá entrou aqui</p><h2 id="contexto-title">Do pré-filtro de cidades pequenas a um piloto próprio.</h2></div><p>Itajubá apareceu no Top 10 de ≈100 mil habitantes do <a href="../cidades-pequenas.html">experimento de cidades pequenas</a>, ordenado por IPS Brasil 2026. A triagem-padrão marcou "sem sinal" porque o site da Prefeitura bloqueia acesso automatizado. Uma varredura extra, pedida especificamente, encontrou dado real fora do Executivo: a Câmara Municipal (domínio próprio, sem bloqueio), o PNCP e o SICONFI. Isso foi o suficiente para justificar tirar Itajubá do lote de 20 candidatas e abrir um piloto só dela.</p></div>
@@ -57,9 +75,9 @@
       <div class="section-head"><div><p class="kicker">Plano de análise</p><h2 id="plano-title">Uma fase por sessão, não tudo de uma vez.</h2></div><p>Cada fase é um lote de coleta e visualização fechado em si. Uma fase só começa quando a anterior está registrada — nada de buscar em massa "por via das dúvidas".</p></div>
       <div class="roadmap">
         <article class="phase done"><div class="phase-num">0</div><div><h3>Estrutura, fontes e plano</h3><p>Esta página, o catálogo de fontes abaixo e 3 conjuntos de dados de prova de conceito (IPS Brasil completo, amostra do PNCP, amostra do SICONFI) salvos em <code>dados/itajuba/</code>.</p></div><span class="phase-tag done">Concluída 02/08/2026</span></article>
-        <article class="phase"><div class="phase-num">1</div><div><h3>Demografia e evolução populacional (2000–2026)</h3><p>SIDRA/IBGE: série de população, pirâmide etária, urbano/rural. Primeiro gráfico de linha real da aba.</p></div><span class="phase-tag next">Próxima</span></article>
-        <article class="phase"><div class="phase-num">2</div><div><h3>Desenvolvimento humano histórico</h3><p>IDHM 2000 e 2010 (IPEAData/Atlas Brasil) ao lado do IPS Brasil 2024–2026 já coletado — mesmo sem série contínua, dá para comparar os pontos que existem.</p></div><span class="phase-tag todo">Planejada</span></article>
-        <article class="phase"><div class="phase-num">3</div><div><h3>Finanças públicas</h3><p>SICONFI em série histórica (não só o bimestre já amostrado): receita, despesa, investimento por ano, separando Prefeitura do consórcio CIMASAS.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <article class="phase done"><div class="phase-num">1</div><div><h3>Demografia e evolução populacional (2000–2025)</h3><p>SIDRA/IBGE: população residente ano a ano, Censos 2000/2010/2022 e Estimativas nos demais anos. Pirâmide etária e urbano/rural ficam para uma fase futura (exigem outra tabela).</p></div><span class="phase-tag done">Concluída 03/08/2026</span></article>
+        <article class="phase"><div class="phase-num">2</div><div><h3>Desenvolvimento humano histórico</h3><p>IDHM 2000 e 2010 (IPEAData/Atlas Brasil) ao lado do IPS Brasil 2024–2026 já coletado — mesmo sem série contínua, dá para comparar os pontos que existem.</p></div><span class="phase-tag next">Próxima</span></article>
+        <article class="phase done"><div class="phase-num">3</div><div><h3>Finanças públicas</h3><p>SICONFI em série histórica 2015–2025 (RREO Anexo 01, acumulado do ano): receita realizada, despesa empenhada e saldo, já separando a Prefeitura do consórcio CIMASAS.</p></div><span class="phase-tag done">Concluída 03/08/2026</span></article>
         <article class="phase"><div class="phase-num">4</div><div><h3>Compras, obras e Legislativo</h3><p>PNCP em série histórica + SISCAM (Câmara): o que a cidade compra e o que a Câmara decide, com gráfico de categorias (pizza) por tipo de objeto/contratação.</p></div><span class="phase-tag todo">Planejada</span></article>
         <article class="phase"><div class="phase-num">5</div><div><h3>Saúde</h3><p>DATASUS TabNet, CNES e SINASC/SIM: natalidade, mortalidade, estabelecimentos e leitos.</p></div><span class="phase-tag todo">Planejada</span></article>
         <article class="phase"><div class="phase-num">6</div><div><h3>Educação</h3><p>INEP/Ideb e Censo Escolar: matrículas, escolas e desempenho ao longo do tempo.</p></div><span class="phase-tag todo">Planejada</span></article>
@@ -76,7 +94,7 @@
       <h3 class="category-heading">Demografia e território</h3>
       <div class="source-grid">
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IBGE Cidades — Panorama</h3><p class="what">População, PIB, indicadores sociais básicos e histórico de censos. Página testada (é SPA; carrega só com navegador real).</p><a class="open" href="https://cidades.ibge.gov.br/brasil/mg/itajuba/panorama" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>SIDRA/IBGE</h3><p class="what">Série de estimativas populacionais 2000–2026 por município — base da Fase 1.</p><a class="open" href="https://sidra.ibge.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SIDRA/IBGE — população</h3><p class="what">Censos 2000/2010/2022 (tabelas 202, 1378, 4709) e Estimativas 2001–2025 (tabela 6579). Vira o gráfico de população acima.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/6579" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/populacao_2000_2025.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Demográfico por setor censitário</h3><p class="what">2000, 2010 e 2022 — a única forma de dividir Itajubá em regiões/bairros com dado oficial. Base da Fase 7.</p><a class="open" href="https://sidra.ibge.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Malhas territoriais do IBGE</h3><p class="what">Limites do município e dos setores censitários, para desenhar os mapas por região.</p><a class="open" href="https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>PIB dos Municípios</h3><p class="what">Série histórica de PIB e valor adicionado por setor, divulgação excepcional 2022–2023 saiu em dez/2025.</p><a class="open" href="https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9088-produto-interno-bruto-dos-municipios.html" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
@@ -90,7 +108,7 @@
 
       <h3 class="category-heading">Finanças públicas e compras</h3>
       <div class="source-grid">
-        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional</h3><p class="what">RREO Anexo 01, 3º bimestre de 2025. Atenção: a consulta por município traz também o consórcio CIMASAS junto da Prefeitura — ver observação no arquivo salvo.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo%2001&id_ente=3132404" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/siconfi_rreo_2025_bimestre3.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional</h3><p class="what">RREO Anexo 01, acumulado do ano, 2015–2025 (11 exercícios). Vira os dois gráficos de finanças acima. Atenção: a consulta por município traz também o consórcio CIMASAS junto da Prefeitura — já filtrado nos arquivos salvos.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo%2001&id_ente=3132404" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/siconfi_receita_despesa_2015_2025.json" target="_blank" rel="noopener noreferrer">Ver série 2015–2025 ↗</a></article>
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">Amostra de 2 meses (jun–ago/2026), CNPJ da Prefeitura 18.025.940/0001-09. Base para o gráfico de categorias de compra da Fase 4.</p><a class="open" href="https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?cnpj=18025940000109" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/pncp_amostra_2026-08.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Portal da Transparência da União</h3><p class="what">Transferências federais recebidas por Itajubá (convênios, emendas, FPM).</p><a class="open" href="https://portaldatransparencia.gov.br/download-de-dados/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
@@ -138,11 +156,14 @@
       <div class="dataset-grid">
         <article class="dataset"><h3>ips_brasil_2026.json</h3><p>79 indicadores do IPS Brasil 2026 para Itajubá, com nomes traduzidos dos cabeçalhos originais.</p><p class="meta">Coletado 02/08/2026 · IPS Brasil</p></article>
         <article class="dataset"><h3>pncp_amostra_2026-08.json</h3><p>10 processos de compra (jun–ago/2026) da Prefeitura, resposta bruta da API preservada.</p><p class="meta">Coletado 02/08/2026 · PNCP</p></article>
-        <article class="dataset"><h3>siconfi_rreo_2025_bimestre3.json</h3><p>487 linhas do Balanço Orçamentário, 3º bimestre 2025 — 333 da Prefeitura, 154 do consórcio CIMASAS.</p><p class="meta">Coletado 02/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>siconfi_rreo_2025_anual.json</h3><p>487 linhas do Balanço Orçamentário, acumulado 2025 — 333 da Prefeitura, 154 do consórcio CIMASAS. (Corrigido: o nome antigo dizia "bimestre3" por engano.)</p><p class="meta">Coletado 02/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>populacao_2000_2025.json</h3><p>26 anos de população residente — Censos 2000/2010/2022 e Estimativas nos demais anos, com a fonte de cada ponto marcada.</p><p class="meta">Coletado 03/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>siconfi_receita_despesa_2015_2025.json</h3><p>Série anual de receita realizada, despesa empenhada e saldo, 2015–2025, já filtrada só para a Prefeitura.</p><p class="meta">Coletado 03/08/2026 · SICONFI</p></article>
       </div>
     </section>
   </main>
 
   <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Piloto dedicado a Itajubá/MG, construído aos poucos a partir de fontes públicas verificáveis.</p></div><div class="footer-links"><a href="./">Todos os pilotos</a><a href="../cidades-pequenas/itajuba.html">Dossiê de triagem</a><a href="../docs/CIDADES_PEQUENAS.md">Metodologia</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+  <script src="charts.js" defer></script>
 </body>
 </html>

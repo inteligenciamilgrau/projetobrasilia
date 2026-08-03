@@ -6,12 +6,12 @@
   "coletado_em": "2026-08-02",
   "parametros_consulta": {
     "an_exercicio": 2025,
-    "nr_periodo": 6,
+    "nr_periodo": "6 (acumulado do ano, jan-dez)",
     "co_tipo_demonstrativo": "RREO",
     "no_anexo": "RREO-Anexo 01",
     "id_ente": 3132404
   },
-  "observacao": "[NACIONAL — nao pontua como diferencial entre cidades no IDU-Br, mas e dado real, atual e especifico do municipio] RREO-Anexo 01 (Balanco Orcamentario), 3o bimestre 2025 (jan-jun). IMPORTANTE: a consulta por id_ente=3132404 devolve TODAS as instituicoes vinculadas ao codigo IBGE do municipio, nao so a Prefeitura: 333 registros sao da Prefeitura Municipal de Itajuba - MG e 154 sao do CIMASAS (Consorcio Intermunicipal da Microrregiao Alto Sapucai para Aterro Sanitario, do qual Itajuba participa). Filtrar por \"instituicao\" antes de somar valores.",
+  "observacao": "[NACIONAL — nao pontua como diferencial entre cidades no IDU-Br, mas e dado real, atual e especifico do municipio] RREO-Anexo 01 (Balanco Orcamentario), periodo 6 = acumulado ate dezembro/2025 (ano fechado, nao um bimestre isolado). CORRIGIDO 03/08/2026: o nome do arquivo e a observacao originais diziam erroneamente \"3o bimestre (jan-jun)\" — nr_periodo=6 e o ACUMULADO DO ANO INTEIRO, nao o terceiro bimestre. Ver dados/itajuba/siconfi_receita_despesa_2015_2025.json para a serie historica anual (2015-2025) construida com o mesmo parametro para cada exercicio. IMPORTANTE: a consulta por id_ente=3132404 devolve TODAS as instituicoes vinculadas ao codigo IBGE do municipio, nao so a Prefeitura: 333 registros sao da Prefeitura Municipal de Itajuba - MG e 154 sao do CIMASAS (Consorcio Intermunicipal da Microrregiao Alto Sapucai para Aterro Sanitario, do qual Itajuba participa). Filtrar por \"instituicao\" antes de somar valores.",
   "total_registros": 487,
   "registros_por_instituicao": {
     "Prefeitura Municipal de Itajubá - MG": 333,

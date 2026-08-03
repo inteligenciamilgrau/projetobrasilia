@@ -1,0 +1,82 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "entidade": "Prefeitura Municipal de Itajubá - MG (excluído o consórcio CIMASAS, ver siconfi_rreo_2025_anual.json)",
+  "fonte": "SICONFI / Tesouro Nacional — RREO Anexo 01 (Balanço Orçamentário), período 6 (acumulado do ano)",
+  "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio={ano}&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo%2001&id_ente=3132404",
+  "coletado_em": "2026-08-03",
+  "colunas_usadas": {
+    "receita_realizada": "conta=\"RECEITAS (EXCETO INTRA-ORÇAMENTÁRIAS) (I)\", coluna=\"Até o Bimestre (c)\"",
+    "despesa_empenhada": "conta=\"DESPESAS (EXCETO INTRA-ORÇAMENTÁRIAS) (VIII)\", coluna=\"DESPESAS EMPENHADAS ATÉ O BIMESTRE (f)\""
+  },
+  "observacao": "[NACIONAL — nao pontua como diferencial entre cidades no IDU-Br, mas e dado real, atual e especifico do municipio] 2013 e 2014 nao retornaram dado para este id_ente nesta consulta (SICONFI/RREO estruturado parece comecar em 2015 para Itajuba). Valores em reais (R$) correntes de cada ano (nao deflacionados/nao ajustados pela inflacao). Despesa empenhada != despesa paga; ha tambem colunas de despesa liquidada e paga no dado bruto (nao usadas aqui).",
+  "valores_nao_deflacionados": true,
+  "serie": [
+    {
+      "ano": 2015,
+      "receita_realizada": 167650195.72,
+      "despesa_empenhada": 170103336.67,
+      "saldo": -2453140.95
+    },
+    {
+      "ano": 2016,
+      "receita_realizada": 206204125.74,
+      "despesa_empenhada": 204501845.51,
+      "saldo": 1702280.23
+    },
+    {
+      "ano": 2017,
+      "receita_realizada": 212022505.0,
+      "despesa_empenhada": 219163401.4,
+      "saldo": -7140896.4
+    },
+    {
+      "ano": 2018,
+      "receita_realizada": 233508490.75,
+      "despesa_empenhada": 226863291.59,
+      "saldo": 6645199.16
+    },
+    {
+      "ano": 2019,
+      "receita_realizada": 257713871.93,
+      "despesa_empenhada": 252228242.66,
+      "saldo": 5485629.27
+    },
+    {
+      "ano": 2020,
+      "receita_realizada": 332242756.9,
+      "despesa_empenhada": 312545669.11,
+      "saldo": 19697087.79
+    },
+    {
+      "ano": 2021,
+      "receita_realizada": 364202276.42,
+      "despesa_empenhada": 339488741.03,
+      "saldo": 24713535.39
+    },
+    {
+      "ano": 2022,
+      "receita_realizada": 390043842.53,
+      "despesa_empenhada": 370938407.6,
+      "saldo": 19105434.93
+    },
+    {
+      "ano": 2023,
+      "receita_realizada": 411075738.06,
+      "despesa_empenhada": 428316804.77,
+      "saldo": -17241066.71
+    },
+    {
+      "ano": 2024,
+      "receita_realizada": 499333654.25,
+      "despesa_empenhada": 497406577.56,
+      "saldo": 1927076.69
+    },
+    {
+      "ano": 2025,
+      "receita_realizada": 535759009.94,
+      "despesa_empenhada": 499799483.37,
+      "saldo": 35959526.57
+    }
+  ]
+}

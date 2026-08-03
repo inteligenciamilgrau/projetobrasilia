@@ -1,0 +1,141 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "IBGE — Censos Demográficos (2000, 2010, 2022) e Estimativas de População (2001-2025, tabela SIDRA 6579)",
+  "url_censo": "https://servicodados.ibge.gov.br/api/v3/agregados/{tabela}/periodos/{ano}/variaveis/93?localidades=N6[3132404]  (tabela 202 para 2000, 1378 para 2010, 4709 para 2022)",
+  "url_estimativas": "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2001-2025/variaveis/9324?localidades=N6[3132404]",
+  "coletado_em": "2026-08-03",
+  "observacao": "Serie composta: anos de Censo (2000, 2010, 2022) usam a contagem oficial (variavel 93, mais precisa); os demais anos usam a Estimativa de Populacao anual do IBGE (variavel 9324, tabela 6579), que e uma projecao amostral, nao uma contagem. 2007 e 2023 nao tem valor: a tabela 6579 nao publicou estimativa para Itajuba nesses dois anos especificos. Reparem que a Estimativa superestimou a populacao antes dos dois Censos (2021: 97.782 estimado vs 2022: 93.073 contado — queda de ~4.700 pessoas na contagem real), um padrao visto em varios municipios brasileiros no Censo 2022.",
+  "serie": [
+    {
+      "ano": 2000,
+      "populacao": 84135,
+      "fonte": "censo"
+    },
+    {
+      "ano": 2001,
+      "populacao": 85199,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2002,
+      "populacao": 86036,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2003,
+      "populacao": 86918,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2004,
+      "populacao": 88770,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2005,
+      "populacao": 89795,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2006,
+      "populacao": 90812,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2007,
+      "populacao": null,
+      "fonte": null
+    },
+    {
+      "ano": 2008,
+      "populacao": 89730,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2009,
+      "populacao": 90225,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2010,
+      "populacao": 90658,
+      "fonte": "censo"
+    },
+    {
+      "ano": 2011,
+      "populacao": 91159,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2012,
+      "populacao": 91643,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2013,
+      "populacao": 94940,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2014,
+      "populacao": 95491,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2015,
+      "populacao": 96020,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2016,
+      "populacao": 96523,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2017,
+      "populacao": 97000,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2018,
+      "populacao": 96389,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2019,
+      "populacao": 96869,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2020,
+      "populacao": 97334,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2021,
+      "populacao": 97782,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2022,
+      "populacao": 93073,
+      "fonte": "censo"
+    },
+    {
+      "ano": 2023,
+      "populacao": null,
+      "fonte": null
+    },
+    {
+      "ano": 2024,
+      "populacao": 96632,
+      "fonte": "estimativa"
+    },
+    {
+      "ano": 2025,
+      "populacao": 96855,
+      "fonte": "estimativa"
+    }
+  ]
+}
