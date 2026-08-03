@@ -1,0 +1,31 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "IPEAData — séries ADH_IDHM, ADH_IDHM_E, ADH_IDHM_L, ADH_IDHM_R (Atlas do Desenvolvimento Humano/PNUD+IPEA+FJP, a partir dos Censos 1991/2000/2010)",
+  "url_origem": "http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='ADH_IDHM')",
+  "coletado_em": "2026-08-03",
+  "observacao": "Nao existe IDHM municipal 2022 nem mais recente — ver docs/CIDADES_PEQUENAS.md secao 2. Estes sao os 3 unicos pontos oficiais que existem (1991, 2000, 2010), direto dos Censos. IPS Brasil 2026 (dados/itajuba/ips_brasil_2026.json) NAO e o mesmo indice: dimensoes e metodologia diferentes, nao formam uma serie continua com o IDHM — tratar como dois pontos de referencia, nao uma tendencia.",
+  "serie": [
+    {
+      "ano": 1991,
+      "geral": 0.575,
+      "educacao": 0.389,
+      "longevidade": 0.744,
+      "renda": 0.656
+    },
+    {
+      "ano": 2000,
+      "geral": 0.691,
+      "educacao": 0.587,
+      "longevidade": 0.785,
+      "renda": 0.717
+    },
+    {
+      "ano": 2010,
+      "geral": 0.787,
+      "educacao": 0.718,
+      "longevidade": 0.884,
+      "renda": 0.767
+    }
+  ]
+}

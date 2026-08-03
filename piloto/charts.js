@@ -267,6 +267,32 @@ function renderDivergingBars(root, { data, xKey, yKey, yFormat, yFormatFull, pos
 }
 
 // ---------------------------------------------------------------------------
+// Estatísticas avulsas (quando o dado é 1-2 pontos, não uma série — "às vezes
+// a resposta certa não é um gráfico", ver choosing-a-form.md).
+// ---------------------------------------------------------------------------
+function renderStats(root, items) {
+  const box = document.createElement("div");
+  box.className = "viz-stats";
+  items.forEach(it => {
+    const tile = document.createElement("div");
+    tile.className = "viz-stat";
+    const strong = document.createElement("strong");
+    strong.textContent = it.value;
+    tile.appendChild(strong);
+    const span = document.createElement("span");
+    span.textContent = it.label;
+    tile.appendChild(span);
+    if (it.note) {
+      const small = document.createElement("small");
+      small.textContent = it.note;
+      tile.appendChild(small);
+    }
+    box.appendChild(tile);
+  });
+  root.appendChild(box);
+}
+
+// ---------------------------------------------------------------------------
 // Tabela alternativa (acessibilidade — sempre reflete os mesmos dados do gráfico)
 // ---------------------------------------------------------------------------
 function renderTable(root, { caption, columns, rows }) {
@@ -329,6 +355,93 @@ function buildPopulacaoChart(popRoot, pop) {
 }
 
 // ---------------------------------------------------------------------------
+// Monta o gráfico de IDHM histórico + comparação com IPS Brasil dentro de #chart-idhm.
+// ---------------------------------------------------------------------------
+function buildIdhmChart(root, idhm, ips) {
+  const xValues = idhm.serie.map(p => String(p.ano));
+  const style = getComputedStyle(root);
+  const cEduc = style.getPropertyValue("--v-series-receita").trim() || "#08724e";
+  const cLong = style.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const cRenda = style.getPropertyValue("--v-series-3").trim() || "#eb6834";
+
+  renderLineChart(root, {
+    series: [
+      { key: "educ", label: "Educação", color: cEduc, points: idhm.serie.map(p => ({ y: p.educacao })) },
+      { key: "long", label: "Longevidade", color: cLong, points: idhm.serie.map(p => ({ y: p.longevidade })) },
+      { key: "renda", label: "Renda", color: cRenda, points: idhm.serie.map(p => ({ y: p.renda })) },
+    ],
+    xValues, yLabel: "IDHM por dimensão",
+    yFormat: (v) => v.toFixed(2).replace(".", ","), yFormatFull: (v) => v.toFixed(3).replace(".", ","),
+  });
+  renderTable(root, {
+    caption: "IDHM de Itajubá/MG por dimensão, 1991–2010",
+    columns: ["Ano", "IDHM Geral", "Educação", "Longevidade", "Renda"],
+    rows: idhm.serie.map(p => [String(p.ano), p.geral.toFixed(3).replace(".", ","), p.educacao.toFixed(3).replace(".", ","), p.longevidade.toFixed(3).replace(".", ","), p.renda.toFixed(3).replace(".", ",")]),
+  });
+
+  const ultimoIdhm = idhm.serie[idhm.serie.length - 1];
+  renderStats(root, [
+    { value: ultimoIdhm.geral.toFixed(3).replace(".", ","), label: `IDHM Geral · Censo ${ultimoIdhm.ano}` },
+    { value: ips.indicadores.ips_geral.toFixed(2).replace(".", ","), label: "IPS Brasil · edição 2026", note: "Escala 0–100, não 0–1 — índice diferente, não é continuação do IDHM" },
+  ]);
+  const note = document.createElement("p");
+  note.className = "viz-note";
+  note.textContent = "IDHM e IPS Brasil medem coisas parecidas com metodologias diferentes — não formam uma linha do tempo única. Educação foi a dimensão que mais avançou em Itajubá (0,389 → 0,718); Renda foi a que menos avançou (0,656 → 0,767).";
+  root.appendChild(note);
+}
+
+// ---------------------------------------------------------------------------
+// Monta o gráfico de nascimentos/óbitos dentro de #chart-saude.
+// ---------------------------------------------------------------------------
+function buildSaudeChart(root, registroCivil, snapshot) {
+  const xValues = registroCivil.serie.map(p => String(p.ano));
+  const style = getComputedStyle(root);
+  const cNasc = style.getPropertyValue("--v-series-receita").trim() || "#08724e";
+  const cObit = style.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+
+  renderLineChart(root, {
+    series: [
+      { key: "nasc", label: "Nascidos vivos", color: cNasc, points: registroCivil.serie.map(p => ({ y: p.nascidos_vivos })) },
+      { key: "obit", label: "Óbitos", color: cObit, points: registroCivil.serie.map(p => ({ y: p.obitos })) },
+    ],
+    xValues, yLabel: "Registros por ano",
+    yFormat: (v) => fmtInt.format(Math.round(v)), yFormatFull: (v) => fmtInt.format(Math.round(v)) + " registros",
+  });
+  renderTable(root, {
+    caption: "Nascidos vivos e óbitos registrados em Itajubá/MG, 2003–2024",
+    columns: ["Ano", "Nascidos vivos", "Óbitos"],
+    rows: registroCivil.serie.map(p => [String(p.ano), p.nascidos_vivos != null ? fmtInt.format(p.nascidos_vivos) : "sem dado", p.obitos != null ? fmtInt.format(p.obitos) : "sem dado"]),
+  });
+
+  const s = snapshot.indicadores.saude;
+  renderStats(root, [
+    { value: s.mortalidade_infantil.valor.toFixed(2).replace(".", ",").replace(/,00$/, ""), label: `Mortalidade infantil (por mil nasc. vivos) · ${s.mortalidade_infantil.ano}` },
+    { value: s.internacoes_por_diarreia_sus.valor.toFixed(1).replace(".", ","), label: `Internações por diarreia (SUS, por 100 mil hab.) · ${s.internacoes_por_diarreia_sus.ano}` },
+  ]);
+  const note = document.createElement("p");
+  note.className = "viz-note";
+  note.textContent = "O pico de óbitos em 2021 (1.101, ante ~800–900 nos anos vizinhos) coincide com a pandemia de Covid-19. Nascimentos caem de forma consistente desde 2015, acompanhando a tendência nacional.";
+  root.appendChild(note);
+}
+
+// ---------------------------------------------------------------------------
+// Monta as estatísticas de educação dentro de #stats-educacao (sem gráfico:
+// são pontos isolados de um ano cada, não uma série — ver choosing-a-form.md).
+// ---------------------------------------------------------------------------
+function buildEducacaoStats(root, snapshot) {
+  const e = snapshot.indicadores.educacao;
+  renderStats(root, [
+    { value: e.ideb_anos_iniciais_fundamental_rede_publica.valor.toFixed(1).replace(".", ","), label: `Ideb — anos iniciais (rede pública) · ${e.ideb_anos_iniciais_fundamental_rede_publica.ano}`, note: "Escala 0–10" },
+    { value: e.ideb_anos_finais_fundamental_rede_publica.valor.toFixed(1).replace(".", ","), label: `Ideb — anos finais (rede pública) · ${e.ideb_anos_finais_fundamental_rede_publica.ano}`, note: "Escala 0–10" },
+    { value: e.taxa_escolarizacao_6_a_14_anos.valor.toFixed(2).replace(".", ",") + "%", label: `Taxa de escolarização, 6–14 anos · ${e.taxa_escolarizacao_6_a_14_anos.ano}` },
+  ]);
+  const note = document.createElement("p");
+  note.className = "viz-note";
+  note.textContent = "Só o retrato mais recente por enquanto — cada indicador tem o próprio ano-base. Série histórica do Ideb (bienal, INEP) e matrículas do Censo Escolar ficam para uma fase futura: exigem baixar e ler as planilhas oficiais do INEP, não têm API simples.";
+  root.appendChild(note);
+}
+
+// ---------------------------------------------------------------------------
 // Monta os gráficos de finanças dentro de #chart-financas e #chart-saldo.
 // ---------------------------------------------------------------------------
 function buildFinancasCharts(finRoot, saldoRoot, fin) {
@@ -336,10 +449,6 @@ function buildFinancasCharts(finRoot, saldoRoot, fin) {
       const xValues = fin.serie.map(p => String(p.ano));
       const colorReceita = getComputedStyle(finRoot).getPropertyValue("--v-series-receita").trim() || "#08724e";
       const colorDespesa = getComputedStyle(finRoot).getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
-      legend(finRoot, [
-        { label: "Receita realizada", color: colorReceita },
-        { label: "Despesa empenhada", color: colorDespesa },
-      ]);
       renderLineChart(finRoot, {
         series: [
           { key: "receita", label: "Receita realizada", color: colorReceita, points: fin.serie.map(p => ({ y: p.receita_realizada })) },
@@ -410,6 +519,31 @@ function initItajubaCharts() {
     fetch("../dados/itajuba/siconfi_receita_despesa_2015_2025.json").then(r => r.json())
       .then(fin => buildFinancasCharts(finRoot, saldoRoot, fin))
       .catch(() => showError(finRoot, saldoRoot));
+  });
+
+  const idhmRoot = document.querySelector("#chart-idhm");
+  onFirstOpen(idhmRoot && idhmRoot.closest("details.phase"), () => {
+    Promise.all([
+      fetch("../dados/itajuba/idhm_historico_1991_2010.json").then(r => r.json()),
+      fetch("../dados/itajuba/ips_brasil_2026.json").then(r => r.json()),
+    ]).then(([idhm, ips]) => buildIdhmChart(idhmRoot, idhm, ips))
+      .catch(() => showError(idhmRoot));
+  });
+
+  const saudeRoot = document.querySelector("#chart-saude");
+  onFirstOpen(saudeRoot && saudeRoot.closest("details.phase"), () => {
+    Promise.all([
+      fetch("../dados/itajuba/registro_civil_2003_2024.json").then(r => r.json()),
+      fetch("../dados/itajuba/ibge_cidades_snapshot_2026.json").then(r => r.json()),
+    ]).then(([registroCivil, snapshot]) => buildSaudeChart(saudeRoot, registroCivil, snapshot))
+      .catch(() => showError(saudeRoot));
+  });
+
+  const educRoot = document.querySelector("#stats-educacao");
+  onFirstOpen(educRoot && educRoot.closest("details.phase"), () => {
+    fetch("../dados/itajuba/ibge_cidades_snapshot_2026.json").then(r => r.json())
+      .then(snapshot => buildEducacaoStats(educRoot, snapshot))
+      .catch(() => showError(educRoot));
   });
 }
 

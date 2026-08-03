@@ -8,6 +8,7 @@
   --v-grid: #e3e0d8;
   --v-series-receita: #08724e;
   --v-series-despesa: #2a78d6;
+  --v-series-3: #eb6834;
   --v-pos: #2a78d6;
   --v-neg: #e34948;
   --v-neutral: #f0efec;
@@ -27,6 +28,7 @@
     --v-grid: #33332f;
     --v-series-receita: #1baf7a;
     --v-series-despesa: #3987e5;
+    --v-series-3: #d95926;
     --v-pos: #3987e5;
     --v-neg: #e66767;
     --v-neutral: #383835;
@@ -40,6 +42,7 @@
   --v-grid: #33332f;
   --v-series-receita: #1baf7a;
   --v-series-despesa: #3987e5;
+  --v-series-3: #d95926;
   --v-pos: #3987e5;
   --v-neg: #e66767;
   --v-neutral: #383835;
@@ -78,3 +81,9 @@
 
 .viz-bar{cursor:pointer}
 .viz-bar:hover,.viz-bar:focus-visible{opacity:.85}
+
+.viz-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-top:.9rem}
+.viz-stat{padding:.85rem .95rem;border:1px solid var(--line);border-radius:11px;background:var(--v-surface)}
+.viz-stat strong{display:block;color:var(--v-text-primary);font-size:1.4rem;line-height:1.1}
+.viz-stat span{display:block;margin-top:.3rem;color:var(--v-text-secondary);font-size:.72rem}
+.viz-stat small{display:block;margin-top:.15rem;color:var(--v-text-secondary);font-size:.65rem;opacity:.8}

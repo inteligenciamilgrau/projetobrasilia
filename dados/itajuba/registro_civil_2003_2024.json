@@ -1,0 +1,121 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "IBGE — Estatísticas do Registro Civil (SIDRA tabelas 2609 e 2681)",
+  "url_nascidos_vivos": "https://servicodados.ibge.gov.br/api/v3/agregados/2609/periodos/2003-2024/variaveis/217?localidades=N6[3132404]",
+  "url_obitos": "https://servicodados.ibge.gov.br/api/v3/agregados/2681/periodos/2003-2024/variaveis/343?localidades=N6[3132404]",
+  "coletado_em": "2026-08-03",
+  "observacao": "Nascidos vivos e obitos REGISTRADOS/OCORRIDOS no municipio, nao necessariamente residentes (local de registro/ocorrencia, nao de residencia — tabelas de residencia existem separadas se precisar no futuro). O pico de obitos em 2021 (1.101, ante ~800-900 nos anos vizinhos) coincide com a pandemia de Covid-19. Queda de nascimentos ao longo da serie (1.284 em 2003 para 964 em 2024) acompanha a tendencia nacional de queda da natalidade.",
+  "serie": [
+    {
+      "ano": 2003,
+      "nascidos_vivos": 1284,
+      "obitos": 786
+    },
+    {
+      "ano": 2004,
+      "nascidos_vivos": 1202,
+      "obitos": 777
+    },
+    {
+      "ano": 2005,
+      "nascidos_vivos": 1268,
+      "obitos": 794
+    },
+    {
+      "ano": 2006,
+      "nascidos_vivos": 1255,
+      "obitos": 884
+    },
+    {
+      "ano": 2007,
+      "nascidos_vivos": 1230,
+      "obitos": 819
+    },
+    {
+      "ano": 2008,
+      "nascidos_vivos": 1240,
+      "obitos": 843
+    },
+    {
+      "ano": 2009,
+      "nascidos_vivos": 1186,
+      "obitos": 859
+    },
+    {
+      "ano": 2010,
+      "nascidos_vivos": 1261,
+      "obitos": 907
+    },
+    {
+      "ano": 2011,
+      "nascidos_vivos": 1260,
+      "obitos": 923
+    },
+    {
+      "ano": 2012,
+      "nascidos_vivos": 1231,
+      "obitos": 959
+    },
+    {
+      "ano": 2013,
+      "nascidos_vivos": 1279,
+      "obitos": 926
+    },
+    {
+      "ano": 2014,
+      "nascidos_vivos": 1305,
+      "obitos": 1007
+    },
+    {
+      "ano": 2015,
+      "nascidos_vivos": 1378,
+      "obitos": 1006
+    },
+    {
+      "ano": 2016,
+      "nascidos_vivos": 1225,
+      "obitos": 937
+    },
+    {
+      "ano": 2017,
+      "nascidos_vivos": 1230,
+      "obitos": 919
+    },
+    {
+      "ano": 2018,
+      "nascidos_vivos": 1212,
+      "obitos": 753
+    },
+    {
+      "ano": 2019,
+      "nascidos_vivos": 1214,
+      "obitos": 808
+    },
+    {
+      "ano": 2020,
+      "nascidos_vivos": 1054,
+      "obitos": 802
+    },
+    {
+      "ano": 2021,
+      "nascidos_vivos": 1087,
+      "obitos": 1101
+    },
+    {
+      "ano": 2022,
+      "nascidos_vivos": 1063,
+      "obitos": 869
+    },
+    {
+      "ano": 2023,
+      "nascidos_vivos": 1073,
+      "obitos": 729
+    },
+    {
+      "ano": 2024,
+      "nascidos_vivos": 964,
+      "obitos": 800
+    }
+  ]
+}

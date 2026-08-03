@@ -47,7 +47,7 @@
       <div class="stat"><strong>3132404</strong><span>código IBGE do município</span></div>
       <div class="stat"><strong>294,8 km²</strong><span>área territorial</span></div>
     </div>
-    <div class="status-banner"><strong>Status desta aba:</strong> Fases 0, 1 e 3 concluídas (03/08/2026) — estrutura, catálogo de fontes, população 2000–2025 e finanças 2015–2025 já têm gráfico real. Ainda faltam desenvolvimento humano histórico, compras/Legislativo, saúde, educação, território/bairros e emprego — isso é o trabalho das próximas fases.</div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Fases 0, 1, 2, 3, 5 e 6 concluídas (03/08/2026) — população, IDHM histórico, finanças, saúde e educação já têm dado real. Faltam compras/Legislativo, território/bairros e emprego.</div>
 
     <section aria-labelledby="contexto-title">
       <div class="section-head"><div><p class="kicker">Como Itajubá entrou aqui</p><h2 id="contexto-title">Do pré-filtro de cidades pequenas a um piloto próprio.</h2></div><p>Itajubá apareceu no Top 10 de ≈100 mil habitantes do <a href="../cidades-pequenas.html">experimento de cidades pequenas</a>, ordenado por IPS Brasil 2026. A triagem-padrão marcou "sem sinal" porque o site da Prefeitura bloqueia acesso automatizado. Uma varredura extra, pedida especificamente, encontrou dado real fora do Executivo: a Câmara Municipal (domínio próprio, sem bloqueio), o PNCP e o SICONFI. Isso foi o suficiente para justificar tirar Itajubá do lote de 20 candidatas e abrir um piloto só dela.</p></div>
@@ -78,7 +78,15 @@
             <p class="muted-note">Fonte salva: <a href="../dados/itajuba/populacao_2000_2025.json" target="_blank" rel="noopener noreferrer">dados/itajuba/populacao_2000_2025.json ↗</a></p>
           </div>
         </details>
-        <article class="phase"><div class="phase-num">2</div><div><h3>Desenvolvimento humano histórico</h3><p>IDHM 2000 e 2010 (IPEAData/Atlas Brasil) ao lado do IPS Brasil 2024–2026 já coletado — mesmo sem série contínua, dá para comparar os pontos que existem.</p></div><span class="phase-tag next">Próxima</span></article>
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">2</div><div class="phase-text"><h3>Desenvolvimento humano histórico</h3><p>IDHM 1991/2000/2010 (IPEAData/Atlas Brasil) por dimensão, ao lado do IPS Brasil 2026 já coletado — mesmo sem série contínua, dá para comparar os pontos que existem.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-idhm">
+              <div class="viz-head"><div><h3>IDHM por dimensão, 1991–2010</h3><p>Censos 1991, 2000 e 2010 — os 3 únicos pontos oficiais que existem. Não há IDHM municipal mais recente (ver seção de fontes abaixo).</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/itajuba/idhm_historico_1991_2010.json" target="_blank" rel="noopener noreferrer">dados/itajuba/idhm_historico_1991_2010.json ↗</a></p>
+          </div>
+        </details>
         <details class="phase done">
           <summary class="phase-summary"><div class="phase-num">3</div><div class="phase-text"><h3>Finanças públicas</h3><p>SICONFI em série histórica 2015–2025 (RREO Anexo 01, acumulado do ano): receita realizada, despesa empenhada e saldo, já separando a Prefeitura do consórcio CIMASAS.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
           <div class="phase-body">
@@ -92,8 +100,24 @@
           </div>
         </details>
         <article class="phase"><div class="phase-num">4</div><div><h3>Compras, obras e Legislativo</h3><p>PNCP em série histórica + SISCAM (Câmara): o que a cidade compra e o que a Câmara decide, com gráfico de categorias (pizza) por tipo de objeto/contratação.</p></div><span class="phase-tag todo">Planejada</span></article>
-        <article class="phase"><div class="phase-num">5</div><div><h3>Saúde</h3><p>DATASUS TabNet, CNES e SINASC/SIM: natalidade, mortalidade, estabelecimentos e leitos.</p></div><span class="phase-tag todo">Planejada</span></article>
-        <article class="phase"><div class="phase-num">6</div><div><h3>Educação</h3><p>INEP/Ideb e Censo Escolar: matrículas, escolas e desempenho ao longo do tempo.</p></div><span class="phase-tag todo">Planejada</span></article>
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">5</div><div class="phase-text"><h3>Saúde</h3><p>Nascidos vivos e óbitos, 2003–2024 (IBGE/Registro Civil). CNES (estabelecimentos e leitos) tentado nesta sessão, mas a API retornou 503 — fica para uma próxima fase.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-saude">
+              <div class="viz-head"><div><h3>Nascidos vivos e óbitos, 2003–2024</h3><p>IBGE — Estatísticas do Registro Civil. Registros por local de ocorrência, não de residência.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/itajuba/registro_civil_2003_2024.json" target="_blank" rel="noopener noreferrer">dados/itajuba/registro_civil_2003_2024.json ↗</a></p>
+          </div>
+        </details>
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">6</div><div class="phase-text"><h3>Educação</h3><p>Ideb e taxa de escolarização (retrato mais recente, via IBGE Cidades). Série histórica do Ideb e matrículas do Censo Escolar exigem planilha do INEP — ficam para depois.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="stats-educacao">
+              <div class="viz-head"><div><h3>Indicadores educacionais — retrato mais recente</h3><p>Cada número tem o próprio ano-base; ainda não é uma série no tempo.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/itajuba/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">dados/itajuba/ibge_cidades_snapshot_2026.json ↗</a></p>
+          </div>
+        </details>
         <article class="phase"><div class="phase-num">7</div><div><h3>Território e bairros</h3><p>Setores censitários do IBGE (2000/2010/2022) e malhas territoriais: a tentativa real de dividir a cidade em regiões, o pedido mais difícil do plano.</p></div><span class="phase-tag todo">Planejada</span></article>
         <article class="phase"><div class="phase-num">8</div><div><h3>Emprego e economia</h3><p>RAIS/Novo CAGED e CNPJ aberto: emprego formal e empresas ativas por período.</p></div><span class="phase-tag todo">Planejada</span></article>
         <article class="phase"><div class="phase-num">9</div><div><h3>Síntese</h3><p>Consolidar tudo num painel único com IDU-Br calculado para Itajubá, se a cobertura acumulada permitir.</p></div><span class="phase-tag todo">Planejada</span></article>
@@ -106,7 +130,7 @@
 
       <h3 class="category-heading">Demografia e território</h3>
       <div class="source-grid">
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IBGE Cidades — Panorama</h3><p class="what">População, PIB, indicadores sociais básicos e histórico de censos. Página testada (é SPA; carrega só com navegador real).</p><a class="open" href="https://cidades.ibge.gov.br/brasil/mg/itajuba/panorama" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IBGE Cidades — Panorama</h3><p class="what">Retrato mais recente de educação, saúde e economia (Ideb, mortalidade infantil, PIB per capita — 1 ano cada). SPA; só carrega com navegador real, não com fetch simples.</p><a class="open" href="https://cidades.ibge.gov.br/brasil/mg/itajuba/panorama" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SIDRA/IBGE — população</h3><p class="what">Censos 2000/2010/2022 (tabelas 202, 1378, 4709) e Estimativas 2001–2025 (tabela 6579). Vira o gráfico de população acima.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/6579" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/populacao_2000_2025.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Demográfico por setor censitário</h3><p class="what">2000, 2010 e 2022 — a única forma de dividir Itajubá em regiões/bairros com dado oficial. Base da Fase 7.</p><a class="open" href="https://sidra.ibge.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Malhas territoriais do IBGE</h3><p class="what">Limites do município e dos setores censitários, para desenhar os mapas por região.</p><a class="open" href="https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
@@ -116,7 +140,7 @@
       <h3 class="category-heading">Desenvolvimento humano e progresso social</h3>
       <div class="source-grid">
         <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IPS Brasil 2026</h3><p class="what">79 indicadores em 3 dimensões e 12 componentes, coletados por completo nesta sessão.</p><a class="open" href="https://ipsbrasil.org.br/explore/data" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/ips_brasil_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IDHM 2000 e 2010 (Atlas Brasil / IPEAData)</h3><p class="what">Não existe versão municipal mais recente (ver <a href="../docs/CIDADES_PEQUENAS.md">docs/CIDADES_PEQUENAS.md §2</a>) — mas os dois pontos históricos entram na Fase 2 para mostrar evolução desde os anos 2000.</p><a class="open" href="https://www.ipeadata.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IDHM 1991/2000/2010 (IPEAData/Atlas Brasil)</h3><p class="what">Não existe versão municipal mais recente (ver <a href="../docs/CIDADES_PEQUENAS.md">docs/CIDADES_PEQUENAS.md §2</a>) — geral + 3 dimensões (educação, longevidade, renda), os 3 únicos pontos oficiais que existem.</p><a class="open" href="https://www.ipeadata.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/idhm_historico_1991_2010.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
       </div>
 
       <h3 class="category-heading">Finanças públicas e compras</h3>
@@ -134,15 +158,15 @@
 
       <h3 class="category-heading">Saúde</h3>
       <div class="source-grid">
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>DATASUS TABNET</h3><p class="what">Óbitos, nascimentos, internações e produção ambulatorial por município.</p><a class="open" href="https://datasus.saude.gov.br/informacoes-de-saude-tabnet/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>CNES</h3><p class="what">Estabelecimentos, leitos e equipes de saúde — com endereço, útil para o recorte por bairro da Fase 7.</p><a class="open" href="https://cnes.datasus.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>SINASC e SIM</h3><p class="what">Nascidos vivos e mortalidade, com variáveis demográficas e territoriais.</p><a class="open" href="https://datasus.saude.gov.br/transferencia-de-arquivos/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IBGE — Estatísticas do Registro Civil</h3><p class="what">Nascidos vivos e óbitos, 2003–2024 (tabelas SIDRA 2609 e 2681) — o mesmo universo que SINASC/SIM cobrem, só que via IBGE em vez de DATASUS.</p><a class="open" href="https://sidra.ibge.gov.br/pesquisa/registro-civil/tabelas" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/registro_civil_2003_2024.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label bloqueado">Tentado — 503</span></div><h3>CNES</h3><p class="what">Estabelecimentos, leitos e equipes de saúde — com endereço, útil para o recorte por bairro da Fase 7. API testada nesta sessão devolveu HTTP 503 (conexão recusada) nos dois endpoints tentados.</p><a class="open" href="https://cnes.datasus.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>SINASC e SIM (DATASUS)</h3><p class="what">Mesmos eventos do Registro Civil acima, mas com variáveis clínicas e territoriais mais ricas (peso ao nascer, causa do óbito, bairro).</p><a class="open" href="https://datasus.saude.gov.br/transferencia-de-arquivos/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
       <h3 class="category-heading">Educação</h3>
       <div class="source-grid">
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IDEB</h3><p class="what">Fluxo escolar e desempenho por escola e rede, série histórica.</p><a class="open" href="https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Escolar</h3><p class="what">Matrículas, turmas, docentes e infraestrutura das escolas de Itajubá.</p><a class="open" href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado (retrato 2023)</span></div><h3>IDEB, via IBGE Cidades</h3><p class="what">Anos iniciais (6,6) e finais (4,9) do fundamental, rede pública. Só o ano mais recente — série histórica bienal exige a planilha oficial do INEP (API comunitária que existia está fora do ar).</p><a class="open" href="https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Escolar (microdados INEP)</h3><p class="what">Matrículas, turmas, docentes e infraestrutura das escolas de Itajubá — precisa baixar e ler o CSV/ZIP oficial, sem API simples.</p><a class="open" href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
       <h3 class="category-heading">Emprego e economia</h3>
@@ -172,6 +196,9 @@
         <article class="dataset"><h3>siconfi_rreo_2025_anual.json</h3><p>487 linhas do Balanço Orçamentário, acumulado 2025 — 333 da Prefeitura, 154 do consórcio CIMASAS. (Corrigido: o nome antigo dizia "bimestre3" por engano.)</p><p class="meta">Coletado 02/08/2026 · SICONFI</p></article>
         <article class="dataset"><h3>populacao_2000_2025.json</h3><p>26 anos de população residente — Censos 2000/2010/2022 e Estimativas nos demais anos, com a fonte de cada ponto marcada.</p><p class="meta">Coletado 03/08/2026 · IBGE</p></article>
         <article class="dataset"><h3>siconfi_receita_despesa_2015_2025.json</h3><p>Série anual de receita realizada, despesa empenhada e saldo, 2015–2025, já filtrada só para a Prefeitura.</p><p class="meta">Coletado 03/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>idhm_historico_1991_2010.json</h3><p>IDHM geral e as 3 dimensões (educação, longevidade, renda) de Itajubá em 1991, 2000 e 2010.</p><p class="meta">Coletado 03/08/2026 · IPEAData</p></article>
+        <article class="dataset"><h3>registro_civil_2003_2024.json</h3><p>22 anos de nascidos vivos e óbitos registrados em Itajubá, incluindo o pico de óbitos de 2021 (Covid-19).</p><p class="meta">Coletado 03/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>ibge_cidades_snapshot_2026.json</h3><p>Retrato mais recente de educação (Ideb, escolarização), saúde (mortalidade infantil) e economia (PIB, receitas/despesas).</p><p class="meta">Coletado 03/08/2026 · IBGE Cidades</p></article>
       </div>
     </section>
   </main>

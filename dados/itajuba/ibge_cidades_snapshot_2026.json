@@ -1,0 +1,66 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "IBGE Cidades — Panorama (agrega dados do Censo Escolar/INEP, RAIS, SICONFI e outras pesquisas do próprio IBGE, por indicador)",
+  "url_origem": "https://cidades.ibge.gov.br/brasil/mg/itajuba/panorama",
+  "coletado_em": "2026-08-03",
+  "metodo_coleta": "Scraping via Playwright (SPA; nao responde a fetch simples)",
+  "observacao": "Cada indicador tem ano proprio (nao e uma serie historica, e um retrato do ano mais recente disponivel por indicador). Fonte original de cada um credenciada pelo IBGE Cidades ao orgao produtor (INEP para educacao, DATASUS/SIM para saude, SICONFI para financas).",
+  "indicadores": {
+    "educacao": {
+      "taxa_escolarizacao_6_a_14_anos": {
+        "ano": 2022,
+        "valor": 96.65,
+        "unidade": "%",
+        "fonte_primaria": "Censo Demográfico/INEP"
+      },
+      "ideb_anos_iniciais_fundamental_rede_publica": {
+        "ano": 2023,
+        "valor": 6.6,
+        "unidade": "pontos (escala 0-10)",
+        "fonte_primaria": "INEP/Ideb"
+      },
+      "ideb_anos_finais_fundamental_rede_publica": {
+        "ano": 2023,
+        "valor": 4.9,
+        "unidade": "pontos (escala 0-10)",
+        "fonte_primaria": "INEP/Ideb"
+      }
+    },
+    "saude": {
+      "mortalidade_infantil": {
+        "ano": 2025,
+        "valor": 11.45,
+        "unidade": "óbitos por mil nascidos vivos",
+        "fonte_primaria": "DATASUS/SIM"
+      },
+      "internacoes_por_diarreia_sus": {
+        "ano": 2024,
+        "valor": 26.9,
+        "unidade": "internações por 100 mil habitantes",
+        "fonte_primaria": "DATASUS/SIH-SUS"
+      }
+    },
+    "economia": {
+      "pib_per_capita": {
+        "ano": 2023,
+        "valor": 48327.22,
+        "unidade": "R$",
+        "fonte_primaria": "IBGE Contas Regionais"
+      },
+      "total_receitas_brutas_realizadas": {
+        "ano": 2025,
+        "valor": 572903439.77,
+        "unidade": "R$",
+        "fonte_primaria": "SICONFI"
+      },
+      "total_despesas_brutas_empenhadas": {
+        "ano": 2025,
+        "valor": 499799483.37,
+        "unidade": "R$",
+        "fonte_primaria": "SICONFI"
+      }
+    }
+  },
+  "nota_reconciliacao": "O total de receitas 2025 aqui (R$ 572.903.439,77) difere do valor em dados/itajuba/siconfi_receita_despesa_2015_2025.json (R$ 535.759.009,94) — provavelmente anexos/recortes SICONFI diferentes (bruto vs exceto intra-orcamentarias, ou periodo de corte distinto). Nao reconciliado nesta sessao; tratar os dois como aproximacoes ate investigar."
+}
