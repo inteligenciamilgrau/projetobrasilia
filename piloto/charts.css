@@ -97,6 +97,12 @@
 .viz-bar{cursor:pointer}
 .viz-bar:hover,.viz-bar:focus-visible{opacity:.85}
 
+.viz-map-wrap{background:var(--v-surface)}
+.viz-map-dot{cursor:pointer}
+.viz-map-dot:hover,.viz-map-dot:focus-visible{stroke:var(--v-text-primary);stroke-width:2}
+.viz-map-bairro-mark{cursor:pointer;opacity:.8}
+.viz-map-bairro-mark:hover,.viz-map-bairro-mark:focus-visible{opacity:1;stroke:var(--green)}
+
 .viz-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-top:.9rem}
 .viz-stat{padding:.85rem .95rem;border:1px solid var(--line);border-radius:11px;background:var(--v-surface)}
 .viz-stat strong{display:block;color:var(--v-text-primary);font-size:1.4rem;line-height:1.1}

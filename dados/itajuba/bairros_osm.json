@@ -1,0 +1,487 @@
+{
+  "municipio": "Itajubá/MG",
+  "ibge_codigo": "3132404",
+  "fonte": "OpenStreetMap (Overpass API), tags place=suburb/neighbourhood/quarter dentro do contorno administrativo de Itajubá",
+  "url_origem": "https://overpass-api.de/api/interpreter",
+  "coletado_em": "2026-08-03",
+  "observacao": "Nomes e localizacoes de bairros/localidades mapeados pela comunidade OpenStreetMap; varios com fonte declarada \"Prefeitura de Itajuba\". Sao PONTOS (nao poligonos) — nao ha contorno oficial de bairro disponivel (o site da Prefeitura, que teria essa base, esta bloqueado — ver docs/CIDADES_PEQUENAS.md). Dado nao-oficial (IBGE nao reconhece bairros formais para Itajuba), mas geolocalizado e nomeado de forma real.",
+  "n_localidades": 68,
+  "localidades": [
+    {
+      "nome": "Mourão",
+      "tipo": "neighbourhood",
+      "lat": -22.390456,
+      "lon": -45.521953,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Rancho Grande",
+      "tipo": "neighbourhood",
+      "lat": -22.384395,
+      "lon": -45.478678,
+      "fonte_osm": null
+    },
+    {
+      "nome": "Capetinga",
+      "tipo": "neighbourhood",
+      "lat": -22.38458,
+      "lon": -45.453121,
+      "fonte_osm": null
+    },
+    {
+      "nome": "Peroba",
+      "tipo": "neighbourhood",
+      "lat": -22.400496,
+      "lon": -45.361463,
+      "fonte_osm": null
+    },
+    {
+      "nome": "Nossa Senhora Auxiliadora",
+      "tipo": "neighbourhood",
+      "lat": -22.389045,
+      "lon": -45.423763,
+      "fonte_osm": null
+    },
+    {
+      "nome": "Vila Poddis",
+      "tipo": "suburb",
+      "lat": -22.431532,
+      "lon": -45.467341,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Ilhéus",
+      "tipo": "suburb",
+      "lat": -22.456396,
+      "lon": -45.47977,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Capituba",
+      "tipo": "suburb",
+      "lat": -22.456292,
+      "lon": -45.486685,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Rebourgeon",
+      "tipo": "suburb",
+      "lat": -22.448794,
+      "lon": -45.475364,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Nossa Senhora da Piedade",
+      "tipo": "suburb",
+      "lat": -22.445766,
+      "lon": -45.486549,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Centro",
+      "tipo": "suburb",
+      "lat": -22.423672,
+      "lon": -45.456088,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Santa Luzía",
+      "tipo": "suburb",
+      "lat": -22.439876,
+      "lon": -45.465149,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Jardim Bernadete",
+      "tipo": "suburb",
+      "lat": -22.439249,
+      "lon": -45.472155,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Santo Antônio",
+      "tipo": "suburb",
+      "lat": -22.434738,
+      "lon": -45.465036,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Avenida",
+      "tipo": "suburb",
+      "lat": -22.429474,
+      "lon": -45.462958,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "São Judas Tadeu",
+      "tipo": "suburb",
+      "lat": -22.424315,
+      "lon": -45.469714,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Boa Vista",
+      "tipo": "suburb",
+      "lat": -22.421756,
+      "lon": -45.465183,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Santos Dumont",
+      "tipo": "suburb",
+      "lat": -22.422205,
+      "lon": -45.482888,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Distrito Industrial",
+      "tipo": "suburb",
+      "lat": -22.426445,
+      "lon": -45.481849,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Bairro das Nações",
+      "tipo": "suburb",
+      "lat": -22.434884,
+      "lon": -45.490278,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Ponte Alta",
+      "tipo": "suburb",
+      "lat": -22.433965,
+      "lon": -45.507,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Açude",
+      "tipo": "suburb",
+      "lat": -22.422351,
+      "lon": -45.497645,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Novo Horizonte",
+      "tipo": "suburb",
+      "lat": -22.410569,
+      "lon": -45.478844,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Vila Betel",
+      "tipo": "suburb",
+      "lat": -22.40942,
+      "lon": -45.465986,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Santa Isabel",
+      "tipo": "suburb",
+      "lat": -22.414309,
+      "lon": -45.463274,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Vila Rubens",
+      "tipo": "suburb",
+      "lat": -22.415917,
+      "lon": -45.469262,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Morro Chic",
+      "tipo": "suburb",
+      "lat": -22.41669,
+      "lon": -45.459252,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Juru de Cima",
+      "tipo": "neighbourhood",
+      "lat": -22.396279,
+      "lon": -45.417514,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Nossa Senhora da Agonia",
+      "tipo": "suburb",
+      "lat": -22.414288,
+      "lon": -45.443478,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Pinheirinho",
+      "tipo": "suburb",
+      "lat": -22.415416,
+      "lon": -45.452393,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Cruzeiro",
+      "tipo": "suburb",
+      "lat": -22.418696,
+      "lon": -45.444371,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Estiva",
+      "tipo": "suburb",
+      "lat": -22.420696,
+      "lon": -45.442015,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Oriente",
+      "tipo": "suburb",
+      "lat": -22.422644,
+      "lon": -45.44836,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Porto Velho",
+      "tipo": "suburb",
+      "lat": -22.4282,
+      "lon": -45.450529,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Anhumas",
+      "tipo": "suburb",
+      "lat": -22.447299,
+      "lon": -45.45874,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Morro Grande",
+      "tipo": "suburb",
+      "lat": -22.446037,
+      "lon": -45.429649,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Nossa Senhora de Fátima",
+      "tipo": "suburb",
+      "lat": -22.442007,
+      "lon": -45.437264,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "São Vicente",
+      "tipo": "suburb",
+      "lat": -22.431751,
+      "lon": -45.457331,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Medicina",
+      "tipo": "suburb",
+      "lat": -22.438414,
+      "lon": -45.454709,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Santa Rita de Cássia",
+      "tipo": "suburb",
+      "lat": -22.437056,
+      "lon": -45.438078,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "São Sebastião",
+      "tipo": "suburb",
+      "lat": -22.431647,
+      "lon": -45.442462,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Varginha",
+      "tipo": "suburb",
+      "lat": -22.428618,
+      "lon": -45.440111,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Imbel",
+      "tipo": "suburb",
+      "lat": -22.442132,
+      "lon": -45.426598,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Jarrinha",
+      "tipo": "suburb",
+      "lat": -22.459466,
+      "lon": -45.419909,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Pedra Mamona",
+      "tipo": "neighbourhood",
+      "lat": -22.456871,
+      "lon": -45.417987,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Santa Rosa",
+      "tipo": "suburb",
+      "lat": -22.449296,
+      "lon": -45.419864,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Vila Zeca Faria",
+      "tipo": "neighbourhood",
+      "lat": -22.425967,
+      "lon": -45.444096,
+      "fonte_osm": "survey"
+    },
+    {
+      "nome": "Sabará",
+      "tipo": "neighbourhood",
+      "lat": -22.355632,
+      "lon": -45.365767,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Porto Velho",
+      "tipo": "neighbourhood",
+      "lat": -22.376071,
+      "lon": -45.287576,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Serra dos Toledos",
+      "tipo": "neighbourhood",
+      "lat": -22.422097,
+      "lon": -45.384736,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Pedra Princesa",
+      "tipo": "neighbourhood",
+      "lat": -22.463785,
+      "lon": -45.412996,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Ponte de Santo Antônio",
+      "tipo": "neighbourhood",
+      "lat": -22.479311,
+      "lon": -45.385637,
+      "fonte_osm": "IBGE"
+    },
+    {
+      "nome": "Freire",
+      "tipo": "neighbourhood",
+      "lat": -22.52994,
+      "lon": -45.422233,
+      "fonte_osm": "IBGE"
+    },
+    {
+      "nome": "Figueiras",
+      "tipo": "neighbourhood",
+      "lat": -22.457915,
+      "lon": -45.514233,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Marins",
+      "tipo": "neighbourhood",
+      "lat": -22.375714,
+      "lon": -45.472455,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Jerivá",
+      "tipo": "neighbourhood",
+      "lat": -22.378601,
+      "lon": -45.44088,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Cachoeira Grande",
+      "tipo": "neighbourhood",
+      "lat": -22.385476,
+      "lon": -45.380466,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Pedra Preta",
+      "tipo": "neighbourhood",
+      "lat": -22.480203,
+      "lon": -45.407138,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Estância",
+      "tipo": "neighbourhood",
+      "lat": -22.47366,
+      "lon": -45.419583,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Canta Galo",
+      "tipo": "neighbourhood",
+      "lat": -22.470051,
+      "lon": -45.404327,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Retiro",
+      "tipo": "neighbourhood",
+      "lat": -22.404105,
+      "lon": -45.41983,
+      "fonte_osm": null
+    },
+    {
+      "nome": "Pessegueiro",
+      "tipo": "neighbourhood",
+      "lat": -22.396666,
+      "lon": -45.501058,
+      "fonte_osm": "IBGE"
+    },
+    {
+      "nome": "Berta",
+      "tipo": "neighbourhood",
+      "lat": -22.492822,
+      "lon": -45.45368,
+      "fonte_osm": "IBGE"
+    },
+    {
+      "nome": "São Pedro",
+      "tipo": "neighbourhood",
+      "lat": -22.510872,
+      "lon": -45.397976,
+      "fonte_osm": "IBGE"
+    },
+    {
+      "nome": "Ano Bom",
+      "tipo": "neighbourhood",
+      "lat": -22.373283,
+      "lon": -45.401655,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Goiabal",
+      "tipo": "neighbourhood",
+      "lat": -22.344678,
+      "lon": -45.346563,
+      "fonte_osm": "Prefeitura de Itajubá"
+    },
+    {
+      "nome": "Ilha",
+      "tipo": "suburb",
+      "lat": -22.361798,
+      "lon": -45.40796,
+      "fonte_osm": null
+    },
+    {
+      "nome": "Anhumas",
+      "tipo": "neighbourhood",
+      "lat": -22.448165,
+      "lon": -45.463902,
+      "fonte_osm": null
+    }
+  ]
+}

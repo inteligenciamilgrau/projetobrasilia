@@ -19,6 +19,26 @@ function el(tag, attrs = {}, parent = null) {
   return node;
 }
 
+// Rampa sequencial (1 hue, claro→escuro) do skill de dataviz — references/palette.md.
+// Usada para o mapa de calor: densidade baixa = claro, densidade alta = escuro.
+const SEQ_BLUE = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf", "#1c5cab", "#184f95", "#104281", "#0d366b"];
+function seqColor(t) {
+  // t em [0,1] -> interpola entre os 13 degraus da rampa sequencial.
+  const clamped = Math.max(0, Math.min(1, t));
+  const pos = clamped * (SEQ_BLUE.length - 1);
+  const i0 = Math.floor(pos), i1 = Math.min(SEQ_BLUE.length - 1, i0 + 1);
+  const frac = pos - i0;
+  const c0 = hexToRgb(SEQ_BLUE[i0]), c1 = hexToRgb(SEQ_BLUE[i1]);
+  const r = Math.round(c0[0] + (c1[0] - c0[0]) * frac);
+  const g = Math.round(c0[1] + (c1[1] - c0[1]) * frac);
+  const b = Math.round(c0[2] + (c1[2] - c0[2]) * frac);
+  return `rgb(${r},${g},${b})`;
+}
+function hexToRgb(hex) {
+  const h = hex.replace("#", "");
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+}
+
 function niceMax(v) {
   if (v <= 0) return 1;
   const mag = Math.pow(10, Math.floor(Math.log10(v)));
@@ -354,6 +374,109 @@ function renderStats(root, items) {
 }
 
 // ---------------------------------------------------------------------------
+// Mapa de calor: contorno do município + um ponto por setor censitário,
+// cor = densidade populacional (rampa sequencial). Projeção equirretangular
+// simples com correção de cosseno da latitude — a área é pequena demais
+// (1 município) pra justificar uma projeção cartográfica completa.
+// ---------------------------------------------------------------------------
+function renderHeatMap(root, { boundary, points, valueKey, valueFormat, legendTitle, labelPoints }) {
+  const W = 720, H = 620, M = 18;
+  const lats = boundary.map(p => p[1]);
+  const lons = boundary.map(p => p[0]);
+  const latMin = Math.min(...lats), latMax = Math.max(...lats);
+  const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
+  const meanLatRad = ((latMin + latMax) / 2) * Math.PI / 180;
+  const cosLat = Math.cos(meanLatRad);
+
+  const spanX = (lonMax - lonMin) * cosLat;
+  const spanY = latMax - latMin;
+  const scale = Math.min((W - 2 * M) / spanX, (H - 2 * M) / spanY);
+  const drawnW = spanX * scale, drawnH = spanY * scale;
+  const offX = M + ((W - 2 * M) - drawnW) / 2;
+  const offY = M + ((H - 2 * M) - drawnH) / 2;
+
+  const px = (lon) => offX + (lon - lonMin) * cosLat * scale;
+  const py = (lat) => offY + (latMax - lat) * scale;
+
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap viz-map-wrap";
+  root.appendChild(wrap);
+  const svg = el("svg", { class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": legendTitle }, wrap);
+
+  const pathD = "M" + boundary.map(([lon, lat]) => `${px(lon).toFixed(1)},${py(lat).toFixed(1)}`).join("L") + "Z";
+  el("path", { d: pathD, fill: "var(--v-neutral)", stroke: "var(--v-text-secondary)", "stroke-width": 1.5, "fill-opacity": 0.35 }, svg);
+
+  const values = points.map(p => p[valueKey]).filter(v => v != null);
+  const vMin = Math.min(...values), vMax = Math.max(...values);
+
+  const tip = makeTooltip(wrap);
+
+  // Camada de referência: bairros (contexto geográfico, sem valor associado a cor).
+  // Nome só aparece no hover/foco — com ~40 bairros concentrados no centro urbano,
+  // rótulo de texto fixo colide e vira ruído ilegível (ver marks-and-anatomy.md:
+  // "quando rótulos colidem, não empilhe" — aqui a saída é a tooltip, não o texto fixo).
+  if (labelPoints && labelPoints.length) {
+    labelPoints.forEach(b => {
+      const x = px(b.lon), y = py(b.lat);
+      const mark = el("rect", {
+        x: x - 2.6, y: y - 2.6, width: 5.2, height: 5.2, transform: `rotate(45 ${x} ${y})`,
+        fill: "var(--v-surface)", stroke: "var(--v-text-secondary)", "stroke-width": 1.3,
+        tabindex: 0, role: "img", "aria-label": `Bairro ${b.nome}`, class: "viz-map-bairro-mark",
+      }, svg);
+      const onEnter = () => {
+        const svgRect = svg.getBoundingClientRect();
+        const s = svgRect.width / W;
+        showTooltip(tip, wrap, x * s, y * s, "Bairro (OpenStreetMap)", [{ label: b.nome, value: "", color: "var(--v-text-secondary)", dot: true }]);
+      };
+      mark.addEventListener("pointerenter", onEnter);
+      mark.addEventListener("focus", onEnter);
+      mark.addEventListener("pointerleave", () => hideTooltip(tip));
+      mark.addEventListener("blur", () => hideTooltip(tip));
+    });
+  }
+
+  points.forEach(p => {
+    const x = px(p.lon), y = py(p.lat);
+    const t = vMax > vMin ? (p[valueKey] - vMin) / (vMax - vMin) : 0.5;
+    const color = seqColor(t);
+    const r = p.situacao === "Rural" ? 3.2 : 4.6;
+    const dot = el("circle", {
+      cx: x, cy: y, r, fill: color, stroke: "var(--v-surface)", "stroke-width": 1.2,
+      tabindex: 0, role: "img",
+      "aria-label": `Setor ${p.setor}: ${valueFormat(p[valueKey])}, ${p.populacao} habitantes`,
+      class: "viz-map-dot",
+    }, svg);
+    const onEnter = () => {
+      const svgRect = svg.getBoundingClientRect();
+      const s = svgRect.width / W;
+      showTooltip(tip, wrap, x * s, y * s, `Setor ${p.setor.slice(-6)} · ${p.situacao}`, [
+        { label: legendTitle, value: valueFormat(p[valueKey]), color, dot: true },
+        { label: "População", value: fmtInt.format(p.populacao) + " hab.", color: "transparent" },
+        { label: "Domicílios", value: fmtInt.format(p.domicilios), color: "transparent" },
+      ]);
+    };
+    dot.addEventListener("pointerenter", onEnter);
+    dot.addEventListener("focus", onEnter);
+    dot.addEventListener("pointerleave", () => hideTooltip(tip));
+    dot.addEventListener("blur", () => hideTooltip(tip));
+  });
+
+  // legenda de gradiente (rampa contínua, não degraus categóricos)
+  const gradId = "heatgrad-" + Math.random().toString(36).slice(2, 8);
+  const defs = el("defs", {}, svg);
+  const grad = el("linearGradient", { id: gradId, x1: "0", x2: "1", y1: "0", y2: "0" }, defs);
+  for (let i = 0; i <= 10; i++) {
+    el("stop", { offset: `${i * 10}%`, "stop-color": seqColor(i / 10) }, grad);
+  }
+  const legendY = H - 26;
+  el("rect", { x: M, y: legendY, width: 200, height: 10, rx: 3, fill: `url(#${gradId})` }, svg);
+  const tLo = el("text", { x: M, y: legendY + 24, class: "viz-axis-text" }, svg);
+  tLo.textContent = valueFormat(vMin) + " (baixa)";
+  const tHi = el("text", { x: M + 200, y: legendY + 24, "text-anchor": "end", class: "viz-axis-text" }, svg);
+  tHi.textContent = valueFormat(vMax) + " (alta)";
+}
+
+// ---------------------------------------------------------------------------
 // Tabela alternativa (acessibilidade — sempre reflete os mesmos dados do gráfico)
 // ---------------------------------------------------------------------------
 function renderTable(root, { caption, columns, rows }) {
@@ -564,6 +687,37 @@ function buildEducacaoStats(root, snapshot, educ) {
 }
 
 // ---------------------------------------------------------------------------
+// Monta o mapa de calor por setor censitário dentro de #map-territorio.
+// ---------------------------------------------------------------------------
+function buildTerritorioMap(root, contorno, setores, bairros) {
+  const suburbLabels = bairros.localidades.filter(b => b.tipo === "suburb");
+  renderHeatMap(root, {
+    boundary: contorno.contorno_lon_lat,
+    points: setores.setores,
+    valueKey: "densidade_hab_km2",
+    valueFormat: (v) => fmtInt.format(Math.round(v)) + " hab./km²",
+    legendTitle: "Densidade populacional",
+    labelPoints: suburbLabels,
+  });
+  renderTable(root, {
+    caption: "Setores censitários de Itajubá/MG — Censo 2022",
+    columns: ["Setor", "Situação", "População", "Domicílios", "Área (km²)", "Densidade (hab./km²)"],
+    rows: setores.setores
+      .slice()
+      .sort((a, b) => b.densidade_hab_km2 - a.densidade_hab_km2)
+      .map(s => [s.setor, s.situacao, fmtInt.format(s.populacao), fmtInt.format(s.domicilios), s.area_km2.toFixed(3).replace(".", ","), fmtInt.format(Math.round(s.densidade_hab_km2))]),
+  });
+  const note1 = document.createElement("p");
+  note1.className = "viz-note";
+  note1.textContent = `${setores.n_setores} setores censitários somam ${fmtInt.format(setores.setores.reduce((a, s) => a + s.populacao, 0))} habitantes — bate exatamente com a população do Censo 2022 (93.073), confirmando que a geometria e os dados vêm da mesma base. Cada ponto é o centroide do setor (calculado a partir do contorno oficial do IBGE), não um endereço real.`;
+  root.appendChild(note1);
+  const note2 = document.createElement("p");
+  note2.className = "viz-note";
+  note2.textContent = `Os losangos cinzas são ${suburbLabels.length} bairros mapeados pela comunidade OpenStreetMap — passe o mouse para ver o nome (texto fixo colidia demais no centro da cidade). Não há contorno oficial de bairro, já que o site da Prefeitura, que teria essa base, está bloqueado; a cor do heatmap segue os setores censitários, não os bairros.`;
+  root.appendChild(note2);
+}
+
+// ---------------------------------------------------------------------------
 // Monta os gráficos de finanças dentro de #chart-financas e #chart-saldo.
 // ---------------------------------------------------------------------------
 function buildFinancasCharts(finRoot, saldoRoot, fin) {
@@ -668,6 +822,16 @@ function initItajubaCharts() {
       fetch("../dados/itajuba/educacao_alfabetizacao_nivel_instrucao.json").then(r => r.json()),
     ]).then(([snapshot, educ]) => buildEducacaoStats(educRoot, snapshot, educ))
       .catch(() => showError(educRoot));
+  });
+
+  const mapRoot = document.querySelector("#map-territorio");
+  onFirstOpen(mapRoot && mapRoot.closest("details.phase"), () => {
+    Promise.all([
+      fetch("../dados/itajuba/municipio_contorno.json").then(r => r.json()),
+      fetch("../dados/itajuba/setores_censitarios_2022.json").then(r => r.json()),
+      fetch("../dados/itajuba/bairros_osm.json").then(r => r.json()),
+    ]).then(([contorno, setores, bairros]) => buildTerritorioMap(mapRoot, contorno, setores, bairros))
+      .catch(() => showError(mapRoot));
   });
 }
 
