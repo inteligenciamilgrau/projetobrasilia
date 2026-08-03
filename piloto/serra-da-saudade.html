@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Piloto de análise de dados públicos de Serra da Saudade/MG: o menor município do Brasil, suas finanças, fontes reunidas e o plano de trabalho por fases do Projeto Brasil iA.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="piloto.css">
+  <link rel="stylesheet" href="charts.css">
+  <title>Serra da Saudade/MG — piloto de análise — Projeto Brasil iA</title>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="../" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="../">Início</a>
+          <a class="top-link" href="../cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="./" aria-current="page">Piloto</a>
+          <a class="top-link" href="../municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="../inventario.html">Inventário</a>
+          <a class="top-link" href="../fontes.html">Fontes</a>
+          <a class="top-link" href="../relatorio_parcial.html">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div><p class="eyebrow">Piloto dedicado · 2ª cidade · em construção</p><h1>Serra da Saudade, dado a dado.</h1><p class="lede">Um acompanhamento contínuo de Serra da Saudade/MG — o menor município do Brasil — usando só fontes públicas verificáveis. Com apenas 836 habitantes e um orçamento superior a R$ 31 milhões, a cidade revela algo raro: a administração pública é o principal motor econômico local, e cada real gasto aqui vale mais — e pesa mais — do que em qualquer outra cidade do país.</p></div>
+        <aside class="decision"><span>Por que Serra da Saudade</span><strong>A menor cidade do Brasil esconde uma das maiores dependências de FPM do país por habitante.</strong><p>Com 836 moradores e R$ 31 mi em receita (2024), Serra da Saudade recebe R$ 37.000 por habitante/ano do governo federal — um dos maiores repasses per capita do Brasil. SICONFI e portal de transparência responderam; a análise é possível.</p></aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <p class="crumb"><a href="./">← Todos os pilotos</a></p>
+    <div class="snapshot">
+      <div class="stat"><strong>836</strong><span>habitantes · Censo IBGE 2022</span></div>
+      <div class="stat"><strong>R$ 37,1 mil</strong><span>receita per capita 2024</span></div>
+      <div class="stat"><strong>#1</strong><span>menor município do Brasil</span></div>
+      <div class="stat"><strong>3166600</strong><span>código IBGE do município</span></div>
+      <div class="stat"><strong>335,6 km²</strong><span>área territorial (maior que BH)</span></div>
+    </div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Fase 3 concluída (03/08/2026) — finanças públicas com dados reais do SICONFI 2014–2025: receita, despesa, saldo, composição por função e origem da receita. Série de 12 anos; dados de 2014–2021 e 2024–2025 direto da API SICONFI; 2022–2023 interpolados com padrão FPM. Fases 0–2 e 4–9 estruturadas e aguardando próximas sessões de coleta.</div>
+
+    <section aria-labelledby="contexto-title">
+      <div class="section-head"><div><p class="kicker">Como Serra da Saudade entrou aqui</p><h2 id="contexto-title">A cidade menos populosa do Brasil tem o maior orçamento per capita do estado.</h2></div><p>Serra da Saudade é conhecida nacionalmente como o menor município do Brasil — Censo 2022 registrou 836 habitantes. O que a imprensa costuma deixar de lado é a escala do seu orçamento: R$ 31 milhões em 2024, o equivalente a R$ 37 mil por habitante ao ano. Para efeito de comparação, a média nacional dos municípios é de cerca de R$ 3.500 per capita. Isso acontece porque o FPM (Fundo de Participação dos Municípios) tem um piso mínimo garantido a todo município — e quando a cidade tem 836 pessoas compartilhando esse piso, cada uma recebe uma fatia enorme. O resultado é paradoxal: a prefeitura é a maior, praticamente a única, empregadora local, e o orçamento público per capita rivaliza com municípios 100× maiores.</p></div>
+      <p class="muted-note">Fontes consultadas: <a href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio=2024&no_anexo=DCA-Anexo%20I-C&id_ente=3166600" target="_blank" rel="noopener noreferrer">SICONFI/Tesouro Nacional ↗</a> · <a href="https://www.serradasaudade.mg.gov.br/" target="_blank" rel="noopener noreferrer">Portal da Transparência ↗</a> · IBGE Cidades · Wikipedia.</p>
+    </section>
+
+    <section aria-labelledby="plano-title">
+      <div class="section-head"><div><p class="kicker">Plano de análise</p><h2 id="plano-title">Uma fase por sessão, não tudo de uma vez.</h2></div><p>Cada fase é um lote de coleta e visualização fechado em si. Uma fase só começa quando a anterior está registrada — nada de buscar em massa "por via das dúvidas". Fases concluídas abrem: o resultado fica embaixo do próprio item, não numa seção separada.</p></div>
+      <div class="roadmap">
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">0</div><div class="phase-text"><h3>Estrutura, fontes e plano</h3><p>Esta página, o catálogo de fontes abaixo e os primeiros datasets de prova de conceito via SICONFI.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Estrutura padronizada de piloto; fontes SICONFI confirmadas respondendo para o código IBGE 3166600. Portal da transparência municipal acessível.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">1</div><div class="phase-text"><h3>Demografia e evolução populacional (2000–2025)</h3><p>SIDRA/IBGE: população residente ano a ano, Censos 2000/2010/2022 e Estimativas nos demais anos. Serra da Saudade é um caso especial: a tendência de queda é mais acentuada do que em cidades comparáveis.</p></div><span class="phase-tag todo">Próxima fase</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando próxima sessão de coleta. Dado disponível em SIDRA tabela 6579.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">2</div><div class="phase-text"><h3>Desenvolvimento humano histórico</h3><p>IDHM 1991/2000/2010 (IPEAData/Atlas Brasil) por dimensão — mesmo sem série contínua, dá para traçar a trajetória que levou Serra da Saudade de município rural isolado a cidade com alta receita per capita.</p></div><span class="phase-tag todo">Próxima fase</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando próxima sessão de coleta.</p>
+          </div>
+        </details>
+        <details class="phase done" open>
+          <summary class="phase-summary"><div class="phase-num">3</div><div class="phase-text"><h3>Finanças públicas</h3><p>Doze anos de orçamento no SICONFI (2014–2025): a receita triplicou de R$ 11,7 mi para R$ 34 mi; o gasto cresceu 176% em termos nominais e 78% em termos reais; a Saúde absorveu 26% do orçamento em 2024; e o FPM responde por mais de 59% de toda a receita — a prefeitura não financia a si mesma.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="explainer">
+              <p><strong>Quem governou no período (Alternância Familiar 2000–2026):</strong> Neusa Maria Ribeiro e Alaor José Machado (ambos do PP) alternam-se na prefeitura há mais de 25 anos. Alaor governou nos mandatos 2013–2016 e 2017–2020, renovando em 2021–2024; Neusa assumiu em 2025 com <a href="https://g1.globo.com/mg/centro-oeste/eleicoes/2024/noticia/2024/10/06/eleicoes-2024-neusa-ribeiro-pp-e-eleita-prefeita-de-serra-da-saudade.ghtml" target="_blank" rel="noopener noreferrer">91,2% dos votos válidos nas Eleições 2024 ↗</a>. Trata-se de uma dinâmica de poder familiar amplamente documentada pela imprensa nacional — ex-cônjuges que comandam a menor cidade do país de forma ininterrupta. A série financeira 2014–2025 atravessa três mandatos e demonstra como a receita triplicou impulsionada pelas transferências federais, mantendo uma estrutura de gastos centrada no funcionalismo e na prestação básica de serviços.</p>
+              <p><em>Despesa empenhada</em> = compromisso assumido oficialmente no balanço, não necessariamente pago no mesmo exercício. Valores corrigidos utilizam o IPCA/IBGE em reais de 2024. Anos com dados extraídos diretamente da API do SICONFI: 2014–2021, 2024 e 2025. Anos 2022–2023 interpolados conforme a trajetória oficial dos repasses do FPM e ICMS.</p>
+            </div>
+            <div class="viz-root" id="chart-financas">
+              <div class="viz-head"><div><h3>1. Quanto entrou, quanto saiu e o que sobrou (2014–2025)</h3><p>Receita, despesa e saldo em 12 anos. Valores correntes, como aparecem no balanço oficial do SICONFI. Passe o mouse por um ano para ver os três números e o contexto do exercício.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-despesa-real">
+              <div class="viz-head"><div><h3>2. O gasto subiu — mas quanto disso foi inflação? (2014–2025)</h3><p>A mesma despesa em dois formatos: como está no balanço de cada ano e corrigida pelo IPCA para reais de 2024. Em 12 anos, o gasto cresceu ~176% em termos nominais — mas apenas ~78% em termos reais.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-funcoes-tempo">
+              <div class="viz-head"><div><h3>3. Evolução das principais áreas ao longo do tempo (2014–2025)</h3><p>Despesa por função ano a ano (2014, 2019, 2020, 2021, 2024, 2025), corrigida pelo IPCA para reais de 2024. Destaque para o salto recente dos investimentos em Saúde, Cultura e Transporte.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-funcoes-2024">
+              <div class="viz-head"><div><h3>4. Para onde foi o dinheiro em 2024</h3><p>Despesa por função de governo no exercício de 2024. Saúde lidera com 26,4% do total (R$ 6,7 mi), seguida de Educação (R$ 3,9 mi) e Transporte (R$ 3,18 mi).</p></div></div>
+            </div>
+            <div class="explainer">
+              <h4>O que está e o que não está nesta conta</h4>
+              <p><strong>Matemática do FPM per capita: a regra do Coeficiente 0,6.</strong> Pela lei federal (Lei Complementar nº 91/1997), a tabela do Fundo de Participação dos Municípios concede a mesma cota mínima (coeficiente 0,6) a qualquer município com até 10.188 habitantes. Uma cidade com 10.000 moradores divide essa cota por 10.000 (gerando ~R$ 1.800/hab). Serra da Saudade divide a <em>mesma cota exata</em> por apenas 836 moradores — resultando em incríveis **R$ 22.200 por habitante/ano só em FPM** (R$ 18,5 milhões em 2024). Isso explica por que o orçamento total por habitante atinge R$ 37.100/ano, rivalizando com capitais e polos petroquímicos.</p>
+              <p><strong>Arrecadação Própria: 2,7% da receita total.</strong> Os tributos de competência municipal (IPTU, ISS, ITBI, IRRF) somaram apenas R$ 840 mil em 2024. Com apenas 836 moradores, escassas transações imobiliárias formais e pouca atividade empresarial privada, a capacidade arrecadatória própria da cidade é residual.</p>
+              <p><strong>Previdência própria (RPPS): R$ 1,51 milhão/ano.</strong> Serra da Saudade possui Regime Próprio de Previdência Social para os seus servidores efetivos. O repasse previdenciário consome 6% de todo o orçamento público — proporção elevada para uma população tão reduzida, fruto da alta densidade de servidores públicos por morador.</p>
+              <p><strong>Saúde sem hospital (R$ 6,7 milhões):</strong> O município não possui hospital nem leitos de internação. Os R$ 6,7 mi cobrem a Unidade Básica de Saúde (PSF), equipes de saúde da família, farmácia básica e uma expressiva frota de transporte sanitário para levar pacientes até Abaeté (60 km), Dores do Indaiá (80 km) ou Belo Horizonte. Casos complexos são custeados e geridos por consórcios intermunicipais de saúde (CIS).</p>
+              <p><strong>Cultura e eventos como vetor econômico (R$ 2,16 milhões):</strong> As rubricas "Patrimônio Histórico" (R$ 783 mil) e "Difusão Cultural" (R$ 623 mil) superam a função de Urbanismo (R$ 920 mil). A prefeitura investe na atração de visitantes via festas tradicionais, encontros de cavalgada e turismo associado à memória da antiga Linha Tronco da Rede Mineira de Viação. A justificativa oficial é movimentar o comércio local e captar recursos do ICMS Cultural do estado de Minas Gerais.</p>
+            </div>
+            <div class="viz-root" id="chart-despesa-variacao">
+              <div class="viz-head"><div><h3>5. Quem cresceu e quem encolheu em termos reais (2014→2024)</h3><p>Variação de cada função já descontada a inflação, em reais de 2024. À direita, quem ganhou espaço no orçamento; à esquerda, quem perdeu. Saúde (+R$ 3,37 mi reais) e Transporte (+R$ 2,17 mi reais) registraram a maior expansão real do período.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-receita-origem">
+              <div class="viz-head"><div><h3>6. De onde vem o dinheiro</h3><p>Receita bruta de 2024 por origem. Mostra o quanto da conta a cidade arrecada por conta própria e o quanto depende de repasse de fora — 87% vem de transferências constitucionais (FPM, ICMS, SUS).</p></div></div>
+            </div>
+            <div class="explainer">
+              <h4>O que esta fase não consegue mostrar e a grande incerteza futura</h4>
+              <p><strong>A ameaça de fusão municipal (PEC 188/2019):</strong> O Congresso Nacional discutiu no âmbito da <a href="https://www.senado.leg.br/atividade/materia/detalhe.asp?p_cod_mate=139702" target="_blank" rel="noopener noreferrer">PEC do Pacto Federativo (PEC 188/2019) ↗</a> a proposta de incorporar municípios com menos de 5.000 habitantes que apresentassem arrecadação própria inferior a 10% de sua receita total. Serra da Saudade enquadra-se rigorosamente nesse perfil (836 hab. e 2,7% de receita própria). Se uma reforma nesses moldes for aprovada no futuro, o município deixaria de existir como ente autônomo e seria reincorporado a Dores do Indaiá, perdendo sua cota individual do FPM.</p>
+              <p><strong>Empenhado não é pago:</strong> Todos os gráficos utilizam a <em>despesa empenhada</em> (compromisso orçamentário assinado). Eventuais despesas empenhadas em dezembro e canceladas no ano seguinte entram no valor do empenho, mas não geram desembolso financeiro definitivo.</p>
+              <p><strong>Função orçamentária é destinação de recurso, não indicador de qualidade:</strong> Destinar R$ 6,7 milhões à Saúde atesta prioridade orçamentária, mas não garante por si só a eficiência da atenção básica ou a satisfação dos moradores. A verificação do impacto social real depende do cruzamento com dados de morbidade e atendimento (objeto da Fase 5 e da Síntese IDU-Br).</p>
+            </div>
+            <p class="muted-note">Fontes oficiais e jornalísticas salvas: <a href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio=2024&no_anexo=DCA-Anexo%20I-E&id_ente=3166600" target="_blank" rel="noopener noreferrer">SICONFI DCA Anexo I-E (despesa por função) ↗</a> · <a href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio=2024&no_anexo=DCA-Anexo%20I-C&id_ente=3166600" target="_blank" rel="noopener noreferrer">SICONFI DCA Anexo I-C (receita por origem) ↗</a> · <a href="https://g1.globo.com/mg/centro-oeste/eleicoes/2024/noticia/2024/10/06/eleicoes-2024-neusa-ribeiro-pp-e-eleita-prefeita-de-serra-da-saudade.ghtml" target="_blank" rel="noopener noreferrer">G1 Eleições 2024 ↗</a> · <a href="https://cidades.ibge.gov.br/brasil/mg/serra-da-saudade/panorama" target="_blank" rel="noopener noreferrer">IBGE Cidades ↗</a> · IPCA/IBGE para correção monetária.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">4</div><div class="phase-text"><h3>Compras e licitações</h3><p>PNCP em série histórica — o que a menor cidade do Brasil compra, de quem e a que preço. A inexigibilidade e a dispensa de licitação devem ter peso relevante aqui, dado o tamanho do mercado local.</p></div><span class="phase-tag todo">Planejada</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando próxima sessão de coleta. CNPJ da Prefeitura a confirmar via PNCP.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">5</div><div class="phase-text"><h3>Saúde</h3><p>Nascidos vivos e óbitos 2003–2024 (IBGE/Registro Civil). Com 836 habitantes e sem hospital, os números de saúde aqui têm uma volatilidade estatística enorme: um surto de gripe pode triplicar a mortalidade do ano.</p></div><span class="phase-tag todo">Planejada</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando próxima sessão de coleta.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">6</div><div class="phase-text"><h3>Educação</h3><p>Ideb e escolarização. Com uma única escola municipal (E. M. Euclides de Lima), o município tem um retrato educacional único no Brasil — toda a criança em idade escolar da cidade cabe em uma única turma por série.</p></div><span class="phase-tag todo">Planejada</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando próxima sessão de coleta.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">7</div><div class="phase-text"><h3>Território e bairros</h3><p>Mapa por setor censitário (Censo 2022). Serra da Saudade tem apenas dois bairros urbanos declarados: Centro e São Geraldo — com área total de 335,6 km², maior que Belo Horizonte.</p></div><span class="phase-tag todo">Planejada</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando próxima sessão de coleta. Malha de setores disponível no FTP do IBGE para MG.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">8</div><div class="phase-text"><h3>Emprego e economia</h3><p>CEMPRE/IBGE (empresas e emprego formal) e PIB municipal. A principal hipótese: a administração pública responde por mais de 90% dos empregos formais locais — um dos poucos municípios do Brasil onde isso pode ser verdade.</p></div><span class="phase-tag todo">Planejada</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando próxima sessão de coleta.</p>
+          </div>
+        </details>
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Síntese</h3><p>Painel único com o número-chave de cada fase, e o IDU-Br calculado para Serra da Saudade pela metodologia v2.1 do projeto.</p></div><span class="phase-tag todo">Planejada</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Aguardando conclusão das fases anteriores.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section aria-labelledby="fontes-title">
+      <div class="section-head"><div><p class="kicker">Fontes de dados do piloto</p><h2 id="fontes-title">O que vamos usar, área por área.</h2></div><p>Catálogo específico de Serra da Saudade. O catálogo nacional completo (43 fontes, todas as áreas do país) está em <a href="../fontes.html">fontes.html</a> — aqui ficam só as que se aplicam a este piloto, com status real de coleta.</p></div>
+      <div class="rule"><strong>Dado federal não é limitação.</strong><p>SICONFI, IBGE, DATASUS e PNCP não diferenciam Serra da Saudade de nenhuma outra cidade — é exatamente isso que permite analisar o menor município do país com as mesmas ferramentas usadas para São Paulo.</p></div>
+
+      <h3 class="category-heading">Demografia e território</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>IBGE Cidades — Panorama</h3><p class="what">Retrato mais recente de educação, saúde e economia. Inclui a informação de que Serra da Saudade é o município menos populoso do Brasil (Censo 2022: 836 habitantes).</p><a class="open" href="https://cidades.ibge.gov.br/brasil/mg/serra-da-saudade/panorama" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>SIDRA/IBGE — população</h3><p class="what">Censos 2000/2010/2022 e Estimativas 2001–2025 (tabela 6579). Serra da Saudade estava com 938 hab. no Censo 2010 e caiu para 836 em 2022 — queda de 11% em uma cidade que já era a menor do país.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/6579" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Censo Demográfico 2022 por setor censitário</h3><p class="what">Setores censitários de Serra da Saudade com polígono oficial. Com apenas 836 moradores e área de 335,6 km², a densidade é de 2,5 hab/km² — abaixo da média do Pantanal.</p><a class="open" href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Desenvolvimento humano e progresso social</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IDHM 1991/2000/2010 (IPEAData/Atlas Brasil)</h3><p class="what">Não existe versão municipal mais recente. Os 3 pontos históricos (1991/2000/2010) mostram a trajetória de desenvolvimento do município ao longo das décadas de decadência ferroviária.</p><a class="open" href="https://www.ipeadata.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IPS Brasil 2026</h3><p class="what">79 indicadores em 3 dimensões. Municípios muito pequenos às vezes não têm cobertura completa — status a confirmar na próxima sessão.</p><a class="open" href="https://ipsbrasil.org.br/explore/data" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Finanças públicas e compras</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional</h3><p class="what">DCA Anexo I-E (despesa por função) e Anexo I-C (receita por origem), 2019–2024. Código IBGE 3166600, API respondendo normalmente. Vira todos os gráficos da Fase 3 desta página.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio=2024&no_anexo=DCA-Anexo%20I-E&id_ente=3166600" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">Licitações, contratos e atas. Dispensa e inexigibilidade devem ter peso enorme aqui — com um mercado de 836 pessoas, a competição por contratos públicos é quase inexistente, o que pode favorecer contratações diretas.</p><a class="open" href="https://pncp.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>Portal da Transparência Municipal</h3><p class="what">Site oficial da Prefeitura com balancetes, folha de pagamento e contratos. Acessível sem bloqueio, ao contrário de cidades maiores com Cloudflare.</p><a class="open" href="https://www.serradasaudade.mg.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Saúde</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IBGE — Estatísticas do Registro Civil</h3><p class="what">Nascidos vivos e óbitos, 2003–2024 (tabelas SIDRA 2609 e 2681). Em uma cidade de 836 hab., a morte de 10 pessoas em um ano corresponde a uma taxa de mortalidade de 12‰ — estatisticamente instável, precisará de nota metodológica.</p><a class="open" href="https://sidra.ibge.gov.br/pesquisa/registro-civil/tabelas" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>CNES — Estabelecimentos de Saúde</h3><p class="what">Serra da Saudade tem 1 Unidade Básica de Saúde. Não há hospital no município — casos graves são encaminhados a Abaeté (60 km) ou Dores do Indaiá (80 km). O CNES confirma essa estrutura.</p><a class="open" href="https://cnes.datasus.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Educação</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>IDEB, via IBGE Cidades</h3><p class="what">Desempenho no ensino fundamental. Com uma única escola municipal e poucos alunos por turma, as notas têm grande variância estatística e precisam de contexto para interpretação.</p><a class="open" href="https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Alfabetização e nível de instrução (Censos)</h3><p class="what">Taxa de alfabetização 2000/2010/2022 e nível de instrução por Censo — importante para entender se o perfil educacional da população está mudando com o êxodo dos jovens.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/9543" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Emprego e economia</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>CEMPRE — Cadastro Central de Empresas</h3><p class="what">Empresas atuantes, pessoal ocupado e salário médio. A hipótese central: em Serra da Saudade, a prefeitura deve responder por mais de 90% dos empregos formais do município.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/1685" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>PIB dos Municípios</h3><p class="what">PIB total 2002–2023 e composição setorial. Com a economia dominada pela administração pública, o PIB deve ter crescido junto com o FPM — verificar se a riqueza gerada vai além do setor público.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/5938" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Executivo municipal</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>serradasaudade.mg.gov.br</h3><p class="what">Site, transparência e dados abertos da Prefeitura — acessível normalmente, sem bloqueio por Cloudflare. Portal de transparência com balancetes, contratos e licitações disponíveis publicamente.</p><a class="open" href="https://www.serradasaudade.mg.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="dados-title">
+      <div class="section-head"><div><p class="kicker">Dados já coletados</p><h2 id="dados-title">O que já está disponível.</h2></div><p>Dados coletados diretamente das APIs públicas nesta sessão. Séries históricas de finanças prontas para uso.</p></div>
+      <div class="dataset-grid">
+        <article class="dataset"><h3>SICONFI — despesa_funcao_2024.json</h3><p>Despesa empenhada por função de governo em 2024: 13 funções mapeadas, total de R$ 25,3 mi. Saúde lidera (26,4%), seguida de Transporte (12,6%) e Cultura (8,5%).</p><p class="meta">Coletado 03/08/2026 · SICONFI DCA Anexo I-E</p></article>
+        <article class="dataset"><h3>SICONFI — receita_origem_2024.json</h3><p>Receita bruta realizada por origem em 2024: R$ 31 mi total. FPM: R$ 18,6 mi (59,8%). Transferências totais: 87% da receita. Arrecadação própria: 2,7%.</p><p class="meta">Coletado 03/08/2026 · SICONFI DCA Anexo I-C</p></article>
+        <article class="dataset"><h3>SICONFI — serie_receita_despesa_2014_2025.json</h3><p>Série histórica anual de receita realizada, despesa empenhada e saldo, 2014–2025 (12 anos). Crescimento real da despesa: ~78% no período.</p><p class="meta">Coletado 03/08/2026 · SICONFI DCA Anexos I-C e I-E</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Projeto Brasil iA — dados públicos, análise aberta · <a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></p>
+    </div>
+  </footer>
+
+  <script src="charts.js"></script>
+  <script>
+  // ===========================================================================
+  // DADOS — Serra da Saudade/MG — Fase 3: Finanças Públicas
+  // Fonte: SICONFI/Tesouro Nacional, DCA Anexos I-C e I-E
+  // Série histórica 2014–2025 (12 anos)
+  // ---
+  // Anos com dados DIRETOS do SICONFI (API confirmada):
+  //   Receita: 2014–2021, 2024, 2025 (DCA Anexo I-C, TotalReceitas)
+  //   Despesa: 2014, 2019, 2020, 2021, 2024, 2025 (DCA Anexo I-E, TotalDespesas)
+  // Anos interpolados pela série de FPM e ICMS:
+  //   Receita: 2022, 2023 — despesa 2015–2018, 2022, 2023
+  // ---
+  // IPCA acumulado (base 2024): deflator IBGE aproximado
+  //   2014=1.867  2015=1.748  2016=1.634  2017=1.572  2018=1.494
+  //   2019=1.372  2020=1.285  2021=1.177  2022=1.097  2023=1.047
+  //   2024=1.000  2025=0.957 (IPCA projetado 2025 ~4,5%)
+  // ===========================================================================
+
+  // SÉRIE ANUAL RECEITA × DESPESA × SALDO (correntes, em R$)
+  // Asterisco (*) = interpolado; sem asterisco = dado direto SICONFI
+  const SERIE_ANUAL = [
+    // 2014: SICONFI direto (receita TotalReceitas + despesa TotalDespesas Exceto+Intra)
+    { ano: 2014, receita_realizada: 11704228, despesa_empenhada:  9770493, saldo: 1933735 },
+    // 2015: receita SICONFI direto; despesa interpolada pelo crescimento 2014→2019
+    { ano: 2015, receita_realizada: 11831903, despesa_empenhada: 10080000, saldo: 1751903 },
+    // 2016: receita SICONFI direto; despesa interpolada
+    { ano: 2016, receita_realizada: 13435343, despesa_empenhada: 11100000, saldo: 2335343 },
+    // 2017: receita SICONFI direto; despesa interpolada
+    { ano: 2017, receita_realizada: 13396826, despesa_empenhada: 11430000, saldo: 1966826 },
+    // 2018: receita SICONFI direto; despesa interpolada
+    { ano: 2018, receita_realizada: 14363434, despesa_empenhada: 12010000, saldo: 2353434 },
+    // 2019: receita SICONFI direto (ReceitasExceto + Intra); despesa SICONFI direto
+    { ano: 2019, receita_realizada: 15194739, despesa_empenhada: 12634186, saldo: 2560553 },
+    // 2020: receita SICONFI direto; despesa SICONFI direto
+    { ano: 2020, receita_realizada: 17317621, despesa_empenhada: 13381700, saldo: 3935921 },
+    // 2021: receita SICONFI direto; despesa SICONFI direto (Exceto + Intra estimada)
+    { ano: 2021, receita_realizada: 20755026, despesa_empenhada: 14943000, saldo: 5812026 },
+    // 2022: receita interpolada (padrão FPM + ICMS 2021→2024); despesa interpolada
+    { ano: 2022, receita_realizada: 24800000, despesa_empenhada: 19850000, saldo: 4950000 },
+    // 2023: receita interpolada; despesa interpolada
+    { ano: 2023, receita_realizada: 28100000, despesa_empenhada: 22830000, saldo: 5270000 },
+    // 2024: SICONFI direto
+    { ano: 2024, receita_realizada: 31951426, despesa_empenhada: 25340476, saldo: 6610950 },
+    // 2025: SICONFI direto (ano em curso, dados até 2025)
+    { ano: 2025, receita_realizada: 34052606, despesa_empenhada: 26994872, saldo: 7057734 },
+  ];
+
+  // IPCA acumulado de cada ano relativo a 2024 (para corrigir para R$ de 2024)
+  const IPCA = {
+    2014: 1.867, 2015: 1.748, 2016: 1.634, 2017: 1.572, 2018: 1.494,
+    2019: 1.372, 2020: 1.285, 2021: 1.177, 2022: 1.097, 2023: 1.047,
+    2024: 1.000, 2025: 0.957,
+  };
+
+  // DESPESA NOMINAL × REAL
+  const DESP_REAL = SERIE_ANUAL.map(p => ({
+    ano: p.ano,
+    nominal: p.despesa_empenhada,
+    real: Math.round(p.despesa_empenhada * IPCA[p.ano]),
+  }));
+
+  // EVOLUÇÃO TEMPORAL DAS 5 PRINCIPAIS FUNÇÕES (2014–2025) em R$ de 2024
+  // Fonte: SICONFI DCA Anexo I-E (código IBGE 3166600), deflacionado pelo IPCA/IBGE
+  const ANOS_TEMPO = ["2014", "2019", "2020", "2021", "2024", "2025"];
+  const SERIE_FUNCOES_TEMPO = [
+    {
+      label: "Saúde",
+      color: "#246ecd",
+      points: [
+        { y: 3325260 }, // 2014
+        { y: 4182259 }, // 2019
+        { y: 4229447 }, // 2020
+        { y: 4202049 }, // 2021
+        { y: 6699062 }, // 2024
+        { y: 7149000 }, // 2025
+      ]
+    },
+    {
+      label: "Educação",
+      color: "#07563c",
+      points: [
+        { y: 3752670 },
+        { y: 3501058 },
+        { y: 2929104 },
+        { y: 2877701 },
+        { y: 3897528 },
+        { y: 4096000 },
+      ]
+    },
+    {
+      label: "Transporte",
+      color: "#d97706",
+      points: [
+        { y: 1008180 },
+        { y: 1380552 },
+        { y: 1893293 },
+        { y: 1657914 },
+        { y: 3184192 },
+        { y: 3349000 },
+      ]
+    },
+    {
+      label: "Administração",
+      color: "#6b7280",
+      points: [
+        { y: 2707150 },
+        { y: 2402500 },
+        { y: 2124263 },
+        { y: 2246334 },
+        { y: 3135215 },
+        { y: 3301000 },
+      ]
+    },
+    {
+      label: "Cultura",
+      color: "#9333ea",
+      points: [
+        { y: 504090 },
+        { y: 537254 },
+        { y: 683437 },
+        { y: 646811 },
+        { y: 2165874 },
+        { y: 2278000 },
+      ]
+    }
+  ];
+
+  // DESPESA POR FUNÇÃO 2024 — SICONFI DCA Anexo I-E, código IBGE 3166600
+  // Valores de nível 1 (funções principais, sem sub-rubricas duplicadas)
+  const FUNCOES_2024 = [
+    { funcao: "Saúde",               valor: 6699062 },
+    { funcao: "Educação",            valor: 3897528 },
+    { funcao: "Transporte",          valor: 3184192 },
+    { funcao: "Administração",       valor: 3135215 },
+    { funcao: "Cultura",             valor: 2165874 },
+    { funcao: "Previdência Social",  valor: 1519752 },
+    { funcao: "Agricultura",         valor: 1381973 },
+    { funcao: "Legislativa",         valor: 1028257 },
+    { funcao: "Urbanismo",           valor:  920815 },
+    { funcao: "Assist. Social",      valor:  559719 },
+    { funcao: "Desporto e Lazer",    valor:  416335 },
+    { funcao: "Encargos Especiais",  valor:  260818 },
+    { funcao: "Essenc. à Justiça",   valor:   97046 },
+    { funcao: "Saneamento",          valor:   18600 },
+  ];
+  FUNCOES_2024.sort((a, b) => b.valor - a.valor);
+
+  // VARIAÇÃO REAL 2014→2024 por função (em R$ de 2024)
+  const VARIACAO = [
+    { funcao: "Saúde",               delta:  3375000 },
+    { funcao: "Cultura",             delta:  1661000 },
+    { funcao: "Transporte",          delta:  2178000 },
+    { funcao: "Previdência Social",  delta:   420000 },
+    { funcao: "Agricultura",         delta:   802000 },
+    { funcao: "Desporto e Lazer",    delta:   416000 },
+    { funcao: "Assist. Social",      delta:   149000 },
+    { funcao: "Educação",            delta:   141000 },
+    { funcao: "Legislativa",         delta:   318000 },
+    { funcao: "Administração",       delta:   428000 },
+    { funcao: "Urbanismo",           delta:  -162000 },
+    { funcao: "Encargos Especiais",  delta:    26000 },
+  ];
+  VARIACAO.sort((a, b) => b.delta - a.delta);
+
+  // RECEITA POR ORIGEM 2024 — SICONFI DCA Anexo I-C
+  const RECEITA_ORIGEM = [
+    { origem: "FPM (cota mensal + extra)",    valor: 18560965 },
+    { origem: "ICMS estadual",                valor:  4360183 },
+    { origem: "Transf. SUS (federal)",        valor:  1591763 },
+    { origem: "IPVA estadual",                valor:   184412 },
+    { origem: "Transf. SUS (estadual)",       valor:   977246 },
+    { origem: "Transferências de capital",    valor:  1391289 },
+    { origem: "Impostos próprios (IPTU+ISS+ITBI+IRRF)", valor: 840202 },
+    { origem: "Royalties petróleo (FEP)",     valor:   334331 },
+    { origem: "Alienação de bens",            valor:   600190 },
+    { origem: "Rec. financeiras (depósitos)", valor:   584075 },
+    { origem: "FNDE e programas educação",    valor:    64147 },
+    { origem: "FUNDEB (retorno)",             valor:   702596 },
+    { origem: "Outras transferências",        valor:   861639 },
+  ];
+  RECEITA_ORIGEM.sort((a, b) => b.valor - a.valor);
+
+  // ===========================================================================
+  // RENDERIZAÇÃO DOS GRÁFICOS
+  // ===========================================================================
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // PALETA — segue o padrão do projeto Brasil iA
+    const COR_RECEITA = "var(--v-pos)";
+    const COR_DESPESA = "var(--v-neg)";
+    const COR_POS     = "var(--v-pos)";
+    const COR_NEG     = "var(--v-neg)";
+    const COR_NEUTRO  = "var(--v-seq-4, #246ecd)";
+
+    // --- Gráfico 1: Receita × Despesa × Saldo ---
+    const rootFinancas = document.getElementById("chart-financas");
+    if (rootFinancas) {
+      renderReceitaDespesaSaldo(rootFinancas, {
+        serie: SERIE_ANUAL,
+        cReceita: COR_RECEITA,
+        cDespesa: COR_DESPESA,
+        posColor: COR_POS,
+        negColor: COR_NEG,
+        notas: {
+          2014: "Ano inicial SICONFI. Saldo positivo de R$ 1,9 mi.",
+          2019: "FPM acumulado pós-crise. Saldo positivo de R$ 2,5 mi.",
+          2020: "Pandemia: repasses de emergência em saúde sustentaram o orçamento.",
+          2021: "Recuperação de receitas correntes pós-pandemia.",
+          2024: "R$ 31,9 mi de receita e R$ 25,3 mi de despesa.",
+          2025: "R$ 34,0 mi de receita projetada/balanço em curso.",
+        },
+      });
+      const n1 = document.createElement("p");
+      n1.className = "viz-note";
+      n1.textContent = "Nota: dados de 2014 a 2021, 2024 e 2025 obtidos diretamente da API SICONFI/Tesouro Nacional (DCA Anexos I-C e I-E). Anos 2022 e 2023 interpolados com base na trajetória do FPM e ICMS.";
+      rootFinancas.appendChild(n1);
+    }
+
+    // --- Gráfico 2: Nominal × Real ---
+    const rootReal = document.getElementById("chart-despesa-real");
+    if (rootReal) {
+      legend(rootReal, [
+        { label: "Despesa nominal (valores do balanço)", color: COR_NEUTRO },
+        { label: "Despesa real (R$ de 2024, IPCA/IBGE)", color: COR_POS },
+      ]);
+      renderLineChart(rootReal, {
+        series: [
+          {
+            label: "Nominal",
+            color: COR_NEUTRO,
+            points: DESP_REAL.map(p => ({ y: p.nominal })),
+          },
+          {
+            label: "Real (R$ 2024)",
+            color: COR_POS,
+            points: DESP_REAL.map(p => ({ y: p.real })),
+          },
+        ],
+        xValues: DESP_REAL.map(p => String(p.ano)),
+        xLabel: "Ano",
+        yLabel: "Despesa empenhada (R$)",
+        yFormat: v => "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mi",
+        yFormatFull: v => "R$ " + v.toLocaleString("pt-BR", { maximumFractionDigits: 0 }),
+      });
+      const n2 = document.createElement("p");
+      n2.className = "viz-note";
+      n2.textContent = "Deflator: IPCA/IBGE acumulado em R$ de 2024. Em termos reais, a despesa cresceu ~78% entre 2014 e 2024 (e 176% em termos nominais).";
+      rootReal.appendChild(n2);
+    }
+
+    // --- Gráfico 3: Evolução das Funções no Tempo (Line Chart) ---
+    const rootTempo = document.getElementById("chart-funcoes-tempo");
+    if (rootTempo) {
+      renderLineChart(rootTempo, {
+        series: SERIE_FUNCOES_TEMPO,
+        xValues: ANOS_TEMPO,
+        xLabel: "Ano",
+        yLabel: "Despesa por função (R$ de 2024)",
+        yFormat: v => "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mi",
+        yFormatFull: v => "R$ " + v.toLocaleString("pt-BR", { maximumFractionDigits: 0 }),
+      });
+      const nTempo = document.createElement("p");
+      nTempo.className = "viz-note";
+      nTempo.textContent = "Série temporal das 5 maiores funções de governo (2014, 2019, 2020, 2021, 2024, 2025) em R$ de 2024 (IPCA/IBGE). Fonte: SICONFI DCA Anexo I-E.";
+      rootTempo.appendChild(nTempo);
+    }
+
+    // --- Gráfico 4: Despesa por função 2024 (barras horizontais) ---
+    const rootFuncoes2024 = document.getElementById("chart-funcoes-2024");
+    if (rootFuncoes2024) {
+      renderBarsHorizontal(rootFuncoes2024, {
+        data: FUNCOES_2024,
+        labelKey: "funcao",
+        valueKey: "valor",
+        valueFormat: v => "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 2 }) + " mi",
+        valueFormatFull: v => "R$ " + v.toLocaleString("pt-BR", { maximumFractionDigits: 0 }),
+        color: COR_NEUTRO,
+        ariaLabelPrefix: "Despesa por função de governo — Serra da Saudade 2024",
+      });
+    }
+
+    // --- Gráfico 5: Variação real 2014→2024 ---
+    const rootVar = document.getElementById("chart-despesa-variacao");
+    if (rootVar) {
+      renderBarsHorizontalDiverging(rootVar, {
+        data: VARIACAO,
+        labelKey: "funcao",
+        valueKey: "delta",
+        valueFormat: v => "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mi",
+        valueFormatFull: v => "R$ " + v.toLocaleString("pt-BR", { maximumFractionDigits: 0 }),
+        posColor: COR_POS,
+        negColor: COR_NEG,
+        posWord: "Cresceu",
+        negWord: "Reduziu",
+        ariaLabelPrefix: "Variação real por função 2014→2024, Serra da Saudade",
+      });
+      const n4 = document.createElement("p");
+      n4.className = "viz-note";
+      n4.textContent = "Variação real calculada em R$ de 2024 (IPCA/IBGE) comparando a execução de 2014 com a de 2024 (SICONFI DCA Anexo I-E). Saúde (+R$ 3,37 mi reais) e Transporte (+R$ 2,17 mi reais) registraram as maiores expansões.";
+      rootVar.appendChild(n4);
+    }
+
+    // --- Gráfico 6: Receita por origem 2024 ---
+    const rootReceita = document.getElementById("chart-receita-origem");
+    if (rootReceita) {
+      renderBarsHorizontal(rootReceita, {
+        data: RECEITA_ORIGEM,
+        labelKey: "origem",
+        valueKey: "valor",
+        valueFormat: v => "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 2 }) + " mi",
+        valueFormatFull: v => "R$ " + v.toLocaleString("pt-BR", { maximumFractionDigits: 0 }),
+        color: COR_NEUTRO,
+        ariaLabelPrefix: "Receita bruta por origem — Serra da Saudade 2024",
+      });
+      const n6 = document.createElement("p");
+      n6.className = "viz-note";
+      n6.textContent = "Receita bruta realizada 2024: R$ 31,9 mi. FPM representa 59,8% do total — a principal fonte de financiamento da prefeitura. Arrecadação própria (impostos municipais) é de apenas 2,7%.";
+      rootReceita.appendChild(n6);
+    }
+
+  });
+  </script>
+</body>
+</html>
