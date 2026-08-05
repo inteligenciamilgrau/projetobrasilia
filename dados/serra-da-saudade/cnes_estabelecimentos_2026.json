@@ -1,0 +1,54 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "fonte": "CNES — Cadastro Nacional de Estabelecimentos de Saúde, via API de dados abertos do Ministério da Saúde",
+ "url_origem": "https://apidadosabertos.saude.gov.br/cnes/estabelecimentos?codigo_municipio=316660&limit=100",
+ "coletado_em": "2026-08-05",
+ "observacao": "No piloto de Itajuba esta fonte ficou registrada como 'Tentado — 503'; a API de dados abertos do Ministerio da Saude respondeu normalmente aqui. O campo 'tipo' e a traducao do codigo de tipo de unidade do CNES.",
+ "n_estabelecimentos": 5,
+ "n_com_internacao": 0,
+ "tem_hospital": false,
+ "conclusao": "Nenhum estabelecimento de tipo hospitalar (hospital geral, especializado, unidade mista ou pronto-socorro) no municipio.",
+ "estabelecimentos": [
+  {
+   "cnes": 2142511,
+   "nome": "CENTRO DE SAUDE DE SERRA DA SAUDADE",
+   "tipo_codigo": 2,
+   "tipo": "Centro de saúde / unidade básica",
+   "natureza_juridica": null,
+   "atende_sus": "SIM"
+  },
+  {
+   "cnes": 2922088,
+   "nome": "GN AZEVEDO PRESTACAO DE SERVICOS MEDICOS",
+   "tipo_codigo": 22,
+   "tipo": "Consultório isolado",
+   "natureza_juridica": null,
+   "atende_sus": "NAO"
+  },
+  {
+   "cnes": 6534198,
+   "nome": "SECRETARIA MUNICIPAL SAUDE SERRA DA SAUDADE",
+   "tipo_codigo": 68,
+   "tipo": "Central de gestão em saúde",
+   "natureza_juridica": null,
+   "atende_sus": "SIM"
+  },
+  {
+   "cnes": 7358709,
+   "nome": "CENTRO DE SAUDE PROTESE DENTARIA DE SERRA DA SAUDADE",
+   "tipo_codigo": 1,
+   "tipo": "Posto de saúde",
+   "natureza_juridica": null,
+   "atende_sus": "NAO"
+  },
+  {
+   "cnes": 7595611,
+   "nome": "ACADEMIA DA SAUDE DE SERRA DA SAUDADE",
+   "tipo_codigo": 74,
+   "tipo": "Polo Academia da Saúde",
+   "natureza_juridica": null,
+   "atende_sus": "NAO"
+  }
+ ]
+}

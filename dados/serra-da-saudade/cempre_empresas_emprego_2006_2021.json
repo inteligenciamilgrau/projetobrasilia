@@ -1,0 +1,157 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "fonte": "IBGE — Cadastro Central de Empresas (CEMPRE), tabela SIDRA 1685",
+ "url_origem": "https://sidra.ibge.gov.br/tabela/1685",
+ "coletado_em": "2026-08-05",
+ "observacao": "[NACIONAL] Serie encerrada pelo IBGE em 2021. CEMPRE cobre o emprego FORMAL registrado em CNPJ — inclui a propria prefeitura, que aqui e o maior empregador. Municipios muito pequenos tem celulas suprimidas por sigilo estatistico em alguns anos; onde o valor vier nulo, e isso.",
+ "unidade_pessoal": "Pessoas",
+ "unidade_empresas": "Unidades",
+ "unidade_salario": "R$ (salário médio mensal nominal)",
+ "serie": [
+  {
+   "ano": 2006,
+   "unidades_locais": 15,
+   "empresas_atuantes": 15,
+   "pessoal_ocupado_total": 210,
+   "pessoal_ocupado_assalariado": 193,
+   "salarios_mil_reais": 1409,
+   "salario_medio_mensal_reais": 582.06
+  },
+  {
+   "ano": 2007,
+   "unidades_locais": 20,
+   "empresas_atuantes": 20,
+   "pessoal_ocupado_total": 203,
+   "pessoal_ocupado_assalariado": 183,
+   "salarios_mil_reais": 1295,
+   "salario_medio_mensal_reais": 527.87
+  },
+  {
+   "ano": 2008,
+   "unidades_locais": 13,
+   "empresas_atuantes": 13,
+   "pessoal_ocupado_total": 220,
+   "pessoal_ocupado_assalariado": 210,
+   "salarios_mil_reais": 1818,
+   "salario_medio_mensal_reais": 667.73
+  },
+  {
+   "ano": 2009,
+   "unidades_locais": 19,
+   "empresas_atuantes": 19,
+   "pessoal_ocupado_total": 207,
+   "pessoal_ocupado_assalariado": 185,
+   "salarios_mil_reais": 1822,
+   "salario_medio_mensal_reais": 792.76
+  },
+  {
+   "ano": 2010,
+   "unidades_locais": 22,
+   "empresas_atuantes": 22,
+   "pessoal_ocupado_total": 195,
+   "pessoal_ocupado_assalariado": 177,
+   "salarios_mil_reais": 1566,
+   "salario_medio_mensal_reais": 712.69
+  },
+  {
+   "ano": 2011,
+   "unidades_locais": 20,
+   "empresas_atuantes": 20,
+   "pessoal_ocupado_total": 239,
+   "pessoal_ocupado_assalariado": 227,
+   "salarios_mil_reais": 2454,
+   "salario_medio_mensal_reais": 890.91
+  },
+  {
+   "ano": 2012,
+   "unidades_locais": 20,
+   "empresas_atuantes": 20,
+   "pessoal_ocupado_total": 233,
+   "pessoal_ocupado_assalariado": 214,
+   "salarios_mil_reais": 2532,
+   "salario_medio_mensal_reais": 919.94
+  },
+  {
+   "ano": 2013,
+   "unidades_locais": 19,
+   "empresas_atuantes": 19,
+   "pessoal_ocupado_total": 235,
+   "pessoal_ocupado_assalariado": 218,
+   "salarios_mil_reais": 2922,
+   "salario_medio_mensal_reais": 1043.35
+  },
+  {
+   "ano": 2014,
+   "unidades_locais": 15,
+   "empresas_atuantes": 15,
+   "pessoal_ocupado_total": 221,
+   "pessoal_ocupado_assalariado": 211,
+   "salarios_mil_reais": 3106,
+   "salario_medio_mensal_reais": 1153.09
+  },
+  {
+   "ano": 2015,
+   "unidades_locais": 18,
+   "empresas_atuantes": 18,
+   "pessoal_ocupado_total": 237,
+   "pessoal_ocupado_assalariado": 219,
+   "salarios_mil_reais": 3264,
+   "salario_medio_mensal_reais": 1160.7
+  },
+  {
+   "ano": 2016,
+   "unidades_locais": 16,
+   "empresas_atuantes": 16,
+   "pessoal_ocupado_total": 220,
+   "pessoal_ocupado_assalariado": 203,
+   "salarios_mil_reais": 3244,
+   "salario_medio_mensal_reais": 1221.32
+  },
+  {
+   "ano": 2017,
+   "unidades_locais": 16,
+   "empresas_atuantes": 16,
+   "pessoal_ocupado_total": 221,
+   "pessoal_ocupado_assalariado": 208,
+   "salarios_mil_reais": 3399,
+   "salario_medio_mensal_reais": 1284.14
+  },
+  {
+   "ano": 2018,
+   "unidades_locais": 11,
+   "empresas_atuantes": 11,
+   "pessoal_ocupado_total": 190,
+   "pessoal_ocupado_assalariado": 181,
+   "salarios_mil_reais": 3968,
+   "salario_medio_mensal_reais": 1655.56
+  },
+  {
+   "ano": 2019,
+   "unidades_locais": 16,
+   "empresas_atuantes": 16,
+   "pessoal_ocupado_total": 226,
+   "pessoal_ocupado_assalariado": 210,
+   "salarios_mil_reais": 4666,
+   "salario_medio_mensal_reais": 1735.94
+  },
+  {
+   "ano": 2020,
+   "unidades_locais": 21,
+   "empresas_atuantes": 21,
+   "pessoal_ocupado_total": 153,
+   "pessoal_ocupado_assalariado": 137,
+   "salarios_mil_reais": 3916,
+   "salario_medio_mensal_reais": 2173.44
+  },
+  {
+   "ano": 2021,
+   "unidades_locais": 18,
+   "empresas_atuantes": 18,
+   "pessoal_ocupado_total": 151,
+   "pessoal_ocupado_assalariado": 136,
+   "salarios_mil_reais": 3506,
+   "salario_medio_mensal_reais": 2002.63
+  }
+ ]
+}

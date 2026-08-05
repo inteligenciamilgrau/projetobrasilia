@@ -1,0 +1,96 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "fonte": "IBGE — Censos Demográficos 2000/2010/2022 (SIDRA, várias tabelas)",
+ "coletado_em": "2026-08-05",
+ "alfabetizacao": {
+  "observacao": "Cada Censo mediu alfabetizacao numa base etaria diferente (5+, 10+, 15+) — nao e uma serie perfeitamente comparavel. Com ~800 habitantes, cada ponto percentual equivale a cerca de 7 pessoas.",
+  "serie": [
+   {
+    "ano": 2000,
+    "taxa": 81.33,
+    "base_etaria": "5 anos ou mais",
+    "total": 814,
+    "alfabetizadas": 662,
+    "tabela_sidra": 204
+   },
+   {
+    "ano": 2010,
+    "taxa": 87.71,
+    "base_etaria": "10 anos ou mais",
+    "tabela_sidra": 1699
+   },
+   {
+    "ano": 2022,
+    "taxa": 91.04,
+    "base_etaria": "15 anos ou mais",
+    "tabela_sidra": 9543
+   }
+  ]
+ },
+ "nivel_de_instrucao": {
+  "observacao": "2010 mediu pessoas de 10 anos ou mais; 2022 mediu pessoas de 18 anos ou mais — bases etarias DIFERENTES, a comparacao e indicativa.",
+  "categorias_ordem": [
+   "sem_instrucao_fundamental_incompleto",
+   "fundamental_completo_medio_incompleto",
+   "medio_completo_superior_incompleto",
+   "superior_completo"
+  ],
+  "rotulos": {
+   "sem_instrucao_fundamental_incompleto": "Sem instrução / fundamental incompleto",
+   "fundamental_completo_medio_incompleto": "Fundamental completo / médio incompleto",
+   "medio_completo_superior_incompleto": "Médio completo / superior incompleto",
+   "superior_completo": "Superior completo"
+  },
+  "2010": {
+   "base_etaria": "10 anos ou mais",
+   "tabela_sidra": 3540,
+   "contagem": {
+    "sem_instrucao_fundamental_incompleto": 471,
+    "fundamental_completo_medio_incompleto": 90,
+    "medio_completo_superior_incompleto": 93,
+    "superior_completo": 53
+   },
+   "total": 707,
+   "percentual": {
+    "sem_instrucao_fundamental_incompleto": 66.62,
+    "fundamental_completo_medio_incompleto": 12.73,
+    "medio_completo_superior_incompleto": 13.15,
+    "superior_completo": 7.5
+   },
+   "categorias_brutas_do_ibge": {
+    "Fundamental completo e médio incompleto": 90.0,
+    "Médio completo e superior incompleto": 93.0,
+    "Sem instrução e fundamental incompleto": 471.0,
+    "Superior completo": 53.0
+   }
+  },
+  "2022": {
+   "base_etaria": "18 anos ou mais",
+   "tabela_sidra": 10061,
+   "contagem": {
+    "sem_instrucao_fundamental_incompleto": 293,
+    "fundamental_completo_medio_incompleto": 123,
+    "medio_completo_superior_incompleto": 165,
+    "superior_completo": 109
+   },
+   "total": 690,
+   "percentual": {
+    "sem_instrucao_fundamental_incompleto": 42.46,
+    "fundamental_completo_medio_incompleto": 17.83,
+    "medio_completo_superior_incompleto": 23.91,
+    "superior_completo": 15.8
+   },
+   "categorias_brutas_do_ibge": {
+    "Fundamental completo e médio incompleto": 123.0,
+    "Médio completo e superior incompleto": 165.0,
+    "Sem instrução e fundamental incompleto": 293.0,
+    "Superior completo": 109.0
+   }
+  }
+ },
+ "pos_graduacao": {
+  "observacao": "Mestrado e doutorado NAO aparecem separados em tabela SIDRA agregada por municipio — ficam embutidos em 'Superior completo'.",
+  "disponivel": false
+ }
+}

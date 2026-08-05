@@ -1,0 +1,31 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "fonte": "IPEAData — séries ADH_IDHM, ADH_IDHM_E, ADH_IDHM_L, ADH_IDHM_R (Atlas do Desenvolvimento Humano/PNUD, a partir dos Censos)",
+ "url_origem": "http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='ADH_IDHM')?$filter=TERCODIGO eq '3166600'",
+ "coletado_em": "2026-08-05",
+ "observacao": "Nao existe IDHM municipal 2022 nem mais recente — o Atlas nao foi recalculado depois do Censo 2010 (ver docs/CIDADES_PEQUENAS.md secao 2). Estes sao os 3 unicos pontos oficiais que existem.",
+ "serie": [
+  {
+   "ano": 1991,
+   "geral": 0.415,
+   "educacao": 0.198,
+   "longevidade": 0.678,
+   "renda": 0.531
+  },
+  {
+   "ano": 2000,
+   "geral": 0.606,
+   "educacao": 0.426,
+   "longevidade": 0.772,
+   "renda": 0.677
+  },
+  {
+   "ano": 2010,
+   "geral": 0.677,
+   "educacao": 0.542,
+   "longevidade": 0.863,
+   "renda": 0.663
+  }
+ ]
+}

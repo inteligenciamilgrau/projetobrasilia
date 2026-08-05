@@ -2292,4 +2292,8 @@ function initItajubaCharts() {
   });
 }
 
-initItajubaCharts();
+// Só monta os gráficos de Itajubá na página de Itajubá. Sem essa guarda, a
+// página de Serra da Saudade — que reusa os mesmos ids de contêiner
+// (#chart-financas, #chart-receita-origem…) — mandava buscar
+// ../dados/itajuba/*.json e desenhava os números de Itajubá dentro dela.
+if (document.body.dataset.piloto === "itajuba") initItajubaCharts();

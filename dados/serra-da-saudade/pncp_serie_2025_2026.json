@@ -1,0 +1,609 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "fonte": "PNCP — Portal Nacional de Contratações Públicas (governo federal)",
+ "cnpj_prefeitura": "18.301.069/0001-10",
+ "cnpjs_encontrados": [
+  "18301069000110"
+ ],
+ "url_origem_template": "https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?dataInicial={inicio}&dataFinal={fim}&codigoModalidadeContratacao={mod}&codigoMunicipioIbge=3166600&pagina={p}&tamanhoPagina=50",
+ "coletado_em": "2026-08-05",
+ "periodo_label": "jan/2025-ago/2026",
+ "metodologia": "Consulta por codigoMunicipioIbge (nao por CNPJ), varrendo as 13 modalidades de contratacao do PNCP e paginando ate o fim de cada uma. Diferente do piloto de Itajuba, aqui a Dispensa de Licitacao ENTRA: o volume e pequeno o bastante para a API aguentar, e numa cidade deste tamanho a contratacao direta e justamente o que importa observar.",
+ "modalidades_incluidas": [
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "quantidade": 43,
+   "valor_estimado": 20368536.31
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "quantidade": 3,
+   "valor_estimado": 3553539.89
+  },
+  {
+   "modalidade": "Credenciamento",
+   "quantidade": 2,
+   "valor_estimado": 9100.0
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "quantidade": 1,
+   "valor_estimado": 67500.0
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "quantidade": 1,
+   "valor_estimado": 100000.0
+  }
+ ],
+ "total_processos": 50,
+ "valor_total_estimado": 24098676.2,
+ "por_categoria": [
+  {
+   "categoria": "Outros",
+   "quantidade": 13,
+   "valor_estimado": 1627845.75
+  },
+  {
+   "categoria": "Saúde",
+   "quantidade": 12,
+   "valor_estimado": 1825626.89
+  },
+  {
+   "categoria": "Veículos, combustível e transporte",
+   "quantidade": 11,
+   "valor_estimado": 11851134.17
+  },
+  {
+   "categoria": "Tecnologia e comunicação",
+   "quantidade": 4,
+   "valor_estimado": 440373.62
+  },
+  {
+   "categoria": "Cultura, esporte e eventos",
+   "quantidade": 4,
+   "valor_estimado": 740746.61
+  },
+  {
+   "categoria": "Obras e infraestrutura",
+   "quantidade": 2,
+   "valor_estimado": 5702016.3
+  },
+  {
+   "categoria": "Limpeza e materiais de consumo",
+   "quantidade": 2,
+   "valor_estimado": 793335.12
+  },
+  {
+   "categoria": "Alimentação e gêneros",
+   "quantidade": 1,
+   "valor_estimado": 870790.5
+  },
+  {
+   "categoria": "Educação",
+   "quantidade": 1,
+   "valor_estimado": 246807.24
+  }
+ ],
+ "por_mes": [
+  {
+   "mes": "2025-01",
+   "mes_label": "jan/25",
+   "quantidade": 4,
+   "valor_estimado": 2874258.01
+  },
+  {
+   "mes": "2025-02",
+   "mes_label": "fev/25",
+   "quantidade": 2,
+   "valor_estimado": 352265.0
+  },
+  {
+   "mes": "2025-03",
+   "mes_label": "mar/25",
+   "quantidade": 6,
+   "valor_estimado": 1138671.5
+  },
+  {
+   "mes": "2025-04",
+   "mes_label": "abr/25",
+   "quantidade": 2,
+   "valor_estimado": 184581.67
+  },
+  {
+   "mes": "2025-05",
+   "mes_label": "mai/25",
+   "quantidade": 1,
+   "valor_estimado": 170472.66
+  },
+  {
+   "mes": "2025-06",
+   "mes_label": "jun/25",
+   "quantidade": 1,
+   "valor_estimado": 2742579.4
+  },
+  {
+   "mes": "2025-07",
+   "mes_label": "jul/25",
+   "quantidade": 3,
+   "valor_estimado": 1303075.69
+  },
+  {
+   "mes": "2025-08",
+   "mes_label": "ago/25",
+   "quantidade": 2,
+   "valor_estimado": 102393.87
+  },
+  {
+   "mes": "2025-09",
+   "mes_label": "set/25",
+   "quantidade": 2,
+   "valor_estimado": 121400.0
+  },
+  {
+   "mes": "2025-10",
+   "mes_label": "out/25",
+   "quantidade": 3,
+   "valor_estimado": 474224.13
+  },
+  {
+   "mes": "2025-12",
+   "mes_label": "dez/25",
+   "quantidade": 3,
+   "valor_estimado": 412854.15
+  },
+  {
+   "mes": "2026-01",
+   "mes_label": "jan/26",
+   "quantidade": 5,
+   "valor_estimado": 2689912.34
+  },
+  {
+   "mes": "2026-02",
+   "mes_label": "fev/26",
+   "quantidade": 1,
+   "valor_estimado": 2959436.9
+  },
+  {
+   "mes": "2026-03",
+   "mes_label": "mar/26",
+   "quantidade": 2,
+   "valor_estimado": 2665473.95
+  },
+  {
+   "mes": "2026-04",
+   "mes_label": "abr/26",
+   "quantidade": 3,
+   "valor_estimado": 3621900.0
+  },
+  {
+   "mes": "2026-05",
+   "mes_label": "mai/26",
+   "quantidade": 2,
+   "valor_estimado": 71000.0
+  },
+  {
+   "mes": "2026-06",
+   "mes_label": "jun/26",
+   "quantidade": 3,
+   "valor_estimado": 1041865.17
+  },
+  {
+   "mes": "2026-07",
+   "mes_label": "jul/26",
+   "quantidade": 3,
+   "valor_estimado": 813911.76
+  },
+  {
+   "mes": "2026-08",
+   "mes_label": "ago/26",
+   "quantidade": 2,
+   "valor_estimado": 358400.0
+  }
+ ],
+ "erros_de_coleta": [],
+ "observacao": "[NACIONAL — nao pontua como diferencial entre cidades no IDU-Br, mas e dado real, atual e especifico do municipio] Valor ESTIMADO da contratacao no momento da publicacao, nao valor homologado nem pago. A categoria e inferida do texto do objeto por palavras-chave — e classificacao nossa, nao do PNCP.",
+ "processos": [
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-08",
+   "objeto": "AQUISIÇÃO DE COMBUSTÍVEIS, LUBRIFICANTES E OUTROS PARA UTILIZAÇÃO NA FROTA MUNICIPAL",
+   "valor": 2533899.9,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-10",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE MEDICAMENTOS ÉTICOS",
+   "valor": 8.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-16",
+   "objeto": "AQUISIÇÃO DE UMA AUTOCLAVE",
+   "valor": 12016.11,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-29",
+   "objeto": "Contratação de empresa especializada para aquisição de veículo destinado à Secretaria Municipal de Saúde (Ambulancia Tipo A, Simples Remoção, Furgão) Resolução SES/MG - 9.604/24",
+   "valor": 328334.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-02-27",
+   "objeto": "AQUISIÇÃO DE UMA AMBULÂNCIA 0 KM TIPO SIMPLES REMOÇÃO",
+   "valor": 328334.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-02-27",
+   "objeto": "Registro de Preços, para eventual aquisição de materiais e equipamentos diversos em cumprimento à Portaria GM/MS 4.986/2024",
+   "valor": 23931.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-06",
+   "objeto": "AQUISIÇÃO DE LUBRIFICANTES AUTOMOTIVOS E DEMAIS PRODUTOS CORRELATOS",
+   "valor": 508870.09,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-06",
+   "objeto": "Registro de Preços, para eventual aquisição de aparelhos de ar condicionado e outros equipamentos elétricos, eletrônicos e de informática",
+   "valor": 45757.01,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-11",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA REALIZAÇÃO DE EVENTO (FESTA DO PEÃO – 2025) COM FORNECIMENTO DE PALCO, SOM, CERCAMENTO, ARQUIBANCADAS E DEMAIS ESTRUTURAS E SERVIÇOS NECESSÁRIOS, COM DATA PREVISTA PARA OS DIAS 07,08,09, 10 e 11/05/2025",
+   "valor": 350000.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-21",
+   "objeto": "Registro de Preços, para eventual aquisição de notebooks e climatizadores industriais",
+   "valor": 59259.73,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-21",
+   "objeto": "Registro de Preços, para eventual aquisição de roçadeira hidráulica articulada",
+   "valor": 60555.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-31",
+   "objeto": "Aquisição de um veículo 0 km tipo pick-up, utilitário (TERMO ADITIVO 001 ao Convênio de Saída 1231000314/2024/SEAPA)",
+   "valor": 114229.67,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-04-11",
+   "objeto": "REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MATERIAIS ELÉTRICOS DIVERSOS",
+   "valor": 143037.2,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-04-14",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE EQUIPAMENTOS DIVERSOS PARA A GARAGEM MUNICIPAL (ELEVADOR AUTOMOTIVO, COMPRESSOR DE AR INDUSTRIAL, GERADOR TRIFÁSICO, BEBEDOURO RESFRIADOR.",
+   "valor": 41544.47,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-05",
+   "objeto": "REGISTRO DE PREÇOS DESTINADO A AQUISIÇÃO DE MATERIAIS DIVERSOS PARA MANUTENÇÃO DAS PISCINAS DA PRAÇA DE ESPORTES MUNICIPAL",
+   "valor": 170472.66,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-06-06",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE MATERIAIS DE CONSTRUÇÃO DIVERSOS",
+   "valor": 2742579.4,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-07-03",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA PRESTAÇÃO DE SERVIÇOS POR EMPREITADA GLOBAL, COM FORNECIMENTO DE TODO O MATERIAL NECESSÁRIO, VISANDO A AMPLIAÇÃO DO PRÉDIO/SEDE DA PREFEITURA MUNICIPAL DE SERRA DA SAUDADE - MG.",
+   "valor": 514512.47,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-07-11",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE MATERIAIS DE EXPEDIENTE DIVERSOS",
+   "valor": 443335.12,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-07-17",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE TINTAS E FERRAGENS DIVERSAS",
+   "valor": 345228.1,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-08-04",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA PRESTAÇÃO DE SERVIÇOS DE AMPLIAÇÃO DO CMEI MUNICIPAL",
+   "valor": 79590.52,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-25",
+   "objeto": "Registro de Preços, para eventual aquisição de materiais e equipamentos diversos em cumprimento à Portaria GM/MS 4.986/2024",
+   "valor": 22803.35,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-05",
+   "objeto": "Constitui o objeto da presente licitação a aquisição de 03 (três) veículos, sendo 02(duas) vans para transporte sanitário eletivo (com acessibilidade – 01 cadeirante) a serem adquiridas com recurso proveniente da RESOLUÇÃO Nº 10.232-2025/SES/MG, e 01(um) veículo tipo minivan com no minimo 7 (sete) lugares a ser adquirido com recurso proveniente da RESOLUÇÃO Nº 10.238-2025/SES/MG, visando atender a demanda da Secretaria Municipal de Saúde do município de SERRA DA SAUDADE/MG. ",
+   "valor": 0.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-18",
+   "objeto": "Contratação de empresa especializada na prestação de serviços de locação de software, para gestão do: Gestão da NFS-e Nacional (web), Fiscalização Tributária (web), Gestão de Resíduos (web) e Serviços técnicos de hospedagem externa de equipamentos e das bases de dados do Sistema (software) no regime de Hosting (Nuvens), em ambiente de data Center, com fornecimento de conectividade, monitoramento, armazenamento de dados, gerenciamento, segurança física e lógica para execução de aplicações",
+   "valor": 121400.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-09",
+   "objeto": "AQUISIÇÃO DE EQUIPAMENTOS DE INFORMÁTICA E OUTROS DIVERSOS",
+   "valor": 151412.09,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-16",
+   "objeto": "aquisição de 02 (dois) veículos 0Km, de acordo com a necessidade da Secretaria Municipal de Administração e Secretaria Municipal de Saúde (Resolução SES/MG 10.088/25)",
+   "valor": 315863.64,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-21",
+   "objeto": "AQUISIÇÃO DE ITENS DIVERSOS PARA SORTEIO IPTU",
+   "valor": 6948.4,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-12-01",
+   "objeto": "Aquisição de 02 (dois) veículos 0Km, de acordo com a necessidade da Secretaria Municipal de Administração e Secretaria Municipal de Saúde (Resolução SES/MG 10.088/25) ",
+   "valor": 315863.64,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-12-02",
+   "objeto": "Registro de Preços para aquisição de medicamentos de uso humano (Genéricos e Similares), divididos em lotes.",
+   "valor": 55.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-12-04",
+   "objeto": "AQUISIÇÃO DE CAMERAS, DVR E OUTROS PARA UTILIZAÇÃO NO SISTEMA DE VIGILÂNCIA E MONITORAMENTO MUNICIPAL.",
+   "valor": 96935.51,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-05",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS, CAMARAS E PROTETORES",
+   "valor": 1363121.84,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-15",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS (CARNES E OVOS) PARA ATENDER AS NECESSIDADES DAS SECRETARIAS MUNICIPAIS DE SERRA DA SAUDADE MG.",
+   "valor": 870790.5,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-21",
+   "objeto": "AQUISIÇÃO, TRANSPORTE, MONTAGEM E INSTALAÇÃO DE RESERVATÓRIO METÁLICO ELEVADO (TIPO TAÇA/COLUNA) COM CAPACIDADE DE 15M³, INCLUINDO KIT HIDRÁULICO EXTERNO, DESTINADO AO SISTEMA DE ABASTECIMENTO DE ÁGUA DO LOTEAMENTO \"HORIZONTE AZUL\"",
+   "valor": 166000.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-21",
+   "objeto": "REGISTRO DE PREÇOS PARA CONTRATAÇÃO DE HORAS-MÁQUINA DE ESCAVADEIRA HIDRÁULICA (COM OPERADOR E COMBUSTÍVEL INCLUSOS).",
+   "valor": 190000.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-01-28",
+   "objeto": "Contratação de empresa especializada para realização de show artístico musical da dupla sertaneja \"EMÍLIO & EDUARDO\", a realizar-se no dia 09 de maio de 2026, integrando a programação das festividades municipais.",
+   "valor": 100000.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2026-02-19",
+   "objeto": "CONSTRUÇÃO DE 20 UNIDADES HABITACIONAIS – PROPOSTA TRANSFEREGOV 039997/2025",
+   "valor": 2959436.9,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-05",
+   "objeto": "REGISTRO DE PREÇOS - AQUISIÇÃO DE COMBUSTÍVEIS",
+   "valor": 2545200.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-05",
+   "objeto": "SELEÇÃO DE FORNECEDORES PARA A FORMAÇÃO DE REGISTRO DE PREÇOS (SRP), VISANDO A AQUISIÇÃO FUTURA E PARCELADA DE PRODUTOS QUÍMICOS SANEANTES DE ALTO PADRÃO TÉCNICO, DESTINADOS AO TRATAMENTO, DESINFECÇÃO E CONTROLE SANITÁRIO DA ÁGUA DO COMPLEXO DE PISCINAS PÚBLICAS DA PRAÇA DE ESPORTES MUNICIPAL",
+   "valor": 120273.95,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-04-06",
+   "objeto": "contratação de empresa especializada para a organização,  produção,  montagem,  operação  e  desmontagem  do  evento  denominado \"FESTA DO PEÃO – 2026\", incluindo o fornecimento de palco, sonorização, iluminação, cercamento,  arquibancadas,  arena,  atrações  musicais,  serviços  de  segurança,  limpeza, banheiros químicos e demais estruturas e serviços necessários à perfeita realização do evento.",
+   "valor": 350000.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-04-06",
+   "objeto": "Aquisição de 01 (um) veículo automotor novo, zero quilômetro, primeiro emplacamento em nome do Município de Serra da Saudade – MG, tipo SUV, 5 lugares,  4  portas,  combustível flex,  transmissão  automática",
+   "valor": 0.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-04-07",
+   "objeto": "REGISTRO DE PREÇOS PARA AQUISIÇÃO DE COMBUSTÍVEIS",
+   "valor": 3271900.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2026-05-14",
+   "objeto": "Credenciamento de pessoa física ou jurídica especializada para prestação de serviços médicos na especialidade de geriatria, destinados à realização de consultas especializadas, acompanhamento clínico de pacientes idosos, apoio matricial e atuação técnica junto às ações do Programa de Atenção Domiciliar à Pessoa Idosa – PADI/eMulti, no âmbito da Atenção Primária à Saúde do Município de Serra da Saudade/MG, incluindo vinculação operacional ao SCNES/INE e registro de produção no sistema SIAPS",
+   "valor": 3500.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-05-20",
+   "objeto": "Contratação de empresa especializada para elaboração, planejamento e execução do Trabalho Técnico Social (TTS) junto às famílias beneficiárias de empreendimentos habitacionais vinculados ao Programa Minha Casa, Minha Vida – Modalidade FNHIS Sub 50",
+   "valor": 67500.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-22",
+   "objeto": "Aquisição de 01 veículo automotor zero quilômetro, tipo SUV de porte médio ou superior, destinado ao atendimento das demandas institucionais do Gabinete da Prefeita Municipal de Serra da Saudade/MG.",
+   "valor": 238279.67,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-24",
+   "objeto": " Aquisição de 01(um) caminhão - carroceria: caçamba basculante; capacidade carga: mínima de 14.000 kg; ptb - peso total bruto: mínimo de 22.000 kg; potencia: mínima de 280 cv; faixa cilindrada: conforme linha de produção; direção: conforme linha de produção; tração: 6x4; combustível: diesel; CONVENIO DE SAIDA Nº 1491000195/2026/SEGOV",
+   "valor": 640333.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-25",
+   "objeto": "Registro de preços para futura e eventual aquisição de medicamentos à base de semaglutida, solução injetável de uso subcutâneo, em sistema aplicador/caneta aplicadora preenchida, seringa preenchida, tubete ou apresentação equivalente, em embalagem comercial fechada do fabricante, com registro válido na ANVISA, destinados ao atendimento de pacientes acompanhados pela Secretaria Municipal de Saúde de Serra da Saudade/MG, conforme prescrição médica individualizada.",
+   "valor": 163252.5,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-07-02",
+   "objeto": "Aquisição de equipamentos e bens permanentes destinados ao atendimento da Secretaria Municipal de Educação, em cumprimento ao Convênio de Saída nº 1261002165/2026/SEE",
+   "valor": 246807.24,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-07-16",
+   "objeto": "Registro de preços para futura e eventual aquisição de equipamentos de informática, equipamentos administrativos, mobiliário e bens de apoio operacional, compreendendo microcomputadores desktop completos, notebooks, impressoras multifuncionais laser monocromáticas, bicicleta elétrica utilitária, lavadoras de alta pressão, mesas de escritório com gaveteiro, cadeiras giratórias com braços e armários de aço altos, destinados ao atendimento das necessidades dos setores administrativos e operacionais",
+   "valor": 121804.52,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-07-27",
+   "objeto": "Registro de preços para futura e eventual aquisição de combustíveis, compreendendo gasolina comum e óleo diesel S-10, destinados ao abastecimento de veículos oficiais pertencentes ou vinculados à Prefeitura Municipal de Serra da Saudade/MG, quando em trânsito no trecho rodoviário compreendido entre os Municípios de Luz/MG e Bom Despacho/MG",
+   "valor": 445300.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-08-05",
+   "objeto": "Aquisição de veículos automotores novos, zero quilômetro, sendo 01 (um) veículo tipo minivan ou veículo de passageiros de configuração equivalente, com capacidade mínima para 07 lugares, e 02 (dois) veículos tipo hatch/passeio, com capacidade mínima para 05 lugares, destinados ao atendimento das necessidades da Secretaria Municipal de Saúde de Serra da Saudade/MG, em conformidade com a Resolução SES/MG nº 11.028, de 16 de abril de 2026",
+   "valor": 352800.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2026-08-05",
+   "objeto": "O presente edital tem por objeto o credenciamento de pessoas físicas e/ou jurídicas especializadas para futura e eventual contratação de serviços profissionais de saúde destinados ao atendimento das demandas da Secretaria Municipal de Saúde de Serra da Saudade/MG, divididos nos seguintes itens independentes: Médico Geriatra e Fonoaudiólogo",
+   "valor": 5600.0,
+   "orgao": "MUNICIPIO DE SERRA DA SAUDADE",
+   "cnpj": "18301069000110"
+  }
+ ]
+}

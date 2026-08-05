@@ -1,0 +1,46 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "coletado_em": "2026-08-05",
+ "sistema_referencia": "SIRGAS2000 (equivalente a WGS84 para visualização)",
+ "fonte": "IBGE — Censo Demográfico 2022, Agregados por Setores Censitários (malha_com_atributos)",
+ "url_dados": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/setores/gpkg/UF/MG/MG_setores_CD2022.gpkg",
+ "url_geometria": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/setores/gpkg/UF/MG/MG_setores_CD2022.gpkg",
+ "observacao": "lon/lat sao o centroide de area do anel externo de cada setor, calculado aqui a partir da geometria oficial. ESCALA: sao pouquissimos setores — o recorte territorial que em Itajuba (192 setores) desenha um mapa de calor util, aqui mal divide a cidade. Ver ressalva no arquivo de poligonos.",
+ "n_setores": 3,
+ "setores": [
+  {
+   "setor": "316660005000002",
+   "distrito": "Serra da Saudade",
+   "situacao": "Rural",
+   "area_km2": 160.8436,
+   "populacao": 113,
+   "domicilios": 126,
+   "densidade_hab_km2": 0.7,
+   "lon": -45.819162,
+   "lat": -19.394099
+  },
+  {
+   "setor": "316660005000003",
+   "distrito": "Serra da Saudade",
+   "situacao": "Rural",
+   "area_km2": 175.2827,
+   "populacao": 178,
+   "domicilios": 177,
+   "densidade_hab_km2": 1.0,
+   "lon": -45.738726,
+   "lat": -19.377527
+  },
+  {
+   "setor": "316660005000007",
+   "distrito": "Serra da Saudade",
+   "situacao": "Urbana",
+   "area_km2": 0.5428,
+   "populacao": 542,
+   "domicilios": 273,
+   "densidade_hab_km2": 998.5,
+   "lon": -45.795031,
+   "lat": -19.44092
+  }
+ ]
+}

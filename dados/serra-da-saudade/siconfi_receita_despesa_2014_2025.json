@@ -1,0 +1,90 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "entidade": "Prefeitura Municipal de Serra da Saudade - MG (ente único; o município não declara consórcio junto no DCA)",
+ "titulo": "Receita realizada, despesa empenhada e saldo, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais), Anexos I-C e I-E",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-C&id_ente=3166600",
+ "coletado_em": "2026-08-05",
+ "por_que_dca_e_nao_rreo": "Itajubá monta este gráfico com o RREO Anexo 01. Para Serra da Saudade o RREO NÃO EXISTE na API do SICONFI: todos os seis períodos de todos os anos de 2013 a 2026 voltam com count=0, e o RGF também. A série aqui vem do DCA — a declaração anual definitiva, que é mais confiável que o relatório bimestral e ainda alcança 2014.",
+ "colunas_usadas": {
+  "receita_realizada": "I-C, cod_conta=\"ReceitasExcetoIntraOrcamentarias\", coluna \"Receitas Brutas Realizadas\" menos as colunas \"Deduções - FUNDEB\" e \"Outras Deduções da Receita\" — equivale à receita líquida realizada",
+  "despesa_empenhada": "I-E, conta=\"Despesas Exceto Intraorçamentárias\", coluna \"Despesas Empenhadas\""
+ },
+ "observacao": "[NACIONAL — não pontua como diferencial entre cidades no IDU-Br, mas é dado real, atual e específico do município] Valores em reais correntes de cada ano (não deflacionados). Despesa empenhada ≠ despesa paga. Receita e despesa excluem as operações intraorçamentárias dos dois lados, para que o saldo compare grandezas equivalentes.",
+ "valores_nao_deflacionados": true,
+ "serie": [
+  {
+   "ano": 2014,
+   "receita_realizada": 9926899.25,
+   "despesa_empenhada": 9770492.91,
+   "saldo": 156406.34
+  },
+  {
+   "ano": 2015,
+   "receita_realizada": 11831902.5,
+   "despesa_empenhada": 10610037.42,
+   "saldo": 1221865.08
+  },
+  {
+   "ano": 2016,
+   "receita_realizada": 11481567.32,
+   "despesa_empenhada": 10343842.75,
+   "saldo": 1137724.57
+  },
+  {
+   "ano": 2017,
+   "receita_realizada": 11419984.06,
+   "despesa_empenhada": 12774547.48,
+   "saldo": -1354563.42
+  },
+  {
+   "ano": 2018,
+   "receita_realizada": 12319730.75,
+   "despesa_empenhada": 12396144.03,
+   "saldo": -76413.28
+  },
+  {
+   "ano": 2019,
+   "receita_realizada": 12418347.01,
+   "despesa_empenhada": 12106461.7,
+   "saldo": 311885.31
+  },
+  {
+   "ano": 2020,
+   "receita_realizada": 14339853.52,
+   "despesa_empenhada": 12711592.56,
+   "saldo": 1628260.96
+  },
+  {
+   "ano": 2021,
+   "receita_realizada": 17006622.91,
+   "despesa_empenhada": 14098519.01,
+   "saldo": 2908103.9
+  },
+  {
+   "ano": 2022,
+   "receita_realizada": 26129197.32,
+   "despesa_empenhada": 19484960.36,
+   "saldo": 6644236.96
+  },
+  {
+   "ano": 2023,
+   "receita_realizada": 21389412.22,
+   "despesa_empenhada": 26314886.49,
+   "saldo": -4925474.27
+  },
+  {
+   "ano": 2024,
+   "receita_realizada": 26754934.42,
+   "despesa_empenhada": 25340475.71,
+   "saldo": 1414458.71
+  },
+  {
+   "ano": 2025,
+   "receita_realizada": 28426049.01,
+   "despesa_empenhada": 26994872.31,
+   "saldo": 1431176.7
+  }
+ ]
+}

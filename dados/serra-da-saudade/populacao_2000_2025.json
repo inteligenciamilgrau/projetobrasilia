@@ -1,0 +1,131 @@
+{
+ "municipio": "Serra da Saudade/MG",
+ "ibge_codigo": "3166600",
+ "fonte": "IBGE — Censos Demográficos (2000, 2010, 2022) e Estimativas de População (2001-2025, tabela SIDRA 6579)",
+ "url_censo": "https://servicodados.ibge.gov.br/api/v3/agregados/{tabela}/periodos/{ano}/variaveis/93?localidades=N6[3166600] — tabelas 202 (2000), 1378 (2010), 4709 (2022)",
+ "url_estimativas": "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2001-2025/variaveis/9324?localidades=N6[3166600]",
+ "coletado_em": "2026-08-05",
+ "observacao": "Serie composta: anos de Censo (2000, 2010, 2022) usam a contagem oficial (variavel 93); os demais usam a Estimativa anual do IBGE (variavel 9324). Serra da Saudade e o municipio MENOS POPULOSO do Brasil desde o Censo 2010, e o unico do pais com menos de 1.000 habitantes no Censo 2022. Numeros tao pequenos tornam a serie sensivel a poucas dezenas de pessoas: uma variacao de 20 moradores move a populacao em ~2,4%.",
+ "serie": [
+  {
+   "ano": 2000,
+   "populacao": 873,
+   "fonte": "censo"
+  },
+  {
+   "ano": 2001,
+   "populacao": 876,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2002,
+   "populacao": 877,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2003,
+   "populacao": 879,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2004,
+   "populacao": 884,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2005,
+   "populacao": 886,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2006,
+   "populacao": 889,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2008,
+   "populacao": 889,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2009,
+   "populacao": 890,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2010,
+   "populacao": 815,
+   "fonte": "censo"
+  },
+  {
+   "ano": 2011,
+   "populacao": 811,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2012,
+   "populacao": 807,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2013,
+   "populacao": 825,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2014,
+   "populacao": 822,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2015,
+   "populacao": 818,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2016,
+   "populacao": 815,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2017,
+   "populacao": 812,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2018,
+   "populacao": 786,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2019,
+   "populacao": 781,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2020,
+   "populacao": 776,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2021,
+   "populacao": 771,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2022,
+   "populacao": 833,
+   "fonte": "censo"
+  },
+  {
+   "ano": 2024,
+   "populacao": 854,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2025,
+   "populacao": 856,
+   "fonte": "estimativa"
+  }
+ ]
+}
