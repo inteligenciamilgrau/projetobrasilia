@@ -1,0 +1,311 @@
+{
+ "municipio": "Florianópolis/SC",
+ "metodologia": "IDU-Br v2.1 — docs/METRICA_IDU_V2.md",
+ "motor_de_calculo": "idu_v2.py (o mesmo motor do dossiê nacional, sem notas hardcoded)",
+ "matriz_de_entrada": {
+  "population": {
+   "value": 587486,
+   "reference_date": "2025-07-01",
+   "source": "IBGE — Estimativas da População 2025 (SIDRA 6579)"
+  },
+  "municipal": {
+   "saude": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "seguranca": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "educacao": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "mobilidade": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "economia": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "financas": {
+    "D": [
+     1,
+     2,
+     2
+    ],
+    "U": 1,
+    "F": [
+     2,
+     3,
+     4
+    ],
+    "T": 0,
+    "R": 3
+   },
+   "urbanismo": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "meio_ambiente": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   }
+  },
+  "ecosystem": {
+   "saude": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "seguranca": {
+    "D": 1,
+    "U": 2,
+    "F": 4,
+    "T": 0,
+    "R": 2
+   },
+   "educacao": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "mobilidade": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "economia": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "financas": {
+    "D": [
+     1,
+     2,
+     2
+    ],
+    "U": 4,
+    "F": [
+     2,
+     3,
+     4
+    ],
+    "T": 0,
+    "R": 4
+   },
+   "urbanismo": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "meio_ambiente": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   }
+  },
+  "confidence": {
+   "completude": 4,
+   "evidencia": 4,
+   "reprodutibilidade": 4,
+   "concordancia": 0,
+   "consistencia": 4,
+   "recencia": 4
+  },
+  "caps": [
+   "sem_schema"
+  ]
+ },
+ "avaliado_em": "2026-08-05",
+ "avaliador": "1 avaliador (esta sessão) — sem segunda codificação independente",
+ "observacao_geral": "O IDU-Br mede a maturidade do ecossistema de dados ABERTOS PRÓPRIO do município — o que a Prefeitura e o estado publicam de forma legível por máquina. NÃO mede a qualidade da cidade nem a quantidade de informação disponível sobre ela: quase tudo que este piloto mostra vem de fontes NACIONAIS (IBGE, SICONFI, CNES), que cobrem os 5.570 municípios igualmente e por isso não pontuam como diferencial.",
+ "mudanca_desta_revisao": "Florianópolis estava DESCARTADA no DOSSIE_PILOTO.md e com nota 2,2 no METRICA_IDU.md, com a justificativa de que 'seu domínio de dados abertos não resolve em DNS'. A reavaliação de 05/08/2026 mantém o veredito de mérito e corrige um fato: o site da Prefeitura NÃO está fora do ar — devolvia 403 a cliente sem User-Agent de navegador e responde 200 com, exatamente como o Executivo de Itajubá. O que não existe é dado legível por máquina: a página de transparência tem 348 links e nenhum arquivo tabular, e os dois subdomínios de dados abertos realmente não resolvem em DNS.",
+ "resultado": {
+  "IDU_M": 3.1,
+  "IDU_M_faixa": [
+   1.4,
+   3.3
+  ],
+  "IDU_E": 6.3,
+  "IDU_E_faixa": [
+   4.1,
+   6.5
+  ],
+  "dependencia_externa": 3.3,
+  "C_IDU": 79.0,
+  "C_IDU_faixa_qualitativa": "média (60-79)",
+  "P_Piloto": 100.0,
+  "IPS_Br": 29.7,
+  "sensibilidade_pesos_iguais": {
+   "IDU_E": 6.7,
+   "IDU_E_faixa": [
+    4.2,
+    7.0
+   ]
+  }
+ },
+ "por_dominio": [
+  {
+   "dominio": "Finanças",
+   "camada": "M — Portal da Transparência (e-publica) + E — CKAN dados.sc.gov.br",
+   "D": 2,
+   "U": 4,
+   "F": 3,
+   "T": 0,
+   "R": 4,
+   "Q_0_100": 38.8,
+   "nota": "Portal da Transparência da Prefeitura, em plataforma de terceiro (transparencia.e-publica.net): declara despesa, receita, licitações e contratos, mas é aplicação de página única sem API de dados — o bundle só expõe rotas de download de arquivo. A página institucional /transparencia tem 348 links e NENHUM arquivo .csv, .xlsx, .json ou .xml. Os dois subdomínios de dados abertos que a capital anunciaria (dados.florianopolis.sc.gov.br e dadosabertos.pmf.sc.gov.br) não resolvem em DNS. Na camada estadual entra o dados.sc.gov.br, CKAN 2.8.3 com API pública — encanamento muito melhor que o de MG, e conteúdo quase sem recorte municipal: de 112 conjuntos, um só menciona município, e em HTML."
+  },
+  {
+   "dominio": "Segurança",
+   "camada": "E — SSP-SC (estadual)",
+   "D": 1,
+   "U": 2,
+   "F": 4,
+   "T": 0,
+   "R": 2,
+   "Q_0_100": 14.4,
+   "nota": "SSP-SC, Boletim Mensal de Indicadores: PDF, não CSV. O único recorte municipal é vítimas de homicídio e só a partir de 2023 — contra 12 naturezas desde 2012 na SEJUSP-MG, que cobre os dois pilotos mineiros. Florianópolis registra 27, 31 e 24 vítimas em 2023, 2024 e 2025, e já 23 no 1º semestre de 2026."
+  },
+  {
+   "dominio": "Saúde",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Educação",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Mobilidade",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Economia",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Urbanismo",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Meio ambiente",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  }
+ ],
+ "confianca_componentes": {
+  "completude": {
+   "nota_0_4": 4,
+   "leitura": "Os 8 domínios foram examinados nesta revisão"
+  },
+  "forca_da_evidencia": {
+   "nota_0_4": 4,
+   "leitura": "13 endereços testados por HTTP nesta sessão, com DNS e User-Agent de navegador; os bundles das duas SPAs foram lidos em busca de rotas de API; o CKAN estadual foi consultado pela própria API (package_search)"
+  },
+  "reprodutibilidade": {
+   "nota_0_4": 4,
+   "leitura": "Cada arquivo da pasta de dados grava URL, parâmetro e data de coleta"
+  },
+  "concordancia_independente": {
+   "nota_0_4": 0,
+   "leitura": "1 avaliador só, sem segunda codificação cega"
+  },
+  "consistencia": {
+   "nota_0_4": 4,
+   "leitura": "A contradição com a avaliação anterior foi encontrada, testada e registrada em 'mudanca_desta_revisao'"
+  },
+  "recencia_da_verificacao": {
+   "nota_0_4": 4,
+   "leitura": "Matriz testada em 2026-08-05"
+  }
+ },
+ "teto_aplicado": "sem_schema (79) — nenhuma fonte municipal ou estadual entrega schema formal",
+ "enderecos_testados": {
+  "dados.florianopolis.sc.gov.br": "DNS não resolve",
+  "dadosabertos.pmf.sc.gov.br": "DNS não resolve",
+  "transparencia.pmf.sc.gov.br": "DNS não resolve",
+  "portaldocidadao.pmf.sc.gov.br": "conexão recusada",
+  "www.pmf.sc.gov.br": "HTTP 200 com User-Agent de navegador (403 sem)",
+  "www.pmf.sc.gov.br/transparencia/index.php": "HTTP 200, 79 KB, 348 links, 0 arquivos tabulares",
+  "transparencia.e-publica.net (Dados Abertos do menu)": "SPA de terceiro; sem API de dados",
+  "cigaobras.pmf.sc.gov.br": "shell de SPA de 1,2 KB, operado pelo CIGA",
+  "dados.sc.gov.br": "CKAN 2.8.3 estadual, API pública, 112 conjuntos"
+ }
+}

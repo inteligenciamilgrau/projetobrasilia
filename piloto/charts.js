@@ -786,9 +786,32 @@ function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, 
   // esticam a rampa e achatam a cor de todos os outros. Eles continuam no mapa,
   // só saturam na cor mais escura em vez de ganharem uma faixa exclusiva.
   const sorted = values.slice().sort((a, b) => a - b);
-  const vCap = sorted[Math.min(sorted.length - 1, Math.ceil(0.97 * sorted.length) - 1)];
+  const quantil = (p) => sorted[Math.min(sorted.length - 1, Math.max(0, Math.ceil(p * sorted.length) - 1))];
+  const vCap = quantil(0.97);
   const clipped = vMax > vCap;
   const colorMax = clipped ? vCap : vMax;
+
+  // ESCALA ADAPTATIVA. O teto no p97 resolve o caso de Itajubá (192 setores,
+  // distribuição razoavelmente espalhada), mas não resolve o de uma capital:
+  // em Florianópolis a mediana é 4,8 mil hab./km² contra um p97 de 35 mil, e
+  // numa rampa linear metade dos setores cai nos primeiros 14% da cor — o mapa
+  // sai todo do mesmo azul claro e não mostra padrão nenhum. Quando a mediana
+  // não alcança 30% da rampa linear, a cor passa a seguir a POSIÇÃO do setor na
+  // distribuição, não o valor absoluto. Aí a rampa inteira é usada e o padrão
+  // intraurbano aparece. A legenda muda junto e diz qual das duas está no ar —
+  // sem isso o leitor compararia magnitudes que a cor deixou de representar.
+  const mediana = quantil(0.5);
+  const tMedianaLinear = colorMax > vMin ? (mediana - vMin) / (colorMax - vMin) : 0.5;
+  const porQuantil = values.length >= 50 && tMedianaLinear < 0.30;
+
+  const posto = new Map();
+  sorted.forEach((v, i) => { if (!posto.has(v)) posto.set(v, i); });
+  const nMenos1 = Math.max(1, sorted.length - 1);
+  const tDe = (v) => {
+    if (v == null) return 0;
+    if (porQuantil) return (posto.get(v) || 0) / nMenos1;
+    return Math.max(0, Math.min(1, colorMax > vMin ? (v - vMin) / (colorMax - vMin) : 0.5));
+  };
 
   const tip = makeTooltip(wrap);
 
@@ -796,10 +819,10 @@ function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, 
   // vizinhos (o "gap de 2px entre preenchimentos" do skill, na escala do mapa).
   const gSetores = el("g", {}, svg);
   features.forEach(f => {
-    const t = Math.max(0, Math.min(1, colorMax > vMin ? (f[valueKey] - vMin) / (colorMax - vMin) : 0.5));
+    const t = tDe(f[valueKey]);
     const color = seqColor(t, ramp);
     const d = f.aneis.map(ringD).join(" ");
-    const isOutlier = clipped && f[valueKey] > vCap;
+    const isOutlier = !porQuantil && clipped && f[valueKey] > vCap;
     const area = f.area_km2 < 0.1 ? f.area_km2.toFixed(3) : f.area_km2.toFixed(2);
     const path = el("path", {
       d, fill: color, stroke: "var(--v-surface)", "stroke-width": 0.6, "fill-rule": "evenodd",
@@ -893,11 +916,22 @@ function renderChoroplethMap(root, { boundary, features, valueKey, valueFormat, 
   const grad = el("linearGradient", { id: gradId, x1: "0", x2: "1", y1: "0", y2: "0" }, el("defs", {}, svg));
   for (let i = 0; i <= 10; i++) el("stop", { offset: `${i * 10}%`, "stop-color": seqColor(i / 10, ramp) }, grad);
   const legendY = H - 26;
-  el("rect", { x: M, y: legendY, width: 200, height: 10, rx: 3, fill: `url(#${gradId})`, stroke: "var(--v-grid)", "stroke-width": 0.5 }, svg);
+  const LW = porQuantil ? 260 : 200;
+  el("rect", { x: M, y: legendY, width: LW, height: 10, rx: 3, fill: `url(#${gradId})`, stroke: "var(--v-grid)", "stroke-width": 0.5 }, svg);
   const tLo = el("text", { x: M, y: legendY + 24, class: "viz-axis-text" }, svg);
   tLo.textContent = valueFormat(vMin);
-  const tHi = el("text", { x: M + 200, y: legendY + 24, "text-anchor": "end", class: "viz-axis-text" }, svg);
-  tHi.textContent = valueFormat(colorMax) + (clipped ? " ou mais" : "");
+  const tHi = el("text", { x: M + LW, y: legendY + 24, "text-anchor": "end", class: "viz-axis-text" }, svg);
+  if (porQuantil) {
+    // Na escala por quantil o MEIO da barra é a mediana, por construção —
+    // rotular só as pontas esconderia justamente o que mudou.
+    tHi.textContent = valueFormat(vMax);
+    const tMid = el("text", { x: M + LW / 2, y: legendY + 24, "text-anchor": "middle", class: "viz-axis-text" }, svg);
+    tMid.textContent = valueFormat(mediana);
+    const cap = el("text", { x: M, y: legendY - 6, class: "viz-axis-text" }, svg);
+    cap.textContent = "cor = posição na distribuição (metade dos setores de cada lado da mediana)";
+  } else {
+    tHi.textContent = valueFormat(colorMax) + (clipped ? " ou mais" : "");
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -922,7 +956,13 @@ function renderTable(root, { caption, columns, rows }) {
     tbody.appendChild(tr);
   });
   table.appendChild(tbody);
-  details.appendChild(table);
+  // Mesmo motivo do IDU: tabela larga rola dentro do próprio contêiner. Aqui o
+  // estouro só aparecia depois de abrir o "Ver como tabela", o que o tornava
+  // fácil de não notar.
+  const scroll = document.createElement("div");
+  scroll.className = "viz-scroll-x";
+  scroll.appendChild(table);
+  details.appendChild(scroll);
   root.appendChild(details);
 }
 
@@ -2130,7 +2170,13 @@ function buildIduBrSection(root, idu) {
     tbody.appendChild(tr);
   });
   table.appendChild(tbody);
-  root.appendChild(table);
+  // Tabela de 4 colunas com texto corrido não encolhe abaixo do seu min-content:
+  // sem um contêiner que role, ela empurrava a PÁGINA na horizontal no celular.
+  // Quem rola é a tabela, não o documento.
+  const scroll = document.createElement("div");
+  scroll.className = "viz-scroll-x";
+  scroll.appendChild(table);
+  root.appendChild(scroll);
 
   const note2 = document.createElement("p");
   note2.className = "viz-note";

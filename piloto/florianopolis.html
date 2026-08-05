@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Piloto de análise de dados públicos de Florianópolis/SC: finanças, população, território, economia e segurança, a partir de fontes públicas verificáveis. A primeira capital do piloto do Projeto Brasil iA.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="piloto.css">
+  <link rel="stylesheet" href="charts.css">
+  <title>Florianópolis/SC — piloto de análise — Projeto Brasil iA</title>
+</head>
+<body data-piloto="florianopolis">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="../" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="../">Início</a>
+          <a class="top-link" href="../cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="./" aria-current="page">Piloto</a>
+          <a class="top-link" href="../municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="../inventario.html">Inventário</a>
+          <a class="top-link" href="../fontes.html">Fontes</a>
+          <a class="top-link" href="../relatorio_parcial.html">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div><p class="eyebrow">Piloto dedicado · 4ª cidade · análise padrão</p><h1>Florianópolis, dado a dado.</h1><p class="lede">Um acompanhamento contínuo de Florianópolis/SC usando só fontes públicas verificáveis — demografia, finanças, saúde, educação, território, economia e segurança. É a <strong>primeira capital</strong> do piloto, e o contraste com as três cidades anteriores é o assunto desta página.</p></div>
+        <aside class="decision"><span>Por que Florianópolis</span><strong>A cidade que o próprio projeto tinha descartado.</strong><p>Em 2026 o dossiê a excluiu por "catálogo municipal inexistente ou quebrado". Refizemos o teste: o veredito se sustenta, mas uma das razões estava errada — o site da Prefeitura não está fora do ar, apenas bloqueia robôs. E é isso que torna o caso interessante: 1ª colocada em ranking nacional de cidade inteligente, e nota 3,1 no dado que ela mesma publica.</p></aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <p class="crumb"><a href="./">← Todos os pilotos</a> · <a href="comparar.html">Comparar com outra cidade →</a></p>
+    <div class="snapshot">
+      <div class="stat"><strong>537.211</strong><span>habitantes · Censo IBGE 2022</span></div>
+      <div class="stat"><strong>68,72</strong><span>IPS Brasil 2026 (0–100)</span></div>
+      <div class="stat"><strong>37,5%</strong><span>da receita vem de transferência</span></div>
+      <div class="stat"><strong>1.004</strong><span>setores censitários</span></div>
+      <div class="stat"><strong>4205407</strong><span>código IBGE do município</span></div>
+    </div>
+    <div class="status-banner"><strong>Status desta aba:</strong> análise padrão concluída em 05/08/2026 — 10 das 11 fases do modelo, com 17 conjuntos de dados coletados por API e gravados em <code>dados/florianopolis/</code>. A Fase 4 (compras públicas) ficou <strong>bloqueada</strong>: a API do PNCP respondeu HTTP 504 durante toda a janela de coleta, para esta e para as outras cidades do piloto.</div>
+
+    <section aria-labelledby="contexto-title">
+      <div class="section-head"><div><p class="kicker">Como Florianópolis entrou aqui</p><h2 id="contexto-title">A cidade que o projeto tinha descartado — e por quê revisitá-la.</h2></div><p>Florianópolis não entrou no piloto por acaso nem por ser bonita no mapa: ela entrou porque o próprio Projeto Brasil iA a havia <strong>excluído</strong>. O <code>DOSSIE_PILOTO.md</code> a lista entre os descartes com evidência suficiente — "reputação alta, mas catálogo municipal tabular inexistente/quebrado" —, e o <code>METRICA_IDU.md</code> registra nota 2,2 com a justificativa de que "seu domínio de dados abertos não resolve em DNS". Uma capital que lidera rankings nacionais de cidade inteligente com a pior nota de dados do estudo é exatamente o tipo de contradição que vale reabrir.</p></div>
+      <p class="muted-note">O resultado da reabertura está na Fase 10: o veredito de mérito <strong>se mantém</strong>, e uma das razões declaradas <strong>estava errada</strong>. As três cidades anteriores do piloto são pequenas ou médias; esta multiplica a população da maior delas por seis, o orçamento por quarenta e os setores censitários por cinco. Comparação lado a lado: <a href="comparar.html">comparador do piloto</a>.</p>
+    </section>
+
+    <section aria-labelledby="plano-title">
+      <div class="section-head"><div><p class="kicker">Plano de análise</p><h2 id="plano-title">O mesmo roteiro das outras cidades.</h2></div><p>Cada fase é um lote de coleta e visualização fechado em si. Fases concluídas abrem: o resultado fica embaixo do próprio item. Todo gráfico lê um arquivo de <code>dados/florianopolis/</code> — nenhum número está escrito nesta página.</p></div>
+      <div class="roadmap">
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">0</div><div class="phase-text"><h3>Estrutura, fontes e plano</h3><p>Esta página, o catálogo de fontes abaixo e a pasta <code>dados/florianopolis/</code> com 17 arquivos, cada um trazendo URL de origem, parâmetro de consulta e data de coleta.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Os coletores parametrizados das três primeiras cidades rodaram aqui sem alteração de lógica — e foi justamente o porte desta cidade que expôs <strong>cinco defeitos reais</strong> que estavam latentes nas anteriores: a despesa intraorçamentária vinha zerada quando o plano de contas antigo escrevia o rótulo entre parênteses; um setor censitário insular era contado uma vez por ilha; a consulta ao CNES parava nos 20 primeiros estabelecimentos e concluía que a capital não tinha hospital; o arquivo do IPS saía com as chaves cruas do painel; e a fonte declarada no arquivo de população e no do Panorama apontava para outra cidade. Os quatro primeiros estão descritos nas fases correspondentes.</p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">1</div><div class="phase-text"><h3>Demografia e evolução populacional (2000–2025)</h3><p>SIDRA/IBGE: Censos 2000/2010/2022 e Estimativas nos demais anos. A primeira cidade do piloto que cresce — 57% entre os Censos de 2000 e 2022.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-populacao">
+              <div class="viz-head"><div><h3>População residente, 2000–2025</h3><p>Censos (marcador maior) e Estimativas anuais do IBGE. Passe o mouse por um ano.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">2</div><div class="phase-text"><h3>Desenvolvimento humano histórico</h3><p>IDHM 1991/2000/2010 por dimensão (IPEAData/Atlas Brasil) e os 79 indicadores do IPS Brasil 2026. IDHM de 0,847 — e uma dimensão do IPS 30 pontos abaixo das outras.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-idhm">
+              <div class="viz-head"><div><h3>IDHM por dimensão, 1991–2010</h3><p>Censos 1991, 2000 e 2010 — os 3 únicos pontos oficiais que existem. Não há IDHM municipal mais recente para nenhuma cidade do país.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">3</div><div class="phase-text"><h3>Finanças públicas</h3><p>Doze anos de orçamento no SICONFI (2014–2025), de R$ 1,3 bi a R$ 4,2 bi. Aqui está o achado central da cidade: só 37,5% da receita vem de transferência — a menor dependência do piloto, de longe.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Seis recortes do mesmo orçamento. Todos os valores corrigidos pelo IPCA (média anual do número-índice, base 2025) quando a comparação atravessa anos — o mesmo deflator usado nas quatro cidades do piloto.</p>
+            <div class="viz-root" id="chart-financas">
+              <div class="viz-head"><div><h3>1. Quanto entrou, quanto saiu e o que sobrou</h3><p>Receita, despesa e saldo de 2014 a 2025. Valores correntes, como aparecem no balanço oficial. Passe o mouse por um ano.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-despesa-real">
+              <div class="viz-head"><div><h3>2. O gasto subiu — mas quanto disso foi inflação?</h3><p>A mesma despesa de duas formas: como está no balanço de cada ano e corrigida pelo IPCA para reais de 2025.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-pib-despesa">
+              <div class="viz-head"><div><h3>3. A Prefeitura cresceu junto com a cidade?</h3><p>PIB do município e despesa da Prefeitura, os dois corrigidos pela inflação e postos na mesma base (2014 = 100). Índice, não dois eixos.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-funcoes-tempo">
+              <div class="viz-head"><div><h3>4. Para onde foi o dinheiro, ano a ano</h3><p>Despesa por função de governo, de 2014 a 2025, tudo corrigido para reais de 2025. Todos os painéis usam a mesma régua vertical.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-despesa-variacao">
+              <div class="viz-head"><div><h3>5. Quem cresceu e quem encolheu, 2014→2025</h3><p>Variação de cada função já descontada a inflação, em reais de 2025.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-receita-origem">
+              <div class="viz-head"><div><h3>6. De onde vem o dinheiro</h3><p>Receita bruta de 2025 por origem, com FPM, ICMS, SUS e FUNDEB abertos rubrica a rubrica.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-despesa-natureza">
+              <div class="viz-head"><div><h3>7. Em que tipo de despesa o dinheiro vira gasto</h3><p>Despesa de 2025 por natureza — pessoal, custeio, investimento e dívida. Base do Anexo I-D, que inclui a intraorçamentária.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase blocked">
+          <summary class="phase-summary"><div class="phase-num">4</div><div class="phase-text"><h3>Compras e licitações</h3><p>PNCP. Única fase não entregue: a API respondeu HTTP 504 em todas as tentativas da janela de coleta.</p></div><span class="phase-tag blocked">Bloqueada — fonte fora do ar</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p><strong>O PNCP não respondeu durante a coleta desta cidade.</strong> Todas as requisições ao endpoint <code>/api/consulta/v1/contratacoes/publicacao</code> voltaram <strong>HTTP 504 Gateway Time-out</strong> após cerca de 70 segundos, ao longo de mais de uma hora de tentativas espaçadas.</p>
+            <p class="muted-note">Confirmamos que o problema é da fonte, não desta consulta: a <em>mesma</em> requisição, trocando apenas o código IBGE para o de <a href="barra-bonita.html">Barra Bonita</a> — cidade cujos 291 processos já haviam sido coletados com sucesso nesta mesma sessão —, também voltou 504. Não é parâmetro errado nem volume: é indisponibilidade do serviço. Por isso a fase fica registrada como bloqueada em vez de receber um número parcial, e nenhum arquivo <code>pncp_serie_*.json</code> foi gravado para Florianópolis. Quando o serviço voltar, o coletor roda sem alteração.</p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">5</div><div class="phase-text"><h3>Saúde</h3><p>Nascidos vivos e óbitos, 2003–2024 (IBGE/Registro Civil), e os 3.286 estabelecimentos do CNES — 52 deles com atendimento hospitalar.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-saude">
+              <div class="viz-head"><div><h3>Nascidos vivos e óbitos registrados, 2003–2024</h3><p>IBGE — Estatísticas do Registro Civil. "Óbitos" aqui são mortes de <em>qualquer idade</em>, não mortalidade infantil.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">6</div><div class="phase-text"><h3>Educação</h3><p>Alfabetização 2000/2010/2022 e nível de instrução 2010×2022 pelos Censos. O número de moradores com superior completo quase dobrou em doze anos.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="stats-educacao">
+              <div class="viz-head"><div><h3>Indicadores educacionais</h3><p>Alfabetização tem três pontos no tempo; nível de instrução tem dois, com bases etárias diferentes entre eles.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">7</div><div class="phase-text"><h3>Território</h3><p>Os 1.004 setores censitários do Censo 2022 com o polígono oficial de cada um. É o primeiro mapa do piloto com granularidade suficiente para revelar padrão intraurbano.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="map-territorio">
+              <div class="viz-head"><div><h3>Densidade populacional por setor censitário</h3><p>Os 1.004 setores do Censo 2022 cobrindo 100% do município. Cor = habitantes por km²; passe o mouse sobre um setor.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">8</div><div class="phase-text"><h3>Emprego e economia</h3><p>CEMPRE/IBGE (2006–2021) e PIB municipal (2002–2023). Uma economia de serviços quase pura: a agropecuária é estatisticamente nula.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-emprego">
+              <div class="viz-head"><div><h3>Emprego formal, 2006–2021</h3><p>IBGE — Cadastro Central de Empresas (CEMPRE). Série encerrada em 2021.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-pib">
+              <div class="viz-head"><div><h3>PIB total a preços correntes, 2002–2023</h3><p>IBGE — Produto Interno Bruto dos Municípios, referência 2010.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Segurança pública</h3><p>Vítimas de homicídio, 2023–2026, pela SSP-SC. Mesma fonte pobre de Barra Bonita — mas aqui a população é grande o bastante para a taxa por 100 mil significar alguma coisa.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-seguranca">
+              <div class="viz-head"><div><h3>Vítimas de homicídio por 100 mil habitantes</h3><p>Anos fechados (2023–2025). O parcial de 2026 fica fora da linha e aparece nos números abaixo — meio ano não se compara com ano inteiro.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">10</div><div class="phase-text"><h3>Síntese</h3><p>Painel com o número-chave de cada fase e o IDU-Br calculado pelo mesmo motor usado nas outras três cidades — o veredito sobre o descarte de 2026.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="painel-sintese">
+              <div class="viz-head"><div><h3>Um número de cada fase</h3><p>O retrato mais recente disponível em cada área — o detalhe está nas fases acima.</p></div></div>
+            </div>
+            <div class="viz-root" id="idu-br">
+              <div class="viz-head"><div><h3>IDU-Br — ecossistema de dados abertos próprio de Florianópolis</h3><p>Metodologia do projeto (<a href="../docs/METRICA_IDU_V2.md" target="_blank" rel="noopener noreferrer">METRICA_IDU_V2.md ↗</a>), mesmo motor de cálculo das outras cidades.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/florianopolis/idu_br_2026.json" target="_blank" rel="noopener noreferrer">idu_br_2026.json ↗</a> — inclui a matriz de entrada completa, a justificativa de cada nota e a lista dos 13 endereços testados, com o resultado de cada um.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section aria-labelledby="veredito-title">
+      <div class="section-head"><div><p class="kicker">O motivo de reabrir o caso</p><h2 id="veredito-title">O descarte se sustenta. A justificativa dele, não.</h2></div><p>Em 2026 o projeto excluiu Florianópolis do piloto e registrou a razão: "seu domínio de dados abertos não resolve em DNS". Testamos os 13 endereços de novo, em 05/08/2026, com resolução de DNS, cabeçalho de navegador e leitura dos bundles JavaScript das aplicações.</p></div>
+      <div class="rule"><strong>O que estava errado: o site da Prefeitura não está fora do ar.</strong><p><code>www.pmf.sc.gov.br</code> devolve <strong>HTTP 403 a cliente sem User-Agent de navegador e HTTP 200 com</strong> — era bloqueio de robô, exatamente o mesmo caso do Executivo de <a href="itajuba.html">Itajubá</a>. Registrar "fora do ar" o que é "bloqueia coletor" é um erro de leitura que muda o diagnóstico: não é abandono de infraestrutura, é escolha de configuração.</p></div>
+      <div class="rule"><strong>O que estava certo: não há dado legível por máquina.</strong><p>Os dois subdomínios que uma capital anunciaria — <code>dados.florianopolis.sc.gov.br</code> e <code>dadosabertos.pmf.sc.gov.br</code> — <strong>de fato não resolvem em DNS</strong>. A página institucional de transparência responde, tem 79 KB e 348 links, e <strong>nenhum</strong> deles aponta para um arquivo <code>.csv</code>, <code>.xlsx</code>, <code>.json</code> ou <code>.xml</code>. O item "Dados Abertos" do menu leva a um portal SaaS de terceiro cujo bundle expõe apenas rotas de download de arquivo, sem API de dados.</p></div>
+      <p class="muted-note">O resultado: <strong>IDU-Br municipal de 3,1</strong> — o mesmo de Itajubá, cidade de 97 mil habitantes cujo único dado municipal próprio são portarias raspadas do sistema da Câmara. Uma capital de meio milhão de habitantes, 1ª colocada em ranking nacional de cidade inteligente, publica sobre si mesma tanto dado estruturado quanto uma cidade seis vezes menor. Nada nesta página desmente a qualidade da cidade — o índice mede o que ela <em>publica</em>, não o que ela <em>é</em>.</p>
+    </section>
+
+    <section aria-labelledby="fontes-title">
+      <div class="section-head"><div><p class="kicker">Fontes de dados do piloto</p><h2 id="fontes-title">O que usamos, área por área.</h2></div><p>Catálogo específico de Florianópolis. O catálogo nacional completo está em <a href="../fontes.html">fontes.html</a>.</p></div>
+      <div class="rule"><strong>A lição desta cidade: porte não compra dado aberto — e porte revela bug.</strong><p>Tudo o que esta página mostra vem de fonte nacional ou estadual. A camada municipal contribui com quase nada, apesar do orçamento bilionário. Do lado técnico, foi o porte que expôs defeitos que três cidades pequenas não tinham revelado: paginação que parava na primeira página, geometria multiparte contada em duplicidade, rótulo de conta com parênteses. Coletor testado só em cidade pequena é coletor não testado.</p></div>
+
+      <h3 class="category-heading">Demografia e território</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SIDRA/IBGE — população</h3><p class="what">Censos 2000/2010/2022 (tabelas 202, 1378, 4709) e Estimativas 2001–2025 (tabela 6579). A estimativa de 2021 dava 516.524 habitantes; o Censo de 2022 encontrou 537.211 — errou 4% para baixo.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/6579" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/populacao_2000_2025.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Censo 2022 por setor censitário</h3><p class="what">Os 1.004 setores do município — população, domicílios, área e o <strong>polígono</strong> oficial de cada um. Lido do GeoPackage de Santa Catarina (122 MB) com sqlite3 e um parser de WKB próprio. Município insular: 23 linhas do arquivo eram partes repetidas do mesmo setor, e somá-las inflava a população em 2.708 pessoas. Agrupadas por código de setor, a soma fecha exatamente com o Censo.</p><a class="open" href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/setores_poligonos_2022.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Malhas territoriais do IBGE</h3><p class="what">Contorno do município pela API de malhas v4, em qualidade máxima — 366 vértices. A área que a geometria dos setores integra (675,9 km²) fecha com a área oficial (674,8 km²) dentro de 0,2%.</p><a class="open" href="https://servicodados.ibge.gov.br/api/v4/malhas/municipios/4205407?formato=application/vnd.geo+json&amp;qualidade=maxima" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/municipio_contorno.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Desenvolvimento humano e progresso social</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IPS Brasil 2026</h3><p class="what">Os 79 indicadores do painel, coletados por navegador headless — o site roda em Phoenix LiveView e não tem API. A linha do município foi localizada por busca binária sobre o código IBGE na tabela ordenada: 6 requisições em vez de 220.</p><a class="open" href="https://ipsbrasil.org.br/explore/data" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/ips_brasil_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IDHM 1991/2000/2010 (IPEAData)</h3><p class="what">Geral e as 3 dimensões: 0,681 → 0,766 → 0,847. Não existe versão municipal mais recente. O parâmetro <code>$filter</code> do OData é ignorado nessa rota — a resposta traz os 5.570 municípios e o recorte tem de ser feito depois, pelo TERCODIGO.</p><a class="open" href="https://www.ipeadata.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/idhm_historico_1991_2010.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Finanças públicas e compras</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional — DCA</h3><p class="what">Três anexos do DCA, todos 2014–2025: I-C (receita por origem), I-D (despesa por natureza) e I-E (despesa por função). Foi aqui que apareceu o defeito da intraorçamentária: até 2016 este ente rotula a conta como <code>Despesas (Intraorçamentárias)</code>, com parênteses, e o coletor só reconhecia a forma sem — gravando zero onde havia R$ 126 milhões.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio=2025&amp;no_anexo=DCA-Anexo%20I-E&amp;id_ente=4205407" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/despesa_funcao_natureza_2014_2025.json" target="_blank" rel="noopener noreferrer">Ver despesa por função ↗</a></article>
+        <article class="card"><div class="labels"><span class="label confirmado">Existe, não usado</span></div><h3>SICONFI — RREO</h3><p class="what">O RREO existe para este ente: testado em 2019, 2022 e 2024, os três respondem. A série da Fase 3 vem do DCA mesmo assim, porque ela alcança 2014 e é a base usada nos outros pilotos — o que mantém as quatro cidades comparáveis.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2024&amp;nr_periodo=6&amp;co_tipo_demonstrativo=RREO&amp;no_anexo=RREO-Anexo%2001&amp;id_ente=4205407" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label bloqueado">HTTP 504</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">Fora do ar durante toda a janela de coleta: <strong>HTTP 504 Gateway Time-out</strong> após ~70 s, em todas as tentativas. Verificado que não é problema desta consulta — a mesma requisição para Barra Bonita, coletada com sucesso horas antes, também passou a devolver 504.</p><a class="open" href="https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?dataInicial=20250101&amp;dataFinal=20250630&amp;codigoModalidadeContratacao=6&amp;codigoMunicipioIbge=4205407&amp;pagina=1&amp;tamanhoPagina=50" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Saúde e educação</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IBGE — Estatísticas do Registro Civil</h3><p class="what">Nascidos vivos e óbitos, 2003–2024 (tabelas SIDRA 2609 e 2681). Nascimentos estáveis, óbitos crescendo 26% — envelhecimento numa cidade que ganhou população.</p><a class="open" href="https://sidra.ibge.gov.br/pesquisa/registro-civil/tabelas" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/registro_civil_2003_2024.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado (com correção)</span></div><h3>CNES — Estabelecimentos de Saúde</h3><p class="what">3.286 estabelecimentos, 52 com atendimento hospitalar. <strong>A API tampa em 20 itens por resposta</strong> qualquer que seja o <code>limit</code> pedido — testado com 100 e com 1000. Sem paginar por <code>offset</code>, a consulta devolvia 20 consultórios isolados e o coletor concluía que a capital não tinha hospital. Foram 165 requisições.</p><a class="open" href="https://apidadosabertos.saude.gov.br/cnes/estabelecimentos?codigo_municipio=420540&amp;limit=20&amp;offset=0" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/cnes_estabelecimentos_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IBGE Cidades — Panorama</h3><p class="what">Mortalidade infantil, escolarização, saneamento e transferências sobre receitas correntes, por API REST — a mesma que a página do Panorama consome, com o id de cada indicador registrado. É dele que vem o dado de esgotamento sanitário adequado em 55,19%.</p><a class="open" href="https://cidades.ibge.gov.br/brasil/sc/florianopolis/panorama" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Censos — alfabetização e nível de instrução</h3><p class="what">Alfabetização em 2000, 2010 e 2022 e nível de instrução em 2010 e 2022. Bases etárias diferentes entre os pontos — a comparação é indicativa, e a página diz isso onde mostra o gráfico.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/9543" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/educacao_alfabetizacao_nivel_instrucao.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Segurança e economia</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado (com ressalva)</span></div><h3>SSP-SC — Boletim Mensal de Indicadores</h3><p class="what">Vítimas de homicídio por município, 2023–2026: 27, 31, 24 — e já 23 no 1º semestre de 2026. <strong>PDF, não CSV</strong>: o número é extraído do texto do boletim, com teste de fechamento contra o total publicado nele (a soma dos 295 municípios bate exatamente). Frágil: se o layout mudar, a extração quebra.</p><a class="open" href="https://ssp.sc.gov.br/segurancaemnumeros/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/seguranca_ssp_sc_2023_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>CEMPRE e PIB dos Municípios</h3><p class="what">Emprego formal 2006–2021 (tabela 1685) e PIB total 2002–2023 com composição setorial de 2021 (tabela 5938): 35.905 empresas, 337 mil ocupados formais e serviços privados em 76% do valor adicionado.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/5938" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/florianopolis/pib_municipal_2002_2023.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Executivo e ecossistema municipal</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label confirmado">Responde (403 a robô)</span></div><h3>www.pmf.sc.gov.br</h3><p class="what">O site institucional <strong>está no ar</strong>: devolve HTTP 403 a cliente sem User-Agent de navegador e HTTP 200 com. A avaliação de 2026 registrou o município como tendo domínio fora do ar; era bloqueio de robô, como o Cloudflare de Itajubá.</p><a class="open" href="https://www.pmf.sc.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label bloqueado">DNS não resolve</span></div><h3>dados.florianopolis.sc.gov.br</h3><p class="what">O domínio de dados abertos da capital <strong>não resolve em DNS</strong>, e o mesmo vale para <code>dadosabertos.pmf.sc.gov.br</code>, <code>transparencia.pmf.sc.gov.br</code> e <code>transparencia.florianopolis.sc.gov.br</code>. Este ponto da avaliação de 2026 se confirma integralmente.</p></article>
+        <article class="card"><div class="labels"><span class="label confirmado">Sem API de dados</span></div><h3>Portal da Transparência (e-publica)</h3><p class="what">O item "Dados Abertos" do menu da Prefeitura leva a <code>transparencia.e-publica.net</code>, plataforma SaaS de terceiro. É aplicação de página única; o bundle principal expõe apenas <code>/rest/download</code> e <code>/rest/file</code> — não há API de dados. A página institucional <code>/transparencia</code> tem 348 links e nenhum arquivo tabular.</p><a class="open" href="https://transparencia.e-publica.net/epublica-portal/#/florianopolis/portal" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">CKAN estadual, com API</span></div><h3>dados.sc.gov.br</h3><p class="what">O estado tem CKAN 2.8.3 de verdade, com API pública e formatos abertos — encanamento melhor que o de Minas Gerais. Mas dos <strong>112 conjuntos</strong>, um único menciona município, e em HTML. Excelente infraestrutura, quase nenhum recorte municipal: entra no IDU-Br com U e R altos e D baixo.</p><a class="open" href="https://dados.sc.gov.br/api/3/action/package_search?rows=100" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="dados-title">
+      <div class="section-head"><div><p class="kicker">Dados já coletados</p><h2 id="dados-title">O que já está salvo em <code>dados/florianopolis/</code>.</h2></div><p>Arquivos reais, com metadados de origem, parâmetros de consulta e data de coleta. Nenhum valor desta página está escrito no HTML.</p></div>
+      <div class="dataset-grid">
+        <article class="dataset"><h3>populacao_2000_2025.json</h3><p>24 anos de população residente — Censos 2000/2010/2022 e Estimativas nos demais, com a fonte de cada ponto marcada.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>siconfi_receita_despesa_2014_2025.json</h3><p>Série anual de receita, despesa e saldo, 2014–2025, vinda do DCA. De R$ 1,3 bi a R$ 4,2 bi em doze anos.</p><p class="meta">Coletado 05/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>despesa_funcao_natureza_2014_2025.json</h3><p>12 anos de despesa por função e por natureza, com subfunções, correção pelo IPCA, a comparação real 2014→2025 e o confronto com o PIB em índice de base comum.</p><p class="meta">Coletado 05/08/2026 · SICONFI + IPCA/IBGE</p></article>
+        <article class="dataset"><h3>receita_origem_2014_2025.json</h3><p>12 anos de receita por origem, com FPM, ICMS, SUS, FUNDEB, IPVA e royalties abertos rubrica a rubrica. Passa em teste de fechamento nos 12 anos.</p><p class="meta">Coletado 05/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>idhm_historico_1991_2010.json</h3><p>IDHM geral e as 3 dimensões em 1991, 2000 e 2010 — de 0,681 a 0,847.</p><p class="meta">Coletado 05/08/2026 · IPEAData</p></article>
+        <article class="dataset"><h3>ips_brasil_2026.json</h3><p>Os 79 indicadores do IPS Brasil 2026, com as mesmas chaves usadas nos outros pilotos e o cabeçalho original de cada coluna preservado.</p><p class="meta">Coletado 05/08/2026 · IPS Brasil</p></article>
+        <article class="dataset"><h3>registro_civil_2003_2024.json</h3><p>22 anos de nascidos vivos e óbitos registrados no município.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>cnes_estabelecimentos_2026.json</h3><p>Os 3.286 estabelecimentos de saúde cadastrados, com tipo de unidade — 52 com atendimento hospitalar, incluindo o Hospital Universitário da UFSC.</p><p class="meta">Coletado 05/08/2026 · CNES/Ministério da Saúde</p></article>
+        <article class="dataset"><h3>ibge_cidades_snapshot_2026.json</h3><p>13 indicadores do Panorama do IBGE, cada um com o seu ano, a fonte primária e o id no IBGE.</p><p class="meta">Coletado 05/08/2026 · IBGE Cidades</p></article>
+        <article class="dataset"><h3>educacao_alfabetizacao_nivel_instrucao.json</h3><p>Alfabetização 2000/2010/2022 e nível de instrução 2010×2022, com as categorias brutas do IBGE preservadas.</p><p class="meta">Coletado 05/08/2026 · IBGE/Censos</p></article>
+        <article class="dataset"><h3>setores_censitarios_2022.json</h3><p>Os 1.004 setores com população, domicílios, área e centroide calculado da geometria oficial — soma exatamente os 537.211 habitantes do Censo.</p><p class="meta">Coletado 05/08/2026 · IBGE (GeoPackage/SC)</p></article>
+        <article class="dataset"><h3>setores_poligonos_2022.json</h3><p>O polígono real de cada setor, simplificado a ~25 m, somando 675,9 km². Geometrias multiparte concatenadas por setor, não somadas em duplicidade.</p><p class="meta">Coletado 05/08/2026 · IBGE (GeoPackage/SC)</p></article>
+        <article class="dataset"><h3>municipio_contorno.json</h3><p>Contorno externo do município (366 vértices), pela API de malhas do IBGE em qualidade máxima.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>cempre_empresas_emprego_2006_2021.json</h3><p>Empresas atuantes, unidades locais, pessoal ocupado, massa salarial e salário médio mensal, 2006–2021.</p><p class="meta">Coletado 05/08/2026 · IBGE/CEMPRE</p></article>
+        <article class="dataset"><h3>pib_municipal_2002_2023.json</h3><p>PIB total 2002–2023 e composição setorial de 2021, com serviços privados em 76% do valor adicionado.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>seguranca_ssp_sc_2023_2026.json</h3><p>Vítimas de homicídio 2023–2026, extraídas do PDF do boletim da SSP-SC, com a régua estadual e o teste de fechamento contra o total publicado.</p><p class="meta">Coletado 05/08/2026 · SSP-SC</p></article>
+        <article class="dataset"><h3>idu_br_2026.json</h3><p>IDU-Br calculado pelo motor <code>idu_v2.py</code>, com a matriz de entrada completa e a lista dos 13 endereços testados com o resultado de cada um.</p><p class="meta">Avaliado 05/08/2026 · metodologia v2.1</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Piloto dedicado a Florianópolis/SC, construído a partir de fontes públicas verificáveis.</p></div><div class="footer-links"><a href="./">Todos os pilotos</a><a href="comparar.html">Comparador</a><a href="../docs/METRICA_IDU_V2.md">Metodologia</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+  <script src="charts.js" defer></script>
+  <script src="florianopolis.js" defer></script>
+</body>
+</html>

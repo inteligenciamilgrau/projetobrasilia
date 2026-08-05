@@ -1,0 +1,96 @@
+{
+ "municipio": "Florianópolis/SC",
+ "ibge_codigo": "4205407",
+ "fonte": "IBGE — Censos Demográficos 2000/2010/2022 (SIDRA, várias tabelas)",
+ "coletado_em": "2026-08-05",
+ "alfabetizacao": {
+  "observacao": "Cada Censo mediu alfabetizacao numa base etaria diferente (5+, 10+, 15+) — nao e uma serie perfeitamente comparavel. Com ~800 habitantes, cada ponto percentual equivale a cerca de 7 pessoas.",
+  "serie": [
+   {
+    "ano": 2000,
+    "taxa": 93.9,
+    "base_etaria": "5 anos ou mais",
+    "total": 316885,
+    "alfabetizadas": 297568,
+    "tabela_sidra": 204
+   },
+   {
+    "ano": 2010,
+    "taxa": 97.98,
+    "base_etaria": "10 anos ou mais",
+    "tabela_sidra": 1699
+   },
+   {
+    "ano": 2022,
+    "taxa": 98.64,
+    "base_etaria": "15 anos ou mais",
+    "tabela_sidra": 9543
+   }
+  ]
+ },
+ "nivel_de_instrucao": {
+  "observacao": "2010 mediu pessoas de 10 anos ou mais; 2022 mediu pessoas de 18 anos ou mais — bases etarias DIFERENTES, a comparacao e indicativa.",
+  "categorias_ordem": [
+   "sem_instrucao_fundamental_incompleto",
+   "fundamental_completo_medio_incompleto",
+   "medio_completo_superior_incompleto",
+   "superior_completo"
+  ],
+  "rotulos": {
+   "sem_instrucao_fundamental_incompleto": "Sem instrução / fundamental incompleto",
+   "fundamental_completo_medio_incompleto": "Fundamental completo / médio incompleto",
+   "medio_completo_superior_incompleto": "Médio completo / superior incompleto",
+   "superior_completo": "Superior completo"
+  },
+  "2010": {
+   "base_etaria": "10 anos ou mais",
+   "tabela_sidra": 3540,
+   "contagem": {
+    "sem_instrucao_fundamental_incompleto": 97248,
+    "fundamental_completo_medio_incompleto": 57447,
+    "medio_completo_superior_incompleto": 127752,
+    "superior_completo": 90436
+   },
+   "total": 372883,
+   "percentual": {
+    "sem_instrucao_fundamental_incompleto": 26.08,
+    "fundamental_completo_medio_incompleto": 15.41,
+    "medio_completo_superior_incompleto": 34.26,
+    "superior_completo": 24.25
+   },
+   "categorias_brutas_do_ibge": {
+    "Fundamental completo e médio incompleto": 57447.0,
+    "Médio completo e superior incompleto": 127752.0,
+    "Sem instrução e fundamental incompleto": 97248.0,
+    "Superior completo": 90436.0
+   }
+  },
+  "2022": {
+   "base_etaria": "18 anos ou mais",
+   "tabela_sidra": 10061,
+   "contagem": {
+    "sem_instrucao_fundamental_incompleto": 55909,
+    "fundamental_completo_medio_incompleto": 50516,
+    "medio_completo_superior_incompleto": 165393,
+    "superior_completo": 165671
+   },
+   "total": 437489,
+   "percentual": {
+    "sem_instrucao_fundamental_incompleto": 12.78,
+    "fundamental_completo_medio_incompleto": 11.55,
+    "medio_completo_superior_incompleto": 37.81,
+    "superior_completo": 37.87
+   },
+   "categorias_brutas_do_ibge": {
+    "Fundamental completo e médio incompleto": 50516.0,
+    "Médio completo e superior incompleto": 165393.0,
+    "Sem instrução e fundamental incompleto": 55909.0,
+    "Superior completo": 165671.0
+   }
+  }
+ },
+ "pos_graduacao": {
+  "observacao": "Mestrado e doutorado NAO aparecem separados em tabela SIDRA agregada por municipio — ficam embutidos em 'Superior completo'.",
+  "disponivel": false
+ }
+}

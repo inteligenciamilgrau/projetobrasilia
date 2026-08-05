@@ -1,17 +1,31 @@
 {
- "municipio": "Barra Bonita/SC",
- "ibge_codigo": "4202099",
+ "municipio": "Florianópolis/SC",
+ "ibge_codigo": "4205407",
  "fonte": "IBGE Cidades — Panorama (agrega INEP, DATASUS, SICONFI, CEMPRE e Censos)",
- "url_origem": "https://cidades.ibge.gov.br/brasil/sc/barra-bonita/panorama",
- "url_api": "https://servicodados.ibge.gov.br/api/v1/pesquisas/10058/periodos/all/indicadores/{indicador_ibge_id}/resultados/420209",
+ "url_origem": "https://cidades.ibge.gov.br/brasil/sc/florianopolis/panorama",
+ "url_api": "https://servicodados.ibge.gov.br/api/v1/pesquisas/10058/periodos/all/indicadores/{indicador_ibge_id}/resultados/420540",
  "coletado_em": "2026-08-05",
  "metodo_coleta": "API REST publica do IBGE (a mesma que a pagina do Panorama consome). O piloto de Itajuba raspou a pagina com Playwright; aqui nao foi preciso navegador — cada indicador vem com o seu id do IBGE registrado, o que torna a coleta reproduzivel.",
  "observacao": "Cada indicador tem ano proprio — e um retrato do ano mais recente disponivel, nao uma serie historica. ATENCAO: em municipio de ~830 habitantes, indicadores como mortalidade infantil sao calculados sobre menos de 10 nascimentos por ano e nao tem estabilidade estatistica.",
  "indicadores": {
   "educacao": {
+   "ideb_anos_iniciais_fundamental_rede_publica": {
+    "ano": 2015,
+    "valor": 5.7,
+    "unidade": "pontos (escala 0-10)",
+    "fonte_primaria": "INEP/Ideb",
+    "indicador_ibge_id": 60041
+   },
+   "ideb_anos_finais_fundamental_rede_publica": {
+    "ano": 2015,
+    "valor": 4.6,
+    "unidade": "pontos (escala 0-10)",
+    "fonte_primaria": "INEP/Ideb",
+    "indicador_ibge_id": 60042
+   },
    "taxa_escolarizacao_6_a_14_anos": {
     "ano": 2022,
-    "valor": 100.0,
+    "valor": 98.18,
     "unidade": "%",
     "fonte_primaria": "Censo Demográfico/INEP",
     "indicador_ibge_id": 60045
@@ -20,14 +34,14 @@
   "saude": {
    "mortalidade_infantil": {
     "ano": "2012-2014",
-    "valor": 15.9,
+    "valor": 8.4,
     "unidade": "óbitos por mil nascidos vivos",
     "fonte_primaria": "DATASUS/SIM",
     "indicador_ibge_id": 60033
    },
    "internacoes_por_diarreia_sus": {
     "ano": 2024,
-    "valor": 0.0,
+    "valor": 41.5,
     "unidade": "internações por 100 mil habitantes",
     "fonte_primaria": "DATASUS/SIH-SUS",
     "indicador_ibge_id": 60032
@@ -36,14 +50,14 @@
   "economia": {
    "pib_per_capita": {
     "ano": 2014,
-    "valor": 17633.33,
+    "valor": 37546.32,
     "unidade": "R$",
     "fonte_primaria": "IBGE Contas Regionais",
     "indicador_ibge_id": 60047
    },
    "transferencias_correntes_sobre_receitas_correntes": {
     "ano": 2024,
-    "valor": 89.2,
+    "valor": 38.22,
     "unidade": "%",
     "fonte_primaria": "SICONFI/Tesouro Nacional",
     "indicador_ibge_id": 60048
@@ -52,21 +66,21 @@
   "trabalho": {
    "salario_medio_mensal": {
     "ano": 2015,
-    "valor": 2.3,
+    "valor": 4.8,
     "unidade": "salários mínimos",
     "fonte_primaria": "IBGE/CEMPRE",
     "indicador_ibge_id": 60038
    },
    "populacao_ocupada": {
     "ano": 2022,
-    "valor": 16.85,
+    "valor": 70.34,
     "unidade": "%",
     "fonte_primaria": "IBGE/CEMPRE",
     "indicador_ibge_id": 60036
    },
    "pct_pop_rendimento_ate_meio_sm": {
     "ano": 2010,
-    "valor": 29.9,
+    "valor": 24.6,
     "unidade": "%",
     "fonte_primaria": "IBGE/Censo 2022",
     "indicador_ibge_id": 60037
@@ -74,22 +88,22 @@
   },
   "ambiente": {
    "esgotamento_sanitario_adequado": {
-    "ano": 2010,
-    "valor": 12.5,
+    "ano": 2022,
+    "valor": 55.19,
     "unidade": "%",
     "fonte_primaria": "IBGE/Censo 2010",
     "indicador_ibge_id": 60030
    },
    "arborizacao_de_vias_publicas": {
     "ano": 2022,
-    "valor": 59.86,
+    "valor": 47.14,
     "unidade": "%",
     "fonte_primaria": "IBGE/Censo 2010",
     "indicador_ibge_id": 60029
    },
    "urbanizacao_de_vias_publicas": {
     "ano": 2010,
-    "valor": 34.7,
+    "valor": 54.4,
     "unidade": "%",
     "fonte_primaria": "IBGE/Censo 2010",
     "indicador_ibge_id": 60031

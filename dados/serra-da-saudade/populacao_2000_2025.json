@@ -5,7 +5,7 @@
  "url_censo": "https://servicodados.ibge.gov.br/api/v3/agregados/{tabela}/periodos/{ano}/variaveis/93?localidades=N6[3166600] — tabelas 202 (2000), 1378 (2010), 4709 (2022)",
  "url_estimativas": "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2001-2025/variaveis/9324?localidades=N6[3166600]",
  "coletado_em": "2026-08-05",
- "observacao": "Serie composta: anos de Censo (2000, 2010, 2022) usam a contagem oficial (variavel 93); os demais usam a Estimativa anual do IBGE (variavel 9324). Serra da Saudade e o municipio MENOS POPULOSO do Brasil desde o Censo 2010, e o unico do pais com menos de 1.000 habitantes no Censo 2022. Numeros tao pequenos tornam a serie sensivel a poucas dezenas de pessoas: uma variacao de 20 moradores move a populacao em ~2,4%.",
+ "observacao": "Serie composta: anos de Censo (2000, 2010, 2022) usam a contagem oficial (variavel 93); os demais usam a Estimativa anual do IBGE (variavel 9324). Com menos de 5.000 habitantes, a serie e sensivel a poucas dezenas de pessoas: uma variacao de 20 moradores move a populacao em pontos percentuais inteiros.",
  "serie": [
   {
    "ano": 2000,

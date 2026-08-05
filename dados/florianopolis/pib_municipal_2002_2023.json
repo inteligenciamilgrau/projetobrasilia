@@ -1,0 +1,110 @@
+{
+ "municipio": "Florianópolis/SC",
+ "ibge_codigo": "4205407",
+ "fonte": "IBGE — Produto Interno Bruto dos Municípios, referência 2010, tabela SIDRA 5938",
+ "url_origem": "https://sidra.ibge.gov.br/tabela/5938",
+ "coletado_em": "2026-08-05",
+ "observacao": "[NACIONAL] Valores a precos correntes, em mil reais. Numa cidade onde a prefeitura e o maior agente economico, a rubrica 'administracao publica' do PIB e em boa medida o proprio orcamento municipal — por isso PIB e despesa publica aqui nao sao series independentes.",
+ "unidade": "Mil Reais (preços correntes)",
+ "pib_total": [
+  {
+   "ano": 2002,
+   "valor_mil_reais": 4357228
+  },
+  {
+   "ano": 2003,
+   "valor_mil_reais": 4850364
+  },
+  {
+   "ano": 2004,
+   "valor_mil_reais": 5224186
+  },
+  {
+   "ano": 2005,
+   "valor_mil_reais": 6271237
+  },
+  {
+   "ano": 2006,
+   "valor_mil_reais": 6946767
+  },
+  {
+   "ano": 2007,
+   "valor_mil_reais": 7871859
+  },
+  {
+   "ano": 2008,
+   "valor_mil_reais": 9096211
+  },
+  {
+   "ano": 2009,
+   "valor_mil_reais": 9525084
+  },
+  {
+   "ano": 2010,
+   "valor_mil_reais": 11276680
+  },
+  {
+   "ano": 2011,
+   "valor_mil_reais": 12731618
+  },
+  {
+   "ano": 2012,
+   "valor_mil_reais": 13946621
+  },
+  {
+   "ano": 2013,
+   "valor_mil_reais": 14974993
+  },
+  {
+   "ano": 2014,
+   "valor_mil_reais": 16915926
+  },
+  {
+   "ano": 2015,
+   "valor_mil_reais": 17619984
+  },
+  {
+   "ano": 2016,
+   "valor_mil_reais": 18660876
+  },
+  {
+   "ano": 2017,
+   "valor_mil_reais": 19516694
+  },
+  {
+   "ano": 2018,
+   "valor_mil_reais": 21059944
+  },
+  {
+   "ano": 2019,
+   "valor_mil_reais": 21966053
+  },
+  {
+   "ano": 2020,
+   "valor_mil_reais": 21300109
+  },
+  {
+   "ano": 2021,
+   "valor_mil_reais": 23559947
+  },
+  {
+   "ano": 2022,
+   "valor_mil_reais": 26552426
+  },
+  {
+   "ano": 2023,
+   "valor_mil_reais": 31190132
+  }
+ ],
+ "composicao_setorial_2021": {
+  "observacao": "Valor adicionado bruto (VA) por setor no ultimo ano publicado. 'servicos_exceto_adm_publica' e 'administracao_publica' sao rubricas separadas no IBGE — somadas dao o setor de servicos em sentido amplo.",
+  "unidade": "Mil Reais (preços correntes)",
+  "agropecuaria": 75454,
+  "industria": 1668679,
+  "servicos_exceto_adm_publica": 15084989,
+  "administracao_publica": 2994962,
+  "valor_adicionado_total": 19824084,
+  "impostos_liquidos": 3735862,
+  "pib_total": 23559947
+ }
+}

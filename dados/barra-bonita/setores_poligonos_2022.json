@@ -6,7 +6,7 @@
  "fonte": "IBGE — Censo Demográfico 2022, malha de setores censitários com atributos (GeoPackage por UF)",
  "url_origem": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/setores/gpkg/UF/SC/SC_setores_CD2022.gpkg",
  "observacao": "Poligono real de cada setor, simplificado por Douglas-Peucker com tolerancia de ~25 m. Lido do GeoPackage com sqlite3 + parser de WKB proprio (sem geopandas).",
- "ressalva_de_escala": "Sao apenas 4 setores cobrindo todo o municipio. Um mapa coropletico com tao poucas unidades nao revela padrao intraurbano — serve para mostrar onde esta a sede e o quanto do territorio e rural, nao para 'mapa de calor' de densidade.",
+ "ressalva_de_escala": "ESCALA: sao apenas 4 setores cobrindo todo o municipio. Um mapa coropletico com tao poucas unidades nao revela padrao intraurbano — serve para mostrar onde esta a sede e o quanto do territorio e rural, nao para 'mapa de calor' de densidade.",
  "tolerancia_simplificacao_m": 25,
  "n_setores": 4,
  "setores": [

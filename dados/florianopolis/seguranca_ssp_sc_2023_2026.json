@@ -1,0 +1,63 @@
+{
+ "municipio": "Florianópolis/SC",
+ "ibge_codigo": "4205407",
+ "titulo": "Vítimas de homicídio, 2023–2026",
+ "fonte": "SSP-SC — Secretaria de Estado da Segurança Pública de Santa Catarina, Gerência de Estatística e Análise Criminal (GEAC), Boletim Mensal de Indicadores — junho de 2026",
+ "url_origem": "https://ssp.sc.gov.br/wp-content/uploads/2026/07/06-junho-de-2026.pdf",
+ "coletado_em": "2026-08-05",
+ "metodo_coleta": "Extração de texto do PDF do boletim (a tabela 'Nº de vítimas de homicídio nos municípios de Santa Catarina') e leitura da linha do município. O total do estado é a soma dos municípios extraídos, no mesmo passe — serve de conferência da extração.",
+ "por_que_so_homicidio_e_so_desde_2023": "É o limite da fonte, não da coleta. A SSP-SC publica o boletim em PDF e o único recorte municipal que ele traz é o de vítimas de homicídio, a partir de 2023. Não há CSV, API nem série por natureza de crime. Para efeito de comparação: a SEJUSP-MG, que cobre os outros dois pilotos, publica CSV mensal por município E por natureza, de 2012 a 2026. Mesmo domínio, dois estados, ecossistemas de dados muito diferentes — e é isso que o IDU-Br desta cidade registra no domínio Segurança.",
+ "fragilidade": "O número é lido de dentro de um PDF. Se a SSP-SC mudar o desenho do boletim, esta extração quebra — diferente de um CSV com esquema estável.",
+ "ate_o_periodo": "01/01 a 30/06 de 2026",
+ "n_municipios_no_boletim": 295,
+ "teste_de_fechamento": "A soma das vítimas de todos os municípios extraídos bate exatamente com a linha TOTAL publicada no próprio boletim, nos três anos fechados (2023: 512, 2024: 513, 2025: 426).",
+ "populacao_sc_2025": 8058441,
+ "serie": [
+  {
+   "ano": 2023,
+   "vitimas_homicidio": 27,
+   "populacao": 587486,
+   "taxa_por_100mil": 4.6,
+   "ano_parcial": false
+  },
+  {
+   "ano": 2024,
+   "vitimas_homicidio": 31,
+   "populacao": 576361,
+   "taxa_por_100mil": 5.4,
+   "ano_parcial": false
+  },
+  {
+   "ano": 2025,
+   "vitimas_homicidio": 24,
+   "populacao": 587486,
+   "taxa_por_100mil": 4.1,
+   "ano_parcial": false
+  },
+  {
+   "ano": 2026,
+   "vitimas_homicidio": 23,
+   "populacao": 587486,
+   "taxa_por_100mil": null,
+   "ano_parcial": true,
+   "observacao": "Acumulado de 01/01 a 30/06 de 2026; não comparar com os anos fechados."
+  }
+ ],
+ "regua_santa_catarina": [
+  {
+   "ano": 2023,
+   "vitimas_homicidio": 512,
+   "taxa_por_100mil": 6.4
+  },
+  {
+   "ano": 2024,
+   "vitimas_homicidio": 513,
+   "taxa_por_100mil": 6.4
+  },
+  {
+   "ano": 2025,
+   "vitimas_homicidio": 426,
+   "taxa_por_100mil": 5.3
+  }
+ ]
+}

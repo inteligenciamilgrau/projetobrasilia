@@ -18,7 +18,13 @@
 .status-banner{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-bottom:2rem;padding:.85rem 1rem;border:1px solid var(--line);border-radius:12px;background:var(--soft);font-size:.82rem}
 .status-banner strong{color:var(--green-dark)}
 
-.roadmap{display:grid;gap:.7rem}
+/* minmax(0,1fr), não o 'auto' implícito: uma coluna de grid tem largura mínima
+   igual ao min-content dos filhos, então qualquer conteúdo indivisível lá dentro
+   (uma tabela larga, um SVG) esticava a coluna além do container e empurrava a
+   PÁGINA inteira na horizontal — 96px em Barra Bonita, 130px em Florianópolis,
+   num viewport de 390. Com minmax(0,…) a coluna respeita o container e quem
+   rola é o contêiner interno do gráfico, que já tem overflow-x próprio. */
+.roadmap{display:grid;grid-template-columns:minmax(0,1fr);gap:.7rem}
 .phase{display:grid;grid-template-columns:2.4rem 1fr auto;gap:1rem;align-items:start;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:14px;background:white}
 .phase-num{display:grid;width:2.4rem;height:2.4rem;place-items:center;border-radius:50%;color:white;background:var(--green);font-size:.85rem;font-weight:850}
 .phase.done .phase-num{background:var(--green-dark)}
@@ -28,6 +34,11 @@
 .phase-tag.done{color:#07583d;background:#d9f1e7}
 .phase-tag.next{color:#66500c;background:var(--yellow-soft)}
 .phase-tag.todo{color:var(--muted);background:var(--soft)}
+/* 'blocked' = a fase foi tentada e a FONTE não respondeu — estado diferente de
+   'todo' (não começou) e de 'next' (planejada). Reusa o mesmo par de cores de
+   .label.bloqueado dos cartões de fonte, para que o leitor associe os dois. */
+.phase-tag.blocked{color:#792b23;background:var(--red-soft)}
+.phase.blocked .phase-num{background:#a2402f}
 
 /* variante expansível: <details class="phase done"><summary class="phase-summary">…</summary><div class="phase-body">…</div></details> */
 details.phase{display:block;padding:0}
@@ -94,4 +105,15 @@ details.phase .phase-body .dataset-grid{margin-top:.7rem}
 .pilot-card.placeholder p{margin:0;font-size:.8rem}
 
 @media(max-width:900px){.snapshot{grid-template-columns:repeat(3,1fr)}.source-grid,.dataset-grid{grid-template-columns:repeat(2,1fr)}.pilot-grid{grid-template-columns:1fr}}
-@media(max-width:620px){.snapshot{grid-template-columns:repeat(2,1fr)}.source-grid,.dataset-grid{grid-template-columns:1fr}.phase{grid-template-columns:2.4rem 1fr}.phase-tag{grid-column:2}}
+@media(max-width:620px){.snapshot{grid-template-columns:repeat(2,1fr)}.source-grid,.dataset-grid{grid-template-columns:1fr}.phase{grid-template-columns:2.4rem 1fr}.phase-tag{grid-column:2}
+  /* A regra .phase acima não alcançava a VARIANTE EXPANSÍVEL: em details.phase o
+     grid mora no <summary>, e ele mantinha 4 colunas com o selo em white-space:
+     nowrap. Como .roadmap é grid, o selo mais largo definia a largura de TODAS
+     as fases — um selo longo ("Bloqueada — fonte fora do ar") empurrava a
+     página inteira para 510px num viewport de 390. O selo passa a ocupar uma
+     linha própria e pode quebrar. */
+  details.phase > summary.phase-summary{grid-template-columns:2.4rem 1fr auto;row-gap:.5rem;gap:.75rem}
+  details.phase > summary.phase-summary > .phase-tag{grid-column:2/-1;grid-row:2;justify-self:start;white-space:normal}
+  /* Nome de arquivo não tem espaço onde quebrar e furava o cartão. */
+  .dataset h3{overflow-wrap:anywhere}
+}

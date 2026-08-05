@@ -1,0 +1,90 @@
+{
+ "municipio": "Florianópolis/SC",
+ "ibge_codigo": "4205407",
+ "entidade": "Prefeitura Municipal de Florianópolis/SC",
+ "titulo": "Receita realizada, despesa empenhada e saldo, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais), Anexos I-C e I-E",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-C&id_ente=4205407",
+ "coletado_em": "2026-08-05",
+ "por_que_dca_e_nao_rreo": "O RREO (relatório bimestral) EXISTE para este ente — testado em 2024, 2022, 2019 —, mas a série aqui vem do DCA mesmo assim: é a declaração anual definitiva, alcança 2014 e é a mesma base usada nos outros pilotos, o que mantém as cidades comparáveis entre si.",
+ "colunas_usadas": {
+  "receita_realizada": "I-C, cod_conta=\"ReceitasExcetoIntraOrcamentarias\", coluna \"Receitas Brutas Realizadas\" menos as colunas \"Deduções - FUNDEB\" e \"Outras Deduções da Receita\" — equivale à receita líquida realizada",
+  "despesa_empenhada": "I-E, conta=\"Despesas Exceto Intraorçamentárias\", coluna \"Despesas Empenhadas\""
+ },
+ "observacao": "[NACIONAL — não pontua como diferencial entre cidades no IDU-Br, mas é dado real, atual e específico do município] Valores em reais correntes de cada ano (não deflacionados). Despesa empenhada ≠ despesa paga. Receita e despesa excluem as operações intraorçamentárias dos dois lados, para que o saldo compare grandezas equivalentes.",
+ "valores_nao_deflacionados": true,
+ "serie": [
+  {
+   "ano": 2014,
+   "receita_realizada": 1297277535.88,
+   "despesa_empenhada": 1365435266.58,
+   "saldo": -68157730.7
+  },
+  {
+   "ano": 2015,
+   "receita_realizada": 1408491414.49,
+   "despesa_empenhada": 1533971501.15,
+   "saldo": -125480086.66
+  },
+  {
+   "ano": 2016,
+   "receita_realizada": 1651892014.79,
+   "despesa_empenhada": 1653171018.5,
+   "saldo": -1279003.71
+  },
+  {
+   "ano": 2017,
+   "receita_realizada": 1680352344.42,
+   "despesa_empenhada": 1624491617.36,
+   "saldo": 55860727.06
+  },
+  {
+   "ano": 2018,
+   "receita_realizada": 1762503411.18,
+   "despesa_empenhada": 1822727206.65,
+   "saldo": -60223795.47
+  },
+  {
+   "ano": 2019,
+   "receita_realizada": 2010230198.2,
+   "despesa_empenhada": 2042681302.02,
+   "saldo": -32451103.82
+  },
+  {
+   "ano": 2020,
+   "receita_realizada": 2134729994.8,
+   "despesa_empenhada": 2041735858.73,
+   "saldo": 92994136.07
+  },
+  {
+   "ano": 2021,
+   "receita_realizada": 2347735638.53,
+   "despesa_empenhada": 2290641517.33,
+   "saldo": 57094121.2
+  },
+  {
+   "ano": 2022,
+   "receita_realizada": 2920120003.69,
+   "despesa_empenhada": 2881303139.3,
+   "saldo": 38816864.39
+  },
+  {
+   "ano": 2023,
+   "receita_realizada": 3210547646.17,
+   "despesa_empenhada": 3557233718.21,
+   "saldo": -346686072.04
+  },
+  {
+   "ano": 2024,
+   "receita_realizada": 3658646415.71,
+   "despesa_empenhada": 3625153996.53,
+   "saldo": 33492419.18
+  },
+  {
+   "ano": 2025,
+   "receita_realizada": 4185136720.45,
+   "despesa_empenhada": 3887703339.22,
+   "saldo": 297433381.23
+  }
+ ]
+}

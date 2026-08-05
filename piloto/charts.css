@@ -145,6 +145,9 @@
 .viz-note-fontes{display:block;margin-top:.3rem;font-size:.72rem}
 .viz-note-fontes a{color:var(--green);font-weight:750}
 
+/* Conteúdo largo (tabela, SVG) rola aqui dentro; a página nunca rola na
+   horizontal. min-width:0 é o que permite ao flex/grid pai encolher o item. */
+.viz-scroll-x{overflow-x:auto;max-width:100%;min-width:0}
 .idu-table{width:100%;margin-top:1rem;border-collapse:collapse;font-size:.8rem}
 .idu-table th,.idu-table td{padding:.55rem .7rem;border-bottom:1px solid var(--v-grid);text-align:left;vertical-align:top;color:var(--v-text-primary)}
 .idu-table th{color:var(--v-text-secondary);font-weight:800;font-size:.68rem;text-transform:uppercase}

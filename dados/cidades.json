@@ -4,16 +4,19 @@
  "atualizado_em": "2026-08-05",
  "paleta": {
   "observacao": "Cor CATEGÓRICA: identifica a cidade, não a grandeza. Nos pilotos individuais verde é receita e azul é despesa; no comparador a cor passa a significar cidade, e a distinção entre receita e despesa vai para gráficos separados. A ordem é fixa e por índice — a cidade nunca troca de cor quando outra entra ou sai da comparação.",
-  "validacao": "Os 3 tons foram validados com scripts/validate_palette.js do skill de dataviz, em modo claro (superfície #fcfcfb) e escuro (#1a1a19), com --pairs all: todos os pares passam nos seis testes, incluindo separação sob daltonismo (pior par ΔE 9,2 protan no claro, 9,3 deutan no escuro). Com três cidades no piloto, os três tons estão em uso. ATENÇÃO: a 4ª cidade exige revalidar — roxo, magenta e marrom foram testados como 4º tom e TODOS falharam contra o azul ou o verde sob daltonismo.",
+  "validacao": "Os 4 tons foram validados com scripts/validate_palette.js do skill de dataviz, em modo claro (superfície #fcfcfb) e escuro (#1a1a19), com --pairs all: todos os pares passam nos seis testes. O 4º tom NÃO virou o par crítico em nenhum dos dois modos — o pior par continua sendo verde x laranja (ΔE 9,2 protan no claro; 9,3 deutan no escuro), exatamente como era com três cidades. Piso de visão normal: 20,9 no claro e 18,6 no escuro.",
+  "como_o_4o_tom_foi_achado": "Chutar hexes não funcionou: roxo #8659c5, magenta #c8358c e #b5307a e marrom #a3562a foram testados na primeira tentativa e TODOS falharam. O que resolveu foi varrer o espaço OKLCH (matiz de 0 a 360, L dentro da banda de cada modo, chroma de 0,10 a 0,32) chamando o próprio validador em cada ponto, e filtrar por: passa nos seis testes nos DOIS modos, não vira o par crítico, e mora na mesma faixa de chroma dos três tons já no ar (0,10-0,18) para não sair neon ao lado deles. Sobraram centenas de opções; a escolhida está em H 330. Para uma 5ª cidade, repita a varredura — não chute.",
   "clara": [
    "#2a78d6",
    "#eb6834",
-   "#08724e"
+   "#08724e",
+   "#9c3b96"
   ],
   "escura": [
    "#3987e5",
    "#d95926",
-   "#1baf7a"
+   "#1baf7a",
+   "#b45ead"
   ]
  },
  "fases_comparaveis": [
@@ -80,6 +83,24 @@
    "populacao_recente": 1642,
    "populacao_ano": 2025,
    "resumo": "1.668 habitantes no Censo 2022, no extremo oeste catarinense. Perde população desde 2000 mas teve o PIB crescendo 25% em termos reais — a agropecuária é 53% do valor adicionado.",
+   "arquivos": {
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json",
+    "populacao": "populacao_2000_2025.json"
+   }
+  },
+  {
+   "slug": "florianopolis",
+   "nome": "Florianópolis",
+   "uf": "SC",
+   "ibge": "4205407",
+   "pasta": "florianopolis",
+   "pagina": "florianopolis.html",
+   "cor_indice": 3,
+   "populacao_recente": 587486,
+   "populacao_ano": 2025,
+   "resumo": "537.211 habitantes no Censo 2022 — a primeira capital do piloto. Entrou por ter sido DESCARTADA antes: 1ª colocada em ranking nacional de cidade inteligente e a pior nota de dados abertos do estudo. Só 37,5% da receita vem de transferência, a menor dependência do piloto.",
    "arquivos": {
     "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
     "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",

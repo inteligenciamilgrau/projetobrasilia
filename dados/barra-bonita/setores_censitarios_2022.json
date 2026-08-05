@@ -6,7 +6,8 @@
  "fonte": "IBGE — Censo Demográfico 2022, Agregados por Setores Censitários (malha_com_atributos)",
  "url_dados": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/setores/gpkg/UF/SC/SC_setores_CD2022.gpkg",
  "url_geometria": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/setores/gpkg/UF/SC/SC_setores_CD2022.gpkg",
- "observacao": "lon/lat sao o centroide de area do anel externo de cada setor, calculado aqui a partir da geometria oficial. ESCALA: sao pouquissimos setores — o recorte territorial que em Itajuba (192 setores) desenha um mapa de calor util, aqui mal divide a cidade. Ver ressalva no arquivo de poligonos.",
+ "observacao": "lon/lat sao o centroide de area do anel externo de cada setor, calculado aqui a partir da geometria oficial. ESCALA: sao apenas 4 setores cobrindo todo o municipio. Um mapa coropletico com tao poucas unidades nao revela padrao intraurbano — serve para mostrar onde esta a sede e o quanto do territorio e rural, nao para 'mapa de calor' de densidade.",
+ "teste_de_fechamento": "a soma da populacao dos 4 setores reproduz o total do Censo 2022 do municipio (tabela 4709 do SIDRA).",
  "n_setores": 4,
  "setores": [
   {

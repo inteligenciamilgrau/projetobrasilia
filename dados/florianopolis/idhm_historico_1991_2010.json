@@ -1,0 +1,31 @@
+{
+ "municipio": "Florianópolis/SC",
+ "ibge_codigo": "4205407",
+ "fonte": "IPEAData — séries ADH_IDHM, ADH_IDHM_E, ADH_IDHM_L, ADH_IDHM_R (Atlas do Desenvolvimento Humano/PNUD, a partir dos Censos)",
+ "url_origem": "http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='ADH_IDHM')?$filter=TERCODIGO eq '4205407'",
+ "coletado_em": "2026-08-05",
+ "observacao": "Nao existe IDHM municipal 2022 nem mais recente — o Atlas nao foi recalculado depois do Censo 2010 (ver docs/CIDADES_PEQUENAS.md secao 2). Estes sao os 3 unicos pontos oficiais que existem.",
+ "serie": [
+  {
+   "ano": 1991,
+   "geral": 0.681,
+   "educacao": 0.538,
+   "longevidade": 0.771,
+   "renda": 0.763
+  },
+  {
+   "ano": 2000,
+   "geral": 0.766,
+   "educacao": 0.66,
+   "longevidade": 0.823,
+   "renda": 0.828
+  },
+  {
+   "ano": 2010,
+   "geral": 0.847,
+   "educacao": 0.8,
+   "longevidade": 0.873,
+   "renda": 0.87
+  }
+ ]
+}

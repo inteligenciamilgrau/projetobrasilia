@@ -1,0 +1,157 @@
+{
+ "municipio": "Florianópolis/SC",
+ "ibge_codigo": "4205407",
+ "fonte": "IBGE — Cadastro Central de Empresas (CEMPRE), tabela SIDRA 1685",
+ "url_origem": "https://sidra.ibge.gov.br/tabela/1685",
+ "coletado_em": "2026-08-05",
+ "observacao": "[NACIONAL] Serie encerrada pelo IBGE em 2021. CEMPRE cobre o emprego FORMAL registrado em CNPJ — inclui a propria prefeitura, que aqui e o maior empregador. Municipios muito pequenos tem celulas suprimidas por sigilo estatistico em alguns anos; onde o valor vier nulo, e isso.",
+ "unidade_pessoal": "Pessoas",
+ "unidade_empresas": "Unidades",
+ "unidade_salario": "R$ (salário médio mensal nominal)",
+ "serie": [
+  {
+   "ano": 2006,
+   "unidades_locais": 21876,
+   "empresas_atuantes": 20613,
+   "pessoal_ocupado_total": 246046,
+   "pessoal_ocupado_assalariado": 223994,
+   "salarios_mil_reais": 5001040,
+   "salario_medio_mensal_reais": 1662.53
+  },
+  {
+   "ano": 2007,
+   "unidades_locais": 22958,
+   "empresas_atuantes": 21580,
+   "pessoal_ocupado_total": 261281,
+   "pessoal_ocupado_assalariado": 236154,
+   "salarios_mil_reais": 5635998,
+   "salario_medio_mensal_reais": 1812.84
+  },
+  {
+   "ano": 2008,
+   "unidades_locais": 23796,
+   "empresas_atuantes": 22441,
+   "pessoal_ocupado_total": 272547,
+   "pessoal_ocupado_assalariado": 245951,
+   "salarios_mil_reais": 6493407,
+   "salario_medio_mensal_reais": 2055.98
+  },
+  {
+   "ano": 2009,
+   "unidades_locais": 24928,
+   "empresas_atuantes": 23497,
+   "pessoal_ocupado_total": 271134,
+   "pessoal_ocupado_assalariado": 242941,
+   "salarios_mil_reais": 6943275,
+   "salario_medio_mensal_reais": 2154.12
+  },
+  {
+   "ano": 2010,
+   "unidades_locais": 26137,
+   "empresas_atuantes": 24746,
+   "pessoal_ocupado_total": 283287,
+   "pessoal_ocupado_assalariado": 252752,
+   "salarios_mil_reais": 8086945,
+   "salario_medio_mensal_reais": 2395.57
+  },
+  {
+   "ano": 2011,
+   "unidades_locais": 25489,
+   "empresas_atuantes": 24152,
+   "pessoal_ocupado_total": 291210,
+   "pessoal_ocupado_assalariado": 260841,
+   "salarios_mil_reais": 9091645,
+   "salario_medio_mensal_reais": 2594.59
+  },
+  {
+   "ano": 2012,
+   "unidades_locais": 26970,
+   "empresas_atuantes": 25574,
+   "pessoal_ocupado_total": 303232,
+   "pessoal_ocupado_assalariado": 270700,
+   "salarios_mil_reais": 10707802,
+   "salario_medio_mensal_reais": 2908.69
+  },
+  {
+   "ano": 2013,
+   "unidades_locais": 27333,
+   "empresas_atuantes": 25894,
+   "pessoal_ocupado_total": 310020,
+   "pessoal_ocupado_assalariado": 277182,
+   "salarios_mil_reais": 11761445,
+   "salario_medio_mensal_reais": 3156.53
+  },
+  {
+   "ano": 2014,
+   "unidades_locais": 28008,
+   "empresas_atuantes": 26506,
+   "pessoal_ocupado_total": 320081,
+   "pessoal_ocupado_assalariado": 286400,
+   "salarios_mil_reais": 13494256,
+   "salario_medio_mensal_reais": 3461.99
+  },
+  {
+   "ano": 2015,
+   "unidades_locais": 28275,
+   "empresas_atuantes": 26840,
+   "pessoal_ocupado_total": 317299,
+   "pessoal_ocupado_assalariado": 282328,
+   "salarios_mil_reais": 14431622,
+   "salario_medio_mensal_reais": 3816.4
+  },
+  {
+   "ano": 2016,
+   "unidades_locais": 28768,
+   "empresas_atuantes": 27286,
+   "pessoal_ocupado_total": 316543,
+   "pessoal_ocupado_assalariado": 281087,
+   "salarios_mil_reais": 16046090,
+   "salario_medio_mensal_reais": 4152.78
+  },
+  {
+   "ano": 2017,
+   "unidades_locais": 28820,
+   "empresas_atuantes": 27372,
+   "pessoal_ocupado_total": 313273,
+   "pessoal_ocupado_assalariado": 277265,
+   "salarios_mil_reais": 16891736,
+   "salario_medio_mensal_reais": 4482.16
+  },
+  {
+   "ano": 2018,
+   "unidades_locais": 29330,
+   "empresas_atuantes": 27835,
+   "pessoal_ocupado_total": 315065,
+   "pessoal_ocupado_assalariado": 278181,
+   "salarios_mil_reais": 17233160,
+   "salario_medio_mensal_reais": 4553.01
+  },
+  {
+   "ano": 2019,
+   "unidades_locais": 32218,
+   "empresas_atuantes": 30643,
+   "pessoal_ocupado_total": 329451,
+   "pessoal_ocupado_assalariado": 289367,
+   "salarios_mil_reais": 17759496,
+   "salario_medio_mensal_reais": 4498.55
+  },
+  {
+   "ano": 2020,
+   "unidades_locais": 33985,
+   "empresas_atuantes": 32476,
+   "pessoal_ocupado_total": 336206,
+   "pessoal_ocupado_assalariado": 292867,
+   "salarios_mil_reais": 17431651,
+   "salario_medio_mensal_reais": 4609.92
+  },
+  {
+   "ano": 2021,
+   "unidades_locais": 37435,
+   "empresas_atuantes": 35905,
+   "pessoal_ocupado_total": 337377,
+   "pessoal_ocupado_assalariado": 288928,
+   "salarios_mil_reais": 19446274,
+   "salario_medio_mensal_reais": 5001.73
+  }
+ ]
+}
