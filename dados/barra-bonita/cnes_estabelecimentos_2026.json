@@ -1,8 +1,8 @@
 {
- "municipio": "Serra da Saudade/MG",
- "ibge_codigo": "3166600",
+ "municipio": "Barra Bonita/SC",
+ "ibge_codigo": "4202099",
  "fonte": "CNES — Cadastro Nacional de Estabelecimentos de Saúde, via API de dados abertos do Ministério da Saúde",
- "url_origem": "https://apidadosabertos.saude.gov.br/cnes/estabelecimentos?codigo_municipio=316660&limit=100",
+ "url_origem": "https://apidadosabertos.saude.gov.br/cnes/estabelecimentos?codigo_municipio=420209&limit=100",
  "coletado_em": "2026-08-05",
  "observacao": "No piloto de Itajuba esta fonte ficou registrada como 'Tentado — 503'; a API de dados abertos do Ministerio da Saude respondeu normalmente aqui. O campo 'tipo' e a traducao do codigo de tipo de unidade do CNES.",
  "n_estabelecimentos": 5,
@@ -12,8 +12,18 @@
  "conclusao": "Nenhum estabelecimento com atendimento hospitalar no municipio.",
  "estabelecimentos": [
   {
-   "cnes": 2142511,
-   "nome": "CENTRO DE SAUDE DE SERRA DA SAUDADE",
+   "cnes": 274011,
+   "nome": "CENTRAL MUNICIPAL DE REDE DE FRIOS",
+   "tipo_codigo": 84,
+   "tipo": "Outro tipo de unidade (código CNES 84)",
+   "atende_ambulatorial_sus": "SIM",
+   "atendimento_hospitalar": 0,
+   "centro_cirurgico": 0,
+   "centro_obstetrico": 0
+  },
+  {
+   "cnes": 2378280,
+   "nome": "US TREZE DE MAIO",
    "tipo_codigo": 2,
    "tipo": "Centro de saúde / unidade básica",
    "atende_ambulatorial_sus": "SIM",
@@ -22,44 +32,34 @@
    "centro_obstetrico": 0
   },
   {
-   "cnes": 2922088,
-   "nome": "GN AZEVEDO PRESTACAO DE SERVICOS MEDICOS",
-   "tipo_codigo": 22,
-   "tipo": "Consultório isolado",
-   "atende_ambulatorial_sus": "NAO",
-   "atendimento_hospitalar": 0,
-   "centro_cirurgico": 0,
-   "centro_obstetrico": 0
-  },
-  {
-   "cnes": 6534198,
-   "nome": "SECRETARIA MUNICIPAL SAUDE SERRA DA SAUDADE",
-   "tipo_codigo": 68,
-   "tipo": "Central de gestão em saúde",
+   "cnes": 2664887,
+   "nome": "UNIDADE DE SAUDE POSTO CENTRAL",
+   "tipo_codigo": 2,
+   "tipo": "Centro de saúde / unidade básica",
    "atende_ambulatorial_sus": "SIM",
    "atendimento_hospitalar": 0,
    "centro_cirurgico": 0,
    "centro_obstetrico": 0
   },
   {
-   "cnes": 7358709,
-   "nome": "CENTRO DE SAUDE PROTESE DENTARIA DE SERRA DA SAUDADE",
-   "tipo_codigo": 1,
-   "tipo": "Posto de saúde",
-   "atende_ambulatorial_sus": "NAO",
-   "atendimento_hospitalar": 0,
-   "centro_cirurgico": 0,
-   "centro_obstetrico": 0
+   "cnes": 6520715,
+   "nome": "SECRETARIA DE SAUDE DO MUNICIPIO DE BARRA BONITA",
+   "tipo_codigo": 68,
+   "tipo": "Central de gestão em saúde",
+   "atende_ambulatorial_sus": "SIM",
+   "atendimento_hospitalar": null,
+   "centro_cirurgico": null,
+   "centro_obstetrico": null
   },
   {
-   "cnes": 7595611,
-   "nome": "ACADEMIA DA SAUDE DE SERRA DA SAUDADE",
-   "tipo_codigo": 74,
-   "tipo": "Polo Academia da Saúde",
+   "cnes": 9035931,
+   "nome": "CENTRAL DE REGULACAO MUNICIPAL",
+   "tipo_codigo": 81,
+   "tipo": "Outro tipo de unidade (código CNES 81)",
    "atende_ambulatorial_sus": "NAO",
-   "atendimento_hospitalar": 0,
-   "centro_cirurgico": 0,
-   "centro_obstetrico": 0
+   "atendimento_hospitalar": null,
+   "centro_cirurgico": null,
+   "centro_obstetrico": null
   }
  ]
 }

@@ -1,0 +1,121 @@
+{
+ "municipio": "Barra Bonita/SC",
+ "ibge_codigo": "4202099",
+ "fonte": "IBGE — Estatísticas do Registro Civil (SIDRA tabelas 2609 e 2681)",
+ "url_nascidos_vivos": "https://servicodados.ibge.gov.br/api/v3/agregados/2609/periodos/2003-2024/variaveis/217?localidades=N6[4202099]",
+ "url_obitos": "https://servicodados.ibge.gov.br/api/v3/agregados/2681/periodos/2003-2024/variaveis/343?localidades=N6[4202099]",
+ "coletado_em": "2026-08-05",
+ "observacao": "Nascidos vivos e obitos REGISTRADOS no municipio (lugar do registro em cartorio), nao necessariamente residentes. ATENCAO A ESCALA: com pouco mais de 800 habitantes, os numeros absolutos sao de uma ou duas dezenas por ano. Uma diferenca de 3 obitos entre dois anos move a taxa por mil em ~3,6 pontos — variacao que em cidade grande seria ruido e aqui parece tendencia. Nenhuma taxa anual desta serie deve ser lida isoladamente.",
+ "serie": [
+  {
+   "ano": 2003,
+   "nascidos_vivos": 29,
+   "obitos": null
+  },
+  {
+   "ano": 2004,
+   "nascidos_vivos": 20,
+   "obitos": null
+  },
+  {
+   "ano": 2005,
+   "nascidos_vivos": 29,
+   "obitos": null
+  },
+  {
+   "ano": 2006,
+   "nascidos_vivos": 24,
+   "obitos": null
+  },
+  {
+   "ano": 2007,
+   "nascidos_vivos": 22,
+   "obitos": null
+  },
+  {
+   "ano": 2008,
+   "nascidos_vivos": 21,
+   "obitos": null
+  },
+  {
+   "ano": 2009,
+   "nascidos_vivos": 31,
+   "obitos": null
+  },
+  {
+   "ano": 2010,
+   "nascidos_vivos": 22,
+   "obitos": null
+  },
+  {
+   "ano": 2011,
+   "nascidos_vivos": 30,
+   "obitos": null
+  },
+  {
+   "ano": 2012,
+   "nascidos_vivos": 22,
+   "obitos": null
+  },
+  {
+   "ano": 2013,
+   "nascidos_vivos": 23,
+   "obitos": null
+  },
+  {
+   "ano": 2014,
+   "nascidos_vivos": 21,
+   "obitos": null
+  },
+  {
+   "ano": 2015,
+   "nascidos_vivos": 14,
+   "obitos": null
+  },
+  {
+   "ano": 2016,
+   "nascidos_vivos": 15,
+   "obitos": 4
+  },
+  {
+   "ano": 2017,
+   "nascidos_vivos": 22,
+   "obitos": 10
+  },
+  {
+   "ano": 2018,
+   "nascidos_vivos": 10,
+   "obitos": 6
+  },
+  {
+   "ano": 2019,
+   "nascidos_vivos": 18,
+   "obitos": 15
+  },
+  {
+   "ano": 2020,
+   "nascidos_vivos": 13,
+   "obitos": 12
+  },
+  {
+   "ano": 2021,
+   "nascidos_vivos": 21,
+   "obitos": 15
+  },
+  {
+   "ano": 2022,
+   "nascidos_vivos": 18,
+   "obitos": 13
+  },
+  {
+   "ano": 2023,
+   "nascidos_vivos": 16,
+   "obitos": 10
+  },
+  {
+   "ano": 2024,
+   "nascidos_vivos": 18,
+   "obitos": 13
+  }
+ ]
+}

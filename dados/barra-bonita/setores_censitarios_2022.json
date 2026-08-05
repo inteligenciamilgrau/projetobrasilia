@@ -1,0 +1,57 @@
+{
+ "municipio": "Barra Bonita/SC",
+ "ibge_codigo": "4202099",
+ "coletado_em": "2026-08-05",
+ "sistema_referencia": "SIRGAS2000 (equivalente a WGS84 para visualização)",
+ "fonte": "IBGE — Censo Demográfico 2022, Agregados por Setores Censitários (malha_com_atributos)",
+ "url_dados": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/setores/gpkg/UF/SC/SC_setores_CD2022.gpkg",
+ "url_geometria": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/setores/gpkg/UF/SC/SC_setores_CD2022.gpkg",
+ "observacao": "lon/lat sao o centroide de area do anel externo de cada setor, calculado aqui a partir da geometria oficial. ESCALA: sao pouquissimos setores — o recorte territorial que em Itajuba (192 setores) desenha um mapa de calor util, aqui mal divide a cidade. Ver ressalva no arquivo de poligonos.",
+ "n_setores": 4,
+ "setores": [
+  {
+   "setor": "420209905000001",
+   "distrito": "Barra Bonita",
+   "situacao": "Urbana",
+   "area_km2": 0.3329,
+   "populacao": 389,
+   "domicilios": 156,
+   "densidade_hab_km2": 1168.5,
+   "lon": -53.440491,
+   "lat": -26.652998
+  },
+  {
+   "setor": "420209905000003",
+   "distrito": "Barra Bonita",
+   "situacao": "Rural",
+   "area_km2": 33.2867,
+   "populacao": 410,
+   "domicilios": 221,
+   "densidade_hab_km2": 12.3,
+   "lon": -53.417258,
+   "lat": -26.706175
+  },
+  {
+   "setor": "420209905000007",
+   "distrito": "Barra Bonita",
+   "situacao": "Rural",
+   "area_km2": 25.5533,
+   "populacao": 316,
+   "domicilios": 166,
+   "densidade_hab_km2": 12.4,
+   "lon": -53.40618,
+   "lat": -26.634773
+  },
+  {
+   "setor": "420209905000008",
+   "distrito": "Barra Bonita",
+   "situacao": "Rural",
+   "area_km2": 33.5533,
+   "populacao": 553,
+   "domicilios": 259,
+   "densidade_hab_km2": 16.5,
+   "lon": -53.44695,
+   "lat": -26.656515
+  }
+ ]
+}

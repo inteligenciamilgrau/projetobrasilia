@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Piloto de análise de dados públicos de Barra Bonita/SC: finanças, população, território, economia e segurança, a partir de fontes públicas verificáveis. Projeto Brasil iA.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="piloto.css">
+  <link rel="stylesheet" href="charts.css">
+  <title>Barra Bonita/SC — piloto de análise — Projeto Brasil iA</title>
+</head>
+<body data-piloto="barra-bonita">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="../" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="../">Início</a>
+          <a class="top-link" href="../cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="./" aria-current="page">Piloto</a>
+          <a class="top-link" href="../municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="../inventario.html">Inventário</a>
+          <a class="top-link" href="../fontes.html">Fontes</a>
+          <a class="top-link" href="../relatorio_parcial.html">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div><p class="eyebrow">Piloto dedicado · 3ª cidade · análise padrão</p><h1>Barra Bonita, dado a dado.</h1><p class="lede">Um acompanhamento contínuo de Barra Bonita/SC, no extremo oeste catarinense, usando só fontes públicas verificáveis — demografia, finanças, compras, saúde, educação, território, economia e segurança. É a primeira cidade do piloto fora de Minas Gerais, e isso muda o que é possível saber sobre ela.</p></div>
+        <aside class="decision"><span>Por que Barra Bonita</span><strong>Uma cidade que perde gente e ganha economia ao mesmo tempo.</strong><p>1.668 habitantes no Censo 2022, 21% menos que em 2000 — mas o PIB cresceu 25% em termos reais desde 2014. É a única das três cidades do piloto cuja economia de fato avançou, e a agropecuária responde por metade dela.</p></aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <p class="crumb"><a href="./">← Todos os pilotos</a> · <a href="comparar.html">Comparar com outra cidade →</a></p>
+    <div class="snapshot">
+      <div class="stat"><strong>1.668</strong><span>habitantes · Censo IBGE 2022</span></div>
+      <div class="stat"><strong>60,85</strong><span>IPS Brasil 2026 (0–100)</span></div>
+      <div class="stat"><strong>77%</strong><span>da população vive na zona rural</span></div>
+      <div class="stat"><strong>4202099</strong><span>código IBGE do município</span></div>
+      <div class="stat"><strong>92,9 km²</strong><span>área territorial</span></div>
+    </div>
+    <div class="status-banner"><strong>Status desta aba:</strong> análise padrão concluída em 05/08/2026 — as 11 fases do modelo do piloto, com 18 conjuntos de dados coletados por API e gravados em <code>dados/barra-bonita/</code>. Primeira cidade do piloto fora de Minas Gerais: as fontes nacionais valem igual, mas a fonte estadual de segurança muda — e é bem mais pobre.</div>
+
+    <section aria-labelledby="contexto-title">
+      <div class="section-head"><div><p class="kicker">Como Barra Bonita entrou aqui</p><h2 id="contexto-title">A terceira cidade, e a primeira de outro estado.</h2></div><p>Barra Bonita fica no extremo oeste de Santa Catarina, na microrregião de São Miguel do Oeste, e tem 1.668 habitantes pelo Censo 2022. Entra no piloto por duas razões. A primeira é de conteúdo: é um município rural de verdade — três em cada quatro moradores vivem fora da área urbana e a agropecuária responde por mais da metade do valor adicionado —, um perfil que nenhuma das duas primeiras cidades tinha. A segunda é de método: é a primeira fora de Minas Gerais, o que permite testar quanto da análise depende de fontes nacionais (que valem para os 5.570 municípios) e quanto depende do que cada estado decide publicar.</p></div>
+      <p class="muted-note">A resposta curta para a segunda pergunta está na Fase 9: as fontes nacionais funcionaram exatamente igual, e a fonte estadual de segurança de Santa Catarina é muito mais pobre que a de Minas. Comparação lado a lado com as outras duas cidades: <a href="comparar.html">comparador do piloto</a>.</p>
+    </section>
+
+    <section aria-labelledby="plano-title">
+      <div class="section-head"><div><p class="kicker">Plano de análise</p><h2 id="plano-title">O mesmo roteiro das outras cidades.</h2></div><p>Cada fase é um lote de coleta e visualização fechado em si. Fases concluídas abrem: o resultado fica embaixo do próprio item. Todo gráfico lê um arquivo de <code>dados/barra-bonita/</code> — nenhum número está escrito nesta página.</p></div>
+      <div class="roadmap">
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">0</div><div class="phase-text"><h3>Estrutura, fontes e plano</h3><p>Esta página, o catálogo de fontes abaixo e a pasta <code>dados/barra-bonita/</code> com 18 arquivos, cada um trazendo URL de origem, parâmetro de consulta e data de coleta.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Os coletores usados nas duas primeiras cidades foram parametrizados por município nesta sessão, em vez de duplicados — o que também expôs e corrigiu um defeito real: a chave de cache não incluía o código IBGE, então uma consulta feita para uma cidade podia devolver o arquivo salvo de outra.</p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">1</div><div class="phase-text"><h3>Demografia e evolução populacional (2000–2025)</h3><p>SIDRA/IBGE: Censos 2000/2010/2022 e Estimativas nos demais anos. Aqui os três Censos concordam numa queda contínua — não há discussão de estimativa, como houve nas outras duas cidades.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-populacao">
+              <div class="viz-head"><div><h3>População residente, 2000–2025</h3><p>Censos (marcador maior) e Estimativas anuais do IBGE. 2007 e 2023 não têm valor publicado para este município nessa tabela.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/barra-bonita/populacao_2000_2025.json" target="_blank" rel="noopener noreferrer">populacao_2000_2025.json ↗</a></p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">2</div><div class="phase-text"><h3>Desenvolvimento humano histórico</h3><p>IDHM 1991/2000/2010 por dimensão (IPEAData/Atlas Brasil) e os 79 indicadores do IPS Brasil 2026.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-idhm">
+              <div class="viz-head"><div><h3>IDHM por dimensão, 1991–2010</h3><p>Censos 1991, 2000 e 2010 — os 3 únicos pontos oficiais que existem. Não há IDHM municipal mais recente para nenhuma cidade do país.</p></div></div>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/barra-bonita/idhm_historico_1991_2010.json" target="_blank" rel="noopener noreferrer">idhm_historico_1991_2010.json ↗</a> · <a href="../dados/barra-bonita/ips_brasil_2026.json" target="_blank" rel="noopener noreferrer">ips_brasil_2026.json ↗</a></p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">3</div><div class="phase-text"><h3>Finanças públicas</h3><p>Doze anos de orçamento no SICONFI (2014–2025): a despesa cresceu 33% em termos reais, três anos fecharam no vermelho, e — diferente das outras duas cidades — o PIB municipal cresceu junto.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="explainer">
+              <p><em>Despesa empenhada</em> = compromisso assumido, não dinheiro pago. Valores corrigidos usam IPCA/IBGE em reais de 2025 — a mesma base dos outros pilotos, para que as três cidades sejam comparáveis. Onde o valor não estiver corrigido, está dito.</p>
+            </div>
+            <div class="viz-root" id="chart-financas">
+              <div class="viz-head"><div><h3>1. Quanto entrou, quanto saiu e o que sobrou</h3><p>Receita, despesa e saldo de 2014 a 2025. Valores correntes, como aparecem no balanço oficial. Passe o mouse por um ano.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-despesa-real">
+              <div class="viz-head"><div><h3>2. O gasto subiu — mas quanto disso foi inflação?</h3><p>A mesma despesa de duas formas: como está no balanço de cada ano e corrigida pelo IPCA para reais de 2025.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-pib-despesa">
+              <div class="viz-head"><div><h3>3. A prefeitura cresceu junto com a cidade?</h3><p>PIB do município e despesa da Prefeitura, os dois corrigidos pela inflação e postos na mesma base (2014 = 100). Índice, não dois eixos.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-funcoes-tempo">
+              <div class="viz-head"><div><h3>4. Para onde foi o dinheiro, ano a ano</h3><p>Despesa por função de governo, de 2014 a 2025, tudo corrigido para reais de 2025. Todos os painéis usam a mesma régua vertical.</p></div></div>
+            </div>
+            <div class="explainer">
+              <h4>O que está e o que não está nesta conta</h4>
+              <p><strong>Hospital: não existe.</strong> O município não tem estabelecimento com atendimento hospitalar (confirmado no CNES, Fase 5). Internação e urgência acontecem fora e são pagas por outro ente ou por consórcio — não passam por este orçamento.</p>
+              <p><strong>Polícia: não.</strong> Polícia Militar e Civil são do estado. Como em Serra da Saudade, não há função de Segurança Pública no orçamento municipal: um município deste porte não mantém Guarda Municipal.</p>
+              <p><strong>Escola: só até o fundamental.</strong> O município mantém educação infantil e ensino fundamental; ensino médio é do estado e não entra aqui.</p>
+              <p><strong>Estrada rural entra, e pesa.</strong> Com 77% da população na zona rural (Fase 7), a função Transporte cobre estrada vicinal e transporte escolar rural — despesa estrutural, não eventual.</p>
+            </div>
+            <div class="viz-root" id="chart-despesa-variacao">
+              <div class="viz-head"><div><h3>5. Quem cresceu e quem encolheu, 2014→2025</h3><p>Variação de cada função já descontada a inflação, em reais de 2025.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-receita-origem">
+              <div class="viz-head"><div><h3>6. De onde vem o dinheiro</h3><p>Receita bruta de 2025 por origem, com FPM, ICMS, SUS e FUNDEB abertos rubrica a rubrica.</p></div></div>
+            </div>
+            <div class="explainer">
+              <h4>O que esta fase não consegue mostrar</h4>
+              <p><strong>Não há dado estruturado antes de 2014.</strong> A base do SICONFI começa ali para todos os municípios do país.</p>
+              <p><strong>Empenhado não é pago.</strong> Um compromisso assumido em dezembro pode ser pago no ano seguinte, como resto a pagar.</p>
+              <p><strong>Função diz a área, não a qualidade.</strong> Saber que a Saúde recebeu mais não diz se o atendimento melhorou.</p>
+              <p><strong>O PIB e o orçamento não são séries independentes.</strong> A rubrica "administração pública" é 28,7% do valor adicionado do município (Fase 8) — parte do PIB que aparece no gráfico 3 é o próprio gasto público sendo contabilizado.</p>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/barra-bonita/siconfi_receita_despesa_2014_2025.json" target="_blank" rel="noopener noreferrer">siconfi_receita_despesa_2014_2025.json ↗</a> · <a href="../dados/barra-bonita/despesa_funcao_natureza_2014_2025.json" target="_blank" rel="noopener noreferrer">despesa_funcao_natureza_2014_2025.json ↗</a> · <a href="../dados/barra-bonita/receita_origem_2014_2025.json" target="_blank" rel="noopener noreferrer">receita_origem_2014_2025.json ↗</a></p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">4</div><div class="phase-text"><h3>Compras e licitações</h3><p>PNCP, jan/2025–ago/2026, com as 13 modalidades varridas: 291 processos e quatro entidades públicas comprando. Quase metade sai por contratação direta.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-compras">
+              <div class="viz-head"><div><h3>Compras públicas, por modalidade, categoria e ao longo do tempo</h3><p>PNCP — consulta por código IBGE do município, todas as modalidades, com paginação até o fim de cada uma.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/barra-bonita/pncp_serie_2025_2026.json" target="_blank" rel="noopener noreferrer">pncp_serie_2025_2026.json ↗</a> — inclui a lista completa dos processos.</p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">5</div><div class="phase-text"><h3>Saúde</h3><p>Nascidos vivos e óbitos, 2003–2024 (IBGE/Registro Civil), e os estabelecimentos do CNES — que confirmam a ausência de hospital.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-saude">
+              <div class="viz-head"><div><h3>Nascidos vivos e óbitos registrados, 2003–2024</h3><p>IBGE — Estatísticas do Registro Civil. "Óbitos" aqui são mortes de <em>qualquer idade</em>, não mortalidade infantil.</p></div></div>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/barra-bonita/registro_civil_2003_2024.json" target="_blank" rel="noopener noreferrer">registro_civil_2003_2024.json ↗</a> · <a href="../dados/barra-bonita/cnes_estabelecimentos_2026.json" target="_blank" rel="noopener noreferrer">cnes_estabelecimentos_2026.json ↗</a> · <a href="../dados/barra-bonita/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">ibge_cidades_snapshot_2026.json ↗</a></p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">6</div><div class="phase-text"><h3>Educação</h3><p>Alfabetização 2000/2010/2022 e nível de instrução 2010×2022 pelos Censos. O Ideb não é publicado para este município — mesma situação de Serra da Saudade.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="stats-educacao">
+              <div class="viz-head"><div><h3>Indicadores educacionais</h3><p>Alfabetização tem três pontos no tempo; nível de instrução tem dois, com bases etárias diferentes entre eles.</p></div></div>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/barra-bonita/educacao_alfabetizacao_nivel_instrucao.json" target="_blank" rel="noopener noreferrer">educacao_alfabetizacao_nivel_instrucao.json ↗</a> · <a href="../dados/barra-bonita/ips_brasil_2026.json" target="_blank" rel="noopener noreferrer">ips_brasil_2026.json ↗</a></p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">7</div><div class="phase-text"><h3>Território</h3><p>Os 4 setores censitários do Censo 2022 com o polígono oficial de cada um. Um urbano, três rurais — e é aí que mora a explicação de boa parte do orçamento.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="map-territorio">
+              <div class="viz-head"><div><h3>Densidade populacional por setor censitário</h3><p>Os 4 setores do Censo 2022 cobrindo 100% do município. Cor = habitantes por km²; passe o mouse sobre um setor.</p></div></div>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/barra-bonita/setores_poligonos_2022.json" target="_blank" rel="noopener noreferrer">setores_poligonos_2022.json ↗</a> · <a href="../dados/barra-bonita/setores_censitarios_2022.json" target="_blank" rel="noopener noreferrer">setores_censitarios_2022.json ↗</a> · <a href="../dados/barra-bonita/municipio_contorno.json" target="_blank" rel="noopener noreferrer">municipio_contorno.json ↗</a></p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">8</div><div class="phase-text"><h3>Emprego e economia</h3><p>CEMPRE/IBGE (2006–2021) e PIB municipal (2002–2023). A agropecuária responde por 53% do valor adicionado — o perfil oposto ao das outras duas cidades do piloto.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-emprego">
+              <div class="viz-head"><div><h3>Emprego formal, 2006–2021</h3><p>IBGE — Cadastro Central de Empresas (CEMPRE). Série encerrada em 2021.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-pib">
+              <div class="viz-head"><div><h3>PIB total a preços correntes, 2002–2023</h3><p>IBGE — Produto Interno Bruto dos Municípios, referência 2010.</p></div></div>
+            </div>
+            <p class="muted-note">Fontes salvas: <a href="../dados/barra-bonita/cempre_empresas_emprego_2006_2021.json" target="_blank" rel="noopener noreferrer">cempre_empresas_emprego_2006_2021.json ↗</a> · <a href="../dados/barra-bonita/pib_municipal_2002_2023.json" target="_blank" rel="noopener noreferrer">pib_municipal_2002_2023.json ↗</a></p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Segurança pública</h3><p>Vítimas de homicídio, 2023–2026, pela SSP-SC. É a fase que mais muda por estarmos fora de Minas — e a diferença é grande.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="explainer">
+              <p><strong>Aqui a fonte dos outros pilotos não serve.</strong> Itajubá e Serra da Saudade usam os dados abertos da SEJUSP-MG, que cobre só Minas Gerais. O equivalente catarinense é o Boletim Mensal de Indicadores da SSP-SC — e ele é bem mais pobre: <strong>PDF em vez de CSV</strong>, apenas vítimas de homicídio em vez de 12 naturezas de crime, e desde 2023 em vez de 2012. O número abaixo foi extraído de dentro do PDF, com teste de fechamento contra o total publicado no próprio boletim.</p>
+            </div>
+            <div class="viz-root" id="chart-seguranca">
+              <div class="viz-head"><div><h3>Vítimas de homicídio por ano</h3><p>Contagem absoluta, não taxa por 100 mil — com 1,6 mil habitantes, uma taxa oscilaria dezenas de pontos por causa de um único evento.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/barra-bonita/seguranca_ssp_sc_2023_2026.json" target="_blank" rel="noopener noreferrer">seguranca_ssp_sc_2023_2026.json ↗</a> — inclui a série do município e a régua de Santa Catarina.</p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">10</div><div class="phase-text"><h3>Síntese</h3><p>Painel com o número-chave de cada fase e o IDU-Br calculado pelo mesmo motor usado nas outras duas cidades.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="painel-sintese">
+              <div class="viz-head"><div><h3>Um número de cada fase</h3><p>O retrato mais recente disponível em cada área — o detalhe está nas fases acima.</p></div></div>
+            </div>
+            <div class="viz-root" id="idu-br">
+              <div class="viz-head"><div><h3>IDU-Br — ecossistema de dados abertos próprio de Barra Bonita</h3><p>Metodologia do projeto (<a href="../docs/METRICA_IDU_V2.md" target="_blank" rel="noopener noreferrer">METRICA_IDU_V2.md ↗</a>), mesmo motor de cálculo das outras cidades.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/barra-bonita/idu_br_2026.json" target="_blank" rel="noopener noreferrer">idu_br_2026.json ↗</a> — inclui a matriz de entrada completa, com a justificativa de cada nota.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section aria-labelledby="fontes-title">
+      <div class="section-head"><div><p class="kicker">Fontes de dados do piloto</p><h2 id="fontes-title">O que usamos, área por área.</h2></div><p>Catálogo específico de Barra Bonita. O catálogo nacional completo está em <a href="../fontes.html">fontes.html</a>.</p></div>
+      <div class="rule"><strong>A lição desta cidade: o que é nacional viaja, o que é estadual não.</strong><p>SICONFI, IBGE, PNCP, CNES e IPEAData responderam para Santa Catarina exatamente como responderam para Minas — mesma API, mesmos parâmetros, mesma qualidade. Já a camada estadual mudou completamente: a SEJUSP-MG publica CSV mensal por natureza de crime desde 2012; a SSP-SC publica PDF mensal só com homicídios desde 2023. A diferença entre saber muito e saber pouco sobre um município não está só na prefeitura — está também no estado.</p></div>
+
+      <h3 class="category-heading">Demografia e território</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SIDRA/IBGE — população</h3><p class="what">Censos 2000/2010/2022 (tabelas 202, 1378, 4709) e Estimativas 2001–2025 (tabela 6579). Os três Censos confirmam a queda: 2.118 → 1.878 → 1.668.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/6579" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/populacao_2000_2025.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Censo 2022 por setor censitário</h3><p class="what">Os 4 setores do município — população, domicílios, área e o <strong>polígono</strong> oficial de cada um. Lido do GeoPackage de Santa Catarina (122 MB) com sqlite3 e um parser de WKB próprio. Soma exatamente os 1.668 habitantes do Censo.</p><a class="open" href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/setores_poligonos_2022.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>Malhas territoriais do IBGE</h3><p class="what">Contorno do município pela API de malhas v4, em qualidade máxima. A área que a geometria integra (93,09 km²) fecha com a área oficial (92,9 km²) dentro de 0,2%.</p><a class="open" href="https://servicodados.ibge.gov.br/api/v4/malhas/municipios/4202099?formato=application/vnd.geo+json&amp;qualidade=maxima" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/municipio_contorno.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Desenvolvimento humano e progresso social</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IPS Brasil 2026</h3><p class="what">Os 79 indicadores do painel, coletados por navegador headless — o site roda em Phoenix LiveView e não tem API. A linha do município foi localizada por busca binária sobre o código IBGE na tabela ordenada.</p><a class="open" href="https://ipsbrasil.org.br/explore/data" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/ips_brasil_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IDHM 1991/2000/2010 (IPEAData)</h3><p class="what">Geral e as 3 dimensões. Não existe versão municipal mais recente. O parâmetro <code>$filter</code> do OData é ignorado nessa rota — a resposta traz os 5.570 municípios e o recorte tem de ser feito depois, pelo TERCODIGO.</p><a class="open" href="https://www.ipeadata.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/idhm_historico_1991_2010.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Finanças públicas e compras</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SICONFI / Tesouro Nacional — DCA</h3><p class="what">Três anexos do DCA, todos 2014–2025: I-C (receita por origem), I-D (despesa por natureza) e I-E (despesa por função). Mesmas armadilhas tratadas nos outros pilotos: três planos de contas no período, árvore com pai e filhos como linhas irmãs, e bases diferentes entre o I-D e o I-E.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio=2025&amp;no_anexo=DCA-Anexo%20I-E&amp;id_ente=4202099" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/despesa_funcao_natureza_2014_2025.json" target="_blank" rel="noopener noreferrer">Ver despesa por função ↗</a></article>
+        <article class="card"><div class="labels"><span class="label confirmado">Existe, não usado</span></div><h3>SICONFI — RREO</h3><p class="what">Diferente de Serra da Saudade, aqui o RREO <em>existe</em>: testado em 2019, 2022 e 2024, os três respondem. A série da Fase 3 vem do DCA mesmo assim, porque ela alcança 2014 e é a base usada nos outros pilotos — o que mantém as três cidades comparáveis.</p><a class="open" href="https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2024&amp;nr_periodo=6&amp;co_tipo_demonstrativo=RREO&amp;no_anexo=RREO-Anexo%2001&amp;id_ente=4202099" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>PNCP — Contratações Públicas</h3><p class="what">291 processos, jan/2025–ago/2026, nas 13 modalidades, com zero erro de coleta. A consulta é por código IBGE e não por CNPJ — aqui compram <strong>quatro entidades</strong> (Município, Câmara, Fundo de Saúde e Fundo de Assistência Social), e por CNPJ três ficariam de fora.</p><a class="open" href="https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?dataInicial=20250101&amp;dataFinal=20251231&amp;codigoModalidadeContratacao=6&amp;codigoMunicipioIbge=4202099&amp;pagina=1&amp;tamanhoPagina=50" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/pncp_serie_2025_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Saúde e educação</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IBGE — Estatísticas do Registro Civil</h3><p class="what">Nascidos vivos e óbitos, 2003–2024 (tabelas SIDRA 2609 e 2681).</p><a class="open" href="https://sidra.ibge.gov.br/pesquisa/registro-civil/tabelas" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/registro_civil_2003_2024.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>CNES — Estabelecimentos de Saúde</h3><p class="what">Os 5 estabelecimentos cadastrados, com tipo de unidade. Nenhum tem atendimento hospitalar — critério tirado do próprio campo do CNES, não inferido pelo código do tipo.</p><a class="open" href="https://apidadosabertos.saude.gov.br/cnes/estabelecimentos?codigo_municipio=420209&amp;limit=100" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/cnes_estabelecimentos_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>IBGE Cidades — Panorama</h3><p class="what">Mortalidade infantil, escolarização, saneamento e transferências sobre receitas correntes, por API REST — a mesma que a página do Panorama consome, com o id de cada indicador registrado.</p><a class="open" href="https://cidades.ibge.gov.br/brasil/sc/barra-bonita/panorama" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/ibge_cidades_snapshot_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label bloqueado">Não publicado</span></div><h3>Ideb — INEP, via IBGE Cidades</h3><p class="what">Consultado ano a ano de 2010 a 2026: não há Ideb publicado para este município. Com poucos alunos por série, o INEP não divulga o resultado. O valor da Fase 6 vem do IPS Brasil, que trabalha o dado do INEP por outro caminho.</p><a class="open" href="https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Segurança e economia</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label coletado">Coletado (com ressalva)</span></div><h3>SSP-SC — Boletim Mensal de Indicadores</h3><p class="what">Vítimas de homicídio por município, 2023–2026. <strong>PDF, não CSV</strong>: o número é extraído do texto do boletim, com teste de fechamento contra o total publicado nele (a soma dos 295 municípios bate exatamente). Bem mais pobre que a fonte equivalente de Minas Gerais, e frágil — se o layout mudar, a extração quebra.</p><a class="open" href="https://ssp.sc.gov.br/segurancaemnumeros/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/seguranca_ssp_sc_2023_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+        <article class="card"><div class="labels"><span class="label bloqueado">Sem criminalidade</span></div><h3>Portal de dados abertos de SC</h3><p class="what">O estado tem catálogo CKAN em <code>dados.sc.gov.br</code>, e ele responde — mas uma busca por criminalidade, segurança ou ocorrências devolve apenas dois conjuntos, ambos sobre legislação de COVID-19. Não há série de segurança pública ali.</p><a class="open" href="https://dados.sc.gov.br/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>CEMPRE e PIB dos Municípios</h3><p class="what">Emprego formal 2006–2021 (tabela 1685) e PIB total 2002–2023 com composição setorial de 2021 (tabela 5938). É aqui que aparece a agropecuária com 53% do valor adicionado.</p><a class="open" href="https://sidra.ibge.gov.br/tabela/5938" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/barra-bonita/pib_municipal_2002_2023.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
+      </div>
+
+      <h3 class="category-heading">Executivo municipal</h3>
+      <div class="source-grid">
+        <article class="card"><div class="labels"><span class="label bloqueado">HTTP 410 Gone</span></div><h3>barrabonita.sc.gov.br</h3><p class="what">O domínio institucional do município <strong>não existe mais</strong>: responde HTTP 410 Gone, com e sem <code>www</code>. Não é bloqueio como o Cloudflare de Itajubá — é o endereço oficial desativado.</p></article>
+        <article class="card"><div class="labels"><span class="label confirmado">Confirmado</span></div><h3>Portal do Cidadão (Atende.net)</h3><p class="what">O município opera numa plataforma comercial: <code>barrabonita.atende.net</code> responde e é o portal oficial. É aplicação JavaScript, sem catálogo de dados abertos, sem API e sem exportação que tenhamos conseguido verificar — por isso entra no IDU-Br como acesso, não como dado aberto.</p><a class="open" href="https://barrabonita.atende.net" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="dados-title">
+      <div class="section-head"><div><p class="kicker">Dados já coletados</p><h2 id="dados-title">O que já está salvo em <code>dados/barra-bonita/</code>.</h2></div><p>Arquivos reais, com metadados de origem, parâmetros de consulta e data de coleta. Nenhum valor desta página está escrito no HTML.</p></div>
+      <div class="dataset-grid">
+        <article class="dataset"><h3>populacao_2000_2025.json</h3><p>24 anos de população residente — Censos 2000/2010/2022 e Estimativas nos demais, com a fonte de cada ponto marcada.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>siconfi_receita_despesa_2014_2025.json</h3><p>Série anual de receita, despesa e saldo, 2014–2025, vinda do DCA. Registra que o RREO existe para este ente mas não foi usado, e por quê.</p><p class="meta">Coletado 05/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>despesa_funcao_natureza_2014_2025.json</h3><p>12 anos de despesa por função e por natureza, com subfunções, correção pelo IPCA, a comparação real 2014→2025 e o confronto com o PIB em índice de base comum.</p><p class="meta">Coletado 05/08/2026 · SICONFI + IPCA/IBGE</p></article>
+        <article class="dataset"><h3>receita_origem_2014_2025.json</h3><p>12 anos de receita por origem, com FPM, ICMS, SUS, FUNDEB, IPVA e royalties abertos rubrica a rubrica. Passa em teste de fechamento nos 12 anos.</p><p class="meta">Coletado 05/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>idhm_historico_1991_2010.json</h3><p>IDHM geral e as 3 dimensões em 1991, 2000 e 2010.</p><p class="meta">Coletado 05/08/2026 · IPEAData</p></article>
+        <article class="dataset"><h3>ips_brasil_2026.json</h3><p>Os 79 indicadores do IPS Brasil 2026, com as mesmas chaves usadas nos outros pilotos e o mapa para o cabeçalho original de cada coluna.</p><p class="meta">Coletado 05/08/2026 · IPS Brasil</p></article>
+        <article class="dataset"><h3>registro_civil_2003_2024.json</h3><p>22 anos de nascidos vivos e óbitos registrados no município.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>cnes_estabelecimentos_2026.json</h3><p>Os 5 estabelecimentos de saúde cadastrados, com tipo de unidade e o campo do CNES que confirma a ausência de atendimento hospitalar.</p><p class="meta">Coletado 05/08/2026 · CNES/Ministério da Saúde</p></article>
+        <article class="dataset"><h3>ibge_cidades_snapshot_2026.json</h3><p>11 indicadores do Panorama do IBGE, cada um com o seu ano, a fonte primária e o id no IBGE.</p><p class="meta">Coletado 05/08/2026 · IBGE Cidades</p></article>
+        <article class="dataset"><h3>educacao_alfabetizacao_nivel_instrucao.json</h3><p>Alfabetização 2000/2010/2022 e nível de instrução 2010×2022, com as categorias brutas do IBGE preservadas.</p><p class="meta">Coletado 05/08/2026 · IBGE/Censos</p></article>
+        <article class="dataset"><h3>setores_censitarios_2022.json</h3><p>Os 4 setores com população, domicílios, área e centroide calculado da geometria oficial — soma exatamente os 1.668 habitantes do Censo.</p><p class="meta">Coletado 05/08/2026 · IBGE (GeoPackage/SC)</p></article>
+        <article class="dataset"><h3>setores_poligonos_2022.json</h3><p>O polígono real de cada setor, simplificado a ~25 m, somando 92,73 km².</p><p class="meta">Coletado 05/08/2026 · IBGE (GeoPackage/SC)</p></article>
+        <article class="dataset"><h3>municipio_contorno.json</h3><p>Contorno externo do município (161 vértices), pela API de malhas do IBGE em qualidade máxima.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>pncp_serie_2025_2026.json</h3><p>291 processos de compra de quatro entidades públicas, jan/2025–ago/2026, com as 13 modalidades varridas e zero erro de coleta.</p><p class="meta">Coletado 05/08/2026 · PNCP</p></article>
+        <article class="dataset"><h3>cempre_empresas_emprego_2006_2021.json</h3><p>Empresas atuantes, unidades locais, pessoal ocupado, massa salarial e salário médio mensal, 2006–2021.</p><p class="meta">Coletado 05/08/2026 · IBGE/CEMPRE</p></article>
+        <article class="dataset"><h3>pib_municipal_2002_2023.json</h3><p>PIB total 2002–2023 e composição setorial de 2021, com a agropecuária em 52,8% do valor adicionado.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>seguranca_ssp_sc_2023_2026.json</h3><p>Vítimas de homicídio 2023–2026, extraídas do PDF do boletim da SSP-SC, com a régua estadual e o teste de fechamento contra o total publicado.</p><p class="meta">Coletado 05/08/2026 · SSP-SC</p></article>
+        <article class="dataset"><h3>idu_br_2026.json</h3><p>IDU-Br calculado pelo motor <code>idu_v2.py</code>, com a matriz de entrada completa — os 8 domínios, os 5 eixos de cada um e a justificativa de cada nota.</p><p class="meta">Avaliado 05/08/2026 · metodologia v2.1</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Piloto dedicado a Barra Bonita/SC, construído a partir de fontes públicas verificáveis.</p></div><div class="footer-links"><a href="./">Todos os pilotos</a><a href="comparar.html">Comparador</a><a href="../docs/METRICA_IDU_V2.md">Metodologia</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+  <script src="charts.js" defer></script>
+  <script src="barra-bonita.js" defer></script>
+</body>
+</html>

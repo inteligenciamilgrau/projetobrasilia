@@ -1,0 +1,90 @@
+{
+ "municipio": "Barra Bonita/SC",
+ "ibge_codigo": "4202099",
+ "entidade": "Prefeitura Municipal de Barra Bonita/SC",
+ "titulo": "Receita realizada, despesa empenhada e saldo, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais), Anexos I-C e I-E",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-C&id_ente=4202099",
+ "coletado_em": "2026-08-05",
+ "por_que_dca_e_nao_rreo": "O RREO (relatório bimestral) EXISTE para este ente — testado em 2024, 2022, 2019 —, mas a série aqui vem do DCA mesmo assim: é a declaração anual definitiva, alcança 2014 e é a mesma base usada nos outros pilotos, o que mantém as cidades comparáveis entre si.",
+ "colunas_usadas": {
+  "receita_realizada": "I-C, cod_conta=\"ReceitasExcetoIntraOrcamentarias\", coluna \"Receitas Brutas Realizadas\" menos as colunas \"Deduções - FUNDEB\" e \"Outras Deduções da Receita\" — equivale à receita líquida realizada",
+  "despesa_empenhada": "I-E, conta=\"Despesas Exceto Intraorçamentárias\", coluna \"Despesas Empenhadas\""
+ },
+ "observacao": "[NACIONAL — não pontua como diferencial entre cidades no IDU-Br, mas é dado real, atual e específico do município] Valores em reais correntes de cada ano (não deflacionados). Despesa empenhada ≠ despesa paga. Receita e despesa excluem as operações intraorçamentárias dos dois lados, para que o saldo compare grandezas equivalentes.",
+ "valores_nao_deflacionados": true,
+ "serie": [
+  {
+   "ano": 2014,
+   "receita_realizada": 12157631.76,
+   "despesa_empenhada": 10754174.87,
+   "saldo": 1403456.89
+  },
+  {
+   "ano": 2015,
+   "receita_realizada": 13112052.95,
+   "despesa_empenhada": 10840559.14,
+   "saldo": 2271493.81
+  },
+  {
+   "ano": 2016,
+   "receita_realizada": 11266248.37,
+   "despesa_empenhada": 10489797.06,
+   "saldo": 776451.31
+  },
+  {
+   "ano": 2017,
+   "receita_realizada": 14133485.49,
+   "despesa_empenhada": 11873127.36,
+   "saldo": 2260358.13
+  },
+  {
+   "ano": 2018,
+   "receita_realizada": 11356401.12,
+   "despesa_empenhada": 12564162.53,
+   "saldo": -1207761.41
+  },
+  {
+   "ano": 2019,
+   "receita_realizada": 13669554.67,
+   "despesa_empenhada": 12687633.6,
+   "saldo": 981921.07
+  },
+  {
+   "ano": 2020,
+   "receita_realizada": 14167218.13,
+   "despesa_empenhada": 14436769.89,
+   "saldo": -269551.76
+  },
+  {
+   "ano": 2021,
+   "receita_realizada": 17644491.64,
+   "despesa_empenhada": 16288709.93,
+   "saldo": 1355781.71
+  },
+  {
+   "ano": 2022,
+   "receita_realizada": 23633272.26,
+   "despesa_empenhada": 23150975.78,
+   "saldo": 482296.48
+  },
+  {
+   "ano": 2023,
+   "receita_realizada": 22969287.16,
+   "despesa_empenhada": 24696914.49,
+   "saldo": -1727627.33
+  },
+  {
+   "ano": 2024,
+   "receita_realizada": 30513690.74,
+   "despesa_empenhada": 29384264.25,
+   "saldo": 1129426.49
+  },
+  {
+   "ano": 2025,
+   "receita_realizada": 31010824.53,
+   "despesa_empenhada": 26446047.55,
+   "saldo": 4564776.98
+  }
+ ]
+}

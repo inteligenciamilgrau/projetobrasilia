@@ -1,0 +1,110 @@
+{
+ "municipio": "Barra Bonita/SC",
+ "ibge_codigo": "4202099",
+ "fonte": "IBGE — Produto Interno Bruto dos Municípios, referência 2010, tabela SIDRA 5938",
+ "url_origem": "https://sidra.ibge.gov.br/tabela/5938",
+ "coletado_em": "2026-08-05",
+ "observacao": "[NACIONAL] Valores a precos correntes, em mil reais. Numa cidade onde a prefeitura e o maior agente economico, a rubrica 'administracao publica' do PIB e em boa medida o proprio orcamento municipal — por isso PIB e despesa publica aqui nao sao series independentes.",
+ "unidade": "Mil Reais (preços correntes)",
+ "pib_total": [
+  {
+   "ano": 2002,
+   "valor_mil_reais": 10057
+  },
+  {
+   "ano": 2003,
+   "valor_mil_reais": 13896
+  },
+  {
+   "ano": 2004,
+   "valor_mil_reais": 14025
+  },
+  {
+   "ano": 2005,
+   "valor_mil_reais": 14903
+  },
+  {
+   "ano": 2006,
+   "valor_mil_reais": 15774
+  },
+  {
+   "ano": 2007,
+   "valor_mil_reais": 18687
+  },
+  {
+   "ano": 2008,
+   "valor_mil_reais": 35377
+  },
+  {
+   "ano": 2009,
+   "valor_mil_reais": 21368
+  },
+  {
+   "ano": 2010,
+   "valor_mil_reais": 24341
+  },
+  {
+   "ano": 2011,
+   "valor_mil_reais": 24815
+  },
+  {
+   "ano": 2012,
+   "valor_mil_reais": 25516
+  },
+  {
+   "ano": 2013,
+   "valor_mil_reais": 30428
+  },
+  {
+   "ano": 2014,
+   "valor_mil_reais": 31432
+  },
+  {
+   "ano": 2015,
+   "valor_mil_reais": 33791
+  },
+  {
+   "ano": 2016,
+   "valor_mil_reais": 38423
+  },
+  {
+   "ano": 2017,
+   "valor_mil_reais": 39994
+  },
+  {
+   "ano": 2018,
+   "valor_mil_reais": 35317
+  },
+  {
+   "ano": 2019,
+   "valor_mil_reais": 36851
+  },
+  {
+   "ano": 2020,
+   "valor_mil_reais": 42592
+  },
+  {
+   "ano": 2021,
+   "valor_mil_reais": 52281
+  },
+  {
+   "ano": 2022,
+   "valor_mil_reais": 55813
+  },
+  {
+   "ano": 2023,
+   "valor_mil_reais": 66206
+  }
+ ],
+ "composicao_setorial_2021": {
+  "observacao": "Valor adicionado bruto (VA) por setor no ultimo ano publicado. 'servicos_exceto_adm_publica' e 'administracao_publica' sao rubricas separadas no IBGE — somadas dao o setor de servicos em sentido amplo.",
+  "unidade": "Mil Reais (preços correntes)",
+  "agropecuaria": 26896,
+  "industria": 2447,
+  "servicos_exceto_adm_publica": 6992,
+  "administracao_publica": 14636,
+  "valor_adicionado_total": 50971,
+  "impostos_liquidos": 1310,
+  "pib_total": 52281
+ }
+}

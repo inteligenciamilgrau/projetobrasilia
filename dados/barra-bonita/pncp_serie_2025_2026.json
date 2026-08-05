@@ -1,0 +1,2556 @@
+{
+ "municipio": "Barra Bonita/SC",
+ "ibge_codigo": "4202099",
+ "fonte": "PNCP — Portal Nacional de Contratações Públicas (governo federal)",
+ "cnpj_prefeitura": "18.301.069/0001-10",
+ "cnpjs_encontrados": [
+  "01612527000130",
+  "09301902000132",
+  "11873495000180",
+  "97552692000112"
+ ],
+ "url_origem_template": "https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?dataInicial={inicio}&dataFinal={fim}&codigoModalidadeContratacao={mod}&codigoMunicipioIbge=4202099&pagina={p}&tamanhoPagina=50",
+ "coletado_em": "2026-08-05",
+ "periodo_label": "jan/2025-ago/2026",
+ "metodologia": "Consulta por codigoMunicipioIbge (nao por CNPJ), varrendo as 13 modalidades de contratacao do PNCP e paginando ate o fim de cada uma. Diferente do piloto de Itajuba, aqui a Dispensa de Licitacao ENTRA: o volume e pequeno o bastante para a API aguentar, e numa cidade deste tamanho a contratacao direta e justamente o que importa observar.",
+ "modalidades_incluidas": [
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "quantidade": 128,
+   "valor_estimado": 30879374.6
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "quantidade": 80,
+   "valor_estimado": 2701721.42
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "quantidade": 58,
+   "valor_estimado": 992575.53
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "quantidade": 13,
+   "valor_estimado": 2828718.23
+  },
+  {
+   "modalidade": "Credenciamento",
+   "quantidade": 9,
+   "valor_estimado": 973849.0
+  },
+  {
+   "modalidade": "Leilão - Eletrônico",
+   "quantidade": 3,
+   "valor_estimado": 713878.0
+  }
+ ],
+ "total_processos": 291,
+ "valor_total_estimado": 39090116.78,
+ "por_categoria": [
+  {
+   "categoria": "Outros",
+   "quantidade": 119,
+   "valor_estimado": 12995790.21
+  },
+  {
+   "categoria": "Obras e infraestrutura",
+   "quantidade": 33,
+   "valor_estimado": 5892189.83
+  },
+  {
+   "categoria": "Educação",
+   "quantidade": 32,
+   "valor_estimado": 6825067.84
+  },
+  {
+   "categoria": "Saúde",
+   "quantidade": 30,
+   "valor_estimado": 4026812.39
+  },
+  {
+   "categoria": "Veículos, combustível e transporte",
+   "quantidade": 28,
+   "valor_estimado": 1201604.83
+  },
+  {
+   "categoria": "Serviços administrativos e gerais",
+   "quantidade": 17,
+   "valor_estimado": 1208575.8
+  },
+  {
+   "categoria": "Cultura, esporte e eventos",
+   "quantidade": 11,
+   "valor_estimado": 565046.3
+  },
+  {
+   "categoria": "Tecnologia e comunicação",
+   "quantidade": 11,
+   "valor_estimado": 379166.57
+  },
+  {
+   "categoria": "Alimentação e gêneros",
+   "quantidade": 8,
+   "valor_estimado": 5969155.01
+  },
+  {
+   "categoria": "Limpeza e materiais de consumo",
+   "quantidade": 2,
+   "valor_estimado": 26708.0
+  }
+ ],
+ "por_mes": [
+  {
+   "mes": "2025-01",
+   "mes_label": "jan/25",
+   "quantidade": 16,
+   "valor_estimado": 4890757.15
+  },
+  {
+   "mes": "2025-02",
+   "mes_label": "fev/25",
+   "quantidade": 7,
+   "valor_estimado": 112044.44
+  },
+  {
+   "mes": "2025-03",
+   "mes_label": "mar/25",
+   "quantidade": 26,
+   "valor_estimado": 4926014.43
+  },
+  {
+   "mes": "2025-04",
+   "mes_label": "abr/25",
+   "quantidade": 12,
+   "valor_estimado": 173318.15
+  },
+  {
+   "mes": "2025-05",
+   "mes_label": "mai/25",
+   "quantidade": 26,
+   "valor_estimado": 5218729.96
+  },
+  {
+   "mes": "2025-06",
+   "mes_label": "jun/25",
+   "quantidade": 11,
+   "valor_estimado": 1014658.1
+  },
+  {
+   "mes": "2025-07",
+   "mes_label": "jul/25",
+   "quantidade": 1,
+   "valor_estimado": 857460.0
+  },
+  {
+   "mes": "2025-08",
+   "mes_label": "ago/25",
+   "quantidade": 23,
+   "valor_estimado": 3594457.35
+  },
+  {
+   "mes": "2025-09",
+   "mes_label": "set/25",
+   "quantidade": 27,
+   "valor_estimado": 1485690.59
+  },
+  {
+   "mes": "2025-10",
+   "mes_label": "out/25",
+   "quantidade": 23,
+   "valor_estimado": 1030107.7
+  },
+  {
+   "mes": "2025-11",
+   "mes_label": "nov/25",
+   "quantidade": 17,
+   "valor_estimado": 1475197.69
+  },
+  {
+   "mes": "2025-12",
+   "mes_label": "dez/25",
+   "quantidade": 8,
+   "valor_estimado": 134002.41
+  },
+  {
+   "mes": "2026-01",
+   "mes_label": "jan/26",
+   "quantidade": 12,
+   "valor_estimado": 3334961.39
+  },
+  {
+   "mes": "2026-02",
+   "mes_label": "fev/26",
+   "quantidade": 21,
+   "valor_estimado": 3445042.93
+  },
+  {
+   "mes": "2026-03",
+   "mes_label": "mar/26",
+   "quantidade": 28,
+   "valor_estimado": 3091457.47
+  },
+  {
+   "mes": "2026-04",
+   "mes_label": "abr/26",
+   "quantidade": 3,
+   "valor_estimado": 9388.0
+  },
+  {
+   "mes": "2026-05",
+   "mes_label": "mai/26",
+   "quantidade": 6,
+   "valor_estimado": 1271682.9
+  },
+  {
+   "mes": "2026-06",
+   "mes_label": "jun/26",
+   "quantidade": 14,
+   "valor_estimado": 2400768.52
+  },
+  {
+   "mes": "2026-07",
+   "mes_label": "jul/26",
+   "quantidade": 8,
+   "valor_estimado": 615814.6
+  },
+  {
+   "mes": "2026-08",
+   "mes_label": "ago/26",
+   "quantidade": 2,
+   "valor_estimado": 8563.0
+  }
+ ],
+ "erros_de_coleta": [],
+ "observacao": "[NACIONAL — nao pontua como diferencial entre cidades no IDU-Br, mas e dado real, atual e especifico do municipio] Valor ESTIMADO da contratacao no momento da publicacao, nao valor homologado nem pago. A categoria e inferida do texto do objeto por palavras-chave — e classificacao nossa, nao do PNCP.",
+ "processos": [
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-01-07",
+   "objeto": "AQUISIÇÃO DE ENERGIA ELÉTRICA PARA ATENDER OS IMÓVEIS VINCULADOS AO MUNICÍPIO",
+   "valor": 330000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-01-08",
+   "objeto": "AQUISIÇÃO DE ENERGIA ELÉTRICA PARA ATENDER OS IMÓVEIS VINCULADOS AO FUNDO MUNICIPAL DE SAÚDE",
+   "valor": 40000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-01-08",
+   "objeto": "AQUISIÇÃO DE ÁGUA TRATADA PARA OS IMÓVEIS VINCULADOS AO FUNDO MUNICIPAL DE SAÚDE",
+   "valor": 8000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-01-08",
+   "objeto": "AQUISIÇÃO DE ÁGUA TRATADA PARA OS IMÓVEIS VINCULADOS AO MUNICÍPIO",
+   "valor": 30000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-01-08",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS POSTAIS PARA ENVIO E RECEBIMENTO DE CORRESPONDÊNCIAS",
+   "valor": 3000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-14",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS DE ARBITRAGEM PARA ATENDER ÀS COMPETIÇÕES DE FUTSAL, FUTEBOL DE CAMPO, FUTEBOL SUÍÇO, VOLEIBOL E BOCHA RAFFA REALIZADAS NO MUNICÍPIO.",
+   "valor": 194900.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-21",
+   "objeto": "AQUISIÇÃO DE PRODUTOS ALIMENTÍCIOS DESTINADOS AO USO DO MUNICÍPIO DE BARRA BONITA/ SC",
+   "valor": 2409230.65,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-22",
+   "objeto": "AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS (COFFEE BREAK) PARA ATENDIMENTO ÀS DEMANDAS INSTITUCIONAIS DAS SECRETARIAS MUNICIPAIS",
+   "valor": 490620.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-22",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NA EXECUÇÃO DE SERVIÇOS TOPOGRÁFICOS",
+   "valor": 967900.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-24",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A PRESTAÇÃO DE SERVIÇOS DE MÃO DE OBRA, INCLUINDO AS SEGUINTES ESPECIALIDADES: PEDREIRO, SERVENTE, ELETRICISTA, CARPINTEIRO, PINTOR, ENCANADOR, TELHADISTA E MONTADOR DE MÓVEIS.",
+   "valor": 273409.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-01-24",
+   "objeto": "CONTRATAÇÃO DE PESSOA ESPECIALIZADA PARA A PRESTAÇÃO DE SERVIÇOS DE MANUTENÇÃO E CONSERVAÇÃO DE MÁQUINAS, IMPLEMENTOS E VEÍCULOS, ABRANGENDO CONFECÇÃO DE MANGUEIRAS HIDRÁULICAS, SOLDA, SERVIÇOS DE TORNO E RETÍFICA, BALANCEAMENTO E GEOMETRIA DE VEÍCULOS, ALÉM DE LAVAGEM DE CATALISADORES",
+   "valor": 101920.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-01-24",
+   "objeto": "PRESTAÇÃO DE SERVIÇOS CONTINUADOS DE TECNOLOGIA DA INFORMAÇÃO E COMUNICAÇÃO, EM PLATAFORMA WEB, QUE POSSUI AS SEGUINTES FUNCIONALIDADES E CARACTERÍSTICAS: SISTEMA TODO ELETRÔNICO E DIGITAL, COM FUNCIONALIDADES ACESSÍVEIS TAMBÉM POR DISPOSITIVOS MÓVEIS, PARA ATENDER ÀS NECESSIDADES DO PROCESSO LEGISLATIVO DA CÂMARA MUNICIPAL; E PORTAL ELETRÔNICO COMPATÍVEL COM A LEGISLAÇÃO VIGENTE ACERCA DE ACESSIBILIDADE E TRANSPARÊNCIA, ALIMENTADO AUTOMATICAMENTE COM AS INFORMAÇÕES CABÍVEIS DO SISTEMA LEGISLATIVO.",
+   "valor": 9291.96,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-01-29",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS ESPECIALIZADOS PARA A REALIZAÇÃO DE AULAS DE MAKER E ROBÓTICA KIDS - NÍVEL BÁSICO, DESTINADAS AOS ALUNOS DO 1º AO 3º ANO DA REDE MUNICIPAL DE ENSINO",
+   "valor": 18200.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-01-29",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO ESPECIALIZADO PARA INSPEÇÃO VEICULAR COM EMISSÃO DE LAUDO ESCOLAR SEMESTRAL REFERENTE AO ANO DE 2025",
+   "valor": 4800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-01-30",
+   "objeto": "SERVIÇO DE MANUTENÇÃO DE VEÍCULOS EM GARANTIA DA MARCA CHEVROLET",
+   "valor": 5000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-01-31",
+   "objeto": "AQUISIÇÃO DE PONTEIRO UNIVERSAL PARA ROMPEDOR HIDRÁULICO, VISANDO GARANTIR A CONTINUIDADE DAS OPERAÇÕES E A MANUTENÇÃO ADEQUADA DOS EQUIPAMENTOS",
+   "valor": 4485.54,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-02-06",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS ESPECIALIZADOS PARA A REALIZAÇÃO DE AULAS DE MAKER E ROBÓTICA KIDS - NÍVEL BÁSICO, DESTINADAS AOS ALUNOS DO 1º AO 3º ANO DA REDE MUNICIPAL DE ENSINO",
+   "valor": 19500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-02-11",
+   "objeto": "CONTRATAÇÃO DE FORNECIMENTO DE ÁGUA TRATADA.",
+   "valor": 1200.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-02-13",
+   "objeto": "CONTRATAÇÃO DE PESSOA ESPECIALIZADA PARA A PRESTAÇÃO DE SERVIÇOS DE SOLDA, SERVIÇOS DE TORNO E RETÍFICA",
+   "valor": 60515.64,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-02-13",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO ESPECIALIZADO PARA INSPEÇÃO VEICULAR PARA EMISSÃO DE LAUDO DETER DOS VEÍCULOS DA SECRETARIA DE EDUCAÇÃO.",
+   "valor": 2200.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-02-14",
+   "objeto": "Aquisição de certificado digital do tipo e-cpf e e-cnpj A1",
+   "valor": 3050.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-02-14",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NO FORNECIMENTO DE MARMITEX OU REFEIÇÕES EM SISTEMA BUFFET LIVRE, INCLUINDO ALMOÇO E JANTAR, ACOMPANHADOS DE ÁGUA OU REFRIGERANTE DE TAMANHO PEQUENO",
+   "valor": 22400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-02-17",
+   "objeto": "CONTRATAÇÃO DE PLATAFORMA WEB PARA CONSOLIDAÇÃO, COMPILAÇÃO, VERSIONAMENTO E GERENCIAMENTO DOS ATOS OFICIAIS MUNICIPAIS.",
+   "valor": 3178.8,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-03",
+   "objeto": "AQUISIÇÃO DE MATERIAIS DE CONSTRUÇÃO DESTINADOS À MANUTENÇÃO E CONSERVAÇÃO DE BENS IMÓVEIS.",
+   "valor": 1158168.01,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-03-03",
+   "objeto": "CONTRATAÇÃO DE SEGURO PARA VEÍCULO DA SECRETARIA DE SAÚDE",
+   "valor": 3605.69,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-03",
+   "objeto": "CONTRATAÇÃO DE CAPACITAÇÃO TÉCNICA DE FORMA TEÓRICA E PRÁTICA PARA PROFISSIONAIS QUE ATUAM NO CREAS A SER REALIZADO NA CIDADE DE CURITIBA/ PR.",
+   "valor": 4348.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-03-04",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NO FORNECIMENTO DE MARMITEX OU REFEIÇÕES EM SISTEMA BUFFET LIVRE, INCLUINDO ALMOÇO E JANTAR, ACOMPANHADOS DE ÁGUA OU REFRIGERANTE DE TAMANHO PEQUENO",
+   "valor": 22400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2025-03-04",
+   "objeto": "CHAMADA PÚBLICA PARA AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS DESTINADOS À MERENDA ESCOLAR, PROVENIENTES DA AGRICULTURA FAMILIAR, EM CONFORMIDADE COM O PNAE.",
+   "valor": 267451.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-05",
+   "objeto": "CONTRATAÇÃO DE PESSOA JURÍDICA PARA A PRESTAÇÃO DE SERVIÇOS DE TRANSPORTE ESCOLAR",
+   "valor": 1411800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2025-03-05",
+   "objeto": "CONTRATAÇÃO DE PROFISSIONAL OU EMPRESA ESPECIALIZADA PARA AVALIAÇÃO DE IMÓVEIS DE INTERESSE DA ADMINISTRAÇÃO MUNICIPAL, CONFORME OS PARÂMETROS DO MERCADO IMOBILIÁRIO LOCAL",
+   "valor": 10200.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-11",
+   "objeto": "CONTRATAÇÃO DE FORNECIMENTO DE ENERGIA ELÉTRICA",
+   "valor": 5500.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-11",
+   "objeto": "CONTRAÇÃO DE SOLUÇÃO TECNOLÓGICA DESENVOLVIDA PARA INTEGRAÇÃO DO SISTEMA CIGA LEGISLATIVO DO O EXECUTIVO",
+   "valor": 1920.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-12",
+   "objeto": "INSCRIÇÃO DOS SERVIDORES NO SEMINÁRIO DE FORMAÇÃO E ACOLHIDA DE GESTORES MUNICIPAIS DE ASSISTÊNCIA SOCIAL DA REGIÃO SUL, QUE OCORRERÁ EM FLORIANÓPOLIS/SC NOS DIAS 19, 20 E 21 DE MARÇO DE 2025.",
+   "valor": 3950.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-18",
+   "objeto": "AQUISIÇÃO DE CORTINAS PARA ATENDER À DEMANDA DAS SECRETARIAS",
+   "valor": 30964.46,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-18",
+   "objeto": "AQUISIÇÃO E INSTALAÇÃO DE CALHAS, RUFOS, JANELAS, PORTAS, VIDROS, GUARDA-CORPOS, ALÉM DA EXECUÇÃO DE SERVIÇOS DE PINTURA, REMOÇÃO E REINSTALAÇÃO EM PRÉDIOS PÚBLICOS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 615839.4,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-03-19",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA AMPLIAÇÃO E REFORMA DA SEDE DA PREFEITURA MUNICIPAL DE BARRA BONITA/SC.",
+   "valor": 354609.17,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-19",
+   "objeto": "INSCRIÇÃO DE SERVIDORES NO CURSO SOBRE OS EFEITOS DA LEI COMPLEMENTAR 214/2025 PARA OS MUNICÍPIOS E A IMPLANTAÇÃO DO IBS, PROMOVIDO PELA AMEOSC",
+   "valor": 1400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-20",
+   "objeto": "CONTRATAÇÃO DE PESSOA FÍSICA OU JURÍDICA ESPECIALIZADA, COM PROFISSIONAIS DE EDUCAÇÃO FÍSICA DEVIDAMENTE BACHARELADOS E REGISTRADOS NO CONSELHO REGIONAL DE EDUCAÇÃO FÍSICA (CREF/SC), PARA ATUAÇÃO NAS ESCOLINHAS E EQUIPES DE FUTSAL, FUTEBOL DE CAMPO, VOLEIBOL, ATLETISMO E DEMAIS ATIVIDADES ESPORTIVAS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 161000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-20",
+   "objeto": "CONTRATAÇÃO DE PESSOA FÍSICA OU JURÍDICA ESPECIALIZADA PARA MINISTRAR AULAS DE PERCUSSÃO, VIOLÃO, DANÇAS, ACORDEON E BALÉ, COM O OBJETIVO DE PROMOVER O DESENVOLVIMENTO ARTÍSTICO E CULTURAL DA COMUNIDADE.",
+   "valor": 212724.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-03-21",
+   "objeto": "AQUISIÇÃO DE PEÇAS PARA A MANUTENÇÃO DA ESCAVADEIRA HIDRÁULICA HYUNDAI 160LC9",
+   "valor": 7175.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-03-25",
+   "objeto": "AQUISIÇÃO DE FOGOS DE ARTIFÍCIO PARA A INAUGURAÇÃO DA PONTE SOBRE O RIO DAS ANTAS.",
+   "valor": 700.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-26",
+   "objeto": "AQUISIÇÃO DA NORMA ABNT NBR 17076:2024 - PROJETO DE SISTEMA DE TRATAMENTO DE ESGOTO DE PEQUENO PORTE - REQUISITOS",
+   "valor": 362.6,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-26",
+   "objeto": "INSCRIÇÃO DE SERVIDORES NO CURSO \"SCFV (SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VÍNCULOS): PRÁTICA, FERRAMENTAS E ESTRATÉGIAS PARA A EXECUÇÃO\", A SER REALIZADO EM CHAPECÓ-SC, NOS DIAS 24 E 25 DE ABRIL",
+   "valor": 3150.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-26",
+   "objeto": "INSCRIÇÃO DO VICE-PREFEITO, ADEMIR RODRIGUES DA SILVA, NA XXVI MARCHA A BRASÍLIA EM DEFESA DOS MUNICÍPIOS, A SER REALIZADA NOS DIAS 19, 20, 21 E 22 DE MAIO DE 2025.",
+   "valor": 500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-26",
+   "objeto": "INSCRIÇÃO DE SERVIDORES MUNICIPAIS NO CURSO \"ACESSIBILIDADE APLICADA\", PROMOVIDO PELA AMEOSC NOS DIAS 10 E 11 DE ABRIL DE 2025",
+   "valor": 1640.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-03-26",
+   "objeto": "INSCRIÇÃO NO ENCONTRO ESTADUAL DE VEREADORES E SERVIDORES DAS CÂMARAS MUNICIPAIS DE SANTA CATARINA",
+   "valor": 5000.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-03-27",
+   "objeto": "AQUISIÇÃO E INSTALAÇÃO DE CALHAS, RUFOS, JANELAS, PORTAS, VIDROS, GUARDA-CORPOS, ALÉM DA EXECUÇÃO DE SERVIÇOS DE PINTURA, REMOÇÃO E REINSTALAÇÃO EM PRÉDIOS PÚBLICOS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 626507.1,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-03-27",
+   "objeto": "AQUISIÇÃO DE ÁGUA MINERAL EM BOMBONAS DE 20L",
+   "valor": 14400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-03-28",
+   "objeto": "AQUISIÇÃO DE FOGOS DE ARTIFÍCIO PARA A INAUGURAÇÃO DA PONTE SOBRE O RIO DAS ANTAS.",
+   "valor": 700.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-03",
+   "objeto": "AQUISIÇÃO DE CARRINHOS DE BEBÊ PARA ALUNOS DE ATÉ 6 MESES",
+   "valor": 3947.6,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-11",
+   "objeto": "AQUISIÇÃO DE MATERIAIS E CONTRATAÇÃO DE SERVIÇO PARA MELHORIAS ELÉTRICAS",
+   "valor": 3227.42,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-11",
+   "objeto": "[Portal de Compras Públicas] - AQUISIÇÃO DE MATERIAIS E CONTRATAÇÃO DE SERVIÇO PARA MELHORIAS ELÉTRICAS",
+   "valor": 3227.42,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-11",
+   "objeto": "CONTRATAÇÃO DE EMISSORA DE RÁDIO COM ABRANGÊNCIA LOCAL PARA VEICULAÇÃO DE PROGRAMA INSTITUCIONAL INFORMATIVO DO PODER LEGISLATIVO DE BARRA BONITA/SC",
+   "valor": 9766.68,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-11",
+   "objeto": "[Portal de Compras Públicas] - CONTRATAÇÃO DE EMISSORA DE RÁDIO COM ABRANGÊNCIA LOCAL PARA VEICULAÇÃO DE PROGRAMA INSTITUCIONAL INFORMATIVO DO PODER LEGISLATIVO DE BARRA BONITA/SC",
+   "valor": 9766.68,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-14",
+   "objeto": "CONTRATAÇÃO, POR TEMPO DETERMINADO, DE SERVIÇO DE TRANSPORTE ESCOLAR PARA ATENDIMENTO DA LINHA ALTO SÃO JOSÉ",
+   "valor": 38332.8,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-04-22",
+   "objeto": "AQUISIÇÃO DE MATERIAIS PARA USO DO DEPARTAMENTO DE ESPORTES, COMO REDES, TRAVES E BOLAS DE BOLÃO",
+   "valor": 14369.55,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-04-22",
+   "objeto": "AQUISIÇÃO DE RIPPER E PONTEIRO PARA ESCAVADEIRA HIDRÁULICA HYUNDAI 225",
+   "valor": 4440.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-25",
+   "objeto": "AQUISIÇÃO DE MOTOR SUBMERSO E BOMBEADOR DESTINADOS À MANUTENÇÃO EMERGENCIAL DO POÇO ARTESIANO LOCALIZADO NA COMUNIDADE DA LINHA ALTO SÃO JOSÉ, BEM COMO À COMPOSIÇÃO DE UNIDADE RESERVA PARA PRONTA SUBSTITUIÇÃO EM FUTURAS NECESSIDADES OPERACIONAIS DO SISTEMA DE ABASTECIMENTO DE ÁGUA.",
+   "valor": 25540.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-28",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO DE PLOTAGEM PARCIAL NOS VEÍCULOS PERTENCENTES AO FUNDO MUNICIPAL DE SAÚDE DE BARRA BONITA/SC",
+   "valor": 6300.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2025-04-29",
+   "objeto": "CREDENCIAMENTO DE EMPRESAS PARA A CONTRATAÇÃO DE SERVIÇO ESPECIALIZADO EM MANUTENÇÃO PREVENTIVA E CORRETIVA DE EQUIPAMENTOS ODONTOLÓGICOS E HOSPITALARES DO FUNDO MUNICIPAL DE SAÚDE DE BARRA BONITA/ SC",
+   "valor": 40000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-04-30",
+   "objeto": "AQUISIÇÃO DE ÁGUA MINERAL EM BOMBONAS DE 20L",
+   "valor": 14400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-05-05",
+   "objeto": "INSCRIÇÃO EM CURSO DE APERFEIÇOAMENTO NA ÁREA DA CULTURA, PROMOVIDO PELA FECAM, A SER REALIZADO NA CIDADE DE CHAPECÓ/SC, NOS DIAS 06, 07 E 08 DE MAIO DE 2025.",
+   "valor": 220.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-05-07",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO ESPECIALIZADO PARA A GESTÃO E EXECUÇÃO DE PROGRAMA DE ESTÁGIO DE ESTUDANTES.",
+   "valor": 2400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-05-07",
+   "objeto": "SERVIÇOS DE CONFECÇÃO DE LETREIRO, PLOTAGEM DE VEÍCULOS E PRODUÇÃO DE ADESIVOS.",
+   "valor": 61032.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-05-07",
+   "objeto": "CONTRATAÇÃO DE SOLUÇÃO TECNOLÓGICA PARA GRAVAÇÃO E TRANSMISSÃO AO VIVO DAS SESSÕES DA CÂMARA MUNICIPAL POR MEIO DE PLATAFORMAS WEB, COMO FACEBOOK E YOUTUBE, INCLUINDO A DISPONIBILIZAÇÃO DOS EQUIPAMENTOS NECESSÁRIOS (COMO CÂMERAS, MESA DE CAPTAÇÃO DE SOM E PLATAFORMA DE CONTROLE AO VIVO), DENOMINADOS EM CONJUNTO COMO \"TV DO LEGISLATIVO\".",
+   "valor": 9827.04,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-08",
+   "objeto": "AQUISIÇÃO DE TAG FATURA DE ÁGUA 104X245MM - ROLO COM 100 TAGS",
+   "valor": 23220.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-08",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS DE MÃO DE OBRA ESPECIALIZADA PARA CONSERTO DE MOTOCICLETAS, BEM COMO SERVIÇOS DE FUNILARIA E PINTURA EM VEÍCULOS E MÁQUINAS",
+   "valor": 250150.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-05-08",
+   "objeto": "CONTRATAÇÃO DE SEGURO PARA VEÍCULO DA SECRETARIA DE SAÚDE",
+   "valor": 946.59,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-05-08",
+   "objeto": "AQUISIÇÃO DE MATERIAIS PARA USO DO DESTACAMENTO DA POLÍCIA MILITAR DE BARRA BONITA/ SC",
+   "valor": 6519.9,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-13",
+   "objeto": "AQUISIÇÃO DE CARGAS DE GÁS DE COZINHA (P13)",
+   "valor": 13000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-14",
+   "objeto": "AQUISIÇÃO DE AGASALHOS DESTINADOS À DISTRIBUIÇÃO NA CAMPANHA DO AGASALHO PROMOVIDA PELO FUNDO MUNICIPAL DE ASSISTÊNCIA SOCIAL DE BARRA BONITA/SC",
+   "valor": 16220.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-15",
+   "objeto": "AQUISIÇÃO DE RIPPER PARA ESCAVADEIRA HIDRÁULICA HYUNDAI 225",
+   "valor": 62900.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-15",
+   "objeto": "AQUISIÇÃO E INSTALAÇÃO DE CALHAS, RUFOS, JANELAS, PORTAS, VIDROS, GUARDA-CORPOS, ALÉM DA EXECUÇÃO DE SERVIÇOS DE PINTURA, REMOÇÃO E REINSTALAÇÃO EM PRÉDIOS PÚBLICOS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 626507.1,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-05-15",
+   "objeto": "CONTRATAÇÃO DE ASSESSORIA E CONSULTORIA TÉCNICA, TECNOLÓGICA E GERENCIAL, VISANDO ACELERAR E SUSTENTAR O PROCESSO\nDE DESENVOLVIMENTO SOCIOECONÔMICO DO MUNICÍPIO DE MUNICÍPIO DE BARRA BONITA/ SC.",
+   "valor": 48000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-19",
+   "objeto": "AQUISIÇÃO DE MATERIAIS, EQUIPAMENTOS E CONTRATAÇÃO DE SERVIÇOS PARA A FURAÇÃO E MANUTENÇÃO DE POÇOS ARTESIANOS, BEM COMO PARA A MANUTENÇÃO DAS REDES DE ABASTECIMENTO DE ÁGUA NAS COMUNIDADES DO INTERIOR.",
+   "valor": 2997337.8,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-19",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA MINISTRAR AULAS DE ATIVIDADES FÍSICAS AOS MUNÍCIPES",
+   "valor": 49289.76,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-05-20",
+   "objeto": "INSCRIÇÃO DE SERVIDORES VINCULADOS AO FUNDO MUNICIPAL DE ASSISTÊNCIA SOCIAL DE BARRA BONITA/SC PARA PARTICIPAÇÃO NO XIV FÓRUM ESTADUAL DA POLÍTICA DE ASSISTÊNCIA SOCIAL, PROMOVIDO PELA FECAM (FEDERAÇÃO DE CONSÓRCIOS, ASSOCIAÇÕES DE MUNICÍPIOS DE SANTA CATARINA)",
+   "valor": 1400.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-21",
+   "objeto": "AQUISIÇÃO DE ACERVO LITERÁRIO DESTINADO AOS ALUNOS DO ENSINO FUNDAMENTAL - 4º E 5º ANOS, CONTENDO 298 TÍTULOS/VOLUMES.",
+   "valor": 11986.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-21",
+   "objeto": "LOCAÇÃO DE BRINQUEDOS INFLÁVEIS PARA EVENTO EM COMEMORAÇÃO AO DIA DAS CRIANÇAS",
+   "valor": 6170.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-22",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS CONTÍNUOS DE PROVIMENTO MENSAL DE SOLUÇÃO DE GESTÃO PÚBLICA, DE FORMA MUDULAR E INTEGRADA, POR TEMPO DETERMINADO, SEM LIMITE DE USUÁRIOS. INCLUINDO AINDA, SERVIÇOS COMPLEMENTARES, COMO IMPLANTAÇÃO, TREINAMENTO DE USUÁRIOS INTERNOS, ASSISTÊNCIA TÉCNICA E MANUTENÇÃO, BEM COMO NECESSÁRIOS AO SEU, FUNCIONAMENTO, SEGURANÇA DA INFORMAÇÃO, PROTEÇÃO DOS DADOS",
+   "valor": 0.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-23",
+   "objeto": "CONTRATAÇÃO DE PROFISSIONAL OU EMPRESA ESPECIALIZADA PARA ELABORAÇÃO DO PLANO INDIVIDUAL DE ATENDIMENTO - PLANCON E CAPACITAÇÃO DA EQUIPE MULTIPROFISSIONAL QUANTO À ESCUTA ESPECIALIZADA",
+   "valor": 36790.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-28",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A REALIZAÇÃO DE PALESTRAS VOLTADAS AO SETEMBRO AMARELO (PREVENÇÃO E COMBATE AO SUICÍDIO)",
+   "valor": 7500.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-29",
+   "objeto": "AQUISIÇÃO DE UNIFORMES PARA OS ATLETAS QUE REPRESENTAM O MUNICÍPIO NAS DIVERSAS COMPETIÇÕES ESPORTIVAS",
+   "valor": 25369.4,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-29",
+   "objeto": "AQUISIÇÃO DE LEITE ZERO LACTOSE",
+   "valor": 14000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-29",
+   "objeto": "CONTRATAÇÃO DE PESSOA JURÍDICA PARA A PRESTAÇÃO DE SERVIÇOS DE TRANSPORTE ESCOLAR",
+   "valor": 857460.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-05-29",
+   "objeto": "AQUISIÇÃO DE INSTRUMENTOS MUSICAIS PARA A FANFARRA E DE MATERIAIS PARA A MANUTENÇÃO DOS EQUIPAMENTOS",
+   "valor": 66484.37,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-05-30",
+   "objeto": "LOCAÇÃO DE IMÓVEL PARA A INSTALAÇÃO DA SECRETARIA MUNICIPAL DE EDUCAÇÃO, CULTURA, ESPORTE E TURISMO",
+   "valor": 24000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2025-06-02",
+   "objeto": "AQUISIÇÃO DE PLACAS DE IDENTIFICAÇÃO VEICULAR (PIV)",
+   "valor": 1000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-06-03",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA EM SERVIÇOS DE ESTÚDIO FOTOGRÁFICO MÓVEL, COM CAPACIDADE DE DESLOCAMENTO ATÉ A CÂMARA DE VEREADORES DE BARRA BONITA/SC, PARA INSTALAÇÃO DE ESTRUTURA CENOGRÁFICA (BACKDROP, ILUMINAÇÃO PROFISSIONAL E DEMAIS EQUIPAMENTOS) E REALIZAÇÃO DE ENSAIO FOTOGRÁFICO INSTITUCIONAL, COM A PRODUÇÃO DE RETRATOS OFICIAIS DOS VEREADORES.",
+   "valor": 765.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-06-03",
+   "objeto": "[Portal de Compras Públicas] - CONTRATAÇÃO DE EMPRESA ESPECIALIZADA EM SERVIÇOS DE ESTÚDIO FOTOGRÁFICO MÓVEL, COM CAPACIDADE DE DESLOCAMENTO ATÉ A CÂMARA DE VEREADORES DE BARRA BONITA/SC, PARA INSTALAÇÃO DE ESTRUTURA CENOGRÁFICA (BACKDROP, ILUMINAÇÃO PROFISSIONAL E DEMAIS EQUIPAMENTOS) E REALIZAÇÃO DE ENSAIO FOTOGRÁFICO INSTITUCIONAL, COM A PRODUÇÃO DE RETRATOS OFICIAIS DOS VEREADORES.",
+   "valor": 765.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-06-04",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO DE PLOTAGEM PARCIAL NOS VEÍCULOS PERTENCENTES AO FUNDO MUNICIPAL DE SAÚDE DE BARRA BONITA/SC",
+   "valor": 2400.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-06-05",
+   "objeto": "SERVIÇOS DE CONFECÇÃO DE LETREIRO, PLOTAGEM DE VEÍCULOS E PRODUÇÃO DE ADESIVOS.",
+   "valor": 61032.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-06-06",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DE SERVIÇO DE DIAGNÓSTICO LABORATORIAL DE ANÁLISE CLÍNICA PARA ATENDER A SECRETARIA DE SAÚDE DO MUNICÍPIO DE BARRA BONITA/ SC",
+   "valor": 782361.14,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-06-11",
+   "objeto": "CONTRATAÇÃO DE PROFISSIONAL OU EMPRESA ESPECIALIZADA PARA ELABORAÇÃO DO PLANO INDIVIDUAL DE ATENDIMENTO - PLANCON E CAPACITAÇÃO DA EQUIPE MULTIPROFISSIONAL QUANTO À ESCUTA ESPECIALIZADA",
+   "valor": 36790.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-06-11",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO DE PLOTAGEM PARCIAL NOS VEÍCULOS PERTENCENTES AO FUNDO MUNICIPAL DE SAÚDE DE BARRA BONITA/SC",
+   "valor": 400.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-06-12",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NA REALIZAÇÃO DE PROCESSOS SELETIVOS E CONCURSOS PÚBLICOS, CONTEMPLANDO TODAS AS ETAPAS DO CERTAME, BEM COMO AS DESPESAS COM SOFTWARE, ELABORAÇÃO DE QUESTÕES, HOSPEDAGEM DE SITE E DEMAIS CUSTOS ADMINISTRATIVOS, EXCETUANDO-SE AS DESPESAS FISCAIS E O ALUGUEL DE SALAS.",
+   "valor": 40080.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-06-18",
+   "objeto": "Capacitação sobre SIPIA.CT avançado e APOIA para : Capacitar as conselheiras para melhor atendimento ao público alvo na cidade Chapecó: SC dia 26 de junho de 2025",
+   "valor": 1050.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-06-20",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS CONTÍNUOS DE PROVIMENTO MENSAL DE SOLUÇÃO DE GESTÃO PÚBLICA, DE FORMA MUDULAR E INTEGRADA, POR TEMPO DETERMINADO, SEM LIMITE DE USUÁRIOS. INCLUINDO AINDA, SERVIÇOS COMPLEMENTARES, COMO IMPLANTAÇÃO, TREINAMENTO DE USUÁRIOS INTERNOS, ASSISTÊNCIA TÉCNICA E MANUTENÇÃO, BEM COMO NECESSÁRIOS AO SEU, FUNCIONAMENTO, SEGURANÇA DA INFORMAÇÃO, PROTEÇÃO DOS DADOS e todas as demais condições constantes deste Termo de Referência.",
+   "valor": 88014.96,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-07-15",
+   "objeto": "CONTRATAÇÃO DE PESSOA JURÍDICA PARA A PRESTAÇÃO DE SERVIÇOS DE TRANSPORTE ESCOLAR",
+   "valor": 857460.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-04",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA FORNECIMENTO DE SERVIÇO DE ACOMPANHAMENTO E EXECUÇÃO DAS ATIVIDADES DE BASE E SUB-BASE DE PAVIMENTAÇÃO ASFÁLTICA POR ENGENHEIRO CIVIL DEVIDAMENTE REGISTRADO NO CREA.",
+   "valor": 195885.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-05",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NO RAMO DE SEGURO DE AUTOMÓVEIS E PREDIAL, PARA PRESTAÇÃO DE SERVIÇO DE SEGURO A FROTA DE VEÍCULOS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 22873.35,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-08-05",
+   "objeto": "    LOCAÇÃO DE ESPAÇO PARA TREINOS PARA JOGOS DE BOCHA E BOLÃO PARA O 63º JASC- FASE MICRORREGIONAL EM SÃO MIGUEL DO OESTE SC",
+   "valor": 1400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-08-08",
+   "objeto": "CONTRATAÇÃO DE CONSÓRCIO PÚBLICO MULTIFINALITÁRIO PARA EXECUÇÃO DE PAVIMENTAÇÃO ASFÁLTICA, LOCALIZADA NA LINHA ALTO CAÇADOR, MUNICÍPIO DE BARRA BONITA/SC, COM ÁREA TOTAL DE 9.772,75 M² E NA LINHA BEIRA RIO, MUNICÍPIO DE BARRA BONITA/SC, COM ÁREA TOTAL DE 9.750,00 M², DE ACORDO COM OS PROJETOS, MEMORIAL DESCRITIVO, CRONOGRAMA FÍSICO FINANCEIRO, PLANILHA ORÇAMENTÁRIA E DEMAIS ANEXOS INTEGRANTES DESTE PROCESSO.",
+   "valor": 1668573.79,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-08-08",
+   "objeto": "PRESTAÇÃO DE SERVIÇOS DE ALMOÇO E SONORIZAÇÃO E LOCAÇÃO DE ESPAÇO FISICO PARA A CONFRATERNIZAÇÃO DOS IDOSOS DO MUNICÍPIO A REALIZAR-SE NO DIA 20/10/2025",
+   "valor": 26325.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-12",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA A APLICAÇÃO DE PRÁTICAS DE TERAPIA INTEGRATIVA E COMPLEMENTAR AOS MUNÍCIPES",
+   "valor": 92000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-12",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA EM SERVIÇOS DE OFTALMOLOGIA PARA CON-SULTAS MÉDICAS E EXAMES",
+   "valor": 83743.3,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-12",
+   "objeto": "FUTURA E EVENTUAL CONTRATAÇÃO DE EMPRESA PARA PRESTAÇÃO DE SERVIÇO DE CONSULTAS MÉDICAS ESPECIALIZADAS EM NEUROLOGIA",
+   "valor": 54000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-12",
+   "objeto": "FUTURA E EVENTUAL AQUISIÇÃO DE BRINDES PARA DISTRIBUIÇÃO EM CAMPANHAS DIVERSAS RELACIONADAS À SAÚDE PARA A SECRETARIA DE SAÚDE DO MUNICÍPIO DE BARRA BONITA",
+   "valor": 21900.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-08-12",
+   "objeto": "    LOCAÇÃO DE ESPAÇO PARA TREINOS PARA JOGOS DE BOLÃO PARA O 63º JASC- FASE MICRORREGIONAL EM SÃO MIGUEL DO OESTE SC",
+   "valor": 1800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Leilão - Eletrônico",
+   "data": "2025-08-14",
+   "objeto": "ALIENAÇÃO DE BENS MÓVEIS INSERVÍVEIS DO MUNICÍPIO DE BARRA BONITA/SC, DE ACORDO COM A LEI MUNICIPAL Nº1034/2025, CONFORME ANEXO I, TERMO DE REFERÊNCIA DO EDITAL.",
+   "valor": 390800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-14",
+   "objeto": "Prestação de serviços bancários.",
+   "valor": 12840.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-14",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS DE MÃO DE OBRA ESPECIALIZADA PARA CONSERTO DE MOTOCICLETAS, BEM COMO SERVIÇOS DE FUNILARIA E PINTURA EM VEÍCULOS E MÁQUINAS",
+   "valor": 250150.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-08-14",
+   "objeto": "SEGURO DETER VEÍCULO: FORD - TRANSIT VAN L4H3 2.0 ECOBLUE 18L ANO/MODELO: 2023/2023 PLACA: RYJ3I32 QUANTIDADE DE PASSAGEIROS: 18\n1 - Danos Corporais e/ou Materiais Causados à Passageiros 15414.901413/2013-41 1.539.804,00",
+   "valor": 1177.77,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-15",
+   "objeto": "AQUISIÇÃO DE ÓCULOS DE GRAU COM ARMAÇÃO E LENTES",
+   "valor": 117250.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-15",
+   "objeto": " CONTRATAÇÃO DE EMPRESA PARA PRESTAÇÃO DE SERVIÇO DE CONSULTAS MÉDICAS ESPECIALIZADAS EM PSIQUIATRIA",
+   "valor": 108000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-18",
+   "objeto": "REGISTRO DE PREÇO PARA FUTURA E EVENTUAL CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA CONSERTO DE BANCOS E CONFECÇÕES DE TAPETES PARA\nVEÍCULOS LEVES, CAMINHÕES E MÁQUINAS, MANUTENÇÃO DE CADEIRAS E BANCOS DE TODAS AS SECRETARIAS MUNICIPAIS, FUNDOS, DEMAIS ENTIDADES E MULTIENTIDADES LIGADAS AO MUNICÍPIO DE BARRA BONITA, SC",
+   "valor": 182056.2,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-18",
+   "objeto": "Aquisição de Geofone Detector de Vazamentos",
+   "valor": 12547.94,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-08-18",
+   "objeto": "EXECUÇÃO DE ANÁLISES LABORATORIAIS DE POTABILIDADE DA ÁGUA, CONFORME DEMANDA DA SECRETARIA DE SAÚDE DO MUNICÍPIO DE BARRA BONITA/SC, ABRANGENDO OS SEGUINTES PARÂMETROS: CLORO, COLIFORMES TOTAIS, ESCHERICHIA COLI (E. COLI), FLUORETO, PH, COR APARENTE E TURBIDEZ, VISANDO À EMISSÃO DE LAUDO DE POTABILIDADE DA ÁGUA",
+   "valor": 4500.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-08-22",
+   "objeto": "AQUISIÇÃO DE ENERGIA ELÉTRICA PARA ATENDER OS IMÓVEIS VINCULADOS AO MUNICÍPIO",
+   "valor": 132000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-08-22",
+   "objeto": "AQUISIÇÃO DE ENERGIA ELÉTRICA PARA ATENDER OS IMÓVEIS VINCULADOS AO FUNDO MUNICIPAL DE SAÚDE",
+   "valor": 15000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-08-26",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA FORNECIMENTO DE SERVIÇO DE ACOMPANHAMENTO E EXECUÇÃO DAS ATIVIDADES DE BASE E SUB-BASE DE PAVIMENTAÇÃO ASFÁLTICA POR ENGENHEIRO CIVIL DEVIDAMENTE REGISTRADO NO CREA.",
+   "valor": 195885.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-08-28",
+   "objeto": "SERVIÇO DE MÃO DE OBRA PARA RETIRADA E RECOLOCAÇÃO DAS GRADES COM TELAS DA CAIXA DE AREIA PARA OUTRA CAIXA NOVA NO EMEIF PINGO DE GENTE",
+   "valor": 3750.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-02",
+   "objeto": "AQUISIÇÃO DE ARTIGOS PARA UTILIZAÇÃO NA CENTRAL DE MATERIAL ESTERILIZADO (CME) DAS UNIDADES BÁSICAS DE SAÚDE (UBS) DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 1064.36,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-05",
+   "objeto": "Futura aquisição de divisórias e portas de Eucatex, vidro incolor de 3 e 4 mm, divisória com lã de vidro e serviço de mão de obra para retirada e colocação de divisórias usadas.",
+   "valor": 0.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-08",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS CONTÍNUOS DE PROVIMENTO MENSAL DE SOLUÇÃO DE GESTÃO PÚBLICA, DE FORMA MUDULAR E INTEGRADA, POR TEMPO DETERMINADO, SEM LIMITE DE USUÁRIOS. INCLUINDO AINDA, SERVIÇOS COMPLEMENTARES, COMO IMPLANTAÇÃO, TREINAMENTO DE USUÁRIOS INTERNOS, ASSISTÊNCIA TÉCNICA E MANUTENÇÃO, BEM COMO NECESSÁRIOS AO SEU, FUNCIONAMENTO, SEGURANÇA DA INFORMAÇÃO, PROTEÇÃO DOS DADOS e todas as demais condições constantes deste Termo de Referência.",
+   "valor": 88014.96,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-09-08",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA EM ASSESSORIA PEDAGÓGICA PARA PROFISSIONAIS LOTADOS NA SECRETARIA DE EDUCAÇÃO, CULTURA, ESPORTE E TURISMO DO MUNICÍPIO DE BARRA BONITA/SC, COM TEMÁTICAS A SEREM DEFINIDAS CONFORME A NECESSIDADE, BEM COMO ASSESSORIA PARA ATUALIZAÇÃO DO PLANO MUNICIPAL DE EDUCAÇÃO, REGIMENTO MUNICIPAL DE EDUCAÇÃO E CURRÍCULOS PARA O PERIODO DE 12 MESES A CONTAR DA DATA DE HOMOLOGAÇÃO.",
+   "valor": 13800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-09-08",
+   "objeto": "AQUISIÇÃO DE COLDRE EXTERNO, TIPO MID-RIDE COM TRAVA, MATERIAL KYDEX 0,93, PARA PISTOLA GLOCK GEN 5 COM UTILIZAÇÃO MIRA OPTRÔNICA E LAN-TERNA DEDICADA OLIGHT PL MINI 2. *Para o destacamento da Policia Civil do Municipio",
+   "valor": 795.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-09-10",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA EXECUÇÃO DE PROJETO ELÉTRICO E DE ILUMINAÇÃO DO CAMPO DE FUTEBOL MUNICIPAL LOCALIZADO NA LINHA CRUZ E SOUZA, INTERIOR DO MUNICÍPIO DE BARRA BONITA.  A OBRA SERÁ EM REGIME DE EMPREITADA POR PREÇO GLOBAL, CONFORME PROJETOS ANEXOS.",
+   "valor": 152298.99,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-11",
+   "objeto": "Futura aquisição de divisórias e portas de Eucatex, vidro incolor de 3 e 4 mm, divisória com lã de vidro e serviço de mão de obra para retirada e colocação de divisórias usadas.",
+   "valor": 249543.4,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Leilão - Eletrônico",
+   "data": "2025-09-12",
+   "objeto": "ALIENAÇÃO DE BENS MÓVEIS INSERVÍVEIS DO MUNICÍPIO DE BARRA BONITA/SC, DE ACORDO COM A LEI MUNICIPAL Nº1034/2025, CONFORME ANEXO I, TERMO DE REFERÊNCIA DO EDITAL.",
+   "valor": 318950.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-12",
+   "objeto": "Contratação de empresa especializada na prestação de serviços de segurança desarmada, para atender as demandas dos eventos promovidos pela administração municipal de Barra Bonita/SC.",
+   "valor": 13000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-12",
+   "objeto": "AQUISIÇÃO DE PRODUTOS E EXECUÇÃO DE SERVIÇOS DE INFRAESTRUTURA ELÉTRICA PARA DECORAÇÃO NATALINA",
+   "valor": 134692.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-12",
+   "objeto": "AQUISIÇÃO DE BATERIAS AUTOMOTIVAS PARA VEÍCULOS E MÁQUINAS DA FROTA MUNICIPAL DE BARRA BONITA/SC",
+   "valor": 37446.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-12",
+   "objeto": "AQUISIÇÃO DE ARTIGOS PARA UTILIZAÇÃO NA CENTRAL DE MATERIAL ESTERILIZADO (CME) DAS UNIDADES BÁSICAS DE SAÚDE (UBS) DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 1064.36,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-09-12",
+   "objeto": "Inscrição no Curso - Planejamento das Contratações - DFD, ETP e TR com o auxílio da Inteligência Artificial - BOSELLI Licitações",
+   "valor": 3000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-19",
+   "objeto": "PRESTAÇÃO DE SERVIÇOS MÉDICOS ESPECIALIZADOS, COMPREENDENDO CONSULTAS PRÉ E PÓS-OPERATÓRIAS, EXAMES, PROCEDIMENTOS CIRÚRGICOS, FORNECIMENTO DE PRÓTESES E OUTROS MATERIAIS NECESSÁRIOS, VISANDO ATENDER ÀS DEMANDAS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 363800.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-19",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA REALIZAR O CONSERTO DO REVESTIMENTO DE FIBRA LATERAL INTERNO DO ÔNIBUS ESCOLAR DE PLACAS QHE 1095, INTEGRANTE DA FROTA UTILIZADA PELA SECRETARIA MUNICIPAL DE EDUCAÇÃO DE BARRA BONITA/SC, ASSEGURANDO CONDIÇÕES ADEQUADAS DE SEGURANÇA, HIGIENE E CONFORTO AOS ESTUDANTES TRANSPORTADOS.",
+   "valor": 3660.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-09-19",
+   "objeto": "Incrisção para formação para educadores sociais que atuam com crianças e adolescentes no SUAS, no período de 24/09/2025 a 25/09/2025, Local Auditório da ARIS (Centro Executivo Imperatiz) Florianópolis-SC.",
+   "valor": 1470.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-22",
+   "objeto": "SERVIÇO DE MANUTENÇÃO DE VEÍCULOS EM GARANTIA DA MARCA CHEVROLET.",
+   "valor": 8000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-09-23",
+   "objeto": "INSCRIÇÃO NO SEMINÁRIO DE MEDIDAS SOCIOEDUCATIVAS EM MEIO ABERTO, a ser realizado por, UCEFF-UNIDADE CENTRAL DE EDUCAÇÃO FAI FACULDADES, no dia 26 de setembro, com carga horária das 08:30 as 15:00 horas no município de Itapiranga-SC.",
+   "valor": 568.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-24",
+   "objeto": "AQUISIÇÃO DE APARELHO GPS MAPA TOPOGRÁFICO",
+   "valor": 4000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-26",
+   "objeto": "CONTRATAÇÃO DE PROFISSIONAL INSTRUTOR DE PINTURA PARA MINISTRAR OFICINAS E CURSOS LIVRES NO MUNICÍPIO DE BARRA BONITA/SC, PROMOVENDO ATIVIDADES DE FOR-MAÇÃO CULTURAL, ARTÍSTICA E EDUCACIONAL VOLTADAS À COMUNIDADE.",
+   "valor": 28400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-26",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A PRESTAÇÃO DE SERVIÇOS DESTINADOS ÀS FESTIVIDADES DE DEZEMBRO DE 2025, EM COMEMORAÇÃO AO ANIVERSÁRIO DO MUNICÍPIO DE BARRA BONITA/SC, COMPREENDENDO AS SEGUINTES ATIVIDADES: SERVIÇO DE APRESENTAÇÃO DE SHOW/BANDA E SERVIÇO DE CONFEITARIA, DESTINADOS À PRODUÇÃO DE BOLO RECHEADO.",
+   "valor": 24467.85,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-29",
+   "objeto": "CONTRATAÇÃO DE PROFISSIONAL QUALIFICADO PARA A EXECUÇÃO DE MANUTENÇÕES PREVENTIVAS NA CÂMARA DE CONSERVAÇÃO DE VACINAS.",
+   "valor": 1710.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-29",
+   "objeto": "FUTURA E EVENTUAL CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A PRESTAÇÃO DE SERVIÇOS TÉCNICOS, PROFISSIONAIS E FORNECIMENTO DE MÃO DE OBRA QUALIFICADA, DESTINADOS À MANUTENÇÃO PREVENTIVA E CORRETIVA DA MOTONIVELADORA CAT 120K.",
+   "valor": 7560.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-29",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA REALIZAR O CONSERTO DO REVESTIMENTO DE FIBRA LATERAL INTERNO DO ÔNIBUS ESCOLAR DE PLACAS QHE 1095, INTEGRANTE DA FROTA UTILIZADA PELA SECRETARIA MUNICIPAL DE EDUCAÇÃO DE BARRA BONITA/SC, ASSEGURANDO CONDIÇÕES ADEQUADAS DE SEGURANÇA, HIGIENE E CONFORTO AOS ESTUDANTES TRANSPORTADOS.",
+   "valor": 3660.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-30",
+   "objeto": "AQUISIÇÃO E INSTALAÇÃO DE PLACAS DE SINALIZAÇÃO VIÁRIA",
+   "valor": 19736.7,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-09-30",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NO RAMO DE SEGURO DE AUTOMÓVEIS E PREDIAL, PARA PRESTAÇÃO DE SERVIÇO DE SEGURO AOS VEÍCULOS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 3006.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-09-30",
+   "objeto": "CONTRATAÇÃO DE SEGURO DETER PARA O VEÍCULO ÔNIBUS M BENZ/OF 1519 R, ANO 2014, PLACA QHE1095, CAPACIDADE PARA 60 PASSAGEIROS, ABRANGENDO DANOS CORPORAIS E MATERIAIS A PASSAGEIROS.",
+   "valor": 1982.97,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-01",
+   "objeto": "AQUISIÇÃO, MANUTENÇÃO E RESTAURAÇÃO DE PRÓTESES DENTÁRIAS DESTINADAS AOS PACIENTES DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 283600.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-03",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA A PRESTAÇÃO DE SERVIÇO TERAPÊUTICO COMPLEMENTAR COM SESSÕES DE AURICULOTERAPIA AOS MUNÍCIPES.",
+   "valor": 30000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-03",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA PRESTAÇÃO DE SERVIÇO DE TRANSPORTE DE CARGA BIOLÓGICA COM DESTINO AO LABORATÓRIO CENTRAL DE SAUDE PÚBLICA DE SANTA CATARINA - LACEN/FLORIANÓPOLIS, COM PRAZO DE 24 HORAS, EM CONFORMIDADE COM AS NORMAS TÉCNICAS VIGENTES.",
+   "valor": 3510.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-03",
+   "objeto": "LINHA DE TELEFONIA MÓVEL, POR MEIO DE CHIP MAGNÉTICO DA OPERADORA TIM, CONTEMPLANDO LIGAÇÕES ILIMITADAS PARA QUALQUER OPERADORA E DDD EM TERRITÓRIO NACIONAL, PACOTE DE DADOS MÓVEIS DE, NO MÍNIMO, 4GB MENSAIS, UTILIZAÇÃO DO APLICATIVO WHATSAPP SEM DESCONTO DA FRANQUIA DE INTERNET, BEM COMO ROAMING/DESLOCAMENTO NACIONAL ILIMITADO.",
+   "valor": 1197.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-10-03",
+   "objeto": "CAPACITAÇÃO DESTINADA AOS TRABALHADORES DO SUAS DOS MUNICÍPIOS INTEGRANTES DA AMEOSC, A SER REALIZADA NOS DIAS 06 E 07 DE OUTUBRO DE 2025, NO MUNICÍPIO DE SÃO MIGUEL DO OESTE/SC.",
+   "valor": 2100.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-10-07",
+   "objeto": "Inscrição de servidores no curso \"Processos Administrativos Disciplinares (PAD) - Com fornecimento de modelos práticos de documentos\" a ser ofertado pela Ameosc, nos dias 21 e 22 de outubro de 2025.",
+   "valor": 3300.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-08",
+   "objeto": "FUTURA E EVENTUAL AQUISIÇÃO DE LONAS PLÁSTICAS.",
+   "valor": 24290.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-10-08",
+   "objeto": "INSCRIÇÃO DE SERVIDORAS NO \"CURSO - REFORMA TRIBUTÁRIA E INTELIGÊNCIA ARTIFICIAL: COMO OS MUNICÍPIOS PODEM POTENCIALIZAR A RECEITA COM O IBS\", A SER REALIZADO PELA AMEOSC, NA RUA SEGUNDO ANÍBAL BALBINOT, Nº 189, BAIRRO AGOSTINI, SÃO MIGUEL DO OESTE/SC, NOS DIAS 29 E 30 DE OUTUBRO DE 2025, DAS 8H ÀS 12H E 13H ÀS 17H, COM CARGA HORÁRIA DE 16 HORAS PRESENCIAIS.",
+   "valor": 0.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-10-08",
+   "objeto": "INSCRIÇÃO DE SERVIDORAS NO CURSO \"O FANTÁSTICO CURSO DE FLUXOS: SUAS E ÓRGÃOS DE DEFESA DE DIREITOS (CONSELHO TUTELAR, DISQUE 100, MP E PODER JUDICIÁ-RIO)\", A SER REALIZADO POR PINCOLINI E DALZOCHIO EDUCAÇÃO VISUAL LTDA, NOS DIAS 13, 14 E 15 DE OUTUBRO, NA MODALIDADE ONLINE.",
+   "valor": 1930.5,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-09",
+   "objeto": "AQUISIÇÃO E INSTALAÇÃO DE TELHAS DE ALUZINCO, REMOÇÃO DAS TELHAS ANTIGAS E ISOLAMENTO DOS PARAFUSOS COM PU.",
+   "valor": 24500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-14",
+   "objeto": "FUTURA E EVENTUAL AQUISIÇÃO DE BATERIA DE FOGOS DESTINADOS ÀS FESTIVIDADES DE ANIVERSÁRIO DO MUNICÍPIO DE BARRA BONITA/SC, À RECEPÇÃO DO PAPAI NOEL, BEM COMO A OUTROS EVENTOS COMEMORATIVOS E CULTURAIS PROMOVIDOS PELA ADMINISTRAÇÃO MUNICIPAL",
+   "valor": 108400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-14",
+   "objeto": "AQUISIÇÃO DE PELÍCULA E CAPA CARTEIRA TIPO FLIP PARA TABLET E CELULAR.",
+   "valor": 650.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-17",
+   "objeto": "AQUISIÇÃO DE CINTA PARA REBOQUE, COM CAPACIDADE DE 10 TONELADAS E COMPRIMENTO DE 6 METROS.",
+   "valor": 2850.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-17",
+   "objeto": "CONTRATAÇÃO DE MÃO DE OBRA PARA CONSERTO MOTOCILCETAS",
+   "valor": 15200.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-20",
+   "objeto": "FUTURA E EVENTUAL AQUISIÇÃO DE PLANTAS ORNAMENTAIS, MUDAS E INSUMOS PARA JARDINAGEM, DESTINADOS À MANUTENÇÃO, CONSERVAÇÃO E REVITALIZAÇÃO DE ÁREAS VERDES PÚBLICAS, BEM COMO AO APOIO DE AÇÕES DE EDUCAÇÃO AMBIENTAL",
+   "valor": 395617.7,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-22",
+   "objeto": "AQUISIÇÃO DE AGASALHOS PARA DISTRIBUIÇÃO NA CAMPANHA DO AGASALHO 2025/2026.",
+   "valor": 37605.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-22",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA EM SERVIÇOS DE ESTÚDIO FOTOGRÁFICO MÓVEL, COM CAPACIDADE DE DESLOCAMENTO ATÉ A CÂMARA DE VEREADORES DE BARRA BONITA/SC, PARA INSTALAÇÃO DE ESTRUTURA CENOGRÁFICA (BACKDROP, ILUMINAÇÃO PROFISSIONAL E DEMAIS EQUIPAMENTOS) E REALIZAÇÃO DE ENSAIO FOTOGRÁFICO INSTITUCIONAL, COM A PRODUÇÃO DE RETRATOS OFICIAIS DOS VEREADORES.",
+   "valor": 765.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-23",
+   "objeto": "SERVIÇO DE INSPEÇÃO VEICULAR PARA EMISSÃO DE LAUDO CSV DE INCLUSÃO DE ACESSIBILIDADE EM VEÍCULOS DE PLACAS: ONIBUS QHE 1095; ONIBUS MGV 2954.",
+   "valor": 1800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-23",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA EXECUÇÃO DE MELHORIAS NAS INSTALAÇÕES ELÉTRICAS.",
+   "valor": 1089.6,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-27",
+   "objeto": "FUTURA E EVENTUAL AQUISIÇÃO DE LONAS PLÁSTICAS.",
+   "valor": 24290.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-10-27",
+   "objeto": "CONTRATAÇÃO DE SEGURO DETER PARA OS VEÍCULOS SPRINTER QIN 4411 E SPRINTER SXH 1C26, PERTENCENTES A FROTA DO FMS DE BARRA BONITA/SC.",
+   "valor": 3012.9,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-30",
+   "objeto": "AQUISIÇÃO DE APARELHO UBIQUITI ROCKET PRISM AC GEN2 RP-5AC-GEN2 E FONTE DE ALIMENTAÇÃO POE INJECTOR 24VDC 24W 1AMP GIGA, PARA UTILIZAÇÃO EM APARELHOS ROCKET PRISM AC GEN2, EM TORRES DE INTERNET COMUNITÁRIA NO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 23000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-10-31",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A PRESTAÇÃO DE SERVIÇO DE RADIODIFUSÃO SONORA EM FREQUÊNCIA MODULADA (FM), COM ABRANGÊNCIA EM TODO O TERRITÓRIO DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 41400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-11-04",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA COM EQUIPE TÉCNICA MULTIDISCIPLINAR PARA ELABORAÇÃO DE PROJETO EXECUTIVO DE MEIO AMBIENTE PARA PROJETO DE PAVIMENTAÇÃO ASFÁLTICA NA SC-492, EM CONFORMIDADE COM RELATÓRIO 1 - FASE PRÉ ANÁLISE, PARA ATENDIMENTO AOS REQUISITOS DA SIE.",
+   "valor": 35253.34,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-11-04",
+   "objeto": "REFORMA E AMPLIAÇÃO DA SEDE MUNICIPAL DO ESPORTE CLUBE INTERNACIONAL DE ALTO CAÇADOR DE BARRA BONITA - SC.",
+   "valor": 163540.27,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-11-04",
+   "objeto": "INSCRIÇÃO DOS VEREADORES NO CONGRESSO UVB 60 ANOS - GESTORES E LEGISLATIVOS MUNICIPAIS, EM BRASÍLIA/DF",
+   "valor": 5977.58,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-11-05",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA EXECUÇÃO DE REFORMA NAS INSTALAÇÕES DA SECRETARIA MUNICIPAL DE VIAÇÃO, OBRAS E SERVIÇOS URBANOS.",
+   "valor": 129283.62,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-11-05",
+   "objeto": "AQUISIÇÃO DE PEÇAS PARA TRATOR DA MARCA JOHN DEERE, MODELO 6115J.",
+   "valor": 1936.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-11-05",
+   "objeto": "CONTRATAÇÃO DE FORNECIMENTO DE ENERGIA ELÉTRICA PARA OS IMÓVEIS VINCULADOS ÀS SECRETARIAS MUNICIPAIS DE BARRA BONITA/SC.",
+   "valor": 103000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-06",
+   "objeto": "AQUISIÇÃO DE UNIFORMES ESCOLARES PARA OS ALUNOS DA REDE MUNICIPAL DE ENSINO PARA O ANO DE 2026",
+   "valor": 75000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-11-06",
+   "objeto": "INSCRIÇÃO DE SERVIDORAS NO \"SEMINÁRIO SOBRE A PROTEÇÃO INTEGRAL DE CRIANÇAS E ADOLESCENTES: ATUAÇÃO DO CONSELHO TUTELAR, FLUXOS E ATENDIMENTOS, ENFRENTAMENTO AS VIOLÊNCIAS E ESCUTA ESPECIALIZADA\".",
+   "valor": 400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-11-07",
+   "objeto": "LINHA DE TELEFONIA MÓVEL, POR MEIO DE CHIP MAGNÉTICO DA OPERADORA TIM, CONTEMPLANDO LIGAÇÕES ILIMITADAS PARA QUALQUER OPERADORA E DDD EM TERRITÓRIO NACIONAL, PACOTE DE DADOS MÓVEIS DE, NO MÍNIMO, 4GB MENSAIS, UTILIZAÇÃO DO APLICATIVO WHATSAPP SEM DESCONTO DA FRANQUIA DE INTERNET, BEM COMO ROAMING/DESLOCAMENTO NACIONAL ILIMITADO.",
+   "valor": 12927.6,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-11",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DE SERVIÇOS DE RASTREAMENTO E MONITORAMENTO DE VEÍCULOS VIA SATÉLITE (GPS/GSM/GPRS), INCLUINDO SISTEMA DE GERENCIAMENTO DE FROTA E CONDUTORES COM ACESSO WEB E APLICATIVO MÓVEL, FORNECIMENTO DE EQUIPAMENTOS EM REGIME DE COMODATO, LICENÇAS DE SOFTWARE, SERVIÇOS DE INSTALAÇÃO, CONFIGURAÇÃO, CAPACITAÇÃO E SUPORTE TÉCNICO, PARA ATENDER TODAS AS SECRETARIAS DO MUNICÍPIO DE BARRA BONITA/SC",
+   "valor": 133680.4,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-14",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA O FORNECIMENTO CONTÍNUO E REGU-LAR DE NITROGÊNIO LÍQUIDO DESTINADO À SECRETARIA MUNICIPAL DE AGRICULTURA DE BARRA BONITA/SC, COM O OBJETIVO DE ABASTECER OS BOTIJÕES UTILIZADOS PELOS PRO-DUTORES RURAIS LOCAIS NAS ATIVIDADES DE INSEMINAÇÃO ARTIFICIAL EM GADO",
+   "valor": 18450.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-24",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS CONTÍNUOS DE PROVIMENTO MENSAL DE SOLUÇÃO DE GESTÃO PÚBLICA, DE FORMA MUDULAR E INTEGRADA, POR TEMPO DETERMINADO, SEM LIMITE DE USUÁRIOS. INCLUINDO AINDA, SERVIÇOS COMPLEMENTARES, COMO IMPLANTAÇÃO, TREINAMENTO DE USUÁRIOS INTERNOS, ASSISTÊNCIA TÉCNICA E MANUTENÇÃO, BEM COMO NECESSÁRIOS AO SEU, FUNCIONAMENTO, SEGURANÇA DA INFORMAÇÃO, PROTEÇÃO DOS DADOS E TODAS AS DEMAIS CONDIÇÕES CONSTANTES DESTE TERMO DE REFERÊNCIA.",
+   "valor": 548778.88,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-24",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA FORNECIMENTO E APLICAÇÃO DE PELÍCULAS AUTOMOTIVAS NOS VEÍCULOS OFICIAIS QUE COMPÕEM A FROTA DA SECRETARIA MUNICIPAL DE SAÚDE E DAS DEMAIS SECRETARIAS MUNICIPAIS.",
+   "valor": 37250.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-25",
+   "objeto": "FUTURA E EVENTUAL AQUISIÇÃO DE EQUIPAMENTOS, UTENSÍLIOS E MATERIAIS DE COPA E COZINHA DESTINADOS À EMEIF PINGO DE GENTE",
+   "valor": 22580.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-25",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA O FORNECIMENTO E INSTALAÇÃO DE MÓVEIS SOB MEDIDA DESTINADOS ÀS ESCOLAS DA REDE MUNICIPAL DE ENSINO DE BARRA BONITA/SC, ATENDIDAS AS DESCRIÇÕES DO PROJETO ANEXO",
+   "valor": 74000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-25",
+   "objeto": "AQUISIÇÃO DE APARELHO UBIQUITI ROCKET PRISM AC GEN2 RP-5AC-GEN2 E FONTE DE ALIMENTAÇÃO POE INJECTOR 24VDC 24W 1AMP GIGA, PARA UTILIZAÇÃO EM APARELHOS ROCKET PRISM AC GEN2, EM TORRES DE INTERNET COMUNITÁRIA NO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 23000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2025-11-27",
+   "objeto": "AQUISIÇÃO DE UNIFORMES ESPORTIVOS DESTINADOS ÀS EQUIPES E AOS PROJETOS VINCU-LADOS AO DEPARTAMENTO DE ESPORTES DO MUNICÍPIO DE BARRA BONITA/SC PARA O ANO DE 2026",
+   "valor": 90140.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-12-03",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA A AQUISIÇÃO DE MOLDURAS E FOTOGRAFIAS DESTINADAS AO CONCURSO DE FOTOGRAFIA 2025.",
+   "valor": 3085.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-12-08",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA REALIZAÇÃO DE INSPEÇÃO VEICULAR E EMISSÃO DOS LAUDOS SIE, ESCOLAR E CSV, ABRANGENDO VEÍCULOS DO TRANSPORTE DE PACIENTES, TRANSPORTE ESCOLAR E TRANSPORTE DE PASSAGEIROS.",
+   "valor": 8300.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2025-12-09",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA EXECUÇÃO DE SERVIÇOS DE LI-GAÇÃO ELÉTRICA CONFORME PROJETO CELESC NPS 400798677 - LINHA BEIRA RIO, INTERIOR DE BARRA BONITA/SC, INCLUINDO FORNECIMENTO DE MATERIAIS E MÃO DE OBRA, DE ACORDO COM AS ESPECIFICAÇÕES TÉCNICAS DA CONCESSIONÁRIA E REGULAMENTAÇÕES DO SETOR ELÉTRICO.",
+   "valor": 47078.2,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-12-16",
+   "objeto": "CONCESSÃO DE DIREITO REAL DE USO, A TÍTULO NÃO REMUNERADO, DE BEM IMÓVEL DE PROPRIEDADE DO MUNICÍPIO DE BARRA BONITA/SC, QUAL SEJA O LOTE RURAL Nº 09 LOCALIZADO NA LINHA BEIRA RIO, INTERIOR, CONTENDO GALPÃO  COM 1.125M² COM ÁREA DE 8.000M.",
+   "valor": 0.01,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-12-18",
+   "objeto": "CONCESSÃO DE DIREITO REAL DE USO, A TÍTULO NÃO REMUNERADO, DE BEM IMÓVEL DE PROPRIEDADE DO MUNICÍPIO DE BARRA BONITA/SC, QUAL SEJA O LOTE URBANO N° 26 E PARTE DO LOTE URBANO N° 25, AMBOS DA MATRÍCULA N°22.862, LOCALIZADOS NA RUA TRÊS DE MAIO,1.599,41 M² (MIL QUINHENTOS E NOVENTA E NOVE METROS QUADRADOS E QUARENTA E UM CENTÍMETROS) DE ÁREA DE TERRENO, COM CONSTRUÇÃO DE UM GALPÃO EM ESTRUTURA PRÉ-MOLDADA COM 632,46 M² (SEISCENTOS E TRINTA E DOIS METROS QUADRADOS E QUARENTA E SEIS CENTÍMETROS), CENTRO, CIDADE BARRA BONITA/SC.",
+   "valor": 0.01,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-12-22",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS ESPECIALIZADOS EM MEDICINA E SEGURANÇA DO TRABALHO, ABRANGENDO A ELABORAÇÃO E O FORNECIMENTO, EM FORMATO IMPRESSO E DIGITAL, DE LAUDOS TRABALHISTAS E PREVIDENCIÁRIOS, A ELABORA-ÇÃO DE PROGRAMAS DE SEGURANÇA E SAÚDE NO TRABALHO, DO PROGRAMA DE CONTROLE MÉDICO DE SAÚDE OCUPACIONAL, BEM COMO A REALIZAÇÃO DE EXAMES MÉDICOS OCUPACIONAIS E EXAMES COMPLEMENTARES DESTINADOS AOS SERVIDORES DO MUNICÍPIO DE BARRA BONITA.",
+   "valor": 63117.86,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2025-12-22",
+   "objeto": "SERVIÇOS DE TECNOLOGIA DA INFORMAÇÃO E COMUNICAÇÃO PARA O ANO DE 2025, QUAIS SEJAM: DIÁRIO OFICIAL DOS MUNICÍPIOS DE SANTA CATARINA - CIGA DIÁRIO - DOM/SC, GESTÃO DE OBRAS - CIGA OBRAS, GESTÃO TRIBUTÁRIA: GESTÃO DO CADASTRO INTEGRADO MUNICIPAL - CIGA CIM, GESTÃO TRIBUTÁRIA: GESTÃO DO SIMPLES NACIONAL - CIGA SIMPLES, CIGA EDU - CIGA EDU.",
+   "valor": 12421.32,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2025-12-23",
+   "objeto": "CONCESSÃO DE DIREITO REAL DE USO, A TÍTULO NÃO REMUNERADO, DE BEM IMÓVEL DE PROPRIEDADE DO MUNICÍPIO DE BARRA BONITA/SC, QUAL SEJA O PARTE DO LOTE RURAL N. 54, MATRÍCULA N. 11282, COM ÁREA DE 3.000,00M2 (TRES MIL METROS QUADRADOS), LOCALIZADA NA LINHA POMBA BRANCA, INTERIOR, BARRA BONITA / SC , CONTENDO A CONSTRUÇÃO DE UM PRÉDIO DE 54,00 M2 E OUTRO COM 535,12 M2 ( COM DUAS CÂMARAS FRIAS), CÂMARA FRIGORÍFICA EM IS-PAINEL (CÓD. PATRIMÔIO N. 6545).",
+   "valor": 0.01,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-01-09",
+   "objeto": "PRESTAÇÃO DE SERVIÇOS DE ASSISTÊNCIA TÉCNICA E EXTENSÃO RURAL PARA O ANO DE 2026.",
+   "valor": 72771.81,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-12",
+   "objeto": "AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS PARA ATENDIMENTO DA ADMINISTRAÇÃO MUNI-CIPAL DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 1860484.25,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-01-12",
+   "objeto": "AQUISIÇÃO DE ÁGUA TRATADA PARA OS IMÓVEIS VINCULADOS AO MUNICÍPIO DE BARRA BONITA/SC PARA O ANO DE 2026.",
+   "valor": 36500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-01-12",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS POSTAIS PARA ENVIO E RECEBIMENTO DE CORRESPONDÊNCIAS PARA O ANO DE 2026.",
+   "valor": 3000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-13",
+   "objeto": "CONTRATAÇÃO DE  SERVIÇO DE CONTROLE, TRATAMENTO E MONITORAMENTO DE ÁGUA DOS POÇOS DO DEPARTAMENTO DE ABASTECIMENTO DE ÁGUA.",
+   "valor": 11520.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-14",
+   "objeto": "AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS DESTINADOS À REALIZAÇÃO DE COF-FEE BREAK, A SEREM FORNECIDOS NAS ATIVIDADES DESENVOLVIDAS PELA ADMINISTRAÇÃO MUNICIPAL DE BARRA BONITA/SC.",
+   "valor": 590890.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-14",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA PRESTAÇÃO DE SERVIÇOS DE TRANSPORTE DE PACIENTES COM TRATAMENTO FORA DO DOMICÍLIO (TFD), TRASNPORTE PARA FACULDADE E CURSOS, VIAGENS DE ESTUDOS, INTREGRAÇÃO DAS ESCOLINHAS DE ESPORTES COM OUTROS MUNICIPIOS E DEMAIS NECISSIDADES DO MUNICIPIO COM TRANSPORTES INTERMUNICIPAL OU INTERESTADUAL, MINIVAN, VAN, MICRO-ÔNIBUS E ÔNIBUS, DO MUNICIPIO DE BARRA BONITA/SC.",
+   "valor": 485900.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-15",
+   "objeto": "CONFECÇÃO DE ASSENTOS PARA CADEIRAS, DESTINADOS AO USO DO CENTRO DE MÚLTIPLO USO DO MUNICÍPIO DE BARRA BONITA - SC",
+   "valor": 9750.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-21",
+   "objeto": "CONTRATAÇÃO DE PALESTRAS PARA ATIVIDADES DE PREVENÇÃO E INFOR-MAÇÃO PARA O PÚBLICO EM GERAL, ATENDIDO ATRAVÉS DA POLÍTICA PÚBLICA MUNICIPAL DE ASSISTÊNCIA SOCIAL E CONSELHO TUTELAR E CMDCA (CONSELHO MUNICIPAL DOS DIREI-TOS DA CRIANÇA E DO ADOLESCENTE)",
+   "valor": 37245.33,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-01-21",
+   "objeto": "CONTRATAÇÃO DE SERVIÇOS ESPECIALIZADOS PARA A REALIZAÇÃO DE AULAS DE MAKER E ROBÓTICA KIDS - NÍVEL BÁSICO, DESTINADAS AOS ALUNOS DO 1º E 2º ANO DA REDE MUNICIPAL DE ENSINO",
+   "valor": 38500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-01-27",
+   "objeto": "CONTRATAÇÃO DE PROFISSIONAIS DE EDUCAÇÃO FÍSICA PARA ATUAÇÃO NAS ESCOLINHAS ESPORTIVAS MUNICIPAIS DE FUTSAL, VOLEIBOL E FUTEBOL DE CAMPO, BEM COMO PARA O TREINAMENTO E PREPARAÇÃO DAS EQUIPES QUE REPRESENTAM OFICIALMENTE O MUNICÍPIO EM COMPETIÇÕES ESPORTIVAS, EM CONFORMIDADE COM A LEGISLAÇÃO VIGENTE E AS POLÍTICAS PÚBLICAS DE ESPORTE E LAZER",
+   "valor": 187500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-01-27",
+   "objeto": "AQUISIÇÃO DE MANGUEIRA DE SUCÇÃO PARA CAMINHÃO-PIPA.",
+   "valor": 900.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-02",
+   "objeto": "AQUISIÇÃO DE TROFÉUS E MEDALHAS DESTINADOS À PREMIAÇÃO DOS CAMPEONATOS MUNICIPAIS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 186300.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-02",
+   "objeto": "CONTRATAÇÃO DE OFICINAS DE IOGA, CULINÁRIA E DANÇA CIRCULAR PARA OS SERVIÇOS DO CRAS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 15600.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-03",
+   "objeto": "AQUISIÇÃO E INSTALAÇÃO DE GRAMA SINTÉTICA PARA AS ESCOLAS MUNICIPAIS E DEMAIS PRÉDIOS VINCULADOS À SECRETARIA MUNICIPAL DE EDUCAÇÃO.",
+   "valor": 59920.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-04",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO DE ARBITRAGEM PARA AS COMPETIÇÕES MUNICIPAIS EXECUTADAS PELO DEPARTAMENTO DE ESPORTES.",
+   "valor": 240500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-04",
+   "objeto": "AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS PARA ATENDIMENTO DA ADMINISTRAÇÃO MUNI-CIPAL DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 487787.1,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2026-02-06",
+   "objeto": "Contratação de empresa para execução reforma e ampliação da Unidade Básica de Saúde - Centro de Barra Bonita - SC.",
+   "valor": 383258.29,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-06",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO DE CONTROLE, TRATAMENTO E MONITORAMENTO DE ÁGUA DOS 16 POÇOS DO DEPARTAMENTO DE ABASTECIMENTO DE ÁGUA.",
+   "valor": 276480.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-02-06",
+   "objeto": "CONTRATAÇÃO DE FORNECIMENTO DE ENERGIA ELÉTRICA",
+   "valor": 6000.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-02-06",
+   "objeto": "CONTRATAÇÃO DE FORNECIMENTO DE ENERGIA ELÉTRICA",
+   "valor": 6000.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-02-06",
+   "objeto": "CONTRATAÇÃO DE FORNECIMENTO DE ÁGUA TRATADA.",
+   "valor": 1500.0,
+   "orgao": "CAMARA MUNICIPAL DE VEREADORES DE BARRA BONITA",
+   "cnpj": "09301902000132"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-09",
+   "objeto": "AQUISIÇÃO DE MATERIAS PARA OFICINA DE PINTURA OFERTADA PELO MUNICÍPIO.",
+   "valor": 28280.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-10",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NA PRESTAÇÃO DE SERVIÇOS CONTÍNUOS DE PORTAL ELETRÔNICO DE NOTÍCIAS E COBERTURA JORNALÍSTICA INSTITUCIONAL, COMPREENDENDO A PRODUÇÃO, EDIÇÃO E DIVULGAÇÃO DE CONTEÚDOS INSTITUCIONAIS DO PODER EXECUTIVO MUNICIPAL, INCLUINDO TEXTOS, IMAGENS, VÍDEOS E DEMAIS MATERIAIS JORNALÍSTICOS, COM VEICULAÇÃO EM PORTAL ELETRÔNICO DE NOTÍCIAS.",
+   "valor": 21840.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-11",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA FORNECIMENTO DE CARTÃO MAGNÉTICO OU ELETRÔNICO, DESTINADO À IMPLANTAÇÃO E AO GERENCIAMENTO DE PROGRAMAS DE INCENTIVO À AGRICULTURA E À AGROPECUÁRIA, ESPECIFICAMENTE O BÔNUS AGRÍCOLA PARA AQUISIÇÃO DE SEMENTES DE PASTAGEM. O BENEFÍCIO SERÁ CONCEDIDO AOS PRODUTORES RURAIS DO MUNICÍPIO DE BARRA BONITA/SC, POSSIBILITANDO A REALIZAÇÃO DE COMPRAS E CONTRATAÇÃO DE SERVIÇOS JUNTO A EMPRESAS CREDENCIADAS, COM A FINALIDADE DE FORTALECER E ESTIMULAR AS ATIVIDADES AGRÍCOLAS E AGROPECUÁRIAS, NOS TERMOS AUTORIZADOS PELA LEI MUNICIPAL Nº 958/2023",
+   "valor": 5.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2026-02-17",
+   "objeto": "AQUISIÇÃODE PRODUTOS DA AGRICULTURA FAMILAIR PARA O ANO DE 2026",
+   "valor": 395555.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-02-18",
+   "objeto": "CONTRATAÇÃO DE SERVIÇO PARA VISTORIA VEICULAR.",
+   "valor": 2850.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-19",
+   "objeto": " CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA FORNECIMENTO DE LICENÇA DE USO DE SISTEMAS DE GESTÃO DA ASSISTÊNCIA SOCIAL, HOSPEDAGEM DOS SISTEMAS EM SERVIDOR VIRTUAL QUE ATENDA AS ESPECIFICAÇÕES TÉCNICAS, QUANTITATIVOS E SERVIÇOS TÉCNI-COS, IMPLANTAÇÃO, TREINAMENTO DOS USUÁRIOS E SUPORTE TÉCNICO",
+   "valor": 42600.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-19",
+   "objeto": "CONTRATAÇÃO DE ACESSO A ESPAÇOS DE LAZER PARA OS SERVIÇOS OFERTADOS NO CRAS.",
+   "valor": 20356.66,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-02-19",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA CONSERTO DE APARELHO DE UL-TRASSOM, DESTINADO À MANUTENÇÃO DOS ATENDIMENTOS TERAPÊUTICOS NA REDE BÁSICA DE SAÚDE, ASSEGURANDO A CONTINUIDADE DO TRATAMENTO DOS USUÁRIOS DO SUS.",
+   "valor": 540.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-23",
+   "objeto": "MANUTENÇÃO E CONSERVAÇÃO DE CLIMATIZADOR DE AR PARA TODAS AS SECRETARIAS E DEPARTAMENTOS MUNICIPAIS.",
+   "valor": 633500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-24",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NO RAMO DE SEGURO DE AUTOMÓVEIS E PREDIAL, PARA PRESTAÇÃO DE SERVIÇO DE SEGURO AOS VEÍCULOS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 2670.88,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-02-25",
+   "objeto": "MANUTENÇÃO E CONSERVAÇÃO DE CLIMATIZADOR DE AR PARA TODAS AS SECRETARIAS E DEPARTAMENTOS MUNICIPAIS.",
+   "valor": 633500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-02",
+   "objeto": "AQUISIÇÃO DE TOLDO PARA INSTALAÇÃO NA CAIXA DE AREIA E EM OUTRAS ÁREAS NECES-SÁRIAS DOS PRÉDIOS VINCULADOS À SECRETARIA DE EDUCAÇÃO.",
+   "valor": 16000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-02",
+   "objeto": "AQUISIÇÃO DE JOGO DE BOCHA E SACOS PARA TRANSPORTE DE BOLAS, DESTINADOS AO DEPARTAMENTO DE ESPORTES DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 7397.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-03-02",
+   "objeto": "INSCRIÇÃO DAS SERVIDORAS: SIRLEY MARIA ZANIN TREVISAN, (SECRETÁRIA MUNICIPAL DE EDUCAÇÃO, CULTURA, ESPORTE E TURISMO); DAIANE STELLA (ORIENTADORA PEDAGÓGICA), NO FÓRUM \"EDUCAÇÃO EM MOVIMENTO - CONECTAR SABERES PARA A PRÁTICA\", A SER REALIZADO PELA UNDIME/SC.",
+   "valor": 1400.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-03",
+   "objeto": "CONTRATAÇÃO DO SISTEMA DENOMINADO PORTAL DE COMPRAS PÚBLICAS, PARA A REALIZAÇÃO DE LICITAÇÃO EM MEIO DIGITAL, POR INTERMÉDIO DA REDE MUNDIAL DE COMPUTADORES.",
+   "valor": 0.01,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-06",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DE SERVIÇO DE SOLDA, TORNO E RETIFICA.",
+   "valor": 167100.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-06",
+   "objeto": "CONTRATAÇÃO DE CONSÓRCIO PÚBLICO MULTIFINALITÁRIO PARA EXECUÇÃO DE PAVIMENTAÇÃO ASFÁLTICA, LOCALIZADA NA RUA ITAMARATI, NO MUNICÍPIO DE BARRA BONITA/SC, DE ACORDO COM OS PROJETOS, MEMORIAL DESCRITIVO, CRONOGRAMA FÍSICO FINANCEIRO, PLANILHA ORÇAMENTÁRIA E DEMAIS ANEXOS INTEGRANTES DESTE PROCESSO.",
+   "valor": 34848.69,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-06",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NA REALIZAÇÃO DE PROCESSOS SELETIVOS E CONCURSOS PÚBLICOS, CONTEMPLANDO TODAS AS ETAPAS DO CERTAME, BEM COMO AS DESPESAS COM SOFTWARE, ELABORAÇÃO DE QUESTÕES, HOSPEDAGEM DE SITEE DEMAIS CUSTOS ADMINISTRATIVOS, EXCETUANDO-SE AS DESPESASFISCAIS E O ALUGUEL DE SALAS.",
+   "valor": 8070.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-03-06",
+   "objeto": "INSCRIÇÕES DE SERVIDORES DA SECRETARIA MUNICIPAL DE SAÚDE NO 10° CON-GRESSO DE SECRETARIAS MUNICIPAIS DE SAÚDE DE SANTA CATARINA.",
+   "valor": 600.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2026-03-09",
+   "objeto": "Contratação de empresa especializada para elaboração de projetos de pontes em concreto armado e/ou protendido sobre o Lajeado Pomba Branca, sobre o Arroio Barra  Bonita e sobre o Rio das Antas.",
+   "valor": 141236.68,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-09",
+   "objeto": "AQUISIÇÃO DE MATERIAIS PARA REALIZAÇÃO DE OFICINA DE PRODUÇÃO DE CHOCOLATES DE PÁSCOA NO SCFV.",
+   "valor": 928.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-10",
+   "objeto": "AQUISIÇÃO DE MATERIAIS DE CONSTRUÇÃO PARA MANUTENÇÃO DE BENS IMÓVEIS.",
+   "valor": 394742.19,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-12",
+   "objeto": "CONTRATAÇÃO DE ACESSO A ESPAÇOS DE LAZER PARA OS SERVIÇOS OFERTADOS NO CRAS.",
+   "valor": 20356.66,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-16",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NA PRESTAÇÃO DE SERVIÇO DE TRANSPORTE DE PASSAGEIROS, COM VEÍCULO TIPO MICRO-ÔNIBUS OU ÔNIBUS, DESTINADO AO DESLOCAMENTO DE ESTUDANTES PARTINDO DA SECRETARIA MUNICIPAL DE EDUCAÇÃO DO MUNICÍPIO DE BARRA BONITA - SC",
+   "valor": 137500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-18",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A PRESTAÇÃO DE SERVIÇOS DE LIMPEZA, DESINFECÇÃO E HIGIENIZAÇÃO DOS TANQUES DE ÁGUA POTÁVEL DE CAMINHÃO(ÕES)-PIPA DA DEFESA CIVIL, COM CAPACIDADE DE 10.000 LITROS, INCLUINDO O FORNECIMENTO OBRIGATÓRIO DE LAUDO DE POTABILIDADE DA ÁGUA E CERTIFICADO DE HIGIENIZAÇÃO DOS RESERVATÓRIOS.",
+   "valor": 13700.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-18",
+   "objeto": "AQUISIÇÃO DE TOLDO PARA INSTALAÇÃO NA CAIXA DE AREIA E EM OUTRAS ÁREAS NECES-SÁRIAS DOS PRÉDIOS VINCULADOS À SECRETARIA DE EDUCAÇÃO.",
+   "valor": 16000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-18",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DO SERVIÇO DE LEVANTAMENTO PLANIALTIMÉTRICO DA FAIXA DE DOMÍNIO DA SC-492 NO TRECHO REFERENTE A TRAVESSIA URBANA.",
+   "valor": 58000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-18",
+   "objeto": "AQUISIÇÃO EMERGENCIAL DE 04 (QUATRO) PNEUS NOVOS DESTINADOS AO VEÍCULO JEEP RENEGADE, PLACA RLJ-0C62, UTILIZADO PELO DESTACAMENTO DA POLÍCIA MILITAR DO MUNICÍPIO DE BARRA BONITA/SC, PARA GARANTIR A CONTINUIDADE DOS SERVIÇOS DE SEGURANÇA PÚBLICA NO MUNICÍPIO.",
+   "valor": 2080.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2026-03-20",
+   "objeto": "CONSTRUÇÃO DA NOVA SEDE DA SECRETARIA DE EDUCAÇÃO, CULTURA, ESPORTE E TURISMO.",
+   "valor": 1428760.24,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-20",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DE SERVIÇOS TÉCNICOS DE MANUTENÇÃO PREVENTIVA E CORRETIVA EM EQUIPAMENTOS E PERIFÉRICOS ODONTOLÓGICOS, INCLUINDO DIAGNÓSTICO, AJUSTES, REPAROS E DEMAIS PROCEDIMENTOS TÉCNICOS RELACIONADOS À MANUTENÇÃO DOS EQUIPAMENTOS.",
+   "valor": 30000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-20",
+   "objeto": "AQUISIÇÃO DE FÓRMULA INFANTIL DESTINADA A CRIANÇA DE 2 ANOS COM QUADRO DE SELETIVIDADE ALIMENTAR GRAVE, APRESENTANDO ERRO ALIMENTAR E RISCO NUTRICIONAL SIGNIFICATIVO, CONFORME INDICAÇÃO MÉDICA.",
+   "valor": 780.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-24",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NA REALIZAÇÃO DE CONCURSO PÚBLICO, CONTEMPLANDO TODAS AS ETAPAS DO CERTAME, BEM COMO AS DESPESAS COM SOFTWARE, ELABORAÇÃO DE QUESTÕES, HOSPEDAGEM DE SITE E DEMAIS CUSTOS ADMINISTRATIVOS, EXCETUANDO-SE AS DESPESAS FISCAIS E O ALUGUEL DE SALAS.",
+   "valor": 2800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-03-25",
+   "objeto": "INSCRIÇÕES DE SERVIDORES NO XV FÓRUM ESTADUAL DA POLÍTICA DE ASSISTÊNCIA SOCIAL.",
+   "valor": 1400.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-27",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA NA PRESTAÇÃO DE SERVIÇOS DE AGENCIAMENTO DE VIAGENS, COMPREENDENDO A ASSESSORIA, COTAÇÃO, RESERVA, EMISSÃO, CANCELAMENTO, REMARCAÇÃO, REEMBOLSO, FORNECIMENTO DE PASSAGENS AÉREAS E HOSPEDAGEM, NO ÂMBINO NACIONAL E INTERNACIONAL, A FIM DE ATENDER A DEMANDA DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 100000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-30",
+   "objeto": "AQUISIÇÃO DE MADEIRAS, PAVER E MEIO-FIO",
+   "valor": 377325.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-30",
+   "objeto": "AQUISIÇÃO DE FÓRMULA INFANTIL DESTINADA A CRIANÇA DE 1 ANO E 3 MESES QUE APRESENTA MALFORMAÇÃO CONGÊNITA DO DESENVOLVIMENTO CORTICAL (CID Q04.3) COMPATÍVEL COM ESÉCTRO DE LISENCEFALIA ASSOCIADA A POLIMICROGIRIA, CURSANDO COM EPILEPSIA ESTRUTURAL (CID G40.4) E DISFAGIA OROFARÍNGEA DE ORIGEM NEUROLÓGICA (CID R13), NECESSITANDO RECEBER SUPLEMENTO HIPERCALÓRICO PARA SUA RECUPERAÇÃO NUTRICIONAL.",
+   "valor": 1248.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-03-30",
+   "objeto": "Aquisição de pulverizadores costais manuais e a bateria (20L).",
+   "valor": 4668.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-03-31",
+   "objeto": "AQUISIÇÃO DE MATERIAIS ESPORTIVOS PARA AS ESCOLAS MUNICIPAIS PARA UTILIZAÇÃO NAS AULAS DE EDUCAÇÃO FISICA",
+   "valor": 8374.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2026-03-31",
+   "objeto": "Aquisição de produtos alimentícios provenientes da agricultura familiar, destinados aos atendimentos da alimentação do público participante do Serviço de Convivência e Fortalecimento de Vínculos (SCFV), ofertado no âmbito da Proteção Social Básica do Sistema Único de Assistência Social e outros serviços e programas da Assistência Social garantindo alimentação adequada e saudável aos usuários.",
+   "valor": 116143.0,
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL DE BARRA BONITA",
+   "cnpj": "97552692000112"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-04-09",
+   "objeto": "INSCRIÇÃO DAS SERVIDORAS: SIRLEY MARIA ZANIN TREVISAN (SECRETÁRIA MUNICIPAL DE EDUCAÇÃO, CULTURA, ESPORTE E TURISMO) E TAIS DERES (DIRETORA GERAL DE DEPARTAMENTO), NO XIV FÓRUM CATARINENSE DE GESTORES MUNICIPAIS DE CULTURA, A SER REALIZADO PELA FEDERAÇÃO CATARINENSE DOS MUNICÍPIOS (FECAM).",
+   "valor": 440.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-04-29",
+   "objeto": "Contratação de empresa especializada para aquisição de passagens aéreas nacionais, compreendendo os serviços de cotação, reserva, emissão e fornecimento de bilhetes aéreos no trecho para prefeito e vice prefeito em evento Marcha dos Prefeitos em Brasília DF, nos dias 18 a 21 de maio de 2026.",
+   "valor": 8348.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-04-29",
+   "objeto": "Inscrição para participação do Vice-Prefeito do Município de Barra Bonita/SC na XXVII Marcha a Brasília em Defesa dos Municípios, a ser realizada no período de 18 a 21 de maio, na cidade de Brasília, Distrito Federal.",
+   "valor": 600.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-05-08",
+   "objeto": "AQUISIÇÃO DE MADEIRAS PARA O MUNICÍPIO DE BARRA BONITA/SC",
+   "valor": 90307.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-05-08",
+   "objeto": "AQUISIÇÃO DE 01 (UMA) AMBULÂNCIA NOVA (0 KM), TIPO PICK-UP, DEVIDAMENTE TRANSFORMADA PARA SIMPLES REMOÇÃO, EQUIPADA CONFORME ESPECIFICAÇÕES TÉCNICAS, DESTINADA AO ATENDIMENTO DAS DEMANDAS DA SECRETARIA MUNICIPAL DE SAÚDE DO MUNICÍPIO DE BARRA BONITA/SC",
+   "valor": 210500.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-05-08",
+   "objeto": "SERVIÇO DE MANUTENÇÃO DE VEÍCULOS EM GARANTIA DE FABRICA  DA MARCA CHEVROLET.",
+   "valor": 15000.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-05-13",
+   "objeto": "Contratação de empresa para fornecimento de concreto usinado com serviço de bombeamento para atendimento das necessidades do Município de Barra Bonita/SC.",
+   "valor": 20550.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-05-13",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA AQUISIÇÃO DE PASSAGENS AÉREAS NACIONAIS, COMPREENDENDO OS SERVIÇOS DE COTAÇÃO, RESERVA, EMISSÃO E FORNECIMENTO DE BILHETES AÉREOS NO TRECHO PARA PREFEITO E VICE PREFEITO EM EVENTO MARCHA DOS PREFEITOS EM BRASÍLIA DF, NOS DIAS 17 A 21 DE MAIO DE 2026.",
+   "valor": 4654.5,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-05-27",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DE SERVIÇO DE DIAGNÓSTICO LABORATORIAL DE ANÁLISE CLÍNICA PARA ATENDER A SECRETARIA DE SAÚDE DO MUNICÍPIO DE BARRA BONITA/ SC.",
+   "valor": 930671.4,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-01",
+   "objeto": "AQUISIÇÃO DE MATERIAIS GRÁFICOS PARA ATENDIMENTO DAS NECESSIDADES DO MUNICÍPIO DE BARRA BONITA/SC",
+   "valor": 129044.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-02",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA LOCAÇÃO DE BRINQUEDOS INFLÁVEIS PARA EVENTO EM COMEMORAÇÃO AO DIA DAS CRIANÇAS 2026, NO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 6270.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-06-02",
+   "objeto": "INSCRIÇÃO DE SERVIDOR(ES) PARA PARTICIPAÇÃO NO XVII CONGRESSO NACIONAL DE PSICOLOGIA ESCOLAR E EDUCACIONAL, COM O TEMA \"PSICOLOGIA ESCOLAR E EDUCACIONAL E A VALORIZAÇÃO DO TRABALHO DOCENTE - ESCOLA PRESENTE\", A SER REALIZADO NOS DIAS 27, 28 E 29 DE JULHO DE 2026, NA UNIVERSIDADE ESTADUAL DO OESTE DO PARANÁ (UNIOESTE), NA CIDADE DE CASCAVEL - PR.",
+   "valor": 473.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-06-02",
+   "objeto": "INSCRIÇÃO DE SERVIDORES PARA PARTICIPAÇÃO NO CURSO PRESENCIAL \"LEI Nº 14.133/21 - GESTÃO E FISCALIZAÇÃO DE CONTRATOS ADMINISTRATIVOS\", A SER REALIZADO NOS DIAS 10 E 11 DE JUNHO DE 2026, PELA ASSOCIAÇÃO DOS MUNICÍPIOS DO EXTREMO OESTE DE SANTA CATARINA (AMEOSC), NA CIDADE DE SÃO MIGUEL DO OESTE/SC.",
+   "valor": 1200.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2026-06-03",
+   "objeto": "CONTRATAÇÃO DE PROFISSIONAL OU EMPRESA ESPECIALIZADA PARA AVALIAÇÃO DE IMÓVEIS DE INTERESSE DA ADMINISTRAÇÃO MUNICIPAL, CONFORME OS PARÂMETROS DO MERCADO IMOBILIÁRIO LOCAL.",
+   "valor": 40500.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2026-06-03",
+   "objeto": "AQUISIÇÃO DE PLACAS DE IDENTIFICAÇÃO VEICULAR (PIV) PARA ATENDIMENTO ÀS NECESSIDADES DA FROTA MUNICIPAL DE BARRA BONITA/SC.",
+   "valor": 3000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-05",
+   "objeto": "Contratação de empresa especializada para a prestação de serviços de transporte escolar, visando assegurar o deslocamento seguro e regular dos alunos matriculados na rede pública municipal e estadual de ensino, residentes na zona rural e demais localidades em que haja necessidade de transporte escolar, no Município de Barra Bonita/SC.",
+   "valor": 750000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-06-05",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA MINISTRAR PALESTRA E ATUAR NA REALIZAÇÃO DA CONFERÊNCIA MUNICIPAL DE SAÚDE, A SER REALIZADA NO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 1500.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-09",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA EXECUÇÃO DE ENSAIOS TÉCNICOS DE SOLOS, PAVIMENTAÇÃO E DRENAGEM.",
+   "valor": 107000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-09",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A EXECUÇÃO DE PINTURA NA ESCOLA OLAVO BILAC, LINHA TREZE DE MAIO, NO MUNICÍPIO DE BARRA BONITA - SC",
+   "valor": 90710.12,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-17",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DE SERVIÇO DE DIAGNÓSTICO LABORATORIAL DE ANÁLISE CLÍNICA PARA ATENDER A SECRETARIA DE SAÚDE DO MUNICÍPIO DE BARRA BONITA/ SC.",
+   "valor": 930671.4,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-18",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A CONFECÇÃO, FORNECIMENTO E INSTALAÇÃO DE CORRIMÃOS, EM CONFORMIDADE COM AS NORMAS DE ACESSIBILIDADE PREVISTAS NA ABNT NBR 9050, PARA ADEQUAÇÃO DOS PRÉDIOS PÚBLICOS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 69000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-19",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA MINISTRAR AULAS DE ATIVIDADES FÍSICAS AOS MUNÍCIPES, EM ATENDIMENTO ÀS AÇÕES DA ATENÇÃO BÁSICA À SAÚDE DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 55200.0,
+   "orgao": "FUNDO MUNICIPAL DE SAUDE DE BARRA BONITA",
+   "cnpj": "11873495000180"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-06-19",
+   "objeto": "AQUISIÇÃO DE EQUIPAMENTOS DE INFORMÁTICA, COMPREENDENDO NOTEBOOKS, DESTINADOS AO ATENDIMENTO DAS NECESSIDADES DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 216200.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2026-07-03",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA EXECUÇÃO DA REFORMA DE BARRACÃO INDUSTRIAL, LOCALIZADO NO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 40476.6,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Credenciamento",
+   "data": "2026-07-08",
+   "objeto": "CREDENCIAMENTO DE INSTITUIÇÕES FINANCEIRAS PÚBLICAS, PRIVADAS, COOPERATIVAS DE CRÉDITO, ORGANIZAÇÕES DE SOCIEDADE CIVIL PÚBLICA (OSCIPS) E SOCIEDADES DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESAS DE PEQUENO PORTE (SCMEPP), PARA OPERACIONALIZAÇÃO DO PROGRAMA JURO ZERO, CONFORME LEI MUNICIPAL N.1061/2026, E DECRETO MUNICIPAL N.2082/2026 A FIM DE ATENDER AS NECESSIDADES DA SECRETARIA MUNICIPAL DE ADMINISTRAÇÃO DO MUNICÍPIO DE BARRA BONITA/SC DE ACORDO COM ANEXO I, TERMO DE REFERÊNCIA DO EDITAL.",
+   "valor": 100000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Concorrência - Eletrônica",
+   "data": "2026-07-09",
+   "objeto": "CONCESSÃO DE DIREITO REAL DE USO, A TÍTULO NÃO REMUNERADO, DE BEM IMÓVEL DE PROPRIEDADE DO MUNICÍPIO DE BARRA BONITA/SC, QUAL SEJA O LOTE URBANO N° 26 E PARTE DO LOTE URBANO N° 25, AMBOS DA MATRÍCULA N°22.862, LOCALIZADOS NA RUA TRÊS DE MAIO,1.599,41 M² (MIL QUINHENTOS E NOVENTA E NOVE METROS QUADRADOS E QUARENTA E UM CENTÍMETROS) DE ÁREA DE TERRENO, COM CONSTRUÇÃO DE UM GALPÃO EM ESTRUTURA PRÉ-MOLDADA COM 632,46 M² (SEISCENTOS E TRINTA E DOIS METROS QUADRADOS E QUARENTA E SEIS CENTÍMETROS) E UMA EDIFICAÇÃO EM ALVENARIA DESTINADA A ESCRITÓRIO COM ÁREA CONSTRUÍDA DE 60,00 M2 (SESSENTA METROS QUADRADOS), NO CENTRO, CIDADE BARRA BONITA/SC.",
+   "valor": 1.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-07-14",
+   "objeto": "AQUISIÇÃO DE MADEIRAS PARA O MUNICÍPIO DE BARRA BONITA/SC",
+   "valor": 90307.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-07-14",
+   "objeto": "CONTRATAÇÃO DE EMPRESA PARA PRESTAÇÃO DE SERVIÇOS DE PERFURAÇÃO E DETONAÇÃO DE ROCHAS EM ATENDIMENTO AS DEMANDAS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 374000.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-07-14",
+   "objeto": "AQUISIÇÃO DE MATERIAIS TÁTICOS OPERACIONAIS DESTINADOS AO DESTACAMENTO DA POLÍCIA MILITAR DO MUNICÍPIO DE BARRA BONITA/SC",
+   "valor": 9300.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Dispensa de Licitação",
+   "data": "2026-07-14",
+   "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A REALIZAÇÃO DE MANUTENÇÃO CORRETIVA E REPARO NO EQUIPAMENTO NOBREAK.",
+   "valor": 930.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Inexigibilidade",
+   "data": "2026-07-31",
+   "objeto": "INSCRIÇÃO DE SERVIDORES MUNICIPAIS PARA PARTICIPAÇÃO NO CURSO PRESENCIAL \"REFORMA TRIBUTÁRIA E SEUS IMPACTOS NOS MUNICÍPIOS\", a ser realizado nos dias 03 e 04 de agosto de 2026, promovido pela Associação dos Municípios do Extremo Oeste de Santa Catarina (AMEOSC), nas dependências do Auditório da AMEOSC, localizado na Rua Segundo Aníbal Balbinot, nº 189, Bairro Agostini, São Miguel do Oeste/SC, com carga horária total de 12 horas presenciais.",
+   "valor": 800.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Leilão - Eletrônico",
+   "data": "2026-08-05",
+   "objeto": "serviço de exploração comercial da copa e cozinha do ginasio de Esportes Etelvino Favretto para o periodo de 24 meses",
+   "valor": 4128.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  },
+  {
+   "modalidade": "Pregão - Eletrônico",
+   "data": "2026-08-05",
+   "objeto": "AQUISIÇÃO DE SEGURO DETER PARA OS VEICULOS DA FROTA DAS SECRETARIAS DE EDUCAÇÃO E SAÚDE EM ATENDIMENTO AS DEMANDAS DO MUNICÍPIO DE BARRA BONITA/SC.",
+   "valor": 4435.0,
+   "orgao": "MUNICIPIO DE BARRA BONITA",
+   "cnpj": "01612527000130"
+  }
+ ]
+}
