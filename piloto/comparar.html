@@ -33,8 +33,8 @@
         </nav>
       </div>
       <div class="hero">
-        <div><p class="eyebrow">Comparador · Fases 1 e 3 · 4 cidades</p><h1>Duas cidades, lado a lado.</h1><p class="lede">Escolha duas das quatro cidades do piloto e veja as finanças públicas das duas na mesma régua. Por enquanto duas fases: <strong>Demografia</strong> (trajetória da população e o erro da estimativa) e <strong>Finanças públicas</strong> (receita, despesa, dependência de transferências e composição do gasto). As outras entram depois, uma a uma, no mesmo formato.</p></div>
-        <aside class="decision"><span>A regra desta página</span><strong>Nenhum valor absoluto.</strong><p>Comparar R$ 500 milhões com R$ 27 milhões só diz qual cidade é maior — coisa que a população já dizia. Tudo aqui é por habitante, em percentual ou em índice.</p></aside>
+        <div><p class="eyebrow">Comparador · Fases 1 e 3 · até 4 cidades</p><h1>Duas, três ou quatro cidades lado a lado.</h1><p class="lede">Escolha de duas a quatro cidades do piloto e veja demografia e finanças públicas de todas na mesma régua. Cada campo preenchido abre o próximo — deixe em branco para comparar menos. Por enquanto duas fases: <strong>Demografia</strong> (trajetória da população e o erro da estimativa) e <strong>Finanças públicas</strong> (receita, despesa, dependência de transferências e composição do gasto). As outras entram depois, uma a uma, no mesmo formato.</p></div>
+        <aside class="decision"><span>A regra desta página</span><strong>Nenhum valor absoluto.</strong><p>Comparar R$ 4 bilhões com R$ 27 milhões só diz qual cidade é maior — coisa que a população já dizia. Tudo aqui é por habitante, em percentual ou em índice.</p></aside>
       </div>
     </div>
   </header>
@@ -42,26 +42,14 @@
   <main id="conteudo" class="container">
     <p class="crumb"><a href="./">← Todos os pilotos</a></p>
 
-    <div class="cmp-picker">
-      <div class="cmp-campo">
-        <label for="cidade-a"><span class="cmp-chip" id="chip-a" aria-hidden="true"></span> Cidade A</label>
-        <select id="cidade-a" aria-label="Primeira cidade da comparação"></select>
-      </div>
-      <button type="button" class="cmp-trocar" id="trocar" title="Trocar as duas cidades de lado" aria-label="Trocar as duas cidades de lado">⇄</button>
-      <div class="cmp-campo">
-        <label for="cidade-b"><span class="cmp-chip" id="chip-b" aria-hidden="true"></span> Cidade B</label>
-        <select id="cidade-b" aria-label="Segunda cidade da comparação"></select>
-      </div>
-    </div>
+    <div class="cmp-picker" id="cmp-slots" role="group" aria-label="Cidades da comparação"></div>
 
-    <div class="cmp-resumos">
-      <div class="cmp-resumo" id="resumo-a"></div>
-      <div class="cmp-resumo" id="resumo-b"></div>
-    </div>
+    <div class="cmp-resumos" id="cmp-resumos"></div>
 
     <div class="cmp-aviso">
       <strong>Como a lista de cidades funciona</strong>
-      <p>O piloto tem quatro cidades — Itajubá/MG, Serra da Saudade/MG, Barra Bonita/SC e Florianópolis/SC —, o que dá doze comparações possíveis. A lista dos seletores acima <em>não está escrita no código</em>: vem de <code>dados/cidades.json</code>. Barra Bonita e Florianópolis foram acrescentadas só àquele arquivo e apareceram aqui sozinhas, sem nenhuma alteração nesta página. Cada cidade tem uma cor fixa, que não muda conforme a posição na comparação — e a 4ª cor só entrou depois de passar nos seis testes do validador de paleta, nos modos claro e escuro. O endereço guarda a escolha, então uma comparação pode ser compartilhada por link.</p>
+      <p>O piloto tem quatro cidades — Itajubá/MG, Serra da Saudade/MG, Barra Bonita/SC e Florianópolis/SC —, o que dá <strong>onze combinações</strong> possíveis de duas, três ou quatro. A lista dos seletores acima <em>não está escrita no código</em>: vem de <code>dados/cidades.json</code>. Barra Bonita e Florianópolis foram acrescentadas só àquele arquivo e apareceram aqui sozinhas, sem nenhuma alteração nesta página. Cada cidade tem uma cor fixa, que não muda conforme a posição na comparação, e uma cidade já escolhida some da lista dos outros campos. O endereço guarda a escolha (<code>?cidades=…</code>), então qualquer combinação pode ser compartilhada por link — e links no formato antigo, de duas cidades, continuam abrindo.</p>
+      <p><strong>Por que o teto é quatro.</strong> Não é limite de tela: é o tamanho da paleta categórica validada. Cada cidade precisa de uma cor que se distinga de todas as outras inclusive sob daltonismo, e o quarto tom só entrou depois de passar nos seis testes do validador nos modos claro e escuro. Uma quinta cidade no mesmo gráfico exigiria um quinto tom validado antes — não é uma constante a aumentar no código.</p>
     </div>
 
     <div id="resultado"><div class="cmp-vazio">Carregando as cidades…</div></div>

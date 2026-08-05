@@ -1,16 +1,24 @@
 // ===========================================================================
-// Comparador de cidades do piloto — versão inicial: só a Fase 3 (Finanças).
+// Comparador de cidades do piloto — Fases 1 (Demografia) e 3 (Finanças).
 //
-// Duas regras de projeto que valem para tudo o que for acrescentado aqui:
+// Três regras de projeto que valem para tudo o que for acrescentado aqui:
 //
 // 1. NENHUMA CIDADE ESTÁ ESCRITA NESTE ARQUIVO. A lista vem de
 //    ../dados/cidades.json, que também diz onde ficam os arquivos de cada uma.
-//    Acrescentar a terceira cidade é editar aquele manifesto, não este código.
+//    Acrescentar uma cidade é editar aquele manifesto, não este código.
 //
-// 2. NADA DE VALOR ABSOLUTO. Comparar "R$ 500 milhões" com "R$ 27 milhões" só
+// 2. NADA DE VALOR ABSOLUTO. Comparar "R$ 4 bilhões" com "R$ 27 milhões" só
 //    informa qual cidade é maior, o que já se sabe. Toda métrica aqui é por
-//    habitante, percentual ou índice — é o que permite pôr uma cidade de 96 mil
-//    e uma de 833 habitantes no mesmo eixo sem mentir.
+//    habitante, percentual ou índice — é o que permite pôr uma cidade de 537 mil
+//    e uma de 856 habitantes no mesmo eixo sem mentir.
+//
+// 3. O NÚMERO DE CIDADES É VARIÁVEL. A primeira versão desta página era escrita
+//    para um par fixo A/B: `const [A, B] = cidades`, séries `al.a`/`al.b`, coluna
+//    "Diferença" na tabela e frases com "as duas cidades" escritas à mão. Passar
+//    de 2 para 3 exigiria reescrever cada bloco, e de 3 para 4 de novo. Agora
+//    tudo trabalha sobre uma LISTA: os gráficos recebem N séries, as tabelas
+//    ganham uma coluna por cidade e o texto concorda em número sozinho. O teto
+//    é o tamanho da paleta categórica validada — hoje 4 tons.
 //
 // A cor é CATEGÓRICA e identifica a cidade (nos pilotos individuais verde é
 // receita e azul é despesa; aqui a cor muda de significado, e por isso receita
@@ -21,6 +29,7 @@ const CMP = {
   manifesto: null,
   cache: {},
   raiz: "../dados/",
+  slugs: [],
 };
 
 CMP.carregar = function (pasta, arquivo) {
@@ -34,41 +43,61 @@ CMP.carregar = function (pasta, arquivo) {
   return this.cache[caminho];
 };
 
+CMP.escuro = () =>
+  (matchMedia("(prefers-color-scheme: dark)").matches
+    && document.documentElement.dataset.theme !== "light")
+  || document.documentElement.dataset.theme === "dark";
+
+CMP.paleta = () => (CMP.escuro() ? CMP.manifesto.paleta.escura : CMP.manifesto.paleta.clara);
+
 CMP.cor = function (cidade) {
-  const escuro = matchMedia("(prefers-color-scheme: dark)").matches
-    && document.documentElement.dataset.theme !== "light"
-    || document.documentElement.dataset.theme === "dark";
-  const paleta = escuro ? CMP.manifesto.paleta.escura : CMP.manifesto.paleta.clara;
-  return paleta[cidade.cor_indice % paleta.length];
+  const p = CMP.paleta();
+  return p[cidade.cor_indice % p.length];
 };
+
+// Teto de cidades simultâneas: o número de tons categóricos validados. Não é
+// um limite de gosto — acima dele a paleta deixaria de passar na separação sob
+// daltonismo, e duas cidades ficariam com cores que não se distinguem.
+CMP.maxCidades = () => Math.max(2, CMP.paleta().length);
 
 const rotuloCidade = (c) => `${c.nome}/${c.uf}`;
 
+// --- concordância de número: o texto acompanha quantas cidades estão no ar ----
+const listar = (itens) => itens.length <= 1
+  ? (itens[0] || "")
+  : itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1];
+const nomes = (cidades) => listar(cidades.map(rotuloCidade));
+const asCidades = (n) => (n === 2 ? "as duas cidades" : `as ${n} cidades`);
+const asDelas = (n) => (n === 2 ? "das duas" : `das ${n}`);
+
+const perc1 = (v) => v.toFixed(1).replace(".", ",") + "%";
+const ppSin = (v) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(1).replace(".", ",") + "%";
+const brl = (v) => "R$ " + fmtInt.format(Math.round(v));
+
 // --- helpers de série -------------------------------------------------------
 
-// Une os anos das duas cidades e devolve um ponto por ano para cada uma, com
+// Une os anos de TODAS as cidades e devolve um ponto por ano para cada uma, com
 // null onde a cidade não tem dado. O renderizador quebra a linha no null, então
 // a série de quem começa depois simplesmente começa depois — sem inventar ponto.
-function alinhar(a, b, extrair) {
-  const ma = new Map(extrair(a).map(p => [p.ano, p.valor]));
-  const mb = new Map(extrair(b).map(p => [p.ano, p.valor]));
-  const anos = [...new Set([...ma.keys(), ...mb.keys()])].sort((x, y) => x - y);
+function alinhar(docs, extrair) {
+  const mapas = docs.map(d => new Map(extrair(d).map(p => [p.ano, p.valor])));
+  const anos = [...new Set(mapas.flatMap(m => [...m.keys()]))].sort((x, y) => x - y);
   return {
     anos,
-    a: anos.map(an => (ma.has(an) && ma.get(an) != null ? ma.get(an) : null)),
-    b: anos.map(an => (mb.has(an) && mb.get(an) != null ? mb.get(an) : null)),
+    series: mapas.map(m => anos.map(an => (m.has(an) && m.get(an) != null ? m.get(an) : null))),
   };
 }
 
-function graficoDuplo(root, { cidades, dados, extrair, yLabel, yFormat, yFormatFull, yMaxCap, legenda, missingLabel }) {
-  const [A, B] = cidades;
-  const al = alinhar(dados[0], dados[1], extrair);
+function graficoMultiplo(root, { cidades, dados, extrair, yLabel, yFormat, yFormatFull, yMaxCap, legenda, missingLabel }) {
+  const al = alinhar(dados, extrair);
   if (!al.anos.length) return null;
   renderLineChart(root, {
-    series: [
-      { key: A.slug, label: legenda ? legenda(A) : rotuloCidade(A), color: CMP.cor(A), points: al.a.map(y => ({ y })) },
-      { key: B.slug, label: legenda ? legenda(B) : rotuloCidade(B), color: CMP.cor(B), points: al.b.map(y => ({ y })) },
-    ],
+    series: cidades.map((c, i) => ({
+      key: c.slug,
+      label: legenda ? legenda(c) : rotuloCidade(c),
+      color: CMP.cor(c),
+      points: al.series[i].map(y => ({ y })),
+    })),
     xValues: al.anos.map(String),
     yLabel, yFormat, yFormatFull, yMaxCap,
     // Curto de propósito: este texto é desenhado DENTRO do gráfico, na altura
@@ -79,26 +108,31 @@ function graficoDuplo(root, { cidades, dados, extrair, yLabel, yFormat, yFormatF
   return al;
 }
 
-function tabelaDupla(root, { cidades, al, caption, fmt }) {
+function tabelaComparativa(root, { cidades, al, caption, fmt }) {
+  // A coluna "Diferença" só existe com DUAS cidades: com três ou mais, "a
+  // diferença" não tem referente único e a coluna induziria a comparar sempre
+  // com a primeira, que não tem nada de especial.
+  const par = cidades.length === 2;
   renderTable(root, {
     caption,
-    columns: ["Ano", rotuloCidade(cidades[0]), rotuloCidade(cidades[1]), "Diferença"],
+    columns: ["Ano", ...cidades.map(rotuloCidade), ...(par ? ["Diferença"] : [])],
     rows: al.anos.map((ano, i) => {
-      const x = al.a[i], y = al.b[i];
-      return [String(ano), x == null ? "—" : fmt(x), y == null ? "—" : fmt(y),
-        (x == null || y == null) ? "—" : fmt(x - y)];
+      const vs = al.series.map(s => s[i]);
+      const base = [String(ano), ...vs.map(v => (v == null ? "—" : fmt(v)))];
+      if (par) base.push(vs[0] == null || vs[1] == null ? "—" : fmt(vs[0] - vs[1]));
+      return base;
     }),
   });
 }
 
-// --- barras pareadas --------------------------------------------------------
-// Duas barras por linha, uma por cidade, na mesma régua. Preferi isto a barras
-// empilhadas porque a pergunta aqui é "quanto cada cidade destina a esta
+// --- barras comparadas ------------------------------------------------------
+// Uma barra por cidade em cada linha, todas na mesma régua. Preferi isto a
+// barras empilhadas porque a pergunta aqui é "quanto cada cidade destina a esta
 // função", e empilhar somaria coisas que não se somam.
-function barrasPareadas(root, { cidades, linhas, valueFormat, valueFormatFull }) {
+function barrasComparadas(root, { cidades, linhas, valueFormat, valueFormatFull }) {
   legend(root, cidades.map(c => ({ label: rotuloCidade(c), color: CMP.cor(c) })));
   // Se houver valor negativo, o trilho vira divergente com o zero no meio.
-  const vals = linhas.flatMap(l => [l.a, l.b]).filter(v => v != null);
+  const vals = linhas.flatMap(l => l.valores).filter(v => v != null);
   const divergente = vals.some(v => v < 0);
   const max = Math.max(...vals.map(Math.abs), 0) || 1;
   const caixa = document.createElement("div");
@@ -116,7 +150,7 @@ function barrasPareadas(root, { cidades, linhas, valueFormat, valueFormatFull })
     const par = document.createElement("div");
     par.className = "cmp-bar-par";
     cidades.forEach((c, i) => {
-      const v = i === 0 ? l.a : l.b;
+      const v = l.valores[i];
       const linha = document.createElement("div");
       linha.className = "cmp-bar-linha";
       const trilho = document.createElement("div");
@@ -147,46 +181,54 @@ function barrasPareadas(root, { cidades, linhas, valueFormat, valueFormatFull })
   });
 }
 
+// Um cartão por cidade, na cor dela. Substitui o antigo "valor A · valor B"
+// concatenado numa string, que virava ilegível já na terceira cidade.
+function statsPorCidade(root, cidades, montar) {
+  renderStats(root, cidades.map((c, i) => Object.assign(
+    { label: rotuloCidade(c) }, montar(c, i))));
+}
+
 // --- Fase 1 — demografia ----------------------------------------------------
 //
-// População absoluta não entra em nenhum gráfico daqui: 96 mil contra 1,6 mil
-// contra 856 não cabem no mesmo eixo, e forçar isso deixaria as duas cidades
+// População absoluta não entra em nenhum gráfico daqui: 537 mil contra 1,6 mil
+// contra 856 não cabem no mesmo eixo, e forçar isso deixaria as cidades
 // pequenas coladas no zero. O que se compara é a TRAJETÓRIA (índice de base
 // comum) e a QUEBRA do Censo (em percentual).
 function blocoDemografia(raiz, cidades, docs) {
-  const [A, B] = cidades;
-  const [popA, popB] = docs;
-  const perc = (v) => v.toFixed(1).replace(".", ",") + "%";
-  const pp = (v) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(1).replace(".", ",") + "%";
+  const n = cidades.length;
+  const pops = docs;
+  const censos = (d) => Object.fromEntries(
+    d.serie.filter(p => p.fonte === "censo").map(p => [p.ano, p.populacao]));
+  const cen = pops.map(censos);
+  const ult = pops.map(d => d.serie.filter(p => p.populacao != null).slice(-1)[0]);
 
-  const censos = (d) => Object.fromEntries(d.serie.filter(p => p.fonte === "censo").map(p => [p.ano, p.populacao]));
-  const cA = censos(popA), cB = censos(popB);
-  const ultA = popA.serie.filter(p => p.populacao != null).slice(-1)[0];
-  const ultB = popB.serie.filter(p => p.populacao != null).slice(-1)[0];
-
-  // base do índice: o primeiro ano com dado nas duas cidades
-  const anosA = new Set(popA.serie.filter(p => p.populacao != null).map(p => p.ano));
-  const base = popB.serie.filter(p => p.populacao != null).map(p => p.ano).find(a => anosA.has(a));
+  // Base do índice: o primeiro ano com dado em TODAS as cidades escolhidas —
+  // com duas era uma interseção de dois conjuntos; agora de N.
+  const conjuntos = pops.map(d => new Set(d.serie.filter(p => p.populacao != null).map(p => p.ano)));
+  const base = [...conjuntos[0]].sort((a, b) => a - b).find(a => conjuntos.every(s => s.has(a)));
+  if (base == null) {
+    note(raiz, "As cidades escolhidas não têm nenhum ano de população em comum — sem ano-base não há índice.");
+    return;
+  }
 
   // ---------- trajetória em índice ----------
   const g1 = secao(raiz, "1. A trajetória da população, na mesma régua",
     `População de cada ano dividida pela do ano-base (${base} = 100). É a única forma de pôr cidades de portes ` +
     `muito diferentes no mesmo eixo — em valor absoluto, a maior achataria as outras contra o zero.`);
-  const baseA = popA.serie.find(p => p.ano === base).populacao;
-  const baseB = popB.serie.find(p => p.ano === base).populacao;
-  const indices = [[popA, baseA], [popB, baseB]].flatMap(([d, b]) =>
-    d.serie.filter(p => p.populacao != null).map(p => 100 * p.populacao / b));
+  const bases = pops.map(d => d.serie.find(p => p.ano === base).populacao);
+  const indices = pops.flatMap((d, i) =>
+    d.serie.filter(p => p.populacao != null).map(p => 100 * p.populacao / bases[i]));
   // Teto da régua colado no dado. Sem isso, um máximo de 115 faz o niceMax
   // arredondar para 200 e metade do gráfico fica vazia — e o achatamento
-  // esconde justamente a separação entre as duas trajetórias. Múltiplo de 20
+  // esconde justamente a separação entre as trajetórias. Múltiplo de 20
   // porque o eixo é dividido em 4 partes: 120 dá marcas em 0/30/60/90/120, e
   // 125 daria 0/31/63/94/125.
   const topo = Math.max(20, Math.ceil(Math.max(...indices) / 20) * 20);
 
-  const al1 = graficoDuplo(g1, {
-    cidades, dados: [popA, popB],
+  const al1 = graficoMultiplo(g1, {
+    cidades, dados: pops,
     extrair: (d) => {
-      const b = d === popA ? baseA : baseB;
+      const b = bases[pops.indexOf(d)];
       return d.serie.map(p => ({ ano: p.ano, valor: p.populacao == null ? null : 100 * p.populacao / b }));
     },
     yLabel: `Índice ${base} = 100`,
@@ -195,25 +237,25 @@ function blocoDemografia(raiz, cidades, docs) {
     yMaxCap: topo,
   });
 
-  const idxA = 100 * ultA.populacao / baseA, idxB = 100 * ultB.populacao / baseB;
-  renderStats(g1, [
-    { value: Math.round(idxA) + " / 100", label: `${rotuloCidade(A)} em ${ultA.ano}`, note: `${pp(idxA - 100)} desde ${base}` },
-    { value: Math.round(idxB) + " / 100", label: `${rotuloCidade(B)} em ${ultB.ano}`, note: `${pp(idxB - 100)} desde ${base}` },
-    { value: fmtInt.format(ultA.populacao) + " · " + fmtInt.format(ultB.populacao), label: `Habitantes em ${ultA.ano}`, note: "Os números absolutos, para referência — não é o que o gráfico compara" },
-  ]);
+  const idx = ult.map((u, i) => 100 * u.populacao / bases[i]);
+  statsPorCidade(g1, cidades, (c, i) => ({
+    value: Math.round(idx[i]) + " / 100",
+    label: `${rotuloCidade(c)} em ${ult[i].ano}`,
+    note: `${ppSin(idx[i] - 100)} desde ${base} · ${fmtInt.format(ult[i].populacao)} hab.`,
+  }));
 
   note(g1, `<strong>O índice responde "para onde cada cidade foi", não "qual é maior".</strong> Cada linha começa em
-    100 no ano-base e mostra a variação relativa dali em diante, então uma cidade de mil habitantes e uma de cem mil
-    cabem lado a lado sem que a diferença de porte engula a comparação. Os números absolutos ficam nos cartões
-    acima e na tabela abaixo, para quem precisar deles.`);
+    100 no ano-base e mostra a variação relativa dali em diante, então uma cidade de mil habitantes e uma de meio
+    milhão cabem lado a lado sem que a diferença de porte engula a comparação. Os números absolutos ficam nos
+    cartões acima e na tabela abaixo, para quem precisar deles.`);
 
-  if (al1) tabelaDupla(g1, {
+  if (al1) tabelaComparativa(g1, {
     cidades, al: al1, caption: `População em índice, ${base} = 100`,
     fmt: (v) => v.toFixed(1).replace(".", ","),
   });
 
   // ---------- variação entre Censos ----------
-  const anosCenso = [2000, 2010, 2022].filter(a => cA[a] != null && cB[a] != null);
+  const anosCenso = [2000, 2010, 2022].filter(a => cen.every(c => c[a] != null));
   if (anosCenso.length >= 2) {
     const g2 = secao(raiz, "2. O que mudou de um Censo para o outro",
       "Variação percentual entre contagens completas — não entre estimativas. É a medida mais firme que existe de " +
@@ -221,34 +263,40 @@ function blocoDemografia(raiz, cidades, docs) {
     const pares = [];
     for (let i = 0; i + 1 < anosCenso.length; i++) {
       const de = anosCenso[i], para = anosCenso[i + 1];
-      pares.push({ rotulo: `${de} → ${para}`, a: 100 * (cA[para] / cA[de] - 1), b: 100 * (cB[para] / cB[de] - 1) });
+      pares.push({
+        rotulo: `${de} → ${para}`,
+        valores: cen.map(c => 100 * (c[para] / c[de] - 1)),
+      });
     }
     const pri = anosCenso[0], ultC = anosCenso[anosCenso.length - 1];
     pares.push({
       rotulo: `${pri} → ${ultC} (total)`,
-      a: 100 * (cA[ultC] / cA[pri] - 1), b: 100 * (cB[ultC] / cB[pri] - 1),
+      valores: cen.map(c => 100 * (c[ultC] / c[pri] - 1)),
     });
 
-    barrasPareadas(g2, {
+    barrasComparadas(g2, {
       cidades, linhas: pares,
-      valueFormat: (v) => pp(v),
-      valueFormatFull: (v) => pp(v) + " entre os dois Censos",
+      valueFormat: (v) => ppSin(v),
+      valueFormatFull: (v) => ppSin(v) + " entre os dois Censos",
     });
 
-    const totA = 100 * (cA[ultC] / cA[pri] - 1), totB = 100 * (cB[ultC] / cB[pri] - 1);
-    const mesmaDirecao = (totA >= 0) === (totB >= 0);
-    note(g2, mesmaDirecao
-      ? `Entre ${pri} e ${ultC} as duas cidades foram para o mesmo lado: ${rotuloCidade(A)} ${pp(totA)} e
-         ${rotuloCidade(B)} ${pp(totB)}. A diferença está no ritmo, não no sentido.`
-      : `<strong>As duas foram para lados opostos.</strong> Entre ${pri} e ${ultC}, ${rotuloCidade(A)} variou
-         ${pp(totA)} e ${rotuloCidade(B)} variou ${pp(totB)}. A barra cresce para a direita quando a população
-         subiu e para a esquerda quando caiu; a linha vertical é o zero.`);
+    const tot = cen.map(c => 100 * (c[ultC] / c[pri] - 1));
+    const sobem = cidades.filter((_, i) => tot[i] >= 0);
+    const descem = cidades.filter((_, i) => tot[i] < 0);
+    const detalhe = cidades.map((c, i) => `${rotuloCidade(c)} ${ppSin(tot[i])}`).join(", ");
+    note(g2, (sobem.length === 0 || descem.length === 0)
+      ? `Entre ${pri} e ${ultC} ${asCidades(n)} foram para o mesmo lado: ${detalhe}. A diferença está no ritmo,
+         não no sentido.`
+      : `<strong>Estas cidades foram para lados opostos.</strong> Entre ${pri} e ${ultC},
+         ${nomes(sobem)} ${sobem.length === 1 ? "ganhou" : "ganharam"} população e
+         ${nomes(descem)} ${descem.length === 1 ? "perdeu" : "perderam"} — ${detalhe}. A barra cresce para a
+         direita quando a população subiu e para a esquerda quando caiu; a linha vertical é o zero.`);
 
     renderTable(g2, {
       caption: "População nos Censos e variação entre eles",
-      columns: ["Censo", rotuloCidade(A), rotuloCidade(B)],
-      rows: anosCenso.map(a => [String(a), fmtInt.format(cA[a]), fmtInt.format(cB[a])])
-        .concat(pares.map(p => [p.rotulo, pp(p.a), pp(p.b)])),
+      columns: ["Censo", ...cidades.map(rotuloCidade)],
+      rows: anosCenso.map(a => [String(a), ...cen.map(c => fmtInt.format(c[a]))])
+        .concat(pares.map(p => [p.rotulo, ...p.valores.map(ppSin)])),
     });
   }
 
@@ -259,25 +307,26 @@ function blocoDemografia(raiz, cidades, docs) {
     if (!antes) return null;
     return { ano: antes.ano, estimativa: antes.populacao, censo: c[2022], dif: 100 * (c[2022] / antes.populacao - 1) };
   };
-  const qA = quebra(popA, cA), qB = quebra(popB, cB);
-  if (qA && qB) {
+  const qs = pops.map((d, i) => quebra(d, cen[i]));
+  if (qs.every(Boolean)) {
     const g3 = secao(raiz, "3. O tamanho do erro da estimativa",
       "Nos anos entre Censos o IBGE publica uma estimativa, que é projeção e não contagem. O Censo 2022 mostrou " +
       "de quanto era o desvio acumulado — e o sinal do desvio não é o mesmo em toda cidade.");
-    renderStats(g3, [
-      { value: pp(qA.dif), label: `Correção do Censo 2022 · ${rotuloCidade(A)}`, note: `Estimativa de ${qA.ano}: ${fmtInt.format(qA.estimativa)} · Censo: ${fmtInt.format(qA.censo)}` },
-      { value: pp(qB.dif), label: `Correção do Censo 2022 · ${rotuloCidade(B)}`, note: `Estimativa de ${qB.ano}: ${fmtInt.format(qB.estimativa)} · Censo: ${fmtInt.format(qB.censo)}` },
-    ]);
+    statsPorCidade(g3, cidades, (c, i) => ({
+      value: ppSin(qs[i].dif),
+      label: `Correção do Censo 2022 · ${rotuloCidade(c)}`,
+      note: `Estimativa de ${qs[i].ano}: ${fmtInt.format(qs[i].estimativa)} · Censo: ${fmtInt.format(qs[i].censo)}`,
+    }));
 
-    const sinais = (qA.dif >= 0) === (qB.dif >= 0);
-    note(g3, sinais
-      ? `Nas duas cidades a estimativa errou para o mesmo lado — ${qA.dif >= 0 ? "abaixo" : "acima"} da contagem
-         real —, com desvios de ${pp(qA.dif)} e ${pp(qB.dif)}.`
-      : `<strong>A estimativa errou para lados opostos nas duas cidades.</strong> Em ${rotuloCidade(A)} ela vinha
-         ${qA.dif < 0 ? "acima" : "abaixo"} do que o Censo depois contou (${pp(qA.dif)} de correção); em
-         ${rotuloCidade(B)}, ${qB.dif < 0 ? "acima" : "abaixo"} (${pp(qB.dif)}). Isso importa para tudo o que se
-         divide por população: <strong>um valor "por habitante" calculado com a estimativa de 2021 carrega esse
-         erro embutido</strong>, e em direções contrárias dependendo da cidade.`);
+    const acima = cidades.filter((_, i) => qs[i].dif < 0);   // estimativa vinha ACIMA do Censo
+    const abaixo = cidades.filter((_, i) => qs[i].dif >= 0);
+    note(g3, (acima.length === 0 || abaixo.length === 0)
+      ? `Em ${asCidades(n)} a estimativa errou para o mesmo lado — ${abaixo.length ? "abaixo" : "acima"} da contagem
+         real —, com desvios de ${cidades.map((c, i) => ppSin(qs[i].dif)).join(", ")}.`
+      : `<strong>A estimativa errou para lados opostos.</strong> Em ${nomes(acima)} ela vinha <em>acima</em> do que
+         o Censo depois contou; em ${nomes(abaixo)}, <em>abaixo</em>. Isso importa para tudo o que se divide por
+         população: <strong>um valor "por habitante" calculado com a estimativa de 2021 carrega esse erro
+         embutido</strong>, e em direções contrárias dependendo da cidade.`);
 
     note(g3, `<strong>Por que a estimativa erra mais em cidade pequena.</strong> Ela é uma projeção construída a
       partir do Censo anterior e de tendências regionais, não uma contagem. Quanto menor o município, menos massa o
@@ -285,7 +334,7 @@ function blocoDemografia(raiz, cidades, docs) {
       isso que os anos de Censo aparecem com marcador maior nos gráficos das páginas individuais — eles valem mais
       que os anos intermediários.`);
 
-    note(g3, `Uma nota de cobertura, e ela vale para as três cidades do piloto: <strong>o IBGE não publica
+    note(g3, `Uma nota de cobertura, e ela vale para todas as cidades do piloto: <strong>o IBGE não publica
       estimativa municipal para 2007 nem para 2023</strong>. Nos gráficos acima esses dois anos aparecem como
       buraco, não como valor interpolado.`);
   }
@@ -296,76 +345,64 @@ function blocoDemografia(raiz, cidades, docs) {
 // --- os blocos da Fase 3 ----------------------------------------------------
 
 function blocoFase3(raiz, cidades, docs) {
-  const [A, B] = cidades;
-  const [rdA, dfA, roA] = docs[0], [rdB, dfB, roB] = docs[1];
-  const ultA = dfA.serie[dfA.serie.length - 1], ultB = dfB.serie[dfB.serie.length - 1];
-  const recA = roA.serie[roA.serie.length - 1], recB = roB.serie[roB.serie.length - 1];
-
-  const brl = (v) => "R$ " + fmtInt.format(Math.round(v));
-  const perc = (v) => v.toFixed(1).replace(".", ",") + "%";
+  const n = cidades.length;
+  const rd = docs.map(d => d[0]);   // receita/despesa/saldo
+  const df = docs.map(d => d[1]);   // despesa por função e natureza
+  const ro = docs.map(d => d[2]);   // receita por origem
+  const ultD = df.map(d => d.serie[d.serie.length - 1]);
+  const ultR = ro.map(d => d.serie[d.serie.length - 1]);
 
   // ---------- painel de contraste ----------
-  const painel = secao(raiz, "O contraste em quatro números",
-    `Todos do último ano fechado de cada cidade. Os valores por habitante estão em reais de 2025.`);
-  const razaoPop = ultA.populacao / ultB.populacao;
-  renderStats(painel, [
-    {
-      value: (razaoPop >= 1 ? razaoPop : 1 / razaoPop).toFixed(razaoPop >= 10 ? 0 : 1).replace(".", ",") + "×",
-      label: "Diferença de população",
-      note: `${fmtInt.format(ultA.populacao)} contra ${fmtInt.format(ultB.populacao)} habitantes`,
-    },
-    {
-      value: brl(ultA.per_capita_r2025) + " · " + brl(ultB.per_capita_r2025),
-      label: "Despesa por habitante",
-      note: `${rotuloCidade(A)} · ${rotuloCidade(B)}`,
-    },
-    {
-      value: perc(recA.dependencia_transferencias_pct) + " · " + perc(recB.dependencia_transferencias_pct),
-      label: "Da receita vem de transferência",
-      note: "Quanto menor, maior a autonomia fiscal",
-    },
-    {
-      value: pibPct(dfA) + " · " + pibPct(dfB),
-      label: "Despesa da Prefeitura sobre o PIB",
-      note: "Peso do setor público na economia local",
-    },
-  ]);
+  const painel = secao(raiz, "O contraste, cidade a cidade",
+    "Todos do último ano fechado de cada cidade. Os valores por habitante estão em reais de 2025.");
+  statsPorCidade(painel, cidades, (c, i) => ({
+    value: brl(ultD[i].per_capita_r2025),
+    label: `Despesa por habitante · ${rotuloCidade(c)}`,
+    note: `${perc1(ultR[i].dependencia_transferencias_pct)} de transferências · ${pibPct(df[i])} do PIB · `
+      + `${fmtInt.format(ultD[i].populacao)} hab.`,
+  }));
+
+  const pops = ultD.map(u => u.populacao);
+  const maiorPop = Math.max(...pops), menorPop = Math.min(...pops);
+  const razao = maiorPop / menorPop;
   note(painel, `<strong>A primeira coisa que uma comparação honesta precisa dizer é o que ela NÃO faz.</strong>
-    Nenhum gráfico desta página mostra reais absolutos. Entre duas cidades de portes tão diferentes, o valor total
-    do orçamento só responde "qual é a maior", e isso o número de habitantes já respondia. O que muda de cidade
-    para cidade — e o que dá para comparar — é <strong>quanto cabe a cada habitante, que fatia do bolo vai para
-    cada área e o quanto da receita é própria</strong>.`);
+    Nenhum gráfico desta página mostra reais absolutos. Entre cidades cujos portes variam
+    ${razao.toFixed(razao >= 10 ? 0 : 1).replace(".", ",")} vezes — de ${fmtInt.format(menorPop)} a
+    ${fmtInt.format(maiorPop)} habitantes —, o valor total do orçamento só responde "qual é a maior", e isso o
+    número de habitantes já respondia. O que muda de cidade para cidade — e o que dá para comparar — é
+    <strong>quanto cabe a cada habitante, que fatia do bolo vai para cada área e o quanto da receita é
+    própria</strong>.`);
 
   // ---------- despesa por habitante ----------
   const g1 = secao(raiz, "1. Quanto a Prefeitura gasta por habitante",
     "Despesa empenhada dividida pela população de cada ano, corrigida pelo IPCA para reais de 2025.");
-  const al1 = graficoDuplo(g1, {
-    cidades, dados: [dfA, dfB],
+  const al1 = graficoMultiplo(g1, {
+    cidades, dados: df,
     extrair: (d) => d.serie.map(p => ({ ano: p.ano, valor: p.per_capita_r2025 })),
     yLabel: "Despesa por habitante (R$ de 2025)",
     yFormat: (v) => "R$ " + fmtMoneyCompact(v),
     yFormatFull: (v) => fmtMoneyFull(v) + " por habitante",
   });
-  const maior = ultA.per_capita_r2025 >= ultB.per_capita_r2025 ? [A, ultA, B, ultB] : [B, ultB, A, ultA];
-  note(g1, `Em ${maior[1].ano}, <strong>${rotuloCidade(maior[0])} gasta ${brl(maior[1].per_capita_r2025)} por
-    habitante e ${rotuloCidade(maior[2])} gasta ${brl(maior[3].per_capita_r2025)}</strong> — uma diferença de
-    ${(maior[1].per_capita_r2025 / maior[3].per_capita_r2025).toFixed(1).replace(".", ",")} vezes. Isso não
-    significa que uma gaste bem e a outra mal: <strong>uma prefeitura tem um custo mínimo de existir</strong>
-    (prefeito, secretarias, contador, Câmara, uma escola, um posto de saúde) que quase não diminui com o tamanho da
-    cidade. Dividido por pouca gente, esse custo fixo vira um valor por habitante muito alto — e é por isso que
-    cidades pequenas quase sempre aparecem no topo deste indicador.`);
+  const ordDesp = cidades.map((c, i) => ({ c, v: ultD[i].per_capita_r2025, ano: ultD[i].ano }))
+    .sort((x, y) => y.v - x.v);
+  const topo1 = ordDesp[0], fundo1 = ordDesp[ordDesp.length - 1];
+  note(g1, `Em ${topo1.ano}, <strong>${rotuloCidade(topo1.c)} gasta ${brl(topo1.v)} por habitante e
+    ${rotuloCidade(fundo1.c)} gasta ${brl(fundo1.v)}</strong> — uma diferença de
+    ${(topo1.v / fundo1.v).toFixed(1).replace(".", ",")} vezes. Isso não significa que uma gaste bem e a outra mal:
+    <strong>uma prefeitura tem um custo mínimo de existir</strong> (prefeito, secretarias, contador, Câmara, uma
+    escola, um posto de saúde) que quase não diminui com o tamanho da cidade. Dividido por pouca gente, esse custo
+    fixo vira um valor por habitante muito alto — e é por isso que cidades pequenas quase sempre aparecem no topo
+    deste indicador.`);
   note(g1, `<strong>O buraco de 2023 é do IBGE, não da coleta.</strong> Todo valor "por habitante" precisa de uma
-    população para dividir, e o IBGE não publicou estimativa municipal para 2023 — em nenhuma das duas cidades.
-    O ano fica marcado como sem dado em vez de receber um número interpolado. <span style="opacity:.85">Vale
-    lembrar também que a população dos anos entre Censos é estimativa, e o Censo 2022 mostrou que ela errava
-    para lados opostos nas duas cidades: para cima em Itajubá, para baixo em Serra da Saudade.</span>`);
-  if (al1) tabelaDupla(g1, { cidades, al: al1, caption: "Despesa por habitante, em R$ de 2025", fmt: brl });
+    população para dividir, e o IBGE não publicou estimativa municipal para 2023 — em nenhuma ${asDelas(n)}
+    cidades. O ano fica marcado como sem dado em vez de receber um número interpolado.`);
+  if (al1) tabelaComparativa(g1, { cidades, al: al1, caption: "Despesa por habitante, em R$ de 2025", fmt: brl });
 
   // ---------- receita por habitante ----------
   const g2 = secao(raiz, "2. E quanto ela arrecada por habitante",
     "Receita bruta dividida pela população de cada ano, também em reais de 2025. Separada da despesa de propósito: são grandezas diferentes e dividir um eixo entre elas esconderia as duas.");
-  const al2 = graficoDuplo(g2, {
-    cidades, dados: [roA, roB],
+  const al2 = graficoMultiplo(g2, {
+    cidades, dados: ro,
     extrair: (d) => d.serie.map(p => ({
       ano: p.ano,
       valor: p.populacao ? p.receita_bruta * p.ipca_fator_para_2025 / p.populacao : null,
@@ -374,104 +411,106 @@ function blocoFase3(raiz, cidades, docs) {
     yFormat: (v) => "R$ " + fmtMoneyCompact(v),
     yFormatFull: (v) => fmtMoneyFull(v) + " por habitante",
   });
-  if (al2) tabelaDupla(g2, { cidades, al: al2, caption: "Receita bruta por habitante, em R$ de 2025", fmt: brl });
+  if (al2) tabelaComparativa(g2, { cidades, al: al2, caption: "Receita bruta por habitante, em R$ de 2025", fmt: brl });
 
   // ---------- dependência de transferências ----------
   const g3 = secao(raiz, "3. Quanto do dinheiro vem de fora",
     "Parcela da receita bruta que é transferência da União e do estado — FPM, cota-parte do ICMS, SUS, FUNDEB. O resto é o que a cidade arrecada sozinha.");
-  const al3 = graficoDuplo(g3, {
-    cidades, dados: [roA, roB],
+  const al3 = graficoMultiplo(g3, {
+    cidades, dados: ro,
     extrair: (d) => d.serie.map(p => ({ ano: p.ano, valor: p.dependencia_transferencias_pct })),
     yLabel: "% da receita vinda de transferências",
     yFormat: (v) => Math.round(v) + "%",
-    yFormatFull: (v) => perc(v) + " da receita",
+    yFormatFull: (v) => perc1(v) + " da receita",
     yMaxCap: 100,
   });
-  note(g3, `<strong>Este é o indicador que mais separa as duas cidades, e o mais importante da comparação.</strong>
-    Quanto mais alta a linha, menor a margem de escolha do governo municipal: dinheiro de transferência costuma chegar
-    carimbado para saúde, educação ou uma obra específica, e sobe e desce conforme a arrecadação federal — sobre a
-    qual a prefeitura não tem controle nenhum. Uma cidade com dependência alta pode ter orçamento grande e mesmo
-    assim decidir muito pouco sobre ele.`);
-  if (al3) tabelaDupla(g3, { cidades, al: al3, caption: "Dependência de transferências, em % da receita bruta", fmt: perc });
+  const ordDep = cidades.map((c, i) => ({ c, v: ultR[i].dependencia_transferencias_pct }))
+    .sort((x, y) => y.v - x.v);
+  note(g3, `<strong>Este é o indicador que mais separa as cidades, e o mais importante da comparação.</strong>
+    No último ano fechado vai de <strong>${perc1(ordDep[0].v)} em ${rotuloCidade(ordDep[0].c)}</strong> a
+    <strong>${perc1(ordDep[ordDep.length - 1].v)} em ${rotuloCidade(ordDep[ordDep.length - 1].c)}</strong>.
+    Quanto mais alta a linha, menor a margem de escolha do governo municipal: dinheiro de transferência costuma
+    chegar carimbado para saúde, educação ou uma obra específica, e sobe e desce conforme a arrecadação federal —
+    sobre a qual a prefeitura não tem controle nenhum. Uma cidade com dependência alta pode ter orçamento grande e
+    mesmo assim decidir muito pouco sobre ele.`);
+  if (al3) tabelaComparativa(g3, { cidades, al: al3, caption: "Dependência de transferências, em % da receita bruta", fmt: perc1 });
 
   // ---------- saldo ----------
   const g4 = secao(raiz, "4. O ano fechou no azul ou no vermelho",
     "Saldo do exercício como percentual da receita — não em reais, para que o resultado de cidades de portes diferentes caiba na mesma régua.");
-  const al4 = graficoDuplo(g4, {
-    cidades, dados: [rdA, rdB],
+  const al4 = graficoMultiplo(g4, {
+    cidades, dados: rd,
     extrair: (d) => d.serie.map(p => ({
       ano: p.ano,
       valor: p.receita_realizada ? 100 * p.saldo / p.receita_realizada : null,
     })),
     yLabel: "Saldo como % da receita realizada",
     yFormat: (v) => Math.round(v) + "%",
-    yFormatFull: (v) => (v >= 0 ? "superávit de " : "déficit de ") + perc(Math.abs(v)) + " da receita",
+    yFormatFull: (v) => (v >= 0 ? "superávit de " : "déficit de ") + perc1(Math.abs(v)) + " da receita",
   });
-  const defA = rdA.serie.filter(p => p.saldo < 0).length, defB = rdB.serie.filter(p => p.saldo < 0).length;
-  note(g4, `${rotuloCidade(A)} fechou no vermelho em <strong>${defA} de ${rdA.serie.length} anos</strong>;
-    ${rotuloCidade(B)}, em <strong>${defB} de ${rdB.serie.length}</strong>. Vale a mesma ressalva das páginas
-    individuais: <strong>saldo mede equilíbrio de caixa, não qualidade do gasto</strong> — dá para fechar no azul
-    deixando de investir, e um déficit pontual pode ser exatamente o ano da obra.`);
-  if (al4) tabelaDupla(g4, { cidades, al: al4, caption: "Saldo do exercício, em % da receita realizada", fmt: perc });
+  const deficits = rd.map(d => ({ n: d.serie.filter(p => p.saldo < 0).length, total: d.serie.length }));
+  note(g4, `${cidades.map((c, i) => `${rotuloCidade(c)} fechou no vermelho em <strong>${deficits[i].n} de
+    ${deficits[i].total} anos</strong>`).join("; ")}. Vale a mesma ressalva das páginas individuais:
+    <strong>saldo mede equilíbrio de caixa, não qualidade do gasto</strong> — dá para fechar no azul deixando de
+    investir, e um déficit pontual pode ser exatamente o ano da obra.`);
+  if (al4) tabelaComparativa(g4, { cidades, al: al4, caption: "Saldo do exercício, em % da receita realizada", fmt: perc1 });
 
   // ---------- composição por função ----------
-  const anoF = Math.min(ultA.ano, ultB.ano);
-  const fa = dfA.serie.find(p => p.ano === anoF) || ultA;
-  const fb = dfB.serie.find(p => p.ano === anoF) || ultB;
+  // O ano tem de existir em TODAS: pego o menor "último ano" e uso a linha
+  // daquele ano em cada cidade, para não comparar 2025 de uma com 2023 de outra.
+  const anoF = Math.min(...ultD.map(u => u.ano));
+  const linhasAno = df.map((d, i) => d.serie.find(p => p.ano === anoF) || ultD[i]);
   const g5 = secao(raiz, `5. Para onde vai o dinheiro, em ${anoF}`,
     "Percentual do orçamento por função de governo. Percentual e não reais: é a única forma de perguntar 'que prioridade cada cidade dá a esta área' sem que o tamanho do orçamento responda pela pergunta.");
 
   const share = (p, f) => 100 * (p.funcoes[f] || 0) / p.total_empenhado;
-  const todas = [...new Set([...Object.keys(fa.funcoes), ...Object.keys(fb.funcoes)])];
+  const todas = [...new Set(linhasAno.flatMap(p => Object.keys(p.funcoes)))];
   const ordenadas = todas
-    .map(f => ({ f, peso: Math.max(share(fa, f), share(fb, f)) }))
+    .map(f => ({ f, peso: Math.max(...linhasAno.map(p => share(p, f))) }))
     .sort((x, y) => y.peso - x.peso);
   const TOPO = ordenadas.slice(0, 8).map(o => o.f);
   const resto = ordenadas.slice(8).map(o => o.f);
-  const linhas = TOPO.map(f => ({ rotulo: f, a: share(fa, f), b: share(fb, f) }));
+  const linhas = TOPO.map(f => ({ rotulo: f, valores: linhasAno.map(p => share(p, f)) }));
   if (resto.length) {
     linhas.push({
       rotulo: `Outras ${resto.length} funções`,
-      a: resto.reduce((s, f) => s + share(fa, f), 0),
-      b: resto.reduce((s, f) => s + share(fb, f), 0),
+      valores: linhasAno.map(p => resto.reduce((s, f) => s + share(p, f), 0)),
     });
   }
-  barrasPareadas(g5, {
+  barrasComparadas(g5, {
     cidades, linhas,
     valueFormat: (v) => v.toFixed(1).replace(".", ",") + "%",
-    valueFormatFull: (v) => perc(v) + " do orçamento",
+    valueFormatFull: (v) => perc1(v) + " do orçamento",
   });
-  const saudeA = share(fa, "Saúde"), saudeB = share(fb, "Saúde");
-  const educA = share(fa, "Educação"), educB = share(fb, "Educação");
-  note(g5, `<strong>Saúde e Educação somam ${(saudeA + educA).toFixed(0)}% do orçamento em ${rotuloCidade(A)} e
-    ${(saudeB + educB).toFixed(0)}% em ${rotuloCidade(B)}</strong>, e essa semelhança não é coincidência: a
+  const somaSE = linhasAno.map(p => share(p, "Saúde") + share(p, "Educação"));
+  note(g5, `<strong>Saúde e Educação somam ${cidades.map((c, i) =>
+    `${somaSE[i].toFixed(0)}% em ${rotuloCidade(c)}`).join(", ")}</strong>, e essa semelhança não é coincidência: a
     Constituição obriga todo município a aplicar no mínimo 15% da receita de impostos em saúde e 25% em educação, e
-    boa parte do dinheiro chega carimbada via SUS e FUNDEB. <strong>A diferença entre duas cidades aparece no que
+    boa parte do dinheiro chega carimbada via SUS e FUNDEB. <strong>A diferença entre as cidades aparece no que
     sobra depois disso</strong> — é ali que a escolha local realmente acontece.`);
   renderTable(g5, {
     caption: `Despesa por função em ${anoF}, em % do orçamento`,
-    columns: ["Função", rotuloCidade(A), rotuloCidade(B), "Diferença (p.p.)"],
-    rows: linhas.map(l => [l.rotulo, perc(l.a), perc(l.b),
-      ((l.a - l.b) >= 0 ? "+" : "−") + Math.abs(l.a - l.b).toFixed(1).replace(".", ",")]),
+    columns: ["Função", ...cidades.map(rotuloCidade)],
+    rows: linhas.map(l => [l.rotulo, ...l.valores.map(perc1)]),
   });
 
   // ---------- despesa sobre o PIB ----------
-  if (dfA.comparacao_com_pib && dfB.comparacao_com_pib) {
+  if (df.every(d => d.comparacao_com_pib)) {
     const g6 = secao(raiz, "6. O peso da Prefeitura na economia local",
       "Despesa da Prefeitura como percentual do PIB do município. Mostra o tamanho do setor público diante de tudo o que a cidade produz.");
-    const al6 = graficoDuplo(g6, {
-      cidades, dados: [dfA, dfB],
+    const al6 = graficoMultiplo(g6, {
+      cidades, dados: df,
       extrair: (d) => d.comparacao_com_pib.serie.map(p => ({ ano: p.ano, valor: p.despesa_sobre_pib_pct })),
       yLabel: "Despesa da Prefeitura / PIB do município (%)",
       yFormat: (v) => Math.round(v) + "%",
-      yFormatFull: (v) => perc(v) + " do PIB municipal",
+      yFormatFull: (v) => perc1(v) + " do PIB municipal",
     });
     note(g6, `As duas medidas não são da mesma natureza — o PIB mede valor adicionado e o orçamento mede dinheiro
       que passa pelo caixa, boa parte vindo de fora do município — e é por isso que a razão pode passar de 100%.
       Ela não diz que a prefeitura "produz" aquilo; diz o tamanho relativo de uma coisa diante da outra. Há ainda
       uma circularidade a declarar: a rubrica "administração pública" faz parte do próprio PIB, então as duas
       séries não são independentes.`);
-    if (al6) tabelaDupla(g6, { cidades, al: al6, caption: "Despesa da Prefeitura sobre o PIB municipal, em %", fmt: perc });
+    if (al6) tabelaComparativa(g6, { cidades, al: al6, caption: "Despesa da Prefeitura sobre o PIB municipal, em %", fmt: perc1 });
   }
 
   rodapeFontes(raiz, cidades, null, "os mesmos que alimentam a Fase 3 de cada piloto");
@@ -543,46 +582,97 @@ function acharCidade(slug) {
   return CMP.manifesto.cidades.find(c => c.slug === slug);
 }
 
-function preencherSeletores(selA, selB, a, b) {
-  [[selA, a], [selB, b]].forEach(([sel, atual]) => {
-    sel.innerHTML = "";
-    CMP.manifesto.cidades.forEach(c => {
+const SEM = "";   // valor da opção "— nenhuma —"
+
+// Desenha os seletores a partir do estado. Mostra sempre um slot a mais que o
+// número de cidades escolhidas (até o teto da paleta): quem quer duas vê três
+// campos, sendo o último vazio; quem quer quatro vê quatro. Evita a alternativa
+// de deixar quatro seletores sempre visíveis, que polui a escolha mais comum.
+function desenharSeletores() {
+  const caixa = document.getElementById("cmp-slots");
+  caixa.innerHTML = "";
+  const total = Math.min(CMP.slugs.length + 1, CMP.maxCidades());
+  for (let i = 0; i < total; i++) {
+    const slug = CMP.slugs[i] || SEM;
+    const c = slug ? acharCidade(slug) : null;
+    const campo = document.createElement("div");
+    campo.className = "cmp-campo";
+
+    const lab = document.createElement("label");
+    lab.setAttribute("for", "cidade-" + i);
+    const chip = document.createElement("span");
+    chip.className = "cmp-chip";
+    chip.setAttribute("aria-hidden", "true");
+    // O quadradinho fica cinza no slot vazio: cor é identidade de cidade, e
+    // slot sem cidade não tem identidade a mostrar.
+    chip.style.setProperty("--cmp-cor", c ? CMP.cor(c) : "var(--line, #dfe5e2)");
+    lab.appendChild(chip);
+    lab.appendChild(document.createTextNode(" " + (i < 2 ? `Cidade ${i + 1}` : `Cidade ${i + 1} (opcional)`)));
+
+    const sel = document.createElement("select");
+    sel.id = "cidade-" + i;
+    sel.setAttribute("aria-label", `Cidade ${i + 1} da comparação`);
+    // Os dois primeiros slots são obrigatórios: comparar exige pelo menos dois.
+    if (i >= 2) {
       const o = document.createElement("option");
-      o.value = c.slug;
-      o.textContent = rotuloCidade(c);
-      if (c.slug === atual) o.selected = true;
+      o.value = SEM;
+      o.textContent = "— nenhuma —";
+      if (!slug) o.selected = true;
+      sel.appendChild(o);
+    }
+    CMP.manifesto.cidades.forEach(cid => {
+      const o = document.createElement("option");
+      o.value = cid.slug;
+      o.textContent = rotuloCidade(cid);
+      // Uma cidade já escolhida em outro slot não reaparece na lista: comparar
+      // uma cidade com ela mesma não produz informação, e bloquear na origem é
+      // melhor que avisar depois do erro.
+      if (CMP.slugs.includes(cid.slug) && cid.slug !== slug) return;
+      if (cid.slug === slug) o.selected = true;
       sel.appendChild(o);
     });
-  });
+    sel.addEventListener("change", () => {
+      const novos = CMP.slugs.slice();
+      if (sel.value === SEM) novos.splice(i, 1);
+      else novos[i] = sel.value;
+      // Compacta: remove vazios e repetidos, mantendo a ordem de escolha.
+      CMP.slugs = [...new Set(novos.filter(Boolean))].slice(0, CMP.maxCidades());
+      rodar();
+    });
+
+    campo.appendChild(lab);
+    campo.appendChild(sel);
+    caixa.appendChild(campo);
+  }
 }
 
-function pintarSeletores(A, B) {
-  document.getElementById("chip-a").style.setProperty("--cmp-cor", CMP.cor(A));
-  document.getElementById("chip-b").style.setProperty("--cmp-cor", CMP.cor(B));
-  const rA = document.getElementById("resumo-a"), rB = document.getElementById("resumo-b");
-  [[rA, A], [rB, B]].forEach(([el_, c]) => {
-    el_.style.setProperty("--cmp-cor", CMP.cor(c));
-    el_.innerHTML = `<strong>${rotuloCidade(c)}</strong><p>${c.resumo}</p>
+function desenharResumos(cidades) {
+  const caixa = document.getElementById("cmp-resumos");
+  caixa.innerHTML = "";
+  cidades.forEach(c => {
+    const d = document.createElement("div");
+    d.className = "cmp-resumo";
+    d.style.setProperty("--cmp-cor", CMP.cor(c));
+    d.innerHTML = `<strong>${rotuloCidade(c)}</strong><p>${c.resumo}</p>
       <p><a href="${c.pagina}">Ver o piloto completo →</a></p>`;
+    caixa.appendChild(d);
   });
 }
 
-function comparar(slugA, slugB) {
-  const A = acharCidade(slugA), B = acharCidade(slugB);
+function comparar(cidades) {
   const alvo = document.getElementById("resultado");
   alvo.innerHTML = "";
-  pintarSeletores(A, B);
+  desenharResumos(cidades);
 
   const url = new URL(location.href);
-  url.searchParams.set("a", A.slug);
-  url.searchParams.set("b", B.slug);
+  url.searchParams.delete("a");
+  url.searchParams.delete("b");
+  url.searchParams.set("cidades", cidades.map(c => c.slug).join(","));
   history.replaceState(null, "", url);
 
-  if (A.slug === B.slug) {
-    alvo.innerHTML = `<div class="cmp-vazio"><strong>Escolha duas cidades diferentes.</strong>
-      <p>Comparar uma cidade com ela mesma não produz nenhuma informação nova — para ver os dados de
-      ${rotuloCidade(A)} sozinha, a página do piloto dela é mais completa que esta.</p>
-      <p><a href="${A.pagina}">Abrir o piloto de ${rotuloCidade(A)} →</a></p></div>`;
+  if (cidades.length < 2) {
+    alvo.innerHTML = `<div class="cmp-vazio"><strong>Escolha pelo menos duas cidades.</strong>
+      <p>Para ver os dados de uma cidade sozinha, a página do piloto dela é mais completa que esta.</p></div>`;
     return;
   }
 
@@ -591,7 +681,9 @@ function comparar(slugA, slugB) {
   // não muda.
   const FASES = {
     demografia: {
-      chamada: "Duas trajetórias de população, na mesma régua.",
+      chamada: cidades.length === 2
+        ? "Duas trajetórias de população, na mesma régua."
+        : `${cidades.length} trajetórias de população, na mesma régua.`,
       arquivos: ["populacao"],
       montar: blocoDemografia,
     },
@@ -613,10 +705,10 @@ function comparar(slugA, slugB) {
   // Em série, para que as fases apareçam sempre na mesma ordem.
   declaradas.reduce((fila, fase) => fila.then(() => {
     const cfg = FASES[fase.id];
-    return Promise.all([carregarFase(cfg, A), carregarFase(cfg, B)]).then(docs => {
+    return Promise.all(cidades.map(c => carregarFase(cfg, c))).then(docs => {
       const sec = cabecalhoFase(alvo, Object.assign({}, fase, { chamada: cfg.chamada }));
-      cfg.montar(sec, [A, B], docs.length === 2 && cfg.arquivos.length === 1
-        ? [docs[0][0], docs[1][0]] : docs);
+      // Fase de arquivo único recebe o documento direto; de vários, a lista.
+      cfg.montar(sec, cidades, cfg.arquivos.length === 1 ? docs.map(d => d[0]) : docs);
     });
   }), Promise.resolve()).catch(err => {
     const aviso = document.createElement("div");
@@ -627,22 +719,29 @@ function comparar(slugA, slugB) {
   });
 }
 
+function rodar() {
+  desenharSeletores();
+  comparar(CMP.slugs.map(acharCidade).filter(Boolean));
+}
+
 function iniciar() {
   fetch("../dados/cidades.json").then(r => r.json()).then(m => {
     CMP.manifesto = m;
-    const selA = document.getElementById("cidade-a"), selB = document.getElementById("cidade-b");
     const p = new URLSearchParams(location.search);
     const padrao = m.cidades.map(c => c.slug);
-    let a = acharCidade(p.get("a")) ? p.get("a") : padrao[0];
-    let b = acharCidade(p.get("b")) ? p.get("b") : (padrao[1] || padrao[0]);
 
-    preencherSeletores(selA, selB, a, b);
-    const rodar = () => comparar(selA.value, selB.value);
-    selA.addEventListener("change", rodar);
-    selB.addEventListener("change", rodar);
-    document.getElementById("trocar").addEventListener("click", () => {
-      const t = selA.value; selA.value = selB.value; selB.value = t; rodar();
-    });
+    // Aceita o formato novo (?cidades=a,b,c) e o antigo (?a=&b=), para que
+    // links compartilhados da versão de duas cidades continuem abrindo.
+    let pedidas = (p.get("cidades") || "").split(",").filter(Boolean);
+    if (!pedidas.length) pedidas = [p.get("a"), p.get("b")].filter(Boolean);
+    pedidas = [...new Set(pedidas.filter(acharCidade))].slice(0, Math.max(2, (m.paleta.clara || []).length));
+    while (pedidas.length < 2 && padrao.length >= 2) {
+      const proximo = padrao.find(s => !pedidas.includes(s));
+      if (!proximo) break;
+      pedidas.push(proximo);
+    }
+    CMP.slugs = pedidas;
+
     // Trocar de tema repinta as séries: a cor identifica a cidade nos dois modos.
     matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rodar);
     rodar();

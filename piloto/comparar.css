@@ -1,9 +1,12 @@
 /* Comparador de cidades — só o que é próprio desta página. O resto do visual
    vem de assets/site.css, piloto.css e charts.css. */
 
+/* Antes eram duas colunas fixas com um botão de trocar no meio. Agora o número
+   de campos é variável (2 a 4), então o grid se ajusta sozinho: auto-fit com
+   largura mínima, para os campos quebrarem em linha nova em vez de espremerem. */
 .cmp-picker {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 14px;
   align-items: end;
   background: var(--card, #fff);
@@ -48,24 +51,13 @@
 }
 .cmp-campo select:focus-visible { outline: 2px solid var(--green, #08724e); outline-offset: 2px; }
 
-.cmp-trocar {
-  font: inherit;
-  font-size: 1.05rem;
-  line-height: 1;
-  color: var(--muted, #5d6b66);
-  background: var(--surface, #fff);
-  border: 1px solid var(--line, #dfe5e2);
-  border-radius: 9px;
-  padding: 12px 13px;
-  cursor: pointer;
-  margin-bottom: 1px;
-}
-.cmp-trocar:hover { color: var(--ink, #10241d); border-color: var(--green, #08724e); }
-.cmp-trocar:focus-visible { outline: 2px solid var(--green, #08724e); outline-offset: 2px; }
+/* O botão de trocar A↔B saiu junto com o par fixo: com três ou quatro cidades
+   "inverter os lados" não tem referente — não há dois lados. A ordem passa a
+   ser a de escolha, e a cor de cada cidade é fixa de qualquer forma. */
 
 .cmp-resumos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 14px;
   margin: 0 0 26px;
 }
@@ -120,9 +112,7 @@
 .cmp-bar-row:hover .cmp-bar-val { color: var(--ink, #10241d); }
 
 @media (max-width: 720px) {
-  .cmp-picker { grid-template-columns: 1fr; }
-  .cmp-trocar { justify-self: start; }
-  .cmp-resumos { grid-template-columns: 1fr; }
+  /* O auto-fit já quebra os campos sozinho; aqui só o que ele não resolve. */
   .cmp-bar-row { grid-template-columns: 1fr; }
   .cmp-bar-rot { text-align: left; }
 }
