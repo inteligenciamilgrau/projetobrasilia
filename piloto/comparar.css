@@ -105,8 +105,17 @@
 .cmp-bar-rot { font-size: .86rem; color: var(--ink, #10241d); text-align: right; line-height: 1.25; }
 .cmp-bar-par { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .cmp-bar-linha { display: flex; align-items: center; gap: 8px; }
-.cmp-bar-trilho { flex: 1; min-width: 0; height: 13px; background: var(--v-neutral, #f0efec); border-radius: 4px; overflow: hidden; }
+.cmp-bar-trilho { flex: 1; min-width: 0; height: 13px; background: var(--v-neutral, #f0efec); border-radius: 4px; overflow: hidden; position: relative; }
 .cmp-bar-fill { height: 100%; border-radius: 4px; transition: width .18s ease; }
+
+/* Modo divergente: usado quando algum valor é negativo (população que cai,
+   função que encolhe). O zero fica no meio do trilho e a barra cresce para a
+   direita ou para a esquerda — sem isso uma largura negativa vira zero e o
+   sinal some do gráfico. */
+.cmp-bar-trilho.div .cmp-bar-fill { position: absolute; top: 0; }
+.cmp-bar-trilho.div .cmp-bar-fill.pos { left: 50%; border-radius: 0 4px 4px 0; }
+.cmp-bar-trilho.div .cmp-bar-fill.neg { right: 50%; border-radius: 4px 0 0 4px; }
+.cmp-bar-zero { position: absolute; top: -2px; bottom: -2px; left: 50%; width: 1px; background: var(--v-text-secondary, #52635d); opacity: .45; }
 .cmp-bar-val { font-size: .82rem; font-variant-numeric: tabular-nums; color: var(--muted, #5d6b66); min-width: 62px; }
 .cmp-bar-row:hover .cmp-bar-val { color: var(--ink, #10241d); }
 

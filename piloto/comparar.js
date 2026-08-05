@@ -97,7 +97,10 @@ function tabelaDupla(root, { cidades, al, caption, fmt }) {
 // função", e empilhar somaria coisas que não se somam.
 function barrasPareadas(root, { cidades, linhas, valueFormat, valueFormatFull }) {
   legend(root, cidades.map(c => ({ label: rotuloCidade(c), color: CMP.cor(c) })));
-  const max = Math.max(...linhas.flatMap(l => [l.a || 0, l.b || 0]), 0) || 1;
+  // Se houver valor negativo, o trilho vira divergente com o zero no meio.
+  const vals = linhas.flatMap(l => [l.a, l.b]).filter(v => v != null);
+  const divergente = vals.some(v => v < 0);
+  const max = Math.max(...vals.map(Math.abs), 0) || 1;
   const caixa = document.createElement("div");
   caixa.className = "cmp-bars";
   root.appendChild(caixa);
@@ -117,12 +120,18 @@ function barrasPareadas(root, { cidades, linhas, valueFormat, valueFormatFull })
       const linha = document.createElement("div");
       linha.className = "cmp-bar-linha";
       const trilho = document.createElement("div");
-      trilho.className = "cmp-bar-trilho";
+      trilho.className = "cmp-bar-trilho" + (divergente ? " div" : "");
       const fill = document.createElement("div");
-      fill.className = "cmp-bar-fill";
-      fill.style.width = ((v || 0) / max * 100).toFixed(2) + "%";
+      fill.className = "cmp-bar-fill" + (divergente ? ((v || 0) < 0 ? " neg" : " pos") : "");
+      const frac = Math.abs(v || 0) / max * (divergente ? 50 : 100);
+      fill.style.width = frac.toFixed(2) + "%";
       fill.style.background = CMP.cor(c);
       trilho.appendChild(fill);
+      if (divergente) {
+        const zero = document.createElement("span");
+        zero.className = "cmp-bar-zero";
+        trilho.appendChild(zero);
+      }
       const val = document.createElement("span");
       val.className = "cmp-bar-val";
       val.textContent = v == null ? "—" : valueFormat(v);
@@ -136,6 +145,152 @@ function barrasPareadas(root, { cidades, linhas, valueFormat, valueFormatFull })
     row.appendChild(par);
     caixa.appendChild(row);
   });
+}
+
+// --- Fase 1 — demografia ----------------------------------------------------
+//
+// População absoluta não entra em nenhum gráfico daqui: 96 mil contra 1,6 mil
+// contra 856 não cabem no mesmo eixo, e forçar isso deixaria as duas cidades
+// pequenas coladas no zero. O que se compara é a TRAJETÓRIA (índice de base
+// comum) e a QUEBRA do Censo (em percentual).
+function blocoDemografia(raiz, cidades, docs) {
+  const [A, B] = cidades;
+  const [popA, popB] = docs;
+  const perc = (v) => v.toFixed(1).replace(".", ",") + "%";
+  const pp = (v) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(1).replace(".", ",") + "%";
+
+  const censos = (d) => Object.fromEntries(d.serie.filter(p => p.fonte === "censo").map(p => [p.ano, p.populacao]));
+  const cA = censos(popA), cB = censos(popB);
+  const ultA = popA.serie.filter(p => p.populacao != null).slice(-1)[0];
+  const ultB = popB.serie.filter(p => p.populacao != null).slice(-1)[0];
+
+  // base do índice: o primeiro ano com dado nas duas cidades
+  const anosA = new Set(popA.serie.filter(p => p.populacao != null).map(p => p.ano));
+  const base = popB.serie.filter(p => p.populacao != null).map(p => p.ano).find(a => anosA.has(a));
+
+  // ---------- trajetória em índice ----------
+  const g1 = secao(raiz, "1. A trajetória da população, na mesma régua",
+    `População de cada ano dividida pela do ano-base (${base} = 100). É a única forma de pôr cidades de portes ` +
+    `muito diferentes no mesmo eixo — em valor absoluto, a maior achataria as outras contra o zero.`);
+  const baseA = popA.serie.find(p => p.ano === base).populacao;
+  const baseB = popB.serie.find(p => p.ano === base).populacao;
+  const indices = [[popA, baseA], [popB, baseB]].flatMap(([d, b]) =>
+    d.serie.filter(p => p.populacao != null).map(p => 100 * p.populacao / b));
+  // Teto da régua colado no dado. Sem isso, um máximo de 115 faz o niceMax
+  // arredondar para 200 e metade do gráfico fica vazia — e o achatamento
+  // esconde justamente a separação entre as duas trajetórias. Múltiplo de 20
+  // porque o eixo é dividido em 4 partes: 120 dá marcas em 0/30/60/90/120, e
+  // 125 daria 0/31/63/94/125.
+  const topo = Math.max(20, Math.ceil(Math.max(...indices) / 20) * 20);
+
+  const al1 = graficoDuplo(g1, {
+    cidades, dados: [popA, popB],
+    extrair: (d) => {
+      const b = d === popA ? baseA : baseB;
+      return d.serie.map(p => ({ ano: p.ano, valor: p.populacao == null ? null : 100 * p.populacao / b }));
+    },
+    yLabel: `Índice ${base} = 100`,
+    yFormat: (v) => String(Math.round(v)),
+    yFormatFull: (v) => v.toFixed(1).replace(".", ",") + ` (base 100 em ${base})`,
+    yMaxCap: topo,
+  });
+
+  const idxA = 100 * ultA.populacao / baseA, idxB = 100 * ultB.populacao / baseB;
+  renderStats(g1, [
+    { value: Math.round(idxA) + " / 100", label: `${rotuloCidade(A)} em ${ultA.ano}`, note: `${pp(idxA - 100)} desde ${base}` },
+    { value: Math.round(idxB) + " / 100", label: `${rotuloCidade(B)} em ${ultB.ano}`, note: `${pp(idxB - 100)} desde ${base}` },
+    { value: fmtInt.format(ultA.populacao) + " · " + fmtInt.format(ultB.populacao), label: `Habitantes em ${ultA.ano}`, note: "Os números absolutos, para referência — não é o que o gráfico compara" },
+  ]);
+
+  note(g1, `<strong>O índice responde "para onde cada cidade foi", não "qual é maior".</strong> Cada linha começa em
+    100 no ano-base e mostra a variação relativa dali em diante, então uma cidade de mil habitantes e uma de cem mil
+    cabem lado a lado sem que a diferença de porte engula a comparação. Os números absolutos ficam nos cartões
+    acima e na tabela abaixo, para quem precisar deles.`);
+
+  if (al1) tabelaDupla(g1, {
+    cidades, al: al1, caption: `População em índice, ${base} = 100`,
+    fmt: (v) => v.toFixed(1).replace(".", ","),
+  });
+
+  // ---------- variação entre Censos ----------
+  const anosCenso = [2000, 2010, 2022].filter(a => cA[a] != null && cB[a] != null);
+  if (anosCenso.length >= 2) {
+    const g2 = secao(raiz, "2. O que mudou de um Censo para o outro",
+      "Variação percentual entre contagens completas — não entre estimativas. É a medida mais firme que existe de " +
+      "crescimento ou perda de população, porque cada ponto é um recenseamento, não uma projeção.");
+    const pares = [];
+    for (let i = 0; i + 1 < anosCenso.length; i++) {
+      const de = anosCenso[i], para = anosCenso[i + 1];
+      pares.push({ rotulo: `${de} → ${para}`, a: 100 * (cA[para] / cA[de] - 1), b: 100 * (cB[para] / cB[de] - 1) });
+    }
+    const pri = anosCenso[0], ultC = anosCenso[anosCenso.length - 1];
+    pares.push({
+      rotulo: `${pri} → ${ultC} (total)`,
+      a: 100 * (cA[ultC] / cA[pri] - 1), b: 100 * (cB[ultC] / cB[pri] - 1),
+    });
+
+    barrasPareadas(g2, {
+      cidades, linhas: pares,
+      valueFormat: (v) => pp(v),
+      valueFormatFull: (v) => pp(v) + " entre os dois Censos",
+    });
+
+    const totA = 100 * (cA[ultC] / cA[pri] - 1), totB = 100 * (cB[ultC] / cB[pri] - 1);
+    const mesmaDirecao = (totA >= 0) === (totB >= 0);
+    note(g2, mesmaDirecao
+      ? `Entre ${pri} e ${ultC} as duas cidades foram para o mesmo lado: ${rotuloCidade(A)} ${pp(totA)} e
+         ${rotuloCidade(B)} ${pp(totB)}. A diferença está no ritmo, não no sentido.`
+      : `<strong>As duas foram para lados opostos.</strong> Entre ${pri} e ${ultC}, ${rotuloCidade(A)} variou
+         ${pp(totA)} e ${rotuloCidade(B)} variou ${pp(totB)}. A barra cresce para a direita quando a população
+         subiu e para a esquerda quando caiu; a linha vertical é o zero.`);
+
+    renderTable(g2, {
+      caption: "População nos Censos e variação entre eles",
+      columns: ["Censo", rotuloCidade(A), rotuloCidade(B)],
+      rows: anosCenso.map(a => [String(a), fmtInt.format(cA[a]), fmtInt.format(cB[a])])
+        .concat(pares.map(p => [p.rotulo, pp(p.a), pp(p.b)])),
+    });
+  }
+
+  // ---------- a quebra do Censo 2022 ----------
+  const quebra = (d, c) => {
+    if (!c[2022]) return null;
+    const antes = d.serie.filter(p => p.ano < 2022 && p.populacao != null && p.fonte === "estimativa").slice(-1)[0];
+    if (!antes) return null;
+    return { ano: antes.ano, estimativa: antes.populacao, censo: c[2022], dif: 100 * (c[2022] / antes.populacao - 1) };
+  };
+  const qA = quebra(popA, cA), qB = quebra(popB, cB);
+  if (qA && qB) {
+    const g3 = secao(raiz, "3. O tamanho do erro da estimativa",
+      "Nos anos entre Censos o IBGE publica uma estimativa, que é projeção e não contagem. O Censo 2022 mostrou " +
+      "de quanto era o desvio acumulado — e o sinal do desvio não é o mesmo em toda cidade.");
+    renderStats(g3, [
+      { value: pp(qA.dif), label: `Correção do Censo 2022 · ${rotuloCidade(A)}`, note: `Estimativa de ${qA.ano}: ${fmtInt.format(qA.estimativa)} · Censo: ${fmtInt.format(qA.censo)}` },
+      { value: pp(qB.dif), label: `Correção do Censo 2022 · ${rotuloCidade(B)}`, note: `Estimativa de ${qB.ano}: ${fmtInt.format(qB.estimativa)} · Censo: ${fmtInt.format(qB.censo)}` },
+    ]);
+
+    const sinais = (qA.dif >= 0) === (qB.dif >= 0);
+    note(g3, sinais
+      ? `Nas duas cidades a estimativa errou para o mesmo lado — ${qA.dif >= 0 ? "abaixo" : "acima"} da contagem
+         real —, com desvios de ${pp(qA.dif)} e ${pp(qB.dif)}.`
+      : `<strong>A estimativa errou para lados opostos nas duas cidades.</strong> Em ${rotuloCidade(A)} ela vinha
+         ${qA.dif < 0 ? "acima" : "abaixo"} do que o Censo depois contou (${pp(qA.dif)} de correção); em
+         ${rotuloCidade(B)}, ${qB.dif < 0 ? "acima" : "abaixo"} (${pp(qB.dif)}). Isso importa para tudo o que se
+         divide por população: <strong>um valor "por habitante" calculado com a estimativa de 2021 carrega esse
+         erro embutido</strong>, e em direções contrárias dependendo da cidade.`);
+
+    note(g3, `<strong>Por que a estimativa erra mais em cidade pequena.</strong> Ela é uma projeção construída a
+      partir do Censo anterior e de tendências regionais, não uma contagem. Quanto menor o município, menos massa o
+      método tem para trabalhar e mais uma variação de poucas dezenas de pessoas pesa em termos percentuais. É por
+      isso que os anos de Censo aparecem com marcador maior nos gráficos das páginas individuais — eles valem mais
+      que os anos intermediários.`);
+
+    note(g3, `Uma nota de cobertura, e ela vale para as três cidades do piloto: <strong>o IBGE não publica
+      estimativa municipal para 2007 nem para 2023</strong>. Nos gráficos acima esses dois anos aparecem como
+      buraco, não como valor interpolado.`);
+  }
+
+  rodapeFontes(raiz, cidades, "populacao_2000_2025.json", "as mesmas que alimentam a Fase 1 de cada piloto");
 }
 
 // --- os blocos da Fase 3 ----------------------------------------------------
@@ -319,14 +474,39 @@ function blocoFase3(raiz, cidades, docs) {
     if (al6) tabelaDupla(g6, { cidades, al: al6, caption: "Despesa da Prefeitura sobre o PIB municipal, em %", fmt: perc });
   }
 
-  // ---------- fontes ----------
+  rodapeFontes(raiz, cidades, null, "os mesmos que alimentam a Fase 3 de cada piloto");
+}
+
+// Rodapé de fontes, igual em toda fase.
+function rodapeFontes(raiz, cidades, arquivo, oQueSao) {
   const rodape = document.createElement("p");
   rodape.className = "muted-note";
   rodape.innerHTML = `Fontes, cidade a cidade: ` + cidades.map(c =>
-    `<a href="${c.pagina}">${rotuloCidade(c)}</a> (<a href="../dados/${c.pasta}/" target="_blank" rel="noopener noreferrer">pasta de dados</a>)`
-  ).join(" · ") + `. Todos os números saem dos mesmos arquivos que alimentam a Fase 3 de cada piloto — esta página
-    não recalcula nada por conta própria, só normaliza e põe lado a lado.`;
+    `<a href="${c.pagina}">${rotuloCidade(c)}</a> (<a href="../dados/${c.pasta}/${arquivo || ""}" target="_blank" rel="noopener noreferrer">${arquivo ? arquivo : "pasta de dados"}</a>)`
+  ).join(" · ") + `. Os números saem de arquivos que já estavam publicados — ${oQueSao}. Esta página não recalcula
+    nada por conta própria: ela normaliza e põe lado a lado.`;
   raiz.appendChild(rodape);
+}
+
+// Cabeçalho de uma fase dentro do resultado.
+function cabecalhoFase(raiz, fase) {
+  const sec = document.createElement("section");
+  sec.setAttribute("aria-label", `Fase ${fase.numero} — ${fase.titulo}`);
+  const head = document.createElement("div");
+  head.className = "section-head";
+  const esq = document.createElement("div");
+  const kicker = document.createElement("p");
+  kicker.className = "kicker";
+  kicker.textContent = `Fase ${fase.numero} · ${fase.titulo}`;
+  const h2 = document.createElement("h2");
+  h2.textContent = fase.chamada;
+  esq.appendChild(kicker); esq.appendChild(h2);
+  const p = document.createElement("p");
+  p.textContent = fase.descricao;
+  head.appendChild(esq); head.appendChild(p);
+  sec.appendChild(head);
+  raiz.appendChild(sec);
+  return sec;
 }
 
 function pibPct(df) {
@@ -406,18 +586,45 @@ function comparar(slugA, slugB) {
     return;
   }
 
-  const carregar = (c) => Promise.all([
-    CMP.carregar(c.pasta, c.arquivos.receita_despesa),
-    CMP.carregar(c.pasta, c.arquivos.despesa_funcao),
-    CMP.carregar(c.pasta, c.arquivos.receita_origem),
-  ]);
+  // Cada fase declara o que precisa carregar e quem a monta. Acrescentar uma
+  // fase nova é acrescentar uma entrada aqui e no manifesto — o resto da página
+  // não muda.
+  const FASES = {
+    demografia: {
+      chamada: "Duas trajetórias de população, na mesma régua.",
+      arquivos: ["populacao"],
+      montar: blocoDemografia,
+    },
+    financas: {
+      chamada: "O que dá para comparar entre cidades de portes diferentes.",
+      arquivos: ["receita_despesa", "despesa_funcao", "receita_origem"],
+      montar: blocoFase3,
+    },
+  };
 
-  Promise.all([carregar(A), carregar(B)])
-    .then(docs => blocoFase3(alvo, [A, B], docs))
-    .catch(err => {
-      alvo.innerHTML = `<div class="cmp-vazio"><strong>Não foi possível carregar os dados desta comparação.</strong>
-        <p>Abra a página por um servidor HTTP e tente de novo. Detalhe técnico: ${String(err.message || err)}</p></div>`;
+  const declaradas = (CMP.manifesto.fases_comparaveis || []).filter(f => f.disponivel && FASES[f.id]);
+  if (!declaradas.length) {
+    alvo.innerHTML = `<div class="cmp-vazio">Nenhuma fase comparável declarada em <code>dados/cidades.json</code>.</div>`;
+    return;
+  }
+
+  const carregarFase = (cfg, c) => Promise.all(cfg.arquivos.map(k => CMP.carregar(c.pasta, c.arquivos[k])));
+
+  // Em série, para que as fases apareçam sempre na mesma ordem.
+  declaradas.reduce((fila, fase) => fila.then(() => {
+    const cfg = FASES[fase.id];
+    return Promise.all([carregarFase(cfg, A), carregarFase(cfg, B)]).then(docs => {
+      const sec = cabecalhoFase(alvo, Object.assign({}, fase, { chamada: cfg.chamada }));
+      cfg.montar(sec, [A, B], docs.length === 2 && cfg.arquivos.length === 1
+        ? [docs[0][0], docs[1][0]] : docs);
     });
+  }), Promise.resolve()).catch(err => {
+    const aviso = document.createElement("div");
+    aviso.className = "cmp-vazio";
+    aviso.innerHTML = `<strong>Não foi possível carregar os dados desta comparação.</strong>
+      <p>Abra a página por um servidor HTTP e tente de novo. Detalhe técnico: ${String(err.message || err)}</p>`;
+    alvo.appendChild(aviso);
+  });
 }
 
 function iniciar() {

@@ -33,7 +33,7 @@
         </nav>
       </div>
       <div class="hero">
-        <div><p class="eyebrow">Comparador · versão inicial · só a Fase 3</p><h1>Duas cidades, lado a lado.</h1><p class="lede">Escolha duas das três cidades do piloto e veja as finanças públicas das duas na mesma régua. Esta primeira versão cobre apenas a Fase 3 — receita, despesa, dependência de transferências e composição do gasto. As outras fases entram depois, uma a uma, no mesmo formato.</p></div>
+        <div><p class="eyebrow">Comparador · Fases 1 e 3</p><h1>Duas cidades, lado a lado.</h1><p class="lede">Escolha duas das três cidades do piloto e veja as finanças públicas das duas na mesma régua. Por enquanto duas fases: <strong>Demografia</strong> (trajetória da população e o erro da estimativa) e <strong>Finanças públicas</strong> (receita, despesa, dependência de transferências e composição do gasto). As outras entram depois, uma a uma, no mesmo formato.</p></div>
         <aside class="decision"><span>A regra desta página</span><strong>Nenhum valor absoluto.</strong><p>Comparar R$ 500 milhões com R$ 27 milhões só diz qual cidade é maior — coisa que a população já dizia. Tudo aqui é por habitante, em percentual ou em índice.</p></aside>
       </div>
     </div>
@@ -64,16 +64,14 @@
       <p>O piloto tem três cidades — Itajubá/MG, Serra da Saudade/MG e Barra Bonita/SC —, o que dá seis comparações possíveis. A lista dos seletores acima <em>não está escrita no código</em>: vem de <code>dados/cidades.json</code>. Barra Bonita foi acrescentada só àquele arquivo e apareceu aqui sozinha, sem nenhuma alteração nesta página. Cada cidade tem uma cor fixa, que não muda conforme a posição na comparação. O endereço guarda a escolha, então uma comparação pode ser compartilhada por link.</p>
     </div>
 
-    <section aria-labelledby="resultado-title">
-      <div class="section-head"><div><p class="kicker">Fase 3 · Finanças públicas</p><h2 id="resultado-title">O que dá para comparar entre cidades de portes diferentes.</h2></div><p>Os dados são exatamente os mesmos que alimentam a Fase 3 de cada piloto — SICONFI/Tesouro Nacional, via DCA, corrigidos pelo IPCA para reais de 2025. Esta página não recalcula nada por conta própria: ela normaliza e põe lado a lado.</p></div>
-      <div id="resultado"><div class="cmp-vazio">Carregando as cidades…</div></div>
-    </section>
+    <div id="resultado"><div class="cmp-vazio">Carregando as cidades…</div></div>
 
     <section aria-labelledby="proximas-title">
       <div class="section-head"><div><p class="kicker">O que vem depois</p><h2 id="proximas-title">As próximas fases a entrar no comparador.</h2></div><p>Cada fase precisa de um recorte normalizado próprio antes de virar comparação — não basta pôr dois gráficos lado a lado. A ordem abaixo é por facilidade, não por importância.</p></div>
       <div class="roadmap">
+        
+        <article class="phase done"><div class="phase-num">1</div><div><h3>Demografia</h3><p>Pronta. Trajetória da população em índice de base comum, variação entre Censos e o tamanho do erro que a estimativa acumulou até o Censo 2022.</p></div></article>
         <article class="phase done"><div class="phase-num">3</div><div><h3>Finanças públicas</h3><p>Pronta. Despesa e receita por habitante, dependência de transferências, saldo em % da receita, composição por função e peso sobre o PIB.</p></div></article>
-        <article class="phase"><div class="phase-num">1</div><div><h3>Demografia</h3><p>População em índice de base comum (não em valor absoluto) e a diferença entre Estimativa e Censo, que nas duas cidades errou para lados opostos.</p></div></article>
         <article class="phase"><div class="phase-num">9</div><div><h3>Segurança pública</h3><p>Mais difícil do que parecia: as cidades mineiras usam a SEJUSP-MG (CSV, 12 naturezas, desde 2012) e a catarinense usa a SSP-SC (PDF, só homicídio, desde 2023). Comparar exige achar o denominador comum entre fontes desiguais.</p></div></article>
         <article class="phase"><div class="phase-num">8</div><div><h3>Emprego e economia</h3><p>PIB por habitante, composição setorial em percentual e emprego formal como fração da população.</p></div></article>
       </div>

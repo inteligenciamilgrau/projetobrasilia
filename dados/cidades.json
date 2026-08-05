@@ -18,6 +18,13 @@
  },
  "fases_comparaveis": [
   {
+   "id": "demografia",
+   "numero": 1,
+   "titulo": "Demografia",
+   "descricao": "Trajetória da população em índice de base comum e a correção que o Censo 2022 fez sobre a estimativa — que nas três cidades foi para lados diferentes.",
+   "disponivel": true
+  },
+  {
    "id": "financas",
    "numero": 3,
    "titulo": "Finanças públicas",
@@ -40,7 +47,8 @@
    "arquivos": {
     "receita_despesa": "siconfi_receita_despesa_2015_2025.json",
     "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
-    "receita_origem": "receita_origem_2014_2025.json"
+    "receita_origem": "receita_origem_2014_2025.json",
+    "populacao": "populacao_2000_2025.json"
    }
   },
   {
@@ -57,7 +65,8 @@
    "arquivos": {
     "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
     "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
-    "receita_origem": "receita_origem_2014_2025.json"
+    "receita_origem": "receita_origem_2014_2025.json",
+    "populacao": "populacao_2000_2025.json"
    }
   },
   {
@@ -74,7 +83,8 @@
    "arquivos": {
     "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
     "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
-    "receita_origem": "receita_origem_2014_2025.json"
+    "receita_origem": "receita_origem_2014_2025.json",
+    "populacao": "populacao_2000_2025.json"
    }
   }
  ]
