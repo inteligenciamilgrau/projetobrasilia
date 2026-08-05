@@ -76,37 +76,25 @@
   },
   "ecosystem": {
    "saude": {
-    "D": [
-     1,
-     2,
-     2
-    ],
-    "U": 3,
-    "F": [
-     2,
-     3,
-     3
-    ],
-    "T": 0,
-    "R": 3
-   },
-   "seguranca": {
     "D": 0,
     "U": 0,
     "F": 0,
     "T": 0,
     "R": 0
    },
-   "educacao": {
-    "D": [
-     1,
-     2,
-     2
-    ],
-    "U": 3,
-    "F": 2,
+   "seguranca": {
+    "D": 3,
+    "U": 4,
+    "F": 4,
     "T": 0,
     "R": 3
+   },
+   "educacao": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
    },
    "mobilidade": {
     "D": 0,
@@ -116,52 +104,40 @@
     "R": 0
    },
    "economia": {
-    "D": 2,
-    "U": 3,
-    "F": [
-     1,
-     2,
-     2
-    ],
+    "D": 0,
+    "U": 0,
+    "F": 0,
     "T": 0,
-    "R": 3
+    "R": 0
    },
    "financas": {
     "D": [
-     3,
-     4,
-     4
-    ],
-    "U": 4,
-    "F": 4,
-    "T": 0,
-    "R": 4
-   },
-   "urbanismo": {
-    "D": 1,
-    "U": 3,
-    "F": [
      1,
      2,
      2
     ],
-    "T": [
-     1,
-     1,
-     2
+    "U": 1,
+    "F": [
+     2,
+     3,
+     3
     ],
-    "R": 3
-   },
-   "meio_ambiente": {
-    "D": [
-     0,
-     1,
-     1
-    ],
-    "U": 2,
-    "F": 1,
     "T": 0,
     "R": 2
+   },
+   "urbanismo": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
+   },
+   "meio_ambiente": {
+    "D": 0,
+    "U": 0,
+    "F": 0,
+    "T": 0,
+    "R": 0
    }
   },
   "confidence": {
@@ -178,133 +154,134 @@
  },
  "avaliado_em": "2026-08-05",
  "avaliador": "1 avaliador (esta sessão) — sem segunda codificação independente",
- "observacao_geral": "IDU-Br mede a maturidade do ecossistema de dados ABERTOS PRÓPRIO do município (portal/API/sistema municipal), não o quanto dá para saber sobre a cidade. Por isso o número é baixo mesmo com esta página cheia de dado real: quase tudo que está aqui veio de fonte NACIONAL (SICONFI, IBGE, PNCP, IPEAData), que cobre os 5.570 municípios igualmente e por isso não diferencia Serra da Saudade de ninguém. O que o município publica por conta própria é um Portal da Transparência em SPA, sem API e sem exportação — melhor que o Executivo bloqueado de Itajubá em ACESSO, e igualmente pobre em DADO ABERTO.",
+ "observacao_geral": "IDU-Br mede a maturidade do ecossistema de dados ABERTOS PRÓPRIO do município — o que o MUNICÍPIO ou o ESTADO publicam sobre ele. Fontes nacionais (IBGE, SICONFI, PNCP, DATASUS, IPEAData) NÃO pontuam: cobrem os 5.570 municípios igualmente e por isso não diferenciam uma cidade de outra. É por isso que o número é baixo mesmo com as páginas do piloto cheias de dado real — a maior parte desse dado é nacional.",
+ "mudanca_desta_revisao": "Duas correções em 05/08/2026. (1) SEGURANÇA deixou de ser zero: a SEJUSP-MG publica CSV mensal por município e por natureza, 2012–2026, e cobre as duas cidades do piloto — as avaliações anteriores registravam que não havia fonte estadual. É a primeira camada E acima da M nos dois casos, e por isso a dependência externa deixa de ser zero. (2) A camada 'ecosystem' de Serra da Saudade voltou à convenção do projeto: a primeira versão pontuou fontes nacionais, o que elevava o IDU-E a 25,7 e o tornava incomparável com o de Itajubá. As duas cidades passam a usar a mesma régua.",
  "resultado": {
   "IDU_M": 2.9,
   "IDU_M_faixa": [
    1.4,
    2.9
   ],
-  "IDU_E": 25.7,
+  "IDU_E": 10.7,
   "IDU_E_faixa": [
-   17.0,
-   25.8
+   9.1,
+   10.7
   ],
-  "dependencia_externa": 22.8,
+  "dependencia_externa": 7.8,
   "C_IDU": 78.75,
   "C_IDU_faixa_qualitativa": "média (60-79)",
   "P_Piloto": 20.3,
-  "IPS_Br": 24.4,
+  "IPS_Br": 13.1,
   "sensibilidade_pesos_iguais": {
-   "IDU_E": 26.5,
+   "IDU_E": 10.5,
    "IDU_E_faixa": [
-    17.5,
-    26.6
+    8.8,
+    10.5
    ]
   }
  },
  "por_dominio": [
   {
-   "dominio": "Finanças",
-   "camada": "M — Portal da Transparência municipal",
-   "D": 4,
+   "dominio": "Segurança",
+   "camada": "E — SEJUSP-MG (estadual)",
+   "D": 3,
    "U": 4,
    "F": 4,
    "T": 0,
-   "R": 4,
-   "Q_0_100": 85.0,
-   "nota": "O domínio forte, e por larga margem. DCA 2014–2025 completo nos três anexos (I-C, I-D, I-E), via API JSON estável, com 12 anos sem buraco; PNCP com as 13 modalidades varridas e zero erro de coleta. Some-se o Portal da Transparência municipal, que existe e responde — mas é SPA, sem API e sem exportação."
+   "R": 3,
+   "Q_0_100": 61.9,
+   "nota": "SEJUSP-MG, dados abertos: a mesma base estadual que cobre Itajubá. Para Serra da Saudade ela devolve 5 crimes violentos registrados em 15 anos e ZERO vítimas de homicídio. O dado é escasso porque a cidade é pequena, não porque a fonte seja fraca — e a fonte pontua pelo que entrega."
+  },
+  {
+   "dominio": "Finanças",
+   "camada": "M — Portal da Transparência municipal",
+   "D": 2,
+   "U": 1,
+   "F": 3,
+   "T": 0,
+   "R": 2,
+   "Q_0_100": 19.4,
+   "nota": "Portal da Transparência municipal (transparencia.serradasaudade.mg.gov.br) existe e responde, declarando despesas, receitas, contratos e licitações — mas é uma aplicação de página única, sem API, sem catálogo de dados abertos e sem exportação declarada."
   },
   {
    "dominio": "Saúde",
-   "camada": "E — só fontes nacionais",
-   "D": 2,
-   "U": 3,
-   "F": 3,
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
    "T": 0,
-   "R": 3,
-   "Q_0_100": 31.9,
-   "nota": "Nascidos vivos e óbitos 2003–2024 (SIDRA 2609/2681) e Panorama IBGE. Não há dado municipal próprio. Com 833 habitantes, 3 óbitos a mais mudam a taxa em ~3,6 por mil: a série existe, a inferência é que não se sustenta."
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
   },
   {
    "dominio": "Educação",
-   "camada": "E — só fontes nacionais",
-   "D": 2,
-   "U": 3,
-   "F": 2,
-   "T": 0,
-   "R": 3,
-   "Q_0_100": 28.1,
-   "nota": "Alfabetização 2000/2010/2022 e nível de instrução 2010×2022 pelos Censos; Ideb do ensino fundamental só apareceu via IPS Brasil (5,77) — o Panorama do IBGE não publica Ideb para este município, checado ano a ano de 2010 a 2026."
-  },
-  {
-   "dominio": "Economia",
-   "camada": "E — só fontes nacionais",
-   "D": 2,
-   "U": 3,
-   "F": 2,
-   "T": 0,
-   "R": 3,
-   "Q_0_100": 28.1,
-   "nota": "CEMPRE 2006–2021 (encerrado pelo IBGE) e PIB municipal 2002–2023. Frescor baixo: o melhor dado de emprego formal tem 4 anos."
-  },
-  {
-   "dominio": "Urbanismo",
-   "camada": "E — só fontes nacionais",
-   "D": 1,
-   "U": 3,
-   "F": 2,
-   "T": 1,
-   "R": 3,
-   "Q_0_100": 15.0,
-   "nota": "Malha de setores do Censo 2022 (3 setores) e contorno do município pela API de malhas. A geometria é oficial e fecha com o Censo, mas 3 unidades não produzem recorte intraurbano — por isso T fica em 1."
-  },
-  {
-   "dominio": "Meio ambiente",
-   "camada": "E — só fontes nacionais",
-   "D": 1,
-   "U": 2,
-   "F": 1,
-   "T": 0,
-   "R": 2,
-   "Q_0_100": 8.8,
-   "nota": "Só indicadores derivados (arborização, esgotamento) no Panorama, com base em Censo. Sem série ambiental própria testada nesta sessão."
-  },
-  {
-   "dominio": "Segurança",
-   "camada": "E — só fontes nacionais",
+   "camada": "nenhuma M/E encontrada",
    "D": 0,
    "U": 0,
    "F": 0,
    "T": 0,
    "R": 0,
    "Q_0_100": 0.0,
-   "nota": "Zero. Não há publicação municipal, e a SEJUSP-MG não dá recorte utilizável para um município deste porte. Único domínio sem nenhuma fonte."
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
   },
   {
    "dominio": "Mobilidade",
-   "camada": "E — só fontes nacionais",
+   "camada": "nenhuma M/E encontrada",
    "D": 0,
    "U": 0,
    "F": 0,
    "T": 0,
    "R": 0,
    "Q_0_100": 0.0,
-   "nota": "Zero. Sem transporte público municipal a documentar e sem fonte."
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Economia",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Urbanismo",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
+  },
+  {
+   "dominio": "Meio ambiente",
+   "camada": "nenhuma M/E encontrada",
+   "D": 0,
+   "U": 0,
+   "F": 0,
+   "T": 0,
+   "R": 0,
+   "Q_0_100": 0.0,
+   "nota": "Nenhuma fonte municipal ou estadual própria encontrada. O que esta página mostra sobre o domínio vem de fonte NACIONAL (IBGE, SICONFI, PNCP, DATASUS), que cobre os 5.570 municípios igualmente e por isso não pontua como diferencial entre cidades."
   }
  ],
  "confianca_componentes": {
   "completude": {
    "nota_0_4": 4,
-   "leitura": "Os 8 domínios foram examinados um a um nesta sessão"
+   "leitura": "Os 8 domínios foram examinados nesta revisão"
   },
   "forca_da_evidencia": {
    "nota_0_4": 3,
-   "leitura": "Toda fonte foi aberta por API e a resposta ficou salva em disco; nenhuma nota vem de leitura de página"
+   "leitura": "Fontes abertas e lidas de verdade; a de segurança teve os CSVs baixados e filtrados"
   },
   "reprodutibilidade": {
    "nota_0_4": 4,
-   "leitura": "Cada arquivo em dados/serra-da-saudade/ grava URL, parâmetro e data de coleta"
+   "leitura": "Cada arquivo da pasta de dados grava URL, parâmetro e data de coleta"
   },
   "concordancia_independente": {
    "nota_0_4": 0,
@@ -312,13 +289,12 @@
   },
   "consistencia": {
    "nota_0_4": 4,
-   "leitura": "Os testes de fechamento do SICONFI (origens × receita bruta, funções × total, natureza × total geral) passaram nos 12 anos"
+   "leitura": "Contradições encontradas foram corrigidas e registradas em 'mudanca_desta_revisao'"
   },
   "recencia_da_verificacao": {
    "nota_0_4": 4,
-   "leitura": "Toda a matriz foi testada em 05/08/2026"
+   "leitura": "Matriz testada em 05/08/2026"
   }
  },
- "teto_aplicado": "sem_schema (79) — nenhuma fonte municipal entrega schema formal",
- "comparacao_com_itajuba": "Itajubá ficou com IDU-E 3,1 e C-IDU 63,75. A comparação entre as duas é legítima porque o motor e a metodologia são os mesmos, mas o número mede o ecossistema municipal, não a qualidade desta análise."
+ "teto_aplicado": "sem_schema (79) — nenhuma fonte municipal ou estadual entrega schema formal"
 }

@@ -922,6 +922,101 @@ function ssPib(root, pib) {
 }
 
 // ---------------------------------------------------------------------------
+// Fase 10 — segurança pública, pela SEJUSP-MG.
+//
+// Aqui o gráfico certo NÃO é taxa por 100 mil. Com 833 habitantes, um único
+// registro vira 120 por 100 mil e nenhum registro vira zero: a "taxa" saltaria
+// entre 0 e 120 sem que nada tivesse mudado na cidade, e daria a impressão de
+// uma série volátil onde o que existe é uma contagem quase toda nula. Contagem
+// absoluta é a forma honesta — e a régua estadual entra como texto, não como
+// segunda linha, porque as duas grandezas não são comparáveis neste tamanho.
+// ---------------------------------------------------------------------------
+function ssSeguranca(root, seg) {
+  const st = getComputedStyle(root);
+  const cor = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const cheios = seg.serie.filter(p => !p.ano_parcial);
+  const parcial = seg.serie.find(p => p.ano_parcial);
+
+  // Uma barra por ano, não uma linha. Linha ligaria os zeros e sugeriria uma
+  // série contínua subindo e descendo; o que existe é um punhado de eventos
+  // isolados em quinze anos. Com máximo 1, a régua vertical de uma linha ainda
+  // repetiria rótulos ("0, 0, 1, 1") por arredondamento dos ticks.
+  renderBarsHorizontal(root, {
+    data: cheios.map(p => ({ ano: String(p.ano), n: p.total_crimes_violentos })),
+    labelKey: "ano", valueKey: "n",
+    valueFormat: (v) => fmtInt.format(v),
+    valueFormatFull: (v) => v === 0 ? "nenhum registro no ano"
+      : fmtInt.format(v) + (v === 1 ? " registro no ano" : " registros no ano"),
+    color: cor, ariaLabelPrefix: "Crimes violentos registrados por ano",
+  });
+
+  const total = seg.serie.reduce((a, p) => a + p.total_crimes_violentos, 0);
+  const homic = seg.serie.reduce((a, p) => a + p.vitimas_homicidio, 0);
+  const anosZero = seg.serie.filter(p => p.total_crimes_violentos === 0).length;
+
+  renderStats(root, [
+    { value: fmtInt.format(total), label: "Crimes violentos em 15 anos", note: "Somando 2012 a 2026 inteiros" },
+    { value: fmtInt.format(homic), label: "Vítimas de homicídio em 15 anos", note: homic === 0 ? "Nenhuma, em nenhum ano da série" : "" },
+    { value: `${anosZero} de ${seg.serie.length}`, label: "Anos sem nenhum registro" },
+    { value: "R$ 0", label: "Gasto municipal com Segurança Pública", note: "A função não existe no orçamento" },
+  ]);
+
+  note(root, `<strong>Quinze anos, ${total} registros, nenhum homicídio.</strong> A base da SEJUSP-MG cobre Serra da
+    Saudade exatamente como cobre qualquer outro município de Minas, e o que ela devolve é uma série quase toda
+    zerada: em ${anosZero} dos ${seg.serie.length} anos não houve um único registro de crime violento, e
+    <strong>não há uma só vítima de homicídio em toda a série</strong>.`);
+
+  note(root, `<strong>Por que este gráfico mostra contagem e não taxa por 100 mil.</strong> É a mesma ressalva da
+    Fase 5, e aqui ela é ainda mais dura. Com 833 habitantes, <strong>um único registro equivale a 120 por 100 mil
+    habitantes</strong> — acima da média de Minas Gerais no mesmo ano. Uma taxa calculada sobre esta base saltaria
+    de 0 para 120 e de volta a 0 conforme uma ocorrência acontecesse ou não, sugerindo uma volatilidade que é
+    puramente aritmética. Publicar essa taxa seria tecnicamente correto e jornalisticamente enganoso; por isso o
+    gráfico acima é contagem simples, uma barra por ano.`);
+
+  subhead(root, "Que registros são esses");
+  const acum = {};
+  seg.serie.forEach(p => Object.entries(p.por_natureza).forEach(([k, v]) => { acum[k] = (acum[k] || 0) + v; }));
+  const dados = Object.entries(acum).map(([natureza, n]) => ({ natureza, n })).sort((a, b) => b.n - a.n);
+  if (dados.length) {
+    renderBarsHorizontal(root, {
+      data: dados, labelKey: "natureza", valueKey: "n",
+      valueFormat: (v) => fmtInt.format(v),
+      valueFormatFull: (v) => fmtInt.format(v) + (v === 1 ? " registro em 15 anos" : " registros em 15 anos"),
+      color: cor, ariaLabelPrefix: "Crimes violentos por natureza, 2012–2026",
+    });
+    const sexuais = dados.filter(d => /estupro/i.test(d.natureza)).reduce((s, d) => s + d.n, 0);
+    note(root, `Os ${total} registros do período não incluem <strong>nenhum roubo e nenhum homicídio</strong> — em
+      Itajubá, roubo sozinho é dois terços da conta. ${sexuais > 0 ? `Dos ${total}, ${sexuais} são crimes sexuais.
+      Sobre isso cabe uma observação de método e não uma leitura: crimes sexuais têm subnotificação reconhecidamente
+      alta em qualquer lugar, e numa cidade onde todos se conhecem há razões documentadas na literatura para que ela
+      seja ainda maior. <strong>O número desta barra não deve ser lido como incidência</strong>, e um total baixo
+      não é evidência de ausência.` : ""}`);
+  }
+
+  note(root, `<strong>A comparação com o estado não cabe aqui</strong>, e é importante dizer por quê. Minas Gerais
+    registrou ${fmtInt.format(seg.regua_minas_gerais.find(p => p.ano === 2025).total_crimes_violentos)} crimes
+    violentos em 2025, uma taxa de
+    ${fmtInt.format(Math.round(seg.regua_minas_gerais.find(p => p.ano === 2025).taxa_por_100mil))} por 100 mil.
+    Serra da Saudade registrou zero. Isso não coloca a cidade "muito abaixo da média": com esta população, zero é o
+    valor mais provável mesmo que o risco individual fosse igual ao do resto do estado. A régua estadual está no
+    arquivo de dados para quem quiser conferir, mas ela não sustenta ranking.`);
+
+  note(root, `Uma diferença de orçamento que combina com o resto do piloto: <strong>não existe função "Segurança
+    Pública" na despesa do município</strong> em nenhum dos doze anos da Fase 3. Itajubá gasta R$ 7,2 milhões nela
+    (Guarda Municipal, trânsito e Defesa Civil); aqui não há Guarda Municipal, e o policiamento é inteiramente
+    estadual. ${parcial ? `${parcial.ano} é ano parcial, até ${seg.ate_o_mes}, e por isso ficou fora do gráfico.` : ""}`);
+
+  renderTable(root, {
+    caption: "Crimes violentos e vítimas de homicídio em Serra da Saudade/MG, 2012–2026",
+    columns: ["Ano", "Crimes violentos", "Vítimas de homicídio", "MG — crimes violentos"],
+    rows: seg.serie.map(p => [
+      p.ano_parcial ? `${p.ano} (até ${seg.ate_o_mes})` : String(p.ano),
+      fmtInt.format(p.total_crimes_violentos), fmtInt.format(p.vitimas_homicidio),
+      fmtInt.format((seg.regua_minas_gerais.find(x => x.ano === p.ano) || {}).total_crimes_violentos || 0)]),
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Fase 9 — síntese.
 // ---------------------------------------------------------------------------
 function ssSintese(root, d) {
@@ -1048,6 +1143,12 @@ function initSerraCharts() {
       .catch(() => showError(empregoRoot));
     j("pib_municipal_2002_2023.json").then(p => { if (pibRoot) ssPib(pibRoot, p); })
       .catch(() => showError(pibRoot));
+  });
+
+  const segRoot = q("#chart-seguranca");
+  onFirstOpen(fase(segRoot), () => {
+    j("seguranca_sejusp_2012_2026.json").then(s => ssSeguranca(segRoot, s))
+      .catch(() => showError(segRoot));
   });
 
   const sinteseRoot = q("#painel-sintese");

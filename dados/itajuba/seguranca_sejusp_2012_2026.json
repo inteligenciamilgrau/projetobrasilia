@@ -1,0 +1,431 @@
+{
+ "municipio": "Itajubá/MG",
+ "ibge_codigo": "3132404",
+ "titulo": "Crimes violentos registrados e vítimas de homicídio, 2012–2026",
+ "fonte": "SEJUSP-MG — Secretaria de Estado de Justiça e Segurança Pública de Minas Gerais, dados abertos (bancos de Crimes Violentos e de Vítimas de Homicídio Consumado, atualização de junho de 2026)",
+ "url_origem": "https://www.seguranca.mg.gov.br/images/0_planilhas-e-pdfs/dados%20abertos/julho%202026/",
+ "arquivos_usados": [
+  "Banco Crimes Violentos 2012 a 2018 - Atualizado Junho 2026.csv",
+  "Banco Crimes Violentos 2019 a 2024 - Atualizado Junho 2026.csv",
+  "Banco Crimes Violentos 2025 a 2026 - Atualizado Junho 2026.csv",
+  "Banco Vtimas de Homicdio Consumado - Atualizado Junho 2026.csv"
+ ],
+ "coletado_em": "2026-08-05",
+ "metodologia": "Os CSVs cobrem os 853 municípios de MG (~165 MB somados) e trazem registros mensais por natureza, com código IBGE de 6 dígitos. A leitura é em streaming, filtrando o município e somando o estado inteiro no mesmo passe para servir de régua de comparação.",
+ "observacao": "'Crimes violentos' é o agrupamento da própria SEJUSP (homicídio tentado e consumado, estupro, roubo e sequestro, entre outros); a abertura por natureza está em 'por_natureza'. São REGISTROS de ocorrência — dependem de o crime ter sido notificado, então medem criminalidade registrada, não criminalidade real. 2026 é ano PARCIAL: vai até 06/2026 e não deve ser comparado com os anos fechados.",
+ "ultimo_ano_completo": 2025,
+ "ate_o_mes": "06/2026",
+ "populacao_mg_2025": 21322691,
+ "serie": [
+  {
+   "ano": 2012,
+   "total_crimes_violentos": 183,
+   "vitimas_homicidio": 6,
+   "populacao": 91643,
+   "taxa_por_100mil": 199.7,
+   "taxa_homicidio_por_100mil": 6.5,
+   "por_natureza": {
+    "Roubo": 102,
+    "Roubo (tentado)": 24,
+    "Homicídio tentado": 19,
+    "Extorsão": 14,
+    "Estupro": 8,
+    "Estupro de vulnerável": 7,
+    "Homicídio consumado": 6,
+    "Estupro de vulnerável (tentado)": 1,
+    "Extorsão (tentada)": 1,
+    "Estupro (tentado)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2013,
+   "total_crimes_violentos": 217,
+   "vitimas_homicidio": 7,
+   "populacao": 94940,
+   "taxa_por_100mil": 228.6,
+   "taxa_homicidio_por_100mil": 7.4,
+   "por_natureza": {
+    "Roubo": 156,
+    "Roubo (tentado)": 26,
+    "Estupro de vulnerável": 9,
+    "Extorsão": 7,
+    "Homicídio consumado": 7,
+    "Estupro": 5,
+    "Homicídio tentado": 5,
+    "Estupro de vulnerável (tentado)": 1,
+    "Sequestro e cárcere privado": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2014,
+   "total_crimes_violentos": 254,
+   "vitimas_homicidio": 10,
+   "populacao": 95491,
+   "taxa_por_100mil": 266.0,
+   "taxa_homicidio_por_100mil": 10.5,
+   "por_natureza": {
+    "Roubo": 177,
+    "Roubo (tentado)": 38,
+    "Homicídio tentado": 13,
+    "Homicídio consumado": 10,
+    "Estupro de vulnerável": 6,
+    "Estupro": 5,
+    "Extorsão (tentada)": 2,
+    "Sequestro e cárcere privado": 1,
+    "Extorsão": 1,
+    "Estupro (tentado)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2015,
+   "total_crimes_violentos": 253,
+   "vitimas_homicidio": 10,
+   "populacao": 96020,
+   "taxa_por_100mil": 263.5,
+   "taxa_homicidio_por_100mil": 10.4,
+   "por_natureza": {
+    "Roubo": 171,
+    "Roubo (tentado)": 36,
+    "Estupro de vulnerável": 10,
+    "Homicídio consumado": 10,
+    "Homicídio tentado": 9,
+    "Extorsão": 6,
+    "Estupro (tentado)": 4,
+    "Estupro": 3,
+    "Extorsão mediante sequestro": 1,
+    "Estupro de vulnerável (tentado)": 1,
+    "Extorsão (tentada)": 1,
+    "Sequestro e cárcere privado": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2016,
+   "total_crimes_violentos": 237,
+   "vitimas_homicidio": 6,
+   "populacao": 96523,
+   "taxa_por_100mil": 245.5,
+   "taxa_homicidio_por_100mil": 6.2,
+   "por_natureza": {
+    "Roubo": 150,
+    "Roubo (tentado)": 49,
+    "Homicídio tentado": 10,
+    "Estupro de vulnerável": 9,
+    "Homicídio consumado": 6,
+    "Extorsão (tentada)": 5,
+    "Extorsão": 4,
+    "Estupro": 2,
+    "Sequestro e cárcere privado": 2
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2017,
+   "total_crimes_violentos": 273,
+   "vitimas_homicidio": 10,
+   "populacao": 97000,
+   "taxa_por_100mil": 281.4,
+   "taxa_homicidio_por_100mil": 10.3,
+   "por_natureza": {
+    "Roubo": 207,
+    "Roubo (tentado)": 33,
+    "Homicídio tentado": 9,
+    "Homicídio consumado": 8,
+    "Extorsão": 6,
+    "Estupro": 5,
+    "Estupro de vulnerável": 3,
+    "Estupro (tentado)": 1,
+    "Extorsão (tentada)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2018,
+   "total_crimes_violentos": 208,
+   "vitimas_homicidio": 9,
+   "populacao": 96389,
+   "taxa_por_100mil": 215.8,
+   "taxa_homicidio_por_100mil": 9.3,
+   "por_natureza": {
+    "Roubo": 132,
+    "Roubo (tentado)": 30,
+    "Estupro de vulnerável": 13,
+    "Homicídio tentado": 11,
+    "Homicídio consumado": 9,
+    "Extorsão": 6,
+    "Estupro": 4,
+    "Estupro (tentado)": 2,
+    "Estupro de vulnerável (tentado)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2019,
+   "total_crimes_violentos": 152,
+   "vitimas_homicidio": 5,
+   "populacao": 96869,
+   "taxa_por_100mil": 156.9,
+   "taxa_homicidio_por_100mil": 5.2,
+   "por_natureza": {
+    "Roubo": 103,
+    "Estupro de vulnerável": 11,
+    "Roubo (tentado)": 9,
+    "Homicídio tentado": 8,
+    "Extorsão": 8,
+    "Estupro": 5,
+    "Homicídio consumado": 5,
+    "Estupro (tentado)": 2,
+    "Extorsão (tentada)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2020,
+   "total_crimes_violentos": 96,
+   "vitimas_homicidio": 4,
+   "populacao": 97334,
+   "taxa_por_100mil": 98.6,
+   "taxa_homicidio_por_100mil": 4.1,
+   "por_natureza": {
+    "Roubo": 64,
+    "Roubo (tentado)": 7,
+    "Homicídio tentado": 5,
+    "Estupro de vulnerável": 4,
+    "Extorsão": 4,
+    "Homicídio consumado": 4,
+    "Estupro": 3,
+    "Extorsão (tentada)": 3,
+    "Estupro (tentado)": 1,
+    "Sequestro e cárcere privado": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2021,
+   "total_crimes_violentos": 76,
+   "vitimas_homicidio": 4,
+   "populacao": 97782,
+   "taxa_por_100mil": 77.7,
+   "taxa_homicidio_por_100mil": 4.1,
+   "por_natureza": {
+    "Roubo": 43,
+    "Extorsão": 10,
+    "Roubo (tentado)": 7,
+    "Homicídio tentado": 5,
+    "Estupro": 4,
+    "Homicídio consumado": 4,
+    "Estupro de vulnerável": 2,
+    "Sequestro e cárcere privado": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2022,
+   "total_crimes_violentos": 65,
+   "vitimas_homicidio": 3,
+   "populacao": 93073,
+   "taxa_por_100mil": 69.8,
+   "taxa_homicidio_por_100mil": 3.2,
+   "por_natureza": {
+    "Roubo": 34,
+    "Homicídio tentado": 8,
+    "Extorsão": 6,
+    "Estupro": 5,
+    "Estupro de vulnerável": 4,
+    "Homicídio consumado": 3,
+    "Sequestro e cárcere privado": 2,
+    "Roubo (tentado)": 2,
+    "Extorsão (tentada)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2023,
+   "total_crimes_violentos": 68,
+   "vitimas_homicidio": 3,
+   "populacao": 96855,
+   "taxa_por_100mil": 70.2,
+   "taxa_homicidio_por_100mil": 3.1,
+   "por_natureza": {
+    "Roubo": 35,
+    "Estupro de vulnerável": 7,
+    "Extorsão": 7,
+    "Homicídio tentado": 5,
+    "Roubo (tentado)": 5,
+    "Estupro": 4,
+    "Homicídio consumado": 3,
+    "Sequestro e cárcere privado": 1,
+    "Estupro (tentado)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2024,
+   "total_crimes_violentos": 53,
+   "vitimas_homicidio": 3,
+   "populacao": 96632,
+   "taxa_por_100mil": 54.8,
+   "taxa_homicidio_por_100mil": 3.1,
+   "por_natureza": {
+    "Roubo": 27,
+    "Estupro de vulnerável": 8,
+    "Homicídio tentado": 8,
+    "Estupro": 3,
+    "Extorsão": 2,
+    "Roubo (tentado)": 2,
+    "Homicídio consumado": 2,
+    "Extorsão (tentada)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2025,
+   "total_crimes_violentos": 50,
+   "vitimas_homicidio": 5,
+   "populacao": 96855,
+   "taxa_por_100mil": 51.6,
+   "taxa_homicidio_por_100mil": 5.2,
+   "por_natureza": {
+    "Roubo": 22,
+    "Homicídio tentado": 8,
+    "Homicídio consumado": 5,
+    "Estupro de vulnerável": 4,
+    "Estupro": 4,
+    "Extorsão": 2,
+    "Estupro (tentado)": 2,
+    "Roubo (tentado)": 1,
+    "Extorsão mediante sequestro": 1,
+    "Estupro de vulnerável (tentado)": 1
+   },
+   "ano_parcial": false
+  },
+  {
+   "ano": 2026,
+   "total_crimes_violentos": 23,
+   "vitimas_homicidio": 4,
+   "populacao": 96855,
+   "taxa_por_100mil": 23.7,
+   "taxa_homicidio_por_100mil": 4.1,
+   "por_natureza": {
+    "Roubo": 5,
+    "Estupro de vulnerável": 5,
+    "Extorsão": 4,
+    "Homicídio consumado": 4,
+    "Estupro": 3,
+    "Estupro de vulnerável (tentado)": 1,
+    "Roubo (tentado)": 1
+   },
+   "ano_parcial": true
+  }
+ ],
+ "regua_minas_gerais": [
+  {
+   "ano": 2012,
+   "total_crimes_violentos": 82681,
+   "vitimas_homicidio": 3959,
+   "taxa_por_100mil": 387.8,
+   "taxa_homicidio_por_100mil": 18.6
+  },
+  {
+   "ano": 2013,
+   "total_crimes_violentos": 101464,
+   "vitimas_homicidio": 4253,
+   "taxa_por_100mil": 475.8,
+   "taxa_homicidio_por_100mil": 19.9
+  },
+  {
+   "ano": 2014,
+   "total_crimes_violentos": 118262,
+   "vitimas_homicidio": 4209,
+   "taxa_por_100mil": 554.6,
+   "taxa_homicidio_por_100mil": 19.7
+  },
+  {
+   "ano": 2015,
+   "total_crimes_violentos": 138441,
+   "vitimas_homicidio": 4150,
+   "taxa_por_100mil": 649.3,
+   "taxa_homicidio_por_100mil": 19.5
+  },
+  {
+   "ano": 2016,
+   "total_crimes_violentos": 157007,
+   "vitimas_homicidio": 4151,
+   "taxa_por_100mil": 736.3,
+   "taxa_homicidio_por_100mil": 19.5
+  },
+  {
+   "ano": 2017,
+   "total_crimes_violentos": 136860,
+   "vitimas_homicidio": 3942,
+   "taxa_por_100mil": 641.9,
+   "taxa_homicidio_por_100mil": 18.5
+  },
+  {
+   "ano": 2018,
+   "total_crimes_violentos": 95888,
+   "vitimas_homicidio": 3043,
+   "taxa_por_100mil": 449.7,
+   "taxa_homicidio_por_100mil": 14.3
+  },
+  {
+   "ano": 2019,
+   "total_crimes_violentos": 70417,
+   "vitimas_homicidio": 2722,
+   "taxa_por_100mil": 330.2,
+   "taxa_homicidio_por_100mil": 12.8
+  },
+  {
+   "ano": 2020,
+   "total_crimes_violentos": 47509,
+   "vitimas_homicidio": 2565,
+   "taxa_por_100mil": 222.8,
+   "taxa_homicidio_por_100mil": 12.0
+  },
+  {
+   "ano": 2021,
+   "total_crimes_violentos": 37973,
+   "vitimas_homicidio": 2344,
+   "taxa_por_100mil": 178.1,
+   "taxa_homicidio_por_100mil": 11.0
+  },
+  {
+   "ano": 2022,
+   "total_crimes_violentos": 36953,
+   "vitimas_homicidio": 2502,
+   "taxa_por_100mil": 173.3,
+   "taxa_homicidio_por_100mil": 11.7
+  },
+  {
+   "ano": 2023,
+   "total_crimes_violentos": 32671,
+   "vitimas_homicidio": 2607,
+   "taxa_por_100mil": 153.2,
+   "taxa_homicidio_por_100mil": 12.2
+  },
+  {
+   "ano": 2024,
+   "total_crimes_violentos": 32995,
+   "vitimas_homicidio": 2778,
+   "taxa_por_100mil": 154.7,
+   "taxa_homicidio_por_100mil": 13.0
+  },
+  {
+   "ano": 2025,
+   "total_crimes_violentos": 26327,
+   "vitimas_homicidio": 2407,
+   "taxa_por_100mil": 123.5,
+   "taxa_homicidio_por_100mil": 11.3
+  },
+  {
+   "ano": 2026,
+   "total_crimes_violentos": 11204,
+   "vitimas_homicidio": 1097,
+   "taxa_por_100mil": 52.5,
+   "taxa_homicidio_por_100mil": 5.1
+  }
+ ]
+}

@@ -2138,6 +2138,109 @@ function buildIduBrSection(root, idu) {
   root.appendChild(note2);
 }
 
+// ---------------------------------------------------------------------------
+// Fase 10 — segurança pública, pela SEJUSP-MG.
+//
+// A régua estadual entra no mesmo gráfico de propósito: um número de
+// criminalidade sozinho não diz nada. "50 crimes violentos" é muito ou pouco?
+// Só a comparação responde — e as duas séries estão na mesma unidade (taxa por
+// 100 mil), então cabem no mesmo eixo sem truque de escala.
+//
+// O ano parcial fica FORA da linha. 2026 tem só metade dos meses e entraria
+// como uma queda que não aconteceu; ele aparece no texto e na tabela, não no
+// desenho.
+// ---------------------------------------------------------------------------
+function buildSegurancaChart(root, seg, desp) {
+  const st = getComputedStyle(root);
+  const cCidade = st.getPropertyValue("--v-series-despesa").trim() || "#2a78d6";
+  const cEstado = st.getPropertyValue("--v-series-3").trim() || "#eb6834";
+
+  const cheios = seg.serie.filter(p => !p.ano_parcial);
+  const reguaPorAno = Object.fromEntries(seg.regua_minas_gerais.map(p => [p.ano, p]));
+
+  renderLineChart(root, {
+    series: [
+      { key: "cidade", label: "Itajubá", color: cCidade, points: cheios.map(p => ({ y: p.taxa_por_100mil })) },
+      { key: "mg", label: "Minas Gerais (todos os 853 municípios)", color: cEstado, points: cheios.map(p => ({ y: (reguaPorAno[p.ano] || {}).taxa_por_100mil })) },
+    ],
+    xValues: cheios.map(p => String(p.ano)),
+    yLabel: "Crimes violentos registrados por 100 mil habitantes",
+    yFormat: (v) => fmtInt.format(Math.round(v)),
+    yFormatFull: (v) => fmtInt.format(Math.round(v)) + " por 100 mil hab.",
+  });
+
+  const pico = cheios.slice().sort((a, b) => b.taxa_por_100mil - a.taxa_por_100mil)[0];
+  const ult = cheios[cheios.length - 1];
+  const mgUlt = reguaPorAno[ult.ano] || {};
+  const parcial = seg.serie.find(p => p.ano_parcial);
+  const totalHom = seg.serie.reduce((a, p) => a + p.vitimas_homicidio, 0);
+
+  renderStats(root, [
+    { value: fmtInt.format(ult.total_crimes_violentos), label: `Crimes violentos registrados · ${ult.ano}`, note: `Eram ${fmtInt.format(pico.total_crimes_violentos)} no pico, em ${pico.ano}` },
+    { value: pct(100 * (ult.taxa_por_100mil / pico.taxa_por_100mil - 1)), label: `Variação da taxa, ${pico.ano}→${ult.ano}`, note: "Por 100 mil habitantes, já sem efeito de população" },
+    { value: fmtInt.format(Math.round(ult.taxa_por_100mil)), label: `Taxa de Itajubá · ${ult.ano}`, note: `Minas Gerais no mesmo ano: ${fmtInt.format(Math.round(mgUlt.taxa_por_100mil))}` },
+    { value: fmtInt.format(ult.vitimas_homicidio), label: `Vítimas de homicídio · ${ult.ano}`, note: `${totalHom} em toda a série, de 2012 a ${parcial ? parcial.ano : ult.ano}` },
+  ]);
+
+  note(root, `<strong>A criminalidade registrada em Itajubá caiu — e caiu mais do que a média do estado.</strong>
+    A taxa saiu de ${fmtInt.format(Math.round(pico.taxa_por_100mil))} por 100 mil habitantes em ${pico.ano} para
+    ${fmtInt.format(Math.round(ult.taxa_por_100mil))} em ${ult.ano}, uma queda de
+    ${pct(100 * (ult.taxa_por_100mil / pico.taxa_por_100mil - 1))}. Minas Gerais também caiu no período, então parte
+    disso é tendência estadual e não mérito local — mas <strong>Itajubá está sistematicamente abaixo da linha do
+    estado</strong> em toda a série, e a distância aumentou.`);
+
+  if (desp) {
+    const s = desp.serie;
+    const a0 = s[0], a1 = s[s.length - 1];
+    const g0 = (a0.funcoes["Segurança Pública"] || 0) * a0.ipca_fator_para_2025;
+    const g1 = (a1.funcoes["Segurança Pública"] || 0) * a1.ipca_fator_para_2025;
+    note(root, `<strong>A tentação aqui é cruzar com o orçamento — e é justamente o que não dá para fazer.</strong>
+      A função "Segurança Pública" da Prefeitura saiu de ${milhoes(g0)} em ${a0.ano} para ${milhoes(g1)} em
+      ${a1.ano}, corrigido pela inflação: ${pct(100 * (g1 / g0 - 1))}. As duas curvas andam em sentidos opostos, o
+      que é uma coincidência tentadora. Mas <strong>esse dinheiro não é polícia</strong>: Polícia Militar e Civil
+      são do estado e não passam pelo orçamento municipal. O que a Prefeitura paga com essa rubrica é Guarda
+      Municipal, trânsito e Defesa Civil. Quem registra as ocorrências do gráfico acima é a polícia estadual.
+      Atribuir a queda ao gasto municipal seria inventar uma causa que o dado não sustenta.`);
+  }
+
+  subhead(root, "Que crimes são esses");
+  const acum = {};
+  seg.serie.forEach(p => Object.entries(p.por_natureza).forEach(([k, v]) => { acum[k] = (acum[k] || 0) + v; }));
+  const dados = Object.entries(acum).map(([natureza, n]) => ({ natureza, n })).sort((a, b) => b.n - a.n);
+  const total = dados.reduce((s, d) => s + d.n, 0);
+  renderBarsHorizontal(root, {
+    data: dados, labelKey: "natureza", valueKey: "n",
+    valueFormat: (v) => fmtInt.format(v),
+    valueFormatFull: (v) => `${fmtInt.format(v)} registros (${(100 * v / total).toFixed(1).replace(".", ",")}% do total)`,
+    color: cCidade, ariaLabelPrefix: "Crimes violentos por natureza, 2012–2026",
+  });
+
+  const roubo = dados.filter(d => /roubo/i.test(d.natureza)).reduce((s, d) => s + d.n, 0);
+  note(root, `Somando os quinze anos, <strong>roubo é ${(100 * roubo / total).toFixed(0)}% de tudo que entra na
+    conta de "crime violento"</strong> em Itajubá. O agrupamento é da própria SEJUSP e mistura coisas de gravidade
+    muito diferente — roubo consumado, homicídio tentado, estupro, extorsão —, por isso a abertura por natureza
+    importa: uma queda no total é, sobretudo, uma queda em roubo.`);
+
+  note(root, `<strong>Três ressalvas que valem para qualquer dado de criminalidade.</strong> Primeiro, isto são
+    <em>registros</em> de ocorrência: dependem de a vítima ter notificado e de a polícia ter lavrado o boletim, o
+    que mede criminalidade <em>registrada</em>, não criminalidade real — e a subnotificação varia por tipo de crime,
+    sendo notoriamente alta em crimes sexuais. Segundo, a base chega ao município mas não abaixo dele: não há
+    recorte por bairro, então este é o único domínio do piloto sem camada territorial. Terceiro,
+    ${parcial ? `<strong>${parcial.ano} é ano parcial</strong> (vai até ${seg.ate_o_mes}, com ${fmtInt.format(parcial.total_crimes_violentos)} registros) e por isso ficou fora da linha do gráfico` : "a série termina no último ano fechado"} —
+    comparar meio ano com anos inteiros produziria uma queda que não existe.`);
+
+  renderTable(root, {
+    caption: "Crimes violentos e vítimas de homicídio em Itajubá/MG, 2012–2026",
+    columns: ["Ano", "Crimes violentos", "Por 100 mil hab.", "MG por 100 mil hab.", "Vítimas de homicídio"],
+    rows: seg.serie.map(p => [
+      p.ano_parcial ? `${p.ano} (até ${seg.ate_o_mes})` : String(p.ano),
+      fmtInt.format(p.total_crimes_violentos),
+      p.taxa_por_100mil == null ? "—" : fmtInt.format(Math.round(p.taxa_por_100mil)),
+      fmtInt.format(Math.round((reguaPorAno[p.ano] || {}).taxa_por_100mil || 0)),
+      fmtInt.format(p.vitimas_homicidio)]),
+  });
+}
+
 function showError(...roots) {
   roots.forEach(r => {
     if (r) r.innerHTML = '<p class="viz-note">Não foi possível carregar os dados do gráfico. Abra a página por um servidor HTTP e tente de novo.</p>';
@@ -2261,6 +2364,15 @@ function initItajubaCharts() {
     fetch("../dados/itajuba/pib_municipal_2002_2023.json").then(r => r.json())
       .then(pib => buildEconomiaChart(pibRoot, pib))
       .catch(() => showError(pibRoot));
+  });
+
+  const segRoot = document.querySelector("#chart-seguranca");
+  onFirstOpen(segRoot && segRoot.closest("details.phase"), () => {
+    Promise.all([
+      fetch("../dados/itajuba/seguranca_sejusp_2012_2026.json").then(r => r.json()),
+      fetch("../dados/itajuba/despesa_funcao_natureza_2014_2025.json").then(r => r.ok ? r.json() : null).catch(() => null),
+    ]).then(([seg, desp]) => buildSegurancaChart(segRoot, seg, desp))
+      .catch(() => showError(segRoot));
   });
 
   const sinteseRoot = document.querySelector("#painel-sintese");

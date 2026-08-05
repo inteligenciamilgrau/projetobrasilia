@@ -47,7 +47,7 @@
       <div class="stat"><strong>3166600</strong><span>código IBGE do município</span></div>
       <div class="stat"><strong>335,7 km²</strong><span>área territorial</span></div>
     </div>
-    <div class="status-banner"><strong>Status desta aba:</strong> refeita em 05/08/2026. As fases 0 a 9 foram refeitas ou concluídas com dado real coletado por API — população, IDHM, IPS, finanças 2014–2025, compras, saúde, educação, território e economia. <strong>A versão anterior desta página continha números interpolados apresentados como coletados</strong>; o que mudou está listado na seção "O que foi corrigido", logo abaixo.</div>
+    <div class="status-banner"><strong>Status desta aba:</strong> refeita em 05/08/2026. As fases 0 a 10 foram refeitas ou concluídas com dado real coletado por API — população, IDHM, IPS, finanças 2014–2025, compras, saúde, educação, território, economia e segurança pública. <strong>A versão anterior desta página continha números interpolados apresentados como coletados</strong>; o que mudou está listado na seção "O que foi corrigido", logo abaixo.</div>
 
     <section aria-labelledby="correcao-title">
       <div class="section-head"><div><p class="kicker">O que foi corrigido</p><h2 id="correcao-title">A versão anterior desta página estava errada, e em pontos que mudavam a conclusão.</h2></div><p>Este projeto publica método junto com resultado, então o erro fica registrado em vez de sumir na reescrita. A Fase 3 anterior dizia, no próprio código, que os anos de 2022 e 2023 da receita e de 2015 a 2018 da despesa haviam sido “interpolados conforme a trajetória oficial dos repasses”. Não era necessário: <strong>o SICONFI tem os doze anos completos</strong> — todos os anos de 2014 a 2025 respondem nos três anexos do DCA. A interpolação foi verificada e substituída por coleta.</p></div>
@@ -73,7 +73,7 @@
       <div class="section-head"><div><p class="kicker">Plano de análise</p><h2 id="plano-title">Uma fase por sessão, não tudo de uma vez.</h2></div><p>Cada fase é um lote de coleta e visualização fechado em si. Fases concluídas abrem: o resultado fica embaixo do próprio item, não numa seção separada. Todo gráfico lê um arquivo de <code>dados/serra-da-saudade/</code> — nenhum número está escrito dentro desta página.</p></div>
       <div class="roadmap">
         <details class="phase done">
-          <summary class="phase-summary"><div class="phase-num">0</div><div class="phase-text"><h3>Estrutura, fontes e plano</h3><p>Esta página, o catálogo de fontes abaixo e a pasta <code>dados/serra-da-saudade/</code> com 17 arquivos, cada um trazendo URL de origem, parâmetro de consulta e data de coleta.</p></div><span class="phase-tag done">Refeita 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <summary class="phase-summary"><div class="phase-num">0</div><div class="phase-text"><h3>Estrutura, fontes e plano</h3><p>Esta página, o catálogo de fontes abaixo e a pasta <code>dados/serra-da-saudade/</code> com 18 arquivos, cada um trazendo URL de origem, parâmetro de consulta e data de coleta.</p></div><span class="phase-tag done">Refeita 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
           <div class="phase-body">
             <p class="muted-note">A estrutura passou a ser a mesma do piloto de Itajubá: uma pasta de dados por cidade, um arquivo por coleta, e o JavaScript da página lendo esses arquivos em vez de carregar números embutidos. O que mudou em relação ao modelo, e por quê, está registrado em cada arquivo.</p>
             <div class="dataset-grid">
@@ -206,7 +206,20 @@
         </details>
 
         <details class="phase done">
-          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Síntese</h3><p>Painel com o número-chave de cada fase e o IDU-Br calculado para Serra da Saudade pelo mesmo motor da seleção nacional de piloto.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Segurança pública</h3><p>Crimes violentos e vítimas de homicídio, 2012–2026, pelos dados abertos da SEJUSP-MG. Era o único domínio do piloto sem nenhuma fonte — e a fonte existia.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="explainer">
+              <p><strong>Esta fase corrige uma conclusão anterior.</strong> A avaliação do IDU-Br desta página registrava que "a SEJUSP-MG não dá recorte utilizável para um município deste porte", e a de Itajubá dizia que "nenhuma fonte estadual (MG) específica" havia sido encontrada. As duas estavam erradas: a SEJUSP publica CSV mensal, por município e por natureza de crime, com código IBGE, cobrindo 2012 a 2026. São ~165 MB para os 853 municípios do estado, lidos aqui em <em>streaming</em> para filtrar a cidade e, no mesmo passe, somar o estado inteiro como régua.</p>
+            </div>
+            <div class="viz-root" id="chart-seguranca">
+              <div class="viz-head"><div><h3>Crimes violentos registrados, ano a ano</h3><p>Uma barra por ano, contagem absoluta e não taxa por 100 mil — o motivo está na nota abaixo do gráfico, e é o mesmo problema de escala da Fase 5.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/serra-da-saudade/seguranca_sejusp_2012_2026.json" target="_blank" rel="noopener noreferrer">seguranca_sejusp_2012_2026.json ↗</a> — inclui a série da cidade, a abertura por natureza e a régua de Minas Gerais.</p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">10</div><div class="phase-text"><h3>Síntese</h3><p>Painel com o número-chave de cada fase e o IDU-Br calculado para Serra da Saudade pelo mesmo motor da seleção nacional de piloto.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
           <div class="phase-body">
             <div class="viz-root" id="painel-sintese">
               <div class="viz-head"><div><h3>Um número de cada fase</h3><p>O retrato mais recente disponível em cada área — o detalhe está nas fases 1 a 8 acima.</p></div></div>
@@ -267,10 +280,10 @@
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>RAIS e Novo CAGED</h3><p class="what">Emprego formal por setor de atividade — exige baixar e processar microdados em lote, sem API simples.</p><a class="open" href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/microdados-rais-e-caged" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
-      <h3 class="category-heading">Legislativo, meio ambiente e segurança</h3>
+      <h3 class="category-heading">Segurança, Legislativo e meio ambiente</h3>
       <div class="source-grid">
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>Câmara Municipal</h3><p class="what">Em Itajubá o SISCAM rendeu 659 Portarias por paginação. Aqui não foi localizado sistema equivalente com listagem estruturada nesta sessão — a função Legislativa aparece no orçamento (R$ 1,3 mi em 2025), mas os atos da Câmara não.</p></article>
-        <article class="card"><div class="labels"><span class="label bloqueado">Sem recorte municipal</span></div><h3>Segurança pública</h3><p class="what">Único domínio do IDU-Br sem nenhuma fonte. Não há publicação municipal, e a estatística estadual não oferece recorte utilizável para um município deste porte.</p></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SEJUSP-MG — dados abertos</h3><p class="what">Crimes violentos e vítimas de homicídio, mensal, por município e por natureza, 2012–2026. Cobre este município como cobre qualquer outro de Minas: devolve 5 registros em 15 anos e nenhuma vítima de homicídio. Era o único domínio do piloto dado como sem fonte — a avaliação anterior estava errada. Ressalva: arquivos estáticos, sem API, e o nome muda a cada atualização mensal.</p><a class="open" href="https://www.seguranca.mg.gov.br/index.php/transparencia/dados-abertos" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/serra-da-saudade/seguranca_sejusp_2012_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>MapBiomas e INMET</h3><p class="what">Uso e cobertura da terra desde 1985 e série meteorológica da estação mais próxima. Relevantes num município 99,8% rural, mas não coletados nesta sessão.</p><a class="open" href="https://brasil.mapbiomas.org/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
       </div>
 
@@ -299,6 +312,7 @@
         <article class="dataset"><h3>cnes_estabelecimentos_2026.json</h3><p>Os 5 estabelecimentos de saúde cadastrados no município, com tipo de unidade traduzido — a evidência de que não há hospital nem leito de internação.</p><p class="meta">Coletado 05/08/2026 · CNES/Ministério da Saúde</p></article>
         <article class="dataset"><h3>cempre_empresas_emprego_2006_2021.json</h3><p>Empresas atuantes, unidades locais, pessoal ocupado, massa salarial e salário médio mensal, 2006–2021.</p><p class="meta">Coletado 05/08/2026 · IBGE/CEMPRE</p></article>
         <article class="dataset"><h3>pib_municipal_2002_2023.json</h3><p>PIB total 2002–2023 e composição setorial de 2021, com administração pública e serviços em rubricas separadas.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>seguranca_sejusp_2012_2026.json</h3><p>Crimes violentos e vítimas de homicídio, 2012–2026, com a abertura por natureza e a régua de Minas Gerais no mesmo arquivo. Filtrado em streaming de ~165 MB de CSV estadual.</p><p class="meta">Coletado 05/08/2026 · SEJUSP-MG</p></article>
         <article class="dataset"><h3>idu_br_2026.json</h3><p>IDU-Br calculado pelo motor <code>idu_v2.py</code>, com a matriz de entrada completa — os 8 domínios, os 5 eixos de cada um e a justificativa de cada nota.</p><p class="meta">Avaliado 05/08/2026 · metodologia v2.1</p></article>
       </div>
     </section>

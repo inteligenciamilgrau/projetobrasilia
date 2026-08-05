@@ -47,7 +47,7 @@
       <div class="stat"><strong>3132404</strong><span>código IBGE do município</span></div>
       <div class="stat"><strong>294,8 km²</strong><span>área territorial</span></div>
     </div>
-    <div class="status-banner"><strong>Status desta aba:</strong> Todas as 10 fases concluídas (03/08/2026) — população, IDHM histórico, finanças, saúde, educação, mapa de calor por setor censitário, compras/Legislativo, emprego/economia e a síntese com IDU-Br já têm dado real.</div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Todas as 11 fases concluídas (Segurança acrescentada em 05/08/2026) — população, IDHM histórico, finanças, saúde, educação, mapa de calor por setor censitário, compras/Legislativo, emprego/economia e a síntese com IDU-Br já têm dado real.</div>
 
     <section aria-labelledby="contexto-title">
       <div class="section-head"><div><p class="kicker">Como Itajubá entrou aqui</p><h2 id="contexto-title">Do pré-filtro de cidades pequenas a um piloto próprio.</h2></div><p>Itajubá apareceu no Top 10 de ≈100 mil habitantes do <a href="../cidades-pequenas.html">experimento de cidades pequenas</a>, ordenado por IPS Brasil 2026. A triagem-padrão marcou "sem sinal" porque o site da Prefeitura bloqueia acesso automatizado. Uma varredura extra, pedida especificamente, encontrou dado real fora do Executivo: a Câmara Municipal (domínio próprio, sem bloqueio), o PNCP e o SICONFI. Isso foi o suficiente para justificar tirar Itajubá do lote de 20 candidatas e abrir um piloto só dela.</p></div>
@@ -187,7 +187,20 @@
           </div>
         </details>
         <details class="phase done">
-          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Síntese</h3><p>Painel único com o número-chave de cada fase, e o IDU-Br calculado para Itajubá pela metodologia v2.1 do projeto.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <summary class="phase-summary"><div class="phase-num">9</div><div class="phase-text"><h3>Segurança pública</h3><p>Crimes violentos e vítimas de homicídio, 2012–2026, pelos dados abertos da SEJUSP-MG, com a média do estado no mesmo gráfico. Era o domínio que a Fase 9 anterior dava como sem fonte.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="explainer">
+              <p><strong>Esta fase corrige uma conclusão anterior.</strong> A avaliação do IDU-Br desta página registrava, no domínio Segurança, que "nenhuma fonte estadual (MG) específica de Itajubá" havia sido encontrada. Havia: a SEJUSP-MG publica CSV mensal, por município e por natureza de crime, com código IBGE, cobrindo 2012 a 2026. São ~165 MB para os 853 municípios do estado, lidos em <em>streaming</em> para filtrar a cidade e, no mesmo passe, somar o estado inteiro como régua de comparação. É a primeira fonte estadual do piloto — e por isso o IDU-Br desta cidade deixou de ter dependência externa zero.</p>
+            </div>
+            <div class="viz-root" id="chart-seguranca">
+              <div class="viz-head"><div><h3>Crimes violentos por 100 mil habitantes, Itajubá e Minas Gerais</h3><p>SEJUSP-MG. As duas séries estão na mesma unidade e no mesmo eixo. O ano parcial de 2026 fica fora da linha e aparece só na tabela.</p></div></div>
+            </div>
+            <p class="muted-note">Fonte salva: <a href="../dados/itajuba/seguranca_sejusp_2012_2026.json" target="_blank" rel="noopener noreferrer">seguranca_sejusp_2012_2026.json ↗</a> — inclui a série da cidade, a abertura por natureza e a régua de Minas Gerais.</p>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">10</div><div class="phase-text"><h3>Síntese</h3><p>Painel único com o número-chave de cada fase, e o IDU-Br calculado para Itajubá pela metodologia v2.1 do projeto.</p></div><span class="phase-tag done">Concluída 03/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
           <div class="phase-body">
             <div class="viz-root" id="painel-sintese">
               <div class="viz-head"><div><h3>Um número de cada fase</h3><p>O retrato mais recente disponível em cada área — o resto do detalhe está nas fases 1 a 8 acima.</p></div></div>
@@ -259,7 +272,7 @@
       <div class="source-grid">
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>INMET — dados históricos</h3><p class="what">Série meteorológica da estação mais próxima de Itajubá.</p><a class="open" href="https://portal.inmet.gov.br/dadoshistoricos" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
         <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>MapBiomas</h3><p class="what">Uso e cobertura da terra desde 1985 — a série mais longa disponível para "evolução desde os anos 2000".</p><a class="open" href="https://brasil.mapbiomas.org/" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
-        <article class="card"><div class="labels"><span class="label planejado">Planejado</span></div><h3>SINESP / MJSP</h3><p class="what">Estatísticas nacionais de segurança pública; granularidade municipal ainda não confirmada para MG.</p><a class="open" href="https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/seguranca-publica/estatistica" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a></article>
+        <article class="card"><div class="labels"><span class="label coletado">Coletado</span></div><h3>SEJUSP-MG — dados abertos</h3><p class="what">Crimes violentos e vítimas de homicídio, mensal, por município e por natureza, 2012–2026 — 2.208 registros de Itajubá no período. É a única fonte ESTADUAL do piloto, e desmente a avaliação anterior de que não havia uma. Ressalva: são arquivos estáticos, sem API, e o nome muda a cada atualização mensal.</p><a class="open" href="https://www.seguranca.mg.gov.br/index.php/transparencia/dados-abertos" target="_blank" rel="noopener noreferrer">Abrir fonte ↗</a><a class="open secondary" href="../dados/itajuba/seguranca_sejusp_2012_2026.json" target="_blank" rel="noopener noreferrer">Ver dado salvo ↗</a></article>
       </div>
 
       <h3 class="category-heading">Executivo municipal</h3>
