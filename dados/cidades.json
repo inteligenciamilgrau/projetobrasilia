@@ -1,0 +1,56 @@
+{
+ "titulo": "Registro das cidades do piloto",
+ "descricao": "Manifesto lido pelo comparador (piloto/comparar.html). Acrescentar uma cidade aqui, com a pasta e os nomes dos arquivos dela, é o suficiente para ela aparecer nos seletores — não há lista de cidades escrita no código.",
+ "atualizado_em": "2026-08-05",
+ "paleta": {
+  "observacao": "Cor CATEGÓRICA: identifica a cidade, não a grandeza. Nos pilotos individuais verde é receita e azul é despesa; no comparador a cor passa a significar cidade, e a distinção entre receita e despesa vai para gráficos separados. A ordem é fixa e por índice — a cidade nunca troca de cor quando outra entra ou sai da comparação.",
+  "validacao": "Os 3 tons foram validados com scripts/validate_palette.js do skill de dataviz, em modo claro (superfície #fcfcfb) e escuro (#1a1a19), com --pairs all: todos os pares passam nos seis testes, incluindo separação sob daltonismo (pior par ΔE 9,2 protan no claro, 9,3 deutan no escuro). ATENÇÃO: a 4ª cidade exige revalidar — roxo, magenta e marrom foram testados como 4º tom e TODOS falharam contra o azul ou o verde sob daltonismo.",
+  "clara": ["#2a78d6", "#eb6834", "#08724e"],
+  "escura": ["#3987e5", "#d95926", "#1baf7a"]
+ },
+ "fases_comparaveis": [
+  {
+   "id": "financas",
+   "numero": 3,
+   "titulo": "Finanças públicas",
+   "descricao": "Receita, despesa, dependência de transferências e composição do gasto — tudo normalizado, porque valores absolutos não se comparam entre cidades de portes diferentes.",
+   "disponivel": true
+  }
+ ],
+ "cidades": [
+  {
+   "slug": "itajuba",
+   "nome": "Itajubá",
+   "uf": "MG",
+   "ibge": "3132404",
+   "pasta": "itajuba",
+   "pagina": "itajuba.html",
+   "cor_indice": 0,
+   "populacao_recente": 96855,
+   "populacao_ano": 2025,
+   "resumo": "96,9 mil habitantes, no sul de Minas. Entrou no piloto porque a Câmara, o PNCP e o SICONFI responderam onde o site da Prefeitura bloqueava.",
+   "arquivos": {
+    "receita_despesa": "siconfi_receita_despesa_2015_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "serra-da-saudade",
+   "nome": "Serra da Saudade",
+   "uf": "MG",
+   "ibge": "3166600",
+   "pasta": "serra-da-saudade",
+   "pagina": "serra-da-saudade.html",
+   "cor_indice": 1,
+   "populacao_recente": 856,
+   "populacao_ano": 2025,
+   "resumo": "833 habitantes no Censo 2022 — o menor município do Brasil. Entrou no piloto como caso-limite do federalismo: recebe mais de R$ 24 mil por habitante só de FPM.",
+   "arquivos": {
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  }
+ ]
+}

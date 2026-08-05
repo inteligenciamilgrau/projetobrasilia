@@ -1,0 +1,119 @@
+/* Comparador de cidades — só o que é próprio desta página. O resto do visual
+   vem de assets/site.css, piloto.css e charts.css. */
+
+.cmp-picker {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: end;
+  background: var(--card, #fff);
+  border: 1px solid var(--line, #dfe5e2);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 0 0 22px;
+}
+
+.cmp-campo { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+
+.cmp-campo > label {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted, #5d6b66);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* O quadradinho de cor liga o seletor à série do gráfico: identidade não fica
+   só no texto da legenda. */
+.cmp-chip {
+  width: 12px; height: 12px; border-radius: 3px;
+  background: var(--cmp-cor, #2a78d6);
+  flex: none;
+}
+
+.cmp-campo select {
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink, #10241d);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line, #dfe5e2);
+  border-radius: 9px;
+  padding: 10px 12px;
+  width: 100%;
+  cursor: pointer;
+}
+.cmp-campo select:focus-visible { outline: 2px solid var(--green, #08724e); outline-offset: 2px; }
+
+.cmp-trocar {
+  font: inherit;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--muted, #5d6b66);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line, #dfe5e2);
+  border-radius: 9px;
+  padding: 12px 13px;
+  cursor: pointer;
+  margin-bottom: 1px;
+}
+.cmp-trocar:hover { color: var(--ink, #10241d); border-color: var(--green, #08724e); }
+.cmp-trocar:focus-visible { outline: 2px solid var(--green, #08724e); outline-offset: 2px; }
+
+.cmp-resumos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 0 0 26px;
+}
+.cmp-resumo {
+  border: 1px solid var(--line, #dfe5e2);
+  border-left: 3px solid var(--cmp-cor, #2a78d6);
+  border-radius: 10px;
+  padding: 12px 15px;
+  background: var(--card, #fff);
+}
+.cmp-resumo strong { display: block; font-size: 1.02rem; margin-bottom: 3px; }
+.cmp-resumo p { margin: 0; font-size: .9rem; color: var(--muted, #5d6b66); line-height: 1.5; }
+.cmp-resumo a { font-size: .85rem; }
+
+.cmp-aviso {
+  border: 1px solid var(--line, #dfe5e2);
+  border-left: 3px solid var(--yellow, #e5b82f);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 0 0 26px;
+  background: var(--card, #fff);
+}
+.cmp-aviso strong { display: block; margin-bottom: 4px; }
+.cmp-aviso p { margin: 0; font-size: .92rem; line-height: 1.6; color: var(--muted, #5d6b66); }
+
+.cmp-vazio {
+  border: 1px dashed var(--line, #dfe5e2);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  color: var(--muted, #5d6b66);
+}
+
+/* ---- barras pareadas (uma linha, duas cidades) ---- */
+.cmp-bars { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+.cmp-bar-row { display: grid; grid-template-columns: minmax(96px, 168px) 1fr; gap: 12px; align-items: center; }
+.cmp-bar-rot { font-size: .86rem; color: var(--ink, #10241d); text-align: right; line-height: 1.25; }
+.cmp-bar-par { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cmp-bar-linha { display: flex; align-items: center; gap: 8px; }
+.cmp-bar-trilho { flex: 1; min-width: 0; height: 13px; background: var(--v-neutral, #f0efec); border-radius: 4px; overflow: hidden; }
+.cmp-bar-fill { height: 100%; border-radius: 4px; transition: width .18s ease; }
+.cmp-bar-val { font-size: .82rem; font-variant-numeric: tabular-nums; color: var(--muted, #5d6b66); min-width: 62px; }
+.cmp-bar-row:hover .cmp-bar-val { color: var(--ink, #10241d); }
+
+@media (max-width: 720px) {
+  .cmp-picker { grid-template-columns: 1fr; }
+  .cmp-trocar { justify-self: start; }
+  .cmp-resumos { grid-template-columns: 1fr; }
+  .cmp-bar-row { grid-template-columns: 1fr; }
+  .cmp-bar-rot { text-align: left; }
+}
