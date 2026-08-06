@@ -436,7 +436,10 @@ function renderBarsHorizontal(root, { data, labelKey, valueKey, valueFormat, val
 // conseguir ler anos como 2016 e 2024, que somem na escala do orçamento. Ler
 // verticalmente é comparação legítima; sobrepor com duas réguas não é.
 // ---------------------------------------------------------------------------
-function renderReceitaDespesaSaldo(root, { serie, cReceita, cDespesa, posColor, negColor, notas }) {
+// nomeParaAria: o texto alternativo trazia "de Itajubá" fixo, porque a função
+// nasceu naquela página. Ficou parametrizado ao ser reusado nos municípios de
+// Roraima — leitor de tela ouvindo o nome da cidade errada é defeito, não detalhe.
+function renderReceitaDespesaSaldo(root, { serie, cReceita, cDespesa, posColor, negColor, notas, nomeParaAria }) {
   const W = 760;
   const M = { top: 20, right: 18, bottom: 28, left: 60 };
   const topH = 226, gap = 34, botH = 104;
@@ -452,12 +455,30 @@ function renderReceitaDespesaSaldo(root, { serie, cReceita, cDespesa, posColor, 
   const yBzero = M.top + topH + gap + botH / 2;
   const yB = (v) => yBzero - (botH / 2) * (v / maxSaldo);
 
+  // Legenda de reserva. Este gráfico não desenhava legenda nenhuma: as duas
+  // linhas eram distinguidas só pela cor e o nome de cada uma só aparecia no
+  // balão do hover — quem não usa mouse, quem imprime e quem não distingue as
+  // duas cores ficava sem saber qual linha é a receita.
+  //
+  // Só que TRÊS das quatro páginas de cidade já montavam a sua própria legenda
+  // antes de chamar aqui, com quatro itens (as duas linhas mais "sobrou" e
+  // "faltou"). Uma legenda incondicional virou a segunda legenda delas. Daí a
+  // guarda: se o contêiner já tem uma, ela manda — é mais completa que esta.
+  // Florianópolis e as páginas municipais de Roraima, que não montavam nenhuma,
+  // passam a ter.
+  if (!root.querySelector(":scope > .viz-legend")) {
+    legend(root, [
+      { label: "Receita líquida realizada", color: cReceita },
+      { label: "Despesa empenhada", color: cDespesa },
+    ]);
+  }
+
   const wrap = document.createElement("div");
   wrap.className = "viz-svg-wrap";
   root.appendChild(wrap);
   const svg = el("svg", {
     class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img",
-    "aria-label": "Receita, despesa e saldo orçamentário de Itajubá ano a ano",
+    "aria-label": `Receita, despesa e saldo orçamentário de ${nomeParaAria || "Itajubá"} ano a ano`,
   }, wrap);
 
   // --- grade do painel de cima ---
@@ -1542,7 +1563,14 @@ function buildPibVsDespesa(root, desp) {
 // matiz. E como a escala é compartilhada, comparar painéis continua válido:
 // a Saúde ocupa o quadro inteiro, a Cultura quase não sai do chão.
 // ---------------------------------------------------------------------------
-function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueFormatFull, colunas = 3, detalhe }) {
+// rotuloValor: o que a primeira linha do balão chama o número. Nasceu fixo em
+// "Empenhado" porque o único uso era despesa por função; a página de Roraima usa
+// os mesmos painéis para população, daí o parâmetro — com o padrão antigo, para
+// as quatro páginas já publicadas não mudarem.
+// rotuloCabecalho: o que aparece no canto de cada painel. O padrão é o último
+// valor da própria série; quando a série está em índice, o número que interessa
+// no cabeçalho é outro (a grandeza absoluta), e é para isso que serve o gancho.
+function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueFormatFull, colunas = 3, detalhe, rotuloValor = "Empenhado", rotuloCabecalho }) {
   const grade = document.createElement("div");
   grade.className = "viz-multiples";
   grade.style.setProperty("--viz-mult-cols", colunas);
@@ -1565,7 +1593,7 @@ function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueF
     nomeEl.textContent = p.nome;
     const valEl = document.createElement("span");
     valEl.className = "m-valor";
-    valEl.textContent = valueFormat(p.valores[n - 1]);
+    valEl.textContent = rotuloCabecalho ? rotuloCabecalho(p) : valueFormat(p.valores[n - 1]);
     cab.appendChild(nomeEl); cab.appendChild(valEl);
     cel.appendChild(cab);
 
@@ -1592,7 +1620,7 @@ function renderSmallMultiples(root, { paineis, xValues, cor, valueFormat, valueF
     xValues.forEach((xv, i) => {
       const meia = innerW / (n - 1) / 2;
       const det = detalhe ? detalhe(p, i) : null;
-      const linhas = [{ label: "Empenhado", value: valueFormatFull(p.valores[i]), color: cor }]
+      const linhas = [{ label: rotuloValor, value: valueFormatFull(p.valores[i]), color: cor }]
         .concat((det && det.linhas) || []);
       const nota = det && det.nota;
       const alvo = el("rect", {
@@ -2285,6 +2313,378 @@ function buildSegurancaChart(root, seg, desp) {
       fmtInt.format(Math.round((reguaPorAno[p.ano] || {}).taxa_por_100mil || 0)),
       fmtInt.format(p.vitimas_homicidio)]),
   });
+}
+
+// ---------------------------------------------------------------------------
+// RANKING de 15 municípios, com uma ou duas séries por linha e, opcionalmente,
+// linhas de referência verticais.
+//
+// As referências são o que torna o número legível. "Caracaraí tem 47.380 km²"
+// não diz nada a quem não guarda áreas de cor; "Caracaraí passa da linha do
+// estado do Rio de Janeiro" diz. O mesmo vale para a dependência de
+// transferências: os 15 municípios de Roraima só ganham escala quando as quatro
+// cidades já publicadas no piloto aparecem como marcas na mesma régua.
+//
+// Duas séries são o teto aqui, e por decisão: com três, barras finas lado a
+// lado viram textura e o leitor deixa de comparar linha com linha.
+// ---------------------------------------------------------------------------
+function renderBarrasRanking(root, { data, labelKey, series, valueFormat, valueFormatFull, referencias, ariaLabel, notaKey }) {
+  const dupla = series.length > 1;
+  const rowH = dupla ? 40 : 30;
+  const refs = referencias || [];
+  // Duas alturas para os rótulos das referências. Com uma só, "Rio de Janeiro"
+  // (43.750 km²) e "Espírito Santo" (46.074 km²) caem a 4 px um do outro e os
+  // nomes se atropelam. A segunda fileira só é reservada quando alguma dupla de
+  // fato colide — senão sobraria um vão vazio no topo de todo gráfico.
+  const larguraRot = (s) => s.length * 5.6 + 10;
+  const W = 760;
+  const Mleft = 158, Mright = 78;
+  const innerW = W - Mleft - Mright;
+  const todos = data.flatMap(d => series.map(s => d[s.chave])).filter(v => v != null)
+    .concat(refs.map(r => r.valor));
+  const maxV = niceMax(Math.max(...todos) * 1.04);
+  const x = (v) => (innerW * v) / maxV;
+
+  // distribui as referências em uma ou duas fileiras, conforme colidam
+  const refsOrd = refs.slice().sort((a, b) => a.valor - b.valor);
+  let fimDaFileira = [-Infinity, -Infinity];
+  refsOrd.forEach(r => {
+    const meia = larguraRot(r.rotulo) / 2;
+    const esq = x(r.valor) - meia;
+    r.fileira = esq >= fimDaFileira[0] ? 0 : (esq >= fimDaFileira[1] ? 1 : 0);
+    fimDaFileira[r.fileira] = x(r.valor) + meia;
+  });
+  const fileiras = refsOrd.some(r => r.fileira === 1) ? 2 : 1;
+  const M = { top: refs.length ? 14 + fileiras * 13 : 8, right: Mright, bottom: 10, left: Mleft };
+  const H = M.top + M.bottom + data.length * rowH;
+
+  if (dupla) legend(root, series.map(s => ({ label: s.rotulo, color: s.cor })));
+
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap";
+  root.appendChild(wrap);
+  const svg = el("svg", { class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": ariaLabel || "" }, wrap);
+  const tip = makeTooltip(wrap);
+
+  // referências primeiro, para ficarem atrás das barras
+  refsOrd.forEach(r => {
+    const px = M.left + x(r.valor);
+    const topo = 4 + r.fileira * 13;
+    el("line", {
+      x1: px, x2: px, y1: topo + 8, y2: H - M.bottom, stroke: "var(--v-text-secondary)",
+      "stroke-width": 1, "stroke-dasharray": "4 3", opacity: .55,
+    }, svg);
+    const t = el("text", {
+      x: px, y: topo + 5, "text-anchor": "middle", class: "viz-ref-label",
+    }, svg);
+    t.textContent = r.rotulo;
+  });
+
+  data.forEach((d, i) => {
+    const y0 = M.top + i * rowH;
+    const rotulo = el("text", { x: M.left - 10, y: y0 + rowH / 2 + 4, "text-anchor": "end", class: "viz-axis-text" }, svg);
+    rotulo.textContent = d[labelKey];
+
+    const barH = dupla ? 12 : 17;
+    const vao = dupla ? 3 : 0;
+    const alturaTotal = series.length * barH + (series.length - 1) * vao;
+    series.forEach((s, k) => {
+      const v = d[s.chave];
+      if (v == null) return;
+      const by = y0 + (rowH - alturaTotal) / 2 + k * (barH + vao);
+      const w = Math.max(2, x(v));
+      const bar = el("rect", {
+        class: "viz-bar", x: M.left, y: by, width: w, height: barH, rx: 4, fill: s.cor,
+        tabindex: 0, role: "img",
+        "aria-label": `${d[labelKey]}, ${s.rotulo}: ${valueFormatFull(v)}`,
+      }, svg);
+      // Cada barra traz o próprio número no fim. Rotular só a primeira série
+      // deixava sem número exatamente a segunda metade da comparação — num
+      // gráfico cujo assunto É o contraste entre os dois valores.
+      const vl = el("text", {
+        x: M.left + w + 8, y: by + barH / 2 + 4, class: "viz-axis-text",
+      }, svg);
+      vl.textContent = valueFormat(v);
+      function onEnter() {
+        const r = svg.getBoundingClientRect(), sc = r.width / W;
+        showTooltip(tip, wrap, (M.left + w) * sc, by * sc, String(d[labelKey]),
+          series.filter(ss => d[ss.chave] != null)
+            .map(ss => ({ label: ss.rotulo, value: valueFormatFull(d[ss.chave]), color: ss.cor, dot: true })),
+          notaKey ? d[notaKey] : null);
+      }
+      bar.addEventListener("pointerenter", onEnter);
+      bar.addEventListener("focus", onEnter);
+      bar.addEventListener("pointerleave", () => hideTooltip(tip));
+      bar.addEventListener("blur", () => hideTooltip(tip));
+    });
+  });
+}
+
+// ---------------------------------------------------------------------------
+// MAPA DE UM ESTADO INTEIRO, por município — o recorte fechado.
+//
+// Por que não dá para reusar renderChoroplethMap. Aquele desenha os setores
+// censitários de UMA cidade: os campos que ele lê (setor, situacao, domicilios),
+// o texto da legenda e o contorno único são de lá. Aqui a unidade é o município
+// e há 15 deles, o que muda três coisas de fundo:
+//
+//   1) CABE RÓTULO. 400 setores não cabem; 15 municípios cabem, e um mapa que
+//      diz o nome de cada área no próprio desenho não obriga o leitor a passar
+//      o mouse em tudo para saber o que está vendo. O ponto do rótulo vem do
+//      arquivo de malha, já calculado como o ponto interno mais distante da
+//      borda — centroide cairia fora em município côncavo.
+//   2) O MESMO MAPA SERVE A VÁRIOS INDICADORES. A geometria é cara de carregar
+//      e idêntica; trocar só o valor que pinta custa nada e deixa comparar
+//      população, dependência de transferências e composição do PIB no mesmo
+//      território, sem rolar a página.
+//   3) A COR AQUI NÃO É CATEGÓRICA. É rampa sequencial de um matiz só, porque
+//      representa grandeza, não identidade. É por isso que 15 áreas não esbarram
+//      no teto de 4 cores do comparador: lá a cor diz QUEM, aqui diz QUANTO.
+// ---------------------------------------------------------------------------
+function renderMapaEstado(root, { municipios, contorno, indicadores, indicadorInicial }) {
+  const W = 720, H = 620, M = 16, LEG = 40;
+  const todos = contorno && contorno.length ? contorno : municipios.flatMap(m => m.aneis);
+  const pts = todos.flat();
+  const lats = pts.map(p => p[1]), lons = pts.map(p => p[0]);
+  const latMin = Math.min(...lats), latMax = Math.max(...lats);
+  const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
+  const cosLat = Math.cos(((latMin + latMax) / 2) * Math.PI / 180);
+  const spanX = (lonMax - lonMin) * cosLat, spanY = latMax - latMin;
+  const scale = Math.min((W - 2 * M) / spanX, (H - 2 * M - LEG) / spanY);
+  const offX = M + ((W - 2 * M) - spanX * scale) / 2;
+  const offY = M + ((H - 2 * M - LEG) - spanY * scale) / 2;
+  const px = (lon) => offX + (lon - lonMin) * cosLat * scale;
+  const py = (lat) => offY + (latMax - lat) * scale;
+  const ringD = (r) => "M" + r.map(([lo, la]) => `${px(lo).toFixed(1)},${py(la).toFixed(1)}`).join("L") + "Z";
+
+  // --- trocador de indicador -------------------------------------------------
+  const barra = document.createElement("div");
+  barra.className = "viz-mapa-controles";
+  const rot = document.createElement("label");
+  rot.className = "viz-mapa-rotulo";
+  rot.textContent = "Pintar o mapa por";
+  const sel = document.createElement("select");
+  sel.className = "viz-mapa-select";
+  indicadores.forEach(ind => {
+    const o = document.createElement("option");
+    o.value = ind.chave; o.textContent = ind.titulo;
+    sel.appendChild(o);
+  });
+  sel.value = indicadorInicial || indicadores[0].chave;
+  const id = "mapa-ind-" + Math.random().toString(36).slice(2, 8);
+  sel.id = id; rot.htmlFor = id;
+  barra.appendChild(rot); barra.appendChild(sel);
+  root.appendChild(barra);
+
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap viz-map-wrap";
+  root.appendChild(wrap);
+  const svg = el("svg", { class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img" }, wrap);
+  const ramp = readSeqRamp(root);
+  const tip = makeTooltip(wrap);
+
+  const gArea = el("g", {}, svg);
+  const gLinha = el("g", { "pointer-events": "none" }, svg);
+  const gRot = el("g", { "pointer-events": "none" }, svg);
+  const gLeg = el("g", { "pointer-events": "none" }, svg);
+
+  const caminhos = municipios.map(m => {
+    const d = m.aneis.map(ringD).join(" ");
+    const path = el("path", {
+      d, stroke: "var(--v-surface)", "stroke-width": 0.8, "fill-rule": "evenodd",
+      tabindex: 0, role: "img", class: "viz-map-mun",
+    }, gArea);
+    return { m, path };
+  });
+
+  // contorno do estado por cima, sem preenchimento
+  (contorno || []).forEach(r => el("path", {
+    d: ringD(r), fill: "none", stroke: "var(--v-text-primary)",
+    "stroke-width": 1.6, "stroke-linejoin": "round",
+  }, gLinha));
+
+  // rótulos: nome do município no ponto interno mais folgado.
+  //
+  // O que cabe é decidido pelo TAMANHO EM PIXELS do polígono depois de
+  // projetado, não pela área em km². Um município grande e estreito (Normandia)
+  // tem km² de sobra e largura de nada; um pequeno e redondo comporta o nome.
+  // Onde não cabem as duas linhas, fica só o nome; onde não cabe nem o nome, o
+  // balão e a tabela continuam respondendo.
+  const rotulos = municipios.map(m => {
+    const [lo, la] = m.rotulo;
+    const x = px(lo), y = py(la);
+    const xs = m.aneis.flat().map(p => px(p[0]));
+    const ys = m.aneis.flat().map(p => py(p[1]));
+    const cx0 = Math.min(...xs), cx1 = Math.max(...xs);
+    const cy0 = Math.min(...ys), cy1 = Math.max(...ys);
+    const larg = cx1 - cx0, alt = cy1 - cy0;
+    const precisa = m.nome.length * 5.9;      // largura do nome a 11,5px
+    // data-mun amarra as duas linhas ao mesmo município: o nome e o valor são
+    // vizinhos por construção, e sem essa marca qualquer verificação de
+    // sobreposição acusaria os dois como colisão.
+    const t = el("text", { x, y, "text-anchor": "middle", class: "viz-map-mun-label",
+      "data-mun": m.ibge, "stroke-width": 2.6, "paint-order": "stroke" }, gRot);
+    t.textContent = m.nome;
+    const v = el("text", { x, y: y + 11, "text-anchor": "middle", class: "viz-map-mun-valor",
+      "data-mun": m.ibge, "stroke-width": 2.6, "paint-order": "stroke" }, gRot);
+    return { m, t, v, x, y, caixaMun: { x0: cx0, x1: cx1, y0: cy0, y1: cy1 },
+             cabeNome: larg >= precisa * 0.62 && alt >= 16,
+             cabeValor: larg >= precisa * 0.72 && alt >= 30 };
+  });
+
+  const gradId = "mapaestado-" + Math.random().toString(36).slice(2, 8);
+  const grad = el("linearGradient", { id: gradId, x1: "0", x2: "1", y1: "0", y2: "0" }, el("defs", {}, svg));
+  for (let i = 0; i <= 10; i++) el("stop", { offset: `${i * 10}%`, "stop-color": seqColor(i / 10, ramp) }, grad);
+
+  function pintar(chave) {
+    const ind = indicadores.find(i => i.chave === chave) || indicadores[0];
+    const vals = municipios.map(m => m.valores[ind.chave]).filter(v => v != null);
+    const vMin = Math.min(...vals), vMax = Math.max(...vals);
+    const ord = vals.slice().sort((a, b) => a - b);
+    const mediana = ord[Math.floor((ord.length - 1) / 2)];
+
+    // ESCALA ADAPTATIVA — e aqui ela não é refinamento, é a diferença entre um
+    // mapa e uma mancha. Boa Vista tem 413 mil habitantes contra 33 mil do
+    // segundo colocado: numa rampa linear os outros catorze municípios recebem
+    // o mesmo azul claro e o mapa conta um fato só. Quando a mediana não alcança
+    // 30% da rampa linear, a cor passa a seguir a POSIÇÃO do município na
+    // distribuição. A legenda diz qual das duas está no ar — sem isso o leitor
+    // compararia magnitudes que a cor deixou de representar.
+    //
+    // Não vale para todo indicador: a dependência de transferências vai de 76%
+    // a 96% e é bem distribuída, então continua linear, que é mais informativo.
+    const tMedLinear = vMax > vMin ? (mediana - vMin) / (vMax - vMin) : 0.5;
+    const porPosicao = tMedLinear < 0.30;
+    const posto = new Map();
+    ord.forEach((v, i) => { if (!posto.has(v)) posto.set(v, i); });
+    const nm1 = Math.max(1, ord.length - 1);
+    const t = (v) => {
+      if (v == null) return null;
+      if (porPosicao) return posto.get(v) / nm1;
+      return vMax > vMin ? (v - vMin) / (vMax - vMin) : 0.5;
+    };
+    // Texto claro sobre o fim escuro da rampa, escuro sobre o começo claro.
+    const tinta = (tv) => (tv == null ? "var(--v-text-primary)"
+      : tv > 0.55 ? "var(--v-surface)" : "var(--v-text-primary)");
+
+    svg.setAttribute("aria-label", `Mapa de Roraima por município: ${ind.titulo}`);
+    caminhos.forEach(({ m, path }) => {
+      const v = m.valores[ind.chave];
+      const tv = t(v);
+      path.setAttribute("fill", v == null ? "var(--v-neutral)" : seqColor(tv, ramp));
+      path.setAttribute("aria-label",
+        `${m.nome}: ${v == null ? "sem dado" : ind.formatoLongo(v)}. ` +
+        `${fmtInt.format(m.populacao)} habitantes em ${fmtInt.format(Math.round(m.area_km2))} km².`);
+      path.onpointerenter = path.onpointermove = (ev) => {
+        const r = svg.getBoundingClientRect(), s = r.width / W;
+        const ax = ev && ev.clientX != null ? ev.clientX - r.left : px(m.rotulo[0]) * s;
+        const ay = ev && ev.clientY != null ? ev.clientY - r.top : py(m.rotulo[1]) * s;
+        showTooltip(tip, wrap, ax, ay, m.nome, [
+          { label: ind.titulo, value: v == null ? "sem dado" : ind.formatoLongo(v),
+            color: v == null ? "var(--v-neutral)" : seqColor(tv, ramp), dot: true },
+          { label: "População (Censo 2022)", value: fmtInt.format(m.populacao) + " hab.", color: "transparent" },
+          { label: "Área", value: fmtInt.format(Math.round(m.area_km2)) + " km²", color: "transparent" },
+          { label: "Fatia do estado", value: m.pct_populacao.toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + "% da população · " +
+              m.pct_area.toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + "% da área", color: "transparent" },
+        ], ind.nota);
+      };
+      path.onfocus = () => path.onpointerenter(null);
+      path.onpointerleave = path.onblur = () => hideTooltip(tip);
+    });
+
+    rotulos.forEach(({ m, t: tEl, v: vEl, cabeNome, cabeValor }) => {
+      const val = m.valores[ind.chave];
+      const tv = t(val);
+      const cor = tinta(tv);
+      // O HALO É A COR DO PRÓPRIO POLÍGONO, não a da superfície. Com halo fixo
+      // branco, o rótulo de Boa Vista — texto branco sobre o azul mais escuro —
+      // ficava branco por cima de branco e o nome sumia num borrão. Usando o
+      // preenchimento da área, o halo separa a letra do desenho nos dois casos.
+      const halo = val == null ? "var(--v-neutral)" : seqColor(tv, ramp);
+      tEl.setAttribute("fill", cor); tEl.setAttribute("stroke", halo);
+      vEl.setAttribute("fill", cor); vEl.setAttribute("stroke", halo);
+      vEl.textContent = val == null ? "sem dado" : ind.formato(val);
+      tEl.style.display = cabeNome ? "" : "none";
+      vEl.style.display = cabeNome && cabeValor ? "" : "none";
+      // Nome sem valor embaixo fica centrado verticalmente no lugar dos dois.
+      tEl.setAttribute("dy", cabeValor ? "0" : "5");
+    });
+
+    // COLISÃO. Caber dentro do próprio polígono não garante não esbarrar no
+    // vizinho: "Boa Vista / 413.486" cabia em Boa Vista e ainda assim passava
+    // por cima de "Bonfim". A prioridade é o VALOR do indicador em cartaz —
+    // quem está no topo do que o mapa está mostrando é quem mais precisa ser
+    // nomeado, e isso muda junto com o seletor. Primeiro se tenta soltar a
+    // linha do número; só se ainda colidir o rótulo inteiro sai.
+    const ordemPrioridade = rotulos
+      .filter(r => r.t.style.display !== "none")
+      .sort((a, b) => (t(b.m.valores[ind.chave]) ?? -1) - (t(a.m.valores[ind.chave]) ?? -1));
+    const aceitos = [];
+    const bateEm = (bb) => aceitos.some(o =>
+      bb.x < o.x + o.width && o.x < bb.x + bb.width && bb.y < o.y + o.height && o.y < bb.y + bb.height);
+    const caixa = (r) => {
+      const b = r.t.getBBox();
+      if (r.v.style.display === "none") return b;
+      const c = r.v.getBBox();
+      return { x: Math.min(b.x, c.x), y: b.y,
+               width: Math.max(b.x + b.width, c.x + c.width) - Math.min(b.x, c.x),
+               height: c.y + c.height - b.y };
+    };
+    const mover = (r, dy) => {
+      r.t.setAttribute("y", r.y + dy);
+      r.v.setAttribute("y", r.y + dy + 11);
+    };
+    ordemPrioridade.forEach(r => {
+      mover(r, 0);
+      r.t.setAttribute("dy", r.v.style.display === "none" ? "5" : "0");
+      let bb = caixa(r);
+      // 1) largar a linha do número, que é o que engorda a caixa
+      if (bateEm(bb) && r.v.style.display !== "none") {
+        r.v.style.display = "none";
+        r.t.setAttribute("dy", "5");
+        bb = caixa(r);
+      }
+      // 2) deslizar na vertical, SEM sair da caixa do próprio município — um
+      // rótulo que escorrega para dentro do vizinho é pior que rótulo nenhum,
+      // porque atribui o nome errado à área errada.
+      if (bateEm(bb)) {
+        for (const dy of [14, -14, 26, -26, 38, -38]) {
+          mover(r, dy);
+          const alvo = caixa(r);
+          const dentroDoMun = alvo.y >= r.caixaMun.y0 && alvo.y + alvo.height <= r.caixaMun.y1;
+          if (dentroDoMun && !bateEm(alvo)) { bb = alvo; break; }
+          bb = null;
+        }
+        if (!bb) mover(r, 0);
+      }
+      if (!bb || bateEm(bb)) { r.t.style.display = "none"; r.v.style.display = "none"; return; }
+      aceitos.push(bb);
+    });
+
+    // legenda de gradiente
+    gLeg.textContent = "";
+    const LW = porPosicao ? 300 : 240, ly = H - 26;
+    el("rect", { x: M, y: ly, width: LW, height: 10, rx: 3, fill: `url(#${gradId})`,
+      stroke: "var(--v-grid)", "stroke-width": .5 }, gLeg);
+    const lo = el("text", { x: M, y: ly + 23, class: "viz-axis-text" }, gLeg);
+    lo.textContent = ind.formatoLongo(vMin);
+    const hi = el("text", { x: M + LW, y: ly + 23, "text-anchor": "end", class: "viz-axis-text" }, gLeg);
+    hi.textContent = ind.formatoLongo(vMax);
+    const cap = el("text", { x: M, y: ly - 6, class: "viz-axis-text" }, gLeg);
+    cap.textContent = ind.titulo + (ind.unidade ? ` (${ind.unidade})` : "");
+    if (porPosicao) {
+      // Na escala por posição o MEIO da barra é a mediana, por construção.
+      // Rotular só as pontas esconderia justamente o que mudou.
+      const mid = el("text", { x: M + LW / 2, y: ly + 23, "text-anchor": "middle", class: "viz-axis-text" }, gLeg);
+      mid.textContent = ind.formatoLongo(mediana);
+      const aviso = el("text", { x: M + LW + 12, y: ly + 9, class: "viz-axis-text" }, gLeg);
+      aviso.textContent = "cor = posição no ranking, não o valor";
+    }
+  }
+
+  sel.addEventListener("change", () => pintar(sel.value));
+  pintar(sel.value);
+  return { pintar, select: sel };
 }
 
 function showError(...roots) {

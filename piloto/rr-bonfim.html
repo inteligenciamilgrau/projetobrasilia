@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demografia e finanças públicas de Bonfim/RR: população 2000-2025, território, cor ou raça, e doze anos de orçamento municipal no SICONFI. Um dos 15 municípios de Roraima no Projeto Brasil iA.">
+  <meta name="theme-color" content="#07563c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="piloto.css">
+  <link rel="stylesheet" href="charts.css">
+  <title>Bonfim/RR — demografia e finanças — Projeto Brasil iA</title>
+</head>
+<body data-piloto="rr-municipio" data-municipio="rr-bonfim">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="../" aria-label="Página inicial do Projeto Brasil iA"><span class="brand-mark" aria-hidden="true">iA</span><span>Projeto Brasil iA</span></a>
+        <nav class="top-links" aria-label="Navegação principal">
+          <a class="top-link" href="../">Início</a>
+          <a class="top-link" href="../cidades-pequenas.html">Cidades pequenas</a>
+          <a class="top-link" href="./" aria-current="page">Piloto</a>
+          <a class="top-link" href="../municipios-100mil.html">Municípios +100 mil</a>
+          <a class="top-link" href="../inventario.html">Inventário</a>
+          <a class="top-link" href="../fontes.html">Fontes</a>
+          <a class="top-link" href="../relatorio_parcial.html">Relatório</a>
+          <a class="github-link" href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto no GitHub">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.19c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div><p class="eyebrow">Roraima · município 10º em população de 15</p><h1>Bonfim, dado a dado.</h1><p class="lede">Um dos 15 municípios de Roraima: 13.923 habitantes no Censo 2022, 8.080 km² de território, 43,3% da população indígena e 87,7% da receita vinda de transferência. Esta página traz as duas fases do modelo do piloto que puderam ser feitas para o estado inteiro — demografia e finanças públicas —, com a posição deste município em cada indicador dentro da fila completa dos quinze.</p></div>
+        <aside class="decision"><span>Duas fases, e o motivo</span><strong>Demografia e finanças públicas.</strong><p>São as fases que o IBGE e o SICONFI respondem por código de município, sem raspagem — e por isso puderam ser feitas para os quinze municípios de Roraima de uma vez. As outras nove do modelo exigem tratar cada prefeitura como um caso próprio; estão declaradas como não iniciadas no fim da página, não escondidas.</p></aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <p class="crumb"><a href="roraima.html">← Roraima inteira</a> · <a href="./">Todos os pilotos</a></p>
+    <div class="snapshot" id="snapshot-municipio"></div>
+    <div class="status-banner"><strong>Status desta aba:</strong> Fases 1 e 3 do modelo do piloto, publicadas em 05/08/2026. Os dados vêm da mesma coleta que produziu a <a href="roraima.html">página do estado</a> — nenhuma requisição a mais foi feita para esta página. Todos os números saem de <code>dados/rr-bonfim/</code>, no mesmo formato de qualquer outra cidade do piloto: por isso este município aparece no <a href="comparar.html">comparador</a> ao lado das cidades escolhidas a dedo.</div>
+
+    <section aria-labelledby="posicao-title">
+      <div class="section-head"><div><p class="kicker">Onde este município fica</p><h2 id="posicao-title">A posição entre os 15 municípios do estado.</h2></div><p>Isto é o que uma página de cidade avulsa não consegue dizer. Como o recorte de Roraima é fechado — os quinze municípios, sem nenhum de fora —, cada indicador tem um lugar exato numa fila completa, e não uma comparação com um punhado de vizinhos escolhidos.</p></div>
+      <div class="viz-root" id="posicao-estado">
+        <div class="viz-head"><div><h3>Posição em cada indicador</h3><p>1º é o maior valor. Passe o mouse para ver o valor e quem está em cada ponta.</p></div></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="plano-title">
+      <div class="section-head"><div><p class="kicker">Plano de análise</p><h2 id="plano-title">O mesmo roteiro das outras páginas do piloto.</h2></div><p>Cada fase abre no clique. Nenhum número está escrito nesta página: tudo é lido do arquivo de dados do município.</p></div>
+      <div class="roadmap">
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">1</div><div class="phase-text"><h3>Demografia e evolução populacional (2000–2025)</h3><p>Censos de 2000, 2010 e 2022 e as Estimativas anuais do IBGE, mais área, densidade, ritmo de crescimento e composição por cor ou raça.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-populacao">
+              <div class="viz-head"><div><h3>População residente, 2000–2025</h3><p>Censos com marcador maior; os demais anos são estimativa. Passe o mouse por um ano.</p></div></div>
+            </div>
+            <div class="viz-root" id="stats-demografia">
+              <div class="viz-head"><div><h3>Território e ritmo</h3><p>Área, densidade e crescimento entre os Censos de 2010 e 2022.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-raca">
+              <div class="viz-head"><div><h3>Cor ou raça, Censos 2010 e 2022</h3><p>Autodeclaração. Duas barras por categoria, porque o número de 2022 sozinho não mostra o movimento.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase done">
+          <summary class="phase-summary"><div class="phase-num">3</div><div class="phase-text"><h3>Finanças públicas (2014–2025)</h3><p>Doze anos de DCA no SICONFI: receita, despesa, saldo, de onde vem o dinheiro, para onde ele vai e quanto sobra para investir.</p></div><span class="phase-tag done">Concluída 05/08/2026</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <div class="viz-root" id="chart-financas">
+              <div class="viz-head"><div><h3>Receita, despesa e saldo</h3><p>Painel de cima: receita e despesa na mesma escala, com a faixa entre elas pintada — essa faixa <em>é</em> o saldo. Painel de baixo: o mesmo saldo ampliado, para os anos que somem na escala do orçamento.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-dependencia">
+              <div class="viz-head"><div><h3>De onde vem o dinheiro</h3><p>A fatia da receita que vem de transferência, ano a ano, e quanto o município arrecada por conta própria.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-funcoes">
+              <div class="viz-head"><div><h3>Para onde vai o dinheiro</h3><p>Despesa empenhada por função no último exercício declarado, e o que mudou em termos reais desde o começo da série.</p></div></div>
+            </div>
+            <div class="viz-root" id="chart-natureza">
+              <div class="viz-head"><div><h3>Folha, custeio e investimento</h3><p>A composição da despesa por natureza ao longo dos doze anos. Quanto vai para pessoal, quanto sobra para obra.</p></div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="phase">
+          <summary class="phase-summary"><div class="phase-num">2, 4–11</div><div class="phase-text"><h3>As outras nove fases do modelo</h3><p>Desenvolvimento humano, compras públicas, legislativo, saúde, educação, território intraurbano, economia, segurança e o IDU-Br do portal municipal.</p></div><span class="phase-tag">Não iniciadas</span><span class="phase-chevron" aria-hidden="true">▾</span></summary>
+          <div class="phase-body">
+            <p class="muted-note">Estão listadas em vez de omitidas porque a diferença entre "não tem" e "não fui buscar" importa. As Fases 1 e 3 puderam ser feitas para os quinze municípios porque IBGE e SICONFI respondem por código de município numa requisição. As demais dependem de fontes que <strong>não têm porta única</strong>: portal da prefeitura, sistema da câmara, catálogo de dados abertos, boletim de segurança estadual. Cada uma exige tratar o município como caso individual — e quinze casos individuais são um lote próprio de trabalho, não um efeito colateral deste.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <section aria-labelledby="vizinhos-title">
+      <div class="section-head"><div><p class="kicker">Os outros catorze</p><h2 id="vizinhos-title">Todo o estado, município a município.</h2></div><p>A lista abaixo é lida de <code>dados/roraima/municipios/_indice.json</code> — não está escrita em nenhum HTML, então acrescentar um município ao arquivo o faz aparecer nas quinze páginas de uma vez.</p></div>
+      <div class="pilot-grid" id="vizinhos"></div>
+    </section>
+
+    <section aria-labelledby="dados-title">
+      <div class="section-head"><div><p class="kicker">Dados</p><h2 id="dados-title">De onde vem cada número desta página.</h2></div><p>A pasta <code>dados/rr-bonfim/</code> tem os <strong>mesmos quatro arquivos, com os mesmos nomes</strong>, de qualquer cidade do piloto — é o que permite comparar este município com Florianópolis ou Itajubá sem nenhum caso especial. O quinto arquivo é o que só existe por ter vindo de um recorte fechado.</p></div>
+      <div class="dataset-grid">
+        <article class="dataset"><h3>populacao_2000_2025.json</h3><p>População residente ano a ano, com a origem de cada ponto marcada — Censo (contagem) ou Estimativa.</p><p class="meta">Coletado 05/08/2026 · IBGE</p></article>
+        <article class="dataset"><h3>siconfi_receita_despesa_2014_2025.json</h3><p>Receita realizada, despesa empenhada e saldo de cada exercício declarado.</p><p class="meta">Coletado 05/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>despesa_funcao_natureza_2014_2025.json</h3><p>Despesa por função e por natureza, corrigida pelo IPCA, e a comparação com o PIB do município.</p><p class="meta">Coletado 05/08/2026 · SICONFI + IPCA/IBGE</p></article>
+        <article class="dataset"><h3>receita_origem_2014_2025.json</h3><p>Receita bruta por origem, arrecadação própria, transferências, FPM e a dependência ano a ano.</p><p class="meta">Coletado 05/08/2026 · SICONFI</p></article>
+        <article class="dataset"><h3>roraima_contexto.json</h3><p><strong>O arquivo que uma cidade avulsa não tem.</strong> Perfil, PIB, os extremos do estado e a posição deste município na fila completa dos 15 em treze indicadores — só calculável porque Roraima foi coletada inteira.</p><p class="meta">Coletado 05/08/2026 · IBGE + SICONFI</p></article>
+        <article class="dataset"><h3>Fontes primárias</h3><p>IBGE: tabelas SIDRA 202, 1378, 4709, 4714, 6579, 9605 e 5938, pelo código 1400159. SICONFI: Anexos I-C, I-D e I-E do DCA, por <code>id_ente=1400159</code>.</p><p class="meta">APIs públicas, sem raspagem</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><strong>Projeto Brasil iA</strong><p>Bonfim/RR — Fases 1 e 3 do modelo do piloto, a partir de fontes públicas verificáveis.</p></div><div class="footer-links"><a href="roraima.html">Roraima inteira</a><a href="./">Todos os pilotos</a><a href="comparar.html">Comparador</a><a href="https://github.com/inteligenciamilgrau/projetobrasilia" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+  <script src="charts.js" defer></script>
+  <script src="rr-municipio.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{
+ "municipio": "São João da Baliza/RR",
+ "ibge_codigo": "1400506",
+ "entidade": "Prefeitura Municipal de São João da Baliza",
+ "coletado_em": "2026-08-05",
+ "titulo": "Receita realizada, despesa empenhada e saldo, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais). Mesma coleta que produziu a página do estado de Roraima. Anexos I-C e I-E.",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-C&id_ente=1400506",
+ "colunas_usadas": {
+  "receita_liquida": "I-C, coluna \"Receitas Brutas Realizadas\" (correntes + capital) menos \"Deduções - FUNDEB\" e \"Outras Deduções da Receita\"",
+  "despesa_empenhada": "I-E, conta \"Despesas Exceto Intraorçamentárias\", coluna \"Despesas Empenhadas\"",
+  "natureza": "I-D, coluna \"Despesas Empenhadas\" — base \"Total Geral da Despesa\", que INCLUI as intraorçamentárias; por isso os percentuais de pessoal e investimento usam esse total, e não o do I-E"
+ },
+ "recorte": "Este município não foi escolhido a dedo: entrou porque o projeto coletou Roraima inteira, os 15 municípios, sem nenhum de fora. Ver piloto/roraima.html.",
+ "observacao": "Valores em reais correntes de cada ano (não deflacionados). Despesa empenhada ≠ despesa paga. Receita e despesa excluem as operações intraorçamentárias dos dois lados, para que o saldo compare grandezas equivalentes.",
+ "valores_nao_deflacionados": true,
+ "anos_nao_declarados": [],
+ "serie": [
+  {
+   "ano": 2014,
+   "receita_realizada": 12851433.1,
+   "despesa_empenhada": 16964279.81,
+   "saldo": -4112846.71
+  },
+  {
+   "ano": 2015,
+   "receita_realizada": 17297017.71,
+   "despesa_empenhada": 20763959.65,
+   "saldo": -3466941.94
+  },
+  {
+   "ano": 2016,
+   "receita_realizada": 16391154.05,
+   "despesa_empenhada": 15135612.96,
+   "saldo": 1255541.09
+  },
+  {
+   "ano": 2017,
+   "receita_realizada": 17550818.5,
+   "despesa_empenhada": 19679954.43,
+   "saldo": -2129135.93
+  },
+  {
+   "ano": 2018,
+   "receita_realizada": 18771806.07,
+   "despesa_empenhada": 24698589.92,
+   "saldo": -5926783.85
+  },
+  {
+   "ano": 2019,
+   "receita_realizada": 28532671.55,
+   "despesa_empenhada": 56756216.4,
+   "saldo": -28223544.85
+  },
+  {
+   "ano": 2020,
+   "receita_realizada": 54943940.86,
+   "despesa_empenhada": 36364606.27,
+   "saldo": 18579334.59
+  },
+  {
+   "ano": 2021,
+   "receita_realizada": 38786545.68,
+   "despesa_empenhada": 28585795.14,
+   "saldo": 10200750.54
+  },
+  {
+   "ano": 2022,
+   "receita_realizada": 50587605.46,
+   "despesa_empenhada": 61587920.44,
+   "saldo": -11000314.98
+  },
+  {
+   "ano": 2023,
+   "receita_realizada": 70988313.89,
+   "despesa_empenhada": 67377771.74,
+   "saldo": 3610542.15
+  },
+  {
+   "ano": 2024,
+   "receita_realizada": 86185523.86,
+   "despesa_empenhada": 86483853.8,
+   "saldo": -298329.94
+  },
+  {
+   "ano": 2025,
+   "receita_realizada": 109637490.9,
+   "despesa_empenhada": 94549874.27,
+   "saldo": 15087616.63
+  }
+ ]
+}

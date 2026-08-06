@@ -10,6 +10,9 @@
 .stat:last-child{border:0}
 .stat strong{display:block;color:var(--green);font-size:1.55rem;line-height:1}
 .stat span{display:block;margin-top:.35rem;color:var(--muted);font-size:.7rem}
+/* Terceira linha do cartão: onde o município fica na fila do estado. Só as
+   páginas municipais de Roraima usam — nas cidades avulsas não há fila. */
+.stat small{display:block;margin-top:.3rem;color:var(--muted);font-size:.63rem;opacity:.85;line-height:1.35}
 
 .rule{display:grid;grid-template-columns:auto 1fr;gap:.7rem;margin-bottom:1rem;padding:1rem 1.1rem;border:1px solid #dbc878;border-radius:12px;background:var(--yellow-soft);font-size:.86rem}
 .rule strong{display:block}

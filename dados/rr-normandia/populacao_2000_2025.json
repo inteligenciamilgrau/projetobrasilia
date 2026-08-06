@@ -1,0 +1,134 @@
+{
+ "municipio": "Normandia/RR",
+ "ibge_codigo": "1400407",
+ "entidade": "Prefeitura Municipal de Normandia",
+ "coletado_em": "2026-08-05",
+ "titulo": "População residente de Normandia/RR, 2000–2025",
+ "fonte": "IBGE — Censos Demográficos (2000, 2010, 2022) e Estimativas de População (2001-2025, tabela SIDRA 6579)",
+ "observacao": "Série composta: anos de Censo (2000, 2010, 2022) usam a contagem oficial (variável 93); os demais usam a Estimativa anual do IBGE (variável 9324). As estimativas dos anos entre Censos NÃO foram revistas depois do Censo 2022 — a diferença entre a estimativa de 2021 e o Censo de 2022 é o erro acumulado, não uma variação real de um ano.",
+ "recorte": "Este município não foi escolhido a dedo: entrou porque o projeto coletou Roraima inteira, os 15 municípios, sem nenhum de fora. Ver piloto/roraima.html.",
+ "url_censo": "https://servicodados.ibge.gov.br/api/v3/agregados/{tabela}/periodos/{ano}/variaveis/93?localidades=N6[1400407] — tabelas 202 (2000), 1378 (2010), 4709 (2022)",
+ "url_estimativas": "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2001-2025/variaveis/9324?localidades=N6[1400407]",
+ "serie": [
+  {
+   "ano": 2000,
+   "populacao": 6138,
+   "fonte": "censo"
+  },
+  {
+   "ano": 2001,
+   "populacao": 5929,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2002,
+   "populacao": 5868,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2003,
+   "populacao": 5743,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2004,
+   "populacao": 5448,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2005,
+   "populacao": 5335,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2006,
+   "populacao": 5191,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2008,
+   "populacao": 7403,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2009,
+   "populacao": 7527,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2010,
+   "populacao": 8940,
+   "fonte": "censo"
+  },
+  {
+   "ano": 2011,
+   "populacao": 9156,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2012,
+   "populacao": 9364,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2013,
+   "populacao": 9754,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2014,
+   "populacao": 9953,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2015,
+   "populacao": 10148,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2016,
+   "populacao": 10339,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2017,
+   "populacao": 10527,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2018,
+   "populacao": 11045,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2019,
+   "populacao": 11290,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2020,
+   "populacao": 11532,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2021,
+   "populacao": 11772,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2022,
+   "populacao": 13986,
+   "fonte": "censo"
+  },
+  {
+   "ano": 2024,
+   "populacao": 15744,
+   "fonte": "estimativa"
+  },
+  {
+   "ano": 2025,
+   "populacao": 16323,
+   "fonte": "estimativa"
+  }
+ ]
+}

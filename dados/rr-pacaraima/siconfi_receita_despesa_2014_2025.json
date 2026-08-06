@@ -1,0 +1,92 @@
+{
+ "municipio": "Pacaraima/RR",
+ "ibge_codigo": "1400456",
+ "entidade": "Prefeitura Municipal de Pacaraima",
+ "coletado_em": "2026-08-05",
+ "titulo": "Receita realizada, despesa empenhada e saldo, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais). Mesma coleta que produziu a página do estado de Roraima. Anexos I-C e I-E.",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-C&id_ente=1400456",
+ "colunas_usadas": {
+  "receita_liquida": "I-C, coluna \"Receitas Brutas Realizadas\" (correntes + capital) menos \"Deduções - FUNDEB\" e \"Outras Deduções da Receita\"",
+  "despesa_empenhada": "I-E, conta \"Despesas Exceto Intraorçamentárias\", coluna \"Despesas Empenhadas\"",
+  "natureza": "I-D, coluna \"Despesas Empenhadas\" — base \"Total Geral da Despesa\", que INCLUI as intraorçamentárias; por isso os percentuais de pessoal e investimento usam esse total, e não o do I-E"
+ },
+ "recorte": "Este município não foi escolhido a dedo: entrou porque o projeto coletou Roraima inteira, os 15 municípios, sem nenhum de fora. Ver piloto/roraima.html.",
+ "observacao": "Valores em reais correntes de cada ano (não deflacionados). Despesa empenhada ≠ despesa paga. Receita e despesa excluem as operações intraorçamentárias dos dois lados, para que o saldo compare grandezas equivalentes.",
+ "valores_nao_deflacionados": true,
+ "anos_nao_declarados": [],
+ "serie": [
+  {
+   "ano": 2014,
+   "receita_realizada": 21518137.0,
+   "despesa_empenhada": 21937325.39,
+   "saldo": -419188.39
+  },
+  {
+   "ano": 2015,
+   "receita_realizada": 20164067.68,
+   "despesa_empenhada": 21626375.33,
+   "saldo": -1462307.65
+  },
+  {
+   "ano": 2016,
+   "receita_realizada": 17713364.4,
+   "despesa_empenhada": 21783272.69,
+   "saldo": -4069908.29
+  },
+  {
+   "ano": 2017,
+   "receita_realizada": 23374463.06,
+   "despesa_empenhada": 21902955.2,
+   "saldo": 1471507.86
+  },
+  {
+   "ano": 2018,
+   "receita_realizada": 14268054.73,
+   "despesa_empenhada": 27421137.83,
+   "saldo": -13153083.1
+  },
+  {
+   "ano": 2019,
+   "receita_realizada": 17090574.62,
+   "despesa_empenhada": 34821596.28,
+   "saldo": -17731021.66
+  },
+  {
+   "ano": 2020,
+   "receita_realizada": 54728883.77,
+   "despesa_empenhada": 50681824.36,
+   "saldo": 4047059.41
+  },
+  {
+   "ano": 2021,
+   "receita_realizada": 71902384.5,
+   "despesa_empenhada": 68076368.44,
+   "saldo": 3826016.06
+  },
+  {
+   "ano": 2022,
+   "receita_realizada": 102344825.73,
+   "despesa_empenhada": 99188056.39,
+   "saldo": 3156769.34
+  },
+  {
+   "ano": 2023,
+   "receita_realizada": 93985773.35,
+   "despesa_empenhada": 94740911.26,
+   "saldo": -755137.91
+  },
+  {
+   "ano": 2024,
+   "receita_realizada": 114096270.2,
+   "despesa_empenhada": 124968382.38,
+   "saldo": -10872112.18
+  },
+  {
+   "ano": 2025,
+   "receita_realizada": 176365114.96,
+   "despesa_empenhada": 151057960.89,
+   "saldo": 25307154.07
+  }
+ ]
+}

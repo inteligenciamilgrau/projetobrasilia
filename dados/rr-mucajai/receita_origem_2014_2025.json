@@ -1,0 +1,247 @@
+{
+ "municipio": "Mucajaí/RR",
+ "ibge_codigo": "1400308",
+ "entidade": "Prefeitura Municipal de Mucajaí",
+ "coletado_em": "2026-08-05",
+ "titulo": "Receita bruta por origem, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais). Mesma coleta que produziu a página do estado de Roraima. Anexo I-C.",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-C&id_ente=1400308",
+ "base_deflator": 2025,
+ "recorte": "Este município não foi escolhido a dedo: entrou porque o projeto coletou Roraima inteira, os 15 municípios, sem nenhum de fora. Ver piloto/roraima.html.",
+ "observacao": "Dependência de transferências = (transferências correntes + transferências de capital) / receita bruta. As origens são as de 2º nível do plano de contas, somadas sempre na conta mais rasa de cada ramo para não contar pai e filho.",
+ "serie": [
+  {
+   "ano": 2014,
+   "receita_bruta": 17868593.12,
+   "receita_liquida": 17868593.12,
+   "arrecadacao_propria": 1370498.0,
+   "transferencias": 16498095.12,
+   "dependencia_transferencias_pct": 92.3,
+   "origens": {
+    "Impostos e taxas próprios": 1154767.27,
+    "Receita patrimonial": 212862.33,
+    "Transferências correntes": 16188999.07,
+    "Outras receitas correntes": 2868.4,
+    "Transferências de capital": 309096.05
+   },
+   "fpm": 3017946.83,
+   "fpm_per_capita": 187.02,
+   "ipca_fator_para_2025": 1.8468,
+   "populacao": 16137
+  },
+  {
+   "ano": 2015,
+   "receita_bruta": 29696086.47,
+   "receita_liquida": 29696086.47,
+   "arrecadacao_propria": 1828989.51,
+   "transferencias": 27867096.96,
+   "dependencia_transferencias_pct": 93.8,
+   "origens": {
+    "Impostos e taxas próprios": 1317930.77,
+    "Receita patrimonial": 438632.59,
+    "Receita de serviços": 15620.0,
+    "Transferências correntes": 27867096.96,
+    "Outras receitas correntes": 56806.15
+   },
+   "fpm": 5348787.96,
+   "fpm_per_capita": 326.54,
+   "ipca_fator_para_2025": 1.6939,
+   "populacao": 16380
+  },
+  {
+   "ano": 2016,
+   "receita_bruta": 35231404.89,
+   "receita_liquida": 35231404.89,
+   "arrecadacao_propria": 2206411.81,
+   "transferencias": 33024993.08,
+   "dependencia_transferencias_pct": 93.7,
+   "origens": {
+    "Impostos e taxas próprios": 1483373.4,
+    "Contribuições (RPPS e COSIP)": 108540.88,
+    "Receita patrimonial": 454829.94,
+    "Transferências correntes": 28530602.99,
+    "Outras receitas correntes": 159667.59,
+    "Transferências de capital": 4494390.09
+   },
+   "fpm": 6248313.22,
+   "fpm_per_capita": 376.0,
+   "ipca_fator_para_2025": 1.5577,
+   "populacao": 16618
+  },
+  {
+   "ano": 2017,
+   "receita_bruta": 34683583.53,
+   "receita_liquida": 32975252.33,
+   "arrecadacao_propria": 3952080.18,
+   "transferencias": 30731503.35,
+   "dependencia_transferencias_pct": 88.6,
+   "origens": {
+    "Impostos e taxas próprios": 1979396.58,
+    "Receita patrimonial": 1055814.35,
+    "Transferências correntes": 27407991.49,
+    "Outras receitas correntes": 916869.25,
+    "Transferências de capital": 3323511.86
+   },
+   "fpm": 5645517.04,
+   "fpm_per_capita": 335.01,
+   "ipca_fator_para_2025": 1.5059,
+   "populacao": 16852
+  },
+  {
+   "ano": 2018,
+   "receita_bruta": 44104557.5,
+   "receita_liquida": 42168685.98,
+   "arrecadacao_propria": 2006762.03,
+   "transferencias": 42097795.47,
+   "dependencia_transferencias_pct": 95.4,
+   "origens": {
+    "Impostos e taxas próprios": 1599263.41,
+    "Receita patrimonial": 165236.36,
+    "Transferências correntes": 31506075.06,
+    "Outras receitas correntes": 242262.26,
+    "Transferências de capital": 10591720.41
+   },
+   "fpm": 6232232.56,
+   "fpm_per_capita": 355.56,
+   "ipca_fator_para_2025": 1.4526,
+   "populacao": 17528
+  },
+  {
+   "ano": 2019,
+   "receita_bruta": 51662925.27,
+   "receita_liquida": 38637322.41,
+   "arrecadacao_propria": 1576835.45,
+   "transferencias": 50086089.82,
+   "dependencia_transferencias_pct": 96.9,
+   "origens": {
+    "Impostos e taxas próprios": 1420250.12,
+    "Receita patrimonial": 114601.79,
+    "Transferências correntes": 38221101.33,
+    "Outras receitas correntes": 41983.54,
+    "Transferências de capital": 11864988.49
+   },
+   "fpm": 7637787.26,
+   "fpm_per_capita": 427.82,
+   "ipca_fator_para_2025": 1.4003,
+   "populacao": 17853
+  },
+  {
+   "ano": 2020,
+   "receita_bruta": 82300603.92,
+   "receita_liquida": 79360539.7,
+   "arrecadacao_propria": 2760630.19,
+   "transferencias": 79539973.73,
+   "dependencia_transferencias_pct": 96.6,
+   "origens": {
+    "Impostos e taxas próprios": 2681835.4,
+    "Receita patrimonial": 58151.16,
+    "Transferências correntes": 67071126.98,
+    "Outras receitas correntes": 20643.63,
+    "Transferências de capital": 12468846.75
+   },
+   "fpm": 7202827.22,
+   "fpm_per_capita": 396.37,
+   "ipca_fator_para_2025": 1.3568,
+   "populacao": 18172
+  },
+  {
+   "ano": 2021,
+   "receita_bruta": 69823685.53,
+   "receita_liquida": 65448302.8,
+   "arrecadacao_propria": 3183030.27,
+   "transferencias": 66640655.26,
+   "dependencia_transferencias_pct": 95.4,
+   "origens": {
+    "Impostos e taxas próprios": 2818850.2,
+    "Receita patrimonial": 344582.02,
+    "Transferências correntes": 55893798.2,
+    "Outras receitas correntes": 19598.05,
+    "Transferências de capital": 10746857.06
+   },
+   "fpm": 9363978.69,
+   "fpm_per_capita": 506.65,
+   "ipca_fator_para_2025": 1.2528,
+   "populacao": 18482
+  },
+  {
+   "ano": 2022,
+   "receita_bruta": 92708503.76,
+   "receita_liquida": 88354279.9,
+   "arrecadacao_propria": 7992793.76,
+   "transferencias": 84715710.0,
+   "dependencia_transferencias_pct": 91.4,
+   "origens": {
+    "Impostos e taxas próprios": 6092623.43,
+    "Contribuições (RPPS e COSIP)": 499767.07,
+    "Receita patrimonial": 1340152.74,
+    "Transferências correntes": 66104258.95,
+    "Outras receitas correntes": 60250.52,
+    "Transferências de capital": 18611451.05
+   },
+   "fpm": 11794216.84,
+   "fpm_per_capita": 651.79,
+   "ipca_fator_para_2025": 1.1464,
+   "populacao": 18095
+  },
+  {
+   "ano": 2023,
+   "receita_bruta": 126833752.73,
+   "receita_liquida": 122326827.02,
+   "arrecadacao_propria": 8340971.08,
+   "transferencias": 118492781.65,
+   "dependencia_transferencias_pct": 93.4,
+   "origens": {
+    "Impostos e taxas próprios": 6582079.11,
+    "Contribuições (RPPS e COSIP)": 409049.98,
+    "Receita patrimonial": 1318333.38,
+    "Transferências correntes": 80518131.61,
+    "Outras receitas correntes": 31508.61,
+    "Transferências de capital": 37974650.04
+   },
+   "fpm": 11804887.79,
+   "fpm_per_capita": null,
+   "ipca_fator_para_2025": 1.096,
+   "populacao": null
+  },
+  {
+   "ano": 2024,
+   "receita_bruta": 160545647.81,
+   "receita_liquida": 155528591.91,
+   "arrecadacao_propria": 11919324.55,
+   "transferencias": 148626323.26,
+   "dependencia_transferencias_pct": 92.6,
+   "origens": {
+    "Impostos e taxas próprios": 9961345.61,
+    "Contribuições (RPPS e COSIP)": 520880.03,
+    "Receita patrimonial": 1362953.08,
+    "Transferências correntes": 85063296.4,
+    "Outras receitas correntes": 74145.83,
+    "Transferências de capital": 63563026.86
+   },
+   "fpm": 13268582.2,
+   "fpm_per_capita": 676.31,
+   "ipca_fator_para_2025": 1.0502,
+   "populacao": 19619
+  },
+  {
+   "ano": 2025,
+   "receita_bruta": 167331531.07,
+   "receita_liquida": 161951021.74,
+   "arrecadacao_propria": 13849288.61,
+   "transferencias": 153482242.46,
+   "dependencia_transferencias_pct": 91.7,
+   "origens": {
+    "Impostos e taxas próprios": 9460966.43,
+    "Contribuições (RPPS e COSIP)": 729138.99,
+    "Receita patrimonial": 2835218.84,
+    "Transferências correntes": 96301856.98,
+    "Outras receitas correntes": 823964.35,
+    "Transferências de capital": 57180385.48
+   },
+   "fpm": 14740632.68,
+   "fpm_per_capita": 736.81,
+   "ipca_fator_para_2025": 1.0,
+   "populacao": 20006
+  }
+ ]
+}

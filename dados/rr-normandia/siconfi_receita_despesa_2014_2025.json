@@ -1,0 +1,88 @@
+{
+ "municipio": "Normandia/RR",
+ "ibge_codigo": "1400407",
+ "entidade": "Prefeitura Municipal de Normandia",
+ "coletado_em": "2026-08-05",
+ "titulo": "Receita realizada, despesa empenhada e saldo, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais). Mesma coleta que produziu a página do estado de Roraima. Anexos I-C e I-E.",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-C&id_ente=1400407",
+ "colunas_usadas": {
+  "receita_liquida": "I-C, coluna \"Receitas Brutas Realizadas\" (correntes + capital) menos \"Deduções - FUNDEB\" e \"Outras Deduções da Receita\"",
+  "despesa_empenhada": "I-E, conta \"Despesas Exceto Intraorçamentárias\", coluna \"Despesas Empenhadas\"",
+  "natureza": "I-D, coluna \"Despesas Empenhadas\" — base \"Total Geral da Despesa\", que INCLUI as intraorçamentárias; por isso os percentuais de pessoal e investimento usam esse total, e não o do I-E"
+ },
+ "recorte": "Este município não foi escolhido a dedo: entrou porque o projeto coletou Roraima inteira, os 15 municípios, sem nenhum de fora. Ver piloto/roraima.html.",
+ "observacao": "Valores em reais correntes de cada ano (não deflacionados). Despesa empenhada ≠ despesa paga. Receita e despesa excluem as operações intraorçamentárias dos dois lados, para que o saldo compare grandezas equivalentes.",
+ "valores_nao_deflacionados": true,
+ "anos_nao_declarados": [
+  "Normandia 2014"
+ ],
+ "serie": [
+  {
+   "ano": 2015,
+   "receita_realizada": 19283989.78,
+   "despesa_empenhada": 21137024.42,
+   "saldo": -1853034.64
+  },
+  {
+   "ano": 2016,
+   "receita_realizada": 25854197.86,
+   "despesa_empenhada": 21565730.64,
+   "saldo": 4288467.22
+  },
+  {
+   "ano": 2017,
+   "receita_realizada": 21602097.42,
+   "despesa_empenhada": 19605691.75,
+   "saldo": 1996405.67
+  },
+  {
+   "ano": 2018,
+   "receita_realizada": 30620093.55,
+   "despesa_empenhada": 28050899.2,
+   "saldo": 2569194.35
+  },
+  {
+   "ano": 2019,
+   "receita_realizada": 37052870.75,
+   "despesa_empenhada": 33949178.19,
+   "saldo": 3103692.56
+  },
+  {
+   "ano": 2020,
+   "receita_realizada": 42778769.46,
+   "despesa_empenhada": 39898014.91,
+   "saldo": 2880754.55
+  },
+  {
+   "ano": 2021,
+   "receita_realizada": 47987710.37,
+   "despesa_empenhada": 42621125.21,
+   "saldo": 5366585.16
+  },
+  {
+   "ano": 2022,
+   "receita_realizada": 76393694.0,
+   "despesa_empenhada": 71426833.68,
+   "saldo": 4966860.32
+  },
+  {
+   "ano": 2023,
+   "receita_realizada": 84789393.27,
+   "despesa_empenhada": 84387395.68,
+   "saldo": 401997.59
+  },
+  {
+   "ano": 2024,
+   "receita_realizada": 114657097.95,
+   "despesa_empenhada": 113383917.65,
+   "saldo": 1273180.3
+  },
+  {
+   "ano": 2025,
+   "receita_realizada": 146546070.8,
+   "despesa_empenhada": 139791340.94,
+   "saldo": 6754729.86
+  }
+ ]
+}

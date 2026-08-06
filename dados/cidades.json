@@ -3,7 +3,7 @@
  "descricao": "Manifesto lido pelo comparador (piloto/comparar.html). Acrescentar uma cidade aqui, com a pasta e os nomes dos arquivos dela, é o suficiente para ela aparecer nos seletores — não há lista de cidades escrita no código.",
  "atualizado_em": "2026-08-05",
  "paleta": {
-  "observacao": "Cor CATEGÓRICA: identifica a cidade, não a grandeza. Nos pilotos individuais verde é receita e azul é despesa; no comparador a cor passa a significar cidade, e a distinção entre receita e despesa vai para gráficos separados. A ordem é fixa e por índice — a cidade nunca troca de cor quando outra entra ou sai da comparação.",
+  "observacao": "Cor CATEGÓRICA: identifica a cidade dentro da comparação em cartaz. Enquanto o piloto tinha 4 cidades, cada uma tinha um tom fixo. Com 19 no manifesto e 4 tons validados isso deixou de ser possível — dois municípios cairiam na mesma cor —, então a cor passou a ser atribuída pela ORDEM DE ESCOLHA. O que importa para a leitura é que as cidades em cartaz se distingam entre si, e o quadradinho ao lado de cada seletor mostra qual cor é de quem. O teto de 4 cidades simultâneas continua sendo o tamanho da paleta validada.",
   "validacao": "Os 4 tons foram validados com scripts/validate_palette.js do skill de dataviz, em modo claro (superfície #fcfcfb) e escuro (#1a1a19), com --pairs all: todos os pares passam nos seis testes. O 4º tom NÃO virou o par crítico em nenhum dos dois modos — o pior par continua sendo verde x laranja (ΔE 9,2 protan no claro; 9,3 deutan no escuro), exatamente como era com três cidades. Piso de visão normal: 20,9 no claro e 18,6 no escuro.",
   "como_o_4o_tom_foi_achado": "Chutar hexes não funcionou: roxo #8659c5, magenta #c8358c e #b5307a e marrom #a3562a foram testados na primeira tentativa e TODOS falharam. O que resolveu foi varrer o espaço OKLCH (matiz de 0 a 360, L dentro da banda de cada modo, chroma de 0,10 a 0,32) chamando o próprio validador em cada ponto, e filtrar por: passa nos seis testes nos DOIS modos, não vira o par crítico, e mora na mesma faixa de chroma dos três tons já no ar (0,10-0,18) para não sair neon ao lado deles. Sobraram centenas de opções; a escolhida está em H 330. Para uma 5ª cidade, repita a varredura — não chute.",
   "clara": [
@@ -43,7 +43,6 @@
    "ibge": "3132404",
    "pasta": "itajuba",
    "pagina": "itajuba.html",
-   "cor_indice": 0,
    "populacao_recente": 96855,
    "populacao_ano": 2025,
    "resumo": "96,9 mil habitantes, no sul de Minas. Entrou no piloto porque a Câmara, o PNCP e o SICONFI responderam onde o site da Prefeitura bloqueava.",
@@ -61,7 +60,6 @@
    "ibge": "3166600",
    "pasta": "serra-da-saudade",
    "pagina": "serra-da-saudade.html",
-   "cor_indice": 1,
    "populacao_recente": 856,
    "populacao_ano": 2025,
    "resumo": "833 habitantes no Censo 2022 — o menor município do Brasil. Entrou no piloto como caso-limite do federalismo: recebe mais de R$ 24 mil por habitante só de FPM.",
@@ -79,7 +77,6 @@
    "ibge": "4202099",
    "pasta": "barra-bonita",
    "pagina": "barra-bonita.html",
-   "cor_indice": 2,
    "populacao_recente": 1642,
    "populacao_ano": 2025,
    "resumo": "1.668 habitantes no Censo 2022, no extremo oeste catarinense. Perde população desde 2000 mas teve o PIB crescendo 25% em termos reais — a agropecuária é 53% do valor adicionado.",
@@ -97,7 +94,6 @@
    "ibge": "4205407",
    "pasta": "florianopolis",
    "pagina": "florianopolis.html",
-   "cor_indice": 3,
    "populacao_recente": 587486,
    "populacao_ano": 2025,
    "resumo": "537.211 habitantes no Censo 2022 — a primeira capital do piloto. Entrou por ter sido DESCARTADA antes: 1ª colocada em ranking nacional de cidade inteligente e a pior nota de dados abertos do estudo. Só 37,5% da receita vem de transferência, a menor dependência do piloto.",
@@ -107,6 +103,286 @@
     "receita_origem": "receita_origem_2014_2025.json",
     "populacao": "populacao_2000_2025.json"
    }
+  },
+  {
+   "slug": "rr-alto-alegre",
+   "nome": "Alto Alegre",
+   "uf": "RR",
+   "ibge": "1400050",
+   "pasta": "rr-alto-alegre",
+   "pagina": "rr-alto-alegre.html",
+   "populacao_recente": 23589,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "21.096 habitantes no Censo 2022 — 3º de 15 em Roraima. 58,3% de população indígena; 89,1% da receita vinda de transferência. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-amajari",
+   "nome": "Amajari",
+   "uf": "RR",
+   "ibge": "1400027",
+   "pasta": "rr-amajari",
+   "pagina": "rr-amajari.html",
+   "populacao_recente": 16112,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "13.927 habitantes no Censo 2022 — 9º de 15 em Roraima. 65,5% de população indígena; 92,9% da receita vinda de transferência. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-boa-vista",
+   "nome": "Boa Vista",
+   "uf": "RR",
+   "ibge": "1400100",
+   "pasta": "rr-boa-vista",
+   "pagina": "rr-boa-vista.html",
+   "populacao_recente": 485477,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "413.486 habitantes no Censo 2022 — 1º de 15 em Roraima. 75,7% da receita vinda de transferência; 40% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-bonfim",
+   "nome": "Bonfim",
+   "uf": "RR",
+   "ibge": "1400159",
+   "pasta": "rr-bonfim",
+   "pagina": "rr-bonfim.html",
+   "populacao_recente": 15570,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "13.923 habitantes no Censo 2022 — 10º de 15 em Roraima. 43,3% de população indígena; 87,7% da receita vinda de transferência. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-canta",
+   "nome": "Cantá",
+   "uf": "RR",
+   "ibge": "1400175",
+   "pasta": "rr-canta",
+   "pagina": "rr-canta.html",
+   "populacao_recente": 21102,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "18.682 habitantes no Censo 2022 — 6º de 15 em Roraima. 89,4% da receita vinda de transferência; 64% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-caracarai",
+   "nome": "Caracaraí",
+   "uf": "RR",
+   "ibge": "1400209",
+   "pasta": "rr-caracarai",
+   "pagina": "rr-caracarai.html",
+   "populacao_recente": 22750,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "20.957 habitantes no Censo 2022 — 4º de 15 em Roraima. 95,6% da receita vinda de transferência; 58% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-caroebe",
+   "nome": "Caroebe",
+   "uf": "RR",
+   "ibge": "1400233",
+   "pasta": "rr-caroebe",
+   "pagina": "rr-caroebe.html",
+   "populacao_recente": 12004,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "10.656 habitantes no Censo 2022 — 12º de 15 em Roraima. 94,4% da receita vinda de transferência; 50% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-iracema",
+   "nome": "Iracema",
+   "uf": "RR",
+   "ibge": "1400282",
+   "pasta": "rr-iracema",
+   "pagina": "rr-iracema.html",
+   "populacao_recente": 10937,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "10.023 habitantes no Censo 2022 — 13º de 15 em Roraima. 95,4% da receita vinda de transferência; 66% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-mucajai",
+   "nome": "Mucajaí",
+   "uf": "RR",
+   "ibge": "1400308",
+   "pasta": "rr-mucajai",
+   "pagina": "rr-mucajai.html",
+   "populacao_recente": 20006,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "18.095 habitantes no Censo 2022 — 7º de 15 em Roraima. 92,6% da receita vinda de transferência; 54% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-normandia",
+   "nome": "Normandia",
+   "uf": "RR",
+   "ibge": "1400407",
+   "pasta": "rr-normandia",
+   "pagina": "rr-normandia.html",
+   "populacao_recente": 16323,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "13.986 habitantes no Censo 2022 — 8º de 15 em Roraima. 76,1% de população indígena; 94,5% da receita vinda de transferência. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-pacaraima",
+   "nome": "Pacaraima",
+   "uf": "RR",
+   "ibge": "1400456",
+   "pasta": "rr-pacaraima",
+   "pagina": "rr-pacaraima.html",
+   "populacao_recente": 23112,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "19.305 habitantes no Censo 2022 — 5º de 15 em Roraima. 52,6% de população indígena; 90,4% da receita vinda de transferência. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-rorainopolis",
+   "nome": "Rorainópolis",
+   "uf": "RR",
+   "ibge": "1400472",
+   "pasta": "rr-rorainopolis",
+   "pagina": "rr-rorainopolis.html",
+   "populacao_recente": 37787,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "32.647 habitantes no Censo 2022 — 2º de 15 em Roraima. 85,3% da receita vinda de transferência; 53% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-sao-joao-da-baliza",
+   "nome": "São João da Baliza",
+   "uf": "RR",
+   "ibge": "1400506",
+   "pasta": "rr-sao-joao-da-baliza",
+   "pagina": "rr-sao-joao-da-baliza.html",
+   "populacao_recente": 9969,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "8.858 habitantes no Censo 2022 — 14º de 15 em Roraima. 92,7% da receita vinda de transferência; 42% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-sao-luiz-do-anaua",
+   "nome": "São Luiz do Anauá",
+   "uf": "RR",
+   "ibge": "1400605",
+   "pasta": "rr-sao-luiz-do-anaua",
+   "pagina": "rr-sao-luiz-do-anaua.html",
+   "populacao_recente": 7848,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "7.315 habitantes no Censo 2022 — 15º de 15 em Roraima. 94,2% da receita vinda de transferência; 55% do valor adicionado em administração pública. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  },
+  {
+   "slug": "rr-uiramuta",
+   "nome": "Uiramutã",
+   "uf": "RR",
+   "ibge": "1400704",
+   "pasta": "rr-uiramuta",
+   "pagina": "rr-uiramuta.html",
+   "populacao_recente": 16186,
+   "populacao_ano": 2025,
+   "recorte": "roraima",
+   "resumo": "13.751 habitantes no Censo 2022 — 11º de 15 em Roraima. 94,5% de população indígena; 92,6% da receita vinda de transferência. Entrou no piloto por ser parte de um recorte fechado, não por seleção.",
+   "arquivos": {
+    "populacao": "populacao_2000_2025.json",
+    "receita_despesa": "siconfi_receita_despesa_2014_2025.json",
+    "despesa_funcao": "despesa_funcao_natureza_2014_2025.json",
+    "receita_origem": "receita_origem_2014_2025.json"
+   }
+  }
+ ],
+ "recortes": [
+  {
+   "id": "roraima",
+   "titulo": "Roraima — estado completo",
+   "uf": "RR",
+   "municipios": 15,
+   "pagina": "roraima.html",
+   "descricao": "Os 15 municípios de Roraima, sem nenhum de fora. Entraram no manifesto como cidades comuns: aparecem nos seletores e comparam com as outras pela mesma régua. Têm as Fases 1 e 3 publicadas — que são exatamente as duas que o comparador usa."
   }
  ]
 }

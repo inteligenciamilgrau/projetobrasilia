@@ -1,0 +1,501 @@
+{
+ "titulo": "Roraima comparada às outras unidades da federação",
+ "fonte": "IBGE — Censo Demográfico 2022, tabela SIDRA 4714 (população residente e área da unidade territorial), para os 5.570 municípios e as 27 unidades da federação",
+ "urls": {
+  "populacao_municipios": "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N6[all]",
+  "populacao_ufs": "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N3[all]",
+  "area_municipios": "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/6318?localidades=N6[all]",
+  "area_ufs": "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/6318?localidades=N3[all]"
+ },
+ "coletado_em": "2026-08-05",
+ "por_que_este_arquivo": "A página faz afirmações comparativas — 'a maior concentração do país', 'maior que um estado inteiro'. Cada uma delas é conferida aqui contra os 5.570 municípios e as 27 UFs, e não contra a memória de ninguém.",
+ "roraima": {
+  "posicao_concentracao_no_maior_municipio": 2,
+  "de_quantas_ufs": 27,
+  "posicao_em_area": 14,
+  "quantidade_de_municipios": 15,
+  "ufs_com_menos_municipios": [
+   {
+    "uf": "Distrito Federal",
+    "municipios": 1
+   },
+   {
+    "uf": "Roraima",
+    "municipios": 15
+   },
+   {
+    "uf": "Amapá",
+    "municipios": 16
+   },
+   {
+    "uf": "Acre",
+    "municipios": 22
+   },
+   {
+    "uf": "Rondônia",
+    "municipios": 52
+   }
+  ]
+ },
+ "concentracao_por_uf": [
+  {
+   "uf": "Distrito Federal",
+   "uf_codigo": "53",
+   "municipios": 1,
+   "maior_municipio": "Brasília - DF",
+   "maior_municipio_ibge": "5300108",
+   "populacao_maior": 2817381,
+   "populacao_uf": 2817381,
+   "concentracao_pct": 100.0
+  },
+  {
+   "uf": "Roraima",
+   "uf_codigo": "14",
+   "municipios": 15,
+   "maior_municipio": "Boa Vista - RR",
+   "maior_municipio_ibge": "1400100",
+   "populacao_maior": 413486,
+   "populacao_uf": 636707,
+   "concentracao_pct": 64.94
+  },
+  {
+   "uf": "Amapá",
+   "uf_codigo": "16",
+   "municipios": 16,
+   "maior_municipio": "Macapá - AP",
+   "maior_municipio_ibge": "1600303",
+   "populacao_maior": 442933,
+   "populacao_uf": 733759,
+   "concentracao_pct": 60.36
+  },
+  {
+   "uf": "Amazonas",
+   "uf_codigo": "13",
+   "municipios": 62,
+   "maior_municipio": "Manaus - AM",
+   "maior_municipio_ibge": "1302603",
+   "populacao_maior": 2063689,
+   "populacao_uf": 3941613,
+   "concentracao_pct": 52.36
+  },
+  {
+   "uf": "Acre",
+   "uf_codigo": "12",
+   "municipios": 22,
+   "maior_municipio": "Rio Branco - AC",
+   "maior_municipio_ibge": "1200401",
+   "populacao_maior": 364756,
+   "populacao_uf": 830018,
+   "concentracao_pct": 43.95
+  },
+  {
+   "uf": "Rio de Janeiro",
+   "uf_codigo": "33",
+   "municipios": 92,
+   "maior_municipio": "Rio de Janeiro - RJ",
+   "maior_municipio_ibge": "3304557",
+   "populacao_maior": 6211223,
+   "populacao_uf": 16055174,
+   "concentracao_pct": 38.69
+  },
+  {
+   "uf": "Mato Grosso do Sul",
+   "uf_codigo": "50",
+   "municipios": 79,
+   "maior_municipio": "Campo Grande - MS",
+   "maior_municipio_ibge": "5002704",
+   "populacao_maior": 898100,
+   "populacao_uf": 2757013,
+   "concentracao_pct": 32.58
+  },
+  {
+   "uf": "Alagoas",
+   "uf_codigo": "27",
+   "municipios": 102,
+   "maior_municipio": "Maceió - AL",
+   "maior_municipio_ibge": "2704302",
+   "populacao_maior": 957916,
+   "populacao_uf": 3127683,
+   "concentracao_pct": 30.63
+  },
+  {
+   "uf": "Rondônia",
+   "uf_codigo": "11",
+   "municipios": 52,
+   "maior_municipio": "Porto Velho - RO",
+   "maior_municipio_ibge": "1100205",
+   "populacao_maior": 460434,
+   "populacao_uf": 1581196,
+   "concentracao_pct": 29.12
+  },
+  {
+   "uf": "Ceará",
+   "uf_codigo": "23",
+   "municipios": 184,
+   "maior_municipio": "Fortaleza - CE",
+   "maior_municipio_ibge": "2304400",
+   "populacao_maior": 2428708,
+   "populacao_uf": 8794957,
+   "concentracao_pct": 27.61
+  },
+  {
+   "uf": "Sergipe",
+   "uf_codigo": "28",
+   "municipios": 75,
+   "maior_municipio": "Aracaju - SE",
+   "maior_municipio_ibge": "2800308",
+   "populacao_maior": 602757,
+   "populacao_uf": 2210004,
+   "concentracao_pct": 27.27
+  },
+  {
+   "uf": "Piauí",
+   "uf_codigo": "22",
+   "municipios": 224,
+   "maior_municipio": "Teresina - PI",
+   "maior_municipio_ibge": "2211001",
+   "populacao_maior": 866300,
+   "populacao_uf": 3271199,
+   "concentracao_pct": 26.48
+  },
+  {
+   "uf": "São Paulo",
+   "uf_codigo": "35",
+   "municipios": 645,
+   "maior_municipio": "São Paulo - SP",
+   "maior_municipio_ibge": "3550308",
+   "populacao_maior": 11451999,
+   "populacao_uf": 44411238,
+   "concentracao_pct": 25.79
+  },
+  {
+   "uf": "Rio Grande do Norte",
+   "uf_codigo": "24",
+   "municipios": 167,
+   "maior_municipio": "Natal - RN",
+   "maior_municipio_ibge": "2408102",
+   "populacao_maior": 751300,
+   "populacao_uf": 3302729,
+   "concentracao_pct": 22.75
+  },
+  {
+   "uf": "Paraíba",
+   "uf_codigo": "25",
+   "municipios": 223,
+   "maior_municipio": "João Pessoa - PB",
+   "maior_municipio_ibge": "2507507",
+   "populacao_maior": 833932,
+   "populacao_uf": 3974687,
+   "concentracao_pct": 20.98
+  },
+  {
+   "uf": "Goiás",
+   "uf_codigo": "52",
+   "municipios": 246,
+   "maior_municipio": "Goiânia - GO",
+   "maior_municipio_ibge": "5208707",
+   "populacao_maior": 1437366,
+   "populacao_uf": 7056495,
+   "concentracao_pct": 20.37
+  },
+  {
+   "uf": "Tocantins",
+   "uf_codigo": "17",
+   "municipios": 139,
+   "maior_municipio": "Palmas - TO",
+   "maior_municipio_ibge": "1721000",
+   "populacao_maior": 302692,
+   "populacao_uf": 1511460,
+   "concentracao_pct": 20.03
+  },
+  {
+   "uf": "Mato Grosso",
+   "uf_codigo": "51",
+   "municipios": 141,
+   "maior_municipio": "Cuiabá - MT",
+   "maior_municipio_ibge": "5103403",
+   "populacao_maior": 650877,
+   "populacao_uf": 3658649,
+   "concentracao_pct": 17.79
+  },
+  {
+   "uf": "Bahia",
+   "uf_codigo": "29",
+   "municipios": 417,
+   "maior_municipio": "Salvador - BA",
+   "maior_municipio_ibge": "2927408",
+   "populacao_maior": 2417678,
+   "populacao_uf": 14141626,
+   "concentracao_pct": 17.1
+  },
+  {
+   "uf": "Pernambuco",
+   "uf_codigo": "26",
+   "municipios": 185,
+   "maior_municipio": "Recife - PE",
+   "maior_municipio_ibge": "2611606",
+   "populacao_maior": 1488920,
+   "populacao_uf": 9058931,
+   "concentracao_pct": 16.44
+  },
+  {
+   "uf": "Pará",
+   "uf_codigo": "15",
+   "municipios": 144,
+   "maior_municipio": "Belém - PA",
+   "maior_municipio_ibge": "1501402",
+   "populacao_maior": 1303403,
+   "populacao_uf": 8120131,
+   "concentracao_pct": 16.05
+  },
+  {
+   "uf": "Paraná",
+   "uf_codigo": "41",
+   "municipios": 399,
+   "maior_municipio": "Curitiba - PR",
+   "maior_municipio_ibge": "4106902",
+   "populacao_maior": 1773718,
+   "populacao_uf": 11444380,
+   "concentracao_pct": 15.5
+  },
+  {
+   "uf": "Maranhão",
+   "uf_codigo": "21",
+   "municipios": 217,
+   "maior_municipio": "São Luís - MA",
+   "maior_municipio_ibge": "2111300",
+   "populacao_maior": 1037775,
+   "populacao_uf": 6776699,
+   "concentracao_pct": 15.31
+  },
+  {
+   "uf": "Espírito Santo",
+   "uf_codigo": "32",
+   "municipios": 78,
+   "maior_municipio": "Serra - ES",
+   "maior_municipio_ibge": "3205002",
+   "populacao_maior": 520653,
+   "populacao_uf": 3833712,
+   "concentracao_pct": 13.58
+  },
+  {
+   "uf": "Rio Grande do Sul",
+   "uf_codigo": "43",
+   "municipios": 497,
+   "maior_municipio": "Porto Alegre - RS",
+   "maior_municipio_ibge": "4314902",
+   "populacao_maior": 1332845,
+   "populacao_uf": 10882965,
+   "concentracao_pct": 12.25
+  },
+  {
+   "uf": "Minas Gerais",
+   "uf_codigo": "31",
+   "municipios": 853,
+   "maior_municipio": "Belo Horizonte - MG",
+   "maior_municipio_ibge": "3106200",
+   "populacao_maior": 2315560,
+   "populacao_uf": 20539989,
+   "concentracao_pct": 11.27
+  },
+  {
+   "uf": "Santa Catarina",
+   "uf_codigo": "42",
+   "municipios": 295,
+   "maior_municipio": "Joinville - SC",
+   "maior_municipio_ibge": "4209102",
+   "populacao_maior": 616317,
+   "populacao_uf": 7610361,
+   "concentracao_pct": 8.1
+  }
+ ],
+ "municipios_de_rr_maiores_que_ufs": [
+  {
+   "municipio": "Caracaraí",
+   "ibge": "1400209",
+   "area_km2": 47379.9,
+   "ufs_menores": [
+    "Distrito Federal",
+    "Sergipe",
+    "Alagoas",
+    "Rio de Janeiro",
+    "Espírito Santo"
+   ],
+   "maior_uf_superada": "Espírito Santo",
+   "area_maior_uf_superada_km2": 46074.45
+  },
+  {
+   "municipio": "Rorainópolis",
+   "ibge": "1400472",
+   "area_km2": 33579.74,
+   "ufs_menores": [
+    "Distrito Federal",
+    "Sergipe",
+    "Alagoas"
+   ],
+   "maior_uf_superada": "Alagoas",
+   "area_maior_uf_superada_km2": 27830.66
+  },
+  {
+   "municipio": "Amajari",
+   "ibge": "1400027",
+   "area_km2": 28473.45,
+   "ufs_menores": [
+    "Distrito Federal",
+    "Sergipe",
+    "Alagoas"
+   ],
+   "maior_uf_superada": "Alagoas",
+   "area_maior_uf_superada_km2": 27830.66
+  },
+  {
+   "municipio": "Alto Alegre",
+   "ibge": "1400050",
+   "area_km2": 25454.3,
+   "ufs_menores": [
+    "Distrito Federal",
+    "Sergipe"
+   ],
+   "maior_uf_superada": "Sergipe",
+   "area_maior_uf_superada_km2": 21938.19
+  },
+  {
+   "municipio": "Iracema",
+   "ibge": "1400282",
+   "area_km2": 14011.69,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  },
+  {
+   "municipio": "Mucajaí",
+   "ibge": "1400308",
+   "area_km2": 12337.85,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  },
+  {
+   "municipio": "Caroebe",
+   "ibge": "1400233",
+   "area_km2": 12065.9,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  },
+  {
+   "municipio": "Uiramutã",
+   "ibge": "1400704",
+   "area_km2": 8113.6,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  },
+  {
+   "municipio": "Bonfim",
+   "ibge": "1400159",
+   "area_km2": 8079.91,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  },
+  {
+   "municipio": "Pacaraima",
+   "ibge": "1400456",
+   "area_km2": 8025.05,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  },
+  {
+   "municipio": "Cantá",
+   "ibge": "1400175",
+   "area_km2": 7664.83,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  },
+  {
+   "municipio": "Normandia",
+   "ibge": "1400407",
+   "area_km2": 6959.87,
+   "ufs_menores": [
+    "Distrito Federal"
+   ],
+   "maior_uf_superada": "Distrito Federal",
+   "area_maior_uf_superada_km2": 5760.78
+  }
+ ],
+ "area_das_ufs_km2": {
+  "Amazonas": 1559255.88,
+  "Pará": 1245870.7,
+  "Mato Grosso": 903208.36,
+  "Minas Gerais": 586513.98,
+  "Bahia": 564760.43,
+  "Mato Grosso do Sul": 357142.08,
+  "Goiás": 340242.86,
+  "Maranhão": 329651.5,
+  "Rio Grande do Sul": 281707.15,
+  "Tocantins": 277423.63,
+  "Piauí": 251755.48,
+  "São Paulo": 248219.48,
+  "Rondônia": 237754.17,
+  "Roraima": 223644.53,
+  "Paraná": 199298.98,
+  "Acre": 164173.43,
+  "Ceará": 148894.45,
+  "Amapá": 142470.76,
+  "Pernambuco": 98067.88,
+  "Santa Catarina": 95730.69,
+  "Paraíba": 56467.24,
+  "Rio Grande do Norte": 52809.6,
+  "Espírito Santo": 46074.45,
+  "Rio de Janeiro": 43750.43,
+  "Alagoas": 27830.66,
+  "Sergipe": 21938.19,
+  "Distrito Federal": 5760.78
+ },
+ "populacao_das_ufs": {
+  "São Paulo": 44411238,
+  "Minas Gerais": 20539989,
+  "Rio de Janeiro": 16055174,
+  "Bahia": 14141626,
+  "Paraná": 11444380,
+  "Rio Grande do Sul": 10882965,
+  "Pernambuco": 9058931,
+  "Ceará": 8794957,
+  "Pará": 8120131,
+  "Santa Catarina": 7610361,
+  "Goiás": 7056495,
+  "Maranhão": 6776699,
+  "Paraíba": 3974687,
+  "Amazonas": 3941613,
+  "Espírito Santo": 3833712,
+  "Mato Grosso": 3658649,
+  "Rio Grande do Norte": 3302729,
+  "Piauí": 3271199,
+  "Alagoas": 3127683,
+  "Distrito Federal": 2817381,
+  "Mato Grosso do Sul": 2757013,
+  "Sergipe": 2210004,
+  "Rondônia": 1581196,
+  "Tocantins": 1511460,
+  "Acre": 830018,
+  "Amapá": 733759,
+  "Roraima": 636707
+ }
+}

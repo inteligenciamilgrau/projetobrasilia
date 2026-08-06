@@ -1,0 +1,419 @@
+{
+ "municipio": "Normandia/RR",
+ "ibge_codigo": "1400407",
+ "entidade": "Prefeitura Municipal de Normandia",
+ "coletado_em": "2026-08-05",
+ "titulo": "Despesa empenhada por função e por natureza, 2014–2025",
+ "fonte": "SICONFI / Tesouro Nacional — DCA (Declaração de Contas Anuais). Mesma coleta que produziu a página do estado de Roraima. Anexo I-E (função) e Anexo I-D (natureza).",
+ "url_origem_template": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/dca?an_exercicio={ano}&no_anexo=DCA-Anexo%20I-E&id_ente=1400407",
+ "url_ipca": "https://servicodados.ibge.gov.br/api/v3/agregados/1737/periodos/201401-202512/variaveis/2266?localidades=N1[all]",
+ "base_deflator": 2025,
+ "metodo_deflator": "IPCA, média anual do número-índice (tabela SIDRA 1737, variável 2266)",
+ "recorte": "Este município não foi escolhido a dedo: entrou porque o projeto coletou Roraima inteira, os 15 municípios, sem nenhum de fora. Ver piloto/roraima.html.",
+ "observacao": "A natureza vem do Anexo I-D, cuja base é o Total Geral da Despesa e INCLUI as intraorçamentárias; as funções vêm do I-E, que fecha em 'exceto intraorçamentárias'. São bases diferentes de propósito — forçá-las a uma só exigiria inventar a repartição de uma delas.",
+ "ressalva_per_capita": "O IBGE não publicou estimativa de população municipal para 2007 nem para 2023; nesses anos o valor por habitante fica nulo em vez de dividido por uma população interpolada.",
+ "comparacao_com_pib": {
+  "base_indice": 2015,
+  "observacao": "O IBGE não publica PIB municipal a preços constantes; a correção usa o mesmo IPCA do resto do projeto. A série do PIB municipal termina em 2023.",
+  "serie": [
+   {
+    "ano": 2015,
+    "pib_r2025": 208747766.5,
+    "despesa_r2025": 35804005.67,
+    "indice_pib": 100.0,
+    "indice_despesa": 100.0,
+    "despesa_sobre_pib_pct": 17.15
+   },
+   {
+    "ano": 2016,
+    "pib_r2025": 201824958.2,
+    "despesa_r2025": 33592938.62,
+    "indice_pib": 96.7,
+    "indice_despesa": 93.8,
+    "despesa_sobre_pib_pct": 16.64
+   },
+   {
+    "ano": 2017,
+    "pib_r2025": 223558384.5,
+    "despesa_r2025": 29524211.21,
+    "indice_pib": 107.1,
+    "indice_despesa": 82.5,
+    "despesa_sobre_pib_pct": 13.21
+   },
+   {
+    "ano": 2018,
+    "pib_r2025": 222966837.0,
+    "despesa_r2025": 40746736.18,
+    "indice_pib": 106.8,
+    "indice_despesa": 113.8,
+    "despesa_sobre_pib_pct": 18.27
+   },
+   {
+    "ano": 2019,
+    "pib_r2025": 242749006.5,
+    "despesa_r2025": 47539034.22,
+    "indice_pib": 116.3,
+    "indice_despesa": 132.8,
+    "despesa_sobre_pib_pct": 19.58
+   },
+   {
+    "ano": 2020,
+    "pib_r2025": 264255795.2,
+    "despesa_r2025": 54133626.63,
+    "indice_pib": 126.6,
+    "indice_despesa": 151.2,
+    "despesa_sobre_pib_pct": 20.49
+   },
+   {
+    "ano": 2021,
+    "pib_r2025": 254141755.2,
+    "despesa_r2025": 53395745.66,
+    "indice_pib": 121.7,
+    "indice_despesa": 149.1,
+    "despesa_sobre_pib_pct": 21.01
+   },
+   {
+    "ano": 2022,
+    "pib_r2025": 310353408.0,
+    "despesa_r2025": 81883722.13,
+    "indice_pib": 148.7,
+    "indice_despesa": 228.7,
+    "despesa_sobre_pib_pct": 26.38
+   },
+   {
+    "ano": 2023,
+    "pib_r2025": 406567776.0,
+    "despesa_r2025": 92488585.67,
+    "indice_pib": 194.8,
+    "indice_despesa": 258.3,
+    "despesa_sobre_pib_pct": 22.75
+   }
+  ]
+ },
+ "serie": [
+  {
+   "ano": 2015,
+   "total_empenhado": 21137024.42,
+   "total_empenhado_r2025": 35804005.67,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 10148,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3528.18,
+   "ipca_fator_para_2025": 1.6939,
+   "funcoes": {
+    "Educação": 11004477.14,
+    "Administração": 4109448.24,
+    "Saúde": 2633101.7,
+    "Agricultura": 1482354.36,
+    "Assistência Social": 1084037.11,
+    "Legislativa": 484927.29,
+    "Urbanismo": 289107.96,
+    "Gestão Ambiental": 49570.62
+   },
+   "natureza": {
+    "Pessoal e encargos": 10737667.2,
+    "Outras despesas correntes": 8684939.3,
+    "Investimentos": 1021192.41,
+    "Amortização da dívida": 693225.51
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 21137024.42
+  },
+  {
+   "ano": 2016,
+   "total_empenhado": 21565730.64,
+   "total_empenhado_r2025": 33592938.62,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 10339,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3249.15,
+   "ipca_fator_para_2025": 1.5577,
+   "funcoes": {
+    "Educação": 10286113.99,
+    "Saúde": 4626606.13,
+    "Administração": 2929073.44,
+    "Agricultura": 1845710.96,
+    "Assistência Social": 1216971.11,
+    "Legislativa": 498941.89,
+    "Urbanismo": 111420.0,
+    "Gestão Ambiental": 50893.12
+   },
+   "natureza": {
+    "Pessoal e encargos": 10311064.97,
+    "Outras despesas correntes": 8211954.76,
+    "Investimentos": 2611335.67,
+    "Amortização da dívida": 431375.24
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 21565730.64
+  },
+  {
+   "ano": 2017,
+   "total_empenhado": 19605691.75,
+   "total_empenhado_r2025": 29524211.21,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 10527,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 2804.62,
+   "ipca_fator_para_2025": 1.5059,
+   "funcoes": {
+    "Educação": 9771825.33,
+    "Administração": 3624776.17,
+    "Saúde": 2966663.0,
+    "Assistência Social": 1216314.77,
+    "Agricultura": 793910.94,
+    "Legislativa": 571773.2,
+    "Urbanismo": 537538.78,
+    "Gestão Ambiental": 92719.11,
+    "Cultura": 30170.45
+   },
+   "natureza": {
+    "Pessoal e encargos": 13901560.15,
+    "Outras despesas correntes": 4416082.18,
+    "Investimentos": 747244.85,
+    "Amortização da dívida": 540804.57
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 19605691.75
+  },
+  {
+   "ano": 2018,
+   "total_empenhado": 28050899.2,
+   "total_empenhado_r2025": 40746736.18,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 11045,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 3689.16,
+   "ipca_fator_para_2025": 1.4526,
+   "funcoes": {
+    "Educação": 11961371.24,
+    "Agricultura": 5105865.98,
+    "Administração": 3821943.76,
+    "Saúde": 3304650.4,
+    "Urbanismo": 2138061.82,
+    "Assistência Social": 1063569.13,
+    "Legislativa": 590515.12,
+    "Gestão Ambiental": 55829.96,
+    "Cultura": 9091.79
+   },
+   "natureza": {
+    "Pessoal e encargos": 15221430.75,
+    "Outras despesas correntes": 5863864.75,
+    "Investimentos": 6278680.48,
+    "Amortização da dívida": 686923.22
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 28050899.2
+  },
+  {
+   "ano": 2019,
+   "total_empenhado": 33949178.19,
+   "total_empenhado_r2025": 47539034.22,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 11290,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 4210.72,
+   "ipca_fator_para_2025": 1.4003,
+   "funcoes": {
+    "Educação": 13902012.73,
+    "Saúde": 6544737.74,
+    "Urbanismo": 5254334.27,
+    "Administração": 4406695.93,
+    "Agricultura": 1205601.57,
+    "Assistência Social": 1198655.5,
+    "Legislativa": 680999.88,
+    "Energia": 639087.95,
+    "Gestão Ambiental": 92026.58,
+    "Cultura": 25026.04
+   },
+   "natureza": {
+    "Pessoal e encargos": 17818826.83,
+    "Outras despesas correntes": 11262073.45,
+    "Investimentos": 4153721.39,
+    "Amortização da dívida": 714556.52
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 33949178.19
+  },
+  {
+   "ano": 2020,
+   "total_empenhado": 39898014.91,
+   "total_empenhado_r2025": 54133626.63,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 11532,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 4694.21,
+   "ipca_fator_para_2025": 1.3568,
+   "funcoes": {
+    "Educação": 15335692.71,
+    "Administração": 8611977.56,
+    "Saúde": 6919017.34,
+    "Urbanismo": 3810144.78,
+    "Energia": 2268754.43,
+    "Assistência Social": 1487768.68,
+    "Legislativa": 726806.65,
+    "Agricultura": 602289.0,
+    "Gestão Ambiental": 135563.76
+   },
+   "natureza": {
+    "Pessoal e encargos": 17635619.28,
+    "Outras despesas correntes": 12711527.56,
+    "Investimentos": 8963873.03,
+    "Amortização da dívida": 586995.04
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 39898014.91
+  },
+  {
+   "ano": 2021,
+   "total_empenhado": 42621125.21,
+   "total_empenhado_r2025": 53395745.66,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 11772,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 4535.83,
+   "ipca_fator_para_2025": 1.2528,
+   "funcoes": {
+    "Educação": 18633698.16,
+    "Administração": 7932689.44,
+    "Saúde": 5981724.98,
+    "Energia": 3754599.11,
+    "Urbanismo": 2620678.45,
+    "Assistência Social": 1707376.56,
+    "Agricultura": 920424.78,
+    "Legislativa": 863768.21,
+    "Gestão Ambiental": 204649.47,
+    "Cultura": 1516.05
+   },
+   "natureza": {
+    "Pessoal e encargos": 20355921.76,
+    "Outras despesas correntes": 12941218.05,
+    "Investimentos": 8495555.24,
+    "Amortização da dívida": 828430.16
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 42621125.21
+  },
+  {
+   "ano": 2022,
+   "total_empenhado": 71426833.68,
+   "total_empenhado_r2025": 81883722.13,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 13986,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 5854.69,
+   "ipca_fator_para_2025": 1.1464,
+   "funcoes": {
+    "Educação": 31352302.31,
+    "Administração": 14376154.96,
+    "Saúde": 12018193.13,
+    "Energia": 4288524.85,
+    "Agricultura": 3085959.98,
+    "Assistência Social": 2567463.26,
+    "Urbanismo": 2072457.8,
+    "Legislativa": 1200000.0,
+    "Gestão Ambiental": 263760.32,
+    "Direitos da Cidadania": 202017.07
+   },
+   "natureza": {
+    "Pessoal e encargos": 30750655.44,
+    "Outras despesas correntes": 29241505.81,
+    "Investimentos": 10644068.36,
+    "Amortização da dívida": 790604.07
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 71426833.68
+  },
+  {
+   "ano": 2023,
+   "total_empenhado": 84387395.68,
+   "total_empenhado_r2025": 92488585.67,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": null,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": null,
+   "ipca_fator_para_2025": 1.096,
+   "funcoes": {
+    "Educação": 40762411.75,
+    "Saúde": 15257842.9,
+    "Administração": 11195248.77,
+    "Agricultura": 6040237.14,
+    "Urbanismo": 4452279.59,
+    "Assistência Social": 2349580.96,
+    "Energia": 1555485.4,
+    "Legislativa": 1388032.68,
+    "Cultura": 663136.0,
+    "Direitos da Cidadania": 500000.0,
+    "Gestão Ambiental": 223140.49
+   },
+   "natureza": {
+    "Pessoal e encargos": 36099582.67,
+    "Outras despesas correntes": 32994420.2,
+    "Investimentos": 14539148.04,
+    "Amortização da dívida": 754244.77
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 84387395.68
+  },
+  {
+   "ano": 2024,
+   "total_empenhado": 113383917.65,
+   "total_empenhado_r2025": 119075790.32,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 15744,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 7563.25,
+   "ipca_fator_para_2025": 1.0502,
+   "funcoes": {
+    "Educação": 53191364.15,
+    "Administração": 21821114.68,
+    "Saúde": 14857994.89,
+    "Urbanismo": 14636435.6,
+    "Agricultura": 3069588.51,
+    "Assistência Social": 3069341.74,
+    "Legislativa": 1589970.86,
+    "Direitos da Cidadania": 650024.01,
+    "Gestão Ambiental": 258445.33,
+    "Cultura": 239637.88
+   },
+   "natureza": {
+    "Pessoal e encargos": 43858297.77,
+    "Outras despesas correntes": 49499042.28,
+    "Investimentos": 18946981.62,
+    "Amortização da dívida": 1079595.98
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 113383917.65
+  },
+  {
+   "ano": 2025,
+   "total_empenhado": 139791340.94,
+   "total_empenhado_r2025": 139791340.94,
+   "despesa_intraorcamentaria": 0.0,
+   "populacao": 16323,
+   "populacao_fonte": "IBGE",
+   "per_capita_r2025": 8564.07,
+   "ipca_fator_para_2025": 1.0,
+   "funcoes": {
+    "Educação": 67115464.38,
+    "Saúde": 20686338.67,
+    "Administração": 19575474.38,
+    "Urbanismo": 17749256.42,
+    "Agricultura": 8662903.9,
+    "Assistência Social": 2843565.62,
+    "Legislativa": 1978867.96,
+    "Cultura": 972149.09,
+    "Gestão Ambiental": 174539.97,
+    "Direitos da Cidadania": 32780.55
+   },
+   "natureza": {
+    "Pessoal e encargos": 53141827.87,
+    "Outras despesas correntes": 53546212.23,
+    "Investimentos": 31163684.57,
+    "Amortização da dívida": 1939616.27
+   },
+   "natureza_base": "Total Geral da Despesa do Anexo I-D = exceto-intra + intraorçamentária",
+   "total_geral_empenhado": 139791340.94
+  }
+ ]
+}

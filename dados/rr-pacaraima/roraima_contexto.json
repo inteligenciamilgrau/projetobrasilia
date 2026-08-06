@@ -1,0 +1,668 @@
+{
+ "municipio": "Pacaraima/RR",
+ "ibge_codigo": "1400456",
+ "entidade": "Prefeitura Municipal de Pacaraima",
+ "coletado_em": "2026-08-05",
+ "titulo": "Pacaraima/RR no conjunto dos 15 municípios de Roraima",
+ "por_que_este_arquivo": "Os outros quatro arquivos desta pasta têm o mesmo formato de qualquer cidade do piloto. Este não: ele guarda o que só é calculável porque o estado inteiro foi coletado — a posição deste município na fila completa dos 15 em cada indicador, e os extremos do estado. Uma cidade escolhida a dedo não tem fila para entrar.",
+ "fonte": "IBGE — Censo 2022 (SIDRA 4714, 4709, 9605), PIB dos Municípios (5938) e SICONFI/DCA. Mesma coleta da página do estado.",
+ "anos_de_referencia": {
+  "financas": 2024,
+  "pib_per_capita": 2022,
+  "composicao_do_pib": 2021,
+  "observacao": "Três anos diferentes porque as fontes terminam em pontos diferentes. 2024 é o último exercício em que os 15 declararam o DCA; 2022 é o último com PIB publicado E população de Censo; 2021 é o último com abertura do valor adicionado por atividade."
+ },
+ "fases_publicadas": [
+  1,
+  3
+ ],
+ "por_que_so_duas_fases": "As Fases 1 e 3 do modelo do piloto são as que se sustentam em fontes que respondem por código de município, sem raspagem: IBGE e SICONFI. As outras nove exigem tratar cada prefeitura como um caso — portal próprio, câmara, catálogo de dados — e são um lote de trabalho por município. Estão declaradas como não iniciadas, não omitidas.",
+ "estado": {
+  "nome": "Roraima",
+  "sigla": "RR",
+  "municipios": 15,
+  "populacao_2022": 636707,
+  "area_km2": 223644.53,
+  "pagina": "roraima.html",
+  "extremos": {
+   "ano_das_financas": 2024,
+   "dependencia": {
+    "minimo": 75.7,
+    "minimo_municipio": "Boa Vista",
+    "maximo": 95.6,
+    "maximo_municipio": "Caracaraí"
+   },
+   "receita_pc": {
+    "minimo": 4757.21,
+    "minimo_municipio": "Alto Alegre",
+    "maximo": 12290.91,
+    "maximo_municipio": "Bonfim"
+   },
+   "despesa_pc": {
+    "minimo": 4590.4,
+    "minimo_municipio": "Caracaraí",
+    "maximo": 13779.76,
+    "maximo_municipio": "Bonfim"
+   },
+   "pib_pc": {
+    "minimo": 15784.09,
+    "minimo_municipio": "Uiramutã",
+    "maximo": 50704.95,
+    "maximo_municipio": "Bonfim"
+   },
+   "adm": {
+    "minimo": 28.6,
+    "minimo_municipio": "Bonfim",
+    "maximo": 83.5,
+    "maximo_municipio": "Uiramutã"
+   },
+   "indigena": {
+    "minimo": 0.41,
+    "minimo_municipio": "São Luiz do Anauá",
+    "maximo": 94.45,
+    "maximo_municipio": "Uiramutã"
+   },
+   "densidade": {
+    "minimo": 0.44,
+    "minimo_municipio": "Caracaraí",
+    "maximo": 72.71,
+    "maximo_municipio": "Boa Vista"
+   },
+   "pessoal": {
+    "minimo": 20.9,
+    "minimo_municipio": "São Luiz do Anauá",
+    "maximo": 57.9,
+    "maximo_municipio": "Caracaraí"
+   },
+   "investimento": {
+    "minimo": 10.2,
+    "minimo_municipio": "Boa Vista",
+    "maximo": 49.7,
+    "maximo_municipio": "São Luiz do Anauá"
+   }
+  }
+ },
+ "perfil": {
+  "ibge": "1400456",
+  "nome": "Pacaraima",
+  "microrregiao": "Boa Vista",
+  "mesorregiao": "Norte de Roraima",
+  "regiao_imediata": "Pacaraima",
+  "populacao_2022": 19305,
+  "area_km2": 8025.045,
+  "densidade_hab_km2": 2.41,
+  "taxa_crescimento_2010_2022_aa_pct": 5.26,
+  "variacao_absoluta_desde_2010": 8872,
+  "pct_da_populacao_do_estado": 3.03,
+  "pct_da_area_do_estado": 3.59,
+  "cor_ou_raca": {
+   "Branca": {
+    "2010": 1202.0,
+    "2022": 2655.0,
+    "pct_2010": 11.52,
+    "pct_2022": 13.75
+   },
+   "Preta": {
+    "2010": 272.0,
+    "2022": 902.0,
+    "pct_2010": 2.61,
+    "pct_2022": 4.67
+   },
+   "Amarela": {
+    "2010": 39.0,
+    "2022": 7.0,
+    "pct_2010": 0.37,
+    "pct_2022": 0.04
+   },
+   "Parda": {
+    "2010": 3135.0,
+    "2022": 4871.0,
+    "pct_2010": 30.05,
+    "pct_2022": 25.23
+   },
+   "Indígena": {
+    "2010": 5785.0,
+    "2022": 10147.0,
+    "pct_2010": 55.45,
+    "pct_2022": 52.56
+   }
+  }
+ },
+ "posicao_no_estado": {
+  "populacao": {
+   "posicao": 5,
+   "de": 15,
+   "valor": 19305
+  },
+  "area": {
+   "posicao": 10,
+   "de": 15,
+   "valor": 8025.045
+  },
+  "densidade": {
+   "posicao": 4,
+   "de": 15,
+   "valor": 2.41
+  },
+  "crescimento": {
+   "posicao": 1,
+   "de": 15,
+   "valor": 5.26
+  },
+  "indigena": {
+   "posicao": 5,
+   "de": 15,
+   "valor": 52.56
+  },
+  "receita_pc": {
+   "posicao": 12,
+   "de": 15,
+   "valor": 5420.91
+  },
+  "despesa_pc": {
+   "posicao": 11,
+   "de": 15,
+   "valor": 5937.47
+  },
+  "dependencia": {
+   "posicao": 10,
+   "de": 15,
+   "valor": 90.4
+  },
+  "fpm_pc": {
+   "posicao": 12,
+   "de": 15,
+   "valor": 630.41
+  },
+  "pessoal": {
+   "posicao": 3,
+   "de": 15,
+   "valor": 42.5
+  },
+  "investimento": {
+   "posicao": 13,
+   "de": 15,
+   "valor": 14.8
+  },
+  "pib_pc": {
+   "posicao": 13,
+   "de": 15,
+   "valor": 20371.82
+  },
+  "adm": {
+   "posicao": 2,
+   "de": 15,
+   "valor": 72.8
+  }
+ },
+ "pib": {
+  "fonte": "IBGE — Produto Interno Bruto dos Municípios (tabela SIDRA 5938, referência 2010)",
+  "observacao": "O IBGE não publica PIB municipal a preços constantes. A coluna pib_per_capita_r2025 aplica o mesmo IPCA usado no resto do projeto e só existe a partir de 2014, primeiro ano da série de deflatores; antes disso o valor fica nominal. 'Administração pública' é a atividade 'administração, defesa, educação e saúde públicas e seguridade social' do valor adicionado — inclui os três níveis de governo, não só a prefeitura.",
+  "serie": [
+   {
+    "ano": 2002,
+    "pib_mil_reais": 47848.0,
+    "impostos_mil_reais": 1853.0,
+    "vab_total_mil_reais": 45994.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 10626.0,
+     "Indústria": 4049.0,
+     "Serviços (exceto administração pública)": 10198.0,
+     "Administração pública": 21121.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 23.1,
+     "Indústria": 8.8,
+     "Serviços (exceto administração pública)": 22.2,
+     "Administração pública": 45.9
+    },
+    "populacao": 7401,
+    "pib_per_capita": 6465.07,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2003,
+    "pib_mil_reais": 52784.0,
+    "impostos_mil_reais": 1852.0,
+    "vab_total_mil_reais": 50932.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 15247.0,
+     "Indústria": 1332.0,
+     "Serviços (exceto administração pública)": 10593.0,
+     "Administração pública": 23760.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 29.9,
+     "Indústria": 2.6,
+     "Serviços (exceto administração pública)": 20.8,
+     "Administração pública": 46.7
+    },
+    "populacao": 7592,
+    "pib_per_capita": 6952.58,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2004,
+    "pib_mil_reais": 59741.0,
+    "impostos_mil_reais": 2358.0,
+    "vab_total_mil_reais": 57382.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 16980.0,
+     "Indústria": 2141.0,
+     "Serviços (exceto administração pública)": 12383.0,
+     "Administração pública": 25878.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 29.6,
+     "Indústria": 3.7,
+     "Serviços (exceto administração pública)": 21.6,
+     "Administração pública": 45.1
+    },
+    "populacao": 8042,
+    "pib_per_capita": 7428.62,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2005,
+    "pib_mil_reais": 57451.0,
+    "impostos_mil_reais": 2765.0,
+    "vab_total_mil_reais": 54687.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 9662.0,
+     "Indústria": 2409.0,
+     "Serviços (exceto administração pública)": 12521.0,
+     "Administração pública": 30094.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 17.7,
+     "Indústria": 4.4,
+     "Serviços (exceto administração pública)": 22.9,
+     "Administração pública": 55.0
+    },
+    "populacao": 8215,
+    "pib_per_capita": 6993.43,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2006,
+    "pib_mil_reais": 63898.0,
+    "impostos_mil_reais": 3374.0,
+    "vab_total_mil_reais": 60524.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 7572.0,
+     "Indústria": 4356.0,
+     "Serviços (exceto administração pública)": 14284.0,
+     "Administração pública": 34312.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 12.5,
+     "Indústria": 7.2,
+     "Serviços (exceto administração pública)": 23.6,
+     "Administração pública": 56.7
+    },
+    "populacao": 8435,
+    "pib_per_capita": 7575.34,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2007,
+    "pib_mil_reais": 74824.0,
+    "impostos_mil_reais": 3966.0,
+    "vab_total_mil_reais": 70858.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 8434.0,
+     "Indústria": 2665.0,
+     "Serviços (exceto administração pública)": 17087.0,
+     "Administração pública": 42672.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 11.9,
+     "Indústria": 3.8,
+     "Serviços (exceto administração pública)": 24.1,
+     "Administração pública": 60.2
+    },
+    "populacao": null,
+    "pib_per_capita": null,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2008,
+    "pib_mil_reais": 84886.0,
+    "impostos_mil_reais": 3881.0,
+    "vab_total_mil_reais": 81005.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 9509.0,
+     "Indústria": 4107.0,
+     "Serviços (exceto administração pública)": 17469.0,
+     "Administração pública": 49920.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 11.7,
+     "Indústria": 5.1,
+     "Serviços (exceto administração pública)": 21.6,
+     "Administração pública": 61.6
+    },
+    "populacao": 9019,
+    "pib_per_capita": 9411.91,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2009,
+    "pib_mil_reais": 86630.0,
+    "impostos_mil_reais": 3734.0,
+    "vab_total_mil_reais": 82896.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 4316.0,
+     "Indústria": 3497.0,
+     "Serviços (exceto administração pública)": 16783.0,
+     "Administração pública": 58301.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 5.2,
+     "Indústria": 4.2,
+     "Serviços (exceto administração pública)": 20.2,
+     "Administração pública": 70.3
+    },
+    "populacao": 9220,
+    "pib_per_capita": 9395.88,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2010,
+    "pib_mil_reais": 102814.0,
+    "impostos_mil_reais": 4545.0,
+    "vab_total_mil_reais": 98268.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 5371.0,
+     "Indústria": 4898.0,
+     "Serviços (exceto administração pública)": 18383.0,
+     "Administração pública": 69616.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 5.5,
+     "Indústria": 5.0,
+     "Serviços (exceto administração pública)": 18.7,
+     "Administração pública": 70.8
+    },
+    "populacao": 10433,
+    "pib_per_capita": 9854.69,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2011,
+    "pib_mil_reais": 109556.0,
+    "impostos_mil_reais": 3067.0,
+    "vab_total_mil_reais": 106488.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 4832.0,
+     "Indústria": 4281.0,
+     "Serviços (exceto administração pública)": 18772.0,
+     "Administração pública": 78604.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 4.5,
+     "Indústria": 4.0,
+     "Serviços (exceto administração pública)": 17.6,
+     "Administração pública": 73.8
+    },
+    "populacao": 10698,
+    "pib_per_capita": 10240.79,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2012,
+    "pib_mil_reais": 115388.0,
+    "impostos_mil_reais": 3660.0,
+    "vab_total_mil_reais": 111727.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 4206.0,
+     "Indústria": 4269.0,
+     "Serviços (exceto administração pública)": 21196.0,
+     "Administração pública": 82056.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 3.8,
+     "Indústria": 3.8,
+     "Serviços (exceto administração pública)": 19.0,
+     "Administração pública": 73.4
+    },
+    "populacao": 10953,
+    "pib_per_capita": 10534.83,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2013,
+    "pib_mil_reais": 131072.0,
+    "impostos_mil_reais": 4279.0,
+    "vab_total_mil_reais": 126793.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 4715.0,
+     "Indústria": 6789.0,
+     "Serviços (exceto administração pública)": 22119.0,
+     "Administração pública": 93170.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 3.7,
+     "Indústria": 5.4,
+     "Serviços (exceto administração pública)": 17.4,
+     "Administração pública": 73.5
+    },
+    "populacao": 11423,
+    "pib_per_capita": 11474.39,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": null
+   },
+   {
+    "ano": 2014,
+    "pib_mil_reais": 139438.0,
+    "impostos_mil_reais": 4286.0,
+    "vab_total_mil_reais": 135153.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 6591.0,
+     "Indústria": 6098.0,
+     "Serviços (exceto administração pública)": 25648.0,
+     "Administração pública": 96817.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 4.9,
+     "Indústria": 4.5,
+     "Serviços (exceto administração pública)": 19.0,
+     "Administração pública": 71.6
+    },
+    "populacao": 11667,
+    "pib_per_capita": 11951.49,
+    "pib_per_capita_r2025": 22072.01,
+    "ipca_fator_para_2025": 1.8468
+   },
+   {
+    "ano": 2015,
+    "pib_mil_reais": 145930.0,
+    "impostos_mil_reais": 4095.0,
+    "vab_total_mil_reais": 141836.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 6799.0,
+     "Indústria": 6319.0,
+     "Serviços (exceto administração pública)": 24009.0,
+     "Administração pública": 104709.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 4.8,
+     "Indústria": 4.5,
+     "Serviços (exceto administração pública)": 16.9,
+     "Administração pública": 73.8
+    },
+    "populacao": 11908,
+    "pib_per_capita": 12254.79,
+    "pib_per_capita_r2025": 20758.38,
+    "ipca_fator_para_2025": 1.6939
+   },
+   {
+    "ano": 2016,
+    "pib_mil_reais": 164379.0,
+    "impostos_mil_reais": 4605.0,
+    "vab_total_mil_reais": 159774.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 7154.0,
+     "Indústria": 8154.0,
+     "Serviços (exceto administração pública)": 29909.0,
+     "Administração pública": 114557.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 4.5,
+     "Indústria": 5.1,
+     "Serviços (exceto administração pública)": 18.7,
+     "Administração pública": 71.7
+    },
+    "populacao": 12144,
+    "pib_per_capita": 13535.82,
+    "pib_per_capita_r2025": 21084.75,
+    "ipca_fator_para_2025": 1.5577
+   },
+   {
+    "ano": 2017,
+    "pib_mil_reais": 171778.0,
+    "impostos_mil_reais": 5254.0,
+    "vab_total_mil_reais": 166524.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 7429.0,
+     "Indústria": 3953.0,
+     "Serviços (exceto administração pública)": 28553.0,
+     "Administração pública": 126589.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 4.5,
+     "Indústria": 2.4,
+     "Serviços (exceto administração pública)": 17.1,
+     "Administração pública": 76.0
+    },
+    "populacao": 12375,
+    "pib_per_capita": 13881.05,
+    "pib_per_capita_r2025": 20903.47,
+    "ipca_fator_para_2025": 1.5059
+   },
+   {
+    "ano": 2018,
+    "pib_mil_reais": 204460.0,
+    "impostos_mil_reais": 7266.0,
+    "vab_total_mil_reais": 197193.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 7082.0,
+     "Indústria": 7568.0,
+     "Serviços (exceto administração pública)": 36248.0,
+     "Administração pública": 146295.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 3.6,
+     "Indústria": 3.8,
+     "Serviços (exceto administração pública)": 18.4,
+     "Administração pública": 74.2
+    },
+    "populacao": 15580,
+    "pib_per_capita": 13123.23,
+    "pib_per_capita_r2025": 19062.81,
+    "ipca_fator_para_2025": 1.4526
+   },
+   {
+    "ano": 2019,
+    "pib_mil_reais": 261537.0,
+    "impostos_mil_reais": 15692.0,
+    "vab_total_mil_reais": 245845.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 7557.0,
+     "Indústria": 6849.0,
+     "Serviços (exceto administração pública)": 61522.0,
+     "Administração pública": 169917.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 3.1,
+     "Indústria": 2.8,
+     "Serviços (exceto administração pública)": 25.0,
+     "Administração pública": 69.1
+    },
+    "populacao": 17401,
+    "pib_per_capita": 15030.0,
+    "pib_per_capita_r2025": 21046.51,
+    "ipca_fator_para_2025": 1.4003
+   },
+   {
+    "ano": 2020,
+    "pib_mil_reais": 290184.0,
+    "impostos_mil_reais": 15203.0,
+    "vab_total_mil_reais": 274981.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 8982.0,
+     "Indústria": 15599.0,
+     "Serviços (exceto administração pública)": 61581.0,
+     "Administração pública": 188819.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 3.3,
+     "Indústria": 5.7,
+     "Serviços (exceto administração pública)": 22.4,
+     "Administração pública": 68.7
+    },
+    "populacao": 18913,
+    "pib_per_capita": 15343.1,
+    "pib_per_capita_r2025": 20817.51,
+    "ipca_fator_para_2025": 1.3568
+   },
+   {
+    "ano": 2021,
+    "pib_mil_reais": 329092.0,
+    "impostos_mil_reais": 23213.0,
+    "vab_total_mil_reais": 305879.0,
+    "vab_setores_mil_reais": {
+     "Agropecuária": 10378.0,
+     "Indústria": 12128.0,
+     "Serviços (exceto administração pública)": 60785.0,
+     "Administração pública": 222588.0
+    },
+    "vab_setores_pct": {
+     "Agropecuária": 3.4,
+     "Indústria": 4.0,
+     "Serviços (exceto administração pública)": 19.9,
+     "Administração pública": 72.8
+    },
+    "populacao": 20108,
+    "pib_per_capita": 16366.22,
+    "pib_per_capita_r2025": 20503.6,
+    "ipca_fator_para_2025": 1.2528
+   },
+   {
+    "ano": 2022,
+    "pib_mil_reais": 393278.0,
+    "impostos_mil_reais": null,
+    "vab_total_mil_reais": null,
+    "vab_setores_mil_reais": {},
+    "vab_setores_pct": {},
+    "populacao": 19305,
+    "pib_per_capita": 20371.82,
+    "pib_per_capita_r2025": 23354.26,
+    "ipca_fator_para_2025": 1.1464
+   },
+   {
+    "ano": 2023,
+    "pib_mil_reais": 447421.0,
+    "impostos_mil_reais": null,
+    "vab_total_mil_reais": null,
+    "vab_setores_mil_reais": {},
+    "vab_setores_pct": {},
+    "populacao": null,
+    "pib_per_capita": null,
+    "pib_per_capita_r2025": null,
+    "ipca_fator_para_2025": 1.096
+   }
+  ]
+ }
+}

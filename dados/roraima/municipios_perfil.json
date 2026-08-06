@@ -1,0 +1,720 @@
+{
+ "titulo": "Perfil dos 15 municípios de Roraima",
+ "uf": {
+  "nome": "Roraima",
+  "sigla": "RR",
+  "codigo_ibge": "14",
+  "populacao_2022": 636707,
+  "area_km2": 223644.53,
+  "densidade_hab_km2": 2.85
+ },
+ "fonte": "IBGE — Censo Demográfico 2022 (tabelas SIDRA 4714, 4709 e 9605) e API de Localidades",
+ "urls": {
+  "populacao_area_densidade": "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93|6318|614?localidades=N6[1400050,1400027,1400100,1400159,1400175,1400209,1400233,1400282,1400308,1400407,1400456,1400472,1400506,1400605,1400704]",
+  "crescimento": "https://servicodados.ibge.gov.br/api/v3/agregados/4709/periodos/2022/variaveis/10605|5936?localidades=N6[1400050,1400027,1400100,1400159,1400175,1400209,1400233,1400282,1400308,1400407,1400456,1400472,1400506,1400605,1400704]",
+  "cor_ou_raca": "https://servicodados.ibge.gov.br/api/v3/agregados/9605/periodos/2010|2022/variaveis/93?localidades=N6[1400050,1400027,1400100,1400159,1400175,1400209,1400233,1400282,1400308,1400407,1400456,1400472,1400506,1400605,1400704]&classificacao=86[2776,2777,2778,2779,2780]",
+  "localidades": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/14/municipios"
+ },
+ "coletado_em": "2026-08-05",
+ "fechamento": {
+  "descricao": "A soma dos 15 municípios conferida contra o total do estado publicado pelo IBGE no nível de UF. É o teste que garante que o recorte está completo — um estado inteiro só vale a pena se fechar.",
+  "populacao_soma_municipios": 636707,
+  "populacao_uf_publicada": 636707,
+  "populacao_diferenca": 0,
+  "area_soma_municipios_km2": 223644.53,
+  "area_uf_publicada_km2": 223644.53,
+  "area_diferenca_km2": -0.0
+ },
+ "municipios": [
+  {
+   "ibge": "1400050",
+   "nome": "Alto Alegre",
+   "microrregiao": "Boa Vista",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Boa Vista",
+   "populacao_2022": 21096,
+   "area_km2": 25454.297,
+   "densidade_hab_km2": 0.83,
+   "taxa_crescimento_2010_2022_aa_pct": 2.1,
+   "variacao_absoluta_desde_2010": 4648,
+   "pct_da_populacao_do_estado": 3.31,
+   "pct_da_area_do_estado": 11.38,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 1665.0,
+     "2022": 1607.0,
+     "pct_2010": 10.12,
+     "pct_2022": 7.62
+    },
+    "Preta": {
+     "2010": 620.0,
+     "2022": 698.0,
+     "pct_2010": 3.77,
+     "pct_2022": 3.31
+    },
+    "Amarela": {
+     "2010": 115.0,
+     "2022": 5.0,
+     "pct_2010": 0.7,
+     "pct_2022": 0.02
+    },
+    "Parda": {
+     "2010": 6504.0,
+     "2022": 6479.0,
+     "pct_2010": 39.54,
+     "pct_2022": 30.71
+    },
+    "Indígena": {
+     "2010": 7544.0,
+     "2022": 12307.0,
+     "pct_2010": 45.87,
+     "pct_2022": 58.34
+    }
+   }
+  },
+  {
+   "ibge": "1400027",
+   "nome": "Amajari",
+   "microrregiao": "Boa Vista",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Pacaraima",
+   "populacao_2022": 13927,
+   "area_km2": 28473.45,
+   "densidade_hab_km2": 0.49,
+   "taxa_crescimento_2010_2022_aa_pct": 3.4,
+   "variacao_absoluta_desde_2010": 4600,
+   "pct_da_populacao_do_estado": 2.19,
+   "pct_da_area_do_estado": 12.73,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 584.0,
+     "2022": 978.0,
+     "pct_2010": 6.26,
+     "pct_2022": 7.02
+    },
+    "Preta": {
+     "2010": 207.0,
+     "2022": 519.0,
+     "pct_2010": 2.22,
+     "pct_2022": 3.73
+    },
+    "Amarela": {
+     "2010": 21.0,
+     "2022": 13.0,
+     "pct_2010": 0.23,
+     "pct_2022": 0.09
+    },
+    "Parda": {
+     "2010": 3501.0,
+     "2022": 3293.0,
+     "pct_2010": 37.54,
+     "pct_2022": 23.64
+    },
+    "Indígena": {
+     "2010": 5014.0,
+     "2022": 9124.0,
+     "pct_2010": 53.76,
+     "pct_2022": 65.51
+    }
+   }
+  },
+  {
+   "ibge": "1400100",
+   "nome": "Boa Vista",
+   "microrregiao": "Boa Vista",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Boa Vista",
+   "populacao_2022": 413486,
+   "area_km2": 5687.037,
+   "densidade_hab_km2": 72.71,
+   "taxa_crescimento_2010_2022_aa_pct": 3.17,
+   "variacao_absoluta_desde_2010": 129173,
+   "pct_da_populacao_do_estado": 64.94,
+   "pct_da_area_do_estado": 2.54,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 70368.0,
+     "2022": 102242.0,
+     "pct_2010": 24.75,
+     "pct_2022": 24.73
+    },
+    "Preta": {
+     "2010": 17725.0,
+     "2022": 35139.0,
+     "pct_2010": 6.23,
+     "pct_2022": 8.5
+    },
+    "Amarela": {
+     "2010": 2956.0,
+     "2022": 606.0,
+     "pct_2010": 1.04,
+     "pct_2022": 0.15
+    },
+    "Parda": {
+     "2010": 184714.0,
+     "2022": 256902.0,
+     "pct_2010": 64.97,
+     "pct_2022": 62.13
+    },
+    "Indígena": {
+     "2010": 8550.0,
+     "2022": 18228.0,
+     "pct_2010": 3.01,
+     "pct_2022": 4.41
+    }
+   }
+  },
+  {
+   "ibge": "1400159",
+   "nome": "Bonfim",
+   "microrregiao": "Nordeste de Roraima",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Boa Vista",
+   "populacao_2022": 13923,
+   "area_km2": 8079.914,
+   "densidade_hab_km2": 1.72,
+   "taxa_crescimento_2010_2022_aa_pct": 2.03,
+   "variacao_absoluta_desde_2010": 2980,
+   "pct_da_populacao_do_estado": 2.19,
+   "pct_da_area_do_estado": 3.61,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 933.0,
+     "2022": 1008.0,
+     "pct_2010": 8.53,
+     "pct_2022": 7.24
+    },
+    "Preta": {
+     "2010": 459.0,
+     "2022": 534.0,
+     "pct_2010": 4.19,
+     "pct_2022": 3.84
+    },
+    "Amarela": {
+     "2010": 80.0,
+     "2022": 6.0,
+     "pct_2010": 0.73,
+     "pct_2022": 0.04
+    },
+    "Parda": {
+     "2010": 4823.0,
+     "2022": 6341.0,
+     "pct_2010": 44.07,
+     "pct_2022": 45.54
+    },
+    "Indígena": {
+     "2010": 4648.0,
+     "2022": 6034.0,
+     "pct_2010": 42.47,
+     "pct_2022": 43.34
+    }
+   }
+  },
+  {
+   "ibge": "1400175",
+   "nome": "Cantá",
+   "microrregiao": "Nordeste de Roraima",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Boa Vista",
+   "populacao_2022": 18682,
+   "area_km2": 7664.831,
+   "densidade_hab_km2": 2.44,
+   "taxa_crescimento_2010_2022_aa_pct": 2.49,
+   "variacao_absoluta_desde_2010": 4780,
+   "pct_da_populacao_do_estado": 2.93,
+   "pct_da_area_do_estado": 3.43,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 1932.0,
+     "2022": 2504.0,
+     "pct_2010": 13.9,
+     "pct_2022": 13.4
+    },
+    "Preta": {
+     "2010": 703.0,
+     "2022": 1145.0,
+     "pct_2010": 5.06,
+     "pct_2022": 6.13
+    },
+    "Amarela": {
+     "2010": 111.0,
+     "2022": 5.0,
+     "pct_2010": 0.8,
+     "pct_2022": 0.03
+    },
+    "Parda": {
+     "2010": 9427.0,
+     "2022": 10536.0,
+     "pct_2010": 67.81,
+     "pct_2022": 56.4
+    },
+    "Indígena": {
+     "2010": 1729.0,
+     "2022": 4492.0,
+     "pct_2010": 12.44,
+     "pct_2022": 24.04
+    }
+   }
+  },
+  {
+   "ibge": "1400209",
+   "nome": "Caracaraí",
+   "microrregiao": "Caracaraí",
+   "mesorregiao": "Sul de Roraima",
+   "regiao_imediata": "Caracaraí",
+   "populacao_2022": 20957,
+   "area_km2": 47379.903,
+   "densidade_hab_km2": 0.44,
+   "taxa_crescimento_2010_2022_aa_pct": 1.09,
+   "variacao_absoluta_desde_2010": 2559,
+   "pct_da_populacao_do_estado": 3.29,
+   "pct_da_area_do_estado": 21.19,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 2852.0,
+     "2022": 3380.0,
+     "pct_2010": 15.5,
+     "pct_2022": 16.13
+    },
+    "Preta": {
+     "2010": 1344.0,
+     "2022": 1782.0,
+     "pct_2010": 7.31,
+     "pct_2022": 8.5
+    },
+    "Amarela": {
+     "2010": 135.0,
+     "2022": 51.0,
+     "pct_2010": 0.73,
+     "pct_2022": 0.24
+    },
+    "Parda": {
+     "2010": 13577.0,
+     "2022": 14507.0,
+     "pct_2010": 73.8,
+     "pct_2022": 69.22
+    },
+    "Indígena": {
+     "2010": 490.0,
+     "2022": 1237.0,
+     "pct_2010": 2.66,
+     "pct_2022": 5.9
+    }
+   }
+  },
+  {
+   "ibge": "1400233",
+   "nome": "Caroebe",
+   "microrregiao": "Sudeste de Roraima",
+   "mesorregiao": "Sul de Roraima",
+   "regiao_imediata": "Rorainópolis",
+   "populacao_2022": 10656,
+   "area_km2": 12065.896,
+   "densidade_hab_km2": 0.88,
+   "taxa_crescimento_2010_2022_aa_pct": 2.3,
+   "variacao_absoluta_desde_2010": 2542,
+   "pct_da_populacao_do_estado": 1.67,
+   "pct_da_area_do_estado": 5.4,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 1901.0,
+     "2022": 2424.0,
+     "pct_2010": 23.43,
+     "pct_2022": 22.75
+    },
+    "Preta": {
+     "2010": 327.0,
+     "2022": 1057.0,
+     "pct_2010": 4.03,
+     "pct_2022": 9.92
+    },
+    "Amarela": {
+     "2010": 28.0,
+     "2022": 2.0,
+     "pct_2010": 0.35,
+     "pct_2022": 0.02
+    },
+    "Parda": {
+     "2010": 5406.0,
+     "2022": 6363.0,
+     "pct_2010": 66.63,
+     "pct_2022": 59.71
+    },
+    "Indígena": {
+     "2010": 452.0,
+     "2022": 810.0,
+     "pct_2010": 5.57,
+     "pct_2022": 7.6
+    }
+   }
+  },
+  {
+   "ibge": "1400282",
+   "nome": "Iracema",
+   "microrregiao": "Caracaraí",
+   "mesorregiao": "Sul de Roraima",
+   "regiao_imediata": "Caracaraí",
+   "populacao_2022": 10023,
+   "area_km2": 14011.695,
+   "densidade_hab_km2": 0.72,
+   "taxa_crescimento_2010_2022_aa_pct": 1.19,
+   "variacao_absoluta_desde_2010": 1327,
+   "pct_da_populacao_do_estado": 1.57,
+   "pct_da_area_do_estado": 6.27,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 1570.0,
+     "2022": 1388.0,
+     "pct_2010": 18.05,
+     "pct_2022": 13.85
+    },
+    "Preta": {
+     "2010": 517.0,
+     "2022": 989.0,
+     "pct_2010": 5.95,
+     "pct_2022": 9.87
+    },
+    "Amarela": {
+     "2010": 89.0,
+     "2022": 10.0,
+     "pct_2010": 1.02,
+     "pct_2022": 0.1
+    },
+    "Parda": {
+     "2010": 4954.0,
+     "2022": 5902.0,
+     "pct_2010": 56.97,
+     "pct_2022": 58.88
+    },
+    "Indígena": {
+     "2010": 1566.0,
+     "2022": 1734.0,
+     "pct_2010": 18.01,
+     "pct_2022": 17.3
+    }
+   }
+  },
+  {
+   "ibge": "1400308",
+   "nome": "Mucajaí",
+   "microrregiao": "Caracaraí",
+   "mesorregiao": "Sul de Roraima",
+   "regiao_imediata": "Boa Vista",
+   "populacao_2022": 18095,
+   "area_km2": 12337.851,
+   "densidade_hab_km2": 1.47,
+   "taxa_crescimento_2010_2022_aa_pct": 1.69,
+   "variacao_absoluta_desde_2010": 3303,
+   "pct_da_populacao_do_estado": 2.84,
+   "pct_da_area_do_estado": 5.52,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 2527.0,
+     "2022": 3166.0,
+     "pct_2010": 17.08,
+     "pct_2022": 17.5
+    },
+    "Preta": {
+     "2010": 718.0,
+     "2022": 1300.0,
+     "pct_2010": 4.85,
+     "pct_2022": 7.18
+    },
+    "Amarela": {
+     "2010": 124.0,
+     "2022": 7.0,
+     "pct_2010": 0.84,
+     "pct_2022": 0.04
+    },
+    "Parda": {
+     "2010": 10887.0,
+     "2022": 12888.0,
+     "pct_2010": 73.6,
+     "pct_2022": 71.22
+    },
+    "Indígena": {
+     "2010": 536.0,
+     "2022": 734.0,
+     "pct_2010": 3.62,
+     "pct_2022": 4.06
+    }
+   }
+  },
+  {
+   "ibge": "1400407",
+   "nome": "Normandia",
+   "microrregiao": "Nordeste de Roraima",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Pacaraima",
+   "populacao_2022": 13986,
+   "area_km2": 6959.868,
+   "densidade_hab_km2": 2.01,
+   "taxa_crescimento_2010_2022_aa_pct": 3.8,
+   "variacao_absoluta_desde_2010": 5046,
+   "pct_da_populacao_do_estado": 2.2,
+   "pct_da_area_do_estado": 3.11,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 363.0,
+     "2022": 415.0,
+     "pct_2010": 4.06,
+     "pct_2022": 2.97
+    },
+    "Preta": {
+     "2010": 58.0,
+     "2022": 135.0,
+     "pct_2010": 0.65,
+     "pct_2022": 0.97
+    },
+    "Amarela": {
+     "2010": 11.0,
+     "2022": 2.0,
+     "pct_2010": 0.12,
+     "pct_2022": 0.01
+    },
+    "Parda": {
+     "2010": 3417.0,
+     "2022": 2788.0,
+     "pct_2010": 38.22,
+     "pct_2022": 19.93
+    },
+    "Indígena": {
+     "2010": 5091.0,
+     "2022": 10646.0,
+     "pct_2010": 56.95,
+     "pct_2022": 76.12
+    }
+   }
+  },
+  {
+   "ibge": "1400456",
+   "nome": "Pacaraima",
+   "microrregiao": "Boa Vista",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Pacaraima",
+   "populacao_2022": 19305,
+   "area_km2": 8025.045,
+   "densidade_hab_km2": 2.41,
+   "taxa_crescimento_2010_2022_aa_pct": 5.26,
+   "variacao_absoluta_desde_2010": 8872,
+   "pct_da_populacao_do_estado": 3.03,
+   "pct_da_area_do_estado": 3.59,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 1202.0,
+     "2022": 2655.0,
+     "pct_2010": 11.52,
+     "pct_2022": 13.75
+    },
+    "Preta": {
+     "2010": 272.0,
+     "2022": 902.0,
+     "pct_2010": 2.61,
+     "pct_2022": 4.67
+    },
+    "Amarela": {
+     "2010": 39.0,
+     "2022": 7.0,
+     "pct_2010": 0.37,
+     "pct_2022": 0.04
+    },
+    "Parda": {
+     "2010": 3135.0,
+     "2022": 4871.0,
+     "pct_2010": 30.05,
+     "pct_2022": 25.23
+    },
+    "Indígena": {
+     "2010": 5785.0,
+     "2022": 10147.0,
+     "pct_2010": 55.45,
+     "pct_2022": 52.56
+    }
+   }
+  },
+  {
+   "ibge": "1400472",
+   "nome": "Rorainópolis",
+   "microrregiao": "Sudeste de Roraima",
+   "mesorregiao": "Sul de Roraima",
+   "regiao_imediata": "Rorainópolis",
+   "populacao_2022": 32647,
+   "area_km2": 33579.739,
+   "densidade_hab_km2": 0.97,
+   "taxa_crescimento_2010_2022_aa_pct": 2.5,
+   "variacao_absoluta_desde_2010": 8368,
+   "pct_da_populacao_do_estado": 5.13,
+   "pct_da_area_do_estado": 15.01,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 4781.0,
+     "2022": 5988.0,
+     "pct_2010": 19.69,
+     "pct_2022": 18.34
+    },
+    "Preta": {
+     "2010": 1945.0,
+     "2022": 3015.0,
+     "pct_2010": 8.01,
+     "pct_2022": 9.24
+    },
+    "Amarela": {
+     "2010": 319.0,
+     "2022": 50.0,
+     "pct_2010": 1.31,
+     "pct_2022": 0.15
+    },
+    "Parda": {
+     "2010": 16696.0,
+     "2022": 22762.0,
+     "pct_2010": 68.77,
+     "pct_2022": 69.72
+    },
+    "Indígena": {
+     "2010": 538.0,
+     "2022": 832.0,
+     "pct_2010": 2.22,
+     "pct_2022": 2.55
+    }
+   }
+  },
+  {
+   "ibge": "1400506",
+   "nome": "São João da Baliza",
+   "microrregiao": "Sudeste de Roraima",
+   "mesorregiao": "Sul de Roraima",
+   "regiao_imediata": "Rorainópolis",
+   "populacao_2022": 8858,
+   "area_km2": 4284.505,
+   "densidade_hab_km2": 2.07,
+   "taxa_crescimento_2010_2022_aa_pct": 2.27,
+   "variacao_absoluta_desde_2010": 2089,
+   "pct_da_populacao_do_estado": 1.39,
+   "pct_da_area_do_estado": 1.92,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 1500.0,
+     "2022": 1855.0,
+     "pct_2010": 22.16,
+     "pct_2022": 20.94
+    },
+    "Preta": {
+     "2010": 697.0,
+     "2022": 1030.0,
+     "pct_2010": 10.3,
+     "pct_2022": 11.63
+    },
+    "Amarela": {
+     "2010": 75.0,
+     "2022": 5.0,
+     "pct_2010": 1.11,
+     "pct_2022": 0.06
+    },
+    "Parda": {
+     "2010": 4207.0,
+     "2022": 5429.0,
+     "pct_2010": 62.15,
+     "pct_2022": 61.29
+    },
+    "Indígena": {
+     "2010": 290.0,
+     "2022": 539.0,
+     "pct_2010": 4.28,
+     "pct_2022": 6.08
+    }
+   }
+  },
+  {
+   "ibge": "1400605",
+   "nome": "São Luiz do Anauá",
+   "microrregiao": "Sudeste de Roraima",
+   "mesorregiao": "Sul de Roraima",
+   "regiao_imediata": "Rorainópolis",
+   "populacao_2022": 7315,
+   "area_km2": 1526.898,
+   "densidade_hab_km2": 4.79,
+   "taxa_crescimento_2010_2022_aa_pct": 0.67,
+   "variacao_absoluta_desde_2010": 565,
+   "pct_da_populacao_do_estado": 1.15,
+   "pct_da_area_do_estado": 0.68,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 2002.0,
+     "2022": 1514.0,
+     "pct_2010": 29.66,
+     "pct_2022": 20.7
+    },
+    "Preta": {
+     "2010": 643.0,
+     "2022": 899.0,
+     "pct_2010": 9.53,
+     "pct_2022": 12.29
+    },
+    "Amarela": {
+     "2010": 193.0,
+     "2022": 12.0,
+     "pct_2010": 2.86,
+     "pct_2022": 0.16
+    },
+    "Parda": {
+     "2010": 3890.0,
+     "2022": 4860.0,
+     "pct_2010": 57.63,
+     "pct_2022": 66.44
+    },
+    "Indígena": {
+     "2010": 22.0,
+     "2022": 30.0,
+     "pct_2010": 0.33,
+     "pct_2022": 0.41
+    }
+   }
+  },
+  {
+   "ibge": "1400704",
+   "nome": "Uiramutã",
+   "microrregiao": "Nordeste de Roraima",
+   "mesorregiao": "Norte de Roraima",
+   "regiao_imediata": "Pacaraima",
+   "populacao_2022": 13751,
+   "area_km2": 8113.598,
+   "densidade_hab_km2": 1.69,
+   "taxa_crescimento_2010_2022_aa_pct": 4.22,
+   "variacao_absoluta_desde_2010": 5376,
+   "pct_da_populacao_do_estado": 2.16,
+   "pct_da_area_do_estado": 3.63,
+   "cor_ou_raca": {
+    "Branca": {
+     "2010": 72.0,
+     "2022": 136.0,
+     "pct_2010": 0.86,
+     "pct_2022": 0.99
+    },
+    "Preta": {
+     "2010": 129.0,
+     "2022": 51.0,
+     "pct_2010": 1.54,
+     "pct_2022": 0.37
+    },
+    "Amarela": {
+     "2010": 22.0,
+     "2022": 3.0,
+     "pct_2010": 0.26,
+     "pct_2022": 0.02
+    },
+    "Parda": {
+     "2010": 770.0,
+     "2022": 573.0,
+     "pct_2010": 9.19,
+     "pct_2022": 4.17
+    },
+    "Indígena": {
+     "2010": 7382.0,
+     "2022": 12988.0,
+     "pct_2010": 88.14,
+     "pct_2022": 94.45
+    }
+   }
+  }
+ ]
+}

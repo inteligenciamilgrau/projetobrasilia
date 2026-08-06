@@ -50,9 +50,24 @@ CMP.escuro = () =>
 
 CMP.paleta = () => (CMP.escuro() ? CMP.manifesto.paleta.escura : CMP.manifesto.paleta.clara);
 
+// COR POR ORDEM DE ESCOLHA, não por índice fixo da cidade.
+//
+// Enquanto o manifesto tinha 4 cidades, cada uma podia ter um tom fixo e a
+// regra "a cor segue a entidade, não o posto" valia inteira: nenhuma cidade
+// trocava de cor quando outra entrava ou saía. Com os 15 municípios de Roraima
+// o manifesto passou a 19 cidades e 4 tons validados, e aquela regra virou
+// impossível de cumprir — a fórmula antiga era `cor_indice % 4`, então escolher
+// Itajubá (0) junto com o 5º município da lista (4) devolvia A MESMA COR para
+// as duas, e o gráfico ficava ilegível.
+//
+// Entre "cor estável entre comparações" e "cores distintas DENTRO da comparação
+// em cartaz", a segunda é a que decide se o gráfico pode ser lido. É ela que
+// fica. A identidade continua explícita em dois lugares que acompanham a
+// escolha: o quadradinho ao lado de cada seletor e a legenda de cada gráfico.
 CMP.cor = function (cidade) {
   const p = CMP.paleta();
-  return p[cidade.cor_indice % p.length];
+  const i = CMP.slugs.indexOf(cidade.slug);
+  return p[(i < 0 ? 0 : i) % p.length];
 };
 
 // Teto de cidades simultâneas: o número de tons categóricos validados. Não é
@@ -724,6 +739,42 @@ function rodar() {
   comparar(CMP.slugs.map(acharCidade).filter(Boolean));
 }
 
+// O parágrafo de inventário se conta sozinho. Escrito à mão ele já ficou errado
+// uma vez: dizia "quatro cidades" e "onze combinações" depois que o manifesto
+// passou a ter dezenove. Número que descreve o manifesto sai do manifesto.
+function escreverInventario() {
+  const alvo = document.getElementById("cmp-inventario");
+  if (!alvo) return;
+  const cs = CMP.manifesto.cidades;
+  const teto = CMP.maxCidades();
+  const comb = (n, k) => {
+    let r = 1;
+    for (let i = 0; i < k; i++) r = r * (n - i) / (i + 1);
+    return Math.round(r);
+  };
+  let total = 0;
+  for (let k = 2; k <= Math.min(teto, cs.length); k++) total += comb(cs.length, k);
+
+  const porRecorte = new Map();
+  cs.forEach(c => {
+    const k = c.recorte || "escolhidas";
+    porRecorte.set(k, (porRecorte.get(k) || 0) + 1);
+  });
+  const rec = CMP.manifesto.recortes || [];
+  const grupos = [...porRecorte.entries()].map(([k, n]) => {
+    const meta = rec.find(r => r.id === k);
+    return meta ? `${n} de ${meta.titulo.split("—")[0].trim()}` : `${n} escolhida${n > 1 ? "s" : ""} uma a uma`;
+  });
+
+  const ufs = [...new Set(cs.map(c => c.uf))].sort();
+  alvo.innerHTML = `O piloto tem <strong>${cs.length} cidades</strong> no manifesto —
+    ${listar(grupos)} —, em ${ufs.length} unidades da federação (${ufs.join(", ")}). Escolhendo de 2 a ${teto}
+    por vez, isso dá <strong>${total.toLocaleString("pt-BR")} combinações</strong> possíveis.
+    A lista dos seletores acima <em>não está escrita no código</em>: vem de <code>dados/cidades.json</code>.
+    Os 15 municípios de Roraima foram acrescentados só àquele arquivo e apareceram aqui sozinhos, sem
+    nenhuma alteração nesta página — do mesmo jeito que Barra Bonita e Florianópolis antes deles.`;
+}
+
 function iniciar() {
   fetch("../dados/cidades.json").then(r => r.json()).then(m => {
     CMP.manifesto = m;
@@ -744,6 +795,7 @@ function iniciar() {
 
     // Trocar de tema repinta as séries: a cor identifica a cidade nos dois modos.
     matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rodar);
+    escreverInventario();
     rodar();
   }).catch(() => {
     document.getElementById("resultado").innerHTML =
