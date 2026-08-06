@@ -1,0 +1,3426 @@
+{
+ "titulo": "Roraima — pontos de observação para a linha do tempo migratória",
+ "coletado_em": "2026-08-05",
+ "como_ler": "Quatro fotos de Censo, não uma série contínua. Entre um Censo e outro o IBGE não mede origem de migrante, então a animação salta de observação em observação em vez de interpolar: movimento desenhado entre dois pontos medidos seria invenção com aparência de dado.",
+ "fontes": {
+  "presenca_e_populacao": "IBGE — Censos Demográficos, tabelas SIDRA 200 (1991), 202 (2000), 1378 (2010) e 4709 (2022)",
+  "setas": "IBGE — Censo 2010, tabela SIDRA 3190: 'Pessoas que residiam há menos de 10 anos ininterruptos na Unidade da Federação, por lugar de residência anterior', no nível de município (N6)",
+  "exterior": "IBGE — Censo 2010, tabela SIDRA 3192, país de residência anterior",
+  "estrangeiros_2022": "IBGE — Censo 2022, tabela SIDRA 10157, população residente por nacionalidade",
+  "geometria_das_origens": "IBGE — API de malhas v4, contorno do Brasil subdividido em UF, qualidade mínima"
+ },
+ "urls": {
+  "setas": "https://servicodados.ibge.gov.br/api/v3/agregados/3190/periodos/2010/variaveis/1440?localidades=N6[1400050,1400027,1400100,1400159,1400175,1400209,1400233,1400282,1400308,1400407,1400456,1400472,1400506,1400605,1400704]&classificacao=3014[all]",
+  "exterior": "https://servicodados.ibge.gov.br/api/v3/agregados/3192/periodos/2010/variaveis/1440?localidades=N6[1400050,1400027,1400100,1400159,1400175,1400209,1400233,1400282,1400308,1400407,1400456,1400472,1400506,1400605,1400704]&classificacao=507[all]",
+  "estrangeiros_2022": "https://servicodados.ibge.gov.br/api/v3/agregados/10157/periodos/2022/variaveis/93?localidades=N6[1400050,1400027,1400100,1400159,1400175,1400209,1400233,1400282,1400308,1400407,1400456,1400472,1400506,1400605,1400704]&classificacao=302[6833]"
+ },
+ "o_que_nao_existe": [
+  {
+   "assunto": "Origem dos migrantes no Censo 2022",
+   "situacao": "não publicado",
+   "detalhe": "O Censo 2022 publicou tempo de residência (tabelas 10158 e 3182) mas NÃO a origem por unidade da federação ou país no nível de município. A última matriz de origem que existe é a de 2010. Por isso a chegada venezuelana — o movimento mais recente e mais visível de Roraima — aparece nesta página como CONTAGEM DE ESTRANGEIROS residentes em 2022, sem seta e sem país de origem: a seta não seria dado, seria suposição desenhada."
+  },
+  {
+   "assunto": "Período colonial e fundação de Boa Vista",
+   "situacao": "fora do alcance destas fontes",
+   "detalhe": "Forte São Joaquim, as entradas do século XVIII, a criação da freguesia — nada disso está em API do IBGE ou do Tesouro. Seriam datas de bibliografia, e este projeto só publica o que consegue buscar e conferir por conta própria. A linha do tempo começa onde começa a medição: no Censo."
+  },
+  {
+   "assunto": "Censos de 1970 e 1980 por município",
+   "situacao": "erro na fonte",
+   "detalhe": "As tabelas 1286 e 1287 devolvem HTTP 500 para o nível de município. Testado, não omitido."
+  },
+  {
+   "assunto": "Movimento ano a ano",
+   "situacao": "impossível com estas fontes",
+   "detalhe": "Origem de migrante só é medida em Censo, de dez em dez anos. Animar o deslocamento ano a ano entre dois Censos daria ao leitor a impressão de uma medição que não houve."
+  }
+ ],
+ "ano_das_setas": 2010,
+ "pontos": [
+  {
+   "ano": 1991,
+   "municipios_existentes": 8,
+   "populacao_do_estado": 217583
+  },
+  {
+   "ano": 2000,
+   "municipios_existentes": 15,
+   "populacao_do_estado": 324397
+  },
+  {
+   "ano": 2010,
+   "municipios_existentes": 15,
+   "populacao_do_estado": 450479
+  },
+  {
+   "ano": 2022,
+   "municipios_existentes": 15,
+   "populacao_do_estado": 636707
+  }
+ ],
+ "municipios": [
+  {
+   "ibge": "1400050",
+   "nome": "Alto Alegre",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 11211,
+    "2000": 17907,
+    "2010": 16448,
+    "2022": 21096
+   },
+   "indigena_pct_2010": 45.87,
+   "indigena_pct_2022": 58.34,
+   "estrangeiros_2022": 691,
+   "vindos_de_fora_2010": 846,
+   "exterior_2010": 846
+  },
+  {
+   "ibge": "1400027",
+   "nome": "Amajari",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 2000,
+   "populacao_por_censo": {
+    "1991": null,
+    "2000": 5294,
+    "2010": 9327,
+    "2022": 13927
+   },
+   "indigena_pct_2010": 53.76,
+   "indigena_pct_2022": 65.51,
+   "estrangeiros_2022": 504,
+   "vindos_de_fora_2010": 442,
+   "exterior_2010": 442
+  },
+  {
+   "ibge": "1400100",
+   "nome": "Boa Vista",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 144249,
+    "2000": 200568,
+    "2010": 284313,
+    "2022": 413486
+   },
+   "indigena_pct_2010": 3.01,
+   "indigena_pct_2022": 4.41,
+   "estrangeiros_2022": 59788,
+   "vindos_de_fora_2010": 43322,
+   "exterior_2010": 43322
+  },
+  {
+   "ibge": "1400159",
+   "nome": "Bonfim",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 9478,
+    "2000": 9326,
+    "2010": 10943,
+    "2022": 13923
+   },
+   "indigena_pct_2010": 42.47,
+   "indigena_pct_2022": 43.34,
+   "estrangeiros_2022": 708,
+   "vindos_de_fora_2010": 851,
+   "exterior_2010": 851
+  },
+  {
+   "ibge": "1400175",
+   "nome": "Cantá",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 2000,
+   "populacao_por_censo": {
+    "1991": null,
+    "2000": 8571,
+    "2010": 13902,
+    "2022": 18682
+   },
+   "indigena_pct_2010": 12.44,
+   "indigena_pct_2022": 24.04,
+   "estrangeiros_2022": 1610,
+   "vindos_de_fora_2010": 1579,
+   "exterior_2010": 1579
+  },
+  {
+   "ibge": "1400209",
+   "nome": "Caracaraí",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 8900,
+    "2000": 14286,
+    "2010": 18398,
+    "2022": 20957
+   },
+   "indigena_pct_2010": 2.66,
+   "indigena_pct_2022": 5.9,
+   "estrangeiros_2022": 358,
+   "vindos_de_fora_2010": 2823,
+   "exterior_2010": 2823
+  },
+  {
+   "ibge": "1400233",
+   "nome": "Caroebe",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 2000,
+   "populacao_por_censo": {
+    "1991": null,
+    "2000": 5692,
+    "2010": 8114,
+    "2022": 10656
+   },
+   "indigena_pct_2010": 5.57,
+   "indigena_pct_2022": 7.6,
+   "estrangeiros_2022": 558,
+   "vindos_de_fora_2010": 1759,
+   "exterior_2010": 1759
+  },
+  {
+   "ibge": "1400282",
+   "nome": "Iracema",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 2000,
+   "populacao_por_censo": {
+    "1991": null,
+    "2000": 4781,
+    "2010": 8696,
+    "2022": 10023
+   },
+   "indigena_pct_2010": 18.01,
+   "indigena_pct_2022": 17.3,
+   "estrangeiros_2022": 331,
+   "vindos_de_fora_2010": 1356,
+   "exterior_2010": 1356
+  },
+  {
+   "ibge": "1400308",
+   "nome": "Mucajaí",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 13308,
+    "2000": 11247,
+    "2010": 14792,
+    "2022": 18095
+   },
+   "indigena_pct_2010": 3.62,
+   "indigena_pct_2022": 4.06,
+   "estrangeiros_2022": 1421,
+   "vindos_de_fora_2010": 1956,
+   "exterior_2010": 1956
+  },
+  {
+   "ibge": "1400407",
+   "nome": "Normandia",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 11188,
+    "2000": 6138,
+    "2010": 8940,
+    "2022": 13986
+   },
+   "indigena_pct_2010": 56.95,
+   "indigena_pct_2022": 76.12,
+   "estrangeiros_2022": 270,
+   "vindos_de_fora_2010": 181,
+   "exterior_2010": 181
+  },
+  {
+   "ibge": "1400456",
+   "nome": "Pacaraima",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 2000,
+   "populacao_por_censo": {
+    "1991": null,
+    "2000": 6990,
+    "2010": 10433,
+    "2022": 19305
+   },
+   "indigena_pct_2010": 55.45,
+   "indigena_pct_2022": 52.56,
+   "estrangeiros_2022": 6817,
+   "vindos_de_fora_2010": 1137,
+   "exterior_2010": 1137
+  },
+  {
+   "ibge": "1400472",
+   "nome": "Rorainópolis",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 2000,
+   "populacao_por_censo": {
+    "1991": null,
+    "2000": 17393,
+    "2010": 24279,
+    "2022": 32647
+   },
+   "indigena_pct_2010": 2.22,
+   "indigena_pct_2022": 2.55,
+   "estrangeiros_2022": 2364,
+   "vindos_de_fora_2010": 5393,
+   "exterior_2010": 5393
+  },
+  {
+   "ibge": "1400506",
+   "nome": "São João da Baliza",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 10143,
+    "2000": 5091,
+    "2010": 6769,
+    "2022": 8858
+   },
+   "indigena_pct_2010": 4.28,
+   "indigena_pct_2022": 6.08,
+   "estrangeiros_2022": 557,
+   "vindos_de_fora_2010": 1233,
+   "exterior_2010": 1233
+  },
+  {
+   "ibge": "1400605",
+   "nome": "São Luiz do Anauá",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 1991,
+   "populacao_por_censo": {
+    "1991": 9106,
+    "2000": 5311,
+    "2010": 6750,
+    "2022": 7315
+   },
+   "indigena_pct_2010": 0.33,
+   "indigena_pct_2022": 0.41,
+   "estrangeiros_2022": 758,
+   "vindos_de_fora_2010": 783,
+   "exterior_2010": 783
+  },
+  {
+   "ibge": "1400704",
+   "nome": "Uiramutã",
+   "rotulo_lon": null,
+   "rotulo_lat": null,
+   "primeiro_censo": 2000,
+   "populacao_por_censo": {
+    "1991": null,
+    "2000": 5802,
+    "2010": 8375,
+    "2022": 13751
+   },
+   "indigena_pct_2010": 88.14,
+   "indigena_pct_2022": 94.45,
+   "estrangeiros_2022": 44,
+   "vindos_de_fora_2010": 100,
+   "exterior_2010": 100
+  }
+ ],
+ "fluxos_2010": [
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 261,
+   "pct_do_fluxo_do_municipio": 30.9
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 234,
+   "pct_do_fluxo_do_municipio": 27.7
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 121,
+   "pct_do_fluxo_do_municipio": 14.3
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 64,
+   "pct_do_fluxo_do_municipio": 7.6
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 47,
+   "pct_do_fluxo_do_municipio": 5.6
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 34,
+   "pct_do_fluxo_do_municipio": 4.0
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 21,
+   "pct_do_fluxo_do_municipio": 2.5
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 20,
+   "pct_do_fluxo_do_municipio": 2.4
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Sem declaração",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Espírito Santo",
+   "origem_uf": "32",
+   "origem_lon": -40.6726,
+   "origem_lat": -19.5732,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400050",
+   "destino": "Alto Alegre",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 127,
+   "pct_do_fluxo_do_municipio": 28.7
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 124,
+   "pct_do_fluxo_do_municipio": 28.1
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 101,
+   "pct_do_fluxo_do_municipio": 22.9
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 31,
+   "pct_do_fluxo_do_municipio": 7.0
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 3.4
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 14,
+   "pct_do_fluxo_do_municipio": 3.2
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 8,
+   "pct_do_fluxo_do_municipio": 1.8
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 1.4
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 1.4
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400027",
+   "destino": "Amajari",
+   "origem": "Espírito Santo",
+   "origem_uf": "32",
+   "origem_lon": -40.6726,
+   "origem_lat": -19.5732,
+   "pessoas": 2,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 9646,
+   "pct_do_fluxo_do_municipio": 22.3
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 9101,
+   "pct_do_fluxo_do_municipio": 21.0
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 7461,
+   "pct_do_fluxo_do_municipio": 17.2
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 1824,
+   "pct_do_fluxo_do_municipio": 4.2
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 1643,
+   "pct_do_fluxo_do_municipio": 3.8
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 1205,
+   "pct_do_fluxo_do_municipio": 2.8
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 1163,
+   "pct_do_fluxo_do_municipio": 2.7
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 997,
+   "pct_do_fluxo_do_municipio": 2.3
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 929,
+   "pct_do_fluxo_do_municipio": 2.1
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 855,
+   "pct_do_fluxo_do_municipio": 2.0
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 775,
+   "pct_do_fluxo_do_municipio": 1.8
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 766,
+   "pct_do_fluxo_do_municipio": 1.8
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 706,
+   "pct_do_fluxo_do_municipio": 1.6
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 677,
+   "pct_do_fluxo_do_municipio": 1.6
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Distrito Federal",
+   "origem_uf": "53",
+   "origem_lon": -47.7968,
+   "origem_lat": -15.7804,
+   "pessoas": 646,
+   "pct_do_fluxo_do_municipio": 1.5
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 639,
+   "pct_do_fluxo_do_municipio": 1.5
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 554,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 536,
+   "pct_do_fluxo_do_municipio": 1.2
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 528,
+   "pct_do_fluxo_do_municipio": 1.2
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Mato Grosso do Sul",
+   "origem_uf": "50",
+   "origem_lon": -54.8447,
+   "origem_lat": -20.3272,
+   "pessoas": 518,
+   "pct_do_fluxo_do_municipio": 1.2
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 457,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 401,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 397,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 249,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Amapá",
+   "origem_uf": "16",
+   "origem_lon": -51.9594,
+   "origem_lat": 1.4457,
+   "pessoas": 241,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Acre",
+   "origem_uf": "12",
+   "origem_lon": -70.4766,
+   "origem_lat": -9.2126,
+   "pessoas": 178,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Sergipe",
+   "origem_uf": "28",
+   "origem_lon": -37.4427,
+   "origem_lat": -10.5845,
+   "pessoas": 97,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Alagoas",
+   "origem_uf": "27",
+   "origem_lon": -36.6255,
+   "origem_lat": -9.5163,
+   "pessoas": 69,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400100",
+   "destino": "Boa Vista",
+   "origem": "Espírito Santo",
+   "origem_uf": "32",
+   "origem_lon": -40.6726,
+   "origem_lat": -19.5732,
+   "pessoas": 63,
+   "pct_do_fluxo_do_municipio": 0.1
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 250,
+   "pct_do_fluxo_do_municipio": 29.4
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 238,
+   "pct_do_fluxo_do_municipio": 28.0
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 116,
+   "pct_do_fluxo_do_municipio": 13.6
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 103,
+   "pct_do_fluxo_do_municipio": 12.1
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 57,
+   "pct_do_fluxo_do_municipio": 6.7
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 23,
+   "pct_do_fluxo_do_municipio": 2.7
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 13,
+   "pct_do_fluxo_do_municipio": 1.5
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 1.4
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 8,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Sem declaração",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400159",
+   "destino": "Bonfim",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 1,
+   "pct_do_fluxo_do_municipio": 0.1
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 475,
+   "pct_do_fluxo_do_municipio": 30.1
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 387,
+   "pct_do_fluxo_do_municipio": 24.5
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 256,
+   "pct_do_fluxo_do_municipio": 16.2
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 119,
+   "pct_do_fluxo_do_municipio": 7.5
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 60,
+   "pct_do_fluxo_do_municipio": 3.8
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 45,
+   "pct_do_fluxo_do_municipio": 2.8
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 44,
+   "pct_do_fluxo_do_municipio": 2.8
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 38,
+   "pct_do_fluxo_do_municipio": 2.4
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 32,
+   "pct_do_fluxo_do_municipio": 2.0
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Alagoas",
+   "origem_uf": "27",
+   "origem_lon": -36.6255,
+   "origem_lat": -9.5163,
+   "pessoas": 21,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 20,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 17,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 14,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 13,
+   "pct_do_fluxo_do_municipio": 0.8
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 8,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400175",
+   "destino": "Cantá",
+   "origem": "Sergipe",
+   "origem_uf": "28",
+   "origem_lon": -37.4427,
+   "origem_lat": -10.5845,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 949,
+   "pct_do_fluxo_do_municipio": 33.6
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 544,
+   "pct_do_fluxo_do_municipio": 19.3
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 474,
+   "pct_do_fluxo_do_municipio": 16.8
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 289,
+   "pct_do_fluxo_do_municipio": 10.2
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 81,
+   "pct_do_fluxo_do_municipio": 2.9
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 72,
+   "pct_do_fluxo_do_municipio": 2.6
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 56,
+   "pct_do_fluxo_do_municipio": 2.0
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 51,
+   "pct_do_fluxo_do_municipio": 1.8
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 50,
+   "pct_do_fluxo_do_municipio": 1.8
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 37,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 31,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Acre",
+   "origem_uf": "12",
+   "origem_lon": -70.4766,
+   "origem_lat": -9.2126,
+   "pessoas": 24,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 21,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Mato Grosso do Sul",
+   "origem_uf": "50",
+   "origem_lon": -54.8447,
+   "origem_lat": -20.3272,
+   "pessoas": 19,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 18,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 17,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 17,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 16,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Distrito Federal",
+   "origem_uf": "53",
+   "origem_lon": -47.7968,
+   "origem_lat": -15.7804,
+   "pessoas": 16,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Amapá",
+   "origem_uf": "16",
+   "origem_lon": -51.9594,
+   "origem_lat": 1.4457,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400209",
+   "destino": "Caracaraí",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 446,
+   "pct_do_fluxo_do_municipio": 25.4
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 340,
+   "pct_do_fluxo_do_municipio": 19.3
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 333,
+   "pct_do_fluxo_do_municipio": 18.9
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 249,
+   "pct_do_fluxo_do_municipio": 14.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 102,
+   "pct_do_fluxo_do_municipio": 5.8
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 57,
+   "pct_do_fluxo_do_municipio": 3.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Acre",
+   "origem_uf": "12",
+   "origem_lon": -70.4766,
+   "origem_lat": -9.2126,
+   "pessoas": 50,
+   "pct_do_fluxo_do_municipio": 2.8
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 24,
+   "pct_do_fluxo_do_municipio": 1.4
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 21,
+   "pct_do_fluxo_do_municipio": 1.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 20,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 19,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 19,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Mato Grosso do Sul",
+   "origem_uf": "50",
+   "origem_lon": -54.8447,
+   "origem_lat": -20.3272,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 11,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Distrito Federal",
+   "origem_uf": "53",
+   "origem_lon": -47.7968,
+   "origem_lat": -15.7804,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Amapá",
+   "origem_uf": "16",
+   "origem_lon": -51.9594,
+   "origem_lat": 1.4457,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Espírito Santo",
+   "origem_uf": "32",
+   "origem_lon": -40.6726,
+   "origem_lat": -19.5732,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400233",
+   "destino": "Caroebe",
+   "origem": "Sergipe",
+   "origem_uf": "28",
+   "origem_lon": -37.4427,
+   "origem_lat": -10.5845,
+   "pessoas": 2,
+   "pct_do_fluxo_do_municipio": 0.1
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 495,
+   "pct_do_fluxo_do_municipio": 36.5
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 272,
+   "pct_do_fluxo_do_municipio": 20.1
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 216,
+   "pct_do_fluxo_do_municipio": 15.9
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 61,
+   "pct_do_fluxo_do_municipio": 4.5
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 40,
+   "pct_do_fluxo_do_municipio": 2.9
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 37,
+   "pct_do_fluxo_do_municipio": 2.7
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 36,
+   "pct_do_fluxo_do_municipio": 2.7
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 33,
+   "pct_do_fluxo_do_municipio": 2.4
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 32,
+   "pct_do_fluxo_do_municipio": 2.4
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 27,
+   "pct_do_fluxo_do_municipio": 2.0
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 16,
+   "pct_do_fluxo_do_municipio": 1.2
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 14,
+   "pct_do_fluxo_do_municipio": 1.0
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 13,
+   "pct_do_fluxo_do_municipio": 1.0
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 7,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 7,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Amapá",
+   "origem_uf": "16",
+   "origem_lon": -51.9594,
+   "origem_lat": 1.4457,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Espírito Santo",
+   "origem_uf": "32",
+   "origem_lon": -40.6726,
+   "origem_lat": -19.5732,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400282",
+   "destino": "Iracema",
+   "origem": "Distrito Federal",
+   "origem_uf": "53",
+   "origem_lon": -47.7968,
+   "origem_lat": -15.7804,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 534,
+   "pct_do_fluxo_do_municipio": 27.3
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 406,
+   "pct_do_fluxo_do_municipio": 20.8
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 292,
+   "pct_do_fluxo_do_municipio": 14.9
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 166,
+   "pct_do_fluxo_do_municipio": 8.5
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 92,
+   "pct_do_fluxo_do_municipio": 4.7
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 61,
+   "pct_do_fluxo_do_municipio": 3.1
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 57,
+   "pct_do_fluxo_do_municipio": 2.9
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 56,
+   "pct_do_fluxo_do_municipio": 2.9
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 46,
+   "pct_do_fluxo_do_municipio": 2.4
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 26,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 26,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 25,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Mato Grosso do Sul",
+   "origem_uf": "50",
+   "origem_lon": -54.8447,
+   "origem_lat": -20.3272,
+   "pessoas": 25,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 25,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 20,
+   "pct_do_fluxo_do_municipio": 1.0
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Acre",
+   "origem_uf": "12",
+   "origem_lon": -70.4766,
+   "origem_lat": -9.2126,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 0.8
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 0.8
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 0.8
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Espírito Santo",
+   "origem_uf": "32",
+   "origem_lon": -40.6726,
+   "origem_lat": -19.5732,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400308",
+   "destino": "Mucajaí",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 55,
+   "pct_do_fluxo_do_municipio": 30.4
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 39,
+   "pct_do_fluxo_do_municipio": 21.5
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 27,
+   "pct_do_fluxo_do_municipio": 14.9
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 16,
+   "pct_do_fluxo_do_municipio": 8.8
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 11,
+   "pct_do_fluxo_do_municipio": 6.1
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 5.0
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 3.3
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 2.8
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 2.8
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 2.2
+  },
+  {
+   "destino_ibge": "1400407",
+   "destino": "Normandia",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 1.7
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 230,
+   "pct_do_fluxo_do_municipio": 20.2
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 196,
+   "pct_do_fluxo_do_municipio": 17.2
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 144,
+   "pct_do_fluxo_do_municipio": 12.7
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 117,
+   "pct_do_fluxo_do_municipio": 10.3
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 111,
+   "pct_do_fluxo_do_municipio": 9.8
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 90,
+   "pct_do_fluxo_do_municipio": 7.9
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 55,
+   "pct_do_fluxo_do_municipio": 4.8
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 54,
+   "pct_do_fluxo_do_municipio": 4.7
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 35,
+   "pct_do_fluxo_do_municipio": 3.1
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 24,
+   "pct_do_fluxo_do_municipio": 2.1
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Amapá",
+   "origem_uf": "16",
+   "origem_lon": -51.9594,
+   "origem_lat": 1.4457,
+   "pessoas": 19,
+   "pct_do_fluxo_do_municipio": 1.7
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 18,
+   "pct_do_fluxo_do_municipio": 1.6
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 1.1
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Sem declaração",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 8,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400456",
+   "destino": "Pacaraima",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 1620,
+   "pct_do_fluxo_do_municipio": 30.0
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 1250,
+   "pct_do_fluxo_do_municipio": 23.2
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 1054,
+   "pct_do_fluxo_do_municipio": 19.5
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 359,
+   "pct_do_fluxo_do_municipio": 6.7
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 229,
+   "pct_do_fluxo_do_municipio": 4.2
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 163,
+   "pct_do_fluxo_do_municipio": 3.0
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 109,
+   "pct_do_fluxo_do_municipio": 2.0
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 105,
+   "pct_do_fluxo_do_municipio": 1.9
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Acre",
+   "origem_uf": "12",
+   "origem_lon": -70.4766,
+   "origem_lat": -9.2126,
+   "pessoas": 89,
+   "pct_do_fluxo_do_municipio": 1.7
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 77,
+   "pct_do_fluxo_do_municipio": 1.4
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 76,
+   "pct_do_fluxo_do_municipio": 1.4
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 42,
+   "pct_do_fluxo_do_municipio": 0.8
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 41,
+   "pct_do_fluxo_do_municipio": 0.8
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Alagoas",
+   "origem_uf": "27",
+   "origem_lon": -36.6255,
+   "origem_lat": -9.5163,
+   "pessoas": 33,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 31,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 23,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 21,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 19,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 11,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400472",
+   "destino": "Rorainópolis",
+   "origem": "Mato Grosso do Sul",
+   "origem_uf": "50",
+   "origem_lon": -54.8447,
+   "origem_lat": -20.3272,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 298,
+   "pct_do_fluxo_do_municipio": 24.2
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 293,
+   "pct_do_fluxo_do_municipio": 23.8
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 147,
+   "pct_do_fluxo_do_municipio": 11.9
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 122,
+   "pct_do_fluxo_do_municipio": 9.9
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 84,
+   "pct_do_fluxo_do_municipio": 6.8
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 76,
+   "pct_do_fluxo_do_municipio": 6.2
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 32,
+   "pct_do_fluxo_do_municipio": 2.6
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 23,
+   "pct_do_fluxo_do_municipio": 1.9
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 22,
+   "pct_do_fluxo_do_municipio": 1.8
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 22,
+   "pct_do_fluxo_do_municipio": 1.8
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Rio Grande do Norte",
+   "origem_uf": "24",
+   "origem_lon": -36.6727,
+   "origem_lat": -5.8383,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 1.0
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 1.0
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Mato Grosso do Sul",
+   "origem_uf": "50",
+   "origem_lon": -54.8447,
+   "origem_lat": -20.3272,
+   "pessoas": 11,
+   "pct_do_fluxo_do_municipio": 0.9
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Rio de Janeiro",
+   "origem_uf": "33",
+   "origem_lon": -42.6672,
+   "origem_lat": -22.1968,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 9,
+   "pct_do_fluxo_do_municipio": 0.7
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Sergipe",
+   "origem_uf": "28",
+   "origem_lon": -37.4427,
+   "origem_lat": -10.5845,
+   "pessoas": 8,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Rio Grande do Sul",
+   "origem_uf": "43",
+   "origem_lon": -53.3154,
+   "origem_lat": -29.71,
+   "pessoas": 7,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Distrito Federal",
+   "origem_uf": "53",
+   "origem_lon": -47.7968,
+   "origem_lat": -15.7804,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.4
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Acre",
+   "origem_uf": "12",
+   "origem_lon": -70.4766,
+   "origem_lat": -9.2126,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400506",
+   "destino": "São João da Baliza",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 3,
+   "pct_do_fluxo_do_municipio": 0.2
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 283,
+   "pct_do_fluxo_do_municipio": 36.1
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 91,
+   "pct_do_fluxo_do_municipio": 11.6
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Pará",
+   "origem_uf": "15",
+   "origem_lon": -53.0725,
+   "origem_lat": -3.9832,
+   "pessoas": 78,
+   "pct_do_fluxo_do_municipio": 10.0
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 73,
+   "pct_do_fluxo_do_municipio": 9.3
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 47,
+   "pct_do_fluxo_do_municipio": 6.0
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Rondônia",
+   "origem_uf": "11",
+   "origem_lon": -62.8416,
+   "origem_lat": -10.9102,
+   "pessoas": 33,
+   "pct_do_fluxo_do_municipio": 4.2
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Tocantins",
+   "origem_uf": "17",
+   "origem_lon": -48.3317,
+   "origem_lat": -10.1491,
+   "pessoas": 25,
+   "pct_do_fluxo_do_municipio": 3.2
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Goiás",
+   "origem_uf": "52",
+   "origem_lon": -49.6235,
+   "origem_lat": -16.0407,
+   "pessoas": 21,
+   "pct_do_fluxo_do_municipio": 2.7
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Piauí",
+   "origem_uf": "22",
+   "origem_lon": -42.9691,
+   "origem_lat": -7.3863,
+   "pessoas": 20,
+   "pct_do_fluxo_do_municipio": 2.6
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Distrito Federal",
+   "origem_uf": "53",
+   "origem_lon": -47.7968,
+   "origem_lat": -15.7804,
+   "pessoas": 20,
+   "pct_do_fluxo_do_municipio": 2.6
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 15,
+   "pct_do_fluxo_do_municipio": 1.9
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Paraíba",
+   "origem_uf": "25",
+   "origem_lon": -36.8338,
+   "origem_lat": -7.1221,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 1.5
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 12,
+   "pct_do_fluxo_do_municipio": 1.5
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Mato Grosso do Sul",
+   "origem_uf": "50",
+   "origem_lon": -54.8447,
+   "origem_lat": -20.3272,
+   "pessoas": 11,
+   "pct_do_fluxo_do_municipio": 1.4
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Santa Catarina",
+   "origem_uf": "42",
+   "origem_lon": -50.4707,
+   "origem_lat": -27.2462,
+   "pessoas": 10,
+   "pct_do_fluxo_do_municipio": 1.3
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 6,
+   "pct_do_fluxo_do_municipio": 0.8
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Bahia",
+   "origem_uf": "29",
+   "origem_lon": -41.7216,
+   "origem_lat": -12.4755,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "São Paulo",
+   "origem_uf": "35",
+   "origem_lon": -48.7316,
+   "origem_lat": -22.2666,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Paraná",
+   "origem_uf": "41",
+   "origem_lon": -51.6192,
+   "origem_lat": -24.6348,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 0.6
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Acre",
+   "origem_uf": "12",
+   "origem_lon": -70.4766,
+   "origem_lat": -9.2126,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 0.5
+  },
+  {
+   "destino_ibge": "1400605",
+   "destino": "São Luiz do Anauá",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 2,
+   "pct_do_fluxo_do_municipio": 0.3
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Roraima",
+   "origem_uf": "14",
+   "origem_lon": -61.3881,
+   "origem_lat": 2.0818,
+   "pessoas": 28,
+   "pct_do_fluxo_do_municipio": 28.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Exterior",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 25,
+   "pct_do_fluxo_do_municipio": 25.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Minas Gerais",
+   "origem_uf": "31",
+   "origem_lon": -44.6731,
+   "origem_lat": -18.4562,
+   "pessoas": 21,
+   "pct_do_fluxo_do_municipio": 21.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Amazonas",
+   "origem_uf": "13",
+   "origem_lon": -64.6532,
+   "origem_lat": -4.1554,
+   "pessoas": 7,
+   "pct_do_fluxo_do_municipio": 7.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Ceará",
+   "origem_uf": "23",
+   "origem_lon": -39.6132,
+   "origem_lat": -5.0932,
+   "pessoas": 5,
+   "pct_do_fluxo_do_municipio": 5.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Maranhão",
+   "origem_uf": "21",
+   "origem_lon": -45.2897,
+   "origem_lat": -5.0782,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 4.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Pernambuco",
+   "origem_uf": "26",
+   "origem_lon": -38.0043,
+   "origem_lat": -8.3279,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 4.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Brasil sem especificação",
+   "origem_uf": null,
+   "origem_lon": null,
+   "origem_lat": null,
+   "pessoas": 4,
+   "pct_do_fluxo_do_municipio": 4.0
+  },
+  {
+   "destino_ibge": "1400704",
+   "destino": "Uiramutã",
+   "origem": "Mato Grosso",
+   "origem_uf": "51",
+   "origem_lon": -55.9129,
+   "origem_lat": -12.9486,
+   "pessoas": 2,
+   "pct_do_fluxo_do_municipio": 2.0
+  }
+ ],
+ "centroides_uf": {
+  "24": [
+   -36.6727,
+   -5.8383
+  ],
+  "42": [
+   -50.4707,
+   -27.2462
+  ],
+  "43": [
+   -53.3154,
+   -29.71
+  ],
+  "31": [
+   -44.6731,
+   -18.4562
+  ],
+  "52": [
+   -49.6235,
+   -16.0407
+  ],
+  "35": [
+   -48.7316,
+   -22.2666
+  ],
+  "41": [
+   -51.6192,
+   -24.6348
+  ],
+  "29": [
+   -41.7216,
+   -12.4755
+  ],
+  "22": [
+   -42.9691,
+   -7.3863
+  ],
+  "25": [
+   -36.8338,
+   -7.1221
+  ],
+  "21": [
+   -45.2897,
+   -5.0782
+  ],
+  "27": [
+   -36.6255,
+   -9.5163
+  ],
+  "51": [
+   -55.9129,
+   -12.9486
+  ],
+  "23": [
+   -39.6132,
+   -5.0932
+  ],
+  "50": [
+   -54.8447,
+   -20.3272
+  ],
+  "15": [
+   -53.0725,
+   -3.9832
+  ],
+  "17": [
+   -48.3317,
+   -10.1491
+  ],
+  "28": [
+   -37.4427,
+   -10.5845
+  ],
+  "14": [
+   -61.3881,
+   2.0818
+  ],
+  "26": [
+   -38.0043,
+   -8.3279
+  ],
+  "33": [
+   -42.6672,
+   -22.1968
+  ],
+  "13": [
+   -64.6532,
+   -4.1554
+  ],
+  "53": [
+   -47.7968,
+   -15.7804
+  ],
+  "32": [
+   -40.6726,
+   -19.5732
+  ],
+  "12": [
+   -70.4766,
+   -9.2126
+  ],
+  "11": [
+   -62.8416,
+   -10.9102
+  ],
+  "16": [
+   -51.9594,
+   1.4457
+  ]
+ }
+}

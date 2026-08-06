@@ -164,6 +164,293 @@ function rrMapa(root, malha, indice) {
 }
 
 // ---------------------------------------------------------------------------
+// A LINHA DO TEMPO. Quatro fotos de Censo, não um filme.
+//
+// O texto de cada passo é montado do próprio dado — inclusive as contas de
+// "quantos" e "quem" —, para que ele não possa discordar do mapa que está ao
+// lado. As frases que soariam bem e não têm número por trás ficaram de fora.
+// ---------------------------------------------------------------------------
+// Um passo de "de onde vieram" medido só no nível de ESTADO. Serve para 1991 e
+// 2000, anos em que o IBGE publicou a origem sem abrir por município — a seta
+// aponta para o estado e o clique não refina, porque não há o que refinar.
+function rrPassoOrigemEstadual(ano, org, mig, existiaEm) {
+  const bloco = org.anos[String(ano)];
+  const deFora = bloco.fluxos.filter(f => f.origem !== "Roraima" && f.origem_lon != null);
+  const totalFora = deFora.reduce((s, f) => s + f.pessoas, 0);
+  const interno = (bloco.fluxos.find(f => f.origem === "Roraima") || {}).pessoas || 0;
+  const parte = (nome) => {
+    const f = deFora.find(x => x.origem === nome);
+    return f ? 100 * f.pessoas / totalFora : 0;
+  };
+  return {
+    ano, rotulo: "de onde vieram", setas: true, permiteFoco: false,
+    fluxos: () => deFora.slice().sort((a, b) => b.pessoas - a.pessoas),
+    titulo: `De onde vieram os moradores de ${ano} — medido só para o estado`,
+    existe: (d) => existiaEm(d, ano === 1991 ? 1991 : 2000),
+    valor: (d) => d.populacao_por_censo[String(ano === 1991 ? 1991 : 2000)],
+    descrever: (d) => `${rrInt(d.populacao_por_censo[String(ano)])} habitantes`,
+    linhas: (d) => [["População (Censo " + ano + ")", rrInt(d.populacao_por_censo[String(ano)]) + " hab."]],
+    texto: () => `<strong>${rrInt(totalFora)} moradores</strong> tinham vindo de fora do estado, pela
+      pergunta do Censo ${ano} sobre ${bloco.pergunta.split(",")[0]}.
+      ${["Maranhão", "Pará", "Amazonas"].map(n => `<strong>${n}</strong> ${rrPct(parte(n), 1)}`).join(", ")}.
+      ${interno ? `Outros ${rrInt(interno)} tinham se mudado dentro do próprio estado.` : ""}
+      <br><br><strong>Aqui a seta é do estado, não do município.</strong> Em ${ano} o IBGE publicou a
+      origem apenas agregada para Roraima inteira — clicar num município não abre nada, porque não existe
+      o dado aberto. Só em 2010 a origem passa a ser publicada município a município.`,
+  };
+}
+
+function rrLinhaDoTempo(root, malha, mig, fund, org) {
+  const por = {};
+  mig.municipios.forEach(m => { por[m.ibge] = m; });
+  const fu = {};
+  (fund ? fund.municipios : []).forEach(m => { fu[m.ibge] = m; });
+  const anoDe = (d) => (fu[d.ibge] || {}).criacao_ano;
+  const dataBR = (s) => {
+    if (!s) return "—";
+    const [dd, mm, aa] = s.split("-");
+    return `${dd.padStart(2, "0")}/${mm.padStart(2, "0")}/${aa}`;
+  };
+
+  // Os passos de criação vêm do próprio arquivo: municípios agrupados pelo ANO
+  // em que nasceram, na ordem. Se um dia um município for criado ou uma data
+  // for corrigida na fonte, o passo aparece sozinho — não há lista escrita aqui.
+  const anos = [...new Set((fund ? fund.municipios : [])
+    .map(m => m.criacao_ano).filter(Boolean))].sort((a, b) => a - b);
+  const nascidosEm = (ano) => fund.municipios.filter(m => m.criacao_ano === ano);
+  const jaExistiaEm = (d, ano) => anoDe(d) != null && anoDe(d) <= ano;
+
+  const passosFundacao = anos.map((ano, i) => {
+    const novos = nascidosEm(ano);
+    const acumulado = fund.municipios.filter(m => m.criacao_ano <= ano).length;
+    const leis = [...new Set(novos.map(m => m.criacao_lei).filter(Boolean))];
+    const datas = [...new Set(novos.map(m => m.criacao_data))];
+    return {
+      ano, rotulo: novos.length === 1 ? novos[0].nome : `+${novos.length} municípios`,
+      setas: false, modo: "fundacao",
+      titulo: novos.length === 1
+        ? `${novos[0].nome} é criado — o estado passa a ter ${acumulado}`
+        : `${novos.length} municípios criados de uma vez — o estado passa a ter ${acumulado}`,
+      existe: (d) => jaExistiaEm(d, ano),
+      nasceAgora: (d) => anoDe(d) === ano,
+      valor: () => null,
+      descrever: (d) => (anoDe(d) === ano
+        ? `criado em ${dataBR((fu[d.ibge] || {}).criacao_data)}`
+        : `já existia desde ${anoDe(d)}`),
+      linhas: (d) => {
+        const f = fu[d.ibge] || {};
+        const l = [["Criado em", dataBR(f.criacao_data)], ["Por", f.criacao_lei || "—"]];
+        if (f.instalacao_data && f.instalacao_coerente_com_criacao) l.push(["Instalado em", dataBR(f.instalacao_data)]);
+        if (f.gentilico) l.push(["Gentílico", f.gentilico]);
+        if (f.data_destoa_da_serie) l.push(["Atenção", "a data desta lei destoa das vizinhas — ver nota"]);
+        return l;
+      },
+      texto: () => {
+        const alerta = novos.filter(m => m.data_destoa_da_serie);
+        return `<strong>${dataBR(datas[0])}${datas.length > 1 ? " e " + dataBR(datas[1]) : ""}</strong> —
+          ${novos.length === 1 ? `nasce <strong>${novos[0].nome}</strong>` : `nascem <strong>${novos.map(m => m.nome).join(", ")}</strong>`},
+          ${leis.length === 1 ? `pela ${leis[0]}` : `pelas ${leis.join(" e ")}`}.
+          Em laranja no mapa, quem nasce neste passo; em azul, quem já existia; em cinza tracejado, o
+          território que ainda não tinha sede própria. O estado fecha o passo com
+          <strong>${acumulado} de 15</strong> municípios.
+          ${novos[0].criacao_frase_original ? `<br><br><span style="opacity:.85">Frase original da fonte:
+            “${novos[0].criacao_frase_original}”</span>` : ""}
+          ${alerta.length ? `<br><br><strong>Ressalva:</strong> ${alerta[0].data_destoa_da_serie}` : ""}`;
+      },
+    };
+  });
+  const pop = (d, ano) => d.populacao_por_censo[String(ano)];
+  const existiaEm = (d, ano) => pop(d, ano) != null;
+  const totalEm = (ano) => mig.municipios.reduce((s, m) => s + (pop(m, ano) || 0), 0);
+  const nMunEm = (ano) => mig.municipios.filter(m => existiaEm(m, ano)).length;
+  const maior = (ano) => mig.municipios.filter(m => existiaEm(m, ano))
+    .sort((a, b) => pop(b, ano) - pop(a, ano))[0];
+
+  // as maiores origens do estado inteiro, calculadas do arquivo
+  const somaOrigem = new Map();
+  mig.fluxos_2010.forEach(f => {
+    if (f.origem_lon == null) return;
+    somaOrigem.set(f.origem, (somaOrigem.get(f.origem) || 0) + f.pessoas);
+  });
+  const topOrigens = [...somaOrigem.entries()].sort((a, b) => b[1] - a[1]);
+  const totalDeFora = mig.municipios.reduce((s, m) => s + (m.vindos_de_fora_2010 || 0), 0);
+  const novos = mig.municipios.filter(m => m.primeiro_censo === 2000);
+
+  // Os passos de criação entram na frente, um por ano de fundação; depois vêm
+  // os dois passos de Censo que dependem de matriz de dados. Os antigos passos
+  // "1991" e "2000" saíram: eles mostravam o RESULTADO do desmembramento (8 e
+  // depois 15 municípios) sem dizer quando nem por qual lei cada um nasceu —
+  // que é justamente o que os passos de fundação agora respondem, e com data.
+  // Criação e chegada, intercalados na ordem do calendário: o leitor vê seis
+  // municípios nascerem em 1982, quem já tinha chegado em 1991, mais sete
+  // municípios em 94-95, quem tinha chegado em 2000, e só então o detalhe de
+  // 2010. Os passos de origem entram pela data, não no fim.
+  const passosOrigem = org
+    ? [1991, 2000].filter(a => org.anos[String(a)])
+        .map(a => rrPassoOrigemEstadual(a, org, mig, existiaEm))
+    : [];
+  const passos = [
+    ...[...passosFundacao, ...passosOrigem].sort((a, b) => a.ano - b.ano),
+    {
+      ano: 2010, rotulo: "por município", setas: true, permiteFoco: true,
+      fluxos: (codDestino) => {
+        const fs = mig.fluxos_2010.filter(f => f.origem_lon != null
+          && (codDestino ? f.destino_ibge === codDestino : true));
+        if (codDestino) {
+          // Com um município no alvo, "Roraima" como origem é informação
+          // legítima: quem veio de OUTRO município do mesmo estado.
+          return fs.map(f => (f.origem === "Roraima" ? { ...f, origem: "Outro município de RR" } : f))
+            .sort((a, b) => b.pessoas - a.pessoas);
+        }
+        // Com o estado no alvo, uma seta de Roraima para Roraima não diz nada.
+        const soma = new Map();
+        fs.filter(f => f.origem !== "Roraima").forEach(f => {
+          const a = soma.get(f.origem) || { ...f, pessoas: 0, destino: "Roraima", destino_ibge: null };
+          a.pessoas += f.pessoas;
+          soma.set(f.origem, a);
+        });
+        return [...soma.values()].sort((a, b) => b.pessoas - a.pessoas);
+      },
+      titulo: "As setas: de onde veio quem morava aqui em 2010",
+      existe: (d) => existiaEm(d, 2010),
+      valor: (d) => d.vindos_de_fora_2010,
+      descrever: (d) => `${rrInt(d.vindos_de_fora_2010)} moradores tinham morado fora do estado nos 10 anos anteriores`,
+      linhas: (d) => [
+        ["População (Censo 2010)", rrInt(pop(d, 2010)) + " hab."],
+        ["Vieram de fora do estado", rrInt(d.vindos_de_fora_2010) + " pessoas"],
+        ["Desses, do exterior", rrInt(d.exterior_2010 || 0) + " pessoas"],
+      ],
+      texto: (foco) => {
+        if (foco) {
+          const fs = mig.fluxos_2010.filter(f => f.destino_ibge === foco.ibge && f.origem_lon != null)
+            .sort((a, b) => b.pessoas - a.pessoas).slice(0, 3);
+          return `<strong>${foco.nome}</strong>: ${rrInt(foco.vindos_de_fora_2010)} moradores tinham vindo
+            de fora nos dez anos anteriores a 2010. As maiores origens foram
+            ${fs.map(f => `${f.origem} (${rrInt(f.pessoas)})`).join(", ")}.
+            Clique de novo no município para voltar ao estado inteiro.`;
+        }
+        const deFora = topOrigens.filter(([n]) => n !== "Roraima");
+        const interno = somaOrigem.get("Roraima") || 0;
+        return `<strong>${rrInt(totalDeFora - interno)} moradores</strong> de Roraima em 2010 tinham vivido
+          em outra unidade da federação nos dez anos anteriores. As três maiores origens são
+          ${deFora.slice(0, 3).map(([n, v]) => `<strong>${n}</strong> (${rrInt(v)})`).join(", ")} —
+          duas do Norte e uma do Nordeste. Outros ${rrInt(interno)} tinham se mudado <em>entre municípios
+          do próprio estado</em>: esses não viram seta aqui, porque uma flecha de Roraima para Roraima não
+          diz nada num mapa do estado. Cada seta encosta na <strong>fronteira</strong>, e não num ponto do
+          interior, porque o destino deste passo é o estado inteiro — não um município.
+          O rumo é o real entre o centro da unidade de origem e Roraima; a espessura é a raiz do número de
+          pessoas. <strong>Clique num município</strong> para ver as origens só dele.`;
+      },
+    },
+    {
+      ano: 2022, rotulo: "quem está aqui", setas: false,
+      titulo: "Quem mora em Roraima hoje",
+      existe: (d) => existiaEm(d, 2022),
+      valor: (d) => d.indigena_pct_2022,
+      descrever: (d) => `${rrPct(d.indigena_pct_2022, 1)} da população se declarou indígena`,
+      linhas: (d) => [
+        ["População (Censo 2022)", rrInt(pop(d, 2022)) + " hab."],
+        ["Indígenas", rrPct(d.indigena_pct_2022, 1) + " (era " + rrPct(d.indigena_pct_2010, 1) + " em 2010)"],
+        ["Estrangeiros residentes", d.estrangeiros_2022 ? rrInt(d.estrangeiros_2022) : "menos de 1"],
+      ],
+      texto: () => {
+        const ind = mig.municipios.filter(m => m.indigena_pct_2022 >= 50)
+          .sort((a, b) => b.indigena_pct_2022 - a.indigena_pct_2022);
+        const est = mig.municipios.reduce((s, m) => s + (m.estrangeiros_2022 || 0), 0);
+        // Onde o estrangeiro pesa mais na população — não onde há mais deles em
+        // número. É o que mostra a porta de entrada em vez do destino final.
+        const porPeso = mig.municipios
+          .filter(m => m.estrangeiros_2022 && m.populacao_por_censo["2022"])
+          .map(m => ({ ...m, peso: 100 * m.estrangeiros_2022 / m.populacao_por_censo["2022"] }))
+          .sort((a, b) => b.peso - a.peso);
+        const bv = mig.municipios.find(m => m.nome === "Boa Vista");
+        return `A cor do mapa agora é a <strong>proporção de população indígena</strong>, e ela muda a
+          leitura de tudo o que veio antes: em ${ind.length} municípios os indígenas são maioria —
+          ${ind.slice(0, 3).map(m => `${m.nome} ${rrPct(m.indigena_pct_2022, 0)}`).join(", ")}. Essas
+          populações <strong>não chegaram por nenhuma das setas</strong>: elas já estavam aqui quando as
+          fronteiras foram desenhadas por cima delas.<br><br>
+          Em 2022 o estado tinha <strong>${rrInt(est)} estrangeiros residentes</strong> —
+          ${rrPct(100 * est / totalEm(2022), 1)} da população.
+          ${rrInt(bv.estrangeiros_2022)} moram em Boa Vista, mas o município onde eles mais pesam é
+          <strong>${porPeso[0].nome}: ${rrPct(porPeso[0].peso, 0)} da população</strong> — é ali que fica a
+          fronteira com a Venezuela. Eles aparecem como número e não como seta porque
+          <strong>o Censo 2022 não publicou a origem por município</strong>: a última matriz de origem que
+          existe é a de 2010, e desenhar uma flecha da Venezuela seria suposição com aparência de dado.`;
+      },
+    },
+  ];
+
+  renderLinhaDoTempo(root, { malha, dados: mig, passos });
+
+  const naoExiste = mig.o_que_nao_existe || [];
+  const alertas = (fund && fund.sinalizacoes_automaticas) || [];
+  noteToggle(root, "O que esta linha do tempo não mostra, e o que veio de fonte de terceiro",
+    `<p class="viz-note-lead">As datas de criação vêm de um endereço do IBGE, mas não são apuração do
+      IBGE: cada registro declara <strong>“${(fund && fund.municipios[0].fonte_declarada_no_registro) || "fonte de terceiro"}”</strong>
+      como origem do texto. Por isso cada data foi <strong>cruzada com os Censos</strong>, que são de outra
+      fonte: um município criado depois de 1991 não pode aparecer na contagem de 1991.
+      ${fund && !fund.resumo.conflitos_com_censo.length
+        ? "Nas quinze, nenhuma data conflita com o Censo." : ""}
+      A frase original de onde cada data saiu aparece no passo correspondente.</p>`
+    + (alertas.length ? alertas.map(a =>
+        `<p><strong>${a.municipio} — divergência na própria fonte:</strong> ${a.alerta}</p>`).join("") : "")
+    + (fund && fund.resumo.instalacao_incoerente.length
+        ? `<p><strong>${fund.resumo.instalacao_incoerente.join(", ")} — outra divergência da fonte:</strong>
+           o texto traz uma data de instalação anterior à de criação. Por isso a data de instalação só é
+           mostrada quando é coerente com a de criação.</p>` : "")
+    + naoExiste.map(x => `<p><strong>${x.assunto}</strong> (${x.situacao}): ${x.detalhe}</p>`).join("")
+    + `<p class="viz-note-fontes">Fontes: ${Object.values(mig.fontes).join(" · ")}${fund ? " · " + fund.fonte : ""}</p>`);
+
+  renderTable(root, {
+    caption: "Criação dos 15 municípios de Roraima",
+    columns: ["Município", "Criado em", "Por", "No Censo de 1991?"],
+    rows: (fund ? fund.municipios : []).slice()
+      .sort((a, b) => (a.criacao_data || "").split("-").reverse().join("")
+        .localeCompare((b.criacao_data || "").split("-").reverse().join("")))
+      .map(m => [m.nome, dataBR(m.criacao_data), m.criacao_lei || "—",
+                 m.presente_censo_1991 ? "sim" : "não"]),
+  });
+
+  // A tabela junta os três Censos porque é aí que está o achado: a repartição
+  // entre as origens muda. Em percentual, e não em pessoas, porque os totais dos
+  // três anos NÃO são comparáveis — 1991 pergunta sobre o município anterior e
+  // 2000/2010 sobre a unidade da federação anterior.
+  if (org) {
+    const pctDe = (ano) => {
+      const fs = ano === 2010
+        ? [...somaOrigem.entries()].filter(([n]) => n !== "Roraima").map(([origem, pessoas]) => ({ origem, pessoas }))
+        : org.anos[String(ano)].fluxos.filter(f => f.origem !== "Roraima" && f.origem_lon != null);
+      const t = fs.reduce((s, f) => s + f.pessoas, 0);
+      return Object.fromEntries(fs.map(f => [f.origem, 100 * f.pessoas / t]));
+    };
+    const p91 = pctDe(1991), p00 = pctDe(2000), p10 = pctDe(2010);
+    const nomes = [...new Set([...Object.keys(p91), ...Object.keys(p00), ...Object.keys(p10)])]
+      .sort((a, b) => (p10[b] || 0) - (p10[a] || 0));
+    renderTable(root, {
+      caption: "Repartição das origens de quem veio de fora, nos Censos de 1991, 2000 e 2010",
+      columns: ["Origem", "1991", "2000", "2010"],
+      rows: nomes.map(n => [n, p91[n] ? rrPct(p91[n], 1) : "—",
+                            p00[n] ? rrPct(p00[n], 1) : "—", p10[n] ? rrPct(p10[n], 1) : "—"]),
+    });
+    note(root, `<strong>A tabela acima está em percentual de propósito.</strong> Os totais dos três
+      Censos não formam uma série: em 1991 a pergunta é sobre o <em>município</em> anterior e em 2000 e
+      2010 sobre a <em>unidade da federação</em> anterior — quem se mudou de Boa Vista para Caracaraí
+      conta num e não conta no outro. O que dá para comparar é a repartição, e ela mudou:
+      <strong>${rrPct(p91["Maranhão"], 0)} → ${rrPct(p00["Maranhão"], 0)} → ${rrPct(p10["Maranhão"], 0)}
+      vindos do Maranhão</strong>, contra
+      <strong>${rrPct(p91["Amazonas"], 0)} → ${rrPct(p00["Amazonas"], 0)} → ${rrPct(p10["Amazonas"], 0)}
+      do Amazonas</strong>. Roraima deixou de ser povoada de longe, pelo Nordeste, e passou a ser
+      alimentada pelos vizinhos amazônicos.`);
+  }
+
+  renderTable(root, {
+    caption: "Maiores origens dos moradores de Roraima que vieram de fora, Censo 2010",
+    columns: ["Origem", "Pessoas", "% de quem veio de fora"],
+    rows: topOrigens.map(([n, v]) => [n, rrInt(v), rrPct(100 * v / totalDeFora, 1)]),
+  });
+}
+
+// ---------------------------------------------------------------------------
 // A concentração. Duas fatias do mesmo estado, uma ao lado da outra.
 // ---------------------------------------------------------------------------
 function rrConcentracao(root, indice, contexto) {
@@ -520,6 +807,14 @@ function initRoraimaCharts() {
     Promise.all([j("malha_municipios.json"), base()])
       .then(([malha, [perfil, fin, pib]]) => desenha(rrMapa, mapaRoot, malha, rrIndice(perfil, fin, pib)))
       .catch(() => showError(mapaRoot));
+  });
+
+  const tlRoot = q("#linha-do-tempo");
+  onFirstOpen(fase(tlRoot), () => {
+    Promise.all([j("malha_municipios.json"), j("migracao_linha_do_tempo.json"),
+                 j("fundacao_municipios.json"), j("origens_por_censo.json")])
+      .then(([malha, mig, fund, org]) => desenha(rrLinhaDoTempo, tlRoot, malha, mig, fund, org))
+      .catch(() => showError(tlRoot));
   });
 
   const concRoot = q("#chart-concentracao");

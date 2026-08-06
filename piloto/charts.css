@@ -195,6 +195,41 @@
    em texto secundário porque é régua, não é mais um dado da série. */
 .viz-ref-label{fill:var(--v-text-secondary);font-size:9.5px;font-weight:800;font-family:inherit}
 
+/* --- linha do tempo no mapa --- */
+.viz-tl-controles{display:flex;align-items:stretch;gap:.5rem;flex-wrap:wrap;margin:.2rem 0 .8rem}
+.viz-tl-btn{flex:none;min-width:2.6rem;padding:.4rem .7rem;font:inherit;font-size:.9rem;font-weight:800;
+  color:var(--v-text-primary);background:var(--v-surface);border:1px solid var(--v-grid);border-radius:9px;cursor:pointer}
+.viz-tl-btn:hover{border-color:var(--v-text-secondary)}
+.viz-tl-btn:focus-visible{outline:2px solid var(--green,#08724e);outline-offset:2px}
+.viz-tl-btn.play{background:var(--green,#08724e);border-color:var(--green,#08724e);color:#fff}
+.viz-tl-btn.passo{transform:scaleX(1)}
+.viz-tl-trilha{display:flex;gap:.35rem;flex:1 1 320px;min-width:0}
+.viz-tl-marca{flex:1 1 0;min-width:0;padding:.35rem .4rem;text-align:left;font:inherit;cursor:pointer;
+  color:var(--v-text-secondary);background:transparent;border:0;border-top:3px solid var(--v-grid);border-radius:0}
+.viz-tl-marca:focus-visible{outline:2px solid var(--green,#08724e);outline-offset:2px}
+.viz-tl-marca.ativa{color:var(--v-text-primary);border-top-color:var(--green,#08724e)}
+.viz-tl-marca .viz-tl-ano{display:block;font-size:.82rem;font-weight:850;line-height:1.1}
+.viz-tl-marca .viz-tl-rot{display:block;font-size:.63rem;font-weight:700;line-height:1.25;
+  overflow-wrap:anywhere}
+.viz-tl-seta{transition:opacity .2s linear}
+.viz-tl-seta-rot{font-size:10.5px;font-weight:850;font-family:inherit}
+.viz-tl-narracao{margin-top:.7rem;padding:.75rem .9rem;border:1px solid var(--v-grid);border-left:3px solid var(--green,#08724e);
+  border-radius:10px;background:var(--v-surface)}
+.viz-tl-narracao .viz-tl-passo{margin:0 0 .15rem;color:var(--v-text-secondary);font-size:.66rem;font-weight:800;
+  letter-spacing:.07em;text-transform:uppercase}
+.viz-tl-narracao .viz-tl-titulo{margin:0 0 .35rem;color:var(--v-text-primary);font-size:.98rem;font-weight:850;line-height:1.25}
+.viz-tl-narracao .viz-tl-texto{margin:0;color:var(--v-text-secondary);font-size:.8rem;line-height:1.6}
+.viz-tl-narracao .viz-tl-texto strong{color:var(--v-text-primary);font-weight:850}
+@media (max-width:620px){
+  .viz-tl-trilha{flex-basis:100%;order:2}
+  .viz-tl-marca .viz-tl-rot{display:none}
+}
+/* Quem pediu menos movimento não recebe transição nenhuma — os passos continuam
+   inteiros, só aparecem de uma vez. */
+@media (prefers-reduced-motion:reduce){
+  .viz-tl-seta,.viz-map-mun{transition:none !important}
+}
+
 .viz-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-top:.9rem}
 .viz-stat{padding:.85rem .95rem;border:1px solid var(--line);border-radius:11px;background:var(--v-surface)}
 .viz-stat strong{display:block;color:var(--v-text-primary);font-size:1.4rem;line-height:1.1}

@@ -962,7 +962,10 @@ function renderTable(root, { caption, columns, rows }) {
   const details = document.createElement("details");
   details.className = "viz-table-toggle";
   const summary = document.createElement("summary");
-  summary.textContent = "Ver como tabela";
+  // Com duas tabelas no mesmo cartão, dois "Ver como tabela" idênticos não
+  // dizem qual é qual. Quando há legenda, ela entra no rótulo.
+  summary.textContent = caption ? `Ver como tabela: ${caption.charAt(0).toLowerCase()}${caption.slice(1)}`
+    : "Ver como tabela";
   details.appendChild(summary);
   const table = document.createElement("table");
   const thead = document.createElement("thead");
@@ -2441,6 +2444,391 @@ function renderBarrasRanking(root, { data, labelKey, series, valueFormat, valueF
 //      representa grandeza, não identidade. É por isso que 15 áreas não esbarram
 //      no teto de 4 cores do comparador: lá a cor diz QUEM, aqui diz QUANTO.
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// LINHA DO TEMPO NO MAPA — passos de Censo, com setas de origem.
+//
+// Este é o componente mais perigoso da página, e o comentário existe para dizer
+// por quê: seta animada convence antes de o leitor pensar. Uma flecha grossa
+// saindo do Maranhão e entrando em Boa Vista é aceita como fato em meio segundo,
+// e ninguém vai atrás da fonte. Então as regras aqui são mais duras que as dos
+// outros gráficos:
+//
+//   1) A ANIMAÇÃO SALTA ENTRE OBSERVAÇÕES, NÃO INTERPOLA. Origem de migrante só
+//      é medida em Censo, de dez em dez anos. Movimento desenhado *entre* dois
+//      Censos seria invenção com aparência de medição, então cada passo é uma
+//      foto e a transição é só o desenho aparecendo — nunca gente andando pelo
+//      mapa ao longo de anos que ninguém mediu.
+//   2) A DIREÇÃO DA SETA É GEOGRÁFICA DE VERDADE. O ângulo sai do rumo entre o
+//      centro da UF de origem e o do destino, projetado no mesmo sistema do
+//      mapa. Quem veio do Maranhão entra pelo leste porque o Maranhão fica a
+//      leste, não porque ficou bonito.
+//   3) A ESPESSURA É A RAIZ DO NÚMERO, não o número. Largura proporcional ao
+//      valor faria a maior seta ter 30 vezes a área da menor para 30 vezes a
+//      gente — o olho lê área, e a leitura sairia exagerada.
+//   4) O QUE NÃO TEM MATRIZ NÃO TEM SETA. A chegada venezuelana é o movimento
+//      mais recente do estado e NÃO tem tabela de origem por município em 2022;
+//      ela aparece como contagem de estrangeiros, sem flecha.
+//
+// Respeita prefers-reduced-motion: sem autoplay e sem transição para quem pediu
+// menos movimento — os mesmos passos continuam navegáveis pelos botões.
+// ---------------------------------------------------------------------------
+function renderLinhaDoTempo(root, { malha, dados, passos }) {
+  const W = 720, H = 560, M = 16;
+  const menosMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const pts = (malha.contorno_estado.length ? malha.contorno_estado
+    : malha.municipios.flatMap(m => m.aneis)).flat();
+  const lats = pts.map(p => p[1]), lons = pts.map(p => p[0]);
+  const latMin = Math.min(...lats), latMax = Math.max(...lats);
+  const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
+  const cosLat = Math.cos(((latMin + latMax) / 2) * Math.PI / 180);
+  const spanX = (lonMax - lonMin) * cosLat, spanY = latMax - latMin;
+  const escala = Math.min((W - 2 * M) / spanX, (H - 2 * M - 26) / spanY) * 0.82;
+  const offX = M + ((W - 2 * M) - spanX * escala) / 2;
+  const offY = M + ((H - 2 * M - 26) - spanY * escala) / 2;
+  const px = (lon) => offX + (lon - lonMin) * cosLat * escala;
+  const py = (lat) => offY + (latMax - lat) * escala;
+  const ringD = (r) => "M" + r.map(([lo, la]) => `${px(lo).toFixed(1)},${py(la).toFixed(1)}`).join("L") + "Z";
+
+  const porCod = {};
+  dados.municipios.forEach(m => { porCod[m.ibge] = m; });
+  const centroEstado = [(px(lonMin) + px(lonMax)) / 2, (py(latMin) + py(latMax)) / 2];
+
+  const cs = getComputedStyle(root);
+  const ramp = readSeqRamp(root);
+  const corSeta = cs.getPropertyValue("--v-series-3").trim() || "#eb6834";
+  const corIndigena = cs.getPropertyValue("--v-series-receita").trim() || "#08724e";
+
+  // ---- controles -----------------------------------------------------------
+  const barra = document.createElement("div");
+  barra.className = "viz-tl-controles";
+  const btn = (txt, rot, cls) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "viz-tl-btn" + (cls ? " " + cls : "");
+    b.textContent = txt; b.setAttribute("aria-label", rot); b.title = rot;
+    barra.appendChild(b); return b;
+  };
+  const bAnt = btn("◀", "Passo anterior");
+  const bPlay = btn("▶", "Tocar a linha do tempo", "play");
+  const bProx = btn("▶", "Próximo passo");
+  bProx.classList.add("passo");
+  const trilha = document.createElement("div");
+  trilha.className = "viz-tl-trilha";
+  trilha.setAttribute("role", "tablist");
+  trilha.setAttribute("aria-label", "Passos da linha do tempo");
+  barra.appendChild(trilha);
+  root.appendChild(barra);
+
+  const marcas = passos.map((p, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "viz-tl-marca";
+    b.setAttribute("role", "tab");
+    b.innerHTML = `<span class="viz-tl-ano">${p.ano}</span><span class="viz-tl-rot">${p.rotulo}</span>`;
+    b.addEventListener("click", () => { parar(); ir(i); });
+    trilha.appendChild(b);
+    return b;
+  });
+
+  const wrap = document.createElement("div");
+  wrap.className = "viz-svg-wrap viz-map-wrap";
+  root.appendChild(wrap);
+  const svg = el("svg", { class: "viz-svg", viewBox: `0 0 ${W} ${H}`, role: "img" }, wrap);
+  const defs = el("defs", {}, svg);
+  const seta = el("marker", {
+    id: "tl-ponta-" + Math.random().toString(36).slice(2, 7), viewBox: "0 0 10 10",
+    refX: 8, refY: 5, markerWidth: 5, markerHeight: 5, orient: "auto-start-reverse",
+  }, defs);
+  el("path", { d: "M0,0 L10,5 L0,10 z", fill: corSeta }, seta);
+  const setaId = seta.getAttribute("id");
+
+  const gMun = el("g", {}, svg);
+  const gContorno = el("g", { "pointer-events": "none" }, svg);
+  const gSetas = el("g", { "pointer-events": "none" }, svg);
+  const gRot = el("g", { "pointer-events": "none" }, svg);
+  const tip = makeTooltip(wrap);
+
+  const formas = malha.municipios.map(m => {
+    const path = el("path", {
+      d: m.aneis.map(ringD).join(" "), stroke: "var(--v-surface)", "stroke-width": 0.8,
+      "fill-rule": "evenodd", class: "viz-map-mun", tabindex: 0, role: "img",
+    }, gMun);
+    return { m, path, d: porCod[m.ibge] };
+  });
+  (malha.contorno_estado || []).forEach(r => el("path", {
+    d: ringD(r), fill: "none", stroke: "var(--v-text-primary)", "stroke-width": 1.6,
+    "stroke-linejoin": "round",
+  }, gContorno));
+
+  // ---- narração ------------------------------------------------------------
+  const narra = document.createElement("div");
+  narra.className = "viz-tl-narracao";
+  narra.setAttribute("role", "status");
+  narra.setAttribute("aria-live", "polite");
+  root.appendChild(narra);
+
+  // ---- estado --------------------------------------------------------------
+  let atual = 0, tocando = false, timer = null, alvoSetas = null;
+
+  // Espessura pela RAIZ do volume: o olho lê a área da faixa, e largura
+  // proporcional ao número exageraria a diferença entre a maior e a menor.
+  const largura = (v, vmax) => 1.2 + 7.5 * Math.sqrt(Math.max(0, v) / vmax);
+
+  // Cada passo traz as PRÓPRIAS setas. Antes a função lia sempre a matriz de
+  // 2010, que era a única existente; com 1991 e 2000 entrando — medidos só no
+  // nível de estado —, quem sabe de onde vem cada conjunto é o passo.
+  function fluxosDe(codDestino) {
+    const passo = passos[atual];
+    return passo.fluxos ? passo.fluxos(passo.permiteFoco ? codDestino : null) : [];
+  }
+
+  // Onde a seta encosta quando o destino é o estado inteiro: no ponto em que a
+  // reta que vem da origem cruza a FRONTEIRA de Roraima, não num ponto qualquer
+  // do interior. Fazendo a ponta parar no meio do estado, todas as setas
+  // convergiam para as redondezas de Iracema e o mapa dizia, sem querer, que a
+  // migração toda foi para lá.
+  const contornoProj = (malha.contorno_estado || []).map(r => r.map(([lo, la]) => [px(lo), py(la)]));
+  function pontoNaFronteira(cx, cy, dx, dy) {
+    let melhor = null, melhorT = 0;
+    contornoProj.forEach(anel => {
+      for (let i = 0; i < anel.length - 1; i++) {
+        const [x1, y1] = anel[i], [x2, y2] = anel[i + 1];
+        const ex = x2 - x1, ey = y2 - y1;
+        const den = dx * ey - dy * ex;
+        if (Math.abs(den) < 1e-9) continue;
+        const t = ((x1 - cx) * ey - (y1 - cy) * ex) / den;
+        const u = ((x1 - cx) * dy - (y1 - cy) * dx) / den;
+        if (t > 0 && u >= 0 && u <= 1 && t > melhorT) {
+          melhorT = t; melhor = [cx + dx * t, cy + dy * t];
+        }
+      }
+    });
+    return melhor;
+  }
+
+  function desenharSetas(codDestino, animar) {
+    gSetas.textContent = "";
+    const passo = passos[atual];
+    if (!passo.setas) return;
+    const fs = fluxosDe(codDestino).slice(0, 8);
+    if (!fs.length) return;
+    const vmax = fs[0].pessoas;
+    const alvoMun = codDestino
+      ? (() => { const m = malha.municipios.find(x => x.ibge === codDestino); return [px(m.rotulo[0]), py(m.rotulo[1])]; })()
+      : null;
+    const usados = [];   // caixas dos rótulos já postos, para não se atropelarem
+    // Camada própria para os rótulos, criada depois de todas as flechas: dentro
+    // do mesmo grupo, a seta desenhada em seguida passava por cima do nome da
+    // anterior e cortava a palavra ao meio.
+    const gRotSeta = el("g", { "pointer-events": "none" }, gSetas);
+
+    fs.forEach((f, i) => {
+      // Ponto de partida: onde a reta que vem do centro da UF de origem cruza a
+      // moldura. A origem real fica muito fora do quadro (São Paulo, Ceará),
+      // então o que entra no desenho é o RUMO — que é geográfico e conferível —,
+      // não uma posição inventada dentro de Roraima.
+      const ox = px(f.origem_lon), oy = py(f.origem_lat);
+      const refX = alvoMun ? alvoMun[0] : centroEstado[0];
+      const refY = alvoMun ? alvoMun[1] : centroEstado[1];
+      let dx = refX - ox, dy = refY - oy;
+      const norma = Math.hypot(dx, dy) || 1;
+      dx /= norma; dy /= norma;
+      // Com o estado inteiro no alvo, a ponta encosta na fronteira; com um
+      // município selecionado, ela vai até ele — aí o destino É específico.
+      const destino = alvoMun || pontoNaFronteira(centroEstado[0], centroEstado[1], -dx, -dy)
+        || centroEstado;
+      const borda = 8;
+      let t = Infinity;
+      if (dx > 0) t = Math.min(t, (destino[0] - borda) / dx);
+      if (dx < 0) t = Math.min(t, (destino[0] - (W - borda)) / dx);
+      if (dy > 0) t = Math.min(t, (destino[1] - borda) / dy);
+      if (dy < 0) t = Math.min(t, (destino[1] - (H - 34 - borda)) / dy);
+      const comprimento = Math.max(40, Math.min(t, 210));
+      const sx = destino[0] - dx * comprimento, sy = destino[1] - dy * comprimento;
+      // curva leve, só para duas setas de rumo parecido não se sobreporem
+      const mx = (sx + destino[0]) / 2 - dy * 14, my = (sy + destino[1]) / 2 + dx * 14;
+      const d = `M${sx.toFixed(1)},${sy.toFixed(1)} Q${mx.toFixed(1)},${my.toFixed(1)} ${destino[0].toFixed(1)},${destino[1].toFixed(1)}`;
+
+      const g = el("g", {}, gSetas);
+      const p = el("path", {
+        d, fill: "none", stroke: corSeta, "stroke-width": largura(f.pessoas, vmax).toFixed(2),
+        "stroke-linecap": "round", opacity: .82, "marker-end": `url(#${setaId})`,
+        class: "viz-tl-seta",
+      }, g);
+      const comp = p.getTotalLength();
+      if (animar && !menosMovimento) {
+        p.style.strokeDasharray = comp;
+        p.style.strokeDashoffset = comp;
+        p.style.transition = `stroke-dashoffset .75s ease-out ${i * 0.11}s`;
+        requestAnimationFrame(() => { p.style.strokeDashoffset = "0"; });
+      }
+      // O rótulo fica na cauda da seta. Quando duas caudas caem perto, o de
+      // baixo desliza ao longo da própria seta até achar lugar — empurrar para
+      // o lado o desgrudaria da flecha a que pertence.
+      const texto = `${f.origem} · ${fmtInt.format(f.pessoas)}`;
+      const larg = texto.length * 5.6, alt = 13;
+      let lx = sx, ly = sy - 5, tentativa = 0;
+      const bate = (x, y) => usados.some(u =>
+        Math.abs(x - u.x) < (larg + u.larg) / 2 && Math.abs(y - u.y) < alt + 3);
+      while (bate(lx, ly) && tentativa < 7) {
+        tentativa++;
+        lx += dx * 26; ly += dy * 26;   // desliza para dentro, sobre a seta
+      }
+      usados.push({ x: lx, y: ly, larg });
+      const ancora = sx < W * 0.32 ? "start" : sx > W * 0.68 ? "end" : "middle";
+      const rot = el("text", {
+        x: lx, y: ly, "text-anchor": ancora,
+        class: "viz-tl-seta-rot", stroke: "var(--v-surface)", "stroke-width": 3,
+        "paint-order": "stroke", fill: "var(--v-text-primary)",
+      }, gRotSeta);
+      rot.textContent = texto;
+      if (animar && !menosMovimento) {
+        rot.style.opacity = 0;
+        rot.style.transition = `opacity .4s ease-out ${i * 0.11 + 0.5}s`;
+        requestAnimationFrame(() => { rot.style.opacity = 1; });
+      }
+    });
+  }
+
+  function pintar(animar) {
+    const passo = passos[atual];
+    marcas.forEach((b, i) => {
+      b.classList.toggle("ativa", i === atual);
+      b.setAttribute("aria-selected", String(i === atual));
+    });
+    const vals = formas.map(f => passo.valor(f.d)).filter(v => v != null);
+    const vMin = Math.min(...vals), vMax = Math.max(...vals);
+    const ord = vals.slice().sort((a, b) => a - b);
+    const posto = new Map();
+    ord.forEach((v, i) => { if (!posto.has(v)) posto.set(v, i); });
+    const nm1 = Math.max(1, ord.length - 1);
+    const mediana = ord[Math.floor((ord.length - 1) / 2)];
+    const porPosicao = vMax > vMin && (mediana - vMin) / (vMax - vMin) < 0.3;
+    const t = (v) => (v == null ? null
+      : porPosicao ? posto.get(v) / nm1 : (vMax > vMin ? (v - vMin) / (vMax - vMin) : 0.5));
+
+    formas.forEach(({ m, path, d }) => {
+      const v = passo.valor(d);
+      const existe = passo.existe(d);
+      // Dois modos de pintura. Nos passos de CRIAÇÃO a pergunta é "quem já
+      // existe", que é categórica: três estados (nasce agora / já existia /
+      // ainda não) e nenhuma grandeza a comparar — uma rampa sequencial ali
+      // faria o leitor procurar um "quanto" que não existe. Nos demais passos a
+      // pergunta é de magnitude, e aí volta a rampa.
+      const novo = passo.modo === "fundacao" && passo.nasceAgora && passo.nasceAgora(d);
+      path.style.transition = (animar && !menosMovimento) ? "fill .5s ease, opacity .5s ease" : "";
+      if (passo.modo === "fundacao") {
+        path.setAttribute("fill", !existe ? "var(--v-neutral)"
+          : novo ? corSeta : seqColor(0.28, ramp));
+      } else
+      path.setAttribute("fill", !existe ? "var(--v-neutral)" : v == null ? "var(--v-neutral)" : seqColor(t(v), ramp));
+      path.style.opacity = existe ? 1 : 0.5;
+      // Município que ainda não existia: traço tracejado VISÍVEL, não só uma cor
+      // mais clara. O texto do passo chama essas áreas de tracejadas, e desenho
+      // e legenda têm de dizer a mesma coisa.
+      path.setAttribute("stroke", existe ? "var(--v-surface)" : "var(--v-text-secondary)");
+      path.setAttribute("stroke-width", existe ? 0.8 : 1.1);
+      path.setAttribute("stroke-dasharray", existe ? "" : "4 3");
+      path.setAttribute("aria-label", `${m.nome} em ${passo.ano}: ` +
+        (existe ? passo.descrever(d) : "o município ainda não existia"));
+      const entrar = (ev) => {
+        const r = svg.getBoundingClientRect(), s = r.width / W;
+        const ax = ev && ev.clientX != null ? ev.clientX - r.left : px(m.rotulo[0]) * s;
+        const ay = ev && ev.clientY != null ? ev.clientY - r.top : py(m.rotulo[1]) * s;
+        const linhas = existe
+          ? passo.linhas(d).map(l => ({ label: l[0], value: l[1], color: "transparent" }))
+          : [{ label: "Situação em " + passo.ano, value: "ainda não existia", color: "transparent" }];
+        showTooltip(tip, wrap, ax, ay, `${m.nome} · ${passo.ano}`, linhas,
+          !passo.setas || !existe ? null
+            : passo.permiteFoco ? "Clique para ver de onde vieram os moradores deste município."
+            : "Neste ano a origem só foi publicada para o estado inteiro — não há como abrir por município.");
+      };
+      path.onpointerenter = path.onpointermove = entrar;
+      path.onfocus = () => entrar(null);
+      path.onpointerleave = path.onblur = () => hideTooltip(tip);
+      path.onclick = () => {
+        // Clicar só refina onde a fonte é por município. Nos passos em que a
+        // origem só existe agregada por estado, o clique não faz nada — e o
+        // balão avisa antes, em vez de deixar o leitor tentar e achar que quebrou.
+        if (!passo.setas || !passo.permiteFoco || !existe) return;
+        alvoSetas = (alvoSetas === m.ibge) ? null : m.ibge;
+        desenharSetas(alvoSetas, true);
+        escreverNarracao();
+      };
+    });
+
+    // rótulos só dos municípios que existiam no passo
+    gRot.textContent = "";
+    formas.forEach(({ m, d }) => {
+      if (!passo.existe(d)) return;
+      const larguraProj = (() => {
+        const xs = m.aneis.flat().map(p => px(p[0]));
+        return Math.max(...xs) - Math.min(...xs);
+      })();
+      if (larguraProj < m.nome.length * 3.4) return;
+      const novo = passo.modo === "fundacao" && passo.nasceAgora && passo.nasceAgora(d);
+      const tv = passo.modo === "fundacao" ? (novo ? 0.75 : 0.28) : (t(passo.valor(d)) ?? 0);
+      const fundo = passo.modo === "fundacao"
+        ? (novo ? corSeta : seqColor(0.28, ramp)) : seqColor(tv, ramp);
+      const tEl = el("text", {
+        x: px(m.rotulo[0]), y: py(m.rotulo[1]) + 4, "text-anchor": "middle",
+        class: "viz-map-mun-label", "stroke-width": 2.6, "paint-order": "stroke",
+        stroke: fundo,
+        fill: tv > 0.55 ? "var(--v-surface)" : "var(--v-text-primary)",
+      }, gRot);
+      tEl.textContent = m.nome;
+    });
+
+    desenharSetas(alvoSetas, animar);
+    escreverNarracao();
+    svg.setAttribute("aria-label", `Roraima em ${passo.ano}: ${passo.titulo}`);
+  }
+
+  function escreverNarracao() {
+    const passo = passos[atual];
+    const foco = alvoSetas ? dados.municipios.find(m => m.ibge === alvoSetas) : null;
+    narra.innerHTML = `<p class="viz-tl-passo">Passo ${atual + 1} de ${passos.length} · <strong>${passo.ano}</strong></p>`
+      + `<p class="viz-tl-titulo">${passo.titulo}</p>`
+      + `<p class="viz-tl-texto">${passo.texto(foco)}</p>`;
+  }
+
+  function ir(i) {
+    atual = (i + passos.length) % passos.length;
+    if (!passos[atual].setas) alvoSetas = null;
+    pintar(true);
+  }
+
+  function parar() {
+    tocando = false;
+    clearInterval(timer);
+    bPlay.textContent = "▶";
+    bPlay.setAttribute("aria-label", "Tocar a linha do tempo");
+    bPlay.classList.remove("tocando");
+  }
+
+  function tocar() {
+    tocando = true;
+    bPlay.textContent = "❚❚";
+    bPlay.setAttribute("aria-label", "Pausar");
+    bPlay.classList.add("tocando");
+    timer = setInterval(() => {
+      if (atual === passos.length - 1) { parar(); return; }
+      ir(atual + 1);
+    }, 4200);
+  }
+
+  bPlay.addEventListener("click", () => (tocando ? parar() : (atual === passos.length - 1 ? (ir(0), tocar()) : tocar())));
+  bAnt.addEventListener("click", () => { parar(); ir(atual - 1); });
+  bProx.addEventListener("click", () => { parar(); ir(atual + 1); });
+  // Teclado: setas andam na linha do tempo quando ela tem o foco.
+  trilha.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { parar(); ir(atual + 1); marcas[atual].focus(); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { parar(); ir(atual - 1); marcas[atual].focus(); e.preventDefault(); }
+  });
+
+  pintar(false);
+  return { ir, parar, tocar };
+}
+
 function renderMapaEstado(root, { municipios, contorno, indicadores, indicadorInicial }) {
   const W = 720, H = 620, M = 16, LEG = 40;
   const todos = contorno && contorno.length ? contorno : municipios.flatMap(m => m.aneis);
