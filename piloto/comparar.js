@@ -81,7 +81,11 @@ const rotuloCidade = (c) => `${c.nome}/${c.uf}`;
 const listar = (itens) => itens.length <= 1
   ? (itens[0] || "")
   : itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1];
-const nomes = (cidades) => listar(cidades.map(rotuloCidade));
+// Escapado aqui porque `nomes` só aparece dentro de note(), que recebe HTML.
+// `rotuloCidade` continua cru: ele também alimenta <option>, legenda e
+// aria-label, que vão por textContent/setAttribute — escapar lá dentro faria
+// uma cidade como "Santa Bárbara d'Oeste" aparecer com "&#39;" na tela.
+const nomes = (cidades) => listar(cidades.map(c => escapeHtml(rotuloCidade(c))));
 const asCidades = (n) => (n === 2 ? "as duas cidades" : `as ${n} cidades`);
 const asDelas = (n) => (n === 2 ? "das duas" : `das ${n}`);
 
@@ -298,7 +302,7 @@ function blocoDemografia(raiz, cidades, docs) {
     const tot = cen.map(c => 100 * (c[ultC] / c[pri] - 1));
     const sobem = cidades.filter((_, i) => tot[i] >= 0);
     const descem = cidades.filter((_, i) => tot[i] < 0);
-    const detalhe = cidades.map((c, i) => `${rotuloCidade(c)} ${ppSin(tot[i])}`).join(", ");
+    const detalhe = cidades.map((c, i) => `${escapeHtml(rotuloCidade(c))} ${ppSin(tot[i])}`).join(", ");
     note(g2, (sobem.length === 0 || descem.length === 0)
       ? `Entre ${pri} e ${ultC} ${asCidades(n)} foram para o mesmo lado: ${detalhe}. A diferença está no ritmo,
          não no sentido.`
@@ -401,8 +405,8 @@ function blocoFase3(raiz, cidades, docs) {
   const ordDesp = cidades.map((c, i) => ({ c, v: ultD[i].per_capita_r2025, ano: ultD[i].ano }))
     .sort((x, y) => y.v - x.v);
   const topo1 = ordDesp[0], fundo1 = ordDesp[ordDesp.length - 1];
-  note(g1, `Em ${topo1.ano}, <strong>${rotuloCidade(topo1.c)} gasta ${brl(topo1.v)} por habitante e
-    ${rotuloCidade(fundo1.c)} gasta ${brl(fundo1.v)}</strong> — uma diferença de
+  note(g1, `Em ${topo1.ano}, <strong>${escapeHtml(rotuloCidade(topo1.c))} gasta ${brl(topo1.v)} por habitante e
+    ${escapeHtml(rotuloCidade(fundo1.c))} gasta ${brl(fundo1.v)}</strong> — uma diferença de
     ${(topo1.v / fundo1.v).toFixed(1).replace(".", ",")} vezes. Isso não significa que uma gaste bem e a outra mal:
     <strong>uma prefeitura tem um custo mínimo de existir</strong> (prefeito, secretarias, contador, Câmara, uma
     escola, um posto de saúde) que quase não diminui com o tamanho da cidade. Dividido por pouca gente, esse custo
@@ -442,8 +446,8 @@ function blocoFase3(raiz, cidades, docs) {
   const ordDep = cidades.map((c, i) => ({ c, v: ultR[i].dependencia_transferencias_pct }))
     .sort((x, y) => y.v - x.v);
   note(g3, `<strong>Este é o indicador que mais separa as cidades, e o mais importante da comparação.</strong>
-    No último ano fechado vai de <strong>${perc1(ordDep[0].v)} em ${rotuloCidade(ordDep[0].c)}</strong> a
-    <strong>${perc1(ordDep[ordDep.length - 1].v)} em ${rotuloCidade(ordDep[ordDep.length - 1].c)}</strong>.
+    No último ano fechado vai de <strong>${perc1(ordDep[0].v)} em ${escapeHtml(rotuloCidade(ordDep[0].c))}</strong> a
+    <strong>${perc1(ordDep[ordDep.length - 1].v)} em ${escapeHtml(rotuloCidade(ordDep[ordDep.length - 1].c))}</strong>.
     Quanto mais alta a linha, menor a margem de escolha do governo municipal: dinheiro de transferência costuma
     chegar carimbado para saúde, educação ou uma obra específica, e sobe e desce conforme a arrecadação federal —
     sobre a qual a prefeitura não tem controle nenhum. Uma cidade com dependência alta pode ter orçamento grande e
@@ -464,7 +468,7 @@ function blocoFase3(raiz, cidades, docs) {
     yFormatFull: (v) => (v >= 0 ? "superávit de " : "déficit de ") + perc1(Math.abs(v)) + " da receita",
   });
   const deficits = rd.map(d => ({ n: d.serie.filter(p => p.saldo < 0).length, total: d.serie.length }));
-  note(g4, `${cidades.map((c, i) => `${rotuloCidade(c)} fechou no vermelho em <strong>${deficits[i].n} de
+  note(g4, `${cidades.map((c, i) => `${escapeHtml(rotuloCidade(c))} fechou no vermelho em <strong>${deficits[i].n} de
     ${deficits[i].total} anos</strong>`).join("; ")}. Vale a mesma ressalva das páginas individuais:
     <strong>saldo mede equilíbrio de caixa, não qualidade do gasto</strong> — dá para fechar no azul deixando de
     investir, e um déficit pontual pode ser exatamente o ano da obra.`);
@@ -499,7 +503,7 @@ function blocoFase3(raiz, cidades, docs) {
   });
   const somaSE = linhasAno.map(p => share(p, "Saúde") + share(p, "Educação"));
   note(g5, `<strong>Saúde e Educação somam ${cidades.map((c, i) =>
-    `${somaSE[i].toFixed(0)}% em ${rotuloCidade(c)}`).join(", ")}</strong>, e essa semelhança não é coincidência: a
+    `${somaSE[i].toFixed(0)}% em ${escapeHtml(rotuloCidade(c))}`).join(", ")}</strong>, e essa semelhança não é coincidência: a
     Constituição obriga todo município a aplicar no mínimo 15% da receita de impostos em saúde e 25% em educação, e
     boa parte do dinheiro chega carimbada via SUS e FUNDEB. <strong>A diferença entre as cidades aparece no que
     sobra depois disso</strong> — é ali que a escolha local realmente acontece.`);
@@ -536,7 +540,7 @@ function rodapeFontes(raiz, cidades, arquivo, oQueSao) {
   const rodape = document.createElement("p");
   rodape.className = "muted-note";
   rodape.innerHTML = `Fontes, cidade a cidade: ` + cidades.map(c =>
-    `<a href="${c.pagina}">${rotuloCidade(c)}</a> (<a href="../dados/${c.pasta}/${arquivo || ""}" target="_blank" rel="noopener noreferrer">${arquivo ? arquivo : "pasta de dados"}</a>)`
+    `<a href="${escapeHtml(safeUrl(c.pagina))}">${escapeHtml(rotuloCidade(c))}</a> (<a href="${escapeHtml(safeUrl(`../dados/${c.pasta}/${arquivo || ""}`))}" target="_blank" rel="noopener noreferrer">${escapeHtml(arquivo ? arquivo : "pasta de dados")}</a>)`
   ).join(" · ") + `. Os números saem de arquivos que já estavam publicados — ${oQueSao}. Esta página não recalcula
     nada por conta própria: ela normaliza e põe lado a lado.`;
   raiz.appendChild(rodape);
@@ -668,8 +672,8 @@ function desenharResumos(cidades) {
     const d = document.createElement("div");
     d.className = "cmp-resumo";
     d.style.setProperty("--cmp-cor", CMP.cor(c));
-    d.innerHTML = `<strong>${rotuloCidade(c)}</strong><p>${c.resumo}</p>
-      <p><a href="${c.pagina}">Ver o piloto completo →</a></p>`;
+    d.innerHTML = `<strong>${escapeHtml(rotuloCidade(c))}</strong><p>${escapeHtml(c.resumo)}</p>
+      <p><a href="${escapeHtml(safeUrl(c.pagina))}">Ver o piloto completo →</a></p>`;
     caixa.appendChild(d);
   });
 }
@@ -729,7 +733,7 @@ function comparar(cidades) {
     const aviso = document.createElement("div");
     aviso.className = "cmp-vazio";
     aviso.innerHTML = `<strong>Não foi possível carregar os dados desta comparação.</strong>
-      <p>Abra a página por um servidor HTTP e tente de novo. Detalhe técnico: ${String(err.message || err)}</p>`;
+      <p>Abra a página por um servidor HTTP e tente de novo. Detalhe técnico: ${escapeHtml(err.message || err)}</p>`;
     alvo.appendChild(aviso);
   });
 }
@@ -763,10 +767,10 @@ function escreverInventario() {
   const rec = CMP.manifesto.recortes || [];
   const grupos = [...porRecorte.entries()].map(([k, n]) => {
     const meta = rec.find(r => r.id === k);
-    return meta ? `${n} de ${meta.titulo.split("—")[0].trim()}` : `${n} escolhida${n > 1 ? "s" : ""} uma a uma`;
+    return meta ? `${n} de ${escapeHtml(meta.titulo.split("—")[0].trim())}` : `${n} escolhida${n > 1 ? "s" : ""} uma a uma`;
   });
 
-  const ufs = [...new Set(cs.map(c => c.uf))].sort();
+  const ufs = [...new Set(cs.map(c => c.uf))].sort().map(escapeHtml);
   alvo.innerHTML = `O piloto tem <strong>${cs.length} cidades</strong> no manifesto —
     ${listar(grupos)} —, em ${ufs.length} unidades da federação (${ufs.join(", ")}). Escolhendo de 2 a ${teto}
     por vez, isso dá <strong>${total.toLocaleString("pt-BR")} combinações</strong> possíveis.

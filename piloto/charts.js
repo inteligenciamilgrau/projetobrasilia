@@ -1390,8 +1390,37 @@ function buildFinancasCharts(finRoot, saldoRoot, fin) {
     }
 }
 
+// Escape de HTML para valor vindo de ARQUIVO DE DADOS. As funções abaixo
+// (note, noteToggle, tooltip) recebem HTML de propósito, e o contrato sempre
+// foi "a marcação vem do código, o dado vem escapado" — só que não havia com o
+// que escapar, e a linha do tempo de Roraima passou a interpolar texto que este
+// projeto NÃO escreveu: `historico` e `formacao` de historico_municipios.json
+// são prosa livre coletada da API de biblioteca do IBGE, e o próprio cabeçalho
+// do arquivo declara que a autoria é de terceiro (Confederação Nacional de
+// Municípios). Texto de terceiro em template de HTML é injeção esperando fonte
+// nova. Mesma implementação que cidades/cidade.js e fontes.html já usavam.
+//
+// Onde NÃO usar: valor que já passou por rrInt/rrPct/rrReais/fmtMoney… — esses
+// devolvem só dígito e pontuação, e escapar duas vezes não melhora nada.
+const escapeHtml = (valor) => String(valor == null ? "" : valor)
+  .replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+// URL vinda de arquivo de dados, para uso em href. Só http e https passam; o
+// resto vira "#". É o que barra `javascript:` num campo que hoje só tem nome de
+// página, mas que é lido de dados/cidades.json e não do código. Mesma função
+// que cidades/cidade.js, fontes.html, inventario.html e municipios-100mil.html
+// já aplicavam — o comparador era o único lugar do projeto que montava href a
+// partir de dado sem passar por aqui.
+const safeUrl = (valor) => {
+  try {
+    const url = new URL(valor, location.href);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : "#";
+  } catch (erro) { return "#"; }
+};
+
 // Nota abaixo de um gráfico. Aceita HTML porque várias notas precisam citar
-// fonte com link — o texto vem do código, nunca do dado carregado.
+// fonte com link — a marcação vem do código, e todo dado interpolado passa por
+// escapeHtml antes de chegar aqui.
 function note(root, html) {
   const p = document.createElement("p");
   p.className = "viz-note";

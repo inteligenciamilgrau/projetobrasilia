@@ -4,7 +4,7 @@ Levantamento para selecionar municípios brasileiros com melhor combinação de 
 
 O projeto está na fase de **seleção e auditoria das candidatas**. Ele não contém coleta em massa de dados municipais.
 
-## Resultado atual
+## Resultado atual 
 
 A shortlist provisória está em [DOSSIE_PILOTO.md](DOSSIE_PILOTO.md). A seleção atual inclui Recife, São Paulo, Fortaleza, Rio de Janeiro, Porto Alegre, Curitiba, Belo Horizonte, Brasília, Jundiaí e Belém, com diferentes níveis de confiança e ressalvas documentadas.
 

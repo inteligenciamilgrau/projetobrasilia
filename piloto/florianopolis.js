@@ -190,7 +190,7 @@ function flFinancas(root, fin) {
     com o calendário de empenho e de repasses do que com mudança estrutural; a Fase 3 seguinte, que corrige pela
     inflação, mostra a tendência por baixo do ruído.`);
 
-  note(root, `${fin.observacao || ""}`);
+  note(root, `${escapeHtml(fin.observacao || "")}`);
 }
 
 function flDespesaReal(root, desp) {
@@ -267,7 +267,7 @@ function flPibVsDespesa(root, desp, pib) {
 
   note(root, `<strong>Um índice, não dois eixos.</strong> PIB e despesa têm ordens de grandeza diferentes; pô-los
     em dois eixos verticais deixaria o cruzamento das linhas ser escolhido pela escala, não pelo dado. Aqui os dois
-    partem de ${c.base_indice} = 100 e a distância entre as curvas é a diferença real de ritmo. ${c.observacao}`);
+    partem de ${c.base_indice} = 100 e a distância entre as curvas é a diferença real de ritmo. ${escapeHtml(c.observacao)}`);
 }
 
 const FL_FUNCAO_NOTAS = {
@@ -378,11 +378,11 @@ function flVariacao(root, desp) {
   // Duas perguntas diferentes, e é fácil confundi-las: quem cresceu mais em
   // PERCENTUAL não é quem cresceu mais em REAIS. As duas saem do dado.
   const maiorReais = c.reduce((m, x) => (x.variacao_real_reais > m.variacao_real_reais ? x : m), c[0]);
-  note(root, `<strong>Quem mais cresceu em percentual foi ${maior.funcao}: +${flNum(maior.variacao_real_pct, 0)}% em
+  note(root, `<strong>Quem mais cresceu em percentual foi ${escapeHtml(maior.funcao)}: +${flNum(maior.variacao_real_pct, 0)}% em
     termos reais.</strong> Percentual alto costuma sair de base pequena — vale conferir na tabela quanto era o valor
     de 2014 antes de ler o número como prioridade orçamentária.`);
 
-  note(root, `<strong>Em dinheiro, porém, quem mais cresceu foi ${maiorReais.funcao}: mais
+  note(root, `<strong>Em dinheiro, porém, quem mais cresceu foi ${escapeHtml(maiorReais.funcao)}: mais
     ${fmtMoneyFull(maiorReais.variacao_real_reais)}</strong> por ano, já descontada a inflação
     (+${flNum(maiorReais.variacao_real_pct, 0)}%). ${maiorReais.funcao === "Previdência Social"
       ? `Isso não é escolha de política pública de um ano: é o regime próprio de previdência da capital chegando à
@@ -395,7 +395,7 @@ function flVariacao(root, desp) {
 
   if (novas.length) {
     note(root, `<strong>${novas.length === 1 ? "Uma função ficou de fora do gráfico" : `${novas.length} funções ficaram de fora do gráfico`}, e o motivo importa.</strong>
-      ${novas.map(x => `<strong>${x.funcao}</strong> (${fmtMoneyFull(x.r2025_em_2025)} em 2025)`).join(", ")} —
+      ${novas.map(x => `<strong>${escapeHtml(x.funcao)}</strong> (${fmtMoneyFull(x.r2025_em_2025)} em 2025)`).join(", ")} —
       ${novas.length === 1 ? "não existia" : "não existiam"} no orçamento de 2014, com R$ 0 empenhado. Variação
       percentual sobre uma base zero é indefinida, não "infinito por cento": o arquivo de dados grava
       <code>null</code> e a barra não é desenhada. O que importa nesses casos é o valor absoluto, que está aqui e
@@ -452,11 +452,11 @@ function flReceitaOrigem(root, rec) {
   const linhas = Object.entries(d).sort((a, b) => b[1] - a[1]);
   if (linhas.length) {
     note(root, `Dentro de "Transferências correntes", as rubricas que mais pesam são
-      ${linhas.slice(0, 3).map(([k, v]) => `<strong>${k.split(" — ")[0]}</strong> (${fmtMoneyFull(v)})`).join(", ")}.
+      ${linhas.slice(0, 3).map(([k, v]) => `<strong>${escapeHtml(k.split(" — ")[0])}</strong> (${fmtMoneyFull(v)})`).join(", ")}.
       Elas ficariam escondidas na barra agregada, e é por isso que o coletor as abre uma a uma.`);
   }
 
-  note(root, `${rec.observacao || ""} ${rec.teste_de_fechamento || ""}`);
+  note(root, `${escapeHtml(rec.observacao || "")} ${escapeHtml(rec.teste_de_fechamento || "")}`);
 
   renderTable(root, {
     caption: `Receita bruta de Florianópolis/SC por origem, ${u.ano}`,
@@ -647,7 +647,7 @@ function flEducacao(root, educ, snapshot, ips) {
     note(root, `Cada faixa do gráfico é um <em>intervalo</em>: "Fundamental completo" significa completou o
       fundamental <em>e não</em> completou o médio, e assim por diante. Os nomes por extenso estão na tabela.`);
 
-    note(root, `<strong>Atenção à comparação, e a ressalva é séria.</strong> ${n.observacao} Parte da melhora
+    note(root, `<strong>Atenção à comparação, e a ressalva é séria.</strong> ${escapeHtml(n.observacao)} Parte da melhora
       aparente vem de terem saído da conta as crianças em idade escolar. A direção da mudança é robusta; a
       magnitude exata, não.`);
 

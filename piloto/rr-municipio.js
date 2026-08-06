@@ -173,7 +173,7 @@ function mPosicao(root, doc) {
     percentuais) no mesmo eixo seria comparar coisas que não se comparam. E <strong>posição alta não quer
     dizer posição boa</strong>: em dependência de transferências, por exemplo, o 1º lugar é o município que
     mais depende.
-    ${topo.length ? `<br><br><strong>Maiores valores do estado, em ${doc.municipio}:</strong> ${topo.map(d => `${d.rotulo.toLowerCase()} (${mOrdinal(d.posicao)}, ${d.valor})`).join("; ")}.` : ""}
+    ${topo.length ? `<br><br><strong>Maiores valores do estado, em ${escapeHtml(doc.municipio)}:</strong> ${topo.map(d => `${d.rotulo.toLowerCase()} (${mOrdinal(d.posicao)}, ${d.valor})`).join("; ")}.` : ""}
     ${fundo.length ? ` <strong>Menores valores:</strong> ${fundo.map(d => `${d.rotulo.toLowerCase()} (${mOrdinal(d.posicao)}, ${d.valor})`).join("; ")}.` : ""}`);
 }
 
@@ -251,7 +251,7 @@ function mRaca(root, doc) {
   const ind = data.find(d => d.categoria === "Indígena");
   const maior = data[0];
   note(root, `Autodeclaração: a pergunta do Censo é sobre como a pessoa se identifica, não sobre registro
-    ou território. A categoria mais declarada em ${doc.municipio} é <strong>${maior.categoria.toLowerCase()}</strong>,
+    ou território. A categoria mais declarada em ${escapeHtml(doc.municipio)} é <strong>${escapeHtml(maior.categoria.toLowerCase())}</strong>,
     com ${mPct(maior.p22, 1)}.
     ${ind && ind.p22 != null ? `A população indígena é ${mPct(ind.p22, 1)} do município — ${mInt(ind.n22)} pessoas —,
     ${mOrdinal(doc.posicao_no_estado.indigena.posicao)} entre os ${doc.posicao_no_estado.indigena.de} municípios de Roraima.
@@ -300,7 +300,7 @@ function mFinancas(root, doc) {
     — ${mPct(Math.abs(u.saldo_sobre_receita_pct), 1)} da receita.
     ${negativos.length ? `Em ${negativos.length} dos ${s.length} anos da série o município empenhou mais do que arrecadou
     (${negativos.map(p => p.ano).join(", ")}).` : "Em nenhum ano da série o município empenhou mais do que arrecadou."}
-    ${faltando.length ? `<br><br><strong>Buracos na série:</strong> ${faltando.join(", ")} não têm declaração no
+    ${faltando.length ? `<br><br><strong>Buracos na série:</strong> ${faltando.map(escapeHtml).join(", ")} não têm declaração no
     SICONFI. Esses anos somem do gráfico como ausência, não como zero — um município que não declarou não é um
     município que gastou R$ 0.` : ""}`);
 }
@@ -347,12 +347,12 @@ function mDependencia(root, doc) {
   const anoEx = (doc.estado.extremos || {}).ano_das_financas;
   note(root, `As duas linhas quase somam 100%: o que falta são operações de crédito e outras receitas de
     capital. <strong>Dependência alta não é má gestão</strong> — é o desenho do federalismo brasileiro, em que a
-    União arrecada e repassa. O que a série mostra é se essa proporção muda: em ${doc.municipio} ela saiu de
+    União arrecada e repassa. O que a série mostra é se essa proporção muda: em ${escapeHtml(doc.municipio)} ela saiu de
     ${mPct(s[0].dependencia_transferencias_pct, 1)} em ${s[0].ano} para ${mPct(u.dependencia_transferencias_pct, 1)}
     em ${u.ano}.
     ${ex ? `Para efeito de escala, em ${anoEx} — único exercício recente em que os quinze municípios de Roraima
-    declararam — a menor dependência do estado era a de ${ex.minimo_municipio}, ${mPct(ex.minimo, 1)}, e a maior
-    a de ${ex.maximo_municipio}, ${mPct(ex.maximo, 1)}.` : ""}
+    declararam — a menor dependência do estado era a de ${escapeHtml(ex.minimo_municipio)}, ${mPct(ex.minimo, 1)}, e a maior
+    a de ${escapeHtml(ex.maximo_municipio)}, ${mPct(ex.maximo, 1)}.` : ""}
     A comparação completa está na <a href="roraima.html">página do estado</a>.`);
 }
 
@@ -391,7 +391,7 @@ function mFuncoes(root, doc) {
   const top3 = data.slice(0, 3);
   note(root, `Despesa empenhada por função em <strong>${u.ano}</strong>, o último exercício declarado
     (${data.length} maiores de ${Object.keys(u.funcoes).length} funções). As três maiores —
-    ${top3.map(d => `${d.funcao} (${mPct(d.pct, 0)})`).join(", ")} — respondem por
+    ${top3.map(d => `${escapeHtml(d.funcao)} (${mPct(d.pct, 0)})`).join(", ")} — respondem por
     ${mPct(top3.reduce((a, b) => a + b.pct, 0), 0)} do orçamento.
     O balão de cada barra traz a comparação com ${p0.ano} <em>já corrigida pela inflação</em>: sem isso,
     onze anos de IPCA apareceriam como crescimento do gasto.`);

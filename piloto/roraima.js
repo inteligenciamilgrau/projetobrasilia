@@ -210,7 +210,13 @@ function rrContexto(ctx, hist, mig) {
       .find(s => s.toLowerCase().includes(agulha.toLowerCase()));
     if (!f) return null;
     const limpa = f.trim().replace(/\.$/, "") + ".";
-    return { texto: limpa, de: `IBGE — ${campo} de ${nome}` };
+    // Escapado aqui, no ponto de entrada, e não em cada um dos dez lugares que
+    // pedem uma citação: este é o único texto da página que o projeto NÃO
+    // escreveu — é prosa livre de terceiro (a autoria declarada no arquivo é da
+    // Confederação Nacional de Municípios), e ela vai direto para innerHTML no
+    // <blockquote> da linha do tempo. Escapar na origem faz com que qualquer
+    // citação nova nasça segura, sem depender de alguém lembrar.
+    return { texto: escapeHtml(limpa), de: `IBGE — ${campo} de ${escapeHtml(nome)}` };
   };
   const cita = (nome, agulha) => recorte((H[nome] || {}).historico, agulha, nome, "verbete");
   const citaF = (nome, agulha) => recorte((H[nome] || {}).formacao, agulha, nome, "formação administrativa");
@@ -321,7 +327,7 @@ function rrPerguntaFundacao(ano, novos, leis, C, ultimo) {
     return {
       pergunta: "Se o estado é de 1988, o que era isso aqui em 1890?",
       resposta: `Era o <strong>Amazonas</strong>. A vila de Boa Vista do Rio Branco foi criada pelo
-        <strong>${(novos[0] || {}).criacao_lei || "decreto estadual"}</strong>, com território desmembrado da
+        <strong>${escapeHtml((novos[0] || {}).criacao_lei || "decreto estadual")}</strong>, com território desmembrado da
         vila de Moura, e o registro do IBGE ainda anota que ela “figura entre os municípios amazonenses”
         numa lei estadual de 1892. Roraima é <strong>mais nova que sua capital em quase um século</strong>.`,
       ressalva: `a data de criação vem de um texto publicado em endereço do IBGE mas de autoria declarada de
@@ -387,8 +393,8 @@ function rrPerguntaFundacao(ano, novos, leis, C, ultimo) {
       mostra que a criação parou, mas <strong>não diz por quê</strong> — a mudança de regra que travou o
       processo no país não foi apurada por este projeto.${federalNoAnoEstadual.length
         ? ` Some-se a isso um defeito da fonte: neste ano todas as leis são estaduais, menos a de
-          <strong>${federalNoAnoEstadual.map(m => m.nome).join(", ")}</strong>, registrada como
-          “${federalNoAnoEstadual[0].criacao_lei}” — numeração que cai no meio da sequência estadual do
+          <strong>${federalNoAnoEstadual.map(m => escapeHtml(m.nome)).join(", ")}</strong>, registrada como
+          “${escapeHtml(federalNoAnoEstadual[0].criacao_lei)}” — numeração que cai no meio da sequência estadual do
           mesmo ano. A página mostra como a fonte traz, e aponta a incoerência.` : ""}`,
   };
 }
@@ -414,7 +420,7 @@ function rrPassoOrigemEstadual(ano, org, mig, existiaEm, C) {
     descrever: (d) => `${rrInt(d.populacao_por_censo[String(ano)])} habitantes`,
     linhas: (d) => [["População (Censo " + ano + ")", rrInt(d.populacao_por_censo[String(ano)]) + " hab."]],
     texto: () => `<strong>${rrInt(totalFora)} moradores</strong> tinham vindo de fora do estado, pela
-      pergunta do Censo ${ano} sobre ${bloco.pergunta.split(",")[0]}.
+      pergunta do Censo ${ano} sobre ${escapeHtml(bloco.pergunta.split(",")[0])}.
       ${["Maranhão", "Pará", "Amazonas"].map(n => `<strong>${n}</strong> ${rrPct(parte(n), 1)}`).join(", ")}.
       ${interno ? `Outros ${rrInt(interno)} tinham se mudado dentro do próprio estado.` : ""}
       <br><br><strong>Aqui a seta é do estado, não do município.</strong> Em ${ano} o IBGE publicou a
@@ -485,13 +491,19 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
   const passosFundacao = anos.map((ano, i) => {
     const novos = nascidosEm(ano);
     const acumulado = fund.municipios.filter(m => m.criacao_ano <= ano).length;
-    const leis = [...new Set(novos.map(m => m.criacao_lei).filter(Boolean))];
+    // `leis` só é consumida por template de HTML (aqui, no contexto e na
+    // pergunta), então escapa na construção. O tooltip mostra a lei por outro
+    // caminho — `f.criacao_lei` em `linhas`, que vai para textContent e por
+    // isso continua cru. Extrair o número com /\d+/ segue funcionando: escape
+    // não mexe em dígito.
+    const leis = [...new Set(novos.map(m => m.criacao_lei).filter(Boolean))].map(escapeHtml);
     const datas = [...new Set(novos.map(m => m.criacao_data))];
+    const nomes = novos.map(m => escapeHtml(m.nome));
     return {
-      ano, rotulo: novos.length === 1 ? novos[0].nome : `+${novos.length} municípios`,
+      ano, rotulo: novos.length === 1 ? nomes[0] : `+${novos.length} municípios`,
       setas: false, modo: "fundacao",
       titulo: novos.length === 1
-        ? `${novos[0].nome} é criado — o estado passa a ter ${acumulado}`
+        ? `${nomes[0]} é criado — o estado passa a ter ${acumulado}`
         : `${novos.length} municípios criados de uma vez — o estado passa a ter ${acumulado}`,
       existe: (d) => jaExistiaEm(d, ano),
       nasceAgora: (d) => anoDe(d) === ano,
@@ -509,15 +521,15 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
       },
       texto: () => {
         const alerta = novos.filter(m => m.data_destoa_da_serie);
-        return `<strong>${dataBR(datas[0])}${datas.length > 1 ? " e " + dataBR(datas[1]) : ""}</strong> —
-          ${novos.length === 1 ? `nasce <strong>${novos[0].nome}</strong>` : `nascem <strong>${novos.map(m => m.nome).join(", ")}</strong>`},
+        return `<strong>${escapeHtml(dataBR(datas[0]))}${datas.length > 1 ? " e " + escapeHtml(dataBR(datas[1])) : ""}</strong> —
+          ${novos.length === 1 ? `nasce <strong>${nomes[0]}</strong>` : `nascem <strong>${nomes.join(", ")}</strong>`},
           ${leis.length === 1 ? `pela ${leis[0]}` : `pelas ${leis.join(" e ")}`}.
           Em laranja no mapa, quem nasce neste passo; em azul, quem já existia; em cinza tracejado, o
           território que ainda não tinha sede própria. O estado fecha o passo com
           <strong>${acumulado} de 15</strong> municípios.
           ${novos[0].criacao_frase_original ? `<br><br><span style="opacity:.85">Frase original da fonte:
-            “${novos[0].criacao_frase_original}”</span>` : ""}
-          ${alerta.length ? `<br><br><strong>Ressalva:</strong> ${alerta[0].data_destoa_da_serie}` : ""}`;
+            “${escapeHtml(novos[0].criacao_frase_original)}”</span>` : ""}
+          ${alerta.length ? `<br><br><strong>Ressalva:</strong> ${escapeHtml(alerta[0].data_destoa_da_serie)}` : ""}`;
       },
       contexto: () => rrContextoFundacao(ano, novos, leis, C, ano === anos[anos.length - 1]),
       pergunta: () => rrPerguntaFundacao(ano, novos, leis, C, ano === anos[anos.length - 1]),
@@ -657,16 +669,16 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
         if (foco) {
           const fs = mig.fluxos_2010.filter(f => f.destino_ibge === foco.ibge && f.origem_lon != null)
             .sort((a, b) => b.pessoas - a.pessoas).slice(0, 3);
-          return `<strong>${foco.nome}</strong>: ${rrInt(foco.vindos_de_fora_2010)} moradores tinham vindo
+          return `<strong>${escapeHtml(foco.nome)}</strong>: ${rrInt(foco.vindos_de_fora_2010)} moradores tinham vindo
             de fora nos dez anos anteriores a 2010. As maiores origens foram
-            ${fs.map(f => `${f.origem} (${rrInt(f.pessoas)})`).join(", ")}.
+            ${fs.map(f => `${escapeHtml(f.origem)} (${rrInt(f.pessoas)})`).join(", ")}.
             Clique de novo no município para voltar ao estado inteiro.`;
         }
         const deFora = topOrigens.filter(([n]) => n !== "Roraima");
         const interno = somaOrigem.get("Roraima") || 0;
         return `<strong>${rrInt(totalDeFora - interno)} moradores</strong> de Roraima em 2010 tinham vivido
           em outra unidade da federação nos dez anos anteriores. As três maiores origens são
-          ${deFora.slice(0, 3).map(([n, v]) => `<strong>${n}</strong> (${rrInt(v)})`).join(", ")} —
+          ${deFora.slice(0, 3).map(([n, v]) => `<strong>${escapeHtml(n)}</strong> (${rrInt(v)})`).join(", ")} —
           duas do Norte e uma do Nordeste. Outros ${rrInt(interno)} tinham se mudado <em>entre municípios
           do próprio estado</em>: esses não viram seta aqui, porque uma flecha de Roraima para Roraima não
           diz nada num mapa do estado. Cada seta encosta na <strong>fronteira</strong>, e não num ponto do
@@ -738,9 +750,9 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
       texto: (foco) => {
         if (foco) {
           const fs = fluxos2022(foco.ibge).slice(0, 3);
-          return `<strong>${foco.nome}</strong>: ${rrInt(chegadas22.get(foco.ibge) || 0)} moradores estavam
+          return `<strong>${escapeHtml(foco.nome)}</strong>: ${rrInt(chegadas22.get(foco.ibge) || 0)} moradores estavam
             no município havia menos de dez anos em 2022. As maiores origens foram
-            ${fs.map(f => `${f.origem} (${rrInt(f.pessoas)})`).join(", ")}.
+            ${fs.map(f => `${escapeHtml(f.origem)} (${rrInt(f.pessoas)})`).join(", ")}.
             Clique de novo no município para voltar ao estado inteiro.`;
         }
         const p = C.pais(2022);
@@ -753,9 +765,9 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
           Em 2010, na mesma conta, o exterior era ${rrPct(100 * exterior2010 / chegaram2010, 1)} —
           ${rrInt(exterior2010)} pessoas — e a maior origem estrangeira nem era a Venezuela.
           ${top ? `Numa medida vizinha do mesmo Censo, <strong>${rrPct(top.pct, 1)} de quem não morava no
-          Brasil cinco anos antes estava na ${top.pais}</strong>.` : ""}<br><br>
+          Brasil cinco anos antes estava na ${escapeHtml(top.pais)}</strong>.` : ""}<br><br>
           <strong>A seta do exterior é a única do projeto que não parte de um ponto medido.</strong> O Censo
-          publica “Exterior”, sem coordenada. Ela entra pelo rumo de <strong>${porPeso[0].nome}</strong>, o
+          publica “Exterior”, sem coordenada. Ela entra pelo rumo de <strong>${escapeHtml(porPeso[0].nome)}</strong>, o
           município onde os estrangeiros mais pesam na população (${rrPct(porPeso[0].peso, 0)} dela) e onde
           fica a fronteira — é posição de <em>porta de entrada</em>, não de origem apurada. O comprimento
           dela não significa distância.`;
@@ -767,12 +779,12 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
         return {
           numeros: [
             { valor: rrPct(100 * exterior22 / totalChegadas22, 1), rotulo: "de quem veio de fora do estado veio de fora do país" },
-            top ? { valor: rrPct(top.pct, 1), rotulo: `de quem morava fora estava na ${top.pais}` } : null,
+            top ? { valor: rrPct(top.pct, 1), rotulo: `de quem morava fora estava na ${escapeHtml(top.pais)}` } : null,
             { valor: rrPct(100 * exterior22 / totalEm(2022), 1), rotulo: "da população do estado" },
           ],
           texto: `Entre um Censo e outro, a maior origem estrangeira de Roraima
-            ${top10 && top ? `deixou de ser a <strong>${top10.pais}</strong> e passou a ser a
-            <strong>${top.pais}</strong>` : "mudou"} — e não trocou de lugar por pouco:
+            ${top10 && top ? `deixou de ser a <strong>${escapeHtml(top10.pais)}</strong> e passou a ser a
+            <strong>${escapeHtml(top.pais)}</strong>` : "mudou"} — e não trocou de lugar por pouco:
             ${top10 ? `em 2010 eram ${rrInt(top10.pessoas)} pessoas` : ""}
             ${top ? `e em 2022 são <strong>${rrInt(top.pessoas)}</strong>` : ""}. Um estado de
             ${rrInt(totalEm(2022))} habitantes recebeu, pela fronteira terrestre, um contingente equivalente a
@@ -789,11 +801,11 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
           pergunta: `Em 2010 o exterior era ${rrPct(100 * exterior2010 / chegaram2010, 1)} das chegadas. Como virou quase dois terços?`,
           resposta: `Porque o vizinho entrou em colapso, e vizinho de Roraima se alcança
             <strong>a pé</strong>. ${top10 ? `Em 2010 a maior origem estrangeira era a
-            <strong>${top10.pais}</strong>, com ${rrInt(top10.pessoas)} pessoas` : ""}${top ? `; em 2022 são
-            <strong>${rrInt(top.pessoas)} vindos da ${top.pais}</strong>, ${rrPct(top.pct, 1)} de todos os que
+            <strong>${escapeHtml(top10.pais)}</strong>, com ${rrInt(top10.pessoas)} pessoas` : ""}${top ? `; em 2022 são
+            <strong>${rrInt(top.pessoas)} vindos da ${escapeHtml(top.pais)}</strong>, ${rrPct(top.pct, 1)} de todos os que
             moravam fora do Brasil cinco anos antes` : ""}. Não é uma migração que chega de avião e se
             distribui pelo país: ela <strong>atravessa uma linha no chão</strong> e a primeira coisa que
-            encontra é ${porPeso[0].nome}, onde hoje ${rrPct(porPeso[0].peso, 0)} da população é estrangeira.`,
+            encontra é ${escapeHtml(porPeso[0].nome)}, onde hoje ${rrPct(porPeso[0].peso, 0)} da população é estrangeira.`,
           ressalva: `as duas medidas têm <strong>janelas diferentes</strong> — “menos de 10 anos no município”
             e “não morava no Brasil 5 anos antes” — e por isso os totais não se somam nem se dividem um pelo
             outro. Além disso, elas medem <em>onde a pessoa morava</em>, não a nacionalidade dela: parte de
@@ -820,14 +832,14 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
         const bv = mig.municipios.find(m => m.nome === "Boa Vista");
         return `A cor do mapa agora é a <strong>proporção de população indígena</strong>, e ela muda a
           leitura de tudo o que veio antes: em ${ind.length} municípios os indígenas são maioria —
-          ${ind.slice(0, 3).map(m => `${m.nome} ${rrPct(m.indigena_pct_2022, 0)}`).join(", ")}. Essas
+          ${ind.slice(0, 3).map(m => `${escapeHtml(m.nome)} ${rrPct(m.indigena_pct_2022, 0)}`).join(", ")}. Essas
           populações <strong>não chegaram por nenhuma das setas</strong>: elas já estavam aqui quando as
           fronteiras foram desenhadas por cima delas. Nenhum passo desta linha do tempo mostra a chegada
           delas, porque nenhuma fonte deste projeto a registra — o Censo começa a contar depois.<br><br>
           Em 2022 o estado tinha <strong>${rrInt(est)} estrangeiros residentes</strong> —
           ${rrPct(100 * est / totalEm(2022), 1)} da população.
           ${rrInt(bv.estrangeiros_2022)} moram em Boa Vista, mas o município onde eles mais pesam é
-          <strong>${porPeso[0].nome}: ${rrPct(porPeso[0].peso, 0)} da população</strong> — é ali que fica a
+          <strong>${escapeHtml(porPeso[0].nome)}: ${rrPct(porPeso[0].peso, 0)} da população</strong> — é ali que fica a
           fronteira com a Venezuela.`;
       },
       contexto: () => ({
@@ -867,19 +879,19 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
   const alertas = (fund && fund.sinalizacoes_automaticas) || [];
   noteToggle(root, "O que esta linha do tempo não mostra, e o que veio de fonte de terceiro",
     `<p class="viz-note-lead">As datas de criação vêm de um endereço do IBGE, mas não são apuração do
-      IBGE: cada registro declara <strong>“${(fund && fund.municipios[0].fonte_declarada_no_registro) || "fonte de terceiro"}”</strong>
+      IBGE: cada registro declara <strong>“${escapeHtml((fund && fund.municipios[0].fonte_declarada_no_registro) || "fonte de terceiro")}”</strong>
       como origem do texto. Por isso cada data foi <strong>cruzada com os Censos</strong>, que são de outra
       fonte: um município criado depois de 1991 não pode aparecer na contagem de 1991.
       ${fund && !fund.resumo.conflitos_com_censo.length
         ? "Nas quinze, nenhuma data conflita com o Censo." : ""}
       A frase original de onde cada data saiu aparece no passo correspondente.</p>`
     + (alertas.length ? alertas.map(a =>
-        `<p><strong>${a.municipio} — divergência na própria fonte:</strong> ${a.alerta}</p>`).join("") : "")
+        `<p><strong>${escapeHtml(a.municipio)} — divergência na própria fonte:</strong> ${escapeHtml(a.alerta)}</p>`).join("") : "")
     + (fund && fund.resumo.instalacao_incoerente.length
-        ? `<p><strong>${fund.resumo.instalacao_incoerente.join(", ")} — outra divergência da fonte:</strong>
+        ? `<p><strong>${fund.resumo.instalacao_incoerente.map(escapeHtml).join(", ")} — outra divergência da fonte:</strong>
            o texto traz uma data de instalação anterior à de criação. Por isso a data de instalação só é
            mostrada quando é coerente com a de criação.</p>` : "")
-    + naoExiste.map(x => `<p><strong>${x.assunto}</strong> (${x.situacao}): ${x.detalhe}</p>`).join("")
+    + naoExiste.map(x => `<p><strong>${escapeHtml(x.assunto)}</strong> (${escapeHtml(x.situacao)}): ${escapeHtml(x.detalhe)}</p>`).join("")
     + `<p><strong>Duas correções desta versão, porque errar calado é pior que errar.</strong>
        (1) Esta linha do tempo dizia que <em>o Censo 2022 não publicou a origem por município</em>. Publica,
        na tabela 10158 — e o passo de 2022, que estava sem setas, era justamente o do maior movimento
@@ -894,7 +906,7 @@ function rrLinhaDoTempo(root, malha, mig, fund, org, ctx, hist) {
        como contexto e não como medida: a transformação do Território Federal de Roraima em estado. O que foi
        medido aqui é o efeito dela — a lei que cria município deixa de ser federal e passa a ser estadual
        entre 1982 e 1994.</p>`
-    + `<p class="viz-note-fontes">Fontes: ${Object.values(mig.fontes).join(" · ")}${fund ? " · " + fund.fonte : ""}${ctx ? " · " + Object.values(ctx.fontes).join(" · ") : ""}${hist ? " · " + hist.fonte.split(" — ")[0] : ""}</p>`);
+    + `<p class="viz-note-fontes">Fontes: ${Object.values(mig.fontes).map(escapeHtml).join(" · ")}${fund ? " · " + escapeHtml(fund.fonte) : ""}${ctx ? " · " + Object.values(ctx.fontes).map(escapeHtml).join(" · ") : ""}${hist ? " · " + escapeHtml(hist.fonte.split(" — ")[0]) : ""}</p>`);
 
   renderTable(root, {
     caption: "Criação dos 15 municípios de Roraima",
@@ -971,9 +983,9 @@ function rrConcentracao(root, indice, contexto) {
   note(root, `<strong>Boa Vista tem ${rrPct(bv.pct_populacao, 1)} da população em ${rrPct(bv.pct_area, 1)} do território.</strong>
     Nenhum outro município do estado passa de ${rrPct(dados[1].pct_populacao, 1)}. Entre as 27 unidades da federação,
     Roraima é a <strong>${contexto.roraima.posicao_concentracao_no_maior_municipio}ª mais concentrada</strong> —
-    e a primeira, ${df.uf}, é um caso à parte, porque tem um município só (${rrPct(df.concentracao_pct, 0)} por
+    e a primeira, ${escapeHtml(df.uf)}, é um caso à parte, porque tem um município só (${rrPct(df.concentracao_pct, 0)} por
     definição). Entre os estados com mais de um município, <strong>Roraima é o mais concentrado do país</strong>,
-    à frente do ${ap.uf} (${rrPct(ap.concentracao_pct, 1)} em ${ap.maior_municipio.split(" - ")[0]}).`);
+    à frente do ${escapeHtml(ap.uf)} (${rrPct(ap.concentracao_pct, 1)} em ${escapeHtml(ap.maior_municipio.split(" - ")[0])}).`);
 }
 
 // ---------------------------------------------------------------------------
@@ -1004,9 +1016,9 @@ function rrTerritorio(root, indice, contexto) {
   });
 
   const cara = contexto.municipios_de_rr_maiores_que_ufs[0];
-  note(root, `<strong>As linhas tracejadas são estados inteiros.</strong> ${cara.municipio} tem
+  note(root, `<strong>As linhas tracejadas são estados inteiros.</strong> ${escapeHtml(cara.municipio)} tem
     ${rrKm2(cara.area_km2)} — mais que ${cara.ufs_menores.length} unidades da federação, entre elas o
-    estado do ${cara.maior_uf_superada} (${rrKm2(cara.area_maior_uf_superada_km2)}) —, e dentro dessa
+    estado do ${escapeHtml(cara.maior_uf_superada)} (${rrKm2(cara.area_maior_uf_superada_km2)}) —, e dentro dessa
     área moram ${rrInt(dados.find(d => d.nome === cara.municipio).populacao)} pessoas.
     <strong>Doze dos quinze municípios são maiores que o Distrito Federal.</strong> Roraima é a
     ${contexto.roraima.posicao_em_area}ª UF em área e a última em população.`);
@@ -1038,7 +1050,7 @@ function rrIndigenas(root, indice) {
   const maioria = dados.filter(d => d.indigena_pct_2022 >= 50);
   const subiu = dados.filter(d => d.indigena_pct_2010 != null && d.indigena_pct_2022 > d.indigena_pct_2010).length;
   note(root, `<strong>Em ${maioria.length} dos quinze municípios os indígenas são maioria da população</strong>
-    — ${maioria.map(d => `${d.nome} (${rrPct(d.indigena_pct_2022, 1)})`).join(", ")}.
+    — ${maioria.map(d => `${escapeHtml(d.nome)} (${rrPct(d.indigena_pct_2022, 1)})`).join(", ")}.
     A barra de 2010 está aí porque o dado isolado de 2022 esconde o movimento: em ${subiu} municípios a
     proporção subiu entre os dois Censos. Parte disso é demografia e parte é <strong>autodeclaração</strong> —
     a pergunta do Censo é sobre como a pessoa se identifica, e o IBGE ampliou em 2022 a coleta em
@@ -1112,8 +1124,8 @@ function rrPopulacaoTempo(root, pop) {
     ${rrInt(ult(paineis.find(p => p.nome === "Boa Vista")).populacao)} habitantes e o segundo colocado não chega a
     ${rrInt(ult(paineis.filter(p => p.nome !== "Boa Vista").sort((a, b) => ult(b).populacao - ult(a).populacao)[0]).populacao)},
     então catorze painéis viravam uma linha reta no chão — honesto e inútil. Em índice, a mesma escala passa a
-    comparar <em>quanto cada um cresceu</em>: ${cresceu.nome} multiplicou por
-    ${rrNum(cresceu.valores[cresceu.valores.length - 1] / 100, 1)} desde ${base}, e ${menos.nome},
+    comparar <em>quanto cada um cresceu</em>: ${escapeHtml(cresceu.nome)} multiplicou por
+    ${rrNum(cresceu.valores[cresceu.valores.length - 1] / 100, 1)} desde ${base}, e ${escapeHtml(menos.nome)},
     o que menos cresceu, por ${rrNum(menos.valores[menos.valores.length - 1] / 100, 1)}.
     <strong>Os quinze terminam a série acima de onde começaram</strong> — o menor índice do estado é
     ${rrNum(menos.valores[menos.valores.length - 1], 0)}.<br><br>
@@ -1150,10 +1162,10 @@ function rrDependencia(root, indice, pilotos) {
   const capital = pilotos.find(p => p.slug === "florianopolis");
   const serra = pilotos.find(p => p.slug === "serra-da-saudade");
   note(root, `<strong>Nenhum dos quinze fica abaixo de ${rrPct(menor.dependencia, 0)}.</strong>
-    O menos dependente é ${menor.nome}, a capital, com ${rrPct(menor.dependencia, 1)}${capital ?
-      ` — mais que o dobro de ${capital.nome}, que é capital também e aparece na régua com ${rrPct(capital.dependencia, 0)}` : ""}.
-    No outro extremo, ${maior.nome} chega a ${rrPct(maior.dependencia, 1)}${serra ?
-      `: <strong>mais dependente que ${serra.nome}</strong>, o menor município do Brasil, que este projeto já
+    O menos dependente é ${escapeHtml(menor.nome)}, a capital, com ${rrPct(menor.dependencia, 1)}${capital ?
+      ` — mais que o dobro de ${escapeHtml(capital.nome)}, que é capital também e aparece na régua com ${rrPct(capital.dependencia, 0)}` : ""}.
+    No outro extremo, ${escapeHtml(maior.nome)} chega a ${rrPct(maior.dependencia, 1)}${serra ?
+      `: <strong>mais dependente que ${escapeHtml(serra.nome)}</strong>, o menor município do Brasil, que este projeto já
       publicou como caso-limite do federalismo` : ""}.
     O caso-limite, aqui, é o estado inteiro. Dados do DCA de ${RR_ANO_FIN}, último exercício em que os
     quinze declararam.`);
@@ -1181,7 +1193,7 @@ function rrReceitaDespesa(root, indice) {
     passou a receita do ano</strong>. Empenho não é pagamento — parte vira restos a pagar do exercício
     seguinte —, mas a distância entre as duas barras é o que sobra ou falta antes disso.
     Valores corrigidos pelo IPCA para reais de 2025 e divididos pela população estimada.
-    ${dados[0].nome} tem a maior receita por habitante do estado (${rrReais(dados[0].receita_per_capita)}),
+    ${escapeHtml(dados[0].nome)} tem a maior receita por habitante do estado (${rrReais(dados[0].receita_per_capita)}),
     ${(dados[0].populacao / 1000).toFixed(0)} mil habitantes e ${rrPct(dados[0].dependencia, 0)} de dependência.`);
 }
 
@@ -1204,10 +1216,10 @@ function rrEconomia(root, indice) {
   const alto = dados[0], baixo = dados[dados.length - 1];
   const capital = dados.find(d => d.nome === "Boa Vista");
   const acima = dados.filter(d => d.adm_publica_pct >= 50).length;
-  note(root, `<strong>Em ${alto.nome}, ${rrPct(alto.adm_publica_pct, 1)} de tudo que a economia do município
+  note(root, `<strong>Em ${escapeHtml(alto.nome)}, ${rrPct(alto.adm_publica_pct, 1)} de tudo que a economia do município
     produz é administração, defesa, educação e saúde públicas.</strong> Em ${acima} dos quinze essa fatia
-    passa da metade. O menor peso do estado é o de ${baixo.nome}, com ${rrPct(baixo.adm_publica_pct, 1)}, e a
-    capital, ${capital.nome}, aparece em ${rrPct(capital.adm_publica_pct, 1)} — dois em cada cinco reais,
+    passa da metade. O menor peso do estado é o de ${escapeHtml(baixo.nome)}, com ${rrPct(baixo.adm_publica_pct, 1)}, e a
+    capital, ${escapeHtml(capital.nome)}, aparece em ${rrPct(capital.adm_publica_pct, 1)} — dois em cada cinco reais,
     o que já seria alto em qualquer outro lugar.
     A conta inclui os três níveis de governo, não só a prefeitura: onde há escola estadual, posto federal
     e pouca atividade privada, é isto que aparece. Dado de ${RR_ANO_VAB}, último ano em que o IBGE abriu
@@ -1241,7 +1253,7 @@ function rrFechamento(root, perfil, pib, fin) {
     e num recorte fechado há. A população bate na unidade, a área na segunda casa decimal e o PIB difere em
     R$ 1 mil sobre R$ 25 bilhões — arredondamento da própria publicação.
     ${naoDeclarados.length ? `<br><br><strong>O que não fecha, e por quê.</strong> ${naoDeclarados.length} pares
-    município-ano não têm declaração no SICONFI: ${naoDeclarados.join(", ")}. Eles somem dos gráficos como
+    município-ano não têm declaração no SICONFI: ${naoDeclarados.map(escapeHtml).join(", ")}. Eles somem dos gráficos como
     ausência, não como zero — um município que não declarou não é um município que gastou R$ 0. A partir de
     2017 a série fica completa, e é por isso que os rankings usam ${RR_ANO_FIN}.` : ""}`);
 }
