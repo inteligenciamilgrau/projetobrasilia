@@ -1,0 +1,128 @@
+{
+ "titulo": "Texto de histórico e formação administrativa dos 15 municípios",
+ "coletado_em": "2026-08-05",
+ "fonte": "servicodados.ibge.gov.br/api/v1/biblioteca — MESMA RESSALVA DE AUTORIA do arquivo de fundação: o endereço é do IBGE e o conteúdo declara outra autoria no próprio registro. A página cita o texto entre aspas e atribui, em vez de afirmar por conta própria.",
+ "url_template": "https://servicodados.ibge.gov.br/api/v1/biblioteca?aspas=3&codmun={codigo_ibge}&fmt=json",
+ "municipios": [
+  {
+   "ibge": "1400050",
+   "nome": "Alto Alegre",
+   "historico": "Nasceu do pioneirismo do maranhense Pedro Costa, o qual buscou áreas agricultáveis no interior do município para trabalhar e as encontrou na Mata geral, local que começa na margem esquerda do rio Mucajaí. \r\n\tO topônimo foi escolhido devido ao fato de Pedro Costa, juntamente com alguns companheiros, ter se estabelecido no campo de Alto Alegre.",
+   "formacao": "Elevado à categoria de município e distrito com a denominação de Alto Alegre, pela Lei Federal n.º 7.009, de 01-07-1982, desmembrado do município de Boa Vista. Sede no atual distrito de Alto Alegre (ex-Colônia de Alto Alegre). Constituído do distrito sede. Instalado em 13-07-1982. \r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "alto-alegrense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400027",
+   "nome": "Amajari",
+   "historico": "Em 1975 chegou por ali o primeiro morador, Sr. Brasil. Posteriormente passou a se chamar Vila Brasil.",
+   "formacao": "Elevado à categoria de município e distrito com a denominação de Amajari, pela Lei Estadual n.º 97, de 17-1-1995, desmembrado do município de Boa Vista. Sede no atual distrito de Amajari (ex-localidade de Vila Brasil aglomerado rural). Constituído do distrito sede. Instalado em 01-01-1997.\r\n\tEm divisão territorial datada de 2001, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "amajariense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400100",
+   "nome": "Boa Vista",
+   "historico": "A cidade de Boa Vista se originou da sede de uma fazenda estabelecida no local no século XIX. Em torno da sede da fazenda, chamada Boa Vista do Rio Branco, surgiu um pequeno povoado, a Freguesia de Nossa Senhora do Carmo, que durante um bom tempo foi o único povoado em toda a região do alto Rio Branco.\r\nEm 1890, o povoado foi elevado à condição de vila e em 1926 passou a ser município, adotando o nome da antiga fazenda, Boa Vista. Com a criação do Território Federal de Roraima, em 1940, a cidade foi escolhida para ser a capital.",
+   "formacao": "Freguesia criada com a denominação de Nossa Senhora do Carmo\r\n\tElevado à categoria de vila com a denominação de Vila de Boa Vista do Rio Branco, pelo Decreto Estadual n.° 49, de 09-07-1890, com território desmembrado da vila de Moura. Instalado em 25-07-1890.\r\n\tBoa Vista do Rio Branco figura entre os municípios amazonenses relacionados pela Lei Estadual n.° 33, de 04-11- 1892. \r\n\tEm divisão administrativa referente ano de 1911, a vila é constituída do distrito sede.\r\n\tElevado à condição de cidade com a denominação de Boa Vista do Rio Branco, pela Lei Estadual n.º 1.262, de 27-08-1926.  \r\n\tEm divisão administrativa referente ano de 1933, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisos territoriais datadas de 31-XII-1936 e 31-XII-1937. \r\n\tEm 1938, o topônimo do município e do distrito foi simplificado para Boa Vista. \r\n\tPelo Decreto-lei Federal n.° 5.812, de 13-09-1943, retificado pelo de n° 5.839, de 21-09-1943, criou-se o Território Federal do Rio Branco (denominado Roraima a partir de 1962) para o qual foi transferido o município de Boa Vista, acrescido de parte do de Moura, do Estado do Amazonas. Em cumprimento ao mesmo Decreto-lei, a cidade de Boa Vista foi elevada à categoria de capital do novo Território. \r\n\tEm divisão territorial datada de 1-VII-1960, o município é constituído de 4 distritos: Boa Vista, Conceição do Maú, Depósito e Uraricoera. \r\n\tAssim permanecendo em divisão territorial datada de 1-I-1979.\r\n\tPela Lei Federal n.º 7.009, de 01-07-1982, foram extintos os distritos de Conceição do Maú, Depósito e Uraricoera sendo seus territórios anexados ao distrito sede do município de Boa Vista.\r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede. \r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "boa-vistense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400159",
+   "nome": "Bonfim",
+   "historico": "O primeiro povoado surgiu ainda no século XIX, e seu nome é uma homenagem à Nossa Senhora do Bonfim. \r\n\tDepois de vários ciclos comerciais com a cidade de Lethem, na fronteira da República Cooperativista da Guiana, a vila passou à condição de município.",
+   "formacao": "Elevado à categoria de município com a denominação de Bonfim, pela Lei Federal n.º 7.009, de 01-07-1982, desmembrado dos municípios de Boa Vista e Caracaraí. Sede no atual distrito de Bonfim (ex-Vila de Bonfim). Constituído do distrito sede. Instalado em 13-07-1982. \r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede. \r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "bonfinense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400175",
+   "nome": "Cantá",
+   "historico": "Surgiu ainda no século XX, através da colônia Brás de Aguiar. Em 17 de outubro de 1995 desmembra-se de Bonfim e eleva-se à categoria de município.",
+   "formacao": "Elevado à categoria de município com a denominação de Cantá, pela Lei Estadual n.º 99, de 17-10-1995, desmembrado do município de Bonfim. Sede no atual distrito de Cantá (ex-localidade de Vila Cantá aglomerado rural). Constituído do distrito sede. Instalado em 01-01-1997.\r\n\tEm divisão territorial datada 2001, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "cantaense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400209",
+   "nome": "Caracaraí",
+   "historico": "Surgiu de um local de descanso de condutores de gado, do antigo município de Moura, cujas terras deram origem ao território de Roraima.\r\nO nome é uma alusão a um pequeno gavião que habita a região.",
+   "formacao": "Distrito criado com a denominação de Caracaraí, pelo Decreto-lei Estadual n.° 176, de 01-12-1938, subordinado ao município de Boa Vista.\r\n\tPelo Decreto-lei Federal n.° 5812, de 13-09-1943, ou 5839, de 21-09-1943, passou a fazer parte do Território Federal do Rio Branco (atual Roraima). \r\n\tNo quadro fixado para avigorar no período de 1939-1943, o distrito de Caracaraí, figura no município de Boa Vista. \r\n\tAssim permanecendo em divisão territorial datada de 1-VII-1950. \r\n\tElevado à categoria de município com a denominação de Caracaraí, pela Lei Federal n.º 2.495, de 27-05-1955, desmembrado do município de Boa Vista. Sede no antigo distrito de Caracaraí. Constituído de 3 distritos: Caracaraí, Boiaçu (ex-Catrimani) e São José de Anauá. Instalado em 21-01-1956. \r\n\tEm divisão territorial datada de 1-VII-1960, o município é constituído de 3 distritos: Caracaraí, Boiaçu e São José de Anauá.\r\n\tAssim permanecendo em divisão territorial datada de 1-I-1979.\r\n\tPela Lei Federal n.º 7.009, de 01-07-1982, foram extintos os distritos de Boiaçu e São José de Anauá, sendo seus territórios anexados ao distrito sede do município de Caracaraí.\r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "caracaraiense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400233",
+   "nome": "Caroebe",
+   "historico": "Elevou-se à categoria de município em 4 de novembro de 1994.",
+   "formacao": "Elevado à categoria de município com a denominação de Caroebe, pela Lei Estadual n.º 82, de 04-11-1994, desmembrado do município São João da Baliza. Sede no atual distrito de Caroebe (ex-localidade aglomerado rural). Constituído do distrito sede. Instalado em 01-01-1997.\r\nEm divisão territorial datada de 2001, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "caroebense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400282",
+   "nome": "Iracema",
+   "historico": "O nome homenageia à esposa do primeiro morador, Militão Pereira da Costa. Elevou-se à condição de município em 4 de novembro de 1994.",
+   "formacao": "Elevado à categoria de município com a denominação de Iracema, pela Lei Estadual n.º 83, de 04-11-1994, desmembrado dos municípios de Caracaraí e Mucajaí. Sede no atual distrito de Iracema (ex-localidade de Vila Iracema aglomerado rural), do município de Muicajaí. Constituído do distrito sede. Instalado em 01-01-1997.\r\n\tEm divisão territorial datada 2001, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "iracemense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400308",
+   "nome": "Mucajaí",
+   "historico": "O primeiro Governador do Território Federal do Rio Branco, Ene Garcez Reis, visava promover um verdadeiro desenvolvimento agrícola. Durante uma das tentativas, surgiu na região do atual Município de Mucajaí, um núcleo de famílias de emigrantes nordestinos, dando origem em 1951 à Colônia Agrícola Fernando Costa, atual Município de Mucajaí.\r\n\tO topônimo é de origem indígena. Significa coco pequeno.",
+   "formacao": "Elevado à categoria de município e distrito com a denominação de Macajaí, pela Lei Federal n.º 7.009, de 01-07-1982, desmembrado do município de Boa Vista e Caracaraí. Sede no atual distrito de Macajaí (ex-Colônia). Constituído do distrito sede. Instalado em 13-07-1982.\r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "mucajaiense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400407",
+   "nome": "Normandia",
+   "historico": "O nome é uma homenagem à cidade região francesa da Normandia, terra de Pappillon, que fixou residência naquele povoado depois de fugir da Ilha do Diabo. Em 1º de julho de 1982 foi elevado à condição de município.",
+   "formacao": "Elevado à categoria de município e distrito com a denominação de Normandia, pela Lei Federal n.º 7.009, de 01-07-1982, desmembrado do município de Boa Vista. Sede no atual distrito de Normandia (ex-povoado). Constituído do distrito sede. Instalado em 13-07-1982. \r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede. \r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "normandiense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400456",
+   "nome": "Pacaraima",
+   "historico": "Localizada na fronteira com a Venezuela, a vila de BV-8 nasceu com a chegada do exército. Em 17 de outubro de 1995 foi elevada à categoria de município.",
+   "formacao": "Elevado à categoria de município com a denominação de Pacaraima, pela Lei Estadual n.º 96, de 17-10-1995, desmembrado do município de Boa Vista. Sede no atual distrito Pacaraíma (ex-localidade de Vila Pacaraíma aglomerado rural). Constituído do distrito sede. Instalado em 01-01-1997.\r\n\tEm divisão territorial datada 2001, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "pacaraimense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400472",
+   "nome": "Rorainópolis",
+   "historico": "A cidade foi criada com a instalação de uma sede do Instituto Nacional de Colonização e Reforma Agrária – Incra, às margens da BR-174, isso na década de 1970. O Incra implantou um programa para distribuir terras, atraindo pessoas de todo o país.\r\nO município foi criado em 1995 com terras desmembradas de São Luiz, onde se localiza a sede municipal, e São João da Baliza. A população cresceu rapidamente e se tornou a segunda maior do estado.",
+   "formacao": "Elevado à categoria de município com a denominação de Rorainópolis, pela Lei Estadual n.º 100, de 17-10-1995, desmembrado dos municípios de São João da Baliza e São Luiiz. Sede no atual distrito Rorainópolis (ex-localidade de Vila de Rorainópolis ou Vila do Incra aglomerado rural), do município de São Luiz. Constituído do distrito sede. Instalado em 01-01-1997.\r\nEm divisão territorial datada 2001, o município é constituído do distrito sede.\r\nAssim permanecendo em divisão territorial datada de 2015.",
+   "gentilico": "rorainopolitano",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400506",
+   "nome": "São João da Baliza",
+   "historico": "Os primeiros colonos começaram a chegar na região na década de 80, com a abertura da BR 210. \r\n\tO topônimo é uma homenagem à São João.",
+   "formacao": "Elevado à categoria de município e distrito com a denominação de São Luiz, pela Lei Federal n.º 7.009, de 01-07-1982, desmembrado do município de Boa Vista. Sede no atual distrito de São Luiz. Constituído do distrito sede. Instalado em 13-07-1982. \r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "baliziense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400605",
+   "nome": "São Luiz do Anauá",
+   "historico": "Nascido do processo de ocupação e integração da Amazônia Legal com o resto do país, foi elevado à condição de município em 1º de julho de 1982. \r\n\tSeu nome é uma homenagem à capital do estado Maranhão, devido ao grande número de maranhenses no local.",
+   "formacao": "Elevado à categoria de município e distrito com a denominação de São Luiz, pela Lei Federal n.º 7.009, de 01-07-1982, desmembrado do município de Boa Vista. Sede no atual distrito de São Luiz. Constituído do distrito sede. Instalado em 13-07-1982. \r\n\tEm divisão territorial datada de 1988, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "são-luizense",
+   "fonte_declarada": null
+  },
+  {
+   "ibge": "1400704",
+   "nome": "Uiramutã",
+   "historico": "Único município do Estado que faz fronteira com dois países, Venezuela e República Cooperativista da Guiana. É rico em belezas naturais e lá está localizado o Parque Nacional do Monte Roraima.",
+   "formacao": "Elevado à categoria de município com a denominação de Uiramutã, pela Lei Federal n.º 98, de 17-10-1995, desmembrado dos municípios Boa Vista e Normandia. Sede no atual distrito de Uiramutã  (ex-localidade de vila do Uiramutã aglomerado rural), do município de Normandia. Constituído do distrito sede. Instalado em 13-07-1982. \r\nEm divisão territorial datada de 1988, o município é constituído do distrito sede.\r\n\tAssim permanecendo em divisão territorial datada de 2009.",
+   "gentilico": "uiramutansense",
+   "fonte_declarada": null
+  }
+ ]
+}

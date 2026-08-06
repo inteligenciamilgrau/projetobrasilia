@@ -2559,6 +2559,64 @@ function renderLinhaDoTempo(root, { malha, dados, passos }) {
     "stroke-linejoin": "round",
   }, gContorno));
 
+  // ---- contexto em cima do mapa --------------------------------------------
+  // O contexto também vive embaixo, na narração. Aqui ele vira um atalho no
+  // canto do mapa: passar o mouse abre, clicar PRENDE aberto — e preso ele
+  // acompanha os passos, o que transforma o play numa narração contínua sem
+  // tirar o olho do mapa.
+  //
+  // O painel é aria-hidden e o botão diz que o texto está logo abaixo: o mesmo
+  // conteúdo já é lido pelo leitor de tela na narração, e repeti-lo faria a
+  // pessoa ouvir tudo duas vezes por passo.
+  const sobre = document.createElement("div");
+  sobre.className = "viz-tl-sobre";
+  const chip = document.createElement("button");
+  chip.type = "button";
+  chip.className = "viz-tl-chip";
+  chip.setAttribute("aria-expanded", "false");
+  const painel = document.createElement("div");
+  painel.className = "viz-tl-painel";
+  painel.setAttribute("aria-hidden", "true");
+  painel.hidden = true;
+  sobre.append(chip, painel);
+  wrap.appendChild(sobre);
+
+  let preso = false;
+  const abrir = (v) => {
+    painel.hidden = !v;
+    chip.setAttribute("aria-expanded", String(!!v));
+    sobre.classList.toggle("aberto", !!v);
+  };
+  // Devolver o foco ao atalho depois do Escape disparava o próprio "focus", que
+  // reabria o painel que o Escape tinha acabado de fechar. A bandeira desliga o
+  // abrir-no-foco só durante essa devolução.
+  let semAbrirNoFoco = false;
+  chip.addEventListener("mouseenter", () => abrir(true));
+  chip.addEventListener("focus", () => { if (!semAbrirNoFoco) abrir(true); });
+  sobre.addEventListener("mouseleave", () => { if (!preso) abrir(false); });
+  chip.addEventListener("blur", () => { if (!preso && !sobre.contains(document.activeElement)) abrir(false); });
+  // O clique alterna preso-e-aberto ↔ solto-e-fechado. Alternar só o "preso"
+  // deixava o painel permanentemente aberto em telas sem mouse, onde não existe
+  // o mouseleave que o fecharia.
+  chip.addEventListener("click", () => {
+    preso = !preso;
+    sobre.classList.toggle("preso", preso);
+    abrir(preso);
+  });
+  // Escape precisa valer de onde a pessoa estiver. Quando o painel está preso,
+  // o foco costuma ter ido para os botões de passo — que ficam FORA de `sobre`,
+  // então um listener preso ao próprio painel nunca receberia a tecla.
+  const escapa = (e) => {
+    if (e.key !== "Escape" || !preso) return;
+    preso = false;
+    sobre.classList.remove("preso");
+    semAbrirNoFoco = true;
+    chip.focus();
+    semAbrirNoFoco = false;
+    abrir(false);
+  };
+  document.addEventListener("keydown", escapa);
+
   // ---- narração ------------------------------------------------------------
   const narra = document.createElement("div");
   narra.className = "viz-tl-narracao";
@@ -2666,6 +2724,7 @@ function renderLinhaDoTempo(root, { malha, dados, passos }) {
       // o lado o desgrudaria da flecha a que pertence.
       const texto = `${f.origem} · ${fmtInt.format(f.pessoas)}`;
       const larg = texto.length * 5.6, alt = 13;
+      const ancora = sx < W * 0.32 ? "start" : sx > W * 0.68 ? "end" : "middle";
       let lx = sx, ly = sy - 5, tentativa = 0;
       const bate = (x, y) => usados.some(u =>
         Math.abs(x - u.x) < (larg + u.larg) / 2 && Math.abs(y - u.y) < alt + 3);
@@ -2673,8 +2732,17 @@ function renderLinhaDoTempo(root, { malha, dados, passos }) {
         tentativa++;
         lx += dx * 26; ly += dy * 26;   // desliza para dentro, sobre a seta
       }
+      // A cauda de uma seta pode cair fora do quadro — e cai, sempre que a
+      // origem fica muito longe (Ceará à direita) ou quando a seta entra pela
+      // borda de cima, como a do exterior em 2022. Sem prender o rótulo dentro
+      // da moldura, o SVG corta a palavra: "Exterior · 77.172" ficava com meia
+      // linha de altura e os nomes da direita perdiam o último dígito.
+      const B = 5;
+      const minX = ancora === "start" ? B : ancora === "end" ? larg + B : larg / 2 + B;
+      const maxX = ancora === "start" ? W - larg - B : ancora === "end" ? W - B : W - larg / 2 - B;
+      lx = Math.max(minX, Math.min(maxX, lx));
+      ly = Math.max(alt + 4, Math.min(H - 34 - B, ly));
       usados.push({ x: lx, y: ly, larg });
-      const ancora = sx < W * 0.32 ? "start" : sx > W * 0.68 ? "end" : "middle";
       const rot = el("text", {
         x: lx, y: ly, "text-anchor": ancora,
         class: "viz-tl-seta-rot", stroke: "var(--v-surface)", "stroke-width": 3,
@@ -2783,12 +2851,60 @@ function renderLinhaDoTempo(root, { malha, dados, passos }) {
     svg.setAttribute("aria-label", `Roraima em ${passo.ano}: ${passo.titulo}`);
   }
 
+  // Dois blocos opcionais por passo, e a ordem entre eles é deliberada.
+  //
+  // `contexto` responde "o que estava acontecendo" e fica ABERTO: é o que dá
+  // sentido ao mapa e ninguém deveria ter de clicar para receber. `pergunta`
+  // responde a objeção que o passo provoca e fica FECHADO, porque é resposta —
+  // só faz sentido depois de a pergunta ter ocorrido ao leitor.
+  //
+  // Cada bloco separa três coisas que costumam vir embaralhadas: número medido
+  // (com a tabela atrás), citação de terceiro (entre aspas e atribuída) e
+  // ressalva do que aquilo NÃO prova. A ressalva não é rodapé — é parte da
+  // resposta, e por isso vem no mesmo bloco e não numa nota lá embaixo.
+  function blocoContexto(passo) {
+    const c = typeof passo.contexto === "function" ? passo.contexto() : passo.contexto;
+    if (!c) return "";
+    const nums = (c.numeros || []).filter(n => n && n.valor != null);
+    return `<div class="viz-tl-ctx">`
+      + `<p class="viz-tl-ctx-titulo">O que estava acontecendo em ${passo.ano}</p>`
+      + (nums.length ? `<ul class="viz-tl-ctx-nums">${nums.map(n =>
+          `<li><b>${n.valor}</b><span>${n.rotulo}</span></li>`).join("")}</ul>` : "")
+      + `<p class="viz-tl-ctx-texto">${c.texto}</p>`
+      + (c.citacao ? `<figure class="viz-tl-cit"><blockquote>${c.citacao.texto}</blockquote>`
+          + `<figcaption>${c.citacao.de}</figcaption></figure>` : "")
+      + `</div>`;
+  }
+
+  function blocoPergunta(passo) {
+    const p = typeof passo.pergunta === "function" ? passo.pergunta() : passo.pergunta;
+    if (!p) return "";
+    return `<details class="viz-tl-cruel">`
+      + `<summary><span class="viz-tl-cruel-marca">pergunta cruel</span>${p.pergunta}</summary>`
+      + `<div class="viz-tl-cruel-corpo"><p>${p.resposta}</p>`
+      + (p.ressalva ? `<p class="viz-tl-ressalva"><strong>O que isso não prova:</strong> ${p.ressalva}</p>` : "")
+      + `</div></details>`;
+  }
+
   function escreverNarracao() {
     const passo = passos[atual];
     const foco = alvoSetas ? dados.municipios.find(m => m.ibge === alvoSetas) : null;
+    const ctx = blocoContexto(passo), perg = blocoPergunta(passo);
     narra.innerHTML = `<p class="viz-tl-passo">Passo ${atual + 1} de ${passos.length} · <strong>${passo.ano}</strong></p>`
       + `<p class="viz-tl-titulo">${passo.titulo}</p>`
-      + `<p class="viz-tl-texto">${passo.texto(foco)}</p>`;
+      + `<p class="viz-tl-texto">${passo.texto(foco)}</p>`
+      + ctx + perg;
+
+    // O mesmo conteúdo no canto do mapa. Sem contexto neste passo, o atalho
+    // some em vez de abrir um painel vazio.
+    const tem = !!ctx;
+    sobre.hidden = !tem;
+    if (!tem) { preso = false; abrir(false); return; }
+    chip.innerHTML = `<span class="viz-tl-chip-ano">${passo.ano}</span>`
+      + `<span class="viz-tl-chip-txt">o que estava acontecendo</span>`;
+    chip.setAttribute("aria-label",
+      `Ver o que estava acontecendo em ${passo.ano}. O mesmo texto está logo abaixo do mapa.`);
+    painel.innerHTML = ctx + perg;
   }
 
   function ir(i) {

@@ -76,7 +76,7 @@
    "indigena_pct_2022": 58.34,
    "estrangeiros_2022": 691,
    "vindos_de_fora_2010": 846,
-   "exterior_2010": 846
+   "exterior_2010": 34
   },
   {
    "ibge": "1400027",
@@ -94,7 +94,7 @@
    "indigena_pct_2022": 65.51,
    "estrangeiros_2022": 504,
    "vindos_de_fora_2010": 442,
-   "exterior_2010": 442
+   "exterior_2010": 8
   },
   {
    "ibge": "1400100",
@@ -112,7 +112,7 @@
    "indigena_pct_2022": 4.41,
    "estrangeiros_2022": 59788,
    "vindos_de_fora_2010": 43322,
-   "exterior_2010": 43322
+   "exterior_2010": 1205
   },
   {
    "ibge": "1400159",
@@ -130,7 +130,7 @@
    "indigena_pct_2022": 43.34,
    "estrangeiros_2022": 708,
    "vindos_de_fora_2010": 851,
-   "exterior_2010": 851
+   "exterior_2010": 250
   },
   {
    "ibge": "1400175",
@@ -148,7 +148,7 @@
    "indigena_pct_2022": 24.04,
    "estrangeiros_2022": 1610,
    "vindos_de_fora_2010": 1579,
-   "exterior_2010": 1579
+   "exterior_2010": 32
   },
   {
    "ibge": "1400209",
@@ -166,7 +166,7 @@
    "indigena_pct_2022": 5.9,
    "estrangeiros_2022": 358,
    "vindos_de_fora_2010": 2823,
-   "exterior_2010": 2823
+   "exterior_2010": 31
   },
   {
    "ibge": "1400233",
@@ -184,7 +184,7 @@
    "indigena_pct_2022": 7.6,
    "estrangeiros_2022": 558,
    "vindos_de_fora_2010": 1759,
-   "exterior_2010": 1759
+   "exterior_2010": 0
   },
   {
    "ibge": "1400282",
@@ -202,7 +202,7 @@
    "indigena_pct_2022": 17.3,
    "estrangeiros_2022": 331,
    "vindos_de_fora_2010": 1356,
-   "exterior_2010": 1356
+   "exterior_2010": 7
   },
   {
    "ibge": "1400308",
@@ -220,7 +220,7 @@
    "indigena_pct_2022": 4.06,
    "estrangeiros_2022": 1421,
    "vindos_de_fora_2010": 1956,
-   "exterior_2010": 1956
+   "exterior_2010": 46
   },
   {
    "ibge": "1400407",
@@ -238,7 +238,7 @@
    "indigena_pct_2022": 76.12,
    "estrangeiros_2022": 270,
    "vindos_de_fora_2010": 181,
-   "exterior_2010": 181
+   "exterior_2010": 39
   },
   {
    "ibge": "1400456",
@@ -256,7 +256,7 @@
    "indigena_pct_2022": 52.56,
    "estrangeiros_2022": 6817,
    "vindos_de_fora_2010": 1137,
-   "exterior_2010": 1137
+   "exterior_2010": 144
   },
   {
    "ibge": "1400472",
@@ -274,7 +274,7 @@
    "indigena_pct_2022": 2.55,
    "estrangeiros_2022": 2364,
    "vindos_de_fora_2010": 5393,
-   "exterior_2010": 5393
+   "exterior_2010": 21
   },
   {
    "ibge": "1400506",
@@ -292,7 +292,7 @@
    "indigena_pct_2022": 6.08,
    "estrangeiros_2022": 557,
    "vindos_de_fora_2010": 1233,
-   "exterior_2010": 1233
+   "exterior_2010": 5
   },
   {
    "ibge": "1400605",
@@ -310,7 +310,7 @@
    "indigena_pct_2022": 0.41,
    "estrangeiros_2022": 758,
    "vindos_de_fora_2010": 783,
-   "exterior_2010": 783
+   "exterior_2010": 6
   },
   {
    "ibge": "1400704",
@@ -328,7 +328,7 @@
    "indigena_pct_2022": 94.45,
    "estrangeiros_2022": 44,
    "vindos_de_fora_2010": 100,
-   "exterior_2010": 100
+   "exterior_2010": 25
   }
  ],
  "fluxos_2010": [
@@ -3422,5 +3422,13 @@
    -51.9594,
    1.4457
   ]
- }
+ },
+ "correcoes": [
+  {
+   "campo": "exterior_2010",
+   "quando": "2026-08-05",
+   "o_que_estava_errado": "O campo tinha sido gravado com o mesmo valor de vindos_de_fora_2010 nos quinze municípios, o que fazia a página afirmar que todos os que chegaram vieram de outro país.",
+   "como_foi_corrigido": "Recalculado a partir da linha 'Exterior' da própria matriz fluxos_2010, que é a fonte de onde o campo deveria ter saído. Total do estado: 1853 pessoas, contra 63761 antes."
+  }
+ ]
 }

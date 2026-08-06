@@ -220,9 +220,77 @@
 .viz-tl-narracao .viz-tl-titulo{margin:0 0 .35rem;color:var(--v-text-primary);font-size:.98rem;font-weight:850;line-height:1.25}
 .viz-tl-narracao .viz-tl-texto{margin:0;color:var(--v-text-secondary);font-size:.8rem;line-height:1.6}
 .viz-tl-narracao .viz-tl-texto strong{color:var(--v-text-primary);font-weight:850}
+/* O atalho no canto do mapa: uma etiqueta discreta que abre no hover e fica
+   presa no clique. Sobre o mapa, e não ao lado, porque o ponto é não obrigar o
+   olho a sair do desenho para entender a data. */
+/* O bloco ocupa a altura do mapa mas NÃO recebe clique — só a etiqueta e o
+   painel recebem. Sem isso, uma faixa invisível de 320px sobre o mapa comeria o
+   hover dos municípios de oeste. E é a altura cheia que faz o painel caber: com
+   um teto fixo, o texto de 2010 era cortado no meio de uma frase. */
+.viz-tl-sobre{position:absolute;top:8px;left:8px;bottom:8px;z-index:3;display:flex;flex-direction:column;
+  align-items:flex-start;width:min(320px,calc(100% - 16px));pointer-events:none}
+.viz-tl-chip{display:flex;align-items:baseline;gap:.4rem;padding:.3rem .55rem;border:1px solid var(--v-grid);
+  border-radius:999px;background:var(--v-surface);color:var(--v-text-secondary);font:inherit;font-size:.66rem;
+  line-height:1.2;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.10);pointer-events:auto;flex:0 0 auto}
+.viz-tl-chip:hover,.viz-tl-sobre.preso .viz-tl-chip{border-color:var(--v-text-secondary);color:var(--v-text-primary)}
+.viz-tl-chip:focus-visible{outline:2px solid var(--v-text-primary);outline-offset:2px}
+.viz-tl-chip-ano{color:var(--v-text-primary);font-weight:850;font-size:.76rem}
+.viz-tl-chip-txt{font-weight:700;letter-spacing:.02em}
+.viz-tl-chip::after{content:"+";margin-left:.1rem;font-weight:800;opacity:.7}
+.viz-tl-sobre.preso .viz-tl-chip::after{content:"\2212"}
+.viz-tl-painel{margin-top:.35rem;padding:.15rem .6rem .6rem;border:1px solid var(--v-grid);border-radius:10px;
+  background:var(--v-surface);box-shadow:0 4px 14px rgba(0,0,0,.16);pointer-events:auto;
+  width:100%;flex:0 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+/* Dentro do painel o contexto já é o assunto — não precisa da moldura que ele
+   usa embaixo, onde disputa espaço com o texto do passo. */
+.viz-tl-painel .viz-tl-ctx{margin:.45rem 0 0;padding:0;background:none;border-left:0}
+.viz-tl-painel .viz-tl-cruel{margin-top:.55rem}
+/* Em tela estreita o painel cairia logo acima da narração, repetindo palavra por
+   palavra o texto que vem em seguida — duas paredes iguais coladas. Some. */
+@media (max-width:620px){
+  .viz-tl-sobre{display:none}
+}
+/* Contexto do passo. Fica dentro da narração, mas recuado e sobre fundo próprio:
+   é outro tipo de informação — o que explica, não o que o mapa mostra. */
+.viz-tl-ctx{margin:.7rem 0 0;padding:.6rem .75rem;border-radius:8px;background:var(--v-grid-soft,rgba(127,127,127,.08));
+  border-left:2px solid var(--v-grid)}
+.viz-tl-ctx-titulo{margin:0 0 .4rem;color:var(--v-text-secondary);font-size:.62rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase}
+.viz-tl-ctx-nums{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin:0 0 .45rem;padding:0;list-style:none}
+.viz-tl-ctx-nums li{display:flex;flex-direction:column;min-width:0}
+.viz-tl-ctx-nums b{color:var(--v-text-primary);font-size:.92rem;font-weight:850;line-height:1.15}
+.viz-tl-ctx-nums span{color:var(--v-text-secondary);font-size:.64rem;line-height:1.3}
+.viz-tl-ctx-texto{margin:0;color:var(--v-text-secondary);font-size:.76rem;line-height:1.55}
+.viz-tl-ctx-texto strong{color:var(--v-text-primary);font-weight:800}
+/* Citação de terceiro: aspas visíveis e autoria colada embaixo, para que nunca
+   se confunda com texto apurado por este projeto. */
+.viz-tl-cit{margin:.5rem 0 0;padding:0}
+.viz-tl-cit blockquote{margin:0;padding:0 0 0 .6rem;border-left:2px solid var(--v-grid);
+  color:var(--v-text-secondary);font-size:.74rem;font-style:italic;line-height:1.5}
+.viz-tl-cit blockquote::before{content:"\201C"}
+.viz-tl-cit blockquote::after{content:"\201D"}
+.viz-tl-cit figcaption{margin:.25rem 0 0 .6rem;color:var(--v-text-secondary);font-size:.62rem;opacity:.85}
+/* A pergunta cruel: fechada por padrão, porque é resposta a uma objeção que o
+   leitor precisa ter formulado antes para a resposta valer alguma coisa. */
+.viz-tl-cruel{margin:.6rem 0 0;border:1px dashed var(--v-grid);border-radius:8px;background:var(--v-surface)}
+.viz-tl-cruel>summary{padding:.5rem .7rem;color:var(--v-text-primary);font-size:.78rem;font-weight:750;
+  line-height:1.4;cursor:pointer;list-style:none}
+.viz-tl-cruel>summary::-webkit-details-marker{display:none}
+.viz-tl-cruel>summary::after{content:"+";float:right;margin-left:.5rem;color:var(--v-text-secondary);font-weight:800}
+.viz-tl-cruel[open]>summary::after{content:"\2212"}
+.viz-tl-cruel[open]>summary{border-bottom:1px solid var(--v-grid)}
+.viz-tl-cruel>summary:focus-visible{outline:2px solid var(--v-text-primary);outline-offset:2px}
+.viz-tl-cruel-marca{display:block;margin-bottom:.15rem;color:var(--v-text-secondary);font-size:.58rem;
+  font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.viz-tl-cruel-corpo{padding:.6rem .7rem}
+.viz-tl-cruel-corpo p{margin:0;color:var(--v-text-secondary);font-size:.77rem;line-height:1.6}
+.viz-tl-cruel-corpo strong{color:var(--v-text-primary);font-weight:850}
+.viz-tl-ressalva{margin-top:.5rem !important;padding-top:.5rem;border-top:1px solid var(--v-grid);
+  font-size:.73rem !important;opacity:.92}
 @media (max-width:620px){
   .viz-tl-trilha{flex-basis:100%;order:2}
   .viz-tl-marca .viz-tl-rot{display:none}
+  .viz-tl-ctx-nums{gap:.45rem .7rem}
 }
 /* Quem pediu menos movimento não recebe transição nenhuma — os passos continuam
    inteiros, só aparecem de uma vez. */
